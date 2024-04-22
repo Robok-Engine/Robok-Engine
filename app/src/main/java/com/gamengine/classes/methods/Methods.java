@@ -18,6 +18,7 @@ import com.gamengine.MainActivity;
 import com.gamengine.R;
 
 //Java
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.lang.ref.WeakReference;
 
 //Google
@@ -28,17 +29,21 @@ public class Methods {
     private WeakReference<MainActivity> weak;
     private LinearLayout terminal;
     private BottomSheetDialog terminalSheet;
+	private View bottomSheetView;
     
     public Methods(Context context, MainActivity mainActivity) {
         this.mCtx = context;
         this.weak = new WeakReference<>(mainActivity);
-        View bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
-        terminalSheet = new BottomSheetDialog(mCtx);
-        terminalSheet.setContentView(bottomSheetView);
-        //terminalSheet.getWindow().findViewById(R.id.).setBackgroundResource(android.R.color.transparent);
+		clear();
         terminalSheet.setCancelable(true);
         terminal = bottomSheetView.findViewById(R.id.terminal);
     }
+	
+	public void clear(){
+		bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
+		terminalSheet = new BottomSheetDialog(mCtx);
+		terminalSheet.setContentView(bottomSheetView);
+	}
     
     public void openTerminal(){
         terminalSheet.show();
@@ -73,4 +78,13 @@ public class Methods {
         terminal.addView(text);
         openTerminal();
     }
+	
+	public void showDialog (String title, String message){
+		MaterialAlertDialogBuilder d = new MaterialAlertDialogBuilder(mCtx)
+				.setTitle(title)
+				.setMessage(message)
+				.setPositiveButton("OK", (dd, w) ->{
+					
+				}).show();
+	}
 }
