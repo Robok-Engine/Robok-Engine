@@ -1,31 +1,35 @@
 package com.gamengine.classes.methods;
 
+//Android
 import android.content.Context;
 import android.widget.Toast;
+//GamIDE
 import com.gamengine.MainActivity;
-import com.gamengine.classes.methods.MyClass;
+import com.gamengine.classes.methods.Methods;
+
+//Java
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
-public class GamEngineMethodCaller {
+public class MethodCaller {
 
     private Map<String, Method> methodMap;
     private Context mCtx;
     private WeakReference<MainActivity> weak;
-    private MyClass myClassInstance;
+    private Methods myClassInstance;
 
-    public GamEngineMethodCaller(Context ctx, MainActivity main) {
+    public MethodCaller(Context ctx, MainActivity main) {
         methodMap = new HashMap<>();
         mCtx = ctx;
         weak = new WeakReference<>(main);
-        myClassInstance = new MyClass(ctx, main);
+        myClassInstance = new Methods(ctx, main);
         try {
-            methodMap.put("showToast", MyClass.class.getDeclaredMethod("showToast", String.class));
-            methodMap.put("createButton", MyClass.class.getDeclaredMethod("createButton", String.class, String.class));
-            methodMap.put("createText", MyClass.class.getDeclaredMethod("createText", String.class, String.class));
-            methodMap.put("openTerminal", MyClass.class.getDeclaredMethod("openTerminal"));
+            methodMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class));
+            methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
+            methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, String.class));
+            methodMap.put("openTerminal", Methods.class.getDeclaredMethod("openTerminal"));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
