@@ -30,6 +30,8 @@ public class MethodCaller {
             methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
             methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, String.class));
             methodMap.put("openTerminal", Methods.class.getDeclaredMethod("openTerminal"));
+			methodMap.put("clear", Methods.class.getDeclaredMethod("clear"));
+			methodMap.put("showDialog", Methods.class.getDeclaredMethod("showDialog", String.class, String.class));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
         }
