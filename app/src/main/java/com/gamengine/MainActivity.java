@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
       methodCaller.callMethod(parts[0], parts[1]);
     } else if (parts[0].contains("openTerminal")) {
       methodCaller.callMethod(parts[0]);
+	} else if (parts[0].contains("clear"))  {
+	  methodCaller.callMethod(parts[0]);
+	} else if (parts[0].contains("showDialog")) {
+		methodCaller.callMethod(parts[0], parts[1], parts[2]);
     } else {
       methodCaller.callMethod("showToast", "Nenhum Metodo");
     }
