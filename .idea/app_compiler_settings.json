@@ -1,0 +1,16 @@
+{
+ "java": {
+  "isCompilerEnabled": "false",
+  "sourceCompatibility": "1.8",
+  "targetCompatibility": "1.8",
+  "applyJavaFormat": "false",
+  "isGoogleJavaFormat": "false"
+ },
+ "kotlin": {
+  "isCompilerEnabled": "false",
+  "isCompileRuntime": "false",
+  "isKotlinCompletionV2": "false",
+  "jvmTarget": "1.8",
+  "applyKotlinFormat": "false"
+ }
+}
