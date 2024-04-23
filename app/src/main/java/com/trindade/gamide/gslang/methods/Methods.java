@@ -1,6 +1,6 @@
-package com.gamengine.classes.methods;
+package com.trindade.gamide.gslang.methods;
 
-import com.gamengine.R;
+//Android
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -9,27 +9,41 @@ import android.widget.Button;
 import android.widget.TextView; 
 import android.widget.LinearLayout;
 import android.widget.Toast;
+
+//AndroidX
 import androidx.appcompat.app.AppCompatActivity;
-import com.gamengine.MainActivity;
+
+//GamIDE
+import com.trindade.gamide.MainActivity;
+import com.trindade.gamide.R;
+
+//Java
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.lang.ref.WeakReference;
+
+//Google
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-public class MyClass {
+public class Methods {
     private Context mCtx;
     private WeakReference<MainActivity> weak;
     private LinearLayout terminal;
     private BottomSheetDialog terminalSheet;
+	private View bottomSheetView;
     
-    public MyClass(Context context, MainActivity mainActivity) {
+    public Methods(Context context, MainActivity mainActivity) {
         this.mCtx = context;
         this.weak = new WeakReference<>(mainActivity);
-        View bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
-        terminalSheet = new BottomSheetDialog(mCtx);
-        terminalSheet.setContentView(bottomSheetView);
-        //terminalSheet.getWindow().findViewById(R.id.).setBackgroundResource(android.R.color.transparent);
+		clear();
         terminalSheet.setCancelable(true);
         terminal = bottomSheetView.findViewById(R.id.terminal);
     }
+	
+	public void clear(){
+		bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
+		terminalSheet = new BottomSheetDialog(mCtx);
+		terminalSheet.setContentView(bottomSheetView);
+	}
     
     public void openTerminal(){
         terminalSheet.show();
@@ -64,4 +78,14 @@ public class MyClass {
         terminal.addView(text);
         openTerminal();
     }
+	
+	public void showDialog (String title, String message){
+		MaterialAlertDialogBuilder d = new MaterialAlertDialogBuilder(mCtx);
+		d.setTitle(title);
+	    d.setMessage(message);
+		d.setPositiveButton("OK", (dd, w) ->{
+					
+		});
+		d.show();
+	}
 }

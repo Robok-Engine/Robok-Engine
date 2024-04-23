@@ -1,4 +1,4 @@
-package com.gamengine;
+package com.trindade.gamide;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;

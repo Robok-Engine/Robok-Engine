@@ -4,10 +4,10 @@ plugins {
 
 android {
     compileSdk 33
-    namespace "com.gamengine"
+    namespace "com.trindade.gamide"
 	
     defaultConfig {
-        applicationId "com.gamengine"
+        applicationId "com.trindade.gamide"
         minSdk 23
         targetSdk 33
         versionCode 1
