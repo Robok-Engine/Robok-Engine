@@ -14,8 +14,13 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 //GamIDE
+<<<<<<< HEAD:app/src/main/java/com/trindade/gamide/gslang/methods/Methods.java
 import com.trindade.gamide.MainActivity;
 import com.trindade.gamide.R;
+=======
+import com.gamengine.MainActivity;
+import com.gamengine.R;
+>>>>>>> refs/remotes/origin/main:app/src/main/java/com/gamengine/classes/methods/Methods.java
 
 //Java
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
@@ -80,6 +85,7 @@ public class Methods {
     }
 	
 	public void showDialog (String title, String message){
+<<<<<<< HEAD:app/src/main/java/com/trindade/gamide/gslang/methods/Methods.java
 		MaterialAlertDialogBuilder d = new MaterialAlertDialogBuilder(mCtx);
 		d.setTitle(title);
 	    d.setMessage(message);
@@ -89,3 +95,13 @@ public class Methods {
 		d.show();
 	}
 }
+=======
+		MaterialAlertDialogBuilder d = new MaterialAlertDialogBuilder(mCtx)
+				.setTitle(title)
+				.setMessage(message)
+				.setPositiveButton("OK", (dd, w) ->{
+					
+				}).show();
+	}
+}
+>>>>>>> refs/remotes/origin/main:app/src/main/java/com/gamengine/classes/methods/Methods.java
