@@ -1,0 +1,20 @@
+{
+  "allFiles": [
+    {
+      "file": "/storage/emulated/0/AndroidIDEProjects/GamIDE/app/src/main/java/com/trindade/gamide/gslang/methods/MethodCaller.java",
+      "selection": {
+        "end": {
+          "column": 50,
+          "index": 175,
+          "line": 6
+        },
+        "start": {
+          "column": 50,
+          "index": 175,
+          "line": 6
+        }
+      }
+    }
+  ],
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/GamIDE/app/src/main/java/com/trindade/gamide/gslang/methods/MethodCaller.java"
+}

@@ -4,13 +4,9 @@ package com.trindade.gamide.gslang.methods;
 import android.content.Context;
 import android.widget.Toast;
 //GamIDE
-<<<<<<< HEAD:app/src/main/java/com/trindade/gamide/gslang/methods/MethodCaller.java
-import com.trindade.gamide.MainActivity;
 import com.trindade.gamide.gslang.methods.Methods;
-=======
 import com.gamengine.MainActivity;
 import com.gamengine.classes.methods.Methods;
->>>>>>> refs/remotes/origin/main:app/src/main/java/com/gamengine/classes/methods/MethodCaller.java
 
 //Java
 import java.lang.ref.WeakReference;
