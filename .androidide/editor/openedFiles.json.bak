@@ -1,20 +1,20 @@
 {
   "allFiles": [
     {
-      "file": "/storage/emulated/0/AndroidIDEProjects/GamIDE/app/src/main/java/com/trindade/gamide/gslang/methods/MethodCaller.java",
+      "file": "/storage/emulated/0/AndroidIDEProjects/GamIDE/build.gradle.kts",
       "selection": {
         "end": {
-          "column": 50,
-          "index": 175,
-          "line": 6
+          "column": 61,
+          "index": 171,
+          "line": 2
         },
         "start": {
-          "column": 50,
-          "index": 175,
-          "line": 6
+          "column": 61,
+          "index": 171,
+          "line": 2
         }
       }
     }
   ],
-  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/GamIDE/app/src/main/java/com/trindade/gamide/gslang/methods/MethodCaller.java"
+  "selectedFile": "/storage/emulated/0/AndroidIDEProjects/GamIDE/build.gradle.kts"
 }
