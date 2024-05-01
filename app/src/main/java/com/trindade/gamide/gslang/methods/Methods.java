@@ -14,7 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 //GamIDE
-import com.trindade.gamide.MainActivity;
+import com.trindade.gamide.ui.fragments.EditorFragment;
 import com.trindade.gamide.R;
 
 //Java
@@ -26,12 +26,12 @@ import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class Methods {
     private Context mCtx;
-    private WeakReference<MainActivity> weak;
+    private WeakReference<EditorFragment> weak;
     private LinearLayout terminal;
     private BottomSheetDialog terminalSheet;
 	private View bottomSheetView;
     
-    public Methods(Context context, MainActivity mainActivity) {
+    public Methods(Context context, EditorFragment mainActivity) {
         this.mCtx = context;
         this.weak = new WeakReference<>(mainActivity);
 		clear();

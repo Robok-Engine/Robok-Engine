@@ -5,7 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 //GamIDE
 import com.trindade.gamide.gslang.methods.Methods;
-import com.trindade.gamide.MainActivity;
+import com.trindade.gamide.ui.fragments.EditorFragment;
 
 //Java
 import java.lang.ref.WeakReference;
@@ -17,10 +17,10 @@ public class MethodCaller {
 
     private Map<String, Method> methodMap;
     private Context mCtx;
-    private WeakReference<MainActivity> weak;
+    private WeakReference<EditorFragment> weak;
     private Methods myClassInstance;
 
-    public MethodCaller(Context ctx, MainActivity main) {
+    public MethodCaller(Context ctx, EditorFragment main) {
         methodMap = new HashMap<>();
         mCtx = ctx;
         weak = new WeakReference<>(main);

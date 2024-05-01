@@ -16,6 +16,7 @@ public class BaseCompiller {
 	
 	public BaseCompiller(Context ctx){
 		this.mCtx = ctx;
+        methodCaller = new MethodCaller(mCtx, new EditorFragment());
 	}
 	
 	public void compile(String codeToRun){
