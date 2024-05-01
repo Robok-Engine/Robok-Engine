@@ -5,7 +5,7 @@ import android.content.Context;
 import android.widget.Toast;
 //GamIDE
 import com.trindade.gamide.gslang.methods.Methods;
-import com.gamengine.MainActivity;
+import com.trindade.gamide.MainActivity;
 import com.gamengine.classes.methods.Methods;
 
 //Java
