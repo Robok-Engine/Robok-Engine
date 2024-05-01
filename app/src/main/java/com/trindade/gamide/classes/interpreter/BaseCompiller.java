@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 //GamIDE
 import com.trindade.gamide.gslang.methods.MethodCaller;
+import com.trindade.gamide.ui.fragments.EditorFragment;
 
 public class BaseCompiller {
 	
