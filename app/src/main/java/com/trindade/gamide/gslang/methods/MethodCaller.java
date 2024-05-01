@@ -6,7 +6,6 @@ import android.widget.Toast;
 //GamIDE
 import com.trindade.gamide.gslang.methods.Methods;
 import com.trindade.gamide.MainActivity;
-import com.gamengine.classes.methods.Methods;
 
 //Java
 import java.lang.ref.WeakReference;
