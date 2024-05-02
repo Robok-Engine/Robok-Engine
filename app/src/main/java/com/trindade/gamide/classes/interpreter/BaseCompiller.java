@@ -21,54 +21,27 @@ public class BaseCompiller {
 	}
 	
 	public void compile(String codeToRun){
-    String[] lines = codeToRun.split("\\r?\\n");
-    
-    for (String line : lines) {
-        String[] parts = line.split("\\s+");
-        
-        if (parts.length == 0) {
-            continue;
-        }
-        
-        if (methodTyped(parts[0])) {
-            switch (parts[0]) {
-                case "createButton":
-                case "createText":
-                    if (parts.length >= 3) {
-                        methodCaller.callMethod(parts[0], parts[1], parts[2]);
-                    } else {
-                        // Exibir mensagem de erro se não houver argumentos suficientes
-                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
-                    }
-                    break;
-                case "showToast":
-                    if (parts.length >= 2) {
-                        methodCaller.callMethod(parts[0], parts[1]);
-                    } else {
-                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
-                    }
-                    break;
-                case "openTerminal":
-                case "clear":
-                    if (parts.length >= 1) {
-                        methodCaller.callMethod(parts[0]);
-                    } else {
-                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
-                    }
-                    break;
-                case "showDialog":
-                    if (parts.length >= 3) {
-                        methodCaller.callMethod(parts[0], parts[1], parts[2]);
-                    } else {
-                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
-                    }
-                    break;
-            }
-        } else {
-            Toast.makeText(mCtx, "Nenhum método encontrado para " + parts[0], 4000).show();
-        }
-    }
-}
+		String codeText = codeToRun;
+		parts = codeText.split(" ");
+		if (methodTyped("createButton")) {
+			methodCaller.callMethod(parts[0], parts[1], parts[2]);
+			} else if (methodTyped("createText")) {
+			methodCaller.callMethod(parts[0], parts[1], parts[2]);
+			} else if (methodTyped("showToast")) {
+			methodCaller.callMethod(parts[0], parts[1]);
+			} else if (methodTyped("openTerminal")) {
+			methodCaller.callMethod(parts[0]);
+			} else if (methodTyped("clear"))  {
+			methodCaller.callMethod(parts[0]);
+			} else if (methodTyped("showDialog")) {
+			methodCaller.callMethod(parts[0], parts[1], parts[2]);
+			} else {
+			Toast.makeText(mCtx, "Nenhum método encontrado", 4000).show();
+		}
+	}
+
+
+como eu faço esse codigo suportar  quebras de linha 
 	
 	public boolean methodTyped(String methodName){
 		boolean returnVal;
