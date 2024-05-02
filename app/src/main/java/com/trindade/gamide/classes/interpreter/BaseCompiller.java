@@ -21,34 +21,51 @@ public class BaseCompiller {
 	}
 	
 	public void compile(String codeToRun){
-    String[] lines = codeToRun.split("\\r?\\n"); // Divide o código em linhas
+    String[] lines = codeToRun.split("\\r?\\n");
     
     for (String line : lines) {
-        String[] parts = line.split("\\s+"); 
+        String[] parts = line.split("\\s+");
         
         if (parts.length == 0) {
-            continue; 
+            continue;
         }
         
         if (methodTyped(parts[0])) {
             switch (parts[0]) {
                 case "createButton":
                 case "createText":
-                    methodCaller.callMethod(parts[0], parts[1], parts[2]);
+                    if (parts.length >= 3) {
+                        methodCaller.callMethod(parts[0], parts[1], parts[2]);
+                    } else {
+                        // Exibir mensagem de erro se não houver argumentos suficientes
+                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
+                    }
                     break;
                 case "showToast":
-                    methodCaller.callMethod(parts[0], parts[1]);
+                    if (parts.length >= 2) {
+                        methodCaller.callMethod(parts[0], parts[1]);
+                    } else {
+                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
+                    }
                     break;
                 case "openTerminal":
                 case "clear":
-                    methodCaller.callMethod(parts[0]);
+                    if (parts.length >= 1) {
+                        methodCaller.callMethod(parts[0]);
+                    } else {
+                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
+                    }
                     break;
                 case "showDialog":
-                    methodCaller.callMethod(parts[0], parts[1], parts[2]);
+                    if (parts.length >= 3) {
+                        methodCaller.callMethod(parts[0], parts[1], parts[2]);
+                    } else {
+                        Toast.makeText(mCtx, "Número insuficiente de argumentos para " + parts[0], 4000).show();
+                    }
                     break;
             }
         } else {
-            Toast.makeText(mCtx, "Nenhum método encontrado", 4000).show();
+            Toast.makeText(mCtx, "Nenhum método encontrado para " + parts[0], 4000).show();
         }
     }
 }
