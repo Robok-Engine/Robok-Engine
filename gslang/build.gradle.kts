@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
 }
 
+val app_version = "v1.0.0"
+
 android {
     namespace = "gslang"
     compileSdk = 34
@@ -11,6 +13,7 @@ android {
         minSdk = 26
         targetSdk = 34
         consumerProguardFiles("consumer-rules.pro")
+        versionName = app_version
     }
 
     buildFeatures {
@@ -20,10 +23,12 @@ android {
     buildTypes {
         getByName("debug") {
             defaultConfig.minSdk = 26
+            buildConfigField("String", "APP_VERSION", "${app_version}-Debug")
         }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
+            buildConfigField("String", "APP_VERSION", "${app_version}-Release")
         }
     }
 
