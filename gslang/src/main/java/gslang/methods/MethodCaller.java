@@ -22,7 +22,7 @@ public class MethodCaller {
     public MethodCaller(Context ctx) {
         methodMap = new HashMap<>();
         mCtx = ctx;
-        myClassInstance = new Methods(ctx, main);
+        myClassInstance = new Methods(ctx);
         try {
             methodMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class, int.class));
             methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, Color.class));

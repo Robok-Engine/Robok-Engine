@@ -41,7 +41,7 @@ public class Methods {
     }
     
     public void onExecute(int typeCode) {
-       if (typeCode = 1) {
+       if (typeCode == 1) {
           openTerminal();
        }
     }
