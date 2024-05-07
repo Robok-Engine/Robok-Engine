@@ -9,8 +9,8 @@ android {
     
     defaultConfig {
         applicationId = "com.trindade.gamide"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = 21
+        targetSdk = 28
         versionCode = 1
         versionName = "1.0"
         
