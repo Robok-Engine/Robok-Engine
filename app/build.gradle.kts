@@ -7,23 +7,12 @@ android {
     namespace = "com.trindade.gamide"
     compileSdk = 34
     
-    def gitCommitHash = "git rev-parse HEAD".execute().text.trim()
-
-    def getCommitHash = { ->
-        def stdout = new ByteArrayOutputStream()
-        exec {
-            commandLine "git", "rev-parse", "--short", "HEAD"
-            standardOutput = stdout
-        }
-        return stdout.toString().trim()
-    }
-    
     defaultConfig {
         applicationId = "com.trindade.gamide"
         minSdk = 26
         targetSdk = 34
         versionCode = 0
-        versionName "v1.0.0-SNAPSHOT-" + getCommitHash()
+        versionName "v1.0.0"
 
         buildConfigField("String", "GIT_HASH", "\"${gitCommitHash}\"")
         
