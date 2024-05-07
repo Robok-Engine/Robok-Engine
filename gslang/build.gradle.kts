@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         getByName("debug") {
-            defaultConfig.minSdk = 26
+            defaultConfig.minSdk = 21
             
         }
         getByName("release") {
