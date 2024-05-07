@@ -14,9 +14,9 @@ public class BaseCompiller {
 	Context mCtx;
 	
 	
-	public BaseCompiller(Context ctx, AppCompatActivity act){
+	public BaseCompiller(Context ctx){
 		this.mCtx = ctx;
-        methodCaller = new MethodCaller(mCtx, act);
+        methodCaller = new MethodCaller(mCtx);
 	}
 	
 	public void compile(String codeToRun){

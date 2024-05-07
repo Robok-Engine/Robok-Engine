@@ -11,66 +11,70 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import gslang.R;
+import gslang.R; 
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import java.lang.ref.WeakReference;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class Methods {
-    private Context mCtx;
-    private WeakReference<AppCompatActivity> weak;
-    private LinearLayout terminal;
-    private BottomSheetDialog terminalSheet;
-	private View bottomSheetView;
+
+    private static int MATCH_PARENT = LinearLayout.LayoutParams.MATCH_PARENT;
+	private static int WRAP_CONTENT= LinearLayout.LayoutParams.WRAP_CONTENT;
+    private static Context mCtx;    
+    private static LinearLayout terminal;
+    private static BottomSheetDialog terminalSheet;
+	private static View bottomSheetView;
+	
     
-    public Methods(Context context, AppCompatActivity mainActivity) {
+    public Methods(Context context) {
         this.mCtx = context;
-        this.weak = new WeakReference<>(mainActivity);
-		clear();
+		initializeBottomSheet();
         terminalSheet.setCancelable(true);
         terminal = bottomSheetView.findViewById(R.id.terminal);
     }
-	
-	public void clear(){
-		bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
+    
+    public void initializeBottomSheet() {
+        bottomSheetView = LayoutInflater.from(mCtx).inflate(R.layout.terminal, null);
 		terminalSheet = new BottomSheetDialog(mCtx);
 		terminalSheet.setContentView(bottomSheetView);
-	}
+    }
+    
+    public void onExecute(int typeCode) {
+       if (typeCode = 1) {
+          openTerminal();
+       }
+    }
+    
+    public void addView(View view){
+        terminal.addView(view);
+    }
     
     public void openTerminal(){
         terminalSheet.show();
     }
 
     public void createButton(String text, String bgColor) {
-        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
+        LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         Button button = new Button(mCtx);
         button.setLayoutParams(buttonParams);
         button.setText(text);
-       // button.setBackgroundColor(Color.parseColor(bgColor));
-        terminal.addView(button);
-        openTerminal();
+        button.setBackgroundColor(Color.parseColor(bgColor));  
+        onExecute(1);
     }
 
-    public void showToast(String s) {
-        Toast.makeText(mCtx, s, Toast.LENGTH_SHORT).show();
+    public void showToast(String s, int lenght) {
+        Toast.makeText(mCtx, s, lenght).show();
     }
 
     public void createText(String textVal, String txtColor) {
-        LinearLayout.LayoutParams txtParams = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.WRAP_CONTENT);
-
+        LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         TextView text = new TextView(mCtx);
-        text.setLayoutParams(txtParams);
+        text.setLayoutParams(textParams);
         text.setText(textVal);
         text.setTextColor(Color.parseColor(txtColor));
         terminal.addView(text);
-        openTerminal();
+        onExecute(1);
     }
 	
 	public void showDialog (String title, String message){
@@ -81,5 +85,6 @@ public class Methods {
 					
 		});
 		d.show();
+		onExecute(0);
 	}
 }

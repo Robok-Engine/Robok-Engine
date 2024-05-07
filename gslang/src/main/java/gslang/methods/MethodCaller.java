@@ -2,6 +2,7 @@ package gslang.methods;
 
 import android.content.Context;
 import android.widget.Toast;
+import android.graphics.Color;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -16,20 +17,17 @@ public class MethodCaller {
 
     private Map<String, Method> methodMap;
     private Context mCtx;
-    private WeakReference<AppCompatActivity> weak;
     private Methods myClassInstance;
 
-    public MethodCaller(Context ctx, AppCompatActivity main) {
+    public MethodCaller(Context ctx, MainActivity main) {
         methodMap = new HashMap<>();
         mCtx = ctx;
-        weak = new WeakReference<>(main);
         myClassInstance = new Methods(ctx, main);
         try {
-            methodMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class));
-            methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
-            methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, String.class));
+            methodMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class, int.class));
+            methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, Color.class));
+            methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, Color.class));
             methodMap.put("openTerminal", Methods.class.getDeclaredMethod("openTerminal"));
-			methodMap.put("clear", Methods.class.getDeclaredMethod("clear"));
 			methodMap.put("showDialog", Methods.class.getDeclaredMethod("showDialog", String.class, String.class));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
