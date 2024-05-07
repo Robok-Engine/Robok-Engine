@@ -23,12 +23,12 @@ android {
     buildTypes {
         getByName("debug") {
             defaultConfig.minSdk = 26
-            buildConfigField("String", "APP_VERSION", "${app_version}-Debug")
+            buildConfigField("String", "GIT_HASH", "${app_version}-Debug")
         }
         getByName("release") {
             isMinifyEnabled = false
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), file("proguard-rules.pro"))
-            buildConfigField("String", "APP_VERSION", "${app_version}-Release")
+            buildConfigField("String", "GIT_HASH", "${app_version}-Release")
         }
     }
 
