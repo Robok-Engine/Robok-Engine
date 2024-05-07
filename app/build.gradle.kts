@@ -12,10 +12,8 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 0
-        versionName "v1.0.0"
+        versionName = "v1.0.0"
 
-        buildConfigField("String", "GIT_HASH", "\"${gitCommitHash}\"")
-        
         vectorDrawables { 
             useSupportLibrary = true
         }
