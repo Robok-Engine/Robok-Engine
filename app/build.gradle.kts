@@ -47,17 +47,3 @@ dependencies {
     
     implementation(project(":gslang"))
 }
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.aquilestrindade"
-            artifactId = "GSLang"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["java"])
-            }
-        }
-    }
-}
