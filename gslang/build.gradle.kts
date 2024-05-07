@@ -49,7 +49,7 @@ publishing {
             version = lib_version
 
             afterEvaluate {
-                from(components["java"])
+                from(components["release"])
             }
         }
     }
