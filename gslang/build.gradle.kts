@@ -43,13 +43,13 @@ dependencies {
 
 publishing {
     publications {
-        register<MavenPublication>("release") {
+        register<MavenPublication>("debug") {
             groupId = "com.github.aquilestrindade"
             artifactId = "GSLang"
             version = lib_version
 
             afterEvaluate {
-                from(components["release"])
+                from(components["debug"])
             }
         }
     }
