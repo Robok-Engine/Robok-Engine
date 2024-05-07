@@ -35,7 +35,7 @@ android {
     }
 }
 
-dependencies {
+dependencies {*
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.9.0")
@@ -43,13 +43,13 @@ dependencies {
 
 publishing {
     publications {
-        register<MavenPublication>("debug") {
+        register<MavenPublication>("src") {
             groupId = "com.github.aquilestrindade"
             artifactId = "GSLang"
             version = lib_version
 
             afterEvaluate {
-                from(components["debug"])
+                from(components["src"])
             }
         }
     }
