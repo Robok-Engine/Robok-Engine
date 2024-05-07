@@ -19,7 +19,7 @@ public class MethodCaller {
     private Context mCtx;
     private Methods myClassInstance;
 
-    public MethodCaller(Context ctx, MainActivity main) {
+    public MethodCaller(Context ctx) {
         methodMap = new HashMap<>();
         mCtx = ctx;
         myClassInstance = new Methods(ctx, main);
