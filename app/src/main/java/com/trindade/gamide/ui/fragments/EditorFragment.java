@@ -14,6 +14,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.trindade.gamide.R;
+import com.trindade.gamide.MainActivity;
 
 import gslang.interpreter.BaseCompiller;
 
@@ -41,7 +42,7 @@ public class EditorFragment extends Fragment {
 		mCtx = getContext(); // Inicialize o contexto aqui
 		
 		// GamIDE
-		baseCompiler = new BaseCompiller(mCtx, new AppCompatActivity(mCtx));
+		baseCompiler = new BaseCompiller(mCtx, MainActivity);
 		
 		codeEditText = view.findViewById(R.id.code);
 		runCode = view.findViewById(R.id.runCode);
