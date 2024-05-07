@@ -12,7 +12,6 @@ android {
         minSdk = 26
         targetSdk = 34
         consumerProguardFiles("consumer-rules.pro")
-        versionName = app_version
     }
 
     buildFeatures {
