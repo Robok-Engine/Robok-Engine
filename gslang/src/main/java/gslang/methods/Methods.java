@@ -54,7 +54,7 @@ public class Methods {
         terminalSheet.show();
     }
 
-    public void createButton(String text, String bgColor) {
+    public void createButton(String text, Color bgColor) {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         Button button = new Button(mCtx);
         button.setLayoutParams(buttonParams);
@@ -67,7 +67,7 @@ public class Methods {
         Toast.makeText(mCtx, s, lenght).show();
     }
 
-    public void createText(String textVal, String txtColor) {
+    public void createText(String textVal, Color txtColor) {
         LinearLayout.LayoutParams textParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         TextView text = new TextView(mCtx);
         text.setLayoutParams(textParams);
