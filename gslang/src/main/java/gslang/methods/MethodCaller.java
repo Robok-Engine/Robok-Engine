@@ -25,8 +25,8 @@ public class MethodCaller {
         myClassInstance = new Methods(ctx);
         try {
             methodMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class, int.class));
-            methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, int.class));
-            methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, int.class));
+            methodMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
+            methodMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, String.class));
             methodMap.put("openTerminal", Methods.class.getDeclaredMethod("openTerminal"));
 			methodMap.put("showDialog", Methods.class.getDeclaredMethod("showDialog", String.class, String.class));
         } catch (NoSuchMethodException e) {
