@@ -24,15 +24,15 @@ public class BaseCompiller {
 		parts = codeText.split(" ");
 		if (methodTyped("createButton")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-			} else if (methodTyped("createText")) {
+	    } else if (methodTyped("createText")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-			} else if (methodTyped("showToast")) {
+		} else if (methodTyped("showToast")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-			} else if (methodTyped("openTerminal")) {
+		} else if (methodTyped("openTerminal")) {
 			methodCaller.callMethod(parts[0]);
-			} else if (methodTyped("showDialog")) {
+		} else if (methodTyped("showDialog")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-			} else {
+		} else {
 			Toast.makeText(mCtx, "Nenhum método encontrado", 4000).show();
 		}
 	}

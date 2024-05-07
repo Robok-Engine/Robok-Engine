@@ -63,7 +63,8 @@ public class Methods {
         Button button = new Button(mCtx);
         button.setLayoutParams(buttonParams);
         button.setText(text);
-        button.setBackgroundColor(Color.parseColor(bgColor));  
+        button.setBackgroundColor(Color.parseColor(bgColor)); 
+        addView(button); 
         onExecute(1);
     }
 
@@ -73,7 +74,7 @@ public class Methods {
         text.setLayoutParams(textParams);
         text.setText(textVal);
         text.setTextColor(Color.parseColor(txtColor));
-        terminal.addView(text);
+        addView(text);
         onExecute(1);
     }
 	
