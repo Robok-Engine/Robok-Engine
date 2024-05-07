@@ -17,3 +17,4 @@ dependencyResolutionManagement {
 rootProject.name = "GamIDE"
 
 include(":app")
+include(":gslang")

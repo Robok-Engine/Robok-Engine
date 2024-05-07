@@ -1,31 +1,28 @@
 package com.trindade.gamide.ui.fragments;
 
-// Android
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-
-// AndroidX
 import android.view.ViewGroup;
 import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-// GamIDE
 import com.trindade.gamide.R;
-import com.trindade.gamide.classes.interpreter.BaseCompiller;
 
-// Google
+import gslang.interpreter.BaseCompiller;
+
 import com.google.android.material.transition.MaterialSharedAxis;
 
 public class EditorFragment extends Fragment {
 	
 	// GamIDE Classes
-	BaseCompiller base;
+	BaseCompiller baseCompiler;
 	
 	private Context mCtx;
 	private EditText codeEditText;
@@ -44,14 +41,14 @@ public class EditorFragment extends Fragment {
 		mCtx = getContext(); // Inicialize o contexto aqui
 		
 		// GamIDE
-		base = new BaseCompiller(mCtx);
+		baseCompiler = new BaseCompiller(mCtx, EditorFragment.this);
 		
 		codeEditText = view.findViewById(R.id.code);
 		runCode = view.findViewById(R.id.runCode);
 		
 		try{
 			runCode.setOnClickListener(v -> {
-				base.compile(codeEditText.getText().toString());
+				baseCompiler.compile(codeEditText.getText().toString());
 			});
 		} catch (Exception e) {
 			Toast.makeText(mCtx, e.toString(), 4000).show();

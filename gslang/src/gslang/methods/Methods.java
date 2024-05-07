@@ -1,6 +1,5 @@
-package com.trindade.gamide.gslang.methods;
+package gslang.methods;
 
-//Android
 import android.content.Context;
 import android.graphics.Color;
 import android.view.LayoutInflater;
@@ -10,28 +9,23 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-//AndroidX
 import androidx.appcompat.app.AppCompatActivity;
 
-//GamIDE
-import com.trindade.gamide.ui.fragments.EditorFragment;
-import com.trindade.gamide.R;
+import gslang.R;
 
-//Java
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import java.lang.ref.WeakReference;
 
-//Google
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
 public class Methods {
     private Context mCtx;
-    private WeakReference<EditorFragment> weak;
+    private WeakReference<AppCompatActivity> weak;
     private LinearLayout terminal;
     private BottomSheetDialog terminalSheet;
 	private View bottomSheetView;
     
-    public Methods(Context context, EditorFragment mainActivity) {
+    public Methods(Context context, AppCompatActivity mainActivity) {
         this.mCtx = context;
         this.weak = new WeakReference<>(mainActivity);
 		clear();

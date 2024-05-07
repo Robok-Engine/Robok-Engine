@@ -1,12 +1,11 @@
-package com.trindade.gamide.classes.interpreter;
+package gslang.interpreter;
 
-//Android
 import android.content.Context;
 import android.widget.Toast;
 
-//GamIDE
-import com.trindade.gamide.gslang.methods.MethodCaller;
-import com.trindade.gamide.ui.fragments.EditorFragment;
+import androidx.appcompat.app.AppCompatActivity;
+
+import gslang.methods.MethodCaller;
 
 public class BaseCompiller {
 	
@@ -15,9 +14,9 @@ public class BaseCompiller {
 	Context mCtx;
 	
 	
-	public BaseCompiller(Context ctx){
+	public BaseCompiller(Context ctx, AppCompatActivity act){
 		this.mCtx = ctx;
-        methodCaller = new MethodCaller(mCtx, new EditorFragment());
+        methodCaller = new MethodCaller(mCtx, act);
 	}
 	
 	public void compile(String codeToRun){
@@ -39,9 +38,6 @@ public class BaseCompiller {
 			Toast.makeText(mCtx, "Nenhum método encontrado", 4000).show();
 		}
 	}
-
-
-como eu faço esse codigo suportar  quebras de linha 
 	
 	public boolean methodTyped(String methodName){
 		boolean returnVal;
@@ -51,6 +47,5 @@ como eu faço esse codigo suportar  quebras de linha
 			returnVal = false;
 		}
 		return  returnVal;
-	}
-	
+	}	
 }

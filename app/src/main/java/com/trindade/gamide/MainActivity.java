@@ -1,6 +1,5 @@
 package com.trindade.gamide;
 
-//Android
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -8,18 +7,16 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-//AndroidX
 import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-//GamIDE
-import com.trindade.gamide.gslang.methods.MethodCaller;
-import com.trindade.gamide.classes.interpreter.BaseCompiller;
+import gslang.methods.MethodCaller;
+
 import com.trindade.gamide.ui.fragments.EditorFragment;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,13 +1,12 @@
-package com.trindade.gamide.gslang.methods;
+package gslang.methods;
 
-//Android
 import android.content.Context;
 import android.widget.Toast;
-//GamIDE
-import com.trindade.gamide.gslang.methods.Methods;
-import com.trindade.gamide.ui.fragments.EditorFragment;
 
-//Java
+import androidx.appcompat.app.AppCompatActivity;
+
+import gslang.methods.Methods;
+
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Method;
 import java.util.HashMap;
@@ -17,10 +16,10 @@ public class MethodCaller {
 
     private Map<String, Method> methodMap;
     private Context mCtx;
-    private WeakReference<EditorFragment> weak;
+    private WeakReference<AppCompatActivity> weak;
     private Methods myClassInstance;
 
-    public MethodCaller(Context ctx, EditorFragment main) {
+    public MethodCaller(Context ctx, AppCompatActivity main) {
         methodMap = new HashMap<>();
         mCtx = ctx;
         weak = new WeakReference<>(main);
