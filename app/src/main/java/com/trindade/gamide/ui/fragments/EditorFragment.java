@@ -41,7 +41,7 @@ public class EditorFragment extends Fragment {
 		mCtx = getContext(); // Inicialize o contexto aqui
 		
 		// GamIDE
-		baseCompiler = new BaseCompiller(mCtx, EditorFragment.this);
+		baseCompiler = new BaseCompiller(mCtx, new AppCompatActivity(mCtx));
 		
 		codeEditText = view.findViewById(R.id.code);
 		runCode = view.findViewById(R.id.runCode);
