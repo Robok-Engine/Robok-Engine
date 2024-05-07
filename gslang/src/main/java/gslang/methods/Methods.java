@@ -53,18 +53,18 @@ public class Methods {
     public void openTerminal(){
         terminalSheet.show();
     }
+    
+    public void showToast(String s, int lenght) {
+        Toast.makeText(mCtx, s, lenght).show();
+    }
 
-    public void createButton(String text, Color bgColor) {
+    public void createButton(String text, int bgColor) {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         Button button = new Button(mCtx);
         button.setLayoutParams(buttonParams);
         button.setText(text);
         button.setBackgroundColor(bgColor);  
         onExecute(1);
-    }
-
-    public void showToast(String s, int lenght) {
-        Toast.makeText(mCtx, s, lenght).show();
     }
 
     public void createText(String textVal, Color txtColor) {
