@@ -1,4 +1,4 @@
-name: Latest Build(debug)
+name: Build GamIDE D
 
 on:
   push:

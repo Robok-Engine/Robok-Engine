@@ -1,4 +1,4 @@
-name: Latest build(release)
+name: Build GamIDE R
 
 on:
   push:
