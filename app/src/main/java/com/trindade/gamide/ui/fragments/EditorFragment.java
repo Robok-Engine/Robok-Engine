@@ -22,7 +22,6 @@ import com.google.android.material.transition.MaterialSharedAxis;
 
 public class EditorFragment extends Fragment {
 	
-	// GamIDE Classes
 	BaseCompiller baseCompiler;
 	
 	private Context mCtx;
@@ -39,10 +38,9 @@ public class EditorFragment extends Fragment {
 	@Override
 	public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_editor, container, false);
-		mCtx = getContext(); // Inicialize o contexto aqui
+		mCtx = getContext(); 
 		
-		// GamIDE
-		baseCompiler = new BaseCompiller(mCtx, MainActivity.class);
+		baseCompiler = new BaseCompiller(mCtx);
 		
 		codeEditText = view.findViewById(R.id.code);
 		runCode = view.findViewById(R.id.runCode);
