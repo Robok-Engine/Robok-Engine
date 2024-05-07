@@ -3,6 +3,8 @@ plugins {
     id("kotlin-android")
 }
 
+def app_version ="v1.0.0"
+
 android {
     namespace = "com.trindade.gamide"
     compileSdk = 34
@@ -12,7 +14,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "v1.0.0"
+        versionName = app_version
 
         vectorDrawables { 
             useSupportLibrary = true
@@ -26,8 +28,12 @@ android {
 
     buildTypes {
         getByName("release") {
+            buildConfigField("String", "GIT_HASH", "${app_version}" + "-Release")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            buildConfigField("String", "GIT_HASH", "${app_version}" + "-Debug")
         }
     }
 

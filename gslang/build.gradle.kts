@@ -7,6 +7,7 @@ android {
     compileSdk = 34
 
     defaultConfig {
+        applicationId = "gslang"
         minSdk = 26
         targetSdk = 34
         consumerProguardFiles("consumer-rules.pro")
