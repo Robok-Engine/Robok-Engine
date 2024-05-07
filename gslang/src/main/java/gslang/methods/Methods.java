@@ -58,7 +58,7 @@ public class Methods {
         Toast.makeText(mCtx, s, lenght).show();
     }
 
-    public void createButton(String text, Strinh bgColor) {
+    public void createButton(String text, String bgColor) {
         LinearLayout.LayoutParams buttonParams = new LinearLayout.LayoutParams(MATCH_PARENT, WRAP_CONTENT);
         Button button = new Button(mCtx);
         button.setLayoutParams(buttonParams);
