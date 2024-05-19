@@ -5,6 +5,7 @@ on:
     branches:
       - main
       - dev
+      - release
 jobs:
   build:
     name: Build debug apk
