@@ -45,5 +45,5 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     
-    implementation(project(":gslang"))
+    implementation("com.github.GamIDE-Foundation:robok-language:1.0.0")
 }

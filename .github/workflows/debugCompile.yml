@@ -1,0 +1,61 @@
+name: GamIDE Debug
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - .github/workflows/debugCompile.yml
+      - app/**
+      - build.gradle.kts
+      - gradle.properties
+      - gradlew
+      - gradlew.bat
+      - settings.gradle.kts
+jobs:
+  gamide-debug-apk:
+    name: Build GamIDE Debug APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Validate Gradle wrapper
+        uses: gradle/wrapper-validation-action@v1
+      
+      - name: Build with Gradle
+        id: gradle_build_debug
+        run: ./gradlew assembleDebug -p simple-implement
+
+      - name: Upload debug apk
+        uses: actions/upload-artifact@v4
+        with:
+          name: gamide-debug
+          path: app/build/outputs/apk/
+          
+      - name: Send APK to Trindade CI Telegram
+        if: success()
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          format: markdown
+          document: app/build/outputs/apk/debug/app-debug.apk
+          disable_web_page_preview: false
+          message: |
+            *Build Success!*
+            Repository: *${{ github.repository }}*
+            Branch: *${{ github.ref_name }}*
+            App: GamIDE
+            Commit message: `${{ github.event.head_commit.message }}`
+            [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
