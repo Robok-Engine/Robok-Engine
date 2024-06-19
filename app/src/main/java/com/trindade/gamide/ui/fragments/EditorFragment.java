@@ -16,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.trindade.gamide.R;
 import com.trindade.gamide.MainActivity;
 
-import gslang.interpreter.BaseCompiller;
+import robok.trindade.interpreter.*;
 
 import com.google.android.material.transition.MaterialSharedAxis;
 

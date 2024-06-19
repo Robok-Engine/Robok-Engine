@@ -15,7 +15,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import gslang.methods.MethodCaller;
+import robok.trindade.methods.*;
 
 import com.trindade.gamide.ui.fragments.EditorFragment;
 
