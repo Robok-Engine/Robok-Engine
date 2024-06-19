@@ -42,7 +42,7 @@ jobs:
         with:
           name: gamide-debug
           path: app/build/outputs/apk/
-          
+           
       - name: Send APK to Trindade CI Telegram
         if: success()
         uses: appleboy/telegram-action@master
