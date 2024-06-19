@@ -11,10 +11,10 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
+    maven { url = "https://jitpack.io" }
   }
 }
 
 rootProject.name = "GamIDE"
 
 include(":app")
-include(":gslang")
