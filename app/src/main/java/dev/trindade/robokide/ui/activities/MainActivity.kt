@@ -23,10 +23,13 @@ import androidx.compose.foundation.layout.*
 
 import dev.trindade.robokide.ui.theme.*
 
+import robok.trindade.interpreter.*
+
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val compiler = RobokCompiler(this)
         setContent {
             RobokTheme {
                 Scaffold(
@@ -35,14 +38,14 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    Content()
+                    Content(compiler)
                 }
             }
         }
     }
     
     @Composable
-    fun Content () {
+    fun Content (compiler: RobokCompiler) {
         Column ( 
            modifier = Modifier
              .fillMaxSize()
@@ -62,8 +65,8 @@ class MainActivity : ComponentActivity() {
             )
             
             Button(
-               onClick = { 
-                  //executeRobokLanguage(code.text)
+               onClick = {
+                   compiler.compile(input.text)
                },
                modifier = Modifier
                     .fillMaxWidth()
@@ -73,10 +76,5 @@ class MainActivity : ComponentActivity() {
                 )
             }
         }
-    }
-    
-    @Composable
-    fun executeRobokLanguage(code: String) {
-        
     }
 } 
