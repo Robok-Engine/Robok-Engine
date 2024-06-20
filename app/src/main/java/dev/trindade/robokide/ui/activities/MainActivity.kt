@@ -43,21 +43,31 @@ class MainActivity : ComponentActivity() {
     
     @Composable
     fun Content () {
-        codeTextField()
+        Column ( 
+           modifier = Modifier
+             .fillMaxSize()
+             .padding(16.dp)
+        ) {
+            var code by remember {
+                mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
+            }
+            TextField(
+                value = code,
+                onValueChange = { newValue ->
+                    code = newValue
+                },
+                label = { Text("Code") }
+            )
+            
+            Button(
+               text = "RUN",
+               onclick = { execute(code) }
+            )
+        }
     }
     
     @Composable
-    fun codeTextField() {
-        var code by remember {
-           mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
-        }
+    fun execute(code: String) {
         
-        TextField(
-            value = code,
-            onValueChange = { newValue ->
-               code = newValue
-            },
-            label = { Text("Code") }
-        )
     }
 } 
