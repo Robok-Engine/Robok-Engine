@@ -66,7 +66,7 @@ class MainActivity : ComponentActivity() {
             
             Button(
                onClick = {
-                   compiler.compile(input.text)
+                   compiler.compile(code.text)
                },
                modifier = Modifier
                     .fillMaxWidth()
