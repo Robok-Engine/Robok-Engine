@@ -49,7 +49,7 @@ class MainActivity : ComponentActivity() {
     @Composable
     fun codeTextField() {
         var code by remember {
-           mutableStateOf(TextFieldValue("showToast Hello$spaceWorld!"))
+           mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
         }
         
         TextField(
