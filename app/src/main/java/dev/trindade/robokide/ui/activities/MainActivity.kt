@@ -44,19 +44,17 @@ class MainActivity : ComponentActivity() {
     fun Content () {
         codeTextField()
     }
-    
     @Composable
-    fun codeTextField () {
-        var code by remember {
-             mutableStateOf(TextFieldValue(""))
-        }
-        TextField (
-            value = code,
-            label = { Text(text = "Code") },
-            onValueChange = { it ->
-                code = it
-            }
-        )        
+    fun codeTextField() {
+       var code by remember {
+           mutableStateOf(TextFieldValue(""))
+       }
+       TextField(
+           value = code,
+           label = { Text(text = "Code") },
+           onValueChange = { newValue ->
+               code = newValue
+           }
+       )        
     }
-    
 }
