@@ -20,7 +20,7 @@ private val LightColorScheme =
        tertiary = Pink40)
 
 @Composable
-fun RobukTheme(darkTheme: Boolean = isSystemInDarkTheme(),
+fun RobokTheme(darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
                               dynamicColor: Boolean = true,
                               content: @Composable () -> Unit
