@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    content()
+                    Content()
                 }
             }
         }
