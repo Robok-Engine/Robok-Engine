@@ -34,9 +34,33 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    //
+                    content()
                 }
             }
         }
     }
+    
+    @Composable
+    fun Content () {
+        codeTextField()
+    }
+    
+    @Composable
+    fun codeTextField () {
+        var code by remember {
+             mutableStateOf(TextFieldValue(""))
+        }
+        TextField (
+            value = code,
+            onValueChange = {
+                code = it
+            },
+            label = {
+                Text(
+                    text = "Code"
+                )
+            }        
+        )        
+    }
+    
 }
