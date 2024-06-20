@@ -1,4 +1,4 @@
-package com.trindade.gamide.ui.fragments;
+package dev.trindade.robokide.ui.fragments;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -13,8 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.trindade.gamide.R;
-import com.trindade.gamide.MainActivity;
+import dev.trindade.robokide.R;
+import dev.trindade.robokide.MainActivity;
 
 import robok.trindade.interpreter.*;
 

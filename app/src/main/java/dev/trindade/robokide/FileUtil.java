@@ -1,4 +1,4 @@
-package com.trindade.gamide;
+package dev.trindade.robokide;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;

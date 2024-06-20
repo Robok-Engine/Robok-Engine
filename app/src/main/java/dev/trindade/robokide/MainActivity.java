@@ -1,4 +1,4 @@
-package com.trindade.gamide;
+package dev.trindade.robokide;
 
 import android.os.Bundle;
 import android.view.View;
@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import robok.trindade.methods.*;
 
-import com.trindade.gamide.ui.fragments.EditorFragment;
+import dev.trindade.robokide.ui.fragments.EditorFragment;
 
 public class MainActivity extends AppCompatActivity {
 

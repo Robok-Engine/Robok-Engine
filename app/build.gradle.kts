@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.trindade.gamide"
+    namespace = "dev.trindade.robokide"
     compileSdk = 34
     
     defaultConfig {
-        applicationId = "com.trindade.gamide"
+        applicationId = "dev.trindade.robokide"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
