@@ -20,11 +20,7 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
 
-import com.trindade.oak.ui.theme.*
-import com.trindade.oak.ui.models.*
-import com.trindade.oak.data.models.*
-import com.trindade.oak.ui.fragments.home.*
-import com.trindade.oak.ui.fragments.details.*
+import dev.trindade.robokide.ui.theme.*
 
 class MainActivity : ComponentActivity() {
 
@@ -38,7 +34,7 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    Content()
+                    //
                 }
             }
         }
