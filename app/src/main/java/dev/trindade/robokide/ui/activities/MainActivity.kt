@@ -15,6 +15,7 @@ import androidx.compose.material3.*
 import androidx.navigation.compose.*
 import androidx.compose.foundation.*
 import androidx.compose.ui.graphics.*
+import androidx.compose.ui.text.input.*
 import androidx.compose.material.icons.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.*
@@ -44,17 +45,19 @@ class MainActivity : ComponentActivity() {
     fun Content () {
         codeTextField()
     }
+    
     @Composable
     fun codeTextField() {
-       var code by remember {
-           mutableStateOf(TextFieldValue(""))
-       }
-       TextField(
-           value = code,
-           label = { Text(text = "Code") },
-           onValueChange = { newValue ->
+        var code by remember {
+           mutableStateOf(TextFieldValue("showToast Hello$spaceWorld!"))
+        }
+        
+        TextField(
+            value = code,
+            onValueChange = { newValue ->
                code = newValue
-           }
-       )        
+            },
+            label = { Text("Code") }
+        )
     }
-}
+} 
