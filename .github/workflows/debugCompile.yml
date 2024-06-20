@@ -1,4 +1,4 @@
-name: GamIDE Debug
+name: RobokIDE Debug
 
 on:
   workflow_dispatch:
@@ -12,8 +12,8 @@ on:
       - gradlew.bat
       - settings.gradle.kts
 jobs:
-  gamide-debug-apk:
-    name: Build GamIDE Debug APK
+  RobokIDE-debug-apk:
+    name: Build RobokIDE Debug APK
     runs-on: ubuntu-latest
 
     steps:
@@ -40,7 +40,7 @@ jobs:
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: gamide-debug
+          name: RobokIDE-debug
           path: app/build/outputs/apk/
            
       - name: Send APK to Trindade CI Telegram
@@ -56,6 +56,6 @@ jobs:
             *Build Success!*
             Repository: *${{ github.repository }}*
             Branch: *${{ github.ref_name }}*
-            App: GamIDE
+            App: RobokIDE
             Commit message: `${{ github.event.head_commit.message }}`
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
