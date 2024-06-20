@@ -60,8 +60,8 @@ class MainActivity : ComponentActivity() {
             )
             
             Button(
-               text = "RUN",
-               onclick = { execute(code) }
+               content = { Text(text = "RUN") },
+               onClick = { execute(code.text) }
             )
         }
     }
