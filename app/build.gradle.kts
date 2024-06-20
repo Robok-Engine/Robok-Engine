@@ -62,7 +62,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
 
-    val robok_version = "1.0.1"
+    val robok_version = "1.0.2"
     val kotlin_version = "2.0.0"
     val kotlin_coroutines_version = "1.9.0-RC"
     val compose_version = "2024.05.00"
