@@ -60,14 +60,19 @@ class MainActivity : ComponentActivity() {
             )
             
             Button(
-               content = { Text(text = "RUN") },
-               onClick = { execute(code.text) }
-            )
+               onClick = { 
+                  executeRobokLanguage(code.text)
+               }
+            ) {
+                Text(
+                   text = "RUN"
+                )
+            }
         }
     }
     
     @Composable
-    fun execute(code: String) {
+    fun executeRobokLanguage(code: String) {
         
     }
 } 
