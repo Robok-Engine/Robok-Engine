@@ -56,13 +56,17 @@ class MainActivity : ComponentActivity() {
                 onValueChange = { newValue ->
                     code = newValue
                 },
-                label = { Text("Code") }
+                label = { Text("Code") },
+                modifier = Modifier
+                    .fillMaxWidth()
             )
             
             Button(
                onClick = { 
                   //executeRobokLanguage(code.text)
-               }
+               },
+               modifier = Modifier
+                    .fillMaxWidth()
             ) {
                 Text(
                    text = "RUN"
