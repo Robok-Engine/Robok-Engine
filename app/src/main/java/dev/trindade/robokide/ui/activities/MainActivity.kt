@@ -52,14 +52,10 @@ class MainActivity : ComponentActivity() {
         }
         TextField (
             value = code,
-            onValueChange = {
+            label = { Text(text = "Code") },
+            onValueChange = { it ->
                 code = it
-            },
-            label = {
-                Text(
-                    text = "Code"
-                )
-            }        
+            }
         )        
     }
     
