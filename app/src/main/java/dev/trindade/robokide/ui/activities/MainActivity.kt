@@ -61,7 +61,7 @@ class MainActivity : ComponentActivity() {
             
             Button(
                onClick = { 
-                  executeRobokLanguage(code.text)
+                  //executeRobokLanguage(code.text)
                }
             ) {
                 Text(
