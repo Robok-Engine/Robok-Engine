@@ -18,4 +18,4 @@ dependencyResolutionManagement {
 rootProject.name = "GamIDE"
 
 include(":app")
-include(":language:language")
+include(":language")

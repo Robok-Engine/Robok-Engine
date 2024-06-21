@@ -100,5 +100,5 @@ dependencies {
     implementation("androidx.activity:activity:$activity_version")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    implementation(project(":language:language"))
+    implementation(project(":language"))
 }
