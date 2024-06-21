@@ -46,14 +46,17 @@ class MainActivity : ComponentActivity() {
     
     @Composable
     fun Content (compiler: RobokCompiler) {
+       var code by remember {
+           mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
+       }
+       var switchState by remember {
+           mutableStateOf(false)
+       }
         Column ( 
            modifier = Modifier
              .fillMaxSize()
              .padding(16.dp)
         ) {
-            var code by remember {
-                mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
-            }
             TextField(
                 value = code,
                 onValueChange = { newValue ->
@@ -75,6 +78,10 @@ class MainActivity : ComponentActivity() {
                    text = "RUN"
                 )
             }
+            Switch (
+               checked = switchState
+               onCheckedChange = { switchState = it }
+            )
         }
     }
 } 
