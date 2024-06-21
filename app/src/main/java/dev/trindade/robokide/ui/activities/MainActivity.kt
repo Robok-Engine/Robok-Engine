@@ -79,8 +79,10 @@ class MainActivity : ComponentActivity() {
                 )
             }
             Switch (
-               checked = switchState
-               onCheckedChange = { switchState = it }
+               checked = switchState,
+               onCheckedChange = { it ->
+                    switchState = it 
+               }
             )
         }
     }
