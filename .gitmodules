@@ -1,6 +1,3 @@
-[submodule "Robok-Language"]
-	path = Robok-Language
-	url = https://github.com/Robok-Foundation/Robok-Language/
 [submodule "language"]
 	path = language
 	url = https://github.com/Robok-Foundation/Robok-Language/
