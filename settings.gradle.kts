@@ -17,5 +17,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "GamIDE"
 
+var root = "language"
+
 include(":app")
 include(":language")
+project(":language").projectDir = file("$root${File.separator}language")
