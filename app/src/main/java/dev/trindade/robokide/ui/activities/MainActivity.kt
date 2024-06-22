@@ -22,6 +22,7 @@ import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
 
 import dev.trindade.robokide.ui.theme.*
+import dev.trindade.robokide.ui.models.toolbar.*
 
 import robok.trindade.interpreter.*
 
@@ -57,33 +58,40 @@ class MainActivity : ComponentActivity() {
              .fillMaxSize()
              .padding(16.dp)
         ) {
-            TextField(
-                value = code,
-                onValueChange = { newValue ->
-                    code = newValue
-                },
-                label = { Text("Code") },
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
+            topAppBarLarge(title = "Robok IDE")
             
-            Button(
-               onClick = {
-                   compiler.compile(code.text)
-               },
+            Column ( 
                modifier = Modifier
-                    .fillMaxWidth()
+                   .fillMaxSize()
+                   .padding(16.dp)
             ) {
-                Text(
-                   text = "RUN"
+                TextField(
+                    value = code,
+                    onValueChange = { newValue ->
+                        code = newValue
+                    },
+                    label = { Text("Code") },
+                    modifier = Modifier
+                       .fillMaxWidth()
+                )
+                Button(
+                    onClick = {
+                        compiler.compile(code.text)
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                ) {
+                   Text(
+                      text = "RUN"
+                   )
+                }
+                Switch (
+                    checked = switchState,
+                    onCheckedChange = { it ->
+                        switchState = it 
+                    }
                 )
             }
-            Switch (
-               checked = switchState,
-               onCheckedChange = { it ->
-                    switchState = it 
-               }
-            )
-        }
+        }  
     }
 } 
