@@ -56,14 +56,13 @@ class MainActivity : ComponentActivity() {
         Column ( 
            modifier = Modifier
              .fillMaxSize()
-             .padding(16.dp)
         ) {
             topAppBarLarge(title = "Robok IDE")
             
             Column ( 
                modifier = Modifier
                    .fillMaxSize()
-                   .padding(16.dp)
+                   .padding(10.dp)
             ) {
                 TextField(
                     value = code,
