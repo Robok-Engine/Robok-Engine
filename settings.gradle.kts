@@ -1,11 +1,7 @@
 rootProject.name = "Robok-IDE"
 
-var root = "language"
-
 include(":app")
 include(":language")
-project(":language").projectDir = file("$root${File.separator}language")
-
 pluginManagement {
     repositories {
         gradlePluginPortal()

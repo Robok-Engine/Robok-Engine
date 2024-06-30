@@ -101,5 +101,6 @@ dependencies {
     implementation("androidx.activity:activity:$activity_version")
     implementation("androidx.navigation:navigation-compose:2.7.7")
     
-    implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
+    // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
+    implementation(project(":language"))
 }
