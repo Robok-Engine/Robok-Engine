@@ -9,7 +9,6 @@ import robok.trindade.R;
 import robok.trindade.util.*;
 import robok.trindade.terminal.*;
 import robok.trindade.compiler.*;
-import robok.trindade.compiler.RobokCompiler;
 
 import com.google.android.material.dialog.*;
 
