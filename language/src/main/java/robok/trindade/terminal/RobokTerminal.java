@@ -44,7 +44,7 @@ public class RobokTerminal {
         addLog(tag_temp + " : " + LOG);
     }
 
-    public void addErrorLog(String TAG, String LOG, int num) {
+    public void addErrorLog(String TAG, String LOG) {
         String tag_temp = ERROR_PATTERN + TAG;
         tag_temp = tag_temp.replace("[NUM]","" + (logs.size() + 1));
 		

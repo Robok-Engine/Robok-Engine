@@ -26,7 +26,7 @@ public class MethodCaller {
         this.context = context;
         methodsMap = new HashMap<>();
         methodsInstance = new Methods(context, compiler);
-        terminal = new RobokTerminal (context);
+        terminal = new RobokTerminal ();
         
         try {
             methodsMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class));
