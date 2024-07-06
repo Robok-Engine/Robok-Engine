@@ -1,74 +1,56 @@
-package robok.trindade.terminal;
+package com.gam.engine;
 
-import android.content.*;
-import android.view.*;
-import android.widget.*;
+import android.view.View;
+import android.widget.LinearLayout;
+import java.util.List;
+import com.gam.engine.R;
+import java.util.ArrayList;
 
-import androidx.appcompat.app.*;
-import androidx.core.text.*;
-
-import com.google.android.material.bottomsheet.*;
-
-import robok.trindade.R;
-
-public class RobokTerminal extends BottomSheetDialog {
+public class RobokTerminal {
 
     private LinearLayout terminal;
     private View bottomSheetView;
+    public static List<String> logs;
     
     public static final String WHITE = "#FFFFFF";
     public static final String BLACK = "#000000";
     public static final String ERROR_COLOR = "#FF0000";
     public static final String WARNING_COLOR = "#FFC400";
     public static final String SUCCESS_COLOR = "#198754";
-        
-    public RobokTerminal(Context context) {
-        super(context);
-
-        bottomSheetView = LayoutInflater.from(context).inflate(R.layout.dialog_terminal, null);
-        setContentView(bottomSheetView);
-
-        setCancelable(true);
-        terminal = bottomSheetView.findViewById(R.id.background_terminal);
+    
+    public static final String ERROR_PATTERN = "----------[NUM]. ERROR)";
+    public static final String WARNING_PATTERN = "----------[NUM]. WARNING)";
+    
+	public RobokTerminal(){
+		logs = new ArrayList<>();
+		
+	}
+	
+    public void addLog(String log) {
+        logs.add("\n" + log);
     }
-
-    public void addToTerminal(View view) {
-        terminal.addView(view);
+    
+    public String getLogs () {
+        return logs.toString();
     }
     
     public void addLog(String TAG, String LOG) {
-        String LOG_COLOR = WHITE;
-        if (isDarkMode()) { 
-           LOG_COLOR = BLACK;
-        }
-        TextView logText = new TextView(getContext());
-        logText.setTextIsSelectable(true);
-        logText.setText(HtmlCompat.fromHtml("<font color=\"" + LOG_COLOR + "\">"+ TAG + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY) + LOG);
-        addToTerminal(logText);
+		String tag = TAG.replace("[NUM]","" + (logs.size() + 1));
+		
+        addLog(tag + " : " + LOG);
     }
 
     public void addWarningLog(String TAG, String LOG) {
-        TextView logText = new TextView(getContext());
-        logText.setTextIsSelectable(true);
-        logText.setText(HtmlCompat.fromHtml("<font color=\"" + ERROR_COLOR + "\">"+ TAG + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY) + LOG);
-        addToTerminal(logText);
+        String tag_temp = ERROR_PATTERN + TAG;
+        tag_temp = tag_temp.replace("[NUM]","" + (logs.size() + 1));
+		
+        addLog(tag_temp + " : " + LOG);
     }
 
-    public void addErrorLog(String TAG, String LOG) {
-        TextView logText = new TextView(getContext());
-        logText.setTextIsSelectable(true);
-        logText.setText(HtmlCompat.fromHtml("<font color=\"" + ERROR_COLOR + "\">"+ TAG + "</font>", HtmlCompat.FROM_HTML_MODE_LEGACY) + LOG);
-        addToTerminal(logText);
-    }
-    
-    private boolean isDarkMode() {
-        int currentNightMode = AppCompatDelegate.getDefaultNightMode();
-        switch (currentNightMode) {
-            case AppCompatDelegate.MODE_NIGHT_NO:
-                 return false;
-            case AppCompatDelegate.MODE_NIGHT_YES:
-                 return true;
-        }
-        return false;
+    public void addErrorLog(String TAG, String LOG, int num) {
+        String tag_temp = ERROR_PATTERN + TAG;
+        tag_temp = tag_temp.replace("[NUM]","" + (logs.size() + 1));
+		
+        addLog(tag_temp + " : " + LOG);
     }
 }

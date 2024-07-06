@@ -1,4 +1,5 @@
 <resources>
 	<string name="app_name" translatable="false">Robok IDE</string>
 	<string name="navigation_back">Back</string>
+	<string name="result_title">Result</string>
 </resources>
