@@ -26,14 +26,14 @@ import dev.trindade.robokide.ui.models.toolbar.*
 import dev.trindade.robokide.ui.editor.*
 import dev.trindade.robokide.terminal.*
 
-import robok.trindade.interpreter.*
+import robok.trindade.compiler.*
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val terminal = RobokTerminal(this)
-        val compilerListener = RobokCompiler.CompilerListener {
+        val compilerListener = RobokCompiler.CompilerListener() {
              override fun onCompiled (String logs) {
                    terminal.show()
              }

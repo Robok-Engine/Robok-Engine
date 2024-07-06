@@ -21,7 +21,6 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
     override fun show() {
         super.show()
         terminal.removeAllViews()
-        terminal.addView(logText)
     }
 
     private val isDarkMode: Boolean
