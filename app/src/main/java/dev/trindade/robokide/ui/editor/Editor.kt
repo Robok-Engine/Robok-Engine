@@ -1,5 +1,9 @@
 package dev.trindade.robokide.ui.editor
 
+import android.text.*
+import android.widget.*
+import android.view.*
+
 import androidx.activity.*
 import androidx.navigation.*
 import androidx.compose.ui.*
@@ -21,8 +25,6 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.ui.viewinterop.*
 
 import dev.trindade.robokide.ui.syntax.*
-
-import android.text.*
 
 @Composable
 fun HighlightingEditor(
