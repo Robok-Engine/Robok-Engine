@@ -7,6 +7,7 @@ import android.graphics.*;
 import robok.trindade.methods.*;
 import robok.trindade.util.*;
 import robok.trindade.terminal.*;
+import robok.trindade.compiler.*;
 
 import java.lang.ref.*;
 import java.lang.reflect.*;

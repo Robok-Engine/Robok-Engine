@@ -1,9 +1,9 @@
-package com.gam.engine;
+package robok.trindade.terminal;
 
 import android.view.View;
 import android.widget.LinearLayout;
 import java.util.List;
-import com.gam.engine.R;
+import robok.trindade.R;
 import java.util.ArrayList;
 
 public class RobokTerminal {

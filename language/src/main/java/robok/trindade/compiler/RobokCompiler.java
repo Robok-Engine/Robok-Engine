@@ -3,9 +3,10 @@ package robok.trindade.interpreter;
 import android.content.*;
 import android.widget.*;
 
+import robok.trindade.terminal.*;
 import robok.trindade.methods.*;
-import robok.trindade.messages.*;
-import robok.trindade.exceptions.*;
+import robok.trindade.message.*;
+import robok.trindade.exception.*;
 
 public class RobokCompiler {
 	
@@ -13,7 +14,7 @@ public class RobokCompiler {
 	private Context context;
 	
 	private MethodCaller methodCaller;
-	private RobokCompiler.Compile compileListener;
+	private RobokCompiler.CompilerListener compileListener;
 	private RobokTerminal terminal;
 	
 	public RobokCompiler(Context context, CompilerListener compileListener){
