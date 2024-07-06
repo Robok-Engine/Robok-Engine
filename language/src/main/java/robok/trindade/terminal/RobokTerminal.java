@@ -14,9 +14,6 @@ public class RobokTerminal {
     
     public static final String WHITE = "#FFFFFF";
     public static final String BLACK = "#000000";
-    public static final String ERROR_COLOR = "#FF0000";
-    public static final String WARNING_COLOR = "#FFC400";
-    public static final String SUCCESS_COLOR = "#198754";
     
     public static final String ERROR_PATTERN = "----------[NUM]. ERROR)";
     public static final String WARNING_PATTERN = "----------[NUM]. WARNING)";

@@ -21,10 +21,11 @@ public class MethodCaller {
     private RobokTerminal terminal;
     
     public MethodCaller(Context context) {
-        methodsMap = new HashMap<>();
         this.context = context;
+        methodsMap = new HashMap<>();
         methodsInstance = new Methods(context);
         terminal = new RobokTerminal (context);
+        
         try {
             methodsMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class));
             methodsMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
@@ -34,7 +35,6 @@ public class MethodCaller {
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             terminal.addErrorLog("IDE Error: ", e.toString());
-            terminal.show();
         }
     }
 
@@ -46,11 +46,9 @@ public class MethodCaller {
             } catch (Exception e) {
                 e.printStackTrace();
                 terminal.addErrorLog("Call Method Error: ", e.toString());
-                terminal.show();
             }
         } else {
             terminal.addErrorLog("Method not found: ", methodName);
-            terminal.show();
         }
     }
 }

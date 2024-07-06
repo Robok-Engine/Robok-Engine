@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.*
 import dev.trindade.robokide.ui.theme.*
 import dev.trindade.robokide.ui.models.toolbar.*
 import dev.trindade.robokide.ui.editor.*
+import dev.trindade.robokide.terminal.*
 
 import robok.trindade.interpreter.*
 
@@ -31,7 +32,13 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val compiler = RobokCompiler(this)
+        val terminal = RobokTerminal(this)
+        val compilerListener = RobokCompiler.CompilerListener {
+             override fun onCompiled (String logs) {
+                   terminal.show()
+             }
+        }
+        val compiler = RobokCompiler(this, compilerListener)
         setContent {
             RobokTheme {
                 Scaffold(

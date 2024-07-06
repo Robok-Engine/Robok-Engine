@@ -1,4 +1,4 @@
-package dev.trindade.robokide
+package dev.trindade.robokide.terminal
 
 import android.content.Context
 import android.view.LayoutInflater

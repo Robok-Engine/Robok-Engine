@@ -4,22 +4,28 @@ import android.content.*;
 import android.widget.*;
 
 import robok.trindade.methods.*;
+import robok.trindade.messages.*;
+import robok.trindade.exceptions.*;
 
 public class RobokCompiler {
 	
-	String[] parts;
-	MethodCaller methodCaller;
-	Context context;
+	private String[] parts;
+	private Context context;
 	
+	private MethodCaller methodCaller;
+	private RobokCompiler.Compile compileListener;
+	private RobokTerminal terminal;
 	
-	public RobokCompiler(Context context){
+	public RobokCompiler(Context context, RobokCompiler.Compile compileListener){
 		this.context = context;
-        methodCaller = new MethodCaller(context);
+		this.compileListener = compileListener;
+        methodCaller = new MethodCaller(context, compileListener);
 	}
 	
 	public void compile(String codeToRun){
 		var codeText = codeToRun;
 		var parts = codeText.split(" ");
+		
 		if (methodTyped(parts[0], "createButton")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
 	    } else if (methodTyped(parts[0], "createText")) {
@@ -31,7 +37,7 @@ public class RobokCompiler {
 		} else if (methodTyped(parts[0], "showDialog")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
 		} else {
-			Toast.makeText(context, "Nenhum método encontrado", 4000).show();
+			terminal.addErrorLog(Exceptions.NO_METHOD_FOUND, Messages.NO_METHOD_FOUND);
 		}
 	}
 	
@@ -44,4 +50,8 @@ public class RobokCompiler {
 		}
 		return  returnVal;
 	}	
+	
+	public interface Compiler {
+	    public void onCompiled(String logs);
+	}
 }

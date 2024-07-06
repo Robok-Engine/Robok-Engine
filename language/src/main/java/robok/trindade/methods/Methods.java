@@ -19,22 +19,15 @@ public class Methods {
     private Context robokContext;
     private RobokTerminal robokTerminal;
     private TextUtil textUtil;
+    
+    private RobokCompiler.Compile compileListener;
     	
-    public Methods (Context context) {
+    public Methods (Context context, RobokCompiler.Compile compileListener) {
         robokContext = context;
         robokTerminal = new RobokTerminal(context);
         textUtil = new TextUtil(context);
     }
     
-    public void onExecute (int typeCode) {
-       if (typeCode == 1) {
-          robokTerminal.show();
-       }
-    }
-    
-    public void openTerminal() {
-        onExecute(1);
-    }
     
     public void showToast (String val) {
         String value = textUtil.formatSpaces(val);
@@ -51,7 +44,7 @@ public class Methods {
         robokButton.setBackgroundColor(Color.parseColor(bgColor));
         
         robokTerminal.addToTerminal(robokButton); 
-        onExecute(1);
+        compileListener.onCompiled(robokTerminal.getLogs());
     }
 
     public void createText (String text, String txtColor) {
@@ -64,7 +57,7 @@ public class Methods {
         robokText.setTextColor(Color.parseColor(txtColor));
         
         robokTerminal.addToTerminal(robokText);
-        onExecute(1);
+        compileListener.onCompiled(robokTerminal.getLogs());
     }
     
     public void showDialog (String title, String message){
