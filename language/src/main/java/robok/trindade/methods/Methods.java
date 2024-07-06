@@ -9,6 +9,7 @@ import robok.trindade.R;
 import robok.trindade.util.*;
 import robok.trindade.terminal.*;
 import robok.trindade.compiler.*;
+import robok.trindade.compiler.RobokCompiler;
 
 import com.google.android.material.dialog.*;
 
@@ -21,7 +22,7 @@ public class Methods {
     private RobokTerminal robokTerminal;
     private TextUtil textUtil;
     
-    private RobokCompiler.Compile compileListener;
+    private RobokCompiler.CompilerListener compileListener;
     	
     public Methods (Context context, RobokCompiler.CompilerListener compileListener) {
         robokContext = context;
