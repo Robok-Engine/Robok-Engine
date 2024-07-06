@@ -20,10 +20,10 @@ public class MethodCaller {
     private Methods methodsInstance;
     private RobokTerminal terminal;
     
-    public MethodCaller(Context context) {
+    public MethodCaller(Context context, RobokCompiler.CompilerListener compiler) {
         this.context = context;
         methodsMap = new HashMap<>();
-        methodsInstance = new Methods(context);
+        methodsInstance = new Methods(context, RobokCompiler.CompilerListener compiler);
         terminal = new RobokTerminal (context);
         
         try {

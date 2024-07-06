@@ -16,7 +16,7 @@ public class RobokCompiler {
 	private RobokCompiler.Compile compileListener;
 	private RobokTerminal terminal;
 	
-	public RobokCompiler(Context context, RobokCompiler.Compile compileListener){
+	public RobokCompiler(Context context, CompilerListener compileListener){
 		this.context = context;
 		this.compileListener = compileListener;
         methodCaller = new MethodCaller(context, compileListener);
@@ -51,7 +51,7 @@ public class RobokCompiler {
 		return  returnVal;
 	}	
 	
-	public interface Compiler {
+	public interface CompilerListener {
 	    public void onCompiled(String logs);
 	}
 }

@@ -22,7 +22,7 @@ public class Methods {
     
     private RobokCompiler.Compile compileListener;
     	
-    public Methods (Context context, RobokCompiler.Compile compileListener) {
+    public Methods (Context context, RobokCompiler.CompilerListener compileListener) {
         robokContext = context;
         robokTerminal = new RobokTerminal(context);
         textUtil = new TextUtil(context);
