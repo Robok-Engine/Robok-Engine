@@ -27,49 +27,51 @@ import dev.trindade.robokide.ui.editor.*
 
 import robok.trindade.interpreter.*
 
-@Composable
-fun Content(compiler: RobokCompiler) {
-    var code by remember {
-        mutableStateOf("showToast Hello&{space}World!")
-    }
-    var switchState by remember {
-        mutableStateOf(false)
-    }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-    ) {
-        topAppBarLarge(title = "Robok IDE")
+class MainActivity : ComponentActivity() {
 
-        Column(
-            modifier = Modifier
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val compiler = RobokCompiler(this)
+        setContent {
+            RobokTheme {
+                Scaffold(
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .background(MaterialTheme.colorScheme.background)
+                ) {
+                    Content(compiler)
+                }
+            }
+        }
+    }
+
+    @Composable
+    fun Content(compiler: RobokCompiler) {
+        var code by remember { mutableStateOf("showToast Hello&{space}World!") }
+        var switchState by remember { mutableStateOf(false) }
+
+        Column(modifier = Modifier.fillMaxSize()) {
+            topAppBarLarge(title = "Robok IDE")
+
+            Column(modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp)
-        ) {
-            HighlightingEditor(
-                value = code,
-                onValueChange = { newValue ->
-                    code = newValue
-                },
-                syntaxType = "java"
-            )
-            Button(
-                onClick = {
-                    compiler.compile(code)
-                },
-                modifier = Modifier
-                    .fillMaxWidth()
-            ) {
-                Text(
-                    text = "RUN"
+                .padding(10.dp)) {
+                HighlightingEditor(
+                    value = code,
+                    onValueChange = { newValue -> code = newValue },
+                    syntaxType = "java"
+                )
+                Button(
+                    onClick = { compiler.compile(code) },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text(text = "RUN")
+                }
+                Switch(
+                    checked = switchState,
+                    onCheckedChange = { switchState = it }
                 )
             }
-            Switch(
-                checked = switchState,
-                onCheckedChange = { it ->
-                    switchState = it
-                }
-            )
         }
     }
 }

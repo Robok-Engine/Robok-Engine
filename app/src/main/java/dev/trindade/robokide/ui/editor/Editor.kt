@@ -19,7 +19,10 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.ui.viewinterop.*
+
 import dev.trindade.robokide.ui.syntax.*
+
+import android.text.*
 
 @Composable
 fun HighlightingEditor(
