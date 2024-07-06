@@ -23,74 +23,53 @@ import androidx.compose.foundation.layout.*
 
 import dev.trindade.robokide.ui.theme.*
 import dev.trindade.robokide.ui.models.toolbar.*
+import dev.trindade.robokide.ui.editor.*
 
 import robok.trindade.interpreter.*
 
-class MainActivity : ComponentActivity() {
+@Composable
+fun Content(compiler: RobokCompiler) {
+    var code by remember {
+        mutableStateOf("showToast Hello&{space}World!")
+    }
+    var switchState by remember {
+        mutableStateOf(false)
+    }
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
+        topAppBarLarge(title = "Robok IDE")
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        val compiler = RobokCompiler(this)
-        setContent {
-            RobokTheme {
-                Scaffold(
-                    modifier = 
-                      Modifier
-                        .fillMaxSize()
-                        .background(MaterialTheme.colorScheme.background)
-                ) {
-                    Content(compiler)
-                }
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(10.dp)
+        ) {
+            HighlightingEditor(
+                value = code,
+                onValueChange = { newValue ->
+                    code = newValue
+                },
+                syntaxType = "java"
+            )
+            Button(
+                onClick = {
+                    compiler.compile(code)
+                },
+                modifier = Modifier
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "RUN"
+                )
             }
+            Switch(
+                checked = switchState,
+                onCheckedChange = { it ->
+                    switchState = it
+                }
+            )
         }
     }
-    
-    @Composable
-    fun Content (compiler: RobokCompiler) {
-       var code by remember {
-           mutableStateOf(TextFieldValue("showToast Hello&{space}World!"))
-       }
-       var switchState by remember {
-           mutableStateOf(false)
-       }
-        Column ( 
-           modifier = Modifier
-             .fillMaxSize()
-        ) {
-            topAppBarLarge(title = "Robok IDE")
-            
-            Column ( 
-               modifier = Modifier
-                   .fillMaxSize()
-                   .padding(10.dp)
-            ) {
-                TextField(
-                    value = code,
-                    onValueChange = { newValue ->
-                        code = newValue
-                    },
-                    label = { Text("Code") },
-                    modifier = Modifier
-                       .fillMaxWidth()
-                )
-                Button(
-                    onClick = {
-                        compiler.compile(code.text)
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                ) {
-                   Text(
-                      text = "RUN"
-                   )
-                }
-                Switch (
-                    checked = switchState,
-                    onCheckedChange = { it ->
-                        switchState = it 
-                    }
-                )
-            }
-        }  
-    }
-} 
+}
