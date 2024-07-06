@@ -6,6 +6,7 @@ on:
     paths:
       - .github/workflows/debugCompile.yml
       - app/**
+      - language/**
       - build.gradle.kts
       - gradle.properties
       - gradlew
