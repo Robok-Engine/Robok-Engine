@@ -25,7 +25,7 @@ public class Methods {
     	
     public Methods (Context context, RobokCompiler.CompilerListener compileListener) {
         robokContext = context;
-        robokTerminal = new RobokTerminal(context);
+        robokTerminal = new RobokTerminal();
         textUtil = new TextUtil(context);
     }
     
@@ -44,7 +44,7 @@ public class Methods {
         robokButton.setText(textUtil.formatWordWrap(txt));
         robokButton.setBackgroundColor(Color.parseColor(bgColor));
         
-        robokTerminal.addToTerminal(robokButton); 
+        //robokTerminal.addToTerminal(robokButton); 
         compileListener.onCompiled(robokTerminal.getLogs());
     }
 
@@ -57,7 +57,7 @@ public class Methods {
         robokText.setText(textUtil.formatWordWrap(txt));
         robokText.setTextColor(Color.parseColor(txtColor));
         
-        robokTerminal.addToTerminal(robokText);
+        //robokTerminal.addToTerminal(robokText);
         compileListener.onCompiled(robokTerminal.getLogs());
     }
     
@@ -71,7 +71,7 @@ public class Methods {
 		robokDialog.setPositiveButton("OK", null);
 		robokDialog.show();
 		
-		onExecute(0);
+		//onExecute(0);
 	}
     
 }
