@@ -23,7 +23,7 @@ public class MethodCaller {
     public MethodCaller(Context context, RobokCompiler.CompilerListener compiler) {
         this.context = context;
         methodsMap = new HashMap<>();
-        methodsInstance = new Methods(context, RobokCompiler.CompilerListener compiler);
+        methodsInstance = new Methods(context, compiler);
         terminal = new RobokTerminal (context);
         
         try {
