@@ -21,6 +21,7 @@ import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.theme.*
 import dev.trindade.robokide.ui.models.toolbar.*
 import dev.trindade.robokide.ui.editor.*
@@ -33,10 +34,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val terminal = RobokTerminal(this)
-        val compilerListener = RobokCompiler.CompilerListener() {
-              fun onCompiled (logs: String) {
-                   terminal.show()
-             }
+        val compilerListener = object : RobokCompiler.CompilerListener {
+            override fun onCompiled(logs: String) {
+                terminal.show()
+            }
         }
         val compiler = RobokCompiler(this, compilerListener)
         setContent {
@@ -54,31 +55,37 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf("showToast Hello&{space}World!") }
-        var switchState by remember { mutableStateOf(false) }
+        var code by remember { mutableStateOf(TextFieldValue("showToast Hello World!")) }
 
-        Column(modifier = Modifier.fillMaxSize()) {
-            topAppBarLarge(title = "Robok IDE")
-
-            Column(modifier = Modifier
+        Box(
+            modifier = Modifier
                 .fillMaxSize()
-                .padding(10.dp)) {
-                HighlightingEditor(
-                    value = code,
-                    onValueChange = { newValue -> code = newValue },
-                    syntaxType = "java"
-                )
-                Button(
-                    onClick = { compiler.compile(code) },
-                    modifier = Modifier.fillMaxWidth()
-                ) {
-                    Text(text = "RUN")
-                }
-                Switch(
-                    checked = switchState,
-                    onCheckedChange = { switchState = it }
+                .padding(16.dp)
+        ) {
+            HighlightingEditor(
+                value = code,
+                onValueChange = { newValue -> code = newValue },
+                syntaxType = "java"
+            )
+
+            Button(
+                onClick = { compiler.compile(code.text) },
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(bottom = 30.dp, end = 20.dp)
+            ) {
+                Image(
+                   painter = painterResource(id = R.drawable.run_image),
+                   contentDescription = "run",
+                   modifier = Modifier.size(128.dp)
                 )
             }
         }
     }
+}
+
+@Composable
+fun ImageFromResources() {
+    // Supondo que você tenha um arquivo chamado `example_image.png` em `res/drawable`
+    
 }
