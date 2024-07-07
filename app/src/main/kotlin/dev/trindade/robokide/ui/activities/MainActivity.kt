@@ -34,7 +34,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         val terminal = RobokTerminal(this)
         val compilerListener = RobokCompiler.CompilerListener() {
-             override fun onCompiled (String logs) {
+              fun onCompiled (logs: String) {
                    terminal.show()
              }
         }

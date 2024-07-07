@@ -16,10 +16,10 @@ class SimpleHighlighter(private val mEditor: EditText?, syntaxType: String) {
         init()
     }
 
-    constructor(textView: TextView, syntaxType: String) : this(null, syntaxType) {
+  /*  constructor(textView: TextView, syntaxType: String) : this(null, syntaxType) {
         mTextView = textView
         init()
-    }
+    }*/
 
     private fun getSyntaxList(syntaxType: String): List<SyntaxScheme> {
         return when (syntaxType.toLowerCase()) {
@@ -59,7 +59,7 @@ class SimpleHighlighter(private val mEditor: EditText?, syntaxType: String) {
         for (scheme in syntaxList) {
             val matcher = scheme.pattern.matcher(editable)
             while (matcher.find()) {
-                if (scheme == scheme.primarySyntax) {
+                if (scheme == scheme.getPrimarySyntax()) {
                     editable.setSpan(ForegroundColorSpan(scheme.color), matcher.start(), matcher.end() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
                 } else {
                     editable.setSpan(ForegroundColorSpan(scheme.color), matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
