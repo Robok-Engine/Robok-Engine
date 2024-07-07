@@ -73,8 +73,7 @@ class MainActivity : ComponentActivity() {
             Button(
                 onClick = { compiler.compile(code) },
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)
-                    .padding(bottom = 30.dp, end = 20.dp)
+                    .align(Alignment.BottomEnd)                    .padding(bottom = 30.dp, end = 20.dp)
             ) {
                 Image(
                    painter = painterResource(id = R.drawable.run_image),
