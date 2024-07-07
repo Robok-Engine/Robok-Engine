@@ -20,7 +20,7 @@
         
         <activity
             android:name="dev.trindade.robokide.ui.activities.DebugActivity"
-            android:exported="true">
+            android:exported="true" />
         
     </application>
 
