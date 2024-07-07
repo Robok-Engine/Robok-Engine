@@ -1,7 +1,3 @@
-rootProject.name = "Robok-IDE"
-
-include(":app")
-include(":language")
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -18,3 +14,8 @@ dependencyResolutionManagement {
         maven(url = "https://jitpack.io")
     }
 }
+
+rootProject.name = "Robok-IDE"
+
+include(":app")
+include(":language")

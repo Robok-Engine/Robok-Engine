@@ -51,9 +51,9 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.GamIDE-Foundation"
+            groupId = "com.github.Robok-Foundation"
             artifactId = "robok.trindade"
-            version = "1.0.2"
+            version = "2.0.0-fix02"
 
             afterEvaluate {
                 from(components["release"])

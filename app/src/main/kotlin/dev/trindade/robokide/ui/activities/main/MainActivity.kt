@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.activities
+package dev.trindade.robokide.ui.activities.main
 
 import android.os.Bundle
 
@@ -48,39 +48,9 @@ class MainActivity : ComponentActivity() {
                         .fillMaxSize()
                         .background(MaterialTheme.colorScheme.background)
                 ) {
-                    Content(compiler)
+                    layout(compiler)
                 }
             }
         }
     }
-
-    @Composable
-    fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\n String[] credits = [\"TH Dev\", \"trindadedev\"];\nint apples = 0;\n}") }
-        
-        Box(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp)
-        ) {
-            HighlightingEditor(
-                value = code,
-                onValueChange = { newValue -> code = newValue },
-                syntaxType = "java",
-                modifier = Modifier.fillMaxSize()
-            )
-
-            Button(
-                onClick = { compiler.compile(code) },
-                modifier = Modifier
-                    .align(Alignment.BottomEnd)
-            ) {
-                Image(
-                   painter = painterResource(id = R.drawable.run_image),
-                   contentDescription = "Run",
-                   modifier = Modifier.size(25.dp)
-                )
-            }
-        }
-    }
-}
+}    
