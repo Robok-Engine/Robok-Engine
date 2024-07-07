@@ -1,0 +1,7 @@
+R_DEF: Internal format may change without notice
+local
+id background_terminal
+id drag_handle
+id title
+layout dialog_terminal
+string result_title
