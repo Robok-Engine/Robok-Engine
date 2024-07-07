@@ -20,6 +20,7 @@ import androidx.compose.material.icons.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.ui.res.*
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.theme.*
