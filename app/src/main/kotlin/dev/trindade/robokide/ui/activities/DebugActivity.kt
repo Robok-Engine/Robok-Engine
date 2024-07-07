@@ -1,6 +1,5 @@
 package dev.trindade.robokide.ui.activities
 
-//Android
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.DialogInterface
@@ -8,15 +7,12 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 
-//AndroidX
 import androidx.appcompat.app.AppCompatActivity
 
 import dev.trindade.robokide.R
 
-//Google
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-//Java
 import java.io.InputStream
 
 class DebugActivity : AppCompatActivity() {
