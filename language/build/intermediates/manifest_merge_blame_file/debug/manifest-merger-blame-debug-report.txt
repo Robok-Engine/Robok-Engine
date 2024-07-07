@@ -3,6 +3,6 @@
 3    package="robok.trindade" >
 4
 5    <uses-sdk android:minSdkVersion="26" />
-5-->/storage/emulated/0/Robok/Robok-IDE/language/src/main/AndroidManifest.xml
+5-->/storage/emulated/0/.projects/robok/Robok-IDE/language/src/main/AndroidManifest.xml
 6
 7</manifest>
