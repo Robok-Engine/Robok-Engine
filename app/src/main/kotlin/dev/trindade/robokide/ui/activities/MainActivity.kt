@@ -66,7 +66,8 @@ class MainActivity : ComponentActivity() {
             HighlightingEditor(
                 value = code,
                 onValueChange = { newValue -> code = newValue },
-                syntaxType = "java"
+                syntaxType = "java",
+                modifier = Modifier.fillMaxSize()
             )
 
             Button(
@@ -77,8 +78,8 @@ class MainActivity : ComponentActivity() {
             ) {
                 Image(
                    painter = painterResource(id = R.drawable.run_image),
-                   contentDescription = "run",
-                   modifier = Modifier.size(128.dp)
+                   contentDescription = "Run",
+                   modifier = Modifier.size(65.dp)
                 )
             }
         }
