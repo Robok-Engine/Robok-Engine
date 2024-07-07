@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\nString String[] credits = [\"TH Dev\", \"trindadedev\"];\nint apples = 0;\n") }
+        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\n String[] credits = [\"TH Dev\", \"trindadedev\"];\nint apples = 0;\n}") }
         
         Box(
             modifier = Modifier
@@ -78,7 +78,7 @@ class MainActivity : ComponentActivity() {
                 Image(
                    painter = painterResource(id = R.drawable.run_image),
                    contentDescription = "Run",
-                   modifier = Modifier.size(65.dp)
+                   modifier = Modifier.size(25.dp)
                 )
             }
         }
