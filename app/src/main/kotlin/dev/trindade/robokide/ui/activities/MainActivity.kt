@@ -56,7 +56,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf("showToast Hello World!") }
+        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\nString String[] credits = ["TH Dev", "trindadedev"];\nint apples = 0;\n") }
 
         Box(
             modifier = Modifier
@@ -73,7 +73,7 @@ class MainActivity : ComponentActivity() {
             Button(
                 onClick = { compiler.compile(code) },
                 modifier = Modifier
-                    .align(Alignment.BottomEnd)                    .padding(bottom = 30.dp, end = 20.dp)
+                    .align(Alignment.BottomEnd)
             ) {
                 Image(
                    painter = painterResource(id = R.drawable.run_image),
