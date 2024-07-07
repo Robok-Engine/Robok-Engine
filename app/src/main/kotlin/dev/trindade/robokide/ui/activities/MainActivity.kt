@@ -69,7 +69,7 @@ class MainActivity : ComponentActivity() {
             )
 
             Button(
-                onClick = { compiler.compile(code.text) },
+                onClick = { compiler.compile(code) },
                 modifier = Modifier
                     .align(Alignment.BottomEnd)
                     .padding(bottom = 30.dp, end = 20.dp)
