@@ -55,7 +55,7 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf(TextFieldValue("showToast Hello World!")) }
+        var code by remember { mutableStateOf("showToast Hello World!") }
 
         Box(
             modifier = Modifier
@@ -82,10 +82,4 @@ class MainActivity : ComponentActivity() {
             }
         }
     }
-}
-
-@Composable
-fun ImageFromResources() {
-    // Supondo que você tenha um arquivo chamado `example_image.png` em `res/drawable`
-    
 }
