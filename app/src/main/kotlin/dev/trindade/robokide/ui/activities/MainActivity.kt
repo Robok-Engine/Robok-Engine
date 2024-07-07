@@ -56,8 +56,8 @@ class MainActivity : ComponentActivity() {
 
     @Composable
     fun Content(compiler: RobokCompiler) {
-        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\nString String[] credits = ["TH Dev", "trindadedev"];\nint apples = 0;\n") }
-
+        var code by remember { mutableStateOf("package dev.trindade.robokproject;\n\npublic class MyNewScript {\n\nString String[] credits = [\"TH Dev\", \"trindadedev\"];\nint apples = 0;\n") }
+        
         Box(
             modifier = Modifier
                 .fillMaxSize()
