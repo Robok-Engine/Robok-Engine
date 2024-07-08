@@ -41,10 +41,10 @@ class EditorFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+        val context = requireContext()
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         
-        val terminal = RobokTerminal(requireContext())
+        val terminal = RobokTerminal(context)
         
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
@@ -53,7 +53,7 @@ class EditorFragment : Fragment() {
 
             override fun onOutput(output: String) {
                 val outputFragment = OutputFragment()
-                outputFragment.addOutput(requireContext(), output)
+                outputFragment.addOutput(outputFragment.requireContext(), output)
                 
                 Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
@@ -64,7 +64,7 @@ class EditorFragment : Fragment() {
             }
         }
         
-        val compiler = LogicCompiler(requireContext(), compilerListener)
+        val compiler = LogicCompiler(context, compilerListener)
         
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
