@@ -4,7 +4,7 @@ import android.content.*;
 import android.view.*;
 import android.widget.*;
 
-import robok.dev.R;
+import robok.R;
 
 public class TextUtil {
 

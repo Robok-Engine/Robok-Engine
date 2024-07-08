@@ -2,9 +2,11 @@ package robok.dev.terminal;
 
 import android.view.View;
 import android.widget.LinearLayout;
+
 import java.util.List;
-import robok.dev.R;
 import java.util.ArrayList;
+
+import robok.R;
 
 public class RobokTerminal {
 

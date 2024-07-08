@@ -7,10 +7,10 @@ plugins {
     id("maven-publish")
 }
 
-group = "robok.trindade"
+group = "robok"
 
 android {
-    namespace = "robok.trindade"
+    namespace = "robok"
     compileSdk = 34
     
     defaultConfig {
@@ -52,7 +52,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "com.github.Robok-Foundation"
-            artifactId = "robok.trindade"
+            artifactId = "robok"
             version = "2.0.0-fix02"
 
             afterEvaluate {
