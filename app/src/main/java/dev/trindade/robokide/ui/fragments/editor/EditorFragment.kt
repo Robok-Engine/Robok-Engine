@@ -52,7 +52,8 @@ class EditorFragment : Fragment() {
             }
 
             override fun onOutput(output: String) {
-                val outputFragment = OutputFragment(output)
+                val outputFragment = OutputFragment()
+                outputFragment.addOutput(outputFragment.requireContext(), output)
          
                 Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
