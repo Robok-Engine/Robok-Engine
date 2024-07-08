@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="Editor">
+        <attr name="syntaxType" format="string" />
+    </declare-styleable>
+</resources>
