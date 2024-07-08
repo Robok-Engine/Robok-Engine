@@ -1,10 +1,8 @@
 package dev.trindade.robokide.ui.activities.main
 
 import android.os.Bundle
-import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import dev.trindade.robokide.databinding.ActivityMainBinding
-
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 import robok.dev.compiler.logic.LogicCompiler
@@ -40,9 +38,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
     
-    public fun showTerminal(terminal: RobokTerminal, logs: String) {
-        if (logs != null) {
-            terminal.addLog(logs)
+    private fun showTerminal(terminal: RobokTerminal, logs: String?) {
+        logs?.let {
+            terminal.addLog(it)
         }
         terminal.show()
     }
