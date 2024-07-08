@@ -8,7 +8,7 @@ import android.widget.*;
 import robok.trindade.R; 
 import robok.trindade.util.*;
 import robok.trindade.terminal.*;
-import robok.trindade.compiler.*;
+import robok.trindade.compiler.logic.*
 
 import com.google.android.material.dialog.*;
 
@@ -21,9 +21,9 @@ public class Methods {
     private RobokTerminal robokTerminal;
     private TextUtil textUtil;
     
-    private MethodsCompiler.CompilerListener compileListener;
+    private LogicCompilerListener compileListener;
     	
-    public Methods (Context context, MethodsCompiler.CompilerListener compileListener) {
+    public Methods (Context context, LogicCompilerListener compileListener) {
         robokContext = context;
         robokTerminal = new RobokTerminal();
         textUtil = new TextUtil(context);

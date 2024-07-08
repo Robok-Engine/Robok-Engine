@@ -14,10 +14,10 @@ public class MethodsCompiler {
 	private Context context;
 	
 	private MethodCaller methodCaller;
-	private MethodsCompiler.CompilerListener compileListener;
+	private LogicCompilerListener compileListener;
 	private RobokTerminal terminal;
 	
-	public MethodsCompiler(Context context, CompilerListener compileListener){
+	public MethodsCompiler(Context context, LogicCompilerListener compileListener){
 		this.context = context;
 		this.compileListener = compileListener;
         methodCaller = new MethodCaller(context, compileListener);
