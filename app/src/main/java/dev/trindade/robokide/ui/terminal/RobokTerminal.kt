@@ -13,7 +13,7 @@ import dev.trindade.robokide.ui.components.log.Log
 
 class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
-    private val terminal: LinearLayout
+    public val terminal: LinearLayout
     private val bottomSheetView = LayoutInflater.from(context).inflate(R.layout.dialog_terminal, null)
     
     init {

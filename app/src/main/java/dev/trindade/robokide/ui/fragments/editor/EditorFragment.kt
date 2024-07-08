@@ -43,7 +43,7 @@ class EditorFragment : Fragment() {
 
             override fun onOutput(output: String) {
                 val outputFragment = OutputFragment.newInstance(output)
-                Snackbar.make(binding.root, R.string.message_compiled, Snackbar.LENGTH_LONG)
+                Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
                         openFragment(outputFragment)
                     }
