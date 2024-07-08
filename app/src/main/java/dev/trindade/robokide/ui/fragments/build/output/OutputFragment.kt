@@ -1,6 +1,7 @@
 package dev.trindade.robokide.ui.fragments.build.output
 
 import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -37,7 +38,7 @@ class OutputFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
     
-    fun addOutput(log: String) {
+    fun addOutput(context: Context, log: String) {
         val logView = Log(requireContext(), log)
         binding.content.addView(logView)
     }
