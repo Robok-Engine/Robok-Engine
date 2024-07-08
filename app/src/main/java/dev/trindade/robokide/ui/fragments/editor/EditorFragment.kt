@@ -5,7 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
@@ -28,6 +30,14 @@ class EditorFragment : Fragment() {
         _binding = FragmentEditorBinding.inflate(inflater, container, false)
         return binding.root
     }
+    
+    override fun onCreate (savedInstanceState: Bundle) {
+        super(savedInstanceState)
+        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
+        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
+        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
+        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,10 +52,13 @@ class EditorFragment : Fragment() {
             }
 
             override fun onOutput(output: String) {
-                val outputFragment = OutputFragment.newInstance(output)
+                val outputFragment = OutputFragment()
+                outputFragment.addOutput(output)
+                
                 Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
                         openFragment(outputFragment)
+                        terminal.dismiss()
                     }
                     .show()
             }
