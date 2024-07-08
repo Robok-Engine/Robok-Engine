@@ -35,6 +35,10 @@ class EditorFragment : Fragment() {
             override fun onCompiled(logs: String) {
                 showTerminal(terminal, logs)
             }
+            override fun onOutput (output: String) {
+                val outputFragment = OutputFragment.newInstance(output)
+                openTerminal(outputFragment)
+            }
         }
         
         val compiler = LogicCompiler(requireContext(), compilerListener)
@@ -54,6 +58,13 @@ class EditorFragment : Fragment() {
             terminal.addLog(it)
         }
         terminal.show()
+    }
+    
+    fun openFragment (fragment: Fragment) {
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, fragment)
+            addToBackStack(null)
+            commit()
     }
 
     override fun onDestroyView() {

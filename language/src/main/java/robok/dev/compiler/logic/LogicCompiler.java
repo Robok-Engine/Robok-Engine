@@ -97,8 +97,8 @@ public class LogicCompiler {
             currentLineIndex++;
         }
 
-        robokTerminal.addWarningLog("Imports: ", imports.toString());
-        robokTerminal.addWarningLog("Classes: ", clazz.toString());
+        robokTerminal.addLog("Imports: ", imports.toString());
+        robokTerminal.addLog("Classes: ", clazz.toString());
 
         // Iterar sobre os métodos armazenados no mapa
         for (String methodName : methods.keySet()) {
@@ -335,6 +335,8 @@ public class LogicCompiler {
 
     private void onExecute(String logs) {
         compilerListener.onCompiled(logs);
+        // trindadedev: for now only the log is returned to the IDE.
+        compilerListener.onOutput(logs);
     }
 
     private String getNextLine() {
