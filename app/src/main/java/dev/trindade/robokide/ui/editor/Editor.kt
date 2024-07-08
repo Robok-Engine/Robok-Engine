@@ -3,6 +3,8 @@ package dev.trindade.robokide.ui.editor
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
+
+import dev.trindade.robokide.ui.syntax.SimpleHighlighter
 import dev.trindade.robokide.R
 
 class Editor : EditText {
