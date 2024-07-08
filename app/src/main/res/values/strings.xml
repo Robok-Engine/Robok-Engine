@@ -7,6 +7,7 @@
 	<string name="common_word_run">Run</string>
 	<string name="common_word_code">Code</string>
 	<string name="common_word_logs">Logs</string>
+	<string name="common_word_output">Output</string>
 	
 	<!-- titles -->
 	<string name="debug_error_title">An error occured</string>
