@@ -21,6 +21,10 @@
         <activity
             android:name="dev.trindade.robokide.ui.activities.DebugActivity"
             android:exported="true" />
+            
+        <activity
+            android:name="dev.trindade.robokide.ui.activities.build.outups.OutputActivity"
+            android:exported="true" />    
         
     </application>
 
