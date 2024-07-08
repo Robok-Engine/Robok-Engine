@@ -40,7 +40,7 @@ class OutputFragment : Fragment() {
     }
 
     companion object {
-        private const val OUTPUT = "OUTPUT"
+        private const val OUTPUT = "RBK BUILD SUCCESS."
 
         fun newInstance(OUTPUT: String): OutputFragment {
             val fragment = OutputFragment()
