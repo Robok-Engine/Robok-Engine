@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.fragments.output
+package dev.trindade.robokide.ui.fragments.build.output
 
 import android.os.Bundle
 import android.view.LayoutInflater

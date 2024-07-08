@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.ui.fragments.main.MainFragment
+import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +16,7 @@ class MainActivity : AppCompatActivity() {
         val path = "Parameter path to pass"
         
         if (savedInstanceState == null) {
-            val fragment = MainFragment.newInstance(path)
+            val fragment = EditorFragment.newInstance(path)
             supportFragmentManager.commit {
                 replace(R.id.fragment_container, fragment)
             }
