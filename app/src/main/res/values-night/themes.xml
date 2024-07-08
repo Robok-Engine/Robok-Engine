@@ -1,11 +1,11 @@
 <resources>
 
 	<style name="RobokTheme" parent="Base.RobokTheme" >
-	     <item name="android:windowLightStatusBar">true</item>
-         <item name="android:windowLightNavigationBar">true</item>
+	     <item name="android:windowLightStatusBar">false</item>
+         <item name="android:windowLightNavigationBar">false</item>
 	</style>
 	
-	<style name="Base.RobokTheme" parent="Theme.Material3.DynamicColors.Light">
+	<style name="Base.RobokTheme" parent="Theme.Material3.DynamicColors.Dark">
 	     <item name="android:statusBarColor">@android:color/transparent</item>
          <item name="android:navigationBarColor">@android:color/transparent</item>
          <item name="windowNoTitle">true</item>
