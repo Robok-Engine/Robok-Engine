@@ -11,4 +11,10 @@
 	
 	<!-- titles -->
 	<string name="debug_error_title">An error occured</string>
+	
+	<!-- messages -->
+	<string name="message_compiled">Your code has been compiled!</string>
+	
+	<!-- go to -->
+	<string name="go_to_outputs">Go to outputs</string>
 </resources>

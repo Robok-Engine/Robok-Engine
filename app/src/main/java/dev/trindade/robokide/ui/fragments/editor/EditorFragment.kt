@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
+import com.google.android.material.snackbar.SnackBar
+
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 
@@ -31,12 +33,18 @@ class EditorFragment : Fragment() {
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         
         val terminal = RobokTerminal(requireContext())
+        
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
                 showTerminal(terminal, logs)
             }
             override fun onOutput (output: String) {
                 val outputFragment = OutputFragment.newInstance(output)
+                SnackBar.make(binding.root, R.string.message_compiled, 4000)
+                    .setAction(R.string.go_to_outputs, {
+                    
+                    }
+                .show()    
                 openTerminal(outputFragment)
             }
         }
