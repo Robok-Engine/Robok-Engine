@@ -1,8 +1,27 @@
 <resources>
-	<style name="AppTheme" parent="Theme.Material3.DynamicColors.Light">
-	     <item name="android:statusBarColor">@android:color/transparent</item>
-         <item name="android:navigationBarColor">@android:color/transparent</item>
-         <item name="windowNoTitle">true</item>
-         <item name="windowActionBar">false</item>
+	<style name="Widget.Robok.Button" parent="Widget.Material3.Button.UnelevatedButton">
+	     <item name="android:insetBottom">0dp</item>
+	     <item name="android:insetTop">0dp</item>
+	     <item name="shapeAppearance">@style/Shape.Robok.Button</item>
 	</style>
+	
+	<style name="Widget.Robok.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+	     <item name="android:insetBottom">0dp</item>
+	     <item name="android:insetTop">0dp</item><item name="shapeAppearance">@style/Shape.Robok.Button</item>
+    </style>
+    
+    <style name="Widget.Robok.Button.TonalButton" parent="Widget.Material3.Button.TonalButton">
+         <item name="android:insetBottom">0dp</item>
+         <item name="android:insetTop">0dp</item>
+         <item name="shapeAppearance">@style/Shape.Robok.Button</item>
+    </style>
+    
+    <style name="Shape.Robok" parent="">
+         <item name="cornerFamily">rounded</item>
+    </style>
+
+    <style name="Shape.Robok.Button">
+         <item name="cornerSize">8dp</item>
+    </style>
+  
 </resources>

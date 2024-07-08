@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 import dev.trindade.robokide.R
+import dev.trindade.robokide.ui.components.log.Log
 
 class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
@@ -22,8 +23,8 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
     }
     
     fun addLog(value: String) {
-        val logText = LogView(context, value)
-        terminal.addView(logText)
+        val log = Log(context, value)
+        terminal.addView(log)
     }
 
     private val isDarkMode: Boolean
