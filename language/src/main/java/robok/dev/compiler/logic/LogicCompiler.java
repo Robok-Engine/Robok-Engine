@@ -108,6 +108,7 @@ public class LogicCompiler {
 
 		robokTerminal.addWarningLog("Imports: " , imports);
 		robokTerminal.addWarningLog("Classes: " , clazz);
+		onExecute(robokTerminal.getLogs());
 	}
 
 	//Não ultilizado, apenas está aqui para aproveitamento de partes do codigo
