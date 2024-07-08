@@ -1,12 +1,12 @@
 <resources>
 	<string name="app_name" translatable="false">Robok IDE</string>
 	
-	<!-- common words -->
-	<string name="common_back">Back</string>
-	<string name="common_result">Result</string>
-	<string name="common_run">Run</string>
-	<string name="common_code">Code</string>
-	<string name="common_code">Logs</string>
+	<!-- common word words -->
+	<string name="common_word_back">Back</string>
+	<string name="common_word_result">Result</string>
+	<string name="common_word_run">Run</string>
+	<string name="common_word_code">Code</string>
+	<string name="common_word_logs">Logs</string>
 	
 	<!-- titles -->
 	<string name="debug_error_title">An error occured</string>

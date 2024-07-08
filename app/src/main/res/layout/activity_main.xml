@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:gravity="top|start"
         android:scrollbars="vertical"
-        android:hint="@string/common_code"
+        android:hint="@string/common_word_code"
         android:layout_margin="16dp"
         android:padding="8dp"
         app:syntaxType="java" />
@@ -31,7 +31,7 @@
             android:id="@+id/run_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/common_run"
+            android:text="@string/common_word_run"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp" />
 
@@ -39,7 +39,7 @@
             android:id="@+id/see_logs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/common_logs"
+            android:text="@string/common_word_logs"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp" />
 
