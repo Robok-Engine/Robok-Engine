@@ -3,7 +3,6 @@ package dev.trindade.robokide.ui.editor
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.EditText
-
 import dev.trindade.robokide.ui.syntax.SimpleHighlighter
 import dev.trindade.robokide.R
 
@@ -28,8 +27,30 @@ class Editor : EditText {
             typedArray.recycle()
 
             syntaxType?.let {
-                SimpleHighlighter(this, syntaxType)
+                SimpleHighlighter(this, it)
             }
+
+            this.setText(
+                """
+                package com.my.newproject;
+                
+                import robok.*;
+                
+                public class MyClass {
+                
+                public String myString = "oi";
+                pblic int myInt = 0;
+                
+                public void myMethod() {
+                String yourString = "oii";
+                
+                if (yourString.equals("RobokIDE")) {
+                // do something
+                }
+                }
+                }
+            """.trimIndent()
+            )
         }
     }
 }
