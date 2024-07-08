@@ -17,3 +17,5 @@ local.properties
 # For users who uses android ide for building app
 .androidide/
 /.androidide
+language/build
+/language/build
