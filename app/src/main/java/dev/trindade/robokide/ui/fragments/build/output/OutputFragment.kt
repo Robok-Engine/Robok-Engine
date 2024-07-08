@@ -34,10 +34,6 @@ class OutputFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-  
-        output?.let {
-            addOutput(it)
-        }
     }
     
     fun addOutput(log: String) {
