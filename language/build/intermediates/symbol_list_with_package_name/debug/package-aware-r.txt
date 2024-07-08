@@ -1,6 +1,0 @@
-robok.trindade
-id background_terminal
-id drag_handle
-id title
-layout dialog_terminal
-string result_title
