@@ -9,7 +9,7 @@
     <dev.trindade.robokide.ui.editor.Editor
         android:id="@+id/code_editor"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:hint="Code..."
         android:layout_margin="16dp"
         android:padding="8dp"

@@ -18,11 +18,6 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
         terminal = bottomSheetView.findViewById(R.id.background_terminal)
     }
 
-    override fun show() {
-        super.show()
-        terminal.removeAllViews()
-    }
-
     private val isDarkMode: Boolean
         get() = when (AppCompatDelegate.getDefaultNightMode()) {
             AppCompatDelegate.MODE_NIGHT_NO -> false
