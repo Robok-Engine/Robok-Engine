@@ -24,7 +24,7 @@ class Editor : EditText {
     private fun init(context: Context, attrs: AttributeSet?) {
         if (attrs != null) {
             val typedArray = context.obtainStyledAttributes(attrs, R.styleable.Editor)
-            val syntaxType = typedArray.getString(R.styleable.Editor_syntaxtType)
+            val syntaxType = typedArray.getString(R.styleable.Editor_syntaxType)
             typedArray.recycle()
 
             syntaxType?.let {
