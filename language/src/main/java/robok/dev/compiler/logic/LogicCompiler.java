@@ -8,6 +8,9 @@ package robok.dev.compiler.logic;
 import android.content.Context;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Stack;
+import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,131 +22,181 @@ import robok.lang.variables.VariableObject;
 
 public class LogicCompiler {
 
-	Context context;
-	//LinearLayout linearLayout;
-	//String logs = "";
-	List<String> logs;
-	//char[] characters;
-	List<VariableObject> variables;
+    private Context context;
+    private List<String> logs;
+    private List<VariableObject> variables;
+    private Map<String, String> methods; // Armazena o corpo dos métodos
+    private Stack<String> blockStack; // Pilha para gerenciar blocos
+    private RobokTerminal robokTerminal;
+    private LogicCompilerListener compilerListener;
+	Primitives primitives;
 	
-	public final static String i = "oi"; //?
+    private boolean methodOpen = false;
+    private String currentMethodName = null;
+    private StringBuilder currentMethodBody = new StringBuilder();
 
-	private Primitives primitives;
-	private ModifyAccess modifyAcess;
+    private int currentLineIndex; // Índice atual da linha
+    private String[] codeLines; // Array de linhas de código
+	
+	
+	boolean chavesDentroDoMetodo = false;
 
-	private RobokTerminal robokTerminal;
-	private LogicCompilerListener compilerListener;
+    public LogicCompiler(Context context, LogicCompilerListener compilerListener) {
+        this.context = context;
+        this.compilerListener = compilerListener;
+        this.variables = new ArrayList<>();
+        this.logs = new ArrayList<>();
+        this.methods = new HashMap<>();
+        this.blockStack = new Stack<>();
+        this.robokTerminal = new RobokTerminal();
+    }
 
-    /*
-     AVISO PARA VOCÊ TH!!!
-     Use a chamada onExecute(*aqui vai o parâmetro de logs string*);
-    */
+    public void addLog(String tag, String line) {
+        robokTerminal.addLog(tag, line);
+    }
 
+    public String getLogs() {
+        return robokTerminal.getLogs();
+    }
 
-	public LogicCompiler(Context context, LogicCompilerListener compilerListener) {
-		this.context = context;
-		this.compilerListener = compilerListener;
-		variables = new ArrayList<>();
-		logs = new ArrayList<>();
+    public String getVariables() {
+        StringBuilder log = new StringBuilder("\n\nTipos de Variaveis ultilizadas:\n");
+        StringBuilder types = new StringBuilder();
 
-		robokTerminal = new RobokTerminal();
-		//logs.add("teste");
-		//linearLayout = new LinearLayout(context);
+        for (VariableObject vObject : variables) {
+            types.append(vObject.getType()).append(",");
+        }
+        log.append(types);
 
+        return log.toString();
+    }
 
-	}
+    public void compile(String code) {
+        code = code.replaceAll(";\\s*", ";\n");
+        codeLines = code.split("\n");
+        currentLineIndex = 0;
 
-	public void addLog(String tag, String line) {
-		robokTerminal.addLog("Test Log : ", line);
-		//logs.add("\n" + (logs.size() + 1) + "| " + line);
-	}
+        boolean packageDeclared = false;
+        boolean classDeclared = false;
+        StringBuilder imports = new StringBuilder();
+        StringBuilder clazz = new StringBuilder();
+		
+		
+        for (String line : codeLines) {
+            if (!packageDeclared && line.trim().startsWith("package ")) {
+                packageDeclared = true;
+            } else if (!classDeclared && line.trim().startsWith("import ")) {
+                imports.append(line).append("\n");
+            } else if (!classDeclared) {
+                classDeclared = extractClass(line);
+            } else {
+                if (!line.isEmpty()) {
+                    readCode(line);
+                }
+            }
+            currentLineIndex++;
+        }
 
-	public String getLogs() {
-		return robokTerminal.getLogs();
-		//logs.toString();
-	}
+        robokTerminal.addWarningLog("Imports: ", imports.toString());
+        robokTerminal.addWarningLog("Classes: ", clazz.toString());
 
-	public String getVariabbles() {
-		String log = "\n\nTipos de Variaveis ultilizadas:\n";
-		String types = "";
+        // Iterar sobre os métodos armazenados no mapa
+        for (String methodName : methods.keySet()) {
+            String methodBody = methods.get(methodName);
 
-		for (VariableObject vObject : variables) {
-			types = types + vObject.getType() + ",";
-		}
-		log = log + types;
+            //mostrando os nomes dos metodos os corpos
+            addLog("Methods", "Nome do método: " + methodName);
+            addLog("Methods", "Corpo do método:\n" + methodBody);
+        }
 
-		return log;
-	}
+        onExecute(robokTerminal.getLogs());
+    }
 
-	public void compile(String code) {
-		// Dividir o código em linhas
-		code = code.replaceAll(";\\s*", ";\n");
-		String[] lines = code.split("\n");
+    private boolean extractClass(String line) {
+        Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(class)\\s+(\\w+)\\s*(\\{)?");
+        Matcher matcher = pattern.matcher(line);
+        if (matcher.find()) {
+            String modifiers = matcher.group(1) != null ? matcher.group(1).trim() : "";
+            String className = matcher.group(3);
 
-		boolean packageDeclared = false;
-		boolean classDeclared = false;
-		String imports = "";
-		String clazz = "";
-		//List<String> variaveis = new ArrayList<>();
-		//List<String> metodos = new ArrayList<>();
+            addLog("Class", "Modifiers: " + modifiers);
+            addLog("Class", "Class Name: " + className);
 
-		// Loop pelas linhas do código
-		for (String line : lines) {
-			if (!packageDeclared && line.trim().startsWith("package ")) {
-				// Pacote declarado
-				packageDeclared = true;
-			} else if (!classDeclared && line.trim().startsWith("public class ")) {
-				// Classe declarada
-				classDeclared = true;
-				clazz += line + "\n";
-			} else if (packageDeclared && line.trim().startsWith("import ")) {
-				// Importes antes do pacote
-				imports += line + "\n";
-			} else if (classDeclared) {
-				if (!line.isEmpty()) {
-					readCode(0, line);
+            if (matcher.group(4) != null) {
+                blockStack.push("{");
+            }
+            return true;
+        }
+        return false;
+    }
+
+    private void readCode(String line) {
+		addLog("teste", line);
+
+		if (methodOpen) {
+			if (!line.trim().equals("{")) {
+				if(line.trim().equals("}") && chavesDentroDoMetodo){
+					currentMethodBody.append(line).append("\n");
+				}else if(!line.trim().equals("}")){
+					currentMethodBody.append(line).append("\n");
+				}
+				
+			}
+			if (line.contains("{")) {
+				addLog("readCode",  "linha: " + line + " possui {");
+				chavesDentroDoMetodo = true;
+				blockStack.push("{");
+			} else if (line.contains("}") && chavesDentroDoMetodo == false) {
+				addLog("readCode", "fechou o metodo");
+				blockStack.pop();
+				//blockStack.pop();
+				if (!blockStack.isEmpty()) {
+					methods.put(currentMethodName, currentMethodBody.toString());
+					methodOpen = false;
+					currentMethodName = null;
+					currentMethodBody.setLength(0); // Limpa o StringBuilder
+				}
+			}else if(line.contains("}") && chavesDentroDoMetodo == true){
+				chavesDentroDoMetodo = false;
+				//blockStack.pop();
+
+			}
+		} else {
+			if (line.contains("{") && !line.contains("(") && !line.contains(")")) {
+				blockStack.push("{");
+			} else if (line.contains("}")) {
+				if (!blockStack.isEmpty()) {
+					blockStack.pop();
+				}
+			} else {
+				if (!blockStack.isEmpty()) {
+					if (line.contains("(") && line.contains(")")) {
+						extractMethod(line);
+					} else {
+						if (blockStack.size() > 1) {
+							// Estamos dentro de um método
+						} else {
+                            // Verificando codigos na linha, entendendo o que significa e
+                            // prosseguindo.
+                            // analizeCodeFromLine(line);
+
+                            // indo forma direta
+                            if (codeIsVariable(line)) {
+                                extractDataVariable("class", line);
+                            }
+
+							//no momento, não está indentificando se é tipo primitivo ou classe
+							//indo tudo como class
+						}
+					}
 				}
 			}
 		}
-
-		robokTerminal.addWarningLog("Imports: " , imports);
-		robokTerminal.addWarningLog("Classes: " , clazz);
-		onExecute(robokTerminal.getLogs());
-        
-        //Aqui será colocado a inicialização do Output
 	}
-
-	//Não ultilizado, apenas está aqui para aproveitamento de partes do codigo
-	public void oldCompile(String code) {
-
-		//code = code.replaceAll(";([^\\n])", ";\n$1");
-		code = code.replaceAll(";\\s*", ";\n");
-		String[] linhas = code.split("\n");
-
-		logs.add("caiu aquu");
-		logs.add("linhas total: " + linhas.length);
-
-
-        for (int i = 0; i < linhas.length; i++) {
-			//logs.add("linhas " + i);
-			String linha = linhas[i];
-			/*  if (codeIsVariable(linha)) {
-			 logs.add("\nLinha \"" + linha + "\"é variavel");
-
-			 extractDataVariable(linha);
-			 }else logs.add("\nLinha \"" + linha + "\"não é variavel");*/
-			//logs.add("Linha: " + i);
-
-			//if(!linha.isEmpty()){
-			readCode(i, linha);
-			//}
-
-
-        }
-	}
-
-	private void readCode(int numLinha, String linha) {
-		String[] parts = linha.split(" ");
+	
+	/*Mantida guardada, será usado em breve*/
+	private void analizeCodeFromLine(String line){
+		String[] parts = line.split(" ");
 
 		for (int j = 0; j < parts.length; j++) {
 			String part = parts[j];
@@ -161,44 +214,43 @@ public class LogicCompiler {
 				String supertype = verifyIfClass(firstChar, part);
 
 				//addLog("caiu no 137");
-				
-				if (codeIsVariable(linha)) {
+
+				if (codeIsVariable(line)) {
 					//addLog("caiu dnv 140");
-					extractDataVariable(supertype, linha);
+					extractDataVariable(supertype, line);
 				}
 
 			} else {
 				//Falso, o codigo não é o primeiro
 
 			}
-
-		}
+	}
 	}
 
+    private void extractMethod(String line) {
+		Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*\\(([^)]*)\\)\\s*(\\{)?");
+		Matcher matcher = pattern.matcher(line);
 
-	//Não ultilizado, por favor não remover (ainda em testes)
-	private String verifyAcessModifiersOrPrimitive(String code) {
-	    //parou aqui
-		if (codeIsModifyAcess(code).getCodeIsModifyAcess()) {
-			addLog("ModifiersAcces", "modificador de acesso encontrado: " + code);
-			return "modify_acess";
-			
-		} else if (codeIsPrimitive(code)) {
-			//É primitivo
-			robokTerminal.addWarningLog("PrimitivesType" , "tipo primitivo encontrado: " + code);
-			return "primitive";
-		} else {
-			robokTerminal.addWarningLog("ClassOrVariableNotFound", "void verifyClassOrVariable: O codigo não é um modificador de acesso nem um tipo primitivo\nCodigo {" + code + "}");
-			robokTerminal.addWarningLog("verifyClassOrVariable", "verificando se já se trata de uma variavel criada");
+		if (matcher.find()) {
+			String methodName = matcher.group(3);
+			currentMethodName = methodName;
+			currentMethodBody = new StringBuilder();
 
+			// Não adicionar a linha que contém a assinatura do método
+			if (matcher.group(5) != null || line.trim().endsWith("{")) {
+				blockStack.push("{");
+			}
+
+			methodOpen = true;
+
+			addLog("Method", "Method Name: " + methodName);
 		}
-		return "undefined";
 	}
-
+	
 	private String verifyIfClass(char firstChar, String code) {
-		
+
 		String retorno = "";
-		
+
 		if (Character.isUpperCase(firstChar)) {
 			/*
 			 Primeiro caractere está em caixa alta, o codigo
@@ -221,26 +273,17 @@ public class LogicCompiler {
 				robokTerminal.addWarningLog("PrimitiveType", "tipo primitivo encontrado: " + code);
 				return "primitive";
 			} else {
-				robokTerminal.addWarningLog("VerifyClassOrVariable","O codigo não é um tipo primitivo\nCodigo {" + code + "}");
-				robokTerminal.addWarningLog("VerifyClassOrVariable", "verificando se já se trata de uma variavel criada");
+				addLog("VerifyClassOrVariable","O codigo não é um tipo primitivo\nCodigo {" + code + "}");
+				addLog("VerifyClassOrVariable", "verificando se já se trata de uma variavel criada");
 
 			}
-			 
+
 			//retorno = verifyAcessModifiersOrPrimitive(code);
 		}
 
 		return retorno;
 	}	
-
-	private ModifyAccess.ModifyAcessObject codeIsModifyAcess(String code) {
-		if (modifyAcess == null) {
-			modifyAcess = new ModifyAccess();
-		}
-
-		return modifyAcess.codeIsModifyAcess(code);
-
-	}
-
+	
 	private boolean codeIsPrimitive(String code) {
 		if (primitives == null) {
 			primitives = new Primitives();
@@ -250,113 +293,54 @@ public class LogicCompiler {
 
 	}	
 
-	private static boolean codeIsVariable(String linha) {
-		Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
-		
-		//pega modificadores de acesso, tipos, nomes, valores, porem regex e exibido os nomes dos modificadores de acesso
-		//"(?:public|protected|private)?\\s*(\\w+)\\s+(\\w+)\\s*=\\s*\"?(.*?)\"?;?"
-		
-		//pega o tipo, nome, valor (não pega modificadores de acesso)
-		/*"(\\w+)\\s+(\\w+)\\s*=\\s*\"?(.*?)\"?;\\s*"*/
-		Matcher matcher = pattern.matcher(linha);
-		return matcher.matches();
-	}
+    private boolean codeIsVariable(String line) {
+        Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+        Matcher matcher = pattern.matcher(line);
+        return matcher.matches();
+    }
 
-	private void extractDataVariable(String supertype, String linha) {
-		Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
-		Matcher matcher = pattern.matcher(linha);
+    private void extractDataVariable(String supertype, String line) {
+        Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+        Matcher matcher = pattern.matcher(line);
 
-		if (matcher.find()) {
-			String modify_access = matcher.group(1);
-			if (modify_access == null) {
-				modify_access = "default";
-			} else {
-				modify_access = modify_access.trim(); // Remover espaços extras
-			}
+        if (matcher.find()) {
+            String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
+            String type = matcher.group(2);
+            String name = matcher.group(3);
+            String value = matcher.group(4);
 
-			String type = matcher.group(2);
-			String name = matcher.group(3);
-			String value = matcher.group(4);
+            VariableObject variable = new VariableObject(supertype, modify_access, type, name, value);
 
-			VariableObject variable = new VariableObject(supertype, modify_access, type, name, value);
+            ModifyNonAccess modifyNonAccess = new ModifyNonAccess();
+            modifyNonAccess.verifyModifiersNonAccessFromVariable(variable, modify_access);
 
-			ModifyNonAccess modifyNonAccess = new ModifyNonAccess();
-			
-			modifyNonAccess.verifyModifiersNonAccessFromVariable(variable, modify_access);
-			
-			variables.add(variable);
+            variables.add(variable);
 
-			robokTerminal.addWarningLog("Variable", "Variavel Encontrada: " + variable.getType());
-			robokTerminal.addWarningLog("Variable", "Modificador de acesso: " + modify_access);
-			robokTerminal.addWarningLog("Variable", "Type: " + type);
-			robokTerminal.addWarningLog("Variable", "Name: " + name);
-			robokTerminal.addWarningLog("Variable", "Valor: " + value);
-			
-			robokTerminal.addWarningLog("Variable", "IsStatic " + variable.isStatic());
-			robokTerminal.addWarningLog("Variable", "IsFinal " + variable.isFinal());
-			robokTerminal.addWarningLog("Variable", "IsNative " + variable.isNative());
-			robokTerminal.addWarningLog("Variable", "IsSynchronized " + variable.isSynchronized());
-			robokTerminal.addWarningLog("Variable", "IsVolatile " + variable.isVolatile());
-			robokTerminal.addWarningLog("Variable", "IsTransient " + variable.isTransient());
-			robokTerminal.addWarningLog("Variable", "IsAbstract " + variable.isAbstract());
-			robokTerminal.addWarningLog("Variable", "IsStrictfp " + variable.isStrictfp());
-			
-			System.out.println("Tipo: " + type);
-			System.out.println("Nome: " + name);
-			System.out.println("Valor: " + value);
+            addLog("Variable", "Variavel Encontrada: " + variable.getType());
+            addLog("Variable", "Modificador de acesso: " + modify_access);
+            addLog("Variable", "Type: " + type);
+            addLog("Variable", "Name: " + name);
+            addLog("Variable", "Valor: " + value);
 
-			// Para obter o tipo da variável
-			Class<?> classType = null;
-			try {
-				classType = Class.forName(type);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Classe do tipo: " + classType);
-		}
-	}
-	
-   /* private void extractDataVariable(String supertype, String linha) {
-		Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final)\\b\\s+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
-		Matcher matcher = pattern.matcher(linha);
+            addLog("Variable", "IsStatic " + variable.isStatic());
+            addLog("Variable", "IsFinal " + variable.isFinal());
+            addLog("Variable", "IsNative " + variable.isNative());
+            addLog("Variable", "IsSynchronized " + variable.isSynchronized());
+            addLog("Variable", "IsVolatile " + variable.isVolatile());
+            addLog("Variable", "IsTransient " + variable.isTransient());
+            addLog("Variable", "IsAbstract " + variable.isAbstract());
+            addLog("Variable", "IsStrictfp " + variable.isStrictfp());
+        }
+    }
 
-		if (matcher.find()) {
-			String modify_access = matcher.group(1);
-			if (modify_access == null) {
-				modify_access = "default";
-			} else {
-				modify_access = modify_access.trim(); // Remover espaços extras
-			}
+    private void onExecute(String logs) {
+        compilerListener.onCompiled(logs);
+    }
 
-			String type = matcher.group(2);
-			String name = matcher.group(3);
-			String value = matcher.group(4);
-
-			VariableObject variable = new VariableObject(supertype, modify_access, type, name, value);
-
-			variables.add(variable);
-
-			addLog("Variavel Encontrada: " + variable.getType());
-			addLog("Modificador de acesso: " + modify_access);
-			addLog("Type: " + type);
-			addLog("Name: " + name);
-			addLog("Valor: " + value);
-
-			System.out.println("Tipo: " + type);
-			System.out.println("Nome: " + name);
-			System.out.println("Valor: " + value);
-
-			// Para obter o tipo da variável
-			Class<?> classType = null;
-			try {
-				classType = Class.forName(type);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			System.out.println("Classe do tipo: " + classType);
-		}
-	}*/
-	
-	private void onExecute (String logs) { compilerListener.onCompiled(logs); }
-	
+    private String getNextLine() {
+        if (currentLineIndex < codeLines.length) {
+            return codeLines[currentLineIndex++];
+        }
+        return null;
+    }
 }
