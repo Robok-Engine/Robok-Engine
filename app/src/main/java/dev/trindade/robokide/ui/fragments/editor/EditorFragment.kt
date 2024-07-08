@@ -5,12 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-
-import com.google.android.material.snackbar.SnackBar
-
+import com.google.android.material.snackbar.Snackbar
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
-
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
@@ -38,14 +35,14 @@ class EditorFragment : Fragment() {
             override fun onCompiled(logs: String) {
                 showTerminal(terminal, logs)
             }
-            override fun onOutput (output: String) {
+
+            override fun onOutput(output: String) {
                 val outputFragment = OutputFragment.newInstance(output)
-                SnackBar.make(binding.root, R.string.message_compiled, 4000)
-                    .setAction(R.string.go_to_outputs, {
-                    
+                Snackbar.make(binding.root, R.string.message_compiled, Snackbar.LENGTH_LONG)
+                    .setAction(R.string.go_to_outputs) {
+                        openFragment(outputFragment)
                     }
-                .show()    
-                openTerminal(outputFragment)
+                    .show()
             }
         }
         
@@ -68,11 +65,12 @@ class EditorFragment : Fragment() {
         terminal.show()
     }
     
-    fun openFragment (fragment: Fragment) {
+    fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             addToBackStack(null)
             commit()
+        }
     }
 
     override fun onDestroyView() {
