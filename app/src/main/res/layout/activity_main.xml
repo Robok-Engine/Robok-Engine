@@ -12,6 +12,7 @@
 		android:gravity="top|start"
 		android:inputType="textMultiLine"
 		android:scrollbars="vertical"
+		android:id="@+id/code_editor"
         android:hint="@string/common_code"
         android:layout_margin="16dp"
         android:padding="8dp"
