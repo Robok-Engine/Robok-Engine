@@ -7,8 +7,8 @@ import dev.trindade.robokide.databinding.ActivityMainBinding
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.terminal.RobokTerminal
-import robok.trindade.compiler.logic.LogicCompiler
-import robok.trindade.compiler.logic.LogicCompilerListener
+import robok.dev.compiler.logic.LogicCompiler
+import robok.dev.compiler.logic.LogicCompilerListener
 
 class MainActivity : AppCompatActivity() {
 
