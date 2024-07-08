@@ -1,4 +1,10 @@
 package robok.lang.modifiers;
+
+/* 
+  Essa classe é responsável por obter os modificadores de acesso não acessiveis.
+  This class is responsible for obtaining non-accessible access modifiers.
+*/
+  
 import robok.lang.variables.VariableObject;
 
 public class ModifyNonAccess {

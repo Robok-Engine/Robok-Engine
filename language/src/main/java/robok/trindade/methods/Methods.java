@@ -21,9 +21,9 @@ public class Methods {
     private RobokTerminal robokTerminal;
     private TextUtil textUtil;
     
-    private RobokCompiler.CompilerListener compileListener;
+    private MethodsCompiler.CompilerListener compileListener;
     	
-    public Methods (Context context, RobokCompiler.CompilerListener compileListener) {
+    public Methods (Context context, MethodsCompiler.CompilerListener compileListener) {
         robokContext = context;
         robokTerminal = new RobokTerminal();
         textUtil = new TextUtil(context);

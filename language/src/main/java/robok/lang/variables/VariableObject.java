@@ -1,7 +1,20 @@
 package robok.lang.variables;
 
-public class VariableObject
-{
+/*
+  Essa classe é responsável por obter :
+    model: Model da variável (Classe ou primitiva)
+    type: Tipo da variável.
+    name: Nome da variável.
+    value: Valor da variável.
+    
+  This class is responsible for obtaining:
+    model: Model of the variable (Class or primitive)
+    type: Type of the variable.
+    name: Name of the variable.
+    value: Value of the variable.
+*/    
+public class VariableObject {
+
 	private String model, modify_access = "default", type, name, value;
 	private boolean is_static, is_native, is_final, is_synchronized, is_volatile, is_transient, is_abstract, is_strictfp;
 	
@@ -54,7 +67,10 @@ public class VariableObject
         this.value = value;
     }
 	
-	//definir modificadores de uma vez só
+	/*
+	 definir modificadores de uma vez só
+	 set modifiers at once
+	*/ 
 	public void setModifiers(boolean is_static, boolean is_final, boolean is_native, boolean is_synchronized, boolean is_volatile, boolean is_transient, boolean is_abstract, boolean is_strictfp) {
         this.is_static = is_static;
         this.is_final = is_final;
@@ -66,7 +82,10 @@ public class VariableObject
         this.is_strictfp = is_strictfp;
     }
 
-    // Métodos getters para verificar os valores dos modificadores
+    /* 
+     Métodos getters para verificar os valores dos modificadores
+     Getter methods to check modifier values
+    */
     public boolean isStatic() { return is_static; }
     public boolean isNative() { return is_native; }
     public boolean isFinal() { return is_final; }

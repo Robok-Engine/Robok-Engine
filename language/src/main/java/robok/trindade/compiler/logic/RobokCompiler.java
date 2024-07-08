@@ -1,17 +1,21 @@
-/* EngineCompiler: Compilador da area de ações, usado apenas para criãção de ações em tempo de execução.
-   Não ultilizado para criações de layout */
+/* 
+   EngineCompiler: Compilador da area de ações, usado apenas para criãção de ações em tempo de execução.
+   Não ultilizado para criações de layout
+ */
 
-package robok.trindade.compiler;
+package robok.trindade.compiler.logic;
+
 import android.content.Context;
-import robok.lang.modifiers.ModifyNonAccess;
-import robok.lang.variables.VariableObject;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
 import robok.lang.modifiers.ModifyAccess;
 import robok.lang.primitives.Primitives;
 import robok.trindade.terminal.RobokTerminal;
+import robok.lang.modifiers.ModifyNonAccess;
+import robok.lang.variables.VariableObject;
 
 public class EngineCompiler {
 

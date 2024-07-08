@@ -1,7 +1,11 @@
 package robok.lang.primitives;
 
-public class Primitives
-{
+/*
+   Essa classe é responsável por obter se a classe é primitiva ou não.
+   This class is responsible for getting whether the class is primitive or not.
+*/
+
+public class Primitives {
 	private static final String[] primitives = new String[]{
 		"byte",
 		"short",

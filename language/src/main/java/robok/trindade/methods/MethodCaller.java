@@ -7,8 +7,8 @@ import android.graphics.*;
 import robok.trindade.methods.*;
 import robok.trindade.util.*;
 import robok.trindade.terminal.*;
-import robok.trindade.compiler.RobokCompiler;
-import robok.trindade.compiler.RobokCompiler.CompilerListener;
+import robok.trindade.compiler.MethodsCompiler;
+import robok.trindade.compiler.MethodsCompiler.CompilerListener;
 
 import java.lang.ref.*;
 import java.lang.reflect.*;
@@ -22,7 +22,7 @@ public class MethodCaller {
     private Methods methodsInstance;
     private RobokTerminal terminal;
     
-    public MethodCaller(Context context, RobokCompiler.CompilerListener compiler) {
+    public MethodCaller(Context context, MethodsCompiler.CompilerListener compiler) {
         this.context = context;
         methodsMap = new HashMap<>();
         methodsInstance = new Methods(context, compiler);

@@ -1,4 +1,4 @@
-package robok.trindade.compiler;
+package robok.trindade.compiler.logic;
 
 import android.content.*;
 import android.widget.*;
@@ -8,16 +8,16 @@ import robok.trindade.methods.*;
 import robok.trindade.message.*;
 import robok.trindade.exception.*;
 
-public class RobokCompiler {
+public class MethodsCompiler {
 	
 	private String[] parts;
 	private Context context;
 	
 	private MethodCaller methodCaller;
-	private RobokCompiler.CompilerListener compileListener;
+	private MethodsCompiler.CompilerListener compileListener;
 	private RobokTerminal terminal;
 	
-	public RobokCompiler(Context context, CompilerListener compileListener){
+	public MethodsCompiler(Context context, CompilerListener compileListener){
 		this.context = context;
 		this.compileListener = compileListener;
         methodCaller = new MethodCaller(context, compileListener);
@@ -51,8 +51,4 @@ public class RobokCompiler {
 		}
 		return  returnVal;
 	}	
-	
-	public interface CompilerListener {
-	    public void onCompiled(String logs);
-	}
 }

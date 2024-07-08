@@ -1,4 +1,20 @@
 package robok.lang.modifiers;
+
+/*
+
+   Essa classe é responsável por obter se a Variavel é:
+      pública 
+      privada
+      protegida
+      ou se ela é padrão 
+      
+   This class is responsible for obtaining whether the Variable is:
+      public 
+      toilet
+      protected
+      or if it is standard   
+*/
+
 import java.util.HashMap;
 
 public class ModifyAccess {
