@@ -5,8 +5,9 @@ import android.widget.*;
 
 import robok.dev.terminal.*;
 import robok.dev.methods.*;
-import robok.lang.message.*;
-import robok.lang.exception.*;
+import robok.lang.messages.*;
+import robok.lang.exceptions.*;
+import robok.dev.compiler.logic.*;
 
 public class MethodsCompiler {
 	
