@@ -1,12 +1,12 @@
-package robok.trindade.compiler.logic;
+package robok.dev.compiler.logic;
 
 import android.content.*;
 import android.widget.*;
 
-import robok.trindade.terminal.*;
-import robok.trindade.methods.*;
-import robok.trindade.message.*;
-import robok.trindade.exception.*;
+import robok.dev.terminal.*;
+import robok.dev.methods.*;
+import robok.dev.message.*;
+import robok.dev.exception.*;
 
 public class MethodsCompiler {
 	

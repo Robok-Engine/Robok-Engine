@@ -1,14 +1,14 @@
-package robok.trindade.methods;
+package robok.dev.methods;
 
 import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 
-import robok.trindade.R; 
-import robok.trindade.util.*;
-import robok.trindade.terminal.*;
-import robok.trindade.compiler.logic.*
+import robok.dev.R; 
+import robok.dev.util.*;
+import robok.dev.terminal.*;
+import robok.dev.compiler.logic.*;
 
 import com.google.android.material.dialog.*;
 

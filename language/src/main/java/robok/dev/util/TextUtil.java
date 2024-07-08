@@ -1,10 +1,10 @@
-package robok.trindade.util;
+package robok.dev.util;
 
 import android.content.*;
 import android.view.*;
 import android.widget.*;
 
-import robok.trindade.R;
+import robok.dev.R;
 
 public class TextUtil {
 

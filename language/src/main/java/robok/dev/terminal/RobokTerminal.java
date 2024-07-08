@@ -1,9 +1,9 @@
-package robok.trindade.terminal;
+package robok.dev.terminal;
 
 import android.view.View;
 import android.widget.LinearLayout;
 import java.util.List;
-import robok.trindade.R;
+import robok.dev.R;
 import java.util.ArrayList;
 
 public class RobokTerminal {

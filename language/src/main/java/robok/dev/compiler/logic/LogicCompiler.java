@@ -3,7 +3,7 @@
    Não ultilizado para criações de layout
  */
 
-package robok.trindade.compiler.logic;
+package robok.dev.compiler.logic;
 
 import android.content.Context;
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import java.util.regex.Pattern;
 
 import robok.lang.modifiers.ModifyAccess;
 import robok.lang.primitives.Primitives;
-import robok.trindade.terminal.RobokTerminal;
+import robok.dev.terminal.RobokTerminal;
 import robok.lang.modifiers.ModifyNonAccess;
 import robok.lang.variables.VariableObject;
 
