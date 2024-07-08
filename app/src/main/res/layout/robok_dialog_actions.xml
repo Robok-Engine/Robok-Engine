@@ -1,0 +1,42 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+  android:id="@+id/buttonPanel"
+  style="?attr/buttonBarStyle"
+  android:layout_width="match_parent"
+  android:layout_height="wrap_content"
+  android:fillViewport="true"
+  android:scrollIndicators="top|bottom">
+
+  <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="bottom"
+    android:layoutDirection="locale"
+    android:orientation="vertical"
+    android:paddingLeft="?attr/dialogPreferredPadding"
+    android:paddingRight="?attr/dialogPreferredPadding"
+    android:paddingTop="20dp"
+    android:paddingBottom="28dp">
+
+    <Button
+      android:id="@android:id/button1"
+      style="?attr/buttonBarPositiveButtonStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content" />
+
+    <Button
+      android:id="@android:id/button2"
+      style="?attr/buttonBarNegativeButtonStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp" />
+
+    <Button
+      android:id="@android:id/button3"
+      style="?attr/buttonBarNeutralButtonStyle"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="12dp" />
+
+  </LinearLayout>
+
+</ScrollView>

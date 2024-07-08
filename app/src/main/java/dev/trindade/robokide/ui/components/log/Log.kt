@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.terminal
+package dev.trindade.robokide.ui.components.log
 
 import android.content.Context
 import android.util.AttributeSet
@@ -6,7 +6,7 @@ import android.widget.TextView
 
 import dev.trindade.robokide.ui.syntax.SimpleHighlighter
 
-class LogView : TextView {
+class Log: TextView {
 
     constructor(context: Context) : super(context) {
         init(context, null, "")

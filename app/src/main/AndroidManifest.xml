@@ -8,7 +8,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="dev.trindade.robokide.Robok"
-        android:theme="@style/AppTheme">
+        android:theme="@style/RobokTheme">
         <activity
             android:name="dev.trindade.robokide.ui.activities.MainActivity"
             android:exported="true">

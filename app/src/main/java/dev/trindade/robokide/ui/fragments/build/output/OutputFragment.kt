@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import dev.trindade.robokide.databinding.FragmentOutputBinding
-import dev.trindade.robokide.ui.terminal.LogView
+import dev.trindade.robokide.ui.components.log.Log
 
 class OutputFragment : Fragment() {
 
@@ -40,7 +40,7 @@ class OutputFragment : Fragment() {
     }
 
     companion object {
-        private const val OUTPUT = "OUTPUT"
+        private const val OUTPUT = "RBK BUILD SUCCESS."
 
         fun newInstance(OUTPUT: String): OutputFragment {
             val fragment = OutputFragment()
