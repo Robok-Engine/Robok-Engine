@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 
 import dev.trindade.robokide.databinding.FragmentHomeBinding
-import dev.trindade.robokide.ui.terminal.LogView
+import dev.trindade.robokide.ui.components.log.Log
 
 class HomeFragment : Fragment() {
 
