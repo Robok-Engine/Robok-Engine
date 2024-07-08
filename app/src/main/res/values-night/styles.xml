@@ -2,5 +2,7 @@
 	<style name="AppTheme" parent="Theme.Material3.DynamicColors.Dark">
 	     <item name="android:statusBarColor">@android:color/transparent</item>
          <item name="android:navigationBarColor">@android:color/transparent</item>
+         <item name="windowNoTitle">true</string>
+         <item name="windowActionBar">false</string>
 	</style>
 </resources>

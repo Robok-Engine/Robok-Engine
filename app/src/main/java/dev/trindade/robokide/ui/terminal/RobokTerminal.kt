@@ -22,7 +22,7 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
     }
     
     fun addLog(value: String) {
-        val logText = LogText(context, value)
+        val logText = LogView(context, value)
         terminal.addView(logText)
     }
 
