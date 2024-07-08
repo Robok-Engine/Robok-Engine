@@ -1,5 +1,5 @@
 /* 
-   LogicCompilerCompiler: Compilador da area de ações, usado apenas para criãção de ações em tempo de execução.
+   LogicCompiler: Compilador da area de ações, usado apenas para criãção de ações em tempo de execução.
    Não ultilizado para criações de layout
  */
 
@@ -17,7 +17,7 @@ import robok.trindade.terminal.RobokTerminal;
 import robok.lang.modifiers.ModifyNonAccess;
 import robok.lang.variables.VariableObject;
 
-public class LogicCompilerCompiler {
+public class LogicCompiler {
 
 	Context context;
 	//LinearLayout linearLayout;
@@ -33,7 +33,7 @@ public class LogicCompilerCompiler {
 
 	RobokTerminal robokTerminal;
 
-	public LogicCompilerCompiler(Context context) {
+	public LogicCompiler(Context context) {
 		this.context = context;
 		variables = new ArrayList<>();
 		logs = new ArrayList<>();
