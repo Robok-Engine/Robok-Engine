@@ -10,7 +10,7 @@
         android:name="dev.trindade.robokide.Robok"
         android:theme="@style/AppTheme">
         <activity
-            android:name="dev.trindade.robokide.ui.activities.main.MainActivity"
+            android:name="dev.trindade.robokide.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,10 +22,6 @@
             android:name="dev.trindade.robokide.ui.activities.DebugActivity"
             android:exported="true" />
             
-        <activity
-            android:name="dev.trindade.robokide.ui.activities.build.outups.OutputActivity"
-            android:exported="true" />    
-        
     </application>
 
 </manifest>

@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.activities.build.output
+package dev.trindade.robokide.ui.fragments.build.output
 
 import android.content.Context
 import android.view.ViewGroup
