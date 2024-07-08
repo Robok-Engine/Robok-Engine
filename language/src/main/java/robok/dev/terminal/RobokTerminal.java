@@ -40,7 +40,7 @@ public class RobokTerminal {
     }
 
     public void addWarningLog(String TAG, String LOG) {
-        String tag_temp = ERROR_PATTERN + TAG;
+        String tag_temp = WARNING_PATTERN + TAG;
         tag_temp = tag_temp.replace("[NUM]","" + (logs.size() + 1));
 		
         addLog(tag_temp + " : " + LOG);

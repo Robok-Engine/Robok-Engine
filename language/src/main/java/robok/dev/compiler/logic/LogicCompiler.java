@@ -54,7 +54,7 @@ public class LogicCompiler {
 	}
 
 	public void addLog(String tag, String line) {
-		robokTerminal.addWarningLog("test", line);
+		robokTerminal.addLog("Test Log : ", line);
 		//logs.add("\n" + (logs.size() + 1) + "| " + line);
 	}
 

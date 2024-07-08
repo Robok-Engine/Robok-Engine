@@ -18,12 +18,12 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        var myLogs = "hello"
         
         val terminal = RobokTerminal(this)
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
-                terminal.addLog(logs)
-                terminal.show()
+                myLogs = logs
             }
         }
         
@@ -32,6 +32,11 @@ class MainActivity : AppCompatActivity() {
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
             compiler.compile(code)
+        }
+        
+        binding.seeLogs.setOnClickListener {
+            terminal.addLog(myLogs)
+            terminal.show()
         }
     }
 }
