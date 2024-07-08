@@ -39,7 +39,7 @@ class OutputFragment : Fragment() {
     }
     
     fun addOutput(context: Context, log: String) {
-        val logView = Log(requireContext(), log)
+        val logView = Log(context, log)
         binding.content.addView(logView)
     }
 
