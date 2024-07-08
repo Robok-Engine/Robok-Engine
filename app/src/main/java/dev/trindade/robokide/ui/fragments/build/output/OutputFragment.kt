@@ -13,7 +13,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindade.robokide.databinding.FragmentOutputBinding
 import dev.trindade.robokide.ui.components.log.Log
 
-class OutputFragment(context: Context) : Fragment() {
+class OutputFragment(context: Context?) : Fragment() {
 
     private var _binding: FragmentOutputBinding? = null
     private val binding get() = _binding!!
