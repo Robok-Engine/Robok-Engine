@@ -354,6 +354,6 @@ public class LogicCompiler {
 		}
 	}*/
 	
-	private onExecute (String logs) { compilerListener.onCompiled(logs); }
+	private void onExecute (String logs) { compilerListener.onCompiled(logs); }
 	
 }
