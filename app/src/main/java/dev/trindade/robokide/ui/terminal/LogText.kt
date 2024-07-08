@@ -25,7 +25,6 @@ class LogText : TextView {
     }
 
     private fun init(context: Context, attrs: AttributeSet?, text: String) {
-        SimpleHighlighter(this, "java")
         setText(text)
         textSize = 12f
     }
