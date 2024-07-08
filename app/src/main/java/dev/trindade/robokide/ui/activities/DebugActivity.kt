@@ -64,7 +64,7 @@ class DebugActivity : AppCompatActivity() {
         setErrorText()
         error.text = madeErrMsg
         MaterialAlertDialogBuilder(this)
-            .setTitle("An error occured")
+            .setTitle(R.string.debug_error_title)
             .setMessage(madeErrMsg)
             .setNeutralButton("End Application") { _, _ ->
                 finish()

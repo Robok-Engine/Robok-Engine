@@ -1,5 +1,8 @@
 <resources>
 	<string name="app_name" translatable="false">Robok IDE</string>
-	<string name="navigation_back">Back</string>
-	<string name="result_title">Result</string>
+	<string name="common_back">Back</string>
+	<string name="common_result">Result</string>
+	<string name="common_run">Run</string>
+	<string name="common_code">Code</string>
+	<string name="debug_error_title">An error occured</string>
 </resources>
