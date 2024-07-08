@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dev.trindade.robokide.databinding.ActivityMainBinding
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.terminal.RobokTerminal
+import dev.trindade.robokide.ui.terminal.RobokTerminal
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
         val terminal = RobokTerminal(this)
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
+                terminal.addLog(logs)
                 terminal.show()
             }
         }
