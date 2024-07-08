@@ -67,7 +67,7 @@ public class LogicCompiler {
 		return log;
 	}
 
-	public void execute(String code) {
+	public void compile(String code) {
 		// Dividir o código em linhas
 		code = code.replaceAll(";\\s*", ";\n");
 		String[] lines = code.split("\n");
@@ -103,7 +103,7 @@ public class LogicCompiler {
 	}
 
 	//Não ultilizado, apenas está aqui para aproveitamento de partes do codigo
-	public void executeAntigo(String code) {
+	public void oldCompile(String code) {
 
 		//code = code.replaceAll(";([^\\n])", ";\n$1");
 		code = code.replaceAll(";\\s*", ";\n");

@@ -7,7 +7,8 @@ import dev.trindade.robokide.databinding.ActivityMainBinding
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.terminal.RobokTerminal
-import robok.trindade.compiler.RobokCompiler
+import robok.trindade.compiler.logic.LogicCompiler
+import robok.trindade.compiler.logic.LogicCompilerListener
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,12 +20,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         
         val terminal = RobokTerminal(this)
-        val compilerListener = object : RobokCompiler.CompilerListener {
+        val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
                 terminal.show()
             }
         }
-        val compiler = RobokCompiler(this, compilerListener)
+        
+        val compiler = LogicCompiler(this, compilerListener)
         
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
