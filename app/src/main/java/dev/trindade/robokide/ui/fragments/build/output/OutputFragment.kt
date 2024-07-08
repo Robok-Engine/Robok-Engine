@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
@@ -24,7 +25,7 @@ class OutputFragment : Fragment() {
         return binding.root
     }
     
-    override fun onCreate (savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
         setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
@@ -44,18 +45,5 @@ class OutputFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        private const val OUTPUT = "RBK BUILD SUCCESS."
-
-        fun newInstance(OUTPUT: String): OutputFragment {
-            val fragment = OutputFragment()
-            val args = Bundle().apply {
-                putString(OUTPUT, OUTPUT)
-            }
-            fragment.arguments = args
-            return fragment
-        }
     }
 }

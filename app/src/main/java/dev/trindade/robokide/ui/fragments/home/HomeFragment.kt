@@ -24,7 +24,7 @@ class HomeFragment : Fragment() {
         return binding.root
     }
     
-    override fun onCreate (savedInstanceState: Bundle) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
         setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
