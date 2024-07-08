@@ -4,7 +4,9 @@ import android.os.Bundle
 import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import dev.trindade.robokide.databinding.ActivityMainBinding
-import robok.trindade.terminal.RobokTerminal
+
+import dev.trindade.robokide.R
+import dev.trindade.robokide.terminal.RobokTerminal
 import robok.trindade.compiler.RobokCompiler
 
 class MainActivity : AppCompatActivity() {
