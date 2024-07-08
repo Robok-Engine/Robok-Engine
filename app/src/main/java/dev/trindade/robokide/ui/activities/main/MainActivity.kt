@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
                 myLogs = logs
+                showTerminal()
             }
         }
         
@@ -35,8 +36,12 @@ class MainActivity : AppCompatActivity() {
         }
         
         binding.seeLogs.setOnClickListener {
-            terminal.addLog(myLogs)
-            terminal.show()
+            showTerminal()
         }
+    }
+    
+    public fun showTerminal() {
+        terminal.addLog(myLogs)
+        terminal.show()
     }
 }
