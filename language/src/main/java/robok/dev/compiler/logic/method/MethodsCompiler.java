@@ -1,12 +1,12 @@
-package robok.dev.compiler.logic;
+package robok.dev.compiler.logic.method;
 
 import android.content.*;
 import android.widget.*;
 
 import robok.dev.terminal.*;
 import robok.dev.methods.*;
-import robok.dev.message.*;
-import robok.dev.exception.*;
+import robok.lang.message.*;
+import robok.lang.exception.*;
 
 public class MethodsCompiler {
 	
