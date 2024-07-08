@@ -36,12 +36,14 @@ class MainActivity : AppCompatActivity() {
         }
         
         binding.seeLogs.setOnClickListener {
-            showTerminal(terminal, myLogs)
+            showTerminal(terminal, null)
         }
     }
     
     public fun showTerminal(terminal: RobokTerminal, logs: String) {
-        terminal.addLog(logs)
+        if (logs != null) {
+            terminal.addLog(logs)
+        }
         terminal.show()
     }
 }
