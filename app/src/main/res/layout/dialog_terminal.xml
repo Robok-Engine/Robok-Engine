@@ -21,16 +21,21 @@
                 android:id="@+id/drag_handle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="15dp"
-                android:layout_marginLeft="15dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/common_word_result"
-                android:textSize="18sp" />
+                
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">    
+                
+                <TextView 
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="15dp"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="20dp"
+                    android:text="@string/common_word_result"
+                    android:textSize="18sp" />
+            </HorizontalScrollView>
         </LinearLayout>
     </ScrollView>
 
