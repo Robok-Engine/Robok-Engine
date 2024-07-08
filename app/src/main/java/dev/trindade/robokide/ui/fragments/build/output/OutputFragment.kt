@@ -39,8 +39,10 @@ class OutputFragment(context: Context?) : Fragment() {
     }
     
     fun addOutput(log: String) {
-        val logView = Log(context, log)
-        binding.content.addView(logView)
+        context?.let {
+            val logView = Log(context, log)
+            binding.content.addView(logView)
+        }
     }
 
     override fun onDestroyView() {
