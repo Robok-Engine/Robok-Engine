@@ -6,10 +6,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.google.android.material.snackbar.Snackbar
+
+import dev.tribdade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
+import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
+
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
+
 
 class EditorFragment : Fragment() {
 
