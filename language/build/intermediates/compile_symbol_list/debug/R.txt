@@ -1,5 +1,0 @@
-int id background_terminal 0x0
-int id drag_handle 0x0
-int id title 0x0
-int layout dialog_terminal 0x0
-int string result_title 0x0
