@@ -109,6 +109,8 @@ public class LogicCompiler {
 		robokTerminal.addWarningLog("Imports: " , imports);
 		robokTerminal.addWarningLog("Classes: " , clazz);
 		onExecute(robokTerminal.getLogs());
+        
+        //Aqui será colocado a inicialização do Output
 	}
 
 	//Não ultilizado, apenas está aqui para aproveitamento de partes do codigo
@@ -254,7 +256,7 @@ public class LogicCompiler {
 		//pega modificadores de acesso, tipos, nomes, valores, porem regex e exibido os nomes dos modificadores de acesso
 		//"(?:public|protected|private)?\\s*(\\w+)\\s+(\\w+)\\s*=\\s*\"?(.*?)\"?;?"
 		
-		//pega o tipo, nome, valor (não pega modificadores de acesso
+		//pega o tipo, nome, valor (não pega modificadores de acesso)
 		/*"(\\w+)\\s+(\\w+)\\s*=\\s*\"?(.*?)\"?;\\s*"*/
 		Matcher matcher = pattern.matcher(linha);
 		return matcher.matches();
