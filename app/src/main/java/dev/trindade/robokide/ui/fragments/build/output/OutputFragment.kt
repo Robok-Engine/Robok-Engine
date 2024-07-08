@@ -25,7 +25,7 @@ class OutputFragment : Fragment() {
     }
     
     override fun onCreate (savedInstanceState: Bundle) {
-        super(savedInstanceState)
+        super.onCreate(savedInstanceState)
         setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
         setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
         setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))

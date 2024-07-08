@@ -31,8 +31,8 @@ class EditorFragment : Fragment() {
         return binding.root
     }
     
-    override fun onCreate (savedInstanceState: Bundle) {
-        super(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
         setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
         setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
         setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
