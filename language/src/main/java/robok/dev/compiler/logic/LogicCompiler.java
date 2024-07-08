@@ -26,15 +26,23 @@ public class LogicCompiler {
 	//char[] characters;
 	List<VariableObject> variables;
 	
-	public final static String i = "oi";
+	public final static String i = "oi"; //?
 
-	Primitives primitives;
-	ModifyAccess modifyAcess;
+	private Primitives primitives;
+	private ModifyAccess modifyAcess;
 
-	RobokTerminal robokTerminal;
+	private RobokTerminal robokTerminal;
+	private LogicCompilerListener compilerListener;
 
-	public LogicCompiler(Context context) {
+    /*
+     AVISO PARA VOCÊ TH!!!
+     Use a chamada onExecute(*aqui vai o parâmetro de logs string*);
+    */
+
+
+	public LogicCompiler(Context context, LogicCompilerListener compilerListener) {
 		this.context = context;
+		this.compilerListener = compilerListener;
 		variables = new ArrayList<>();
 		logs = new ArrayList<>();
 
@@ -167,7 +175,7 @@ public class LogicCompiler {
 
 	//Não ultilizado, por favor não remover (ainda em testes)
 	private String verifyAcessModifiersOrPrimitive(String code) {
-//parou aqui
+	    //parou aqui
 		if (codeIsModifyAcess(code).getCodeIsModifyAcess()) {
 			addLog("ModifiersAcces", "modificador de acesso encontrado: " + code);
 			return "modify_acess";
@@ -345,4 +353,7 @@ public class LogicCompiler {
 			System.out.println("Classe do tipo: " + classType);
 		}
 	}*/
+	
+	private onExecute (String logs) { compilerListener.onCompiled(logs); }
+	
 }
