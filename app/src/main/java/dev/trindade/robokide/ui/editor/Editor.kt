@@ -27,7 +27,7 @@ class Editor : EditText {
             val syntaxType = typedArray.getString(R.styleable.Editor_syntaxtType)
             typedArray.recycle()
 
-            customAttribute?.let {
+            syntaxType?.let {
                 SimpleHighlighter(this, syntaxType)
             }
         }
