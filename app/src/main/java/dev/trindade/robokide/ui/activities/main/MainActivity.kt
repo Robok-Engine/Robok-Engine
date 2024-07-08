@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity() {
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiled(logs: String) {
                 myLogs = logs
-                showTerminal()
+                showTerminal(terminal, myLogs)
             }
         }
         
@@ -36,12 +36,12 @@ class MainActivity : AppCompatActivity() {
         }
         
         binding.seeLogs.setOnClickListener {
-            showTerminal()
+            showTerminal(terminal, myLogs)
         }
     }
     
-    public fun showTerminal() {
-        terminal.addLog(myLogs)
+    public fun showTerminal(terminal: RobokTerminal, logs: String) {
+        terminal.addLog(logs)
         terminal.show()
     }
 }
