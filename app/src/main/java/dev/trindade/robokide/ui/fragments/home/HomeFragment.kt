@@ -23,7 +23,7 @@ import dev.trindade.robokide.databinding.FragmentHomeBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindade.robokide.ui.fragments.editor.EditorFragment
-import dev.trindade.robokide.manage.file.getDefaultPackage
+import dev.trindade.robokide.manage.file.getDefaultPath
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
@@ -56,9 +56,9 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
     private fun selectFolder() {
         // logic to select project folder
         val options = PickOptions(
-            mimeType = listOf(MimeType.IMAGE_PNG, MimeType.IMAGE_JPEG, MimeType.DIRECTORY, MimeType("value here")),
+            mimeType = MimeType.DIRECTORY,
             localOnly = false,
-            rootPath = getDefaultPackage(),
+            rootPath = getDefaultPath(),
             maxSelection = 8
         )
         
