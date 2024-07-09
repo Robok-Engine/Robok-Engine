@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import dev.trindade.robokide.databinding.FragmentCreateProjectBinding
-import dev.trindade.robokide.ui.fragments.base.RobokFragment
+import dev.trindade.robokide.ui.base.RobokFragment
 
 class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
