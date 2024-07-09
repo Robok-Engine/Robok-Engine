@@ -56,7 +56,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
     private fun selectFolder() {
         // logic to select project folder
         val options = PickOptions(
-            mimeType = MimeType.DIRECTORY,
+            mimeType = listOf(MimeType.DIRECTORY),
             localOnly = false,
             rootPath = getDefaultPath(),
             maxSelection = 8
