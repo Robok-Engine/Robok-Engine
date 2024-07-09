@@ -1,6 +1,6 @@
 /* 
-   LogicCompiler: Compilador da area de ações, usado apenas para criãção de ações em tempo de execução.
-   Não ultilizado para criações de layout
+   LogicCompiler: Action area compiler, used only for creating actions at runtime.
+ Not used for layout creations
  */
 
 package robok.dev.compiler.logic;
@@ -25,21 +25,20 @@ public class LogicCompiler {
     private Context context;
     private List<String> logs;
     private List<VariableObject> variables;
-    private Map<String, String> methods; // Armazena o corpo dos métodos
-    private Stack<String> blockStack; // Pilha para gerenciar blocos
+    private Map<String, String> methods; // Stores method bodies
+    private Stack<String> blockStack; // Stack to manage blocks
     private RobokTerminal robokTerminal;
     private LogicCompilerListener compilerListener;
-	Primitives primitives;
-	
+    Primitives primitives;
+
     private boolean methodOpen = false;
     private String currentMethodName = null;
     private StringBuilder currentMethodBody = new StringBuilder();
 
-    private int currentLineIndex; // Índice atual da linha
-    private String[] codeLines; // Array de linhas de código
-	
-	
-	boolean chavesDentroDoMetodo = false;
+    private int currentLineIndex; // Current line index
+    private String[] codeLines; // Array of code lines
+
+    boolean bracesWithinMethod = false;
 
     public LogicCompiler(Context context, LogicCompilerListener compilerListener) {
         this.context = context;
@@ -60,7 +59,7 @@ public class LogicCompiler {
     }
 
     public String getVariables() {
-        StringBuilder log = new StringBuilder("\n\nTipos de Variaveis ultilizadas:\n");
+        StringBuilder log = new StringBuilder("\n\nTypes of Variables used:\n");
         StringBuilder types = new StringBuilder();
 
         for (VariableObject vObject : variables) {
@@ -82,8 +81,7 @@ public class LogicCompiler {
         boolean classDeclared = false;
         StringBuilder imports = new StringBuilder();
         StringBuilder clazz = new StringBuilder();
-		
-		
+
         for (String line : codeLines) {
             if (!packageDeclared && line.trim().startsWith("package ")) {
                 packageDeclared = true;
@@ -102,19 +100,18 @@ public class LogicCompiler {
         robokTerminal.addLog("Imports: ", imports.toString());
         robokTerminal.addLog("Classes: ", clazz.toString());
 
-        // Iterar sobre os métodos armazenados no mapa
+        // Iterate over the methods stored in the map
         for (String methodName : methods.keySet()) {
             String methodBody = methods.get(methodName);
 
-            //mostrando os nomes dos metodos os corpos
-            addLog("Methods", "Nome do método: " + methodName);
-            addLog("Methods", "Corpo do método:\n" + methodBody);
+            //displaying method names and bodies
+            addLog("Methods", "Method Name: " + methodName);
+            addLog("Methods", "Method Body:\n" + methodBody);
         }
 
         onExecute(robokTerminal.getLogs());
     }
-    
-    //metodo usado para remover todos os comentarios.
+
     //method used to remove all comments.
     public static String removeAllComments(String input) {
         //line
@@ -143,167 +140,159 @@ public class LogicCompiler {
     }
 
     private void readCode(String line) {
-		addLog("teste", line);
+        addLog("test", line);
 
-		if (methodOpen) {
-			if (!line.trim().equals("{")) {
-				if(line.trim().equals("}") && chavesDentroDoMetodo){
-					currentMethodBody.append(line).append("\n");
-				}else if(!line.trim().equals("}")){
-					currentMethodBody.append(line).append("\n");
-				}
-				
-			}
-			if (line.contains("{")) {
-				addLog("readCode",  "linha: " + line + " possui {");
-				chavesDentroDoMetodo = true;
-				blockStack.push("{");
-			} else if (line.contains("}") && chavesDentroDoMetodo == false) {
-				addLog("readCode", "fechou o metodo");
-				blockStack.pop();
-				//blockStack.pop();
-				if (!blockStack.isEmpty()) {
-					methods.put(currentMethodName, currentMethodBody.toString());
-					methodOpen = false;
-					currentMethodName = null;
-					currentMethodBody.setLength(0); // Limpa o StringBuilder
-				}
-			}else if(line.contains("}") && chavesDentroDoMetodo == true){
-				chavesDentroDoMetodo = false;
-				//blockStack.pop();
+        if (methodOpen) {
+            if (!line.trim().equals("{")) {
+                if(line.trim().equals("}") && bracesWithinMethod){
+                    currentMethodBody.append(line).append("\n");
+                }else if(!line.trim().equals("}")){
+                    currentMethodBody.append(line).append("\n");
+                }
 
-			}
-		} else {
-			if (line.contains("{") && !line.contains("(") && !line.contains(")")) {
-				blockStack.push("{");
-			} else if (line.contains("}")) {
-				if (!blockStack.isEmpty()) {
-					blockStack.pop();
-				}
-			} else {
-				if (!blockStack.isEmpty()) {
-					if (line.contains("(") && line.contains(")")) {
-						extractMethod(line);
-					} else {
-						if (blockStack.size() > 1) {
-							// Estamos dentro de um método
-						} else {
-                            // Verificando codigos na linha, entendendo o que significa e
-                            // prosseguindo.
-                            // analizeCodeFromLine(line);
+            }
+            if (line.contains("{")) {
+                addLog("readCode",  "line: " + line + " contains {");
+                bracesWithinMethod = true;
+                blockStack.push("{");
+            } else if (line.contains("}") && bracesWithinMethod == false) {
+                addLog("readCode", "method closed");
+                blockStack.pop();
+                if (!blockStack.isEmpty()) {
+                    methods.put(currentMethodName, currentMethodBody.toString());
+                    methodOpen = false;
+                    currentMethodName = null;
+                    currentMethodBody.setLength(0); // Clears the StringBuilder
+                }
+            }else if(line.contains("}") && bracesWithinMethod == true){
+                bracesWithinMethod = false;
+            }
+        } else {
+            if (line.contains("{") && !line.contains("(") && !line.contains(")")) {
+                blockStack.push("{");
+            } else if (line.contains("}")) {
+                if (!blockStack.isEmpty()) {
+                    blockStack.pop();
+                }
+            } else {
+                if (!blockStack.isEmpty()) {
+                    if (line.contains("(") && line.contains(")")) {
+                        extractMethod(line);
+                    } else {
+                        if (blockStack.size() > 1) {
+                            // We are inside a method
+                        } else {
+                            // Verifying codes in the line, understanding what it means and proceeding.
+                            // analyzeCodeFromLine(line);
 
-                            // indo forma direta
+                            // direct form
                             if (codeIsVariable(line)) {
                                 extractDataVariable("class", line);
                             }
 
-							//no momento, não está indentificando se é tipo primitivo ou classe
-							//indo tudo como class
-						}
-					}
-				}
-			}
-		}
-	}
-	
-	/*Mantida guardada, será usado em breve*/
-	private void analizeCodeFromLine(String line){
-		String[] parts = line.split(" ");
+                            //at the moment, it is not identifying whether it is a primitive type or class
+                            //everything going as class
+                        }
+                    }
+                }
+            }
+        }
+    }
 
-		for (int j = 0; j < parts.length; j++) {
-			String part = parts[j];
+    /* Kept stored, will be used soon */
+    private void analyzeCodeFromLine(String line){
+        String[] parts = line.split(" ");
 
-			//criando boolean que armazena se é variavel
+        for (int j = 0; j < parts.length; j++) {
+            String part = parts[j];
 
-			//verificando se trata do primeiro codigo da linha
-			//caso verdadeiro, irá verificar se é classe ou variavel
-			if (j == 0) {
-				//Verdadeiro, verificando se foi referido classe ou variavel
+            //creating boolean that stores if it is a variable
 
-				char firstChar = part.charAt(0);
+            //checking if it is the first code of the line
+            //if true, will check if it is class or variable
+            if (j == 0) {
+                //True, checking if class or variable was referred
 
-				//Verificar se o primeiro codigo é uma classe ou uma variavel
-				String supertype = verifyIfClass(firstChar, part);
+                char firstChar = part.charAt(0);
 
-				//addLog("caiu no 137");
+                //Check if the first code is a class or a variable
+                String supertype = verifyIfClass(firstChar, part);
 
-				if (codeIsVariable(line)) {
-					//addLog("caiu dnv 140");
-					extractDataVariable(supertype, line);
-				}
+                if (codeIsVariable(line)) {
+                    extractDataVariable(supertype, line);
+                }
 
-			} else {
-				//Falso, o codigo não é o primeiro
+            } else {
+                //False, the code is not the first
 
-			}
-	}
-	}
+            }
+        }
+    }
 
     private void extractMethod(String line) {
-		Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*\\(([^)]*)\\)\\s*(\\{)?");
-		Matcher matcher = pattern.matcher(line);
+        Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*\\(([^)]*)\\)\\s*(\\{)?");
+        Matcher matcher = pattern.matcher(line);
 
-		if (matcher.find()) {
-			String methodName = matcher.group(3);
-			currentMethodName = methodName;
-			currentMethodBody = new StringBuilder();
+        if (matcher.find()) {
+            String methodName = matcher.group(3);
+            currentMethodName = methodName;
+            currentMethodBody = new StringBuilder();
 
-			// Não adicionar a linha que contém a assinatura do método
-			if (matcher.group(5) != null || line.trim().endsWith("{")) {
-				blockStack.push("{");
-			}
+            // Do not add the line containing the method signature
+            if (matcher.group(5) != null || line.trim().endsWith("{")) {
+                blockStack.push("{");
+            }
 
-			methodOpen = true;
+            methodOpen = true;
 
-			addLog("Method", "Method Name: " + methodName);
-		}
-	}
-	
-	private String verifyIfClass(char firstChar, String code) {
+            addLog("Method", "Method Name: " + methodName);
+        }
+    }
 
-		String retorno = "";
+    private String verifyIfClass(char firstChar, String code) {
 
-		if (Character.isUpperCase(firstChar)) {
-			/*
-			 Primeiro caractere está em caixa alta, o codigo
-			 deve está se referindo a uma classe, encaminhar busca de classe 
-			 */
-			robokTerminal.addWarningLog("void verifyIfClass:", "caiu aqui");
+        String result = "";
 
-			retorno = "class";
-		} else {
-			/*
-			 Primeiro caractere não está em caixa alta, o codigo
-			 deve está se referindo a uma variavel já criada, encaminhar busca de variavel 
-			 */
+        if (Character.isUpperCase(firstChar)) {
+            /*
+             First character is in upper case, the code
+             must be referring to a class, forward class search.
+             */
+            robokTerminal.addWarningLog("void verifyIfClass:", "fell here");
 
-			/*Antes verificar se trata de uma variavel, e necessario verificar se trata-se
-			 de um tipo primitivo*/
+            result = "class";
+        } else {
+            /*
+             First character is not in upper case, the code
+             must be referring to an already created variable, forward variable search.
+             */
 
-			if (codeIsPrimitive(code)) {
-				//É primitivo
-				robokTerminal.addWarningLog("PrimitiveType", "tipo primitivo encontrado: " + code);
-				return "primitive";
-			} else {
-				addLog("VerifyClassOrVariable","O codigo não é um tipo primitivo\nCodigo {" + code + "}");
-				addLog("VerifyClassOrVariable", "verificando se já se trata de uma variavel criada");
+            /*Before checking whether it is a variable, it is necessary to check whether it is 
+             of a primitive type.*/
+            if (codeIsPrimitive(code)) {
+                //Is primitive
+                robokTerminal.addWarningLog("PrimitiveType", "primitive type found: " + code);
+                return "primitive";
+            } else {
+                addLog("VerifyClassOrVariable","The code is not a primitive type\nCode {" + code + "}");
+                addLog("VerifyClassOrVariable", "checking if it is already a created variable");
 
-			}
+            }
 
-			//retorno = verifyAcessModifiersOrPrimitive(code);
-		}
+            //result = verifyAccessModifiersOrPrimitive(code);
+        }
 
-		return retorno;
-	}	
-	
-	private boolean codeIsPrimitive(String code) {
-		if (primitives == null) {
-			primitives = new Primitives();
-		}
+        return result;
+    }
 
-		return primitives.getPrimitiveType(code);
+    private boolean codeIsPrimitive(String code) {
+        if (primitives == null) {
+            primitives = new Primitives();
+        }
 
-	}	
+        return primitives.getPrimitiveType(code);
+
+    }
 
     private boolean codeIsVariable(String line) {
         Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
@@ -317,10 +306,12 @@ public class LogicCompiler {
 
         if (matcher.find()) {
             String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
-            String type = matcher.group(2);
+            
+            // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
+            String type = matcher.group(2).equalsIgnoreCase("var") ? VariableObject.setVariableTypeFromValue(matcher.group(4)) : matcher.group(2);
             String name = matcher.group(3);
             String value = matcher.group(4);
-
+            
             VariableObject variable = new VariableObject(supertype, modify_access, type, name, value);
 
             ModifyNonAccess modifyNonAccess = new ModifyNonAccess();
