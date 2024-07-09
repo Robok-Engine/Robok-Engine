@@ -1,4 +1,5 @@
-name: 'Delete old workflow runs'
+name: Delete old workflow runs
+
 on:
   workflow_dispatch:
     inputs:
@@ -6,15 +7,16 @@ on:
         description: 'Number of retains days.'
         required: true
         default: '0'
-
       minimum_runs:
         description: 'The minimum runs to keep for each workflow.'
         required: true
         default: '0'
+  schedule:
+    - cron: '0 * * * *'  # Roda a cada hora
 
 jobs:
   deleteWorkflowRuns:
-    name: Delete old workflow run(s)
+    name: Delete old workflow runs
     runs-on: ubuntu-latest
     steps:
       - name: Delete workflow runs
