@@ -61,13 +61,13 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
             maxSelection = 8
         )
         
-        FilePickerSphereManager(this, true).callbacks(object : FilePickerCallbacks {
+        FilePickerSphereManager(requireContext(), true).callbacks(object : FilePickerCallbacks {
             override fun onFileSelectionChanged(file: FileModel, selected: Boolean) {
-                Log.i("FilePickerSphere", "File clicked: ${file.name}\n Selected: $selected")
+                //Log.i("FilePickerSphere", "File clicked: ${file.name}\n Selected: $selected")
             }
             
             override fun onOpenFile(file: FileModel) {
-                Log.i("FilePickerSphere", "Open file: ${file.name}")
+                //Log.i("FilePickerSphere", "Open file: ${file.name}")
             }
             
             override fun onSelectedFilesChanged(files: List<FileModel>) {
