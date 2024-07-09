@@ -18,7 +18,7 @@ import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment : Fragment() {
+class EditorFragment (transitionMode: Int): Fragment() {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -33,10 +33,10 @@ class EditorFragment : Fragment() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
-        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
+        setEnterTransition(MaterialSharedAxis(transitionMode, true))
+        setReturnTransition(MaterialSharedAxis(transitionMode, false))
+        setExitTransition(MaterialSharedAxis(transitionMode, true))
+        setReenterTransition(MaterialSharedAxis(transitionMode, false))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

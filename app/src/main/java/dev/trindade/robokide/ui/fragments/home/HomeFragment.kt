@@ -46,7 +46,7 @@ class HomeFragment : Fragment() {
         }
         
         binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment())
+            openFragment(EditorFragment(MaterialSharedAxis.Y))
         }
     }
     
