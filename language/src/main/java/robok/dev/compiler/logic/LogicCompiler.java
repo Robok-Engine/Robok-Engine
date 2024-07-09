@@ -72,6 +72,8 @@ public class LogicCompiler {
     }
 
     public void compile(String code) {
+        //remove comments
+        code = removeAllComments(code);
         code = code.replaceAll(";\\s*", ";\n");
         codeLines = code.split("\n");
         currentLineIndex = 0;
@@ -110,6 +112,16 @@ public class LogicCompiler {
         }
 
         onExecute(robokTerminal.getLogs());
+    }
+    
+    //metodo usado para remover todos os comentarios.
+    //method used to remove all comments.
+    public static String removeAllComments(String input) {
+        //line
+        input = input.replaceAll("//.*", "");
+        //lines
+        input = input.replaceAll("/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/", "");
+        return input.trim();
     }
 
     private boolean extractClass(String line) {
