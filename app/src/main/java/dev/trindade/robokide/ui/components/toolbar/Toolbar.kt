@@ -22,6 +22,11 @@ class Toolbar : AppBarLayout {
     }
 
     private fun init(context: Context, attrs: AttributeSet?) {
-        
+        inflate(context, R.layout.custom_toolbar_layout, this)
+
+        if (attrs != null) {
+            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.Toolbar)
+            typedArray.recycle()
+        }
     }
 }
