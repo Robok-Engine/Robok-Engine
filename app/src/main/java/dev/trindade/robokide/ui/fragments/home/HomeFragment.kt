@@ -44,6 +44,10 @@ class HomeFragment : Fragment() {
         binding.openProject.setOnClickListener {
             selectFolder()
         }
+        
+        binding.openEditor.setOnClickListener {
+            openFragment(EditorFragment())
+        }
     }
     
     fun selectFolder () {

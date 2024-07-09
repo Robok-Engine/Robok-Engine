@@ -15,6 +15,7 @@
 	<!-- titles section -->
 	<string name="title_create_project">Create project</string>
 	<string name="title_open_project">Open project</string>
+	<string name="title_open_editor">Open editor</string>
 	<string name="title_debug_title">An error occured</string>
 	<!-- end section -->
 	
