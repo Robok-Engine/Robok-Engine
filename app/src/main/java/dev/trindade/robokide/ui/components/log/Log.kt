@@ -28,7 +28,6 @@ class Log : AppCompatTextView {
     private fun init(context: Context, attrs: AttributeSet?, text: String) {
         setText(text)
         textSize = 12f
-        isSelectable = true 
         val paddingInPx = resources.getDimensionPixelSize(R.dimen.log_padding)
         setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)
     }
