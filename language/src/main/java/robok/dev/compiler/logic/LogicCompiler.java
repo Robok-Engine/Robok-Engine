@@ -72,6 +72,8 @@ public class LogicCompiler {
     }
 
     public void compile(String code) {
+        
+        code = removeAllComments(code);
         code = code.replaceAll(";\\s*", ";\n");
         codeLines = code.split("\n");
         currentLineIndex = 0;
@@ -83,6 +85,9 @@ public class LogicCompiler {
 		
 		
         for (String line : codeLines) {
+            
+           // if(line.indexOf("//") != -1) line = removeComments(line);
+            
             if (!packageDeclared && line.trim().startsWith("package ")) {
                 packageDeclared = true;
             } else if (!classDeclared && line.trim().startsWith("import ")) {
@@ -97,20 +102,39 @@ public class LogicCompiler {
             currentLineIndex++;
         }
 
-        robokTerminal.addLog("Imports: ", imports.toString());
-        robokTerminal.addLog("Classes: ", clazz.toString());
+        robokTerminal.addWarningLog("Imports: ", imports.toString());
+        robokTerminal.addWarningLog("Classes: ", clazz.toString());
 
         // Iterar sobre os métodos armazenados no mapa
         for (String methodName : methods.keySet()) {
             String methodBody = methods.get(methodName);
 
-            //mostrando os nomes dos metodos os corpos
+            // Aqui você pode fazer o que precisar com o nome do método e o corpo do método
             addLog("Methods", "Nome do método: " + methodName);
             addLog("Methods", "Corpo do método:\n" + methodBody);
+
+            // Ou qualquer outra operação que deseje realizar com os métodos
         }
 
         onExecute(robokTerminal.getLogs());
     }
+    
+    
+    public static String removeAllComments(String input) {
+        // Remove comentários de linha única
+        input = input.replaceAll("//.*", "");
+        // Remove comentários de bloco
+        input = input.replaceAll("/\\*[^*]*\\*+(?:[^/*][^*]*\\*+)*/", "");
+        return input.trim();
+    }
+    
+   /* public static String removeComments(String input) {
+        int commentIndex = input.indexOf("//");
+        if (commentIndex != -1) {
+            return input.substring(0, commentIndex).trim();
+        }
+        return input;
+    }*/
 
     private boolean extractClass(String line) {
         Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(class)\\s+(\\w+)\\s*(\\{)?");
@@ -176,15 +200,12 @@ public class LogicCompiler {
 						if (blockStack.size() > 1) {
 							// Estamos dentro de um método
 						} else {
-                            // Verificando codigos na linha, entendendo o que significa e
-                            // prosseguindo.
-                            // analizeCodeFromLine(line);
-
-                            // indo forma direta
-                            if (codeIsVariable(line)) {
-                                extractDataVariable("class", line);
-                            }
-
+							//Verificando codigos na linha, entendendo o que significa e prosseguindo.
+							//analizeCodeFromLine(line);
+							
+							//indo forma direta
+							extractDataVariable("class", line);
+							
 							//no momento, não está indentificando se é tipo primitivo ou classe
 							//indo tudo como class
 						}
@@ -244,6 +265,9 @@ public class LogicCompiler {
 			methodOpen = true;
 
 			addLog("Method", "Method Name: " + methodName);
+		}else{
+			//Excecão (CodeReadingException) //exiba linha do codigo
+			/*Ex: CodeReadingException: is this code really correct? (code)*/
 		}
 	}
 	
@@ -335,8 +359,6 @@ public class LogicCompiler {
 
     private void onExecute(String logs) {
         compilerListener.onCompiled(logs);
-        // trindadedev: for now only the log is returned to the IDE.
-        compilerListener.onOutput(logs);
     }
 
     private String getNextLine() {
