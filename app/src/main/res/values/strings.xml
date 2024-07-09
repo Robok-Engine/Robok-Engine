@@ -1,20 +1,27 @@
 <resources>
+    
 	<string name="app_name" translatable="false">Robok IDE</string>
 	
-	<!-- common word words -->
+	<!-- common words section -->
 	<string name="common_word_back">Back</string>
 	<string name="common_word_result">Result</string>
 	<string name="common_word_run">Run</string>
 	<string name="common_word_code">Code</string>
 	<string name="common_word_logs">Logs</string>
 	<string name="common_word_output">Output</string>
+	<string name="common_word_end">End</string>
+	<!-- end section -->
 	
-	<!-- titles -->
-	<string name="debug_error_title">An error occured</string>
+	<!-- titles section -->
+	<string name="title_create_project">Create project</string>
+	<string name="title_debug_title">An error occured</string>
+	<!-- end section -->
 	
-	<!-- messages -->
+	<!-- messages section -->
 	<string name="message_compiled">Your code has been compiled!</string>
+	<!-- end section -->
 	
-	<!-- go to -->
+	<!-- go to section -->
 	<string name="go_to_outputs">Go to outputs</string>
+	<!-- end section -->
 </resources>
