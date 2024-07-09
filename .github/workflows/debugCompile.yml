@@ -73,7 +73,7 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: app/build/outputs/apk/
+          document: app/build/outputs/apk/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
