@@ -39,7 +39,7 @@ fun createFile(filePath: String) {
     }
 }
 
-fun getDefaultPackage() : String {
+fun getDefaultPath() : String {
      return "/sdcard/"
 }
 
