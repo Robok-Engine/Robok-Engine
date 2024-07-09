@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import com.google.android.material.transition.MaterialSharedAxis
+
 import dev.trindade.robokide.databinding.FragmentOutputBinding
 import dev.trindade.robokide.ui.components.log.Log
 import dev.trindade.robokide.ui.base.RobokFragment

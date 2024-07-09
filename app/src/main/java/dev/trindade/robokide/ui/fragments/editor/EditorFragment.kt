@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
