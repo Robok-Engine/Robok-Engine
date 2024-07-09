@@ -19,13 +19,14 @@ import robok.lang.primitives.Primitives;
 import robok.dev.terminal.RobokTerminal;
 import robok.lang.modifiers.ModifyNonAccess;
 import robok.lang.variables.VariableObject;
+import robok.lang.methods.Method;
 
 public class LogicCompiler {
 
     private Context context;
     private List<String> logs;
     private List<VariableObject> variables;
-    private Map<String, String> methods; // Stores method bodies
+    private Map<String, Method> methods; // Stores method bodies
     private Stack<String> blockStack; // Stack to manage blocks
     private RobokTerminal robokTerminal;
     private LogicCompilerListener compilerListener;
@@ -34,6 +35,7 @@ public class LogicCompiler {
     private boolean methodOpen = false;
     private String currentMethodName = null;
     private StringBuilder currentMethodBody = new StringBuilder();
+    private String currentMethodParameters = null;
 
     private int currentLineIndex; // Current line index
     private String[] codeLines; // Array of code lines
@@ -101,11 +103,14 @@ public class LogicCompiler {
         robokTerminal.addLog("Classes: ", clazz.toString());
 
         // Iterate over the methods stored in the map
-        for (String methodName : methods.keySet()) {
-            String methodBody = methods.get(methodName);
+        for (Method method : methods.values()) {
+            String methodName = method.getName();
+            String methodParameters = method.getParameters();
+            String methodBody = method.getCode();
 
             //displaying method names and bodies
             addLog("Methods", "Method Name: " + methodName);
+            addLog("Methods", "Method Parameters: " + methodParameters);
             addLog("Methods", "Method Body:\n" + methodBody);
         }
 
@@ -152,19 +157,27 @@ public class LogicCompiler {
 
             }
             if (line.contains("{")) {
-                addLog("readCode",  "line: " + line + " contains {");
+                addLog("readCode", "line: " + line + " contains {");
                 bracesWithinMethod = true;
                 blockStack.push("{");
             } else if (line.contains("}") && bracesWithinMethod == false) {
                 addLog("readCode", "method closed");
                 blockStack.pop();
                 if (!blockStack.isEmpty()) {
-                    methods.put(currentMethodName, currentMethodBody.toString());
+                    // Save the method in object
+                    Method method =
+                            new Method(
+                                    currentMethodName,
+                                    currentMethodParameters,
+                                    currentMethodBody.toString());
+                    
+                    methods.put(currentMethodName, method);
                     methodOpen = false;
                     currentMethodName = null;
+                    currentMethodParameters = null;
                     currentMethodBody.setLength(0); // Clears the StringBuilder
                 }
-            }else if(line.contains("}") && bracesWithinMethod == true){
+            } else if (line.contains("}") && bracesWithinMethod == true) {
                 bracesWithinMethod = false;
             }
         } else {
@@ -230,24 +243,26 @@ public class LogicCompiler {
     }
 
     private void extractMethod(String line) {
-        Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*\\(([^)]*)\\)\\s*(\\{)?");
-        Matcher matcher = pattern.matcher(line);
+    Pattern pattern = Pattern.compile("(\\b(?:public|protected|private|static|final|abstract|synchronized)\\b\\s+)*(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*\\(([^)]*)\\)\\s*(\\{)?");
+    Matcher matcher = pattern.matcher(line);
 
-        if (matcher.find()) {
-            String methodName = matcher.group(3);
-            currentMethodName = methodName;
-            currentMethodBody = new StringBuilder();
+    if (matcher.find()) {
+        String methodName = matcher.group(3);
+        currentMethodName = methodName;
+        currentMethodParameters = matcher.group(4); // Capture parameters
+        currentMethodBody = new StringBuilder();
 
-            // Do not add the line containing the method signature
-            if (matcher.group(5) != null || line.trim().endsWith("{")) {
-                blockStack.push("{");
-            }
-
-            methodOpen = true;
-
-            addLog("Method", "Method Name: " + methodName);
+        // Do not add the line containing the method signature
+        if (matcher.group(5) != null || line.trim().endsWith("{")) {
+            blockStack.push("{");
         }
+
+        methodOpen = true;
+
+        addLog("Method", "Method Name: " + methodName);
+        addLog("Method", "Parameters: " + currentMethodParameters);
     }
+}
 
     private String verifyIfClass(char firstChar, String code) {
 
