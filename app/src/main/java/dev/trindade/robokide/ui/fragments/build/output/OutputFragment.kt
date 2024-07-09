@@ -5,8 +5,11 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.fragment.app.Fragment
+
 import com.google.android.material.transition.MaterialSharedAxis
+
 import dev.trindade.robokide.databinding.FragmentOutputBinding
 import dev.trindade.robokide.ui.components.log.Log
 
@@ -37,7 +40,7 @@ class OutputFragment : Fragment() {
     
     fun addOutput(context: Context, log: String) {
         val logView = Log(context, log)
-        binding.content.addView(logView)
+        _binding?.content?.addView(logView)
     }
 
     override fun onDestroyView() {
