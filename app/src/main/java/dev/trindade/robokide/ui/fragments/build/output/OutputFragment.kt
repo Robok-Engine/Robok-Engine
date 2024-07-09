@@ -38,9 +38,10 @@ class OutputFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
     
-    fun addOutput(context: Context, log: String) {
+    fun addOutput(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
+        _binding = FragmentOutputBinding.inflate(inflater, container, false)
         val logView = Log(context, log)
-        _binding?.content?.addView(logView)
+        binding.content.addView(logView)
     }
 
     override fun onDestroyView() {
