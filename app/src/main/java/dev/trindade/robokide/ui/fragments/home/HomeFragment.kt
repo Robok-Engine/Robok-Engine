@@ -10,6 +10,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.databinding.FragmentHomeBinding
 import dev.trindade.robokide.ui.components.log.Log
+import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
+import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 
 class HomeFragment : Fragment() {
 
@@ -34,6 +36,34 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding.createProject.setOnClickListener {
+            openFragment(CreateProjectFragment())
+        }
+        
+        binding.openFragment.setOnClickListener {
+            selectFolder()
+        }
+    }
+    
+    fun selectFolder () {
+        /* 
+          logic for select project folder
+        */
+    }
+    
+    fun onFolderSelect() {
+        /*
+           example for open editor: 
+           val fragment = EditorFragment.newInstance(path) 
+        */
+    }
+    
+    fun openFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction().apply {
+            replace(R.id.fragment_container, fragment)
+            addToBackStack(null)
+            commit()
+        }
     }
 
     override fun onDestroyView() {

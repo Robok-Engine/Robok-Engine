@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.ui.fragments.editor.EditorFragment
+import dev.trindade.robokide.ui.fragments.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -13,10 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        val path = "Parameter path to pass"
+        val path = ""
         
         if (savedInstanceState == null) {
-            val fragment = EditorFragment.newInstance(path)
+            val fragment = HomeFragment()
             supportFragmentManager.commit {
                 replace(R.id.fragment_container, fragment)
             }
