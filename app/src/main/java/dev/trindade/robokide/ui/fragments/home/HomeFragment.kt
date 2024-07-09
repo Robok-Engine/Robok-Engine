@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentHomeBinding
 import dev.trindade.robokide.ui.components.log.Log
 import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
@@ -40,7 +41,7 @@ class HomeFragment : Fragment() {
             openFragment(CreateProjectFragment())
         }
         
-        binding.openFragment.setOnClickListener {
+        binding.openProject.setOnClickListener {
             selectFolder()
         }
     }
