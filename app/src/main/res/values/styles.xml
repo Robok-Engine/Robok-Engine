@@ -23,5 +23,10 @@
     <style name="Shape.Robok.Button">
          <item name="cornerSize">8dp</item>
     </style>
+    
+    <style name="TextAppearance.Robok.TitleLarge.Bold" parent="TextAppearance.Material3.TitleLarge">
+         <item name="android:textStyle">bold</item>
+         <item name="android:textAlignment">center</item>
+    </style>
   
 </resources>
