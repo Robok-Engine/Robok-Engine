@@ -1,58 +1,57 @@
 <resources>
-	<style name="Widget.Robok.Button" parent="Widget.Material3.Button.UnelevatedButton">
-	     <item name="android:insetBottom">0dp</item>
-	     <item name="android:insetTop">0dp</item>
-	     <item name="shapeAppearance">@style/Shape.Robok.Button</item>
-	</style>
-	
-	<style name="Widget.Robok.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
-	     <item name="android:insetBottom">0dp</item>
-	     <item name="android:insetTop">0dp</item><item name="shapeAppearance">@style/Shape.Robok.Button</item>
-    </style>
-    
-    <style name="Widget.Robok.Button.TonalButton" parent="Widget.Material3.Button.TonalButton">
-         <item name="android:insetBottom">0dp</item>
-         <item name="android:insetTop">0dp</item>
-         <item name="shapeAppearance">@style/Shape.Robok.Button</item>
-    </style>
-    
-    <style name="Shape.Robok" parent="">
-         <item name="cornerFamily">rounded</item>
-    </style>
+  <style name="Widget.Robok.Button" parent="Widget.Material3.Button.UnelevatedButton">
+    <item name="android:insetBottom">0dp</item>
+    <item name="android:insetTop">0dp</item>
+    <item name="shapeAppearance">@style/Shape.Robok.Button</item>
+  </style>
 
-    <style name="Shape.Robok.Button">
-         <item name="cornerSize">8dp</item>
-    </style>
-    
-    <style name="TextAppearance.Robok.TitleLarge.Bold" parent="TextAppearance.Material3.TitleLarge">
-         <item name="android:textStyle">bold</item>
-         <item name="android:textAlignment">center</item>
-    </style>
-    
-    <style name="Widget.Robok.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
-         <item name="android:background">@drawable/bottom_navigation_background</item>
-         <item name="itemTextAppearanceInactive">@style/TextAppearance.Robok.BottomNavigationView</item>
-         <item name="itemTextAppearanceActive">@style/TextAppearance.Robok.BottomNavigationView</item>
-    </style>
+  <style name="Widget.Robok.Button.OutlinedButton" parent="Widget.Material3.Button.OutlinedButton">
+    <item name="android:insetBottom">0dp</item>
+    <item name="android:insetTop">0dp</item>
+    <item name="shapeAppearance">@style/Shape.Robok.Button</item>
+  </style>
 
-    <style name="TextAppearance.Robok.BottomNavigationView" parent="TextAppearance.Material3.LabelLarge">
-         <item name="fontFamily">@font/product_sans_medium</item>
-         <item name="lineHeight">17sp</item>
-         <item name="android:lineHeight">17sp</item>
-         <item name="android:fontFamily">@font/product_sans_medium</item>
-    </style>
-    
-    <style name="Widget.Robok.AppBarLayout" parent="Widget.Material3.AppBarLayout">
-        <item name="android:background">@drawable/selector_app_bar_background</item>
-    </style>
+  <style name="Widget.Robok.Button.TonalButton" parent="Widget.Material3.Button.TonalButton">
+    <item name="android:insetBottom">0dp</item>
+    <item name="android:insetTop">0dp</item>
+    <item name="shapeAppearance">@style/Shape.Robok.Button</item>
+  </style>
 
-    <style name="Widget.Robok.Toolbar" parent="Widget.Material3.Toolbar.OnSurface">
-        <item name="titleTextAppearance">@style/TextAppearance.Robok.Toolbar</item>
-    </style>
+  <style name="Shape.Robok" parent="">
+    <item name="cornerFamily">rounded</item>
+  </style>
 
-    <style name="TextAppearance.Robok.Toolbar" parent="TextAppearance.Material3.TitleLarge">
-        <item name="fontFamily">@font/product_sans_medium</item>
-        <item name="android:fontFamily">@font/product_sans_medium</item>
-    </style>
-    
+  <style name="Shape.Robok.Button">
+    <item name="cornerSize">8dp</item>
+  </style>
+
+  <style name="Widget.Robok.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+    <item name="android:background">@drawable/bottom_navigation_background</item>
+    <item name="itemTextAppearanceInactive">@style/TextAppearance.Robok.BottomNavigationView</item>
+    <item name="itemTextAppearanceActive">@style/TextAppearance.Robok.BottomNavigationView</item>
+  </style>
+
+  <style name="TextAppearance.Robok.BottomNavigationView" parent="TextAppearance.Material3.LabelLarge">
+    <item name="fontFamily">@font/product_sans_medium</item>
+    <item name="lineHeight">17sp</item>
+    <item name="android:lineHeight">17sp</item>
+    <item name="android:fontFamily">@font/product_sans_medium</item>
+  </style>
+
+  <style name="Widget.Robok.SearchBar" parent="Widget.Material3.SearchBar">
+    <item name="backgroundTint">?attr/colorSurfaceContainer</item>
+  </style>
+
+  <style name="Widget.Robok.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+    <item name="android:background">@drawable/selector_app_bar_background</item>
+  </style>
+
+  <style name="Widget.Robok.Toolbar" parent="Widget.Material3.Toolbar.OnSurface">
+    <item name="titleTextAppearance">@style/TextAppearance.Robok.Toolbar</item>
+  </style>
+
+  <style name="TextAppearance.Robok.Toolbar" parent="TextAppearance.Material3.TitleLarge">
+    <item name="fontFamily">@font/product_sans_medium</item>
+    <item name="android:fontFamily">@font/product_sans_medium</item>
+  </style>
 </resources>
