@@ -54,26 +54,14 @@ jobs:
         with:
           name: RobokIDE-debug
           path: app/build/outputs/apk/debug/
-
-  send-for-telegram:
-    name: Send APK to Trindade CI Telegram
-    needs: RobokIDE-debug-apk
-    runs-on: ubuntu-latest
-    if: success()
-    steps:
-      - name: Download debug APK artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: RobokIDE-debug
-          path: /tmp/apk
-
+          
       - name: Send APK to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: /tmp/apk/RobokIDE-debug.zip
+          document: app/build/outputs/apk/debug/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
