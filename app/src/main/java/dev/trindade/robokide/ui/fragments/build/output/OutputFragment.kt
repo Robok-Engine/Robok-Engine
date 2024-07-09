@@ -22,7 +22,7 @@ class OutputFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOutputBinding.inflate(inflater, container, false)
+        //_binding = FragmentOutputBinding.inflate(inflater, container, false)
         return binding.root
     }
     
