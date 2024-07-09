@@ -6,6 +6,7 @@ import androidx.fragment.app.commit
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.fragments.home.HomeFragment
+import dev.trindade.robokide.manage.file.requestPermission
 
 class MainActivity : AppCompatActivity() {
 
@@ -15,8 +16,11 @@ class MainActivity : AppCompatActivity() {
         
         val path = ""
         
+        requestPermission(this)
+        
         if (savedInstanceState == null) {
             val fragment = HomeFragment()
+            
             supportFragmentManager.commit {
                 replace(R.id.fragment_container, fragment)
             }

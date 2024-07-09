@@ -23,6 +23,7 @@ import dev.trindade.robokide.databinding.FragmentHomeBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindade.robokide.ui.fragments.editor.EditorFragment
+import dev.trindade.robokide.manage.file.getDefaultPackage
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
@@ -57,7 +58,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         val options = PickOptions(
             mimeType = listOf(MimeType.IMAGE_PNG, MimeType.IMAGE_JPEG, MimeType.DIRECTORY, MimeType("value here")),
             localOnly = false,
-            rootPath = "/storage/emulated/0/",
+            rootPath = getDefaultPackage(),
             maxSelection = 8
         )
         
