@@ -28,5 +28,31 @@
          <item name="android:textStyle">bold</item>
          <item name="android:textAlignment">center</item>
     </style>
-  
+    
+    <style name="Widget.Robok.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+         <item name="android:background">@drawable/bottom_navigation_background</item>
+         <item name="itemTextAppearanceInactive">@style/TextAppearance.Robok.BottomNavigationView</item>
+         <item name="itemTextAppearanceActive">@style/TextAppearance.Robok.BottomNavigationView</item>
+    </style>
+
+    <style name="TextAppearance.Robok.BottomNavigationView" parent="TextAppearance.Material3.LabelLarge">
+         <item name="fontFamily">@font/product_sans_medium</item>
+         <item name="lineHeight">17sp</item>
+         <item name="android:lineHeight">17sp</item>
+         <item name="android:fontFamily">@font/product_sans_medium</item>
+    </style>
+    
+    <style name="Widget.Robok.AppBarLayout" parent="Widget.Material3.AppBarLayout">
+        <item name="android:background">@drawable/selector_app_bar_background</item>
+    </style>
+
+    <style name="Widget.Robok.Toolbar" parent="Widget.Material3.Toolbar.OnSurface">
+        <item name="titleTextAppearance">@style/TextAppearance.Robok.Toolbar</item>
+    </style>
+
+    <style name="TextAppearance.Robok.Toolbar" parent="TextAppearance.Material3.TitleLarge">
+        <item name="fontFamily">@font/product_sans_medium</item>
+        <item name="android:fontFamily">@font/product_sans_medium</item>
+    </style>
+    
 </resources>

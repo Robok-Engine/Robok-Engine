@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape>
+      <solid android:color="@color/color_bottom_navigation_stroke" />
+    </shape>
+  </item>
+  <item android:bottom="@dimen/m3_comp_divider_thickness">
+    <shape>
+      <solid android:color="@macro/m3_comp_top_app_bar_small_on_scroll_container_color" />
+    </shape>
+  </item>
+</layer-list>
