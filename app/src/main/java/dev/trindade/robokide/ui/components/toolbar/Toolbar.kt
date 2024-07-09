@@ -23,10 +23,5 @@ class Toolbar : AppBarLayout {
 
     private fun init(context: Context, attrs: AttributeSet?) {
         inflate(context, R.layout.robok_toolbar, this)
-
-        if (attrs != null) {
-            val typedArray = context.obtainStyledAttributes(attrs, R.styleable.Toolbar)
-            typedArray.recycle()
-        }
     }
 }
