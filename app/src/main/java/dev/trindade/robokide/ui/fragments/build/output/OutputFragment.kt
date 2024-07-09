@@ -21,7 +21,6 @@ class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentOutputBinding.inflate(inflater, container, false)
         return binding.root
     }
 

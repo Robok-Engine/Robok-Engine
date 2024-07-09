@@ -1,84 +1,67 @@
 package dev.trindade.robokide.ui.syntax
 
-import android.text.*
-import android.text.style.CharacterStyle
-import android.text.style.ForegroundColorSpan
-import android.widget.EditText
-import android.widget.TextView
+import android.graphics.Color
+import java.util.regex.Pattern
 
-class SimpleHighlighter(private val mEditor: EditText?, syntaxType: String) {
+class SyntaxScheme(val pattern: Pattern, val color: Int) {
 
-    private val syntaxList: List<SyntaxScheme>
-    private val mTextView: TextView? = null
+    companion object {
+        // Standard colors for different token types
+        val PRIMARY_COLOR: Int = Color.parseColor("#000000")
+        val SECONDARY_COLOR: Int = Color.parseColor("#2196f3")
+        val VARIABLE_COLOR: Int = Color.parseColor("#660066")
+        val NUMBERS_COLOR: Int = Color.parseColor("#006766")
+        val QUOTES_COLOR: Int = Color.parseColor("#008800")
+        val COMMENTS_COLOR: Int = Color.parseColor("#757575")
+        val NOT_WORD_COLOR: Int = Color.parseColor("#656600")
 
-    init {
-        this.syntaxList = getSyntaxList(syntaxType)
-        init()
-    }
+        // Regular expression patterns for Java and XML
+        private val JAVA_PATTERNS = arrayOf(
+            "\\b(out|print|println|valueOf|toString|concat|equals|for|while|switch|getText)\\b",
+            "\\b(public|private|protected|void|switch|case|class|import|package|extends|Activity|TextView|EditText|LinearLayout|CharSequence|String|int|onCreate|ArrayList|float|if|else|for|static|Intent|Button|SharedPreferences|return|super)\\b",
+            "\\b(abstract|assert|boolean|break|byte|case|catch|char|const|continue|default|do|double|else|enum|final|finally|float|goto|if|implements|instanceof|interface|long|native|new|short|strictfp|synchronized|this|throw|throws|transient|try|volatile|true|false|null)\\b",
+            "\\b(0x[0-9a-fA-F]+|[0-9]+)\\b",
+            "\"([^\"]*)\"|'([^']*)'",
+            "(\\/\\/[^\\n]*|\\/\\*(.|\\n)*?\\*\\/)",
+            "\\b([A-Z]\\w+)\\b",
+            "\\W"
+        )
 
-  /*  constructor(textView: TextView, syntaxType: String) : this(null, syntaxType) {
-        mTextView = textView
-        init()
-    }*/
+        private val XML_PATTERNS = arrayOf(
+            "<([A-Za-z][A-Za-z0-9]*)\\b[^>]*>|</([A-Za-z][A-Za-z0-9]*)\\b[^>]*>",
+            "<!--(?:.|[\\n\\r])*?-->",
+            "\\w+:\\w+",
+            "[<>/]"
+        )
 
-    private fun getSyntaxList(syntaxType: String): List<SyntaxScheme> {
-        return when (syntaxType.toLowerCase()) {
-            "xml" -> SyntaxScheme.XML()
-            "java" -> SyntaxScheme.JAVA()
-            else -> throw IllegalArgumentException("Unsupported syntax type")
+        fun JAVA(): ArrayList<SyntaxScheme> {
+            val arrayList = ArrayList<SyntaxScheme>()
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[0]), PRIMARY_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[1]), SECONDARY_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[2]), SECONDARY_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[3]), NUMBERS_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[4]), QUOTES_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[5]), COMMENTS_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[6]), VARIABLE_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(JAVA_PATTERNS[7]), NOT_WORD_COLOR))
+            return arrayList
+        }
+
+        fun XML(): ArrayList<SyntaxScheme> {
+            val arrayList = ArrayList<SyntaxScheme>()
+            arrayList.add(SyntaxScheme(Pattern.compile(XML_PATTERNS[0]), PRIMARY_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(XML_PATTERNS[1]), COMMENTS_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(XML_PATTERNS[2]), VARIABLE_COLOR))
+            arrayList.add(SyntaxScheme(Pattern.compile(XML_PATTERNS[3]), SECONDARY_COLOR))
+            return arrayList
         }
     }
 
-    private fun init() {
-        mEditor?.let { editor ->
-            editor.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-                override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-                override fun afterTextChanged(s: Editable) {
-                    removeSpans(s, ForegroundColorSpan::class.java)
-                    createHighlightSpans(syntaxList, s)
-                }
-            })
-            removeSpans(editor.text, ForegroundColorSpan::class.java)
-            createHighlightSpans(syntaxList, editor.text)
-        } ?: mTextView?.let { textView ->
-            val text = textView.text
-            if (text is Editable) {
-                removeSpans(text, ForegroundColorSpan::class.java)
-                createHighlightSpans(syntaxList, text)
-            } else {
-                val builder = SpannableStringBuilder(text)
-                removeSpans(builder, ForegroundColorSpan::class.java)
-                createHighlightSpans(syntaxList, builder)
-                textView.text = builder
-            }
-        }
+    fun getPattern(): Pattern {
+        return pattern
     }
 
-    private fun createHighlightSpans(syntaxList: List<SyntaxScheme>, editable: Editable) {
-        for (scheme in syntaxList) {
-            val matcher = scheme.pattern.matcher(editable)
-            while (matcher.find()) {
-                if (scheme == scheme.getPrimarySyntax()) {
-                    editable.setSpan(ForegroundColorSpan(scheme.color), matcher.start(), matcher.end() - 1, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                } else {
-                    editable.setSpan(ForegroundColorSpan(scheme.color), matcher.start(), matcher.end(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
-                }
-            }
-        }
-    }
-
-    private fun removeSpans(editable: Editable, type: Class<out CharacterStyle>) {
-        val spans = editable.getSpans(0, editable.length, type)
-        for (span in spans) {
-            editable.removeSpan(span)
-        }
-    }
-
-    private fun removeSpans(spannable: Spannable, type: Class<out CharacterStyle>) {
-        val spans = spannable.getSpans(0, spannable.length, type)
-        for (span in spans) {
-            spannable.removeSpan(span)
-        }
+    fun getColor(): Int {
+        return color
     }
 }
