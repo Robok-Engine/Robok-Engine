@@ -2,12 +2,12 @@ package dev.trindade.robokide.ui.components.log
 
 import android.content.Context
 import android.util.AttributeSet
-import android.widget.TextView
+
+import androidx.appcompat.widget.AppCompatTextView
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.ui.syntax.SimpleHighlighter
 
-class Log: TextView {
+class Log : AppCompatTextView {
 
     constructor(context: Context) : super(context) {
         init(context, null, "")
@@ -28,7 +28,7 @@ class Log: TextView {
     private fun init(context: Context, attrs: AttributeSet?, text: String) {
         setText(text)
         textSize = 12f
-        this.textIsSelectable = true
+        isSelectable = true 
         val paddingInPx = resources.getDimensionPixelSize(R.dimen.log_padding)
         setPadding(paddingInPx, paddingInPx, paddingInPx, paddingInPx)
     }
