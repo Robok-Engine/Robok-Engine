@@ -5,7 +5,7 @@ import android.os.Bundle
 
 import com.google.android.material.transition.MaterialSharedAxis
 
-class RobokFragment (private val transitionMode: Int = MaterialSharedAxis.X): Fragment() {
+open class RobokFragment (private val transitionMode: Int = MaterialSharedAxis.X): Fragment() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
