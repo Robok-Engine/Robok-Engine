@@ -47,7 +47,6 @@ class DebugActivity : AppCompatActivity() {
         if (intent != null) {
             errMsg = intent.getStringExtra("error") ?: ""
             val spilt = errMsg.split("\n")
-            // errMsg = spilt[0]
             try {
                 for (j in exceptionType.indices) {
                     if (spilt[0].contains(exceptionType[j])) {
@@ -61,7 +60,6 @@ class DebugActivity : AppCompatActivity() {
             } catch (e: Exception) {
             }
         }
-        setErrorText()
         error.text = madeErrMsg
         MaterialAlertDialogBuilder(this)
             .setTitle(R.string.debug_error_title)
@@ -70,10 +68,6 @@ class DebugActivity : AppCompatActivity() {
                 finish()
             }
             .show()
-    }
-    
-    private fun setErrorText() {
-        error.text = madeErrMsg
     }
 }
 
