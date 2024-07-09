@@ -7,9 +7,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Process;
+
 import androidx.fragment.app.FragmentManager;
 
 import dev.trindade.robokide.ui.activities.DebugActivity;
+
+import com.google.android.material.color.DynamicColors;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
@@ -60,6 +63,7 @@ public class Robok extends Application {
                     }
                 });
         super.onCreate();
+        DynamicColors.applyToActivitiesIfAvailable(this);
     }
 
     private String getStackTrace(Throwable th) {
