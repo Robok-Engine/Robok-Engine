@@ -30,6 +30,7 @@ class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
     }
     
     fun addOutput(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
+        _binding = FragmentOutputBinding.inflate(inflater, container, false)
         val logView = Log(context, log)
         binding.content.addView(logView)
     }
