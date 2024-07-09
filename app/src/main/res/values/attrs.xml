@@ -3,14 +3,14 @@
         <attr name="syntaxType" format="string" />
     </declare-styleable>
     <declare-styleable name="Preference">
-        <attr name="title" format="string" />
-        <attr name="description" format="string" />
+        <attr name="preferenceTitle" format="string" />
+        <attr name="preferenceDescription" format="string" />
     </declare-styleable>
     <declare-styleable name="PreferenceGroup">
-        <attr name="title" format="string" />
+        <attr name="preferenceGroupTitle" format="string" />
     </declare-styleable>
     <declare-styleable name="PreferencePopup">
-        <attr name="title" format="string" />
-        <attr name="description" format="string" />
+        <attr name="preferencePopupTitle" format="string" />
+        <attr name="preferencePopupDescription" format="string" />
     </declare-styleable>
 </resources>

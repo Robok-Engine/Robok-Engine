@@ -23,8 +23,8 @@ class Preference @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val title = getString(R.styleable.Preference_title) ?: ""
-                val description = getString(R.styleable.Preference_description) ?: ""
+                val title = getString(R.styleable.Preference_preferenceTitle) ?: ""
+                val description = getString(R.styleable.Preference_preferenceDescription) ?: ""
                 binding.preferenceTitle.text = title
                 binding.preferenceDescription.text = description
             } finally {

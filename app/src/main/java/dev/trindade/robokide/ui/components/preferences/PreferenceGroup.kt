@@ -25,7 +25,7 @@ class PreferenceGroup @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val title = getString(R.styleable.PreferenceGroup_title) ?: ""
+                val title = getString(R.styleable.PreferenceGroup_preferenceGroupTitle) ?: ""
                 binding.preferenceGroupTitle.text = title
             } finally {
                 recycle()

@@ -26,8 +26,8 @@ class PreferencePopup @JvmOverloads constructor(
             0, 0
         ).apply {
             try {
-                val title = getString(R.styleable.PreferencePopup_title) ?: ""
-                val description = getString(R.styleable.PreferencePopup_description) ?: ""
+                val title = getString(R.styleable.PreferencePopup_preferencePopupTitle) ?: ""
+                val description = getString(R.styleable.PreferencePopup_preferencePopupDescription) ?: ""
                 binding.preferenceTitle.text = title
                 binding.preferenceDescription.text = description
             } finally {
