@@ -6,14 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.fragment.app.Fragment
-
-import com.google.android.material.transition.MaterialSharedAxis
-
 import dev.trindade.robokide.databinding.FragmentOutputBinding
 import dev.trindade.robokide.ui.components.log.Log
+import dev.trindade.robokide.ui.base.RobokFragment
 
-class OutputFragment : Fragment() {
+class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentOutputBinding? = null
     private val binding get() = _binding!!
@@ -22,15 +19,8 @@ class OutputFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentOutputBinding.inflate(inflater, container, false)
         return binding.root
-    }
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
-        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,7 +28,6 @@ class OutputFragment : Fragment() {
     }
     
     fun addOutput(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
-        _binding = FragmentOutputBinding.inflate(inflater, container, false)
         val logView = Log(context, log)
         binding.content.addView(logView)
     }

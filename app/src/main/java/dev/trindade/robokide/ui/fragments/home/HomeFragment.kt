@@ -4,17 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-
-import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentHomeBinding
-import dev.trindade.robokide.ui.components.log.Log
+import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 
-class HomeFragment : Fragment() {
+class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -26,19 +23,11 @@ class HomeFragment : Fragment() {
         _binding = FragmentHomeBinding.inflate(inflater, container, false)
         return binding.root
     }
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.Y, true))
-        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.Y, false))
-        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.Y, true))
-        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.Y, false))
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createProject.setOnClickListener {
-            openFragment(CreateProjectFragment())
+            openFragment(CreateProjectFragment(MaterialSharedAxis.Y))
         }
         
         binding.openProject.setOnClickListener {
@@ -50,20 +39,16 @@ class HomeFragment : Fragment() {
         }
     }
     
-    fun selectFolder () {
-        /* 
-          logic for select project folder
-        */
+    private fun selectFolder() {
+        // logic to select project folder
     }
     
-    fun onFolderSelect() {
-        /*
-           example for open editor: 
-           val fragment = EditorFragment.newInstance(path) 
-        */
+    private fun onFolderSelect() {
+        // example to open the editor:
+        // val fragment = EditorFragment.newInstance(path)
     }
     
-    fun openFragment(fragment: Fragment) {
+    private fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             addToBackStack(null)

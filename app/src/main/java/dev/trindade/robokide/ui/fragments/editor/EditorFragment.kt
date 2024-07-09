@@ -5,20 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.fragment.app.Fragment
-
 import com.google.android.material.snackbar.Snackbar
-import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
+import dev.trindade.robokide.ui.base.RobokFragment
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment (private val transitionMode: Int = MaterialSharedAxis.X): Fragment() {
+class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -31,14 +29,6 @@ class EditorFragment (private val transitionMode: Int = MaterialSharedAxis.X): F
         return binding.root
     }
     
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(transitionMode, true))
-        setReturnTransition(MaterialSharedAxis(transitionMode, false))
-        setExitTransition(MaterialSharedAxis(transitionMode, true))
-        setReenterTransition(MaterialSharedAxis(transitionMode, false))
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
@@ -52,7 +42,7 @@ class EditorFragment (private val transitionMode: Int = MaterialSharedAxis.X): F
             }
 
             override fun onOutput(output: String) {
-                val outputFragment = OutputFragment()
+                val outputFragment = OutputFragment(MaterialSharedAxis.Y)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
                 
                 Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
