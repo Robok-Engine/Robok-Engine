@@ -1,4 +1,13 @@
-<merge xmlns:android="http://schemas.android.com/apk/res/android">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/preference"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:layout_marginBottom="4dp"
+    android:clickable="true"
+    android:background="?android:attr/selectableItemBackground">
+
     <TextView
         android:id="@+id/preferenceTitle"
         android:layout_width="wrap_content"
@@ -17,4 +26,4 @@
         android:textColor="?attr/colorOnSurfaceVariant"
         android:layout_height="wrap_content" />
 
-</merge>
+</LinearLayout>
