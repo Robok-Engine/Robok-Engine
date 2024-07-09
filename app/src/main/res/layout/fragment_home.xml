@@ -37,18 +37,19 @@
            android:layout_width="match_parent"
            android:layout_height="match_parent"
            android:orientation="vertical"
+           android:layout_gravity="center"
            android:id="@+id/content" >
            
            <Button
-              android:layout_width="210dp"
+              android:layout_width="400dp"
               android:layout_height="wrap_content"
-              android:text="@+id/title_create_project"
+              android:text="@string/title_create_project"
               android:id="@+id/create_project" />
               
            <Button
-              android:layout_width="210dp"
+              android:layout_width="400dp"
               android:layout_height="wrap_content"
-              android:text="@+id/title_open_project"
+              android:text="@string/title_open_project"
               android:id="@+id/open_project" />
            
         </LinearLayout>  

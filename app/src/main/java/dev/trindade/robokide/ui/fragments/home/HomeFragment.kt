@@ -29,10 +29,10 @@ class HomeFragment : Fragment() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
-        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
+        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.Y, true))
+        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.Y, false))
+        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.Y, true))
+        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.Y, false))
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
