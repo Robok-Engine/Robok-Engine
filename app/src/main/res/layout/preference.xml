@@ -1,0 +1,20 @@
+<merge xmlns:android="http://schemas.android.com/apk/res/android">
+    <TextView
+        android:id="@+id/preferenceTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:paddingTop="0dp"
+        android:paddingBottom="4dp"
+        android:paddingStart="0dp"
+        android:textColor="?attr/colorOnSurface"
+        android:paddingEnd="0dp"/>
+
+    <TextView
+        android:id="@+id/preferenceDescription"
+        android:layout_width="wrap_content"
+        android:textSize="12sp"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:layout_height="wrap_content" />
+
+</merge>
