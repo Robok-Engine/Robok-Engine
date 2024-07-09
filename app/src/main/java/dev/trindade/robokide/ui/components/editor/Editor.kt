@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.editor
+package dev.trindade.robokide.ui.components.editor
 
 import android.content.Context
 import android.util.AttributeSet
