@@ -9,6 +9,15 @@ import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import com.jn.filepickersphere.filelist.common.mime.MimeType
+import com.jn.filepickersphere.filepicker.FilePickerCallbacks
+import com.jn.filepickersphere.filepicker.FilePickerSphereManager
+import com.jn.filepickersphere.filepicker.style.FileItemStyle
+import com.jn.filepickersphere.filepicker.style.FilePickerStyle
+import com.jn.filepickersphere.models.FileModel
+import com.jn.filepickersphere.models.FilePickerModel
+import com.jn.filepickersphere.models.PickOptions
+
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentHomeBinding
 import dev.trindade.robokide.ui.base.RobokFragment
@@ -45,6 +54,33 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
     
     private fun selectFolder() {
         // logic to select project folder
+        val options = PickOptions(
+            mimeType = listOf(MimeType.IMAGE_PNG, MimeType.IMAGE_JPEG, MimeType.DIRECTORY, MimeType("value here")),
+            localOnly = false,
+            rootPath = "/storage/emulated/0/",
+            maxSelection = 8
+        )
+        
+        FilePickerSphereManager(this, true).callbacks(object : FilePickerCallbacks {
+            override fun onFileSelectionChanged(file: FileModel, selected: Boolean) {
+                Log.i("FilePickerSphere", "File clicked: ${file.name}\n Selected: $selected")
+            }
+            
+            override fun onOpenFile(file: FileModel) {
+                Log.i("FilePickerSphere", "Open file: ${file.name}")
+            }
+            
+            override fun onSelectedFilesChanged(files: List<FileModel>) {
+                // Handle selected files change
+            }
+            
+            override fun onAllFilesSelected(files: List<FileModel>) {
+               // Handle all files selected
+            }
+        }).container(R.id.fragment_container)
+        .model(FilePickerModel(options))
+        .picker()
+        
     }
     
     private fun onFolderSelect() {
