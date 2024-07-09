@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.fragment.app.Fragment
 
 import com.google.android.material.snackbar.Snackbar
@@ -16,7 +17,6 @@ import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
-
 
 class EditorFragment : Fragment() {
 
@@ -83,7 +83,7 @@ class EditorFragment : Fragment() {
         terminal.show()
     }
     
-    fun openFragment(fragment: Fragment) {
+    private fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             addToBackStack(null)
@@ -100,12 +100,11 @@ class EditorFragment : Fragment() {
         private const val PROJECT_PATH = "arg_path"
 
         fun newInstance(path: String): EditorFragment {
-            val fragment = EditorFragment()
-            val args = Bundle().apply {
-                putString(PROJECT_PATH, path)
+            return EditorFragment().apply {
+                arguments = Bundle().apply {
+                    putString(PROJECT_PATH, path)
+                }
             }
-            fragment.arguments = args
-            return fragment
         }
     }
 }
