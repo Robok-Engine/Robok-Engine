@@ -26,7 +26,8 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/title_create_project"
-           android:id="@+id/create_project" />
+           android:id="@+id/create_project"
+           app:icon="@drawable/ic_add_24" />
            
        <Button
            android:layout_width="match_parent"
@@ -36,7 +37,8 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_project"
-           android:id="@+id/open_project" />
+           android:id="@+id/open_project" 
+           app:icon="@drawable/ic_folder_open_24" />
            
        <Button
            android:layout_width="match_parent"
@@ -47,7 +49,8 @@
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_editor"
            style="?materialButtonOutlinedStyle"
-           android:id="@+id/open_editor" />
+           android:id="@+id/open_editor"
+           app:icon="@drawable/ic_code_24"  />
            
     </LinearLayout>  
 </LinearLayout>
