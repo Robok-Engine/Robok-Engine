@@ -60,7 +60,7 @@
          <item name="materialButtonStyle">@style/Widget.Robok.Button</item>
          <item name="materialButtonOutlinedStyle">@style/Widget.Robok.Button.OutlinedButton</item>
          <item name="appBarLayoutStyle">@style/Widget.Robok.AppBarLayout</item>
-         <item name="toolbarStyle">@style/Widget.Prohub.Toolbar</item>
+         <item name="toolbarStyle">@style/Widget.Robok.Toolbar</item>
          
          <item name="fontFamily">@font/product_sans_regular</item>
          <item name="android:fontFamily">@font/product_sans_regular</item>
@@ -76,7 +76,7 @@
          <item name="materialButtonStyle">@style/Widget.Robok.Button</item>
          <item name="materialButtonOutlinedStyle">@style/Widget.Robok.Button.OutlinedButton</item>
          <item name="appBarLayoutStyle">@style/Widget.Robok.AppBarLayout</item>
-         <item name="toolbarStyle">@style/Widget.Prohub.Toolbar</item>
+         <item name="toolbarStyle">@style/Widget.Robok.Toolbar</item>
          
          <item name="fontFamily">@font/product_sans_regular</item>
          <item name="android:fontFamily">@font/product_sans_regular</item>
