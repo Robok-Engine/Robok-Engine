@@ -19,7 +19,7 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
     init {
         setContentView(bottomSheetView)
         setCancelable(true)
-        terminal = bottomSheetView.findViewById(R.id.background_terminal)
+        terminal = bottomSheetView.findViewById(R.id.terminal)
     }
     
     fun addLog(value: String) {
