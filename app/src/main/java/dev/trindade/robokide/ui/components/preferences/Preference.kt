@@ -34,7 +34,7 @@ class Preference @JvmOverloads constructor(
         }
     }
 
-    fun setOnClickListener(listenerClick: View.OnClickListener) {
+    fun setPreferenceClickListener(listenerClick: View.OnClickListener) {
         binding.preference.setOnClickListener(listenerClick)
     }
 }
