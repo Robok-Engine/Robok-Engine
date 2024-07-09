@@ -18,7 +18,7 @@ import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment (transitionMode: Int): Fragment() {
+class EditorFragment (private val transitionMode: Int = MaterialSharedAxis.X): Fragment() {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -100,7 +100,7 @@ class EditorFragment (transitionMode: Int): Fragment() {
         private const val PROJECT_PATH = "arg_path"
 
         fun newInstance(path: String): EditorFragment {
-            return EditorFragment().apply {
+            return EditorFragment(MaterialSharedAxis.Y).apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
                 }
