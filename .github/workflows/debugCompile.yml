@@ -12,6 +12,17 @@ on:
       - gradlew
       - gradlew.bat
       - settings.gradle.kts
+  pull_request:
+    paths:
+      - .github/workflows/debugCompile.yml
+      - app/**
+      - language/**
+      - build.gradle.kts
+      - gradle.properties
+      - gradlew
+      - gradlew.bat
+      - settings.gradle.kts    
+      
 jobs:
   RobokIDE-debug-apk:
     name: Build RobokIDE Debug APK
@@ -43,15 +54,26 @@ jobs:
         with:
           name: RobokIDE-debug
           path: app/build/outputs/apk/
-           
-      - name: Send APK to Trindade CI Telegram
-        if: success()
+
+  send-for-telegram:
+    name: Send APK to Trindade CI Telegram
+    needs: RobokIDE-debug-apk
+    runs-on: ubuntu-latest
+    if: success()
+    steps:
+      - name: Download debug APK artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: RobokIDE-debug
+          path: /tmp/apk
+
+      - name: Send APK to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
-          document: app/build/outputs/apk/debug/app-debug.apk
+          document: /tmp/apk/app-debug.apk
           disable_web_page_preview: false
           message: |
             *Build Success!*
