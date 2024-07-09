@@ -8,6 +8,7 @@ import android.widget.PopupMenu
 
 import androidx.annotation.NonNull
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.PreferenceBinding
 
 class PreferencePopup @JvmOverloads constructor(

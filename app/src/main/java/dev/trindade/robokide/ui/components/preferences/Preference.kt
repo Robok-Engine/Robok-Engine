@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.PreferenceBinding
 
 class Preference @JvmOverloads constructor(

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.PreferenceGroupBinding
 
 class PreferenceGroup @JvmOverloads constructor(
