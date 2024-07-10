@@ -71,7 +71,7 @@
     <item name="materialAlertDialogTitlePanelStyle">@style/Dialog.Robok.Title.Panel</item>
     <item name="android:backgroundDimAmount">0.4</item>
     <item name="android:windowAnimationStyle">@style/Dialog.Robok.Animation</item>
-    <item name="android:windowElevation">@dimen/robok_dialog_elevation</item>
+    <item name="android:windowElevation">@dimen/dialog_elevation</item>
   </style>
 
   <style name="Dialog.Robok.Base" parent="MaterialAlertDialog.Material3">
