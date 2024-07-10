@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.components.editor
+package dev.trindade.robokide.ui.components.editor.themes
 
 import android.content.Context
 import androidx.core.content.ContextCompat

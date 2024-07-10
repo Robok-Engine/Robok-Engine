@@ -33,7 +33,6 @@ class CodeEditorView @JvmOverloads constructor(
     private lateinit var editor: CodeEditor
 
     init {
-        this.context = context
         initialize()
     }
 
