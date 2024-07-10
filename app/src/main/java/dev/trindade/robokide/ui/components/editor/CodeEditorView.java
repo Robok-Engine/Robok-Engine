@@ -56,7 +56,7 @@ public class CodeEditorView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.code_editor_hs, this);
 
         editor = findViewById(R.id.editor);
-        toolbar = findViewById(R.id.toolbar);
+        //toolbar = findViewById(R.id.toolbar);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
 
         initialize();
@@ -83,6 +83,10 @@ public class CodeEditorView extends LinearLayout {
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
         editor.getComponent(EditorAutoCompletion.class).setEnabled(auto_c);
+    }
+    
+    public String getText() {
+         return editor.getText().toString(); 
     }
 
     private static void selectTheme(CodeEditor editor, int which) {
@@ -114,7 +118,7 @@ public class CodeEditorView extends LinearLayout {
         editor.setColorScheme(scheme);
     }
 
-    private void loadToolbar() {
+    /*private void loadToolbar() {
         toolbar.setTitle("Code Editor");
         toolbar.getMenu().clear();
         toolbar.getMenu().add("Select theme");
@@ -130,7 +134,7 @@ public class CodeEditorView extends LinearLayout {
             }
             return false;
         });
-    }
+    }*/
 
     private static void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
         int selectedThemeIndex = 0;
