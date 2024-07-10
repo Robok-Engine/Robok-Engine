@@ -11,11 +11,9 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="top|start"
-        android:scrollbars="vertical"
         android:hint="@string/common_word_code"
         android:layout_margin="16dp"
-        android:padding="8dp"
-        <!-- app:syntaxType="java"--> />
+        android:padding="8dp" />
         
     <LinearLayout
         android:layout_width="wrap_content"
