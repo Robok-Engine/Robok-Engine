@@ -23,7 +23,7 @@ import dev.trindade.robokide.R;
 @SuppressLint("RestrictedApi")
 public class RobokDialog extends MaterialAlertDialogBuilder {
   @AttrRes private static final int DEF_STYLE_ATTR = R.attr.alertDialogStyle;
-  @StyleRes private static final int DEF_STYLE_RES = R.style.Dialog_Prohub;
+  @StyleRes private static final int DEF_STYLE_RES = R.style.Dialog_Robok;
 
   @AttrRes
   private static final int DIALOG_THEME_OVERLAY = R.attr.materialAlertDialogTheme;
