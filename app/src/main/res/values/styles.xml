@@ -59,4 +59,62 @@
      <item name="android:textStyle">bold</item>
      <item name="android:textAlignment">center</item>
   </style>
+  
+  <style name="ThemeOverlay.Robok.Dialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <item name="alertDialogStyle">@style/Dialog.Robok</item>
+    <item name="buttonBarButtonStyle">@style/Widget.Robok.Button.Dialog</item>
+    <item name="buttonBarPositiveButtonStyle">@style/Widget.Robok.Button.Dialog</item>
+    <item name="buttonBarNegativeButtonStyle">@style/Widget.Robok.Button.Tonal.Dialog</item>
+    <item name="buttonBarNeutralButtonStyle">@style/Widget.Robok.Button.Tonal.Dialog</item>
+    <item name="materialAlertDialogBodyTextStyle">@style/Dialog.Robok.Body.Text</item>
+    <item name="materialAlertDialogTitleTextStyle">@style/Dialog.Robok.Title.Text</item>
+    <item name="materialAlertDialogTitlePanelStyle">@style/Dialog.Robok.Title.Panel</item>
+    <item name="android:backgroundDimAmount">0.4</item>
+    <item name="android:windowAnimationStyle">@style/Dialog.Robok.Animation</item>
+    <item name="android:windowElevation">@dimen/robok_dialog_elevation</item>
+  </style>
+
+  <style name="Dialog.Robok.Base" parent="MaterialAlertDialog.Material3">
+    <item name="backgroundTint">?attr/colorSurface</item>
+    <item name="shapeAppearance">@style/Dialog.Robok.Shape</item>
+    <item name="android:layout">@layout/robok_dialog</item>
+  </style>
+
+  <style name="Dialog.Robok" parent="Dialog.Robok.Base" />
+
+  <style name="Dialog.Robok.Shape" parent="">
+    <item name="cornerSize">16dp</item>
+  </style>
+
+  <style name="Dialog.Robok.Title.Panel" parent="MaterialAlertDialog.Material3.Title.Panel">
+    <item name="android:orientation">vertical</item>
+    <item name="android:paddingTop">24dp</item>
+  </style>
+
+  <style name="Dialog.Robok.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
+    <item name="android:textAppearance">@style/TextAppearance.Robok.Dialog.Title</item>
+  </style>
+
+  <style name="Dialog.Robok.Body.Text" parent="MaterialAlertDialog.Material3.Body.Text">
+    <item name="android:textAppearance">@style/TextAppearance.Robok.Dialog.Body</item>
+  </style>
+
+  <style name="Dialog.Robok.Animation">
+    <item name="android:windowEnterAnimation">@anim/dialog_enter</item>
+    <item name="android:windowExitAnimation">@anim/dialog_exit</item>
+  </style>
+
+  <style name="TextAppearance.Robok.Dialog.Title" parent="TextAppearance.Material3.TitleLarge">
+    <item name="android:fontFamily">@font/product_sans_medium</item>
+    <item name="android:lineHeight">26sp</item>
+    <item name="android:textSize">22sp</item>
+  </style>
+
+  <style name="TextAppearance.Robok.Dialog.Body" parent="TextAppearance.Material3.BodyLarge">
+    <item name="android:lineHeight">22sp</item>
+    <item name="android:textSize">15sp</item>
+  </style>
+
+  <style name="Widget.Robok.Button.Dialog" parent="Widget.Robok.Button" />
+  <style name="Widget.Robok.Button.Tonal.Dialog" parent="Widget.Robok.Button.TonalButton" />
 </resources>
