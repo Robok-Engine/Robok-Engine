@@ -16,10 +16,10 @@ import java.util.regex.Pattern;
 
 import robok.lang.modifiers.ModifyAccess;
 import robok.lang.primitives.Primitives;
-import robok.dev.terminal.RobokTerminal;
 import robok.lang.modifiers.ModifyNonAccess;
 import robok.lang.variables.VariableObject;
 import robok.lang.methods.Method;
+import robok.dev.terminal.RobokTerminal;
 
 public class LogicCompiler {
 

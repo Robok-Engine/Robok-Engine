@@ -28,28 +28,27 @@ public class MethodsCompiler {
 		var codeText = codeToRun;
 		var parts = codeText.split(" ");
 		
-		if (methodTyped(parts[0], "createButton")) {
+		if (isTheMethod(parts[0], "createButton")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-	    } else if (methodTyped(parts[0], "createText")) {
+	    } else if (isTheMethod(parts[0], "createText")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
-		} else if (methodTyped(parts[0], "showToast")) {
+		} else if (isTheMethod(parts[0], "showToast")) {
 			methodCaller.callMethod(parts[0], parts[1]);
-		} else if (methodTyped(parts[0], "openTerminal")) {
+		} else if (isTheMethod(parts[0], "openTerminal")) {
 			methodCaller.callMethod(parts[0]);
-		} else if (methodTyped(parts[0], "showDialog")) {
+		} else if (isTheMethod(parts[0], "showDialog")) {
 			methodCaller.callMethod(parts[0], parts[1], parts[2]);
 		} else {
 			terminal.addErrorLog(Exceptions.NO_METHOD_FOUND, Messages.NO_METHOD_FOUND);
 		}
 	}
 	
-	public boolean methodTyped(String parts, String methodName){
-		boolean returnVal;
-		if (parts.contains(methodName)) {
-			returnVal = true;
+	public boolean isTheMethod(String receiveMethodName, String methodName){
+		if (receiveMethodName.contains(methodName)) {
+			return true;
 	    } else {
-			returnVal = false;
+			return false;
 		}
-		return  returnVal;
+		return false;
 	}	
 }
