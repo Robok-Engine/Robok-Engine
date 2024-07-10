@@ -50,6 +50,22 @@ android {
             keyPassword = "testkey"
         }
     }
+    
+    flavorDimensions = ["api"]
+    productFlavors {
+        minApi26 {
+            dimension "api"
+            minSdkVersion 26
+            versionNameSuffix "-minApi26"
+            isDefault = true
+        }
+
+        minApi21 {
+            dimension "api"
+            minSdkVersion 21
+            versionNameSuffix "-minApi21"
+        }
+    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -85,7 +101,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp:$okhttp3_version")
     
     // test
-    implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
+    minApi26Implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
