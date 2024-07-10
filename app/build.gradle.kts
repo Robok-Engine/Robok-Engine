@@ -59,7 +59,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 dependencies {
 
     val robok_language_version = "1.0.0"
-    val material_version = "1.13.0-alpha02"
+    val material_version = "1.13.0-alpha04"
     val appcompat_version = "1.7.0-alpha03"
     val kotlin_version = "2.0.0"
     val kotlin_coroutines_version = "1.9.0-RC"
