@@ -11,8 +11,8 @@ android {
     
     defaultConfig {
         applicationId = "dev.trindade.robokide"
-        minSdk = 21
-        targetSdk = 28
+        minSdk = 26
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
         
@@ -50,22 +50,6 @@ android {
             keyPassword = "testkey"
         }
     }
-    
-    flavorDimensions = ["api"]
-    productFlavors {
-        minApi26 {
-            dimension "api"
-            minSdkVersion 26
-            versionNameSuffix "-minApi26"
-            isDefault = true
-        }
-
-        minApi21 {
-            dimension "api"
-            minSdkVersion 21
-            versionNameSuffix "-minApi21"
-        }
-    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
@@ -98,10 +82,7 @@ dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
     
     // squareup
-    implementation("com.squareup.okhttp3:okhttp:$okhttp3_version")
-    
-    // test
-    minApi26Implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
+    implementation("com.squareup.okhttp3:okhttp:$okhttp3_version")    
     
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
