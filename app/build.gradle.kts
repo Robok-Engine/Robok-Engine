@@ -24,6 +24,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
     }
 
     buildTypes {
@@ -99,4 +100,7 @@ dependencies {
     // robok
     // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
     implementation(project(":language"))
+
+    // Add desugaring dependency
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 }
