@@ -9,7 +9,7 @@ import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 
 class RobokDarcula(context: Context) : SchemeDarcula() {
     init {
-        val customColor = ContextCompat.getColor(context, R.color.my_custom_color)
+        val customColor = ContextCompat.getColor(context, R.color.md_theme_background)
         colorPool.setColor(EditorColorScheme.WHOLE_BACKGROUND, customColor)
     }
 }
