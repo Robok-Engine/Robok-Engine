@@ -49,6 +49,5 @@ public class MethodsCompiler {
 	    } else {
 			return false;
 		}
-		return false;
 	}	
 }
