@@ -24,6 +24,7 @@ import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 import dev.trindade.robokide.manage.file.getDefaultPath
+import dev.trindade.robokide.ui.components.dialog.RobokDialog
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
@@ -59,7 +60,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
             mimeType = listOf(MimeType.DIRECTORY),
             localOnly = false,
             rootPath = getDefaultPath(),
-            maxSelection = 8
+            maxSelection = 1
         )
         
         FilePickerSphereManager(requireContext(), true).callbacks(object : FilePickerCallbacks {
@@ -69,6 +70,11 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
             
             override fun onOpenFile(file: FileModel) {
                 //Log.i("FilePickerSphere", "Open file: ${file.name}")
+                 val dialog = RobokDialoh(context)
+                     .setTitle("File selected")
+                     .setMessage(file.name)
+                     .setPositiveButton("OK", null)
+                     .show();
             }
             
             override fun onSelectedFilesChanged(files: List<FileModel>) {
