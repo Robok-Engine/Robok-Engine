@@ -10,7 +10,7 @@ import android.widget.PopupMenu
 import androidx.annotation.NonNull
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.databinding.PreferenceBinding
+import dev.trindade.robokide.databinding.LayoutPreferenceBinding
 
 class PreferencePopup @JvmOverloads constructor(
     context: Context,
@@ -18,7 +18,7 @@ class PreferencePopup @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val binding: PreferenceBinding = PreferenceBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: LayoutPreferenceBinding = LayoutPreferenceBinding.inflate(LayoutInflater.from(context), this, true)
     val popupMenu: PopupMenu = PopupMenu(context, this)
 
     init {
