@@ -54,4 +54,9 @@
     <item name="fontFamily">@font/product_sans_medium</item>
     <item name="android:fontFamily">@font/product_sans_medium</item>
   </style>
+  
+  <style name="TextAppearance.Robok.TitleLarge.Bold" parent="TextAppearance.Material3.TitleLarge">
+     <item name="android:textStyle">bold</item>
+     <item name="android:textAlignment">center</item>
+  </style>
 </resources>
