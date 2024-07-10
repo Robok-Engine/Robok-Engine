@@ -38,11 +38,11 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         val terminal = RobokTerminal(requireContext())
         
         val compilerListener = object : LogicCompilerListener {
-            override fun onCompiled(logs: String) {
-                showTerminal(terminal, logs)
+            override fun onCompiling(log: String) {
+                terminal.addLog(log)
             }
 
-            override fun onOutput(output: String) {
+            override fun onCompiled(output: String) {
                 val outputFragment = OutputFragment(MaterialSharedAxis.Y)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
                 
@@ -63,15 +63,8 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         }
         
         binding.seeLogs.setOnClickListener {
-            showTerminal(terminal, null)
+            terminal.show()
         }
-    }
-    
-    private fun showTerminal(terminal: RobokTerminal, logs: String?) {
-        logs?.let {
-            terminal.addLog(it)
-        }
-        terminal.show()
     }
     
     private fun openFragment(fragment: Fragment) {

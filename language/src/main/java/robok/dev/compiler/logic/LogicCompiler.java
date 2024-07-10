@@ -1,6 +1,6 @@
 /* 
-   LogicCompiler: Action area compiler, used only for creating actions at runtime.
- Not used for layout creations
+   LogicCompiler: Action area compiler, used only for creating actions at runtime. 
+   Not used for layout creations
  */
 
 package robok.dev.compiler.logic;
@@ -30,7 +30,7 @@ public class LogicCompiler {
     private Stack<String> blockStack; // Stack to manage blocks
     private RobokTerminal robokTerminal;
     private LogicCompilerListener compilerListener;
-    Primitives primitives;
+    private Primitives primitives;
 
     private boolean methodOpen = false;
     private String currentMethodName = null;
@@ -40,8 +40,8 @@ public class LogicCompiler {
     private int currentLineIndex; // Current line index
     private String[] codeLines; // Array of code lines
 
-    boolean bracesWithinMethod = false;
-
+    private boolean bracesWithinMethod = false;
+    
     public LogicCompiler(Context context, LogicCompilerListener compilerListener) {
         this.context = context;
         this.compilerListener = compilerListener;
@@ -52,8 +52,9 @@ public class LogicCompiler {
         this.robokTerminal = new RobokTerminal();
     }
 
-    public void addLog(String tag, String line) {
-        robokTerminal.addLog(tag, line);
+    public void addLog(String tag, String log) {
+        robokTerminal.addLog(tag, log);
+        compilerListener.onCompiling(log);
     }
 
     public String getLogs() {
@@ -74,12 +75,14 @@ public class LogicCompiler {
 
     public void compile(String code) {
         long startTime = System.nanoTime(); // Start time
-        //remove comments
-        code = removeAllComments(code);
+        
+        code = removeAllComments(code); // remove comments
+        
+        // organize lines
         code = code.replaceAll(";\\s*", ";\n");
         codeLines = code.split("\n");
         currentLineIndex = 0;
-
+        
         boolean packageDeclared = false;
         boolean classDeclared = false;
         String packagee = null;
@@ -127,7 +130,7 @@ public class LogicCompiler {
         durationNano = 0;
         
         addLog("System","Compilation Sucess: " + durationSeconds + " seconds.");
-        onExecute(robokTerminal.getLogs());
+        onExecute(getLogs());
     }
 
     //method used to remove all comments.
@@ -368,7 +371,6 @@ public class LogicCompiler {
     private void onExecute(String logs) {
         compilerListener.onCompiled(logs);
         // trindadedev: for now only the log is returned to the IDE.
-        compilerListener.onOutput(logs);
     }
 
     private String getNextLine() {
