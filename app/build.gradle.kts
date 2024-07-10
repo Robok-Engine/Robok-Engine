@@ -97,8 +97,9 @@ dependencies {
     // Sora editor
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
-    implementation("io.github.Rosemoe.sora-core")
+    implementation("$editorGroupId:editor-lsp")
     implementation("$editorGroupId:language-java")
+    implementation("$editorGroupId:language-treesitter")
     implementation("$editorGroupId:language-textmate")
     
     // robok
