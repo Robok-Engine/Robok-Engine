@@ -73,6 +73,7 @@ public class LogicCompiler {
     }
 
     public void compile(String code) {
+        long startTime = System.nanoTime(); // Start time
         //remove comments
         code = removeAllComments(code);
         code = code.replaceAll(";\\s*", ";\n");
@@ -116,7 +117,16 @@ public class LogicCompiler {
             addLog("Methods", "Method Body:\n" + methodBody);
         }
 
-        addLog("System","Compilation Sucess");
+        long endTime = System.nanoTime(); // End time
+        long durationNano = endTime - startTime; // Calculate duration
+        double durationSeconds = durationNano / 1_000_000_000.0; // Convert to seconds
+        
+        //clear times for performance
+        startTime = 0;
+        endTime = 0;
+        durationNano = 0;
+        
+        addLog("System","Compilation Sucess: " + durationSeconds + " seconds.");
         onExecute(robokTerminal.getLogs());
     }
 
