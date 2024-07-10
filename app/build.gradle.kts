@@ -58,6 +58,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 dependencies {
 
     val robok_language_version = "2.0.0-fix02"
+    val material_version = "1.13.0-alpha02"
     val kotlin_version = "2.0.0"
     val kotlin_coroutines_version = "1.9.0-RC"
     val okhttp3_version = "4.9.3"
@@ -70,7 +71,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     
     // google
-    implementation("com.google.android.material:material:1.11.0")
+    implementation("com.google.android.material:material:$material_version")
     implementation("com.google.code.gson:gson:2.8.8")
     
     // jetbrains
