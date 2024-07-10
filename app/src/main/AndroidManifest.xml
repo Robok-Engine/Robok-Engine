@@ -3,11 +3,15 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
+    
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission
         android:name="android.permission.MANAGE_EXTERNAL_STORAGE"
         tools:ignore="ScopedStorage" />
+    <uses-sdk 
+        tools:overrideLibrary="com.jn.filepickersphere" />
+        
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,8 +20,7 @@
         android:supportsRtl="true"
         android:name="dev.trindade.robokide.Robok"
         android:theme="@style/RobokTheme"
-        tools:replace="android:theme"
-        tools:overrideLibrary="com.jn.filepickersphere">
+        tools:replace="android:theme" >
         <activity
             android:name="dev.trindade.robokide.ui.activities.MainActivity"
             android:exported="true">
