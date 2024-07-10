@@ -73,6 +73,7 @@ public class LogicCompiler {
     }
 
     public void compile(String code) {
+        long startTime = System.nanoTime(); // Start time
         //remove comments
         code = removeAllComments(code);
         code = code.replaceAll(";\\s*", ";\n");
@@ -81,14 +82,19 @@ public class LogicCompiler {
 
         boolean packageDeclared = false;
         boolean classDeclared = false;
+        String packagee = null;
+        
         StringBuilder imports = new StringBuilder();
         StringBuilder clazz = new StringBuilder();
 
         for (String line : codeLines) {
             if (!packageDeclared && line.trim().startsWith("package ")) {
                 packageDeclared = true;
+                packagee = line.replace("package ", "");
+                robokTerminal.addLog("Package: ", packagee);
             } else if (!classDeclared && line.trim().startsWith("import ")) {
                 imports.append(line).append("\n");
+                robokTerminal.addLog("Imports: ", line);
             } else if (!classDeclared) {
                 classDeclared = extractClass(line);
             } else {
@@ -98,9 +104,6 @@ public class LogicCompiler {
             }
             currentLineIndex++;
         }
-
-        robokTerminal.addLog("Imports: ", imports.toString());
-        robokTerminal.addLog("Classes: ", clazz.toString());
 
         // Iterate over the methods stored in the map
         for (Method method : methods.values()) {
@@ -114,6 +117,16 @@ public class LogicCompiler {
             addLog("Methods", "Method Body:\n" + methodBody);
         }
 
+        long endTime = System.nanoTime(); // End time
+        long durationNano = endTime - startTime; // Calculate duration
+        double durationSeconds = durationNano / 1_000_000_000.0; // Convert to seconds
+        
+        //clear times for performance
+        startTime = 0;
+        endTime = 0;
+        durationNano = 0;
+        
+        addLog("System","Compilation Sucess: " + durationSeconds + " seconds.");
         onExecute(robokTerminal.getLogs());
     }
 
@@ -133,6 +146,7 @@ public class LogicCompiler {
             String modifiers = matcher.group(1) != null ? matcher.group(1).trim() : "";
             String className = matcher.group(3);
 
+            addLog("Class", "Class Type: " + matcher.group(2));
             addLog("Class", "Modifiers: " + modifiers);
             addLog("Class", "Class Name: " + className);
 
