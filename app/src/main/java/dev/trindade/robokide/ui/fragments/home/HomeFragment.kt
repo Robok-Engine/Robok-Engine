@@ -70,7 +70,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
             
             override fun onOpenFile(file: FileModel) {
                 //Log.i("FilePickerSphere", "Open file: ${file.name}")
-                 val dialog = RobokDialog(context)
+                 val dialog = RobokDialog(requireContext())
                      .setTitle("File selected")
                      .setMessage(file.name)
                      .setPositiveButton("OK", null)
