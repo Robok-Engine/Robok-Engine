@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-parcelize")
     id("com.google.dagger.hilt.android")
+    kotlin("kapt")
 }
 
 android {
@@ -24,7 +25,7 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
-        coreLibraryDesugaringEnabled = true
+        isCoreLibraryDesugaringEnabled = true
     }
 
     buildTypes {
@@ -88,7 +89,7 @@ dependencies {
     
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
-    annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.51.1")
     
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
