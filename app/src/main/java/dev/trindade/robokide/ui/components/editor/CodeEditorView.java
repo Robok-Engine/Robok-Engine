@@ -25,7 +25,9 @@ import io.github.rosemoe.sora.widget.schemes.SchemeGitHub;
 import io.github.rosemoe.sora.widget.schemes.SchemeNotepadXX;
 import io.github.rosemoe.sora.widget.schemes.SchemeVS2019;
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
+
 import dev.trindade.robokide.R;
+import dev.trindade.robokide.ui.components.dialog.RobokDialog;
 
 public class CodeEditorView extends LinearLayout {
 
@@ -126,7 +128,7 @@ public class CodeEditorView extends LinearLayout {
             themeItems[i] = KNOWN_COLOR_SCHEMES.get(i).first;
         }
 
-        new AlertDialog.Builder(activity)
+        new RobokDialog(activity)
                 .setTitle("Select Theme")
                 .setSingleChoiceItems(themeItems, selectedThemeIndex, listener)
                 .setNegativeButton("Cancel", null)
