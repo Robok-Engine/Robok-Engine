@@ -15,8 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="dev.trindade.robokide.Robok"
+        android:theme="@style/RobokTheme"
         tools:replace="android:theme"
-        android:theme="@style/RobokTheme">
+        tools:overrideLibrary="com.jn.filepickersphere">
         <activity
             android:name="dev.trindade.robokide.ui.activities.MainActivity"
             android:exported="true">
