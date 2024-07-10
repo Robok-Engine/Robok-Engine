@@ -87,6 +87,10 @@ dependencies {
     // test
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
+    // dagger
+    implementation("com.google.dagger:hilt-android:2.51.1")
+    annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
+    
     // robok
     // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
     implementation(project(":language"))
