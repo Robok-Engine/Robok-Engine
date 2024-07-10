@@ -102,5 +102,5 @@ dependencies {
     implementation(project(":language"))
 
     // Add desugaring dependency
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.3")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
