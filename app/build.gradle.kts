@@ -65,6 +65,7 @@ dependencies {
     val kotlin_coroutines_version = "1.9.0-RC"
     val okhttp3_version = "4.9.3"
     val activity_version = "1.9.0"
+    val editorGroupId = "io.github.Rosemoe.sora-editor"
     
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompat_version")
@@ -89,6 +90,11 @@ dependencies {
     annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
     
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
+    
+    implementation(platform("$editorGroupId:bom:0.23.4"))
+    implementation("$editorGroupId:editor")
+    implementation("$editorGroupId:language-java")
+    implementation("$editorGroupId:language-textmate")
     
     // robok
     // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")

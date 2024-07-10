@@ -58,7 +58,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         val compiler = LogicCompiler(requireContext(), compilerListener)
         
         binding.runButton.setOnClickListener {
-            val code = binding.codeEditor.text.toString()
+            val code = binding.codeEditor.getText()
             terminal.show()
             compiler.compile(code)
         }
