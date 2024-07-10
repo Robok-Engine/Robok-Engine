@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import dev.trindade.robokide.LayoutRbkTextfieldBinding
+import dev.trindade.robokide.databinding.LayoutRbkTextfieldBinding
 
 class RbkTextField @JvmOverloads constructor(
     context: Context,
