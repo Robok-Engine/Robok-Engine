@@ -2,6 +2,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     id("kotlin-parcelize")
+    id("com.google.dagger.hilt.android")
 }
 
 android {
@@ -10,8 +11,8 @@ android {
     
     defaultConfig {
         applicationId = "dev.trindade.robokide"
-        minSdk = 26
-        targetSdk = 34
+        minSdk = 21
+        targetSdk = 28
         versionCode = 1
         versionName = "1.0"
         
@@ -59,13 +60,14 @@ dependencies {
 
     val robok_language_version = "2.0.0-fix02"
     val material_version = "1.13.0-alpha02"
+    val appcompat_version = "1.7.0-alpha03"
     val kotlin_version = "2.0.0"
     val kotlin_coroutines_version = "1.9.0-RC"
     val okhttp3_version = "4.9.3"
     val activity_version = "1.9.0"
     
     // androidx
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.appcompat:appcompat:$appcompat_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.core:core-ktx:1.8.0")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
