@@ -46,7 +46,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
                 val outputFragment = OutputFragment(MaterialSharedAxis.Y)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
                 
-                Snackbar.make(terminal.terminal, R.string.message_compiled, Snackbar.LENGTH_LONG)
+                Snackbar.make(binding.content, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
                         openFragment(outputFragment)
                         terminal.dismiss()
@@ -59,6 +59,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
+            terminal.show()
             compiler.compile(code)
         }
         
