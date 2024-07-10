@@ -69,7 +69,7 @@ dependencies {
     
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompat_version")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.3.6")
     
