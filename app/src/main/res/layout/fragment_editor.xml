@@ -5,6 +5,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    
+    <dev.trindade.robokide.ui.components.toolbar.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <dev.trindade.robokide.ui.components.editor.CodeEditorView
         android:id="@+id/code_editor"

@@ -28,30 +28,34 @@ import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
 import dev.trindade.robokide.ui.components.dialog.RobokDialog;
+import dev.trindade.robokide.ui.components.editor.themes.RobokDarcula;
 
 public class CodeEditorView extends LinearLayout {
 
     private CodeEditor editor;
     private SharedPreferences pref;
+    private Context context;
 
     public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = new ArrayList<>();
     static {
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Default", EditorColorScheme.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("GitHub", SchemeGitHub.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Eclipse", SchemeEclipse.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", SchemeDarcula.class));
+        KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", RobokDarcula.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("VS2019", SchemeVS2019.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("NotepadXX", SchemeNotepadXX.class));
     }
 
     public CodeEditorView(Context context) {
         this(context, null);
+        this.context = context;
     }
 
     public CodeEditorView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
+        this.context = context;
         LayoutInflater.from(context).inflate(R.layout.code_editor_hs, this);
-
+        
         editor = findViewById(R.id.editor);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
 
@@ -99,7 +103,7 @@ public class CodeEditorView extends LinearLayout {
                 scheme = new SchemeEclipse();
                 break;
             case 3:
-                scheme = new SchemeDarcula();
+                scheme = new RobokDarcula(context);
                 break;
             case 4:
                 scheme = new SchemeVS2019();
