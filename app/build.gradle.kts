@@ -71,7 +71,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:$appcompat_version")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.3.1")
     implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.3.6")
+    implementation("androidx.fragment:fragment-ktx:1.8.1")
     
     // google
     implementation("com.google.android.material:material:$material_version")
