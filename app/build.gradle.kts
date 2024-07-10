@@ -90,7 +90,7 @@ dependencies {
     
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.21.1-f243159-SNAPSHOT"))
+    implementation(platform("$editorGroupId:bom:0.23.4))
     implementation("$editorGroupId:editor")
     implementation("$editorGroupId:language-java")
     implementation("$editorGroupId:language-textmate")
