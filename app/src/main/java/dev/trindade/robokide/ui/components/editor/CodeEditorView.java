@@ -2,20 +2,15 @@ package dev.trindade.robokide.ui.components.editor;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.util.Pair;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.widget.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,7 +29,6 @@ import dev.trindade.robokide.R;
 public class CodeEditorView extends LinearLayout {
 
     private CodeEditor editor;
-    private Toolbar toolbar;
     private SharedPreferences pref;
 
     public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = new ArrayList<>();
@@ -56,7 +50,6 @@ public class CodeEditorView extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.code_editor_hs, this);
 
         editor = findViewById(R.id.editor);
-        //toolbar = findViewById(R.id.toolbar);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
 
         initialize();
@@ -67,7 +60,6 @@ public class CodeEditorView extends LinearLayout {
         editor.setTextSize(16);
         editor.setEditorLanguage(new JavaLanguage()); // Default language
         loadCESettings(getContext(), editor, "act");
-        loadToolbar();
     }
 
     private void loadCESettings(Context context, CodeEditor editor, String prefix) {
@@ -117,24 +109,6 @@ public class CodeEditorView extends LinearLayout {
         Log.d("CodeEditorView", "Selected theme index: " + which);
         editor.setColorScheme(scheme);
     }
-
-    /*private void loadToolbar() {
-        toolbar.setTitle("Code Editor");
-        toolbar.getMenu().clear();
-        toolbar.getMenu().add("Select theme");
-
-        toolbar.setOnMenuItemClickListener(item -> {
-            if ("Select theme".equals(item.getTitle())) {
-                showSwitchThemeDialog((Activity) getContext(), editor, (dialog, which) -> {
-                    selectTheme(editor, which);
-                    pref.edit().putInt("act_theme", which).apply();
-                    dialog.dismiss();
-                });
-                return true;
-            }
-            return false;
-        });
-    }*/
 
     private static void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
         int selectedThemeIndex = 0;
