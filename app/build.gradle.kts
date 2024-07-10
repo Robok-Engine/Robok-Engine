@@ -58,7 +58,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
 
-    val robok_language_version = "2.0.0-fix02"
+    val robok_language_version = "1.0.0"
     val material_version = "1.13.0-alpha02"
     val appcompat_version = "1.7.0-alpha03"
     val kotlin_version = "2.0.0"
@@ -87,6 +87,8 @@ dependencies {
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
     annotationProcessor("com.google.dagger:hilt-compiler:2.51.1")
+    
+    implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
     // robok
     // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")

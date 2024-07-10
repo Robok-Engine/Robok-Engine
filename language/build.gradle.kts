@@ -53,7 +53,7 @@ publishing {
         register<MavenPublication>("release") {
             groupId = "com.github.Robok-Foundation"
             artifactId = "robok"
-            version = "2.0.0-fix02"
+            version = "1.0.0"
 
             afterEvaluate {
                 from(components["release"])
