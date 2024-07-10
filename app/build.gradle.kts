@@ -75,7 +75,7 @@ dependencies {
     
     // google
     implementation("com.google.android.material:material:$material_version")
-    implementation("com.google.code.gson:gson:2.8.8")
+    implementation("com.google.code.gson:gson:2.11.0")
     
     // jetbrains
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version")
