@@ -149,24 +149,32 @@ public class CodeEditorView extends LinearLayout {
     }
 
     public static void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
-        int selectedThemeIndex = 0;
-        EditorColorScheme currentScheme = editor.getColorScheme();
-        for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
-            if (KNOWN_COLOR_SCHEMES.get(i).second.equals(currentScheme.getClass())) {
-                selectedThemeIndex = i;
-                break;
+        if (editor != null) {
+            int selectedThemeIndex = 0;
+            EditorColorScheme currentScheme = editor.getColorScheme();
+            for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
+                if (KNOWN_COLOR_SCHEMES.get(i).second.equals(currentScheme.getClass())) {
+                     selectedThemeIndex = i;
+                     break;
+                }
             }
-        }
-
-        String[] themeItems = new String[KNOWN_COLOR_SCHEMES.size()];
-        for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
-            themeItems[i] = KNOWN_COLOR_SCHEMES.get(i).first;
-        }
-
-        new RobokDialog(activity)
+            
+            String[] themeItems = new String[KNOWN_COLOR_SCHEMES.size()];
+            for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
+               themeItems[i] = KNOWN_COLOR_SCHEMES.get(i).first;
+            }
+            
+            new RobokDialog(activity)
                 .setTitle("Select Theme")
                 .setSingleChoiceItems(themeItems, selectedThemeIndex, listener)
                 .setNegativeButton("Cancel", null)
                 .show();
+        } else {
+            new RobokDialog(activity)
+                .setTitle("Error")
+                .setMessage("Unable to get current theme.")
+                .setPositiveButton("OK", null)
+                .show();
+        } 
     }
 }

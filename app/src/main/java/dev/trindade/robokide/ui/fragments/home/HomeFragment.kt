@@ -70,26 +70,16 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         )
         
         FilePickerSphereManager(requireContext(), true).callbacks(object : FilePickerCallbacks {
-            override fun onFileSelectionChanged(file: FileModel, selected: Boolean) {
-                //Log.i("FilePickerSphere", "File clicked: ${file.name}\n Selected: $selected")
-            }
-            
+            override fun onFileSelectionChanged(file: FileModel, selected: Boolean) { }
             override fun onOpenFile(file: FileModel) {
-                //Log.i("FilePickerSphere", "Open file: ${file.name}")
                  val dialog = RobokDialog(requireContext())
                      .setTitle("File selected")
                      .setMessage(file.name)
                      .setPositiveButton("OK", null)
                      .show();
             }
-            
-            override fun onSelectedFilesChanged(files: List<FileModel>) {
-                // Handle selected files change
-            }
-            
-            override fun onAllFilesSelected(files: List<FileModel>) {
-               // Handle all files selected
-            }
+            override fun onSelectedFilesChanged(files: List<FileModel>) { }
+            override fun onAllFilesSelected(files: List<FileModel>) { }
         }).container(R.id.fragment_container)
         .model(FilePickerModel(options))
         .picker()
