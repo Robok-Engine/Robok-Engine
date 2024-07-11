@@ -15,7 +15,7 @@ class MainActivity : RobokActivity() {
         setContentView(R.layout.activity_main)
         
         if (savedInstanceState == null) {
-            openFragment(HomeFragment(MaterialSharedAxis.Y))
+            openFragment(HomeFragment(MaterialSharedAxis.X))
         }
         
     }
