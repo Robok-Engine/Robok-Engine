@@ -32,7 +32,7 @@ public class CodeEditorView extends LinearLayout {
 
     public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = new ArrayList<>();
     static {
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Default", EditorColorScheme.class));
+        KNOWN_COLOR_SCHEMES.add(new Pair<>("Robok IDE Default", SchemeRobok.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("GitHub", SchemeGitHub.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Eclipse", SchemeEclipse.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", SchemeDarcula.class));
@@ -87,7 +87,7 @@ public class CodeEditorView extends LinearLayout {
         switch (which) {
             default:
             case 0:
-                scheme = new EditorColorScheme();
+                scheme = new SchemeRobok();
                 break;
             case 1:
                 scheme = new SchemeGitHub();
