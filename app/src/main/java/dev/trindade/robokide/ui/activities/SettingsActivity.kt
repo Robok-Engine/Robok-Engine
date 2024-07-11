@@ -26,11 +26,11 @@ class SettingsActivity : AppCompatActivity() {
             }
         }
     }
-    
+
     fun setToolbarTitle(value: String) {
         binding.toolbar.title = value
     }
-    
+
     private fun navigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener {
             onBackPressedDispatcher.onBackPressed()

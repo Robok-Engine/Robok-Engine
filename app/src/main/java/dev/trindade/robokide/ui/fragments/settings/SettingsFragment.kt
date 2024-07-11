@@ -12,9 +12,8 @@ import dev.trindade.robokide.databinding.FragmentSettingsBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.preferences.Preference
 import dev.trindade.robokide.ui.fragments.settings.editor.SettingsEditorFragment
-import dev.trindade.robokide.ui.activities.SettingsActivity
 
-class SettingsFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.Y) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!
@@ -29,16 +28,15 @@ class SettingsFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val settingsActivity = SettingsActivity()
+        val settingsActivity = activity as? SettingsActivity
         val editorSettings = Preference(requireContext())
         editorSettings.setTitle(getString(R.string.settings_editor_title))
         editorSettings.setDescription(getString(R.string.settings_editor_description))
         editorSettings.setPreferenceClickListener {
              openFragmentSettings(SettingsEditorFragment(MaterialSharedAxis.X))
-             settingsActivity.setToolbarTitle(getString(R.string.settings_editor_title))
+             settingsActivity?.setToolbarTitle(getString(R.string.settings_editor_title))
         }
         binding.content.addView(editorSettings)
-        
     }
 
     override fun onDestroyView() {
