@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.activities
+package dev.trindade.robokide.ui.base
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,7 +7,7 @@ import androidx.fragment.app.commit
 import dev.trindade.robokide.R
 import dev.trindade.robokide.manage.file.requestPermission
 
-open class MainActivity : AppCompatActivity() {
+open class RobokActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
