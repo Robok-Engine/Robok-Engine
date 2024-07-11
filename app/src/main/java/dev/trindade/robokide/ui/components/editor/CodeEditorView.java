@@ -93,6 +93,7 @@ public class CodeEditorView extends LinearLayout {
                 "    }\n\n" +
                 "    // and more...\n" +
                 "}";
+                
         editor.setText(defaultCode);
         editor.setTypefaceText(Typeface.MONOSPACE);
         editor.setTextSize(16);
@@ -113,6 +114,10 @@ public class CodeEditorView extends LinearLayout {
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
         editor.getComponent(EditorAutoCompletion.class).setEnabled(auto_c);
+    }
+    
+    public CodeEditor getCodeEditor() {
+        return this.editor;
     }
 
     public String getText() {

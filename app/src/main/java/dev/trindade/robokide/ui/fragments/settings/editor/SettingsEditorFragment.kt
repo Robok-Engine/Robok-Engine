@@ -9,6 +9,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindade.robokide.ui.base.RobokFragment
+import dev.trindade.robokide.ui.components.editor.CodeEditorView
+import dev.trindade.robokide.ui.components.preferences.Preference
 
 class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -25,6 +27,15 @@ class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAx
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        
+        val editorTheme = Preference(requireContext())
+        editorTheme.setTitle(getString(R.string.settings_editor_title))
+        editorTheme.setDescription(getString(R.string.settings_editor_description))
+        editorTheme.setPreferenceClickListener {
+             val codeEditor = CodeEditorView(requireContext())
+             codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor(), 0)
+        }
+        binding.content.addView(editorTheme)
     }
 
     override fun onDestroyView() {

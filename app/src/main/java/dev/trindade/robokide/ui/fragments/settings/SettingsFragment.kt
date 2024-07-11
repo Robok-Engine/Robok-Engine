@@ -12,7 +12,6 @@ import dev.trindade.robokide.databinding.FragmentSettingsBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.preferences.Preference
 import dev.trindade.robokide.ui.fragments.settings.editor.SettingsEditorFragment
-import dev.trindade.robokide.ui.components.editor.CodeEditorView
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -35,7 +34,6 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         editorSettings.setDescription(getString(R.string.settings_editor_description))
         editorSettings.setPreferenceClickListener {
              openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
-             CodeEditorView.showSwitchThemeDialog(requireActivity(), null, null)
         }
         binding.content.addView(editorSettings)
     }
