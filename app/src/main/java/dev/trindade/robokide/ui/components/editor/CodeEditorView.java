@@ -87,7 +87,7 @@ public class CodeEditorView extends LinearLayout {
         switch (which) {
             default:
             case 0:
-                scheme = new SchemeRobok();
+                scheme = new SchemeRobok(getContext());
                 break;
             case 1:
                 scheme = new SchemeGitHub();
@@ -96,7 +96,7 @@ public class CodeEditorView extends LinearLayout {
                 scheme = new SchemeEclipse();
                 break;
             case 3:
-                scheme = new SchemeDarcula(getContext());
+                scheme = new SchemeDarcula();
                 break;
             case 4:
                 scheme = new SchemeVS2019();
