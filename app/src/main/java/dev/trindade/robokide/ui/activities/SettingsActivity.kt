@@ -11,6 +11,7 @@ import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.ActivitySettingsBinding
 import dev.trindade.robokide.ui.fragments.settings.SettingsFragment
 import dev.trindade.robokide.utils.getBackPressedClickListener
+import dev.trindade.robokide.ui.components.editor.CodeEditorView
 
 class SettingsActivity : AppCompatActivity() {
 
