@@ -96,7 +96,7 @@ public class CodeEditorView extends LinearLayout {
                 scheme = new SchemeEclipse();
                 break;
             case 3:
-                scheme = new RobokDarcula();
+                scheme = new RobokDarcula(CodeEditorView.this);
                 break;
             case 4:
                 scheme = new SchemeVS2019();
