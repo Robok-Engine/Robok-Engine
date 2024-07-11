@@ -4,8 +4,12 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+
 import androidx.core.content.ContextCompat
+
 import com.google.android.material.textfield.TextInputEditText
+
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.LayoutRbkTextfieldBinding
 
 class RbkTextField @JvmOverloads constructor(
