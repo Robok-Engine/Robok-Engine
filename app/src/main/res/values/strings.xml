@@ -26,4 +26,8 @@
 	<!-- go to section -->
 	<string name="go_to_outputs">Go to outputs</string>
 	<!-- end section -->
+	
+	<!-- hints section -->
+	<string name="hint_project_name">Project name</string>
+	<!-- end section -->
 </resources>

@@ -25,4 +25,10 @@
         <attr name="strokeWidth" format="dimension" />
         <attr name="strokeColor" format="color" />
     </declare-styleable>
+    
+    <declare-styleable name="RbkTextField">
+        <attr name="rbkTextFieldHint" format="string" />
+        <attr name="rbkTextFieldPlaceholderText" format="string" />
+        <attr name="rbkTextFieldStartIconDrawable" format="reference" />
+    </declare-styleable>
 </resources>
