@@ -70,7 +70,7 @@ public class CodeEditorView extends LinearLayout {
         boolean auto_c = pref.getBoolean(prefix + "_ac", true);
         boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
 
-        selectTheme(editor, theme);
+        selectTheme(editor, 0);
         editor.setTextSize(text_size);
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
