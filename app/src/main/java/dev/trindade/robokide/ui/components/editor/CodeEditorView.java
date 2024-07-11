@@ -81,7 +81,7 @@ public class CodeEditorView extends LinearLayout {
          return editor.getText().toString(); 
     }
 
-    private static void selectTheme(CodeEditor editor, int which) {
+    private void selectTheme(CodeEditor editor, int which) {
         EditorColorScheme scheme;
 
         switch (which) {
