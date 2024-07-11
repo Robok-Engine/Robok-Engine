@@ -30,14 +30,13 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.Y) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val settingsActivity = activity as? SettingsActivity
+       
         val editorSettings = Preference(requireContext())
         editorSettings.setTitle(getString(R.string.settings_editor_title))
         editorSettings.setDescription(getString(R.string.settings_editor_description))
         editorSettings.setPreferenceClickListener {
-             openFragmentSettings(SettingsEditorFragment(MaterialSharedAxis.X))
+             openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
              CodeEditorView.showSwitchThemeDialog(requireActivity(), null, null)
-             settingsActivity?.setToolbarTitle(getString(R.string.settings_editor_title))
         }
         binding.content.addView(editorSettings)
     }

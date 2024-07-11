@@ -53,8 +53,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         }
         
         binding.openSettings.setOnClickListener {
-            val intent = Intent(requireContext(), SettingsActivity::class.java)
-            startActivity(intent)
+            openFragment(SettingsFragment(MaterialSharedAxis.X))
         }
         
         binding.openEditor.setOnClickListener {

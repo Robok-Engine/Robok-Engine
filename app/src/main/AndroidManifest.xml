@@ -34,10 +34,6 @@
             android:name="dev.trindade.robokide.ui.activities.DebugActivity"
             android:exported="true" />
             
-        <activity
-            android:name="dev.trindade.robokide.ui.activities.SettingsActivity"
-            android:exported="true" />    
-            
     </application>
 
 </manifest>
