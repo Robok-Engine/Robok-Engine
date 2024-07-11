@@ -12,7 +12,7 @@ class SettingsActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
-        
+        navigationBack(binding.toolbar)
         if (savedInstanceState == null) {
             val fragment = SettingsFragment()
             
@@ -20,5 +20,9 @@ class SettingsActivity : AppCompatActivity() {
                 replace(R.id.settings_fragment_container, fragment)
             }
         }
+    }
+    
+    fun setToolbarTitle(value: String) {
+        binding.toobar.setTitle(value)
     }
 }
