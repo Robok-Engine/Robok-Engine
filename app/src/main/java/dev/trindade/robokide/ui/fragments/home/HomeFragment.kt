@@ -25,6 +25,7 @@ import dev.trindade.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 import dev.trindade.robokide.manage.file.getDefaultPath
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
+import dev.trindade.robokide.ui.fragments.settings.SettingsFragment
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
@@ -47,6 +48,10 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         
         binding.openProject.setOnClickListener {
             selectFolder()
+        }
+        
+        binding.openSettings.setOnClickListener {
+            openFragment(SettingsFragment())
         }
         
         binding.openEditor.setOnClickListener {
