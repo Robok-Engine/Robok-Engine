@@ -1,9 +1,6 @@
 <resources>
-
-	<style name="RobokTheme" parent="Theme.Material3.DynamicColors.Dark" >
-	    <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
-        <item name="colorPrimary">@color/md_theme_primary</item>
+    <style name="RobokTheme" parent="Theme.Material3.DynamicColors.Dark" >
+	    <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
         <item name="colorOnPrimaryContainer">@color/md_theme_onPrimaryContainer</item>
@@ -50,11 +47,13 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar">false</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-         
+        
         <item name="appBarLayoutStyle">@style/Widget.Robok.AppBarLayout</item>
         <item name="bottomNavigationStyle">@style/Widget.Robok.BottomNavigationView</item>
         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Robok.Dialog</item>
@@ -67,5 +66,4 @@
         <item name="android:fontFamily">@font/product_sans_regular</item>
         <item name="android:forceDarkAllowed">false</item>
 	</style>
-	
 </resources>

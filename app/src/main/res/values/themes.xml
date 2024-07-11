@@ -1,7 +1,5 @@
 <resources>
 	<style name="RobokTheme" parent="Theme.Material3.DynamicColors.Light" >
-	    <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -49,21 +47,23 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         
-         <item name="android:statusBarColor">@android:color/transparent</item>
-         <item name="android:navigationBarColor">@android:color/transparent</item>
-         <item name="windowNoTitle">true</item>
-         <item name="windowActionBar">false</item>
+        <item name="android:statusBarColor">?android:attr/colorBackground</item>
+        <item name="android:navigationBarColor">?android:attr/colorBackground</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        
+        <item name="appBarLayoutStyle">@style/Widget.Robok.AppBarLayout</item>
+        <item name="bottomNavigationStyle">@style/Widget.Robok.BottomNavigationView</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Robok.Dialog</item>
+        <item name="materialButtonStyle">@style/Widget.Robok.Button</item>
+        <item name="materialButtonOutlinedStyle">@style/Widget.Robok.Button.OutlinedButton</item>
+        <item name="materialSearchBarStyle">@style/Widget.Robok.SearchBar</item>
+        <item name="toolbarStyle">@style/Widget.Robok.Toolbar</item>
          
-         <item name="appBarLayoutStyle">@style/Widget.Robok.AppBarLayout</item>
-         <item name="bottomNavigationStyle">@style/Widget.Robok.BottomNavigationView</item>
-         <item name="materialAlertDialogTheme">@style/ThemeOverlay.Robok.Dialog</item>
-         <item name="materialButtonStyle">@style/Widget.Robok.Button</item>
-         <item name="materialButtonOutlinedStyle">@style/Widget.Robok.Button.OutlinedButton</item>
-         <item name="materialSearchBarStyle">@style/Widget.Robok.SearchBar</item>
-         <item name="toolbarStyle">@style/Widget.Robok.Toolbar</item>
-         
-         <item name="fontFamily">@font/product_sans_regular</item>
-         <item name="android:fontFamily">@font/product_sans_regular</item>
-	     <item name="android:forceDarkAllowed">false</item>
+        <item name="fontFamily">@font/product_sans_regular</item>
+        <item name="android:fontFamily">@font/product_sans_regular</item>
+        <item name="android:forceDarkAllowed">false</item>
 	</style>
 </resources>
