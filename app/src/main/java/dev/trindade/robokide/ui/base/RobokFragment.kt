@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.utils.getBackPressedClickListener
 
 open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X) : Fragment() {

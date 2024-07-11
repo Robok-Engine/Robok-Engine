@@ -7,6 +7,7 @@ import android.view.ViewGroup
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentSettingsBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.preferences.Preference
@@ -27,8 +28,8 @@ class SettingsFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val editorSettings = Preference(requireContext())
-        editorSettings.preferenceTitle = getString(R.string.settings_editor_title)
-        editorSettings.preferenceTitle = getString(R.string.settings_editor_description)
+        editorSettings.binding.preferenceTitle.text = getString(R.string.settings_editor_title)
+        editorSettings.binding.preferenceDescription.text = getString(R.string.settings_editor_description)
         editorSettings.setPreferenceClickListener {
              openFragmentSettings(SettingsEditorFragment(MaterialSharedAxis.Y))
         }
