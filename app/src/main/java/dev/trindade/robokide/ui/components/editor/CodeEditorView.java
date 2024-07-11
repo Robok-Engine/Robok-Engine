@@ -3,6 +3,7 @@ package dev.trindade.robokide.ui.components.editor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.DialogInterface
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
