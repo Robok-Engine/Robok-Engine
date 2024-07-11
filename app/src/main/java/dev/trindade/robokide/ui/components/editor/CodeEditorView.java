@@ -22,6 +22,7 @@ public class CodeEditorView extends LinearLayout {
 
     public CodeEditor editor;
     public SharedPreferences pref;
+    public ThemeManager themeManager;
 
     public CodeEditorView(Context context) {
         this(context, null);
@@ -33,7 +34,8 @@ public class CodeEditorView extends LinearLayout {
 
         editor = findViewById(R.id.editor);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
-
+        themeManager = new ThemeManager();
+        
         initialize();
     }
 
@@ -91,8 +93,8 @@ public class CodeEditorView extends LinearLayout {
         boolean word_wrap = pref.getBoolean(prefix + "_ww", false);
         boolean auto_c = pref.getBoolean(prefix + "_ac", true);
         boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
-
-        ThemeManager.selectTheme(editor, theme);
+        
+        themeManager.selectTheme(editor, theme);
         editor.setTextSize(text_size);
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
@@ -108,6 +110,6 @@ public class CodeEditorView extends LinearLayout {
     }
 
     public void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
-        ThemeManager.showSwitchThemeDialog(activity, editor, listener);
+        themeManager.showSwitchThemeDialog(activity, editor, listener);
     }
 }

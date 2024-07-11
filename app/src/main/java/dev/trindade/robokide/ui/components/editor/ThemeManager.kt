@@ -13,7 +13,7 @@ import dev.trindade.robokide.ui.components.editor.schemes.*
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.schemes.*
 
-object ThemeManager {
+class ThemeManager {
 
     private const val PREFS_NAME = "editor_prefs"
     private const val KEY_THEME = "editor_theme"
