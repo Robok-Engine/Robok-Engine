@@ -25,6 +25,7 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground)) // set the background color
         setColor(EditorColorScheme.CURRENT_LINE, getAttrColor(android.R.attr.colorBackground)) // set the current line color
         setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
+        setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); //
     }
 
     private fun getAttrColor(@AttrRes resId: Int): Int {

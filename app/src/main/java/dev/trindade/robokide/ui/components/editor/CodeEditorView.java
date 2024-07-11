@@ -2,8 +2,8 @@ package dev.trindade.robokide.ui.components.editor;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -38,7 +38,6 @@ public class CodeEditorView extends LinearLayout {
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", SchemeDarcula.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("VS2019", SchemeVS2019.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("NotepadXX", SchemeNotepadXX.class));
-        
     }
 
     public CodeEditorView(Context context) {
@@ -56,6 +55,45 @@ public class CodeEditorView extends LinearLayout {
     }
 
     private void initialize() {
+        String defaultCode =
+                "package com.my.newproject;\n\n" +
+                "public class Main {\n\n" +
+                "    // Variables\n\n" +
+                "    // Variables#string\n" +
+                "    public String defString;\n" +
+                "    public static String constString = \"I AM A STATIC\";\n" +
+                "    String withoutPrivacyString;\n" +
+                "    static String withoutPrivacyConstString = \"I AM A STATIC\";\n\n" +
+                "    // Variables#int\n" +
+                "    public int defInt;\n" +
+                "    public static int constInt = 0;\n" +
+                "    int withoutPrivacyInt;\n" +
+                "    static int withoutPrivacyConstInt = 0;\n\n" +
+                "    // Variables#boolean\n" +
+                "    public boolean defBoolean;\n" +
+                "    public static boolean constBoolean = false;\n" +
+                "    boolean withoutPrivacyBoolean;\n" +
+                "    static boolean withoutPrivacyConstBoolean = true;\n\n" +
+                "    // Methods\n\n" +
+                "    // methods#void\n" +
+                "    public void myVoidMethod() {\n" +
+                "        // method content\n" +
+                "    }\n\n" +
+                "    public static void myStaticVoidMethod() {\n" +
+                "        // method content\n" +
+                "    }\n\n" +
+                "    // methods#string\n" +
+                "    public String myStringMethod() {\n" +
+                "        // method content\n" +
+                "        return \"Hello, World!\";\n" +
+                "    }\n\n" +
+                "    public static String myStaticStringMethod() {\n" +
+                "        // method content\n" +
+                "        return \"I am a static method.\";\n" +
+                "    }\n\n" +
+                "    // and more...\n" +
+                "}";
+        editor.setText(defaultCode);
         editor.setTypefaceText(Typeface.MONOSPACE);
         editor.setTextSize(16);
         editor.setEditorLanguage(new JavaLanguage()); // Default language
@@ -76,9 +114,9 @@ public class CodeEditorView extends LinearLayout {
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
         editor.getComponent(EditorAutoCompletion.class).setEnabled(auto_c);
     }
-    
+
     public String getText() {
-         return editor.getText().toString(); 
+        return editor.getText().toString();
     }
 
     private void selectTheme(CodeEditor editor, int which) {
