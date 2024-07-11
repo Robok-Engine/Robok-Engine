@@ -48,8 +48,8 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/common_word_settings"
-           android:id="@+id/open_settinhs" 
-           app:icon="@drawable/ic_settings_24" />    
+           android:id="@+id/open_settings" 
+           app:icon="@drawable/ic_settings_anim" />    
            
        <Button
            android:layout_width="match_parent"
