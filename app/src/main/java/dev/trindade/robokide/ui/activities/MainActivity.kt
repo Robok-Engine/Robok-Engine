@@ -2,6 +2,8 @@ package dev.trindade.robokide.ui.activities
 
 import android.os.Bundle
 
+import com.google.android.material.transition.MaterialSharedAxis
+
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.fragments.home.HomeFragment
 import dev.trindade.robokide.ui.base.RobokActivity
