@@ -22,7 +22,6 @@ public class CodeEditorView extends LinearLayout {
 
     public CodeEditor editor;
     public SharedPreferences pref;
-    public ThemeManager themeManager;
 
     public CodeEditorView(Context context) {
         this(context, null);
@@ -34,7 +33,6 @@ public class CodeEditorView extends LinearLayout {
 
         editor = findViewById(R.id.editor);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
-        themeManager = new ThemeManager();
         
         initialize();
     }
@@ -78,11 +76,11 @@ public class CodeEditorView extends LinearLayout {
                 "    }\n\n" +
                 "    // and more...\n" +
                 "}";
-                
+
         editor.setText(defaultCode);
         editor.setTypefaceText(Typeface.MONOSPACE);
         editor.setTextSize(16);
-        editor.setEditorLanguage(new JavaLanguage()); 
+        editor.setEditorLanguage(new JavaLanguage());
         loadCESettings(getContext(), editor, "act");
     }
 
@@ -93,14 +91,14 @@ public class CodeEditorView extends LinearLayout {
         boolean word_wrap = pref.getBoolean(prefix + "_ww", false);
         boolean auto_c = pref.getBoolean(prefix + "_ac", true);
         boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
-        
-        themeManager.selectTheme(editor, theme);
+
+        ThemeManager.INSTANCE.selectTheme(editor, theme);
         editor.setTextSize(text_size);
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
         editor.getComponent(EditorAutoCompletion.class).setEnabled(auto_c);
     }
-    
+
     public CodeEditor getCodeEditor() {
         return this.editor;
     }
@@ -110,6 +108,9 @@ public class CodeEditorView extends LinearLayout {
     }
 
     public void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
-        themeManager.showSwitchThemeDialog(activity, editor, listener);
+        ThemeManager.INSTANCE.showSwitchThemeDialog(activity, editor, which -> {
+            listener.onClick(null, which);
+            return null;
+        });
     }
 }
