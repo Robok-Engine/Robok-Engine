@@ -30,8 +30,8 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         super.onViewCreated(view, savedInstanceState)
        
         val editorSettings = Preference(requireContext())
-        editorSettings.setTitle(getString(R.string.settings_editor_title))
-        editorSettings.setDescription(getString(R.string.settings_editor_description))
+        editorSettings.setTitle(getString(R.string.settings_editor_theme_title))
+        editorSettings.setDescription(getString(R.string.settings_editor_theme_description))
         editorSettings.setPreferenceClickListener {
              openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
         }

@@ -35,5 +35,7 @@
 	<!-- settings section -->
 	<string name="settings_editor_title">Code Editor Settings</string>
 	<string name="settings_editor_description">Some code editor settings.</string>
+	<string name="settings_editor_theme_title">Code Editor Theme</string>
+	<string name="settings_editor_theme_description">Change the code editor theme.</string>
 	<!-- end section -->
 </resources>
