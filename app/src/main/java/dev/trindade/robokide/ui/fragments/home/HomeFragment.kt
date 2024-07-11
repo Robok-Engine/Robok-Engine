@@ -94,14 +94,6 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         // example to open the editor:
         // val fragment = EditorFragment.newInstance(path)
     }
-    
-    private fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()

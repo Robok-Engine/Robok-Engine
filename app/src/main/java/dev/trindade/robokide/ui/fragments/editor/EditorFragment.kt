@@ -67,14 +67,6 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
             terminal.show()
         }
     }
-    
-    private fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
 
     override fun onDestroyView() {
         super.onDestroyView()
