@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.components.editor.themes
+package dev.trindade.robokide.ui.components.editor.schemes
 
 /* 
  *  Class responsible for changing the colors of the Darcula Theme.
@@ -16,7 +16,7 @@ import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
 import dev.trindade.robokide.R
 
-class RobokDarcula(context: Context) : SchemeDarcula() {
+class SchemeRobok(context: Context) : SchemeDarcula() {
     init {
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getColor(android.R.attr.colorBackground)) // set the background color
         setColor(EditorColorScheme.CURRENT_LINE, getColor(R.attr.colorOnBackground)) // set the current line color
