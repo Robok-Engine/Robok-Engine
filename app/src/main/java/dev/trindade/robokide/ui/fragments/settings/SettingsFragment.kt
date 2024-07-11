@@ -35,6 +35,7 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.Y) :
         editorSettings.setDescription(getString(R.string.settings_editor_description))
         editorSettings.setPreferenceClickListener {
              openFragmentSettings(SettingsEditorFragment(MaterialSharedAxis.X))
+             CodeEditorView.showSwitchThemeDialog(requireActivity(), null, null)
              settingsActivity?.setToolbarTitle(getString(R.string.settings_editor_title))
         }
         binding.content.addView(editorSettings)

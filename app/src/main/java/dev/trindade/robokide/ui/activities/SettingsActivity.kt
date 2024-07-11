@@ -20,7 +20,7 @@ class SettingsActivity : AppCompatActivity() {
         setContentView(binding.root)
         navigationBack(binding.toolbar)
         if (savedInstanceState == null) {
-            val fragment = SettingsFragment()
+            val fragment = SettingsFragment(MaterialSharedAxis.X)
             supportFragmentManager.commit {
                 replace(R.id.settings_fragment_container, fragment)
             }
