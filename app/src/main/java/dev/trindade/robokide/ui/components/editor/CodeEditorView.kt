@@ -18,6 +18,7 @@ import dev.trindade.robokide.databinding.LayoutCodeEditorBinding
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion
 import io.github.rosemoe.sora.widget.schemes.*
+import io.github.rosemoe.sora.langs.java.JavaLanguage
 
 class CodeEditorView @JvmOverloads constructor(
     context: Context, 
@@ -35,14 +36,13 @@ class CodeEditorView @JvmOverloads constructor(
     }
 
     private fun initialize() {
-        editor = binding.editor
-        editor.typefaceText = Typeface.MONOSPACE
-        editor.textSize = 16
-        editor.editorLanguage = JavaLanguage() // Default language
-        loadCESettings(context, editor, "act")
+        binding.editor.typefaceText = Typeface.MONOSPACE
+        binding.editor.textSize = 16
+        binding.editor.editorLanguage = JavaLanguage()
+        loadCESettings(context, "act")
     }
 
-    private fun loadCESettings(context: Context, editor: CodeEditor, prefix: String) {
+    private fun loadCESettings(context: Context, prefix: String) {
         val pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE)
         val textSize = pref.getInt(prefix + "_ts", 12)
         val theme = pref.getInt(prefix + "_theme", 3)
@@ -51,17 +51,17 @@ class CodeEditorView @JvmOverloads constructor(
         val autoCompleteSymbolPairs = pref.getBoolean(prefix + "_acsp", true)
 
         selectTheme(editor, theme)
-        editor.textSize = textSize
-        editor.wordwrap = wordWrap
-        editor.props.symbolPairAutoCompletion = autoCompleteSymbolPairs
-        editor.getComponent(EditorAutoCompletion::class.java).isEnabled = autoC
+        binding.editor.textSize = textSize
+        binding.editor.wordwrap = wordWrap
+        binding.editor.props.symbolPairAutoCompletion = autoCompleteSymbolPairs
+        binding.editor.getComponent(EditorAutoCompletion::class.java).isEnabled = autoC
     }
 
     fun getText(): String {
-        return editor.text.toString()
+        return binding.editor.text.toString()
     }
 
-    private fun selectTheme(editor: CodeEditor, which: Int) {
+    private fun selectTheme(which: Int) {
         val scheme: EditorColorScheme = when (which) {
             1 -> SchemeGitHub()
             2 -> SchemeEclipse()
@@ -72,7 +72,7 @@ class CodeEditorView @JvmOverloads constructor(
         }
 
         Log.d("CodeEditorView", "Selected theme index: $which")
-        editor.colorScheme = scheme
+        binding.editor.colorScheme = scheme
     }
 
     fun showSwitchThemeDialog(activity: Activity, listener: DialogInterface.OnClickListener) {
