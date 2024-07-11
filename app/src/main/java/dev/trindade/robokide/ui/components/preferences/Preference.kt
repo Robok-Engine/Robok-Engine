@@ -34,7 +34,15 @@ class Preference @JvmOverloads constructor(
         }
     }
 
-    fun setPreferenceClickListener(listenerClick: View.OnClickListener) {
+    public fun setPreferenceClickListener(listenerClick: View.OnClickListener) {
         binding.preference.setOnClickListener(listenerClick)
+    }
+    
+    public fun setTitle(value: String) {
+         binding.preferenceTitle.text = value
+    }
+    
+    public fun setDescription(value: String) {
+         binding.preferenceDescription.text = value
     }
 }
