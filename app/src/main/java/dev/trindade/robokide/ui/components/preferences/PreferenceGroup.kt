@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 
 import dev.trindade.robokide.R
-import dev.trindade.robokide.databinding.PreferenceGroupBinding
+import dev.trindade.robokide.databinding.LayoutPreferenceGroupBinding
 
 class PreferenceGroup @JvmOverloads constructor(
     context: Context,
@@ -16,8 +16,8 @@ class PreferenceGroup @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val binding: PreferenceGroupBinding =
-        PreferenceGroupBinding.inflate(LayoutInflater.from(context), this, true)
+    private val binding: LayoutPreferenceGroupBinding =
+        LayoutPreferenceGroupBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
         context.theme.obtainStyledAttributes(
