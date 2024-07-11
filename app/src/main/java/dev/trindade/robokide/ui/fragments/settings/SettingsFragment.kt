@@ -34,7 +34,7 @@ class SettingsFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) 
         editorSettings.setPreferenceClickListener {
              openFragmentSettings(SettingsEditorFragment(MaterialSharedAxis.Y))
         }
-        binding.root.addView(editorSettings)
+        binding.content.addView(editorSettings)
     }
 
     override fun onDestroyView() {

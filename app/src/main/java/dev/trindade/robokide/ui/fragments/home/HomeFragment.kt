@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.content.Intent
 
 import androidx.fragment.app.Fragment
 
@@ -26,6 +27,7 @@ import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 import dev.trindade.robokide.manage.file.getDefaultPath
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
 import dev.trindade.robokide.ui.fragments.settings.SettingsFragment
+import dev.trindade.robokide.ui.activities.SettingsActivity
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
@@ -51,7 +53,8 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment())
+            val intent = Intent(requireContext(), SettingsActivity::class.java)
+            startActivity(intent)
         }
         
         binding.openEditor.setOnClickListener {
