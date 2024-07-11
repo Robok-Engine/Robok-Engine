@@ -18,7 +18,7 @@ import java.util.List;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
-import io.github.rosemoe.sora.widget.schemes.*
+import io.github.rosemoe.sora.widget.schemes.*;
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
