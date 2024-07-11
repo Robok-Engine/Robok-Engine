@@ -31,4 +31,9 @@
 	<!-- hints section -->
 	<string name="hint_project_name">Project name</string>
 	<!-- end section -->
+	
+	<!-- settings section -->
+	<string name="settings_editor_title">Code Editor Settings</string>
+	<string name="settings_editor_description">Some code editor settings.</string>
+	<!-- end section -->
 </resources>
