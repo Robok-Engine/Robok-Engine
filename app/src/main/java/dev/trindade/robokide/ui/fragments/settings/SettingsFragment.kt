@@ -12,7 +12,6 @@ import dev.trindade.robokide.databinding.FragmentSettingsBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.preferences.Preference
 import dev.trindade.robokide.ui.fragments.settings.editor.SettingsEditorFragment
-import dev.trindade.robokide.ui.activities.SettingsActivity
 import dev.trindade.robokide.ui.components.editor.CodeEditorView
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.Y) : RobokFragment(transitionAxis) {

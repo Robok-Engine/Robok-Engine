@@ -27,7 +27,6 @@ import dev.trindade.robokide.ui.fragments.editor.EditorFragment
 import dev.trindade.robokide.manage.file.getDefaultPath
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
 import dev.trindade.robokide.ui.fragments.settings.SettingsFragment
-import dev.trindade.robokide.ui.activities.SettingsActivity
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
 
