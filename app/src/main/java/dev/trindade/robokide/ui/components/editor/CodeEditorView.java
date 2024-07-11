@@ -27,8 +27,8 @@ import dev.trindade.robokide.ui.components.editor.schemes.SchemeRobok;
 
 public class CodeEditorView extends LinearLayout {
 
-    private CodeEditor editor;
-    private SharedPreferences pref;
+    public CodeEditor editor;
+    public SharedPreferences pref;
 
     public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = new ArrayList<>();
     static {
@@ -54,7 +54,7 @@ public class CodeEditorView extends LinearLayout {
         initialize();
     }
 
-    private void initialize() {
+    public void initialize() {
         String defaultCode =
                 "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
@@ -97,11 +97,11 @@ public class CodeEditorView extends LinearLayout {
         editor.setText(defaultCode);
         editor.setTypefaceText(Typeface.MONOSPACE);
         editor.setTextSize(16);
-        editor.setEditorLanguage(new JavaLanguage()); // Default language
+        editor.setEditorLanguage(new JavaLanguage()); 
         loadCESettings(getContext(), editor, "act");
     }
 
-    private void loadCESettings(Context context, CodeEditor editor, String prefix) {
+    public void loadCESettings(Context context, CodeEditor editor, String prefix) {
         SharedPreferences pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
         int text_size = pref.getInt(prefix + "_ts", 12);
         int theme = pref.getInt(prefix + "_theme", 3);
@@ -109,7 +109,7 @@ public class CodeEditorView extends LinearLayout {
         boolean auto_c = pref.getBoolean(prefix + "_ac", true);
         boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
 
-        selectTheme(editor, 0);
+        selectTheme(editor, theme);
         editor.setTextSize(text_size);
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
@@ -124,7 +124,7 @@ public class CodeEditorView extends LinearLayout {
         return editor.getText().toString();
     }
 
-    private void selectTheme(CodeEditor editor, int which) {
+    public void selectTheme(CodeEditor editor, int which) {
         EditorColorScheme scheme;
 
         switch (which) {

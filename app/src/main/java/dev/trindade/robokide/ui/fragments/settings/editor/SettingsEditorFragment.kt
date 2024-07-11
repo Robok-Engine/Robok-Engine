@@ -7,6 +7,7 @@ import android.view.ViewGroup
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.editor.CodeEditorView
@@ -33,7 +34,9 @@ class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAx
         editorTheme.setDescription(getString(R.string.settings_editor_description))
         editorTheme.setPreferenceClickListener {
              val codeEditor = CodeEditorView(requireContext())
-             codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor(), 0)
+             codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { _, _ ->
+                
+             }
         }
         binding.content.addView(editorTheme)
     }
