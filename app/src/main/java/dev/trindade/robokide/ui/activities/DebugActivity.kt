@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import dev.trindade.robokide.R
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dev.trindade.robokide.ui.components.dialog.RobokDialog
 
 import java.io.InputStream
 
@@ -61,10 +62,10 @@ class DebugActivity : AppCompatActivity() {
             }
         }
         error.text = madeErrMsg
-        MaterialAlertDialogBuilder(this)
+        RobokDialog(this)
             .setTitle(R.string.title_debug_title)
             .setMessage(madeErrMsg)
-            .setNeutralButton(R.string.common_word_end) { _, _ ->
+            .setPositiveButton(R.string.common_word_end) { _, _ ->
                 finish()
             }
             .show()
