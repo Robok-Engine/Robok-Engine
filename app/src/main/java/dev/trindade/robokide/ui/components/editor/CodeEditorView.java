@@ -18,12 +18,7 @@ import java.util.List;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
-import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
-import io.github.rosemoe.sora.widget.schemes.SchemeDarcula;
-import io.github.rosemoe.sora.widget.schemes.SchemeEclipse;
-import io.github.rosemoe.sora.widget.schemes.SchemeGitHub;
-import io.github.rosemoe.sora.widget.schemes.SchemeNotepadXX;
-import io.github.rosemoe.sora.widget.schemes.SchemeVS2019;
+import io.github.rosemoe.sora.widget.schemes.*
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
