@@ -2,14 +2,11 @@ package dev.trindade.robokide.ui.components.editor
 
 import android.content.Context
 import android.content.SharedPreferences
-import android.content.DialogInterface
 import android.util.Log
 import android.util.Pair
 import android.app.Activity
-
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
 import dev.trindade.robokide.ui.components.editor.schemes.*
-
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.schemes.*
 
@@ -37,39 +34,30 @@ object ThemeManager {
             5 -> SchemeNotepadXX()
             else -> SchemeRobok(editor.context)
         }
-
         Log.d("ThemeManager", "Selected theme index: $which")
         editor.colorScheme = scheme
     }
 
     fun showSwitchThemeDialog(activity: Activity, editor: CodeEditor, listener: (Int) -> Unit) {
-        if (editor != null) {
-            var selectedThemeIndex = 0
-            val currentScheme = editor.colorScheme
-            for (i in KNOWN_COLOR_SCHEMES.indices) {
-                if (KNOWN_COLOR_SCHEMES[i].second == currentScheme.javaClass) {
-                    selectedThemeIndex = i
-                    break
-                }
+        var selectedThemeIndex = 0
+        val currentScheme = editor.colorScheme
+        for (i in KNOWN_COLOR_SCHEMES.indices) {
+            if (KNOWN_COLOR_SCHEMES[i].second == currentScheme.javaClass) {
+                selectedThemeIndex = i
+                break
             }
-
-            val themeItems = KNOWN_COLOR_SCHEMES.map { it.first }.toTypedArray()
-
-            RobokDialog(activity)
-                .setTitle("Select Theme")
-                .setSingleChoiceItems(themeItems, selectedThemeIndex) { _, which ->
-                    listener(which)
-                    saveTheme(activity, which)
-                }
-                .setNegativeButton("Cancel", null)
-                .show()
-        } else {
-            RobokDialog(activity)
-                .setTitle("Error")
-                .setMessage("Unable to get current theme.")
-                .setPositiveButton("OK", null)
-                .show()
         }
+
+        val themeItems = KNOWN_COLOR_SCHEMES.map { it.first }.toTypedArray()
+
+        RobokDialog(activity)
+            .setTitle("Select Theme")
+            .setSingleChoiceItems(themeItems, selectedThemeIndex) { _, which ->
+                listener(which)
+                saveTheme(activity, which)
+            }
+            .setNegativeButton("Cancel", null)
+            .show()
     }
 
     fun saveTheme(context: Context, themeIndex: Int) {

@@ -3,7 +3,6 @@ package dev.trindade.robokide.ui.components.editor;
 import android.app.Activity;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
@@ -16,7 +15,6 @@ import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
-import dev.trindade.robokide.ui.components.dialog.RobokDialog;
 
 public class CodeEditorView extends LinearLayout {
 
@@ -37,9 +35,8 @@ public class CodeEditorView extends LinearLayout {
         initialize();
     }
 
-    public void initialize() {
-        String defaultCode =
-                "package com.my.newproject;\n\n" +
+    private void initialize() {
+        String defaultCode = "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
                 "    // Variables\n\n" +
                 "    // Variables#string\n" +
@@ -84,7 +81,7 @@ public class CodeEditorView extends LinearLayout {
         loadCESettings(getContext(), editor, "act");
     }
 
-    public void loadCESettings(Context context, CodeEditor editor, String prefix) {
+    private void loadCESettings(Context context, CodeEditor editor, String prefix) {
         SharedPreferences pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
         int text_size = pref.getInt(prefix + "_ts", 12);
         int theme = pref.getInt(prefix + "_theme", 3);
