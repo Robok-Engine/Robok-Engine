@@ -85,10 +85,9 @@ public class CodeEditorView extends LinearLayout {
         applyEditorTheme();
     }
     
-    public void applyEditorTheme () {
-        var themeManager = new ThemeManager();
-        var theme = themeManager.loadTheme(getContext());
-        themeManager.selectTheme(this.editor, theme);
+    public void applyEditorTheme() {
+         int theme = ThemeManager.Companion.loadTheme(getContext());
+         ThemeManager.Companion.selectTheme(this.editor, theme);
     }
 
     public CodeEditor getCodeEditor() {
