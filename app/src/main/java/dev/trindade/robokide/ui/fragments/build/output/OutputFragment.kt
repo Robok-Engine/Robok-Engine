@@ -26,6 +26,7 @@ class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigationBack(binding.toolbar)
     }
     
     fun addOutput(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
