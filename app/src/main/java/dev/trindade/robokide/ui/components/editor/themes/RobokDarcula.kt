@@ -3,7 +3,7 @@ package dev.trindade.robokide.ui.components.editor.themes
 /* commented */ 
 import android.content.Context
 import androidx.core.content.ContextCompat
-import io.github.rosemoe.sora.widget.EditorColorScheme
+import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import dev.trindade.robokide.R
 
