@@ -153,7 +153,7 @@ public class CodeEditorView extends LinearLayout {
         editor.setColorScheme(scheme);
     }
 
-    public static void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
+    public void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
         if (editor != null) {
             int selectedThemeIndex = 0;
             EditorColorScheme currentScheme = editor.getColorScheme();

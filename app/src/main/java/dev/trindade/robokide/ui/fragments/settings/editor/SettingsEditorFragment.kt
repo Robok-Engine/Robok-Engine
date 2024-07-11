@@ -13,7 +13,7 @@ import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.editor.CodeEditorView
 import dev.trindade.robokide.ui.components.preferences.Preference
 
-class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
+class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentSettingsEditorBinding? = null
     private val binding get() = _binding!!
@@ -29,14 +29,15 @@ class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAx
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        val editorTheme = Preference(requireContext())
-        editorTheme.setTitle(getString(R.string.settings_editor_title))
-        editorTheme.setDescription(getString(R.string.settings_editor_description))
-        editorTheme.setPreferenceClickListener {
-             val codeEditor = CodeEditorView(requireContext())
-             codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { _, _ ->
-                
-             }
+        val editorTheme = Preference(requireContext()).apply {
+            setTitle(getString(R.string.settings_editor_title))
+            setDescription(getString(R.string.settings_editor_description))
+            setPreferenceClickListener {
+                val codeEditor = CodeEditorView(requireContext())
+                codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { _, _ ->
+                     
+                }
+            }
         }
         binding.content.addView(editorTheme)
     }
