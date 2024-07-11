@@ -2,43 +2,25 @@ package dev.trindade.robokide.ui.components.editor;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.util.Pair;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
 import androidx.annotation.Nullable;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
-import io.github.rosemoe.sora.widget.schemes.*;
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
 import dev.trindade.robokide.ui.components.dialog.RobokDialog;
-import dev.trindade.robokide.ui.components.editor.schemes.SchemeRobok;
 
 public class CodeEditorView extends LinearLayout {
 
     public CodeEditor editor;
     public SharedPreferences pref;
-
-    public static final List<Pair<String, Class<? extends EditorColorScheme>>> KNOWN_COLOR_SCHEMES = new ArrayList<>();
-    static {
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Robok IDE Default", SchemeRobok.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("GitHub", SchemeGitHub.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Eclipse", SchemeEclipse.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", SchemeDarcula.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("VS2019", SchemeVS2019.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("NotepadXX", SchemeNotepadXX.class));
-    }
 
     public CodeEditorView(Context context) {
         this(context, null);
@@ -109,7 +91,7 @@ public class CodeEditorView extends LinearLayout {
         boolean auto_c = pref.getBoolean(prefix + "_ac", true);
         boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
 
-        selectTheme(editor, theme);
+        ThemeManager.selectTheme(editor, theme);
         editor.setTextSize(text_size);
         editor.setWordwrap(word_wrap);
         editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
@@ -124,62 +106,7 @@ public class CodeEditorView extends LinearLayout {
         return editor.getText().toString();
     }
 
-    public void selectTheme(CodeEditor editor, int which) {
-        EditorColorScheme scheme;
-
-        switch (which) {
-            default:
-            case 0:
-                scheme = new SchemeRobok(getContext());
-                break;
-            case 1:
-                scheme = new SchemeGitHub();
-                break;
-            case 2:
-                scheme = new SchemeEclipse();
-                break;
-            case 3:
-                scheme = new SchemeDarcula();
-                break;
-            case 4:
-                scheme = new SchemeVS2019();
-                break;
-            case 5:
-                scheme = new SchemeNotepadXX();
-                break;
-        }
-
-        Log.d("CodeEditorView", "Selected theme index: " + which);
-        editor.setColorScheme(scheme);
-    }
-
     public void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
-        if (editor != null) {
-            int selectedThemeIndex = 0;
-            EditorColorScheme currentScheme = editor.getColorScheme();
-            for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
-                if (KNOWN_COLOR_SCHEMES.get(i).second.equals(currentScheme.getClass())) {
-                     selectedThemeIndex = i;
-                     break;
-                }
-            }
-            
-            String[] themeItems = new String[KNOWN_COLOR_SCHEMES.size()];
-            for (int i = 0; i < KNOWN_COLOR_SCHEMES.size(); i++) {
-               themeItems[i] = KNOWN_COLOR_SCHEMES.get(i).first;
-            }
-            
-            new RobokDialog(activity)
-                .setTitle("Select Theme")
-                .setSingleChoiceItems(themeItems, selectedThemeIndex, listener)
-                .setNegativeButton("Cancel", null)
-                .show();
-        } else {
-            new RobokDialog(activity)
-                .setTitle("Error")
-                .setMessage("Unable to get current theme.")
-                .setPositiveButton("OK", null)
-                .show();
-        } 
+        ThemeManager.showSwitchThemeDialog(activity, editor, listener);
     }
 }

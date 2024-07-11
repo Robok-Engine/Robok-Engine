@@ -4,14 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.google.android.material.transition.MaterialSharedAxis
-
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 import dev.trindade.robokide.ui.components.editor.CodeEditorView
 import dev.trindade.robokide.ui.components.preferences.Preference
+import dev.trindade.robokide.ui.components.editor.ThemeManager
 
 class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -34,12 +33,16 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
             setDescription(getString(R.string.settings_editor_description))
             setPreferenceClickListener {
                 val codeEditor = CodeEditorView(requireContext())
-                codeEditor.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { _, _ ->
-                     
+                ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
+                    ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
                 }
             }
         }
         binding.content.addView(editorTheme)
+
+        val savedThemeIndex = ThemeManager.loadTheme(requireContext())
+        val codeEditor = CodeEditorView(requireContext())
+        ThemeManager.selectTheme(codeEditor.getCodeEditor(), savedThemeIndex)
     }
 
     override fun onDestroyView() {
