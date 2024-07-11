@@ -79,22 +79,15 @@ public class CodeEditorView extends LinearLayout {
         editor.setTypefaceText(Typeface.MONOSPACE);
         editor.setTextSize(16);
         editor.setEditorLanguage(new JavaLanguage());
-        loadCESettings(getContext(), editor, "act");
+        editor.setWordwrap(false);
+        editor.getProps().symbolPairAutoCompletion = true;
+        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
+        applyEditorTheme();
     }
-
-    private void loadCESettings(Context context, CodeEditor editor, String prefix) {
-        SharedPreferences pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
-        int text_size = pref.getInt(prefix + "_ts", 12);
-        int theme = pref.getInt(prefix + "_theme", 3);
-        boolean word_wrap = pref.getBoolean(prefix + "_ww", false);
-        boolean auto_c = pref.getBoolean(prefix + "_ac", true);
-        boolean auto_complete_symbol_pairs = pref.getBoolean(prefix + "_acsp", true);
-
-        ThemeManager.INSTANCE.selectTheme(editor, theme);
-        editor.setTextSize(text_size);
-        editor.setWordwrap(word_wrap);
-        editor.getProps().symbolPairAutoCompletion = auto_complete_symbol_pairs;
-        editor.getComponent(EditorAutoCompletion.class).setEnabled(auto_c);
+    
+    public void applyEditorTheme () {
+        var theme = ThemeManager.loadTheme(getContext());
+        ThemeManager.selectTheme(this.editor, theme);
     }
 
     public CodeEditor getCodeEditor() {
@@ -102,13 +95,6 @@ public class CodeEditorView extends LinearLayout {
     }
 
     public String getText() {
-        return editor.getText().toString();
-    }
-
-    public void showSwitchThemeDialog(Activity activity, CodeEditor editor, DialogInterface.OnClickListener listener) {
-        ThemeManager.INSTANCE.showSwitchThemeDialog(activity, editor, which -> {
-            listener.onClick(null, which);
-            return null;
-        });
+        return this.editor.getText().toString();
     }
 }

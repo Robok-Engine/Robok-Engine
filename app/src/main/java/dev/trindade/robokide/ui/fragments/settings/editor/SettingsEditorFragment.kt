@@ -30,8 +30,8 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         navigationBack(binding.toolbar)
 
         val editorTheme = Preference(requireContext()).apply {
-            setTitle(getString(R.string.settings_editor_title))
-            setDescription(getString(R.string.settings_editor_description))
+            setTitle(getString(R.string.settings_editor_theme_title))
+            setDescription(getString(R.string.settings_editor_theme_description))
             setPreferenceClickListener {
                 val codeEditor = CodeEditorView(requireContext())
                 ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
