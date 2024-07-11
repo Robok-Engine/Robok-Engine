@@ -28,7 +28,7 @@ import dev.trindade.robokide.manage.file.getDefaultPath
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
 import dev.trindade.robokide.ui.fragments.settings.SettingsFragment
 
-class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -44,7 +44,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.createProject.setOnClickListener {
-            openFragment(CreateProjectFragment(MaterialSharedAxis.Y))
+            openFragment(CreateProjectFragment(MaterialSharedAxis.X))
         }
         
         binding.openProject.setOnClickListener {
@@ -56,7 +56,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : Ro
         }
         
         binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment(MaterialSharedAxis.Y))
+            openFragment(EditorFragment(MaterialSharedAxis.X))
         }
     }
     

@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindade.robokide.databinding.FragmentCreateProjectBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 
-class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentCreateProjectBinding? = null
     private val binding get() = _binding!!

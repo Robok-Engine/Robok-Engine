@@ -14,7 +14,7 @@ import dev.trindade.robokide.ui.components.preferences.Preference
 import dev.trindade.robokide.ui.fragments.settings.editor.SettingsEditorFragment
 import dev.trindade.robokide.ui.components.editor.CodeEditorView
 
-class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.Y) : RobokFragment(transitionAxis) {
+class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentSettingsBinding? = null
     private val binding get() = _binding!!

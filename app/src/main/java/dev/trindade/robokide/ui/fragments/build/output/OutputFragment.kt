@@ -12,7 +12,7 @@ import dev.trindade.robokide.databinding.FragmentOutputBinding
 import dev.trindade.robokide.ui.components.log.Log
 import dev.trindade.robokide.ui.base.RobokFragment
 
-class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentOutputBinding? = null
     private val binding get() = _binding!!

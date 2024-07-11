@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindade.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindade.robokide.ui.base.RobokFragment
 
-class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class SettingsEditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentSettingsEditorBinding? = null
     private val binding get() = _binding!!

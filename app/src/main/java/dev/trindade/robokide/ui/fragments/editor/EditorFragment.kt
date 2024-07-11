@@ -17,7 +17,7 @@ import dev.trindade.robokide.ui.base.RobokFragment
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : RobokFragment(tansitionAxis) {
+class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -43,7 +43,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
             }
 
             override fun onCompiled(output: String) {
-                val outputFragment = OutputFragment(MaterialSharedAxis.Y)
+                val outputFragment = OutputFragment(MaterialSharedAxis.X)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
                 
                 Snackbar.make(binding.root, R.string.message_compiled, Snackbar.LENGTH_LONG)
@@ -77,7 +77,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.Y) : 
         private const val PROJECT_PATH = "arg_path"
 
         fun newInstance(path: String): EditorFragment {
-            return EditorFragment(MaterialSharedAxis.Y).apply {
+            return EditorFragment(MaterialSharedAxis.X).apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
                 }
