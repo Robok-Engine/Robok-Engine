@@ -23,6 +23,7 @@ import io.github.rosemoe.sora.langs.java.JavaLanguage;
 
 import dev.trindade.robokide.R;
 import dev.trindade.robokide.ui.components.dialog.RobokDialog;
+import dev.trindade.robokide.ui.components.editor.themes.RobokDarcula;
 
 public class CodeEditorView extends LinearLayout {
 
@@ -34,9 +35,10 @@ public class CodeEditorView extends LinearLayout {
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Default", EditorColorScheme.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("GitHub", SchemeGitHub.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("Eclipse", SchemeEclipse.class));
-        KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", SchemeDarcula.class));
+        KNOWN_COLOR_SCHEMES.add(new Pair<>("Darcula", RobokDarcula.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("VS2019", SchemeVS2019.class));
         KNOWN_COLOR_SCHEMES.add(new Pair<>("NotepadXX", SchemeNotepadXX.class));
+        
     }
 
     public CodeEditorView(Context context) {
@@ -79,7 +81,7 @@ public class CodeEditorView extends LinearLayout {
          return editor.getText().toString(); 
     }
 
-    private static void selectTheme(CodeEditor editor, int which) {
+    private void selectTheme(CodeEditor editor, int which) {
         EditorColorScheme scheme;
 
         switch (which) {
@@ -94,7 +96,7 @@ public class CodeEditorView extends LinearLayout {
                 scheme = new SchemeEclipse();
                 break;
             case 3:
-                scheme = new SchemeDarcula();
+                scheme = new RobokDarcula(getContext());
                 break;
             case 4:
                 scheme = new SchemeVS2019();
