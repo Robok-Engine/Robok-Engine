@@ -50,7 +50,7 @@ public class CodeEditorView extends LinearLayout {
 
     public CodeEditorView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.code_editor_hs, this);
+        LayoutInflater.from(context).inflate(R.layout.layout_code_editor, this);
 
         editor = findViewById(R.id.editor);
         pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
