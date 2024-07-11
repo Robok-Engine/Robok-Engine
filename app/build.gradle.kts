@@ -104,7 +104,7 @@ dependencies {
     
     // robok
     // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
-    implementation(project(":language:language"))
+    implementation(project(":language"))
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
