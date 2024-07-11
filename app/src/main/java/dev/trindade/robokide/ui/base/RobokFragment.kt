@@ -28,14 +28,6 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         }
     }
     
-    fun openFragmentSettings(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.settings_fragment_container, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
-
     fun navigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(requireActivity()))
     }

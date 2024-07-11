@@ -1,29 +1,20 @@
 package dev.trindade.robokide.ui.activities
 
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.fragments.home.HomeFragment
-import dev.trindade.robokide.manage.file.requestPermission
+import dev.trindade.robokide.ui.base.RobokActivity
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         
-        val path = ""
-        
-        requestPermission(this)
-        
         if (savedInstanceState == null) {
-            val fragment = HomeFragment()
-            
-            supportFragmentManager.commit {
-                replace(R.id.fragment_container, fragment)
-            }
+            openFragment(HomeFragment(MaterialSharedAxis.Y)
         }
+        
     }
 }

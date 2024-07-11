@@ -7,16 +7,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 
-import androidx.appcompat.app.AppCompatActivity
-
 import dev.trindade.robokide.R
-
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
+import dev.trindade.robokide.ui.base.RobokActivity
 
 import java.io.InputStream
 
-class DebugActivity : AppCompatActivity() {
+class DebugActivity : RobokActivity() {
     
     private var madeErrMsg: String = ""
     private lateinit var error: TextView
