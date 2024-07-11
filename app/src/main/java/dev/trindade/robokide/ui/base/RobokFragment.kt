@@ -20,7 +20,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         setReenterTransition(MaterialSharedAxis(transitionMode, false))
     }
     
-    private fun openFragment(fragment: Fragment) {
+    fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.fragment_container, fragment)
             addToBackStack(null)
@@ -28,7 +28,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         }
     }
     
-    private fun openFragmentSettings(fragment: Fragment) {
+    fun openFragmentSettings(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(R.id.settings_fragment_container, fragment)
             addToBackStack(null)
