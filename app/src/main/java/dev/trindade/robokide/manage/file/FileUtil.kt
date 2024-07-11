@@ -10,6 +10,8 @@ import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
+import java.io.FileInputStream
+import java.io.IOException
 
 fun createFolder(folderPath: String) {
     val folder = File(folderPath)
@@ -39,8 +41,8 @@ fun createFile(filePath: String) {
     }
 }
 
-fun getDefaultPath() : String {
-     return "/sdcard/"
+fun getDefaultPath(): String {
+    return "/sdcard/"
 }
 
 fun requestPermission(activity: Activity) {
@@ -79,5 +81,59 @@ fun onRequestPermissionsResult(
         } else {
             println("Permissions denied")
         }
+    }
+}
+
+// Method to read text files
+fun readTextFile(filePath: String): String {
+    val file = File(filePath)
+    return if (file.exists()) {
+        try {
+            file.readText()
+        } catch (e: IOException) {
+            println("Error reading file: ${e.message}")
+            ""
+        }
+    } else {
+        println("File not found: $filePath")
+        ""
+    }
+}
+
+// Method to read binary files
+fun readBinaryFile(filePath: String): ByteArray? {
+    val file = File(filePath)
+    return if (file.exists()) {
+        try {
+            FileInputStream(file).use { it.readBytes() }
+        } catch (e: IOException) {
+            println("Error reading file: ${e.message}")
+            null
+        }
+    } else {
+        println("File not found: $filePath")
+        null
+    }
+}
+
+// Usage examples
+fun main() {
+    val folderPath = getDefaultPath() + "myFolder"
+    createFolder(folderPath)
+
+    val filePath = folderPath + "/myTextFile.txt"
+    createFile(filePath)
+
+    val textContent = readTextFile(filePath)
+    println(textContent)
+
+    val binaryFilePath = folderPath + "/myBinaryFile.dat"
+    createFile(binaryFilePath)
+
+    val binaryContent = readBinaryFile(binaryFilePath)
+    if (binaryContent != null) {
+        println("Binary file read successfully")
+    } else {
+        println("Failed to read binary file")
     }
 }
