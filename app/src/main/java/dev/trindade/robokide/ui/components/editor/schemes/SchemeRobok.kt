@@ -26,6 +26,8 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
         setColor(EditorColorScheme.CURRENT_LINE, getColor(dev.trindade.robokide.R.color.scheme_robok_current_line)) // set the current line color
         setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
         setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
+        setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors
+        setColor(EditorColorScheme.FUNCTION_DECLARATION, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set funs declaratioms colors
     }
 
     private fun getAttrColor(@AttrRes resId: Int): Int {
