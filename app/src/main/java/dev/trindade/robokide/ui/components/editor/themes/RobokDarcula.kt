@@ -10,6 +10,6 @@ import dev.trindade.robokide.R
 class RobokDarcula(context: Context) : SchemeDarcula() {
     init {
         val backgroundColor = ContextCompat.getColor(context, R.color.md_theme_background)
-        getColorPool().setColor(EditorColorScheme.WHOLE_BACKGROUND, backgroundColor)
+        setColor(EditorColorScheme.WHOLE_BACKGROUND, backgroundColor)
     }
 }
