@@ -27,7 +27,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : 
     private var _bindingContent: ContentFragmentEditorBinding? = null
     private val bindingContent get() = _bindingContent!!
     
-    private var _bindingDrawer; DrawerFragmentEditorBinding? = null
+    private var _bindingDrawer: DrawerFragmentEditorBinding? = null
     private val bindingDrawer get() = _bindingDrawer!!
 
     override fun onCreateView(
