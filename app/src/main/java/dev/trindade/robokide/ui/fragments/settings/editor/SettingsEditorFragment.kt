@@ -27,7 +27,7 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationBack(binding.toolbar)
+        configureToolbarNavigationBack(binding.toolbar)
 
         val editorTheme = Preference(requireContext()).apply {
             setTitle(getString(R.string.settings_editor_theme_title))

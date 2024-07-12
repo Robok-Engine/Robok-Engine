@@ -28,7 +28,8 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationBack(binding.toolbar)
+        configureToolbarNavigationBack(binding.toolbar)
+        
         val editorSettings = Preference(requireContext())
         editorSettings.setTitle(getString(R.string.settings_editor_title))
         editorSettings.setDescription(getString(R.string.settings_editor_description))

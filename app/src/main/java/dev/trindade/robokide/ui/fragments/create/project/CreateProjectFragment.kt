@@ -25,6 +25,7 @@ class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxi
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        configureToolbarNavigationBack(binding.toolbar)
     }
 
     override fun onDestroyView() {

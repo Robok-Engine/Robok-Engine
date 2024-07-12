@@ -10,6 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.manage.file.requestPermission
+import dev.trindade.robokide.utils.getBackPressedClickListener
 
 open class RobokActivity : AppCompatActivity() {
 
@@ -25,7 +26,17 @@ open class RobokActivity : AppCompatActivity() {
         }
     }
     
+    fun openCustomFragment (layoutId: Int, fragment: Fragment) {
+        supportFragmentManager.commit {
+             replace(layoutId, fragment)
+        }
+    }
+    
     fun requestPerms() {
         requestPermission(this)
+    }
+    
+    fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
+        toolbar.setNavigationOnClickListener(getBackPressedClickListener(requireActivity()))
     }
 }

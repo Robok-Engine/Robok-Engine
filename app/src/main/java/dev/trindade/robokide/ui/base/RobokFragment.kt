@@ -36,7 +36,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         }
     }
     
-    fun navigationBack(toolbar: MaterialToolbar) {
+    fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(requireActivity()))
     }
 }
