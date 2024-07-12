@@ -10,13 +10,19 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_back" 
         android:layout_marginRight="10dp"
         android:layout_marginLeft="10dp"
-        style="?materialButtonOutlinedStyle" />
+        android:layout_weight="1"
+        android:id="@+id/button_back" 
+        style="?materialButtonOutlinedStyle"
+        android:text="@string/common_word_back" />
         
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_go" />    
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_weight="1"
+        android:id="@+id/button_go"
+        android:text="@string/common_word_next" />    
 </LinearLayout>
