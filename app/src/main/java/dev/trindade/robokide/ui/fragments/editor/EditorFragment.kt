@@ -22,7 +22,7 @@ import dev.trindade.robokide.ui.base.RobokFragment
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
+class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -34,14 +34,14 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
         _binding = FragmentEditorBinding.inflate(inflater, container, false)
         return binding.root
     }
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
+
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
-        
+
         val terminal = RobokTerminal(requireContext())
-        
+
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)
@@ -50,7 +50,7 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
             override fun onCompiled(output: String) {
                 val outputFragment = OutputFragment(MaterialSharedAxis.X)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
-                
+
                 Snackbar.make(binding.root, R.string.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(R.string.go_to_outputs) {
                         openFragment(outputFragment)
@@ -59,41 +59,49 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
                     .show()
             }
         }
-        
+
         val compiler = LogicCompiler(requireContext(), compilerListener)
-        
+
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
             terminal.show()
             compiler.compile(code)
         }
-        
+
         binding.seeLogs.setOnClickListener {
             terminal.show()
         }
-        
+
+        tabLayoutConfig()
+    }
+
+    private fun tabLayoutConfig() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-             
-             override fun onTabSelected(tab: TabLayout.Tab?) {
-                   tab?.let {
-                      when (it.id) {
-                         R.id.logs_tab -> {
-                             openCustomFragment(R.id.drawer_editor_fragment_container, LogsFragment(MaterialSharedAxis.Y))
-                         }
-                         R.id.diagnostic_tab -> {
-                             openCustomFragment(R.id.drawer_editor_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
-                         }
-                      }
-                   }
-             }
-             override fun onTabReselected(tab: TabLayout.Tab?) {
-             
-             }
-             override fun onTabUnselected(tab: TabLayout.Tab?) {
-             
-             }
+            override fun onTabSelected(tab: TabLayout.Tab?) {
+                tab?.let {
+                    when (it.id) {
+                        R.id.logs_tab -> {
+                            openCustomFragment(R.id.drawer_editor_fragment_container, LogsFragment(MaterialSharedAxis.Y))
+                        }
+
+                        R.id.diagnostic_tab -> {
+                            openCustomFragment(R.id.drawer_editor_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
+                        }
+                        else -> {
+                            // Handle other tabs if needed
+                        }
+                    }
+                }
+            }
+
+            override fun onTabReselected(tab: TabLayout.Tab?) {
+                // Handle reselection if needed
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab?) {
+                // Handle tab unselection if needed
+            }
         })
-        
     }
 
     override fun onDestroyView() {
