@@ -13,7 +13,6 @@ class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        configureToolbarNavigationBack(binding.toolbar)
         if (savedInstanceState == null) {
             openFragment(HomeFragment(MaterialSharedAxis.X))
         }
