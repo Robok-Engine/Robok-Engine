@@ -2,21 +2,21 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/content_actions" 
-    android:orientation="vertical"
+    android:orientation="horizontal"
     android:padding="8dp" > 
     
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/button_back" 
-        android:orientation="vertical" 
-        style="?materialButtonOutlinedStyle"/>
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        style="?materialButtonOutlinedStyle" />
         
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/button_go" 
-        android:orientation="vertical" />    
+        android:id="@+id/button_go" />    
 </LinearLayout>
