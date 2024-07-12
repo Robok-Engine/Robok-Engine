@@ -12,8 +12,6 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
-import dev.trindade.robokide.databinding.DrawerFragmentEditorBinding
-import dev.trindade.robokide.databinding.ContentFragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindade.robokide.ui.base.RobokFragment
@@ -25,24 +23,12 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
-    
-    private var _bindingContent: ContentFragmentEditorBinding? = null
-    private val bindingContent get() = _bindingContent!!
-    
-    private var _bindingDrawer: DrawerFragmentEditorBinding? = null
-    private val bindingDrawer get() = _bindingDrawer!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentEditorBinding.inflate(inflater, container, false)
-        _bindingContent = ContentFragmentEditorBinding.inflate(inflater, container, false)
-        _bindingDrawer = DrawerFragmentEditorBinding.inflate(inflater, container, false)
-
-        binding.root.findViewById<FrameLayout>(R.id.content_container).addView(bindingContent.root)
-        binding.root.findViewById<NavigationView>(R.id.navigation_view).addView(bindingDrawer.root)
-
         return binding.root
     }
     
@@ -73,13 +59,13 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
         
         val compiler = LogicCompiler(requireContext(), compilerListener)
         
-        bindingContent.runButton.setOnClickListener {
-            val code = bindingContent.codeEditor.text.toString()
+        binding.runButton.setOnClickListener {
+            val code = binding.codeEditor.text.toString()
             terminal.show()
             compiler.compile(code)
         }
         
-        bindingContent.seeLogs.setOnClickListener {
+        binding.seeLogs.setOnClickListener {
             terminal.show()
         }
     }
@@ -87,8 +73,6 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        _bindingContent = null
-        _bindingDrawer = null
     }
 
     companion object {
