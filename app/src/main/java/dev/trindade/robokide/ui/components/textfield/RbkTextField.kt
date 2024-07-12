@@ -4,6 +4,8 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.LinearLayout
+import android.text.Editable
+import android.text.TextUtils
 
 import androidx.core.content.ContextCompat
 
@@ -29,7 +31,14 @@ class RbkTextField @JvmOverloads constructor(
         
         binding.background.hint = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldHint)
         binding.background.placeholderText = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldPlaceholderText)
-        binding.edittext.text = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldText)
+        
+        val textString: String? = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldText)
+        val editableText: Editable? = if (!TextUtils.isEmpty(textString)) {
+            Editable.Factory.getInstance().newEditable(textString)
+        } else {
+            null
+        }
+        binding.edittext.text = editableText
         
         val startIconDrawableRes = typedArray.getResourceId(R.styleable.RbkTextField_rbkTextFieldStartIconDrawable, 0)
         if (startIconDrawableRes != 0) {
