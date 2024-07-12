@@ -19,7 +19,7 @@ import dev.trindade.robokide.ui.base.RobokFragment
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 
-class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
+class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
@@ -37,6 +37,10 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : 
         _binding = FragmentEditorBinding.inflate(inflater, container, false)
         _bindingContent = ContentFragmentEditorBinding.inflate(inflater, container, false)
         _bindingDrawer = DrawerFragmentEditorBinding.inflate(inflater, container, false)
+
+        binding.root.findViewById<FrameLayout>(R.id.content_container).addView(bindingContent.root)
+        binding.root.findViewById<NavigationView>(R.id.navigation_view).addView(bindingDrawer.root)
+
         return binding.root
     }
     
@@ -68,7 +72,7 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : 
         val compiler = LogicCompiler(requireContext(), compilerListener)
         
         bindingContent.runButton.setOnClickListener {
-            val code = bindingContent.codeEditor.getText()
+            val code = bindingContent.codeEditor.text.toString()
             terminal.show()
             compiler.compile(code)
         }
@@ -81,6 +85,8 @@ class EditorFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        _bindingContent = null
+        _bindingDrawer = null
     }
 
     companion object {
