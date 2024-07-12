@@ -4,18 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true" >
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true" >
+        android:fitsSystemWindows="true">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
             android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed" >
+            app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:layout_width="match_parent"
@@ -27,48 +27,54 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <LinearLayout 
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="8dp" >
+        android:padding="8dp">
 
-        <LinearLayout 
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:id="@+id/content_widgets"
-            android:orientation="vertical"
-            android:padding="8dp" >
+            android:fillViewport="true">
 
-            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                app:rbkTextFieldText="New App"
-                app:rbkTextFieldHint="@string/hint_project_name" />
+                android:id="@+id/content_widgets"
+                android:orientation="vertical"
+                android:padding="8dp">
 
-            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
-                android:layout_marginBottom="8dp"
-                android:layout_marginLeft="8dp"
-                android:layout_marginRight="8dp"
-                app:rbkTextFieldText="com.my.newapp"
-                app:rbkTextFieldHint="@string/hint_package_name" />    
+                <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:rbkTextFieldText="New App"
+                    app:rbkTextFieldHint="@string/hint_project_name" />
 
-        </LinearLayout>
+                <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginRight="8dp"
+                    app:rbkTextFieldText="com.my.newapp"
+                    app:rbkTextFieldHint="@string/hint_package_name" />    
+
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/content_actions" 
             android:orientation="horizontal"
-            android:padding="8dp" > 
+            android:padding="8dp"> 
 
             <Button
                 android:layout_width="0dp"
