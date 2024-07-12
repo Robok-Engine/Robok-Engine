@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+  <item>
+    <shape>
+      <solid android:color="?attr/colorSurfaceContainer" />
+    </shape>
+  </item>
+  <item android:gravity="top">
+    <shape>
+      <size android:height="@dimen/m3_comp_divider_thickness" />
+      <solid android:color="@color/color_bottom_navigation_stroke" />
+    </shape>
+  </item>
+</layer-list>

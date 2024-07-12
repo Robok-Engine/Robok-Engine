@@ -20,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 android:id="@+id/toolbar"
+                style="@style/Widget.Robok.AppBarLayout"
                 app:layout_collapseMode="pin"
                 app:navigationIcon="@drawable/abc_ic_ab_back_material"
                 app:title="@string/common_word_settings" />
