@@ -27,52 +27,68 @@
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout 
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
-        
+        android:orientation="vertical"
+        android:padding="8dp" >
+
         <LinearLayout 
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:id="@+id/content"
-           android:orientation="vertical"
-           android:padding="8dp" >
-           
-           <LinearLayout 
-              android:layout_width="match_parent"
-              android:layout_height="0dp"
-              android:layout_weight="1"
-              android:id="@+id/content_widgets"
-              android:orientation="vertical"
-              android:padding="8dp" >
-              
-               <dev.trindade.robokide.ui.components.textfield.RbkTextField 
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="0dp"
-                  android:layout_marginBottom="8dp"
-                  android:layout_marginLeft="8dp"
-                  android:layout_marginRight="8dp"
-                  app:rbkTextFieldText="New App"
-                  app:rbkTextFieldHint="@string/hint_project_name" />
-                  
-               <dev.trindade.robokide.ui.components.textfield.RbkTextField 
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="0dp"
-                  android:layout_marginBottom="8dp"
-                  android:layout_marginLeft="8dp"
-                  android:layout_marginRight="8dp"
-                  app:rbkTextFieldText="com.my.newapp"
-                  app:rbkTextFieldHint="@string/hint_package_name" />    
-           
-           </LinearLayout>
-           <include
-               android:layout_weight="1"
-               layout="@layout/layout_bottom_actions" />
-        </LinearLayout>   
-    </androidx.core.widget.NestedScrollView>
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:id="@+id/content_widgets"
+            android:orientation="vertical"
+            android:padding="8dp" >
+
+            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:rbkTextFieldText="New App"
+                app:rbkTextFieldHint="@string/hint_project_name" />
+
+            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="0dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                app:rbkTextFieldText="com.my.newapp"
+                app:rbkTextFieldHint="@string/hint_package_name" />    
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/content_actions" 
+            android:orientation="horizontal"
+            android:padding="8dp" > 
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:id="@+id/button_back" 
+                style="?materialButtonOutlinedStyle"
+                android:text="@string/common_word_back" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:id="@+id/button_go"
+                android:text="@string/common_word_next" />    
+        </LinearLayout>
+
+    </LinearLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
