@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".YourActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,13 +20,15 @@
         <dev.trindade.robokide.ui.components.editor.CodeEditorView
             android:id="@+id/code_editor"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
             android:layout_below="@id/toolbar"
+            android:layout_above="@id/bottom_buttons_container"
             android:gravity="top|start"
             android:padding="8dp"
             android:hint="@string/common_word_code" />
 
         <LinearLayout
+            android:id="@+id/bottom_buttons_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -50,6 +53,15 @@
         </LinearLayout>
     </RelativeLayout>
     
-    <include
-       layout="@layout/drawer_fragment_editor" />
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+        <include
+            layout="@layout/drawer_fragment_editor" />
+
+    </com.google.android.material.navigation.NavigationView>
 </androidx.drawerlayout.widget.DrawerLayout>
