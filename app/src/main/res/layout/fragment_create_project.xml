@@ -71,6 +71,7 @@
            
            </LinearLayout>
            <include
+               android:layout_weight="1"
                layout="@layout/layout_bottom_actions" />
         </LinearLayout>   
     </androidx.core.widget.NestedScrollView>
