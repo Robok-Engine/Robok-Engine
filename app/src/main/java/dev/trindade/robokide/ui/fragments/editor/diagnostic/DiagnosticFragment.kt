@@ -1,6 +1,7 @@
 package dev.trindade.robokide.ui.fragments.editor.diagnostic
 
 import android.os.Bundle
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.google.android.material.transition.MaterialSharedAxis
 
 import dev.trindade.robokide.databinding.FragmentDiagnosticBinding
+import dev.trindade.robokide.ui.components.log.Log
 import dev.trindade.robokide.ui.base.RobokFragment
 
 class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
@@ -19,12 +21,18 @@ class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDiagnosticBinding.inflate(inflater, container, false)
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        navigationBack(binding.toolbar)
+    }
+    
+    fun addDiagnostic(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
+        _binding = FragmentDiagnosticBinding.inflate(inflater, container, false)
+        val logView = Log(context, log)
+        binding.content.addView(logView)
     }
 
     override fun onDestroyView() {
