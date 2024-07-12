@@ -36,7 +36,7 @@ class DebugActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_debug)
-        
+        configureToolbarNavigationBack(binding.toolbar)
         error = findViewById(R.id.error)
         
         val intent = intent
