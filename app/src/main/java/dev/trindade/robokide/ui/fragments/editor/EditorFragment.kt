@@ -9,12 +9,15 @@ import android.widget.FrameLayout
 import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
+import com.google.android.material.tabs.TabLayout
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindade.robokide.ui.base.RobokFragment
+import dev.trindade.robokide.ui.editor.logs.LogsFragment
+import dev.trindade.robokide.ui.editor.diagnostic.DiagnosticFragment
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
@@ -68,6 +71,29 @@ class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : 
         binding.seeLogs.setOnClickListener {
             terminal.show()
         }
+        
+        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+             
+             override fun onTabSelected(tab: TabLayout.Tab?) {
+                   tab?.let {
+                      when (it.id) {
+                         R.id.logs_tab -> {
+                             openCustomFragment(R.id.drawer_editor_fragment_container, LogsFragment(MaterialSharedAxis.Y))
+                         }
+                         R.id.diagnostic_tab -> {
+                             openCustomFragment(R.id.drawer_editor_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
+                         }
+                      }
+                   }
+             }
+             override fun onTabReselected(tab: TabLayout.Tab?) {
+             
+             }
+             override fun onTabUnselected(tab: TabLayout.Tab?) {
+             
+             }
+        })
+        
     }
 
     override fun onDestroyView() {
