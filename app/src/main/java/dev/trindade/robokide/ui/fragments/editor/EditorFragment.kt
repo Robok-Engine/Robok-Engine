@@ -15,9 +15,9 @@ import dev.trindade.robokide.R
 import dev.trindade.robokide.databinding.FragmentEditorBinding
 import dev.trindade.robokide.ui.terminal.RobokTerminal
 import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
+import dev.trindade.robokide.ui.fragments.editor.logs.LogsFragment
+import dev.trindade.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
 import dev.trindade.robokide.ui.base.RobokFragment
-import dev.trindade.robokide.ui.editor.logs.LogsFragment
-import dev.trindade.robokide.ui.editor.diagnostic.DiagnosticFragment
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
