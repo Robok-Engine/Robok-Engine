@@ -19,7 +19,7 @@ import dev.trindade.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindade.robokide.ui.base.RobokFragment
 
 import robok.dev.compiler.logic.LogicCompiler
-import robok.dev.compiler.logic.LogicCompilerListenerstener
+import robok.dev.compiler.logic.LogicCompilerListener
 
 class EditorFragment (private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
