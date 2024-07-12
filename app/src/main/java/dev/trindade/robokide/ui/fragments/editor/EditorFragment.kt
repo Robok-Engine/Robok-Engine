@@ -79,12 +79,12 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
-                    when (it.id) {
-                        R.id.logs_tab -> {
+                    when (it.text) {
+                        getString(R.string.text_logs) -> {
                             openCustomFragment(R.id.drawer_editor_fragment_container, LogsFragment(MaterialSharedAxis.Y))
                         }
 
-                        R.id.diagnostic_tab -> {
+                        getString(R.string.text_diagnostic) -> {
                             openCustomFragment(R.id.drawer_editor_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
                         }
                         else -> {
