@@ -25,12 +25,12 @@ class RbkTextField @JvmOverloads constructor(
     )
 
     init {
-        // Read custom attributes from XML
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.RbkTextField, defStyleAttr, 0)
         
-        // Apply attributes to components
         binding.background.hint = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldHint)
         binding.background.placeholderText = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldPlaceholderText)
+        binding.edittext.text = typedArray.getString(R.styleable.RbkTextField_rbkTextFieldText)
+        
         val startIconDrawableRes = typedArray.getResourceId(R.styleable.RbkTextField_rbkTextFieldStartIconDrawable, 0)
         if (startIconDrawableRes != 0) {
             binding.background.startIconDrawable = ContextCompat.getDrawable(context, startIconDrawableRes)

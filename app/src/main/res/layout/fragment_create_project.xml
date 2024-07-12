@@ -46,6 +46,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:id="@+id/content_widgets"
+              android:layout_weight="1"
               android:orientation="vertical"
               android:padding="8dp" >
               
@@ -56,8 +57,18 @@
                   android:layout_marginBottom="8dp"
                   android:layout_marginLeft="8dp"
                   android:layout_marginRight="8dp"
-                  app:rbkTextFieldHint="@string/hint_project_name"
-                  app:rbkTextFieldPlaceholderText="Robok IDE" />
+                  app:rbkTextFieldText="New App"
+                  app:rbkTextFieldHint="@string/hint_project_name" />
+                  
+               <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="0dp"
+                  android:layout_marginBottom="8dp"
+                  android:layout_marginLeft="8dp"
+                  android:layout_marginRight="8dp"
+                  app:rbkTextFieldText="com.my.newapp"
+                  app:rbkTextFieldHint="@string/hint_package_name" />    
            
            </LinearLayout>
            <include

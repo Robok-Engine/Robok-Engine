@@ -33,6 +33,7 @@
 	
 	<!-- hints section -->
 	<string name="hint_project_name">Project name</string>
+	<string name="hint_package_name">Package name</string>
 	<!-- end section -->
 	
 	<!-- settings section -->
