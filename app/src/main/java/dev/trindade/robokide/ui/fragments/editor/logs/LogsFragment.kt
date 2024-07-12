@@ -1,4 +1,4 @@
-package dev.trindade.robokide.ui.fragments.editor.diagnostic
+package dev.trindade.robokide.ui.fragments.editor.logs
 
 import android.os.Bundle
 import android.content.Context

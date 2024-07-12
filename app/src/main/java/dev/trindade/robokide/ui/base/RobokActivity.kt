@@ -7,6 +7,7 @@ import androidx.fragment.app.commit
 import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
+import com.google.android.material.appbar.MaterialToolbar
 
 import dev.trindade.robokide.R
 import dev.trindade.robokide.manage.file.requestPermission
@@ -37,6 +38,6 @@ open class RobokActivity : AppCompatActivity() {
     }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(requireActivity()))
+        toolbar.setNavigationOnClickListener(getBackPressedClickListener(this))
     }
 }

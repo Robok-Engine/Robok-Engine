@@ -7,6 +7,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 
+import com.google.android.material.appbar.MaterialToolbar
+
 import dev.trindade.robokide.R
 import dev.trindade.robokide.ui.components.dialog.RobokDialog
 import dev.trindade.robokide.ui.base.RobokActivity
@@ -17,6 +19,7 @@ class DebugActivity : RobokActivity() {
     
     private var madeErrMsg: String = ""
     private lateinit var error: TextView
+    private lateinit var toolbar: MaterialToolbar
     
     private val exceptionType = arrayOf(
         "StringIndexOutOfBoundsException",
@@ -36,8 +39,10 @@ class DebugActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_debug)
-        configureToolbarNavigationBack(binding.toolbar)
         error = findViewById(R.id.error)
+        toolbar = findViewById(R.id.toolbar)
+        
+        configureToolbarNavigationBack(toolbar)
         
         val intent = intent
         var errMsg = ""
