@@ -10,18 +10,18 @@
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tablayout"
         android:layout_width="match_parent" 
-        ndroid:layout_height="wrap_content" >
+        android:layout_height="wrap_content" >
 
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_logs" />
+        <com.google.android.material.tabs.TabItem
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/text_logs" />
 
-    <com.google.android.material.tabs.TabItem
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/text_diagnostic" />
-
-</com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.tabs.TabItem
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="@string/text_diagnostic" />
+        
+    </com.google.android.material.tabs.TabLayout>
     
 </LinearLayout>
