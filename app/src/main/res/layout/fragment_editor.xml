@@ -1,52 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<androidx.drawerlayout.widget.DrawerLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- Assuming Toolbar is a custom component -->
-    <dev.trindade.robokide.ui.components.toolbar.Toolbar
-        android:id="@+id/toolbar"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true" />
+        android:layout_height="match_parent">
 
-    <!-- CodeEditorView for editing code -->
-    <dev.trindade.robokide.ui.components.editor.CodeEditorView
-        android:id="@+id/code_editor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/toolbar"
-        android:gravity="top|start"
-        android:padding="8dp"
-        android:hint="@string/common_word_code" />
+        <dev.trindade.robokide.ui.components.toolbar.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
 
-    <!-- LinearLayout for buttons aligned to bottom right -->
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp">
+        <!-- CodeEditorView for editing code -->
+        <dev.trindade.robokide.ui.components.editor.CodeEditorView
+            android:id="@+id/code_editor"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/toolbar"
+            android:gravity="top|start"
+            android:padding="8dp"
+            android:hint="@string/common_word_code" />
 
-        <!-- Button to run code -->
-        <Button
-            android:id="@+id/run_button"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/common_word_run"
-            android:layout_marginTop="10dp" />
+            android:orientation="vertical"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="20dp">
 
-        <!-- Button to view logs -->
-        <Button
-            android:id="@+id/see_logs"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/common_word_logs"
-            android:layout_marginTop="10dp" />
-    </LinearLayout>
+            <Button
+                android:id="@+id/run_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_word_run"
+                android:layout_marginTop="10dp" />
 
-</RelativeLayout>
+            <Button
+                android:id="@+id/see_logs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_word_logs"
+                android:layout_marginTop="10dp" />
+        </LinearLayout>
+    </RelativeLayout>
+    
+    <include
+       layout="@layout/drawer_fragment_editor" />
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -41,4 +41,9 @@
 	<string name="settings_editor_theme_title">Code Editor Theme</string>
 	<string name="settings_editor_theme_description">Change the code editor theme.</string>
 	<!-- end section -->
+	
+	<!-- texts section -->
+	<string name="text_diagnostic">Diagnostic</string>
+	<string name="text_logs">Logs</string>
+	<!-- ene section -->
 </resources>
