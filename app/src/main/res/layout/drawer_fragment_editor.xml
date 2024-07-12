@@ -3,7 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp"
     android:layout_marginBottom="4dp"
     android:clickable="true">
     
@@ -23,5 +22,10 @@
              android:text="@string/text_diagnostic" />
         
     </com.google.android.material.tabs.TabLayout>
+    
+    <FrameLayout
+        android:id="@+id/drawer_editor_fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
     
 </LinearLayout>

@@ -3,61 +3,16 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".YourActivity">
+    android:layout_height="match_parent">
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <dev.trindade.robokide.ui.components.toolbar.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
-        <!-- CodeEditorView for editing code -->
-        <dev.trindade.robokide.ui.components.editor.CodeEditorView
-            android:id="@+id/code_editor"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_below="@id/toolbar"
-            android:layout_above="@id/bottom_buttons_container"
-            android:gravity="top|start"
-            android:padding="8dp"
-            android:hint="@string/common_word_code" />
-
-        <LinearLayout
-            android:id="@+id/bottom_buttons_container"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="20dp">
-
-            <Button
-                android:id="@+id/run_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/common_word_run"
-                android:layout_marginTop="10dp" />
-
-            <Button
-                android:id="@+id/see_logs"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/common_word_logs"
-                android:layout_marginTop="10dp" />
-        </LinearLayout>
-    </RelativeLayout>
+   <include
+       layout="@layout/content_fragment_editor" />
     
     <com.google.android.material.navigation.NavigationView
         android:id="@+id/navigation_view"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
+        android:layout_gravity="end"
         android:fitsSystemWindows="true">
 
         <include
