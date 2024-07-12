@@ -26,7 +26,6 @@ class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        navigationBack(binding.toolbar)
     }
     
     fun addDiagnostic(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
