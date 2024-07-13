@@ -53,4 +53,9 @@ Thank you for using Robok! Together, let's make programming simpler and more pow
 
 ---
 
+### Credits
+
+- [Remaker17](https://github.com/remaker17): He was the one who styled the buttons and dialogs.
+
+
 Made with ❤️ by the Robok team.
