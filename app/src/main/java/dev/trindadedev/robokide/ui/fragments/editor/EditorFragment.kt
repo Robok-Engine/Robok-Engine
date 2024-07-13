@@ -40,8 +40,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        binding.toolbar.setTitleCentered(false)
-        /*dot()*/
+        /*configureToolbar()*/
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
@@ -122,7 +121,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     
     }
     
-    fun dot() {
+    fun configureToolbar() {
+        binding.toolbar.setTitleCentered(false)
         val dotProgressBar = DotProgressBar.Builder()
               .setMargin(4)
               .setAnimationDuration(2000)
