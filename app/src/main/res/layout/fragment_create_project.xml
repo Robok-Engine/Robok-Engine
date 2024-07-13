@@ -29,7 +29,8 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         android:fillViewport="true">
 
@@ -66,40 +67,33 @@
                     app:rbkTextFieldHint="@string/hint_package_name" />    
 
             </LinearLayout>
-            
-            <android.widget.Space
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="8dp"> 
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/button_back" 
-                    style="?materialButtonOutlinedStyle"
-                    android:text="@string/common_word_back" />
-
-                <Button
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
-                    android:id="@+id/button_go"
-                    android:text="@string/common_word_next" />    
-            </LinearLayout>
-
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
+    
+    <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="horizontal"
+       android:padding="8dp"> 
+       
+       <Button
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_marginRight="10dp"
+           android:layout_marginLeft="10dp"
+           android:layout_weight="1"
+           android:id="@+id/button_back" 
+           style="?materialButtonOutlinedStyle"
+           android:text="@string/common_word_back" />
+           
+           <Button
+               android:layout_width="0dp"
+               android:layout_height="wrap_content"
+               android:layout_marginRight="10dp"
+               android:layout_marginLeft="10dp"
+               android:layout_weight="1"
+               android:id="@+id/button_go"
+               android:text="@string/common_word_next" />    
+    </LinearLayout>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
