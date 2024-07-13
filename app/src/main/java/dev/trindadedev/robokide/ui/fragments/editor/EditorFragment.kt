@@ -41,7 +41,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         super.onViewCreated(view, savedInstanceState)
         
         binding.toolbar.setTitleCentered(false)
-        dot()
+        /*dot()*/
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
