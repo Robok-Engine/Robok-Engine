@@ -1,4 +1,4 @@
-package com.example.dotprogressbar
+package dev.trindadedev.robokide.ui.components.progressbar
 
 import android.animation.Animator
 import android.animation.ValueAnimator
@@ -10,6 +10,8 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.util.DisplayMetrics
 import android.view.animation.LinearInterpolator
+
+import dev.trindadedev.robokide.R
 
 /**
  * Created by Sourabh Gupta on 9/8/19.
