@@ -59,6 +59,12 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                     .show()
             }
         }
+        
+        val diagnosticListener = object : DiagnosticListener {
+            override fun onDiagnosticReceive (diagnostic: String) {
+                
+            }
+        }
 
         val compiler = LogicCompiler(requireContext(), compilerListener)
 
@@ -94,14 +100,17 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 }
             }
 
-            override fun onTabReselected(tab: TabLayout.Tab?) {
-                // Handle reselection if needed
-            }
-
-            override fun onTabUnselected(tab: TabLayout.Tab?) {
-                // Handle tab unselection if needed
-            }
+            override fun onTabReselected(tab: TabLayout.Tab?) { }
+            override fun onTabUnselected(tab: TabLayout.Tab?) { }
         })
+    }
+    
+    fun setDiagnosticError () {
+    
+    }
+    
+    fun setDiagnosticOk () {
+    
     }
 
     override fun onDestroyView() {

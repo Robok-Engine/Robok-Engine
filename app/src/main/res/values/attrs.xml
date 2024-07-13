@@ -32,4 +32,10 @@
         <attr name="rbkTextFieldPlaceholderText" format="string" />
         <attr name="rbkTextFieldStartIconDrawable" format="reference" />
     </declare-styleable>
+    
+    <declare-styleable name="DotProgressBar">
+        <attr name="color" format="color" />
+        <attr name="count" format="integer" />
+        <attr name="timeout" format="integer" />
+    </declare-styleable>
 </resources>
