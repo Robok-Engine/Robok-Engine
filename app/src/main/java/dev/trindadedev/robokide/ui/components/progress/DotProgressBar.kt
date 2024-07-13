@@ -1,4 +1,4 @@
-package dev.trindadedev.robokide.ui.components.progressbar
+package dev.trindadedev.robokide.ui.components.progress
 
 import android.animation.Animator
 import android.animation.ValueAnimator
