@@ -1,4 +1,0 @@
-[submodule "language"]
-	path = language
-	branch = dev
-	url = https://github.com/Robok-Foundation/Robok-Language
