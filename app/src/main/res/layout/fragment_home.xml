@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <dev.trindade.robokide.ui.components.toolbar.Toolbar 
+    <dev.trindadedev.robokide.ui.components.toolbar.Toolbar 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
         
