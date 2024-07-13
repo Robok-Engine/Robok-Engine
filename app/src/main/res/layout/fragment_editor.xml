@@ -13,7 +13,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-             />
+            android:layout_alignParentTop="true" />
 
         <dev.trindadedev.robokide.ui.components.editor.CodeEditorView
             android:id="@+id/code_editor"
