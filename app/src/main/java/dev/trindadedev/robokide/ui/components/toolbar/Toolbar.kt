@@ -28,10 +28,6 @@ class Toolbar : AppBarLayout {
         materialToolbar = findViewById(R.id.toolbar)
     }
 
-    fun addView(view: View) {
-        materialToolbar.addView(view)
-    }
-
     fun setTitleCentered(centered: Boolean) {
         materialToolbar.isTitleCentered = centered
     }
