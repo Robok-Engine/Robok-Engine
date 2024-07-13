@@ -10,20 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:id="@+id/toolbar"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/abc_ic_ab_back_material"
-                app:title="@string/title_create_project" />
+        
+        <com.google.android.material.appbar.MaterialToolbar
+             android:layout_width="match_parent"
+             android:layout_height="?attr/actionBarSize"
+             android:id="@+id/toolbar"
+             app:layout_collapseMode="pin"
+             app:navigationIcon="@drawable/abc_ic_ab_back_material"
+             app:title="@string/title_create_project" />
         </com.google.android.material.appbar.CollapsingToolbarLayout>
     </com.google.android.material.appbar.AppBarLayout>
 
