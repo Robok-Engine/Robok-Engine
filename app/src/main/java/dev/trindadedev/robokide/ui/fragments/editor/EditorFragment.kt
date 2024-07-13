@@ -38,7 +38,19 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        
+        binding.toolbar.setTitleCentered(false)
+        val dotProgressBar = DotProgressBar.Builder()
+              .setMargin(4)
+              .setAnimationDuration(2000)
+              .setMaxScale(1f)
+              .setMinScale(0.3f) 
+              setNumberOfDots(3)
+              .setdotRadius(8)
+              .build(requireContext())
+        dotProgressBar.startAnimation()
+        binding.toolbar.addView(dotProgressBar)
+        
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
         val terminal = RobokTerminal(requireContext())

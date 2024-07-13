@@ -2,12 +2,14 @@ package dev.trindadedev.robokide.ui.components.toolbar
 
 import android.content.Context
 import android.util.AttributeSet
-
+import android.view.View
 import com.google.android.material.appbar.AppBarLayout
-
+import com.google.android.material.appbar.MaterialToolbar
 import dev.trindadedev.robokide.R
 
 class Toolbar : AppBarLayout {
+
+    private lateinit var materialToolbar: MaterialToolbar
 
     constructor(context: Context) : super(context) {
         init(context, null)
@@ -23,5 +25,14 @@ class Toolbar : AppBarLayout {
 
     private fun init(context: Context, attrs: AttributeSet?) {
         inflate(context, R.layout.robok_toolbar, this)
+        materialToolbar = findViewById(R.id.toolbar)
+    }
+
+    fun addView(view: View) {
+        materialToolbar.addView(view)
+    }
+
+    fun setTitleCentered(centered: Boolean) {
+        materialToolbar.isTitleCentered = centered
     }
 }
