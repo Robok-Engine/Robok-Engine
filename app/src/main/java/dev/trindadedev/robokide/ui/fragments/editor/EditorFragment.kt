@@ -41,16 +41,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         super.onViewCreated(view, savedInstanceState)
         
         binding.toolbar.setTitleCentered(false)
-        val dotProgressBar = DotProgressBar.Builder()
-              .setMargin(4)
-              .setAnimationDuration(2000)
-              .setMaxScale(1f)
-              .setMinScale(0.3f) 
-              .setNumberOfDots(3)
-              .setDotRadius(8)
-              .build(requireContext())
-        binding.toolbar.addView(dotProgressBar)      
-        dotProgressBar.startAnimation()
+        dot()
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
@@ -129,6 +120,19 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     
     fun setDiagnosticOk () {
     
+    }
+    
+    fun dot() {
+        val dotProgressBar = DotProgressBar.Builder()
+              .setMargin(4)
+              .setAnimationDuration(2000)
+              .setMaxScale(1f)
+              .setMinScale(0.3f) 
+              .setNumberOfDots(3)
+              .setDotRadius(8)
+              .build(requireContext())
+        binding.toolbar.addView(dotProgressBar)      
+        dotProgressBar.startAnimation()
     }
 
     override fun onDestroyView() {
