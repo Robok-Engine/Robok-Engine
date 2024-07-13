@@ -33,14 +33,14 @@
             android:orientation="vertical"
             android:padding="8dp">
 
-            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+            <dev.trindadedev.robokide.ui.components.textfield.RbkTextField 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:rbkTextFieldText="New App"
                 app:rbkTextFieldHint="@string/hint_project_name" />
 
-            <dev.trindade.robokide.ui.components.textfield.RbkTextField 
+            <dev.trindadedev.robokide.ui.components.textfield.RbkTextField 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
