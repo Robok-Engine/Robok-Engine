@@ -18,7 +18,7 @@ import dev.trindadedev.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindadedev.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadedev.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
 import dev.trindadedev.robokide.ui.base.RobokFragment
-
+import dev.trindadedev.robokide.ui.components.progress.DotProgressBar
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 import robok.dev.diagnostic.logic.DiagnosticListener
