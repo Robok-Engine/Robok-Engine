@@ -4,64 +4,73 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true" >
+    android:fitsSystemWindows="true">
 
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true" >
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
+        android:fitsSystemWindows="true">
+        
+        <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
-            android:layout_height="?attr/collapsingToolbarLayoutLargeSize"
-            android:fitsSystemWindows="true"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed" >
-
-            <com.google.android.material.appbar.MaterialToolbar
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:id="@+id/toolbar"
-                app:layout_collapseMode="pin"
-                app:navigationIcon="@drawable/abc_ic_ab_back_material"
-                app:title="@string/title_create_project" />
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
+            android:layout_height="wrap_content"
+            android:minHeight="?attr/actionBarSize"
+            android:height="?attr/collapsingToolbarLayoutLargeSize"
+            android:id="@+id/toolbar"
+            app:navigationIcon="@drawable/abc_ic_ab_back_material"
+            app:title="@string/title_create_project" />
+        
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"
-        android:fillViewport="true"
-        android:paddingBottom="50dp"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" >
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
         
-        <LinearLayout 
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
-           android:id="@+id/content"
-           android:orientation="vertical"
-           android:padding="8dp" >
-           
-           <LinearLayout 
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:id="@+id/content_widgets"
-              android:orientation="vertical"
-              android:padding="8dp" >
-              
-               <dev.trindade.robokide.ui.components.textfield.RbkTextField 
-                  android:layout_width="match_parent"
-                  android:layout_height="wrap_content"
-                  android:layout_marginTop="0dp"
-                  android:layout_marginBottom="8dp"
-                  android:layout_marginLeft="8dp"
-                  android:layout_marginRight="8dp"
-                  app:rbkTextFieldHint="@string/hint_project_name"
-                  app:rbkTextFieldPlaceholderText="Robok IDE" />
-           
-           </LinearLayout>
-           <include
-               layout="@layout/layout_bottom_actions" />
-        </LinearLayout>   
-    </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <dev.trindadedev.robokide.ui.components.textfield.RbkTextField 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:rbkTextFieldText="New App"
+                app:rbkTextFieldHint="@string/hint_project_name" />
+
+            <dev.trindadedev.robokide.ui.components.textfield.RbkTextField 
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
+                app:rbkTextFieldText="com.my.newapp"
+                app:rbkTextFieldHint="@string/hint_package_name" />    
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp"> 
+                
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/button_back" 
+                    style="?materialButtonOutlinedStyle"
+                    android:text="@string/common_word_back" />
+                    
+                <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/button_go"
+                    android:text="@string/common_word_next" />    
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

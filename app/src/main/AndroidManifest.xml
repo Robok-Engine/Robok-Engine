@@ -18,11 +18,11 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="dev.trindade.robokide.Robok"
+        android:name="dev.trindadedev.robokide.Robok"
         android:theme="@style/RobokTheme"
         tools:replace="android:theme" >
         <activity
-            android:name="dev.trindade.robokide.ui.activities.MainActivity"
+            android:name="dev.trindadedev.robokide.ui.activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,7 +31,7 @@
         </activity>
         
         <activity
-            android:name="dev.trindade.robokide.ui.activities.DebugActivity"
+            android:name="dev.trindadedev.robokide.ui.activities.DebugActivity"
             android:exported="true" />
             
     </application>

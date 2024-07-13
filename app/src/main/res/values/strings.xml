@@ -13,6 +13,7 @@
 	<string name="common_word_settings">Settings</string>
 	<string name="common_word_ok">OK</string>
 	<string name="common_word_cancel">CANCEL</string>
+	<string name="common_word_next">Next</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
@@ -33,6 +34,7 @@
 	
 	<!-- hints section -->
 	<string name="hint_project_name">Project name</string>
+	<string name="hint_package_name">Package name</string>
 	<!-- end section -->
 	
 	<!-- settings section -->
