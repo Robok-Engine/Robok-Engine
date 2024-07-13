@@ -19,6 +19,7 @@ import dev.trindadedev.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadedev.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
 import dev.trindadedev.robokide.ui.base.RobokFragment
 import dev.trindadedev.robokide.ui.components.progress.DotProgressBar
+
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 import robok.dev.diagnostic.logic.DiagnosticListener
@@ -45,11 +46,11 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
               .setAnimationDuration(2000)
               .setMaxScale(1f)
               .setMinScale(0.3f) 
-              setNumberOfDots(3)
-              .setdotRadius(8)
+              .setNumberOfDots(3)
+              .setDotRadius(8)
               .build(requireContext())
+        binding.toolbar.addView(dotProgressBar)      
         dotProgressBar.startAnimation()
-        binding.toolbar.addView(dotProgressBar)
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
