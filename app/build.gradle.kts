@@ -67,7 +67,7 @@ dependencies {
     val kotlinCoroutinesVersion = "1.9.0-RC"
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
-    val trindadeutilVersion = "2.0.2-fix01"
+    val trindadeutilVersion = "2.0.2"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
