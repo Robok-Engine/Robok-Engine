@@ -9,14 +9,6 @@
     <item name="shapeAppearanceOverlay">@null</item>
   </style>
   
-  <style name="MaterialAlertDialog.Robok.Title.Text" parent="MaterialAlertDialog.Material3.Title.Text">
-     <item name="android:textColor">@color/shrine_pink_900</item>
-  </style>
-  
-  <style name="Widget.Robok.Button" parent="Widget.Material3.Button.TextButton.Dialog">
-    <item name="android:textColor">@color/shrine_pink_900</item>
-  </style>
-  
   <style name="ShapeAppearance.Robok.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
     <item name="cornerFamily">rounded</item>
     <item name="cornerSize">8dp</item>
