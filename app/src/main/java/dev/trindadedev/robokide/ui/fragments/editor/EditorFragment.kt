@@ -21,6 +21,7 @@ import dev.trindadedev.robokide.ui.base.RobokFragment
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
+import robok.dev.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
