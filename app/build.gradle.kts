@@ -68,6 +68,7 @@ dependencies {
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
     val trindadeutilVersion = "2.0.2-fix01"
+    val glideVersion = "4.15.1"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
@@ -106,6 +107,9 @@ dependencies {
     
     // implementation("com.github.Robok-Foundation:Robok-Language:$robokLanguageVersion")
     implementation(project(":language"))
+    
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
     //
     implementation("com.github.aquilesTrindade.trindade-util:github:$trindadeutilVersion")
