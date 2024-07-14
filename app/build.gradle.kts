@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.trindadedev.robokide"
+    namespace = "dev.trindadeaquiles.robokide"
     compileSdk = 34
     
     defaultConfig {
-        applicationId = "dev.trindadedev.robokide"
+        applicationId = "dev.trindadeaquiles.robokide"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
@@ -67,8 +67,8 @@ dependencies {
     val kotlinCoroutinesVersion = "1.9.0-RC"
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
-    val trindadeutilVersion = "2.0.2-fix01"
     val glideVersion = "4.16.0"
+    val trindadeutilVersion = "3a7593b88c"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
@@ -111,9 +111,10 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
-    //
+    // aquiles trindade libs
     implementation("com.github.aquilesTrindade.trindade-util:github:$trindadeutilVersion")
-
+    implementation("com.github.aquilesTrindade.trindade-util:preferencesv2:$trindadeutilVersion")
+    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }

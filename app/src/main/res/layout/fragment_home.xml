@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <dev.trindadedev.robokide.ui.components.toolbar.Toolbar 
+    <dev.trindadeaquiles.robokide.ui.components.toolbar.Toolbar 
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
         
@@ -27,7 +27,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/title_create_project"
            android:id="@+id/create_project"
-           style="@style/Widget.Github.Button"
+           
            app:icon="@drawable/ic_add_24" />
            
        <Button
@@ -39,7 +39,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_project"
            android:id="@+id/open_project" 
-           style="@style/Widget.Github.Button"
+           
            app:icon="@drawable/ic_folder_open_24" />
            
        <Button
@@ -51,7 +51,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/common_word_settings"
            android:id="@+id/open_settings" 
-           style="@style/Widget.Github.Button"
+           
            app:icon="@drawable/ic_settings_anim" />    
            
        <Button
