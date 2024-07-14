@@ -27,6 +27,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/title_create_project"
            android:id="@+id/create_project"
+           style="@style/Widget.Github.Button"
            app:icon="@drawable/ic_add_24" />
            
        <Button
@@ -38,6 +39,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_project"
            android:id="@+id/open_project" 
+           style="@style/Widget.Github.Button"
            app:icon="@drawable/ic_folder_open_24" />
            
        <Button
@@ -49,6 +51,7 @@
            android:layout_marginLeft="20dp"
            android:text="@string/common_word_settings"
            android:id="@+id/open_settings" 
+           style="@style/Widget.Github.Button"
            app:icon="@drawable/ic_settings_anim" />    
            
        <Button
@@ -59,7 +62,7 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_editor"
-           style="?materialButtonOutlinedStyle"
+           style="@style/Widget.Github.Button.OutlinedButton"
            android:id="@+id/open_editor"
            app:icon="@drawable/ic_code_24"  />
            
