@@ -33,7 +33,6 @@ class TeamMemberAdapter(private val teamMembers: List<TeamMember>) :
             Glide.with(binding.profileImageView.context)
                 .load(teamMember.profileIcon)
                 .into(binding.profileImageView)
-            binding.socialLinkTextView.text = teamMember.socialLink
         }
     }
 }
