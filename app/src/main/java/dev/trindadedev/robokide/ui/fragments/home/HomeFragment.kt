@@ -22,10 +22,11 @@ import com.jn.filepickersphere.models.PickOptions
 
 import dev.trindadedev.robokide.R
 import dev.trindadedev.robokide.databinding.FragmentHomeBinding
+import dev.trindadedev.robokide.manage.file.getDefaultPath
 import dev.trindadedev.robokide.ui.base.RobokFragment
 import dev.trindadedev.robokide.ui.fragments.create.project.CreateProjectFragment
 import dev.trindadedev.robokide.ui.fragments.editor.EditorFragment
-import dev.trindadedev.robokide.manage.file.getDefaultPath
+import dev.trindadedev.robokide.ui.fragments.about.AboutFragment
 import dev.trindadedev.robokide.ui.fragments.settings.SettingsFragment
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
@@ -57,6 +58,10 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         
         binding.openEditor.setOnClickListener {
             openFragment(EditorFragment(MaterialSharedAxis.X))
+        }
+        
+        binding.openAbout.setOnClickListener {
+            openFragment(AboutFragment(MaterialSharedAxis.X))
         }
     }
     
