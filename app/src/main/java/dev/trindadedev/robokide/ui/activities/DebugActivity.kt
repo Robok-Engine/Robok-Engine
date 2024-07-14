@@ -11,7 +11,6 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import dev.trindadedev.robokide.R
-import dev.trindadedev.robokide.ui.components.dialog.RobokDialog
 import dev.trindadedev.robokide.ui.base.RobokActivity
 
 import java.io.InputStream
