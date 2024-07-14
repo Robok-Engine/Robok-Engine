@@ -6,8 +6,9 @@ import android.util.Log
 import android.util.Pair
 import android.app.Activity
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 import dev.trindadedev.robokide.R
-import dev.trindadedev.robokide.ui.components.dialog.RobokDialog
 import dev.trindadedev.robokide.ui.components.editor.schemes.*
 
 import io.github.rosemoe.sora.widget.CodeEditor
@@ -54,7 +55,7 @@ class ThemeManager {
 
             val themeItems = KNOWN_COLOR_SCHEMES.map { it.first }.toTypedArray()
 
-            RobokDialog(activity)
+            MaterialAlertDialogBuilder(activity)
                 .setTitle(activity.getString(R.string.title_select_theme))
                 .setSingleChoiceItems(themeItems, selectedThemeIndex) { _, which ->
                     listener(which)
