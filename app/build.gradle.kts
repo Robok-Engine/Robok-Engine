@@ -60,32 +60,34 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
 
-    val robok_language_version = "1.0.0"
-    val material_version = "1.13.0-alpha04"
-    val appcompat_version = "1.7.0-alpha03"
-    val kotlin_version = "2.0.0"
-    val kotlin_coroutines_version = "1.9.0-RC"
-    val okhttp3_version = "4.12.0"
-    val activity_version = "1.9.0"
+    val robokLanguageVersion = "1.0.0"
+    val materialVersion = "1.13.0-alpha04"
+    val appcompatVersion = "1.7.0-alpha03"
+    val kotlinVersion = "2.0.0"
+    val kotlinCoroutinesVersion = "1.9.0-RC"
+    val okhttp3Version = "4.12.0"
+    val activityVersion = "1.9.0"
+    val trindadeutilVersion = "2.0.2-fix01"
+    
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
     // androidx
-    implementation("androidx.appcompat:appcompat:$appcompat_version")
+    implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.8.1")
     
     // google
-    implementation("com.google.android.material:material:$material_version")
+    implementation("com.google.android.material:material:$materialVersion")
     implementation("com.google.code.gson:gson:2.11.0")
     
     // jetbrains
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlin_coroutines_version")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlin_coroutines_version")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
     
     // squareup
-    implementation("com.squareup.okhttp3:okhttp:$okhttp3_version")    
+    implementation("com.squareup.okhttp3:okhttp:$okhttp3Version")    
     
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
@@ -102,9 +104,11 @@ dependencies {
     implementation("$editorGroupId:language-treesitter")
     implementation("$editorGroupId:language-textmate")
     
-    // robok
-    // implementation("com.github.Robok-Foundation:Robok-Language:$robok_language_version")
+    // implementation("com.github.Robok-Foundation:Robok-Language:$robokLanguageVersion")
     implementation(project(":language"))
+    
+    //
+    implementation("com.github.aquilesTrindade.trindade-util:github:$trindadeutilVersion")
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
