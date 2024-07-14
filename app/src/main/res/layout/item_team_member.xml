@@ -9,8 +9,7 @@
         android:id="@+id/profileImageView"
         android:layout_width="48dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:scaleType="centerCrop" />
+        android:layout_marginEnd="16dp" />
 
     <LinearLayout
         android:layout_width="0dp"

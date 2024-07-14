@@ -53,7 +53,9 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-       
+        
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.Robok.MaterialAlertDialog</item>
+        
         <item name="fontFamily">@font/product_sans_regular</item>
         <item name="android:fontFamily">@font/product_sans_regular</item>
         <item name="android:forceDarkAllowed">false</item>
