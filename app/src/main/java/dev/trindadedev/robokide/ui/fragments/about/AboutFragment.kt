@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindadedev.robokide.databinding.FragmentAboutBinding
 import dev.trindadedev.robokide.ui.base.RobokFragment
 import dev.trindadedev.robokide.models.about.TeamMember
-import dev.trindadedev.robokide.ui.fragments.about.adapter.TeamMemberAdapter
+import dev.trindadedev.robokide.ui.fragments.about.adapters.TeamMemberAdapter
 
 class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
