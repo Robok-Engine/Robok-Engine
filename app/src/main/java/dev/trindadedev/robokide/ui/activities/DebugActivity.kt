@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.widget.TextView
 
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import dev.trindadedev.robokide.R
 import dev.trindadedev.robokide.ui.components.dialog.RobokDialog
@@ -64,7 +65,7 @@ class DebugActivity : RobokActivity() {
             }
         }
         error.text = madeErrMsg
-        RobokDialog(this)
+        MaterialAlertDialogBuilder(this)
             .setTitle(R.string.title_debug_title)
             .setMessage(madeErrMsg)
             .setPositiveButton(R.string.common_word_end) { _, _ ->
