@@ -13,7 +13,7 @@ import dev.trindadeaquiles.robokide.ui.base.RobokFragment
 import dev.trindadeaquiles.robokide.ui.components.editor.CodeEditorView
 import dev.trindadeaquiles.robokide.ui.components.editor.ThemeManager
 
-import dev.trindadeaquiles.ui.preferences.Preference
+import dev.trindadeaquiles.lib.ui.components.preferences.Preference
 
 class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
