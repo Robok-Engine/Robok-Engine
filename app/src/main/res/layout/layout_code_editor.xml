@@ -4,10 +4,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
+    
     <io.github.rosemoe.sora.widget.CodeEditor
         android:id="@+id/editor"
         style="@style/RobokTheme"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:transitionGroup="true" />
 </LinearLayout>
