@@ -72,6 +72,8 @@ dependencies {
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
+    val antlrVersion = "4.9.2"
+    
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
@@ -117,4 +119,9 @@ dependencies {
     
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    
+    
+    //Antlr complete and runtime for diagnostics and compilers
+    implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
+    implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
 }
