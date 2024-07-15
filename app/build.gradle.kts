@@ -72,7 +72,7 @@ dependencies {
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     
-    // androidx
+    // androidx 
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
     implementation("androidx.core:core-ktx:1.13.1")
