@@ -9,17 +9,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <dev.trindadeaquiles.robokide.ui.components.toolbar.Toolbar
-            android:id="@+id/toolbar"
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
+            android:id="@+id/appbar"
+            android:fitsSystemWindows="true">
+
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:title="@string/app_name"
+                app:titleTextAppearance="@style/TextAppearance.Robok.TitleLarge.Bold"
+                app:titleCentered="false" />
+
+        </com.google.android.material.appbar.AppBarLayout>
 
         <dev.trindadeaquiles.robokide.ui.components.editor.CodeEditorView
             android:id="@+id/code_editor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_below="@id/toolbar"
+            android:layout_below="@id/appbar"
             android:gravity="top|start"
             android:padding="8dp"
             android:hint="@string/common_word_code" />
