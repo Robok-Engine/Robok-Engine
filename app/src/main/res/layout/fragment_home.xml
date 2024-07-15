@@ -62,7 +62,6 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/title_open_editor"
-           style="@style/Widget.Github.Button.OutlinedButton"
            android:id="@+id/open_editor"
            app:icon="@drawable/ic_code_24"  />
            
@@ -75,7 +74,6 @@
            android:layout_marginRight="20dp"
            android:layout_marginLeft="20dp"
            android:text="@string/title_about"
-           style="@style/Widget.Github.Button.OutlinedButton"
            android:id="@+id/open_about"
            app:icon="@drawable/ic_info_24"  />
            
