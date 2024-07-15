@@ -40,9 +40,10 @@ class DebugActivity : RobokActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_debug)
         error = findViewById(R.id.error)
-        toolbar = findViewById(R.id.toolbar)
+        /* toolbar = findViewById(R.id.toolbar)
         
         configureToolbarNavigationBack(toolbar)
+        */
         
         val intent = intent
         var errMsg = ""
