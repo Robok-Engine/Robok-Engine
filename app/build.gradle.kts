@@ -98,6 +98,7 @@ dependencies {
     // filepicker
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
+
     // Sora editor
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
@@ -122,4 +123,7 @@ dependencies {
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
+
+
+
 }
