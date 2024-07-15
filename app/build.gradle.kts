@@ -69,10 +69,11 @@ dependencies {
     val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
     val trindadeutilVersion = "3.0.1"
+    val antlrVersion = "4.9.2"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
-    
-    // androidx 
+        
+    // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.3")
     implementation("androidx.core:core-ktx:1.13.1")
@@ -117,4 +118,9 @@ dependencies {
     
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    
+    
+    //Antlr complete and runtime for diagnostics and compilers
+    implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
+    implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
 }
