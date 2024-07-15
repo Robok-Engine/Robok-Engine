@@ -62,7 +62,7 @@ dependencies {
 
     val robokLanguageVersion = "1.0.0"
     val materialVersion = "1.13.0-alpha04"
-    val appcompatVersion = "1.7.0"
+    val appcompatVersion = "1.7.0-alpha03"
     val kotlinVersion = "2.0.0"
     val kotlinCoroutinesVersion = "1.9.0-RC"
     val okhttp3Version = "4.12.0"
@@ -118,7 +118,6 @@ dependencies {
     
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-    
     
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
