@@ -3,29 +3,6 @@
         <attr name="syntaxType" format="string" />
     </declare-styleable>
     
-    <declare-styleable name="Preference">
-        <attr name="preferenceTitle" format="string" />
-        <attr name="preferenceDescription" format="string" />
-    </declare-styleable>
-    
-    <declare-styleable name="PreferenceGroup">
-        <attr name="preferenceGroupTitle" format="string" />
-    </declare-styleable>
-    
-    <declare-styleable name="PreferencePopup">
-        <attr name="preferencePopupTitle" format="string" />
-        <attr name="preferencePopupDescription" format="string" />
-    </declare-styleable>
-    
-    <attr name="alertDialogStyle" format="reference" />
-    <attr name="materialAlertDialogTheme" format="reference" />
-    
-    <declare-styleable name="RobokDialog">
-        <attr name="backgroundTint" format="color" />
-        <attr name="strokeWidth" format="dimension" />
-        <attr name="strokeColor" format="color" />
-    </declare-styleable>
-    
     <declare-styleable name="RbkTextField">
         <attr name="rbkTextFieldText" format="string" />
         <attr name="rbkTextFieldHint" format="string" />
