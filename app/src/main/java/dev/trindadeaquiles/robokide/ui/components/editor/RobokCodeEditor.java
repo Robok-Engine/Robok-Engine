@@ -143,11 +143,11 @@ public class RobokCodeEditor extends LinearLayout {
         return this.editor.getText().toString();
     }
     
-    private void redo() {
+    public void redo() {
         this.editor.redo();
     }
     
-    private void undo () {
+    public void undo () {
         this.editor.undo();
     }
     
