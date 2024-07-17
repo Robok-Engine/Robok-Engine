@@ -123,7 +123,9 @@ dependencies {
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
-
-
+    
+    
+    //Progress bouncy dots
+    implementation("com.bcgdv.asia.lib:dots:v1.0.1")
 
 }

@@ -40,7 +40,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        configureToolbar()
+        //configureToolbar()
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
@@ -126,6 +126,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
               .setMinScale(0.3f) 
               .setNumberOfDots(3)
               .setDotRadius(8)
+              .setDotBackground(R.drawable.ic_launcher2_background)
               .build(requireContext())
         binding.toolbar.addView(dotProgressBar)      
         dotProgressBar.startAnimation()

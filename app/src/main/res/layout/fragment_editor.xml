@@ -15,7 +15,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/appbar"
             android:fitsSystemWindows="true">
-
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -23,7 +22,19 @@
                 app:navigationIcon="@drawable/ic_menu_24"
                 app:title="@string/app_name"
                 app:titleTextAppearance="@style/TextAppearance.Robok.TitleLarge.Bold"
-                app:titleCentered="false" />
+                app:titleCentered="false">
+
+                <com.bcgdv.asia.lib.dots.DotsProgressIndicator
+                    android:id="@+id/dotsProgressIndicatorView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:dotsMode="bestFit"
+                    app:dotsSpacing="2dp"
+                    app:dotsDiameter="20dp"
+                    app:numberOfDots="3"
+                    app:visibilityChangeDelay="1000" />
+
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
