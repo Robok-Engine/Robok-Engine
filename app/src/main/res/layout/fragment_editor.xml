@@ -33,11 +33,11 @@
                     app:lazyloader_dotsDist="6dp"
                     app:lazyloader_dotsRadius="10dp"
                     app:lazyloader_firstDelayDur="100"
-                    app:lazyloader_firstDotColor="@color/md_theme_primary"
+                    app:lazyloader_firstDotColor="?colorPrimary"
                     app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
                     app:lazyloader_secondDelayDur="200"
-                    app:lazyloader_secondDotColor="@color/md_theme_primary"
-                    app:lazyloader_thirdDotColor="@color/md_theme_primary" />
+                    app:lazyloader_secondDotColor="?colorPrimary"
+                    app:lazyloader_thirdDotColor="?colorPrimary" />
 
 
             </com.google.android.material.appbar.MaterialToolbar>
