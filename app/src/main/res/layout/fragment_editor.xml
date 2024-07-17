@@ -26,21 +26,6 @@
                 app:title="@string/app_name"
                 app:menu="@menu/editor_toolbar_menu">
 
-                <com.agrawalsuneet.dotsloader.loaders.LazyLoader
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:id="@+id/diagnostic_status_loadimng"
-                    app:lazyloader_animDur="500"
-                    app:lazyloader_dotsDist="0dp"
-                    app:lazyloader_dotsRadius="4dp"
-                    android:visibility="gone"
-                    app:lazyloader_firstDelayDur="90"
-                    app:lazyloader_firstDotColor="?colorPrimary"
-                    app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
-                    app:lazyloader_secondDelayDur="20"
-                    app:lazyloader_secondDotColor="?colorPrimary"
-                    app:lazyloader_thirdDotColor="?colorPrimary" />
                 
                 <com.example.dotprogressbar.DotProgressBar
         xmlns:android="http://schemas.android.com/apk/res/android"
