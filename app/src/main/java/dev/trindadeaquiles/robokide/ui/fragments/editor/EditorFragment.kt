@@ -22,8 +22,8 @@ import dev.trindadeaquiles.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
 
-import robok.dev.compiler.logic.LogicCompiler
-import robok.dev.compiler.logic.LogicCompilerListener
+import robok.dev.compiler.logic.*
+import robok.dev.diagnostic.logic.*
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -61,6 +61,19 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
+        val diagnosticHandlerListener = object : DiagnosticListener {
+            override fun onDiagnosticStatusReceive(isError: Boolean) {
+                if (isError) {
+                   // if diagnostic received
+                } else {
+                   // if no diagnostic received
+                }
+            }
+            override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
+                
+            }
+        }
+        
         val compiler = LogicCompiler(requireContext(), compilerListener)
 
         binding.runButton.setOnClickListener {
@@ -78,7 +91,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         configureDrawer()
     }
 
-    private fun configureTabLayout() {
+    fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -99,7 +112,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         })
     }
     
-    private fun configureToolbar() {
+    fun configureToolbar() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_undo -> {

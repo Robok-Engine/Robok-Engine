@@ -76,7 +76,12 @@ public class RobokCodeEditor extends LinearLayout {
                      public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
                           /* int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
                              int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd); */
+                          onDiagnosticStatusReceive(true);
                           addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+                     }
+                     @Override
+                     public void onDiagnosticStatusReceive(Boolean isError) {
+                         
                      }
              });
         });
