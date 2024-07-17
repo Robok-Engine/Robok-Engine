@@ -29,6 +29,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="25dp"
+                    android:id="@+id/diagnostic_status_loading"
                     app:lazyloader_animDur="500"
                     app:lazyloader_dotsDist="6dp"
                     app:lazyloader_dotsRadius="10dp"

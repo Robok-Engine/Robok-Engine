@@ -122,7 +122,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             binding.drawerLayout.openDrawer(Gravity.START)
         }
         
-        binding.diagnosticLoader.setOnClickListener {
+        binding.diagnosticStatusLoading.setOnClickListener {
             binding.drawerLayout.openDrawer(Gravity.END)
         }
     }
