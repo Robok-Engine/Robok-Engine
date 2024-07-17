@@ -14,6 +14,8 @@
 	<string name="common_word_ok">OK</string>
 	<string name="common_word_cancel">CANCEL</string>
 	<string name="common_word_next">Next</string>
+	<string name="common_word_undo">Undo</string>
+	<string name="common_word_redo">Redo</string>
 	<!-- end section -->
 	
 	<!-- titles section -->

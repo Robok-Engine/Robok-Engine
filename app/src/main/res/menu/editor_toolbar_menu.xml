@@ -3,11 +3,11 @@
     <item
         android:id="@+id/action_undo"
         android:icon="@drawable/ic_undo_24"
-        android:title="Undo"
+        android:title="@string/common_word_undo"
         android:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_redo"
         android:icon="@drawable/ic_redo_24"
-        android:title="Redo"
+        android:title="@string/common_word_redo"
         android:showAsAction="ifRoom" />
 </menu>
