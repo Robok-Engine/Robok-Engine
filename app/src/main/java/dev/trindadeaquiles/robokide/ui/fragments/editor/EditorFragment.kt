@@ -23,6 +23,8 @@ import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFra
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 import robok.dev.diagnostic.logic.DiagnosticListener
+import android.view.animation.DecelerateInterpolator
+import com.agrawalsuneet.dotsloader.loaders.LazyLoader
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -40,7 +42,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        //configureToolbar()
+        configureToolbar()
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
@@ -119,7 +121,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     
     fun configureToolbar() {
         binding.toolbar.setTitleCentered(false)
-        val dotProgressBar = DotProgressBar.Builder()
+       /* val dotProgressBar = DotProgressBar.Builder()
               .setMargin(4)
               .setAnimationDuration(2000)
               .setMaxScale(1f)
@@ -127,9 +129,24 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
               .setNumberOfDots(3)
               .setDotRadius(8)
               .setDotBackground(R.drawable.ic_launcher2_background)
-              .build(requireContext())
-        binding.toolbar.addView(dotProgressBar)      
-        dotProgressBar.startAnimation()
+              .build(requireContext())*/
+              
+         var lazyLoader = LazyLoader(this, 15, 5,
+             ContextCompat.getColor(this, R.color.loader_selected),
+             ContextCompat.getColor(this, R.color.loader_selected),
+             ContextCompat.getColor(this, R.color.loader_selected))
+                .apply
+                 {
+                animDuration = 500
+                firstDelayDuration = 100
+                secondDelayDuration = 200
+                interpolator = DecelerateInterpolator()
+                
+                }
+        
+               
+        binding.toolbar.addView(lazyLoader)      
+        //dotProgressBar.startAnimation()
     }
 
     override fun onDestroyView() {

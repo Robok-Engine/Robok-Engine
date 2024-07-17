@@ -126,6 +126,6 @@ dependencies {
     
     
     //Progress bouncy dots
-    implementation("com.github.alphamu:android-widget-dotsprogressindicator:release~v1.0.1")
+    implementation("com.agrawalsuneet.androidlibs:dotsloader:1.4")
     
 }
