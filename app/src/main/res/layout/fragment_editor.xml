@@ -37,8 +37,9 @@
                     app:lazyloader_firstDelayDur="90"
                     app:lazyloader_firstDotColor="?colorPrimary"
                     app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
-                    app:lazyloader_secondDelayDur="50"
+                    app:lazyloader_secondDelayDur="70"
                     app:lazyloader_secondDotColor="?colorPrimary"
+                    app:lazyloader_thirdDelayDur="50"
                     app:lazyloader_thirdDotColor="?colorPrimary" />
 
 
