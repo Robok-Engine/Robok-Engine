@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/appbar"
             android:fitsSystemWindows="true">
+            
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
@@ -23,22 +24,22 @@
                 app:title="@string/app_name"
                 app:titleTextAppearance="@style/TextAppearance.Robok.TitleLarge.Bold"
                 app:titleCentered="false">
-                
-               <com.agrawalsuneet.dotsloader.loaders.LazyLoader
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:lazyloader_animDur="600"
-        app:lazyloader_dotsDist="6dp"
-        app:lazyloader_dotsRadius="10dp"
-        app:lazyloader_firstDelayDur="100"
-        app:lazyloader_firstDotColor="@color/md_theme_primary"
-        app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
-        app:lazyloader_secondDelayDur="200"
-        app:lazyloader_secondDotColor="@color/md_theme_primary"
-        app:lazyloader_thirdDotColor="@color/md_theme_primary" />
-                
-                
+
+                <com.agrawalsuneet.dotsloader.loaders.LazyLoader
+                    android:layout_width="80dp"
+                    android:layout_height="80dp"
+                    android:layout_margin="5dp"
+                    app:lazyloader_animDur="500"
+                    app:lazyloader_dotsDist="6dp"
+                    app:lazyloader_dotsRadius="10dp"
+                    app:lazyloader_firstDelayDur="100"
+                    app:lazyloader_firstDotColor="@color/md_theme_primary"
+                    app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
+                    app:lazyloader_secondDelayDur="200"
+                    app:lazyloader_secondDotColor="@color/md_theme_primary"
+                    app:lazyloader_thirdDotColor="@color/md_theme_primary" />
+
+
             </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
