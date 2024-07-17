@@ -35,7 +35,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     private val binding get() = _binding!!
     
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)*
+        super.onCreate(savedInstanceState)
     }
 
     override fun onCreateView(
