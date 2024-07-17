@@ -30,16 +30,23 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:id="@+id/diagnostic_status_loading"
+                    android:id="@+id/diagnostic_status_loadimng"
                     app:lazyloader_animDur="500"
                     app:lazyloader_dotsDist="0dp"
                     app:lazyloader_dotsRadius="4dp"
+                    android:visibility="gone"
                     app:lazyloader_firstDelayDur="90"
                     app:lazyloader_firstDotColor="?colorPrimary"
                     app:lazyloader_interpolator="@android:anim/decelerate_interpolator"
                     app:lazyloader_secondDelayDur="20"
                     app:lazyloader_secondDotColor="?colorPrimary"
                     app:lazyloader_thirdDotColor="?colorPrimary" />
+                
+                <com.example.dotprogressbar.DotProgressBar
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_gravity="center"
+        android:id="@+id/diagnostic_status_loading"
+        android:layout_width="match_parent" android:layout_height="match_parent"/>
 
 
             </com.google.android.material.appbar.MaterialToolbar>
