@@ -79,7 +79,7 @@ public class RobokCodeEditor extends LinearLayout {
                           onDiagnosticStatusReceive(true);
                           addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
                      }
-                     @Override
+                   //  @Override
                      public void onDiagnosticStatusReceive(Boolean isError) {
                          
                      }
