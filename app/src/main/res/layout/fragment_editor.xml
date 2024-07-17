@@ -62,10 +62,10 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+        android:id="@+id/navigation_view_start"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
+        android:layout_gravity="start"
         android:fitsSystemWindows="true">
 
         <LinearLayout
@@ -75,9 +75,30 @@
             android:orientation="vertical"
             android:layout_marginBottom="4dp"
             android:clickable="true">
+            <FrameLayout
+                android:id="@+id/drawer_editor_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view_end"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="end"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/content_end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="4dp"
+            android:clickable="true">
 
             <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
+                android:id="@+id/tab_layout_end"
                 android:layout_width="match_parent" 
                 android:layout_height="wrap_content">
 
@@ -93,7 +114,7 @@
             </com.google.android.material.tabs.TabLayout>
 
             <FrameLayout
-                android:id="@+id/drawer_editor_fragment_container"
+                android:id="@+id/drawer_end_editor_fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
