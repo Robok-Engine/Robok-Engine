@@ -69,8 +69,8 @@ public class RobokCodeEditor extends LinearLayout {
     
     private void configDiagnostic () {
         //Editor event, if there is a change in the text, this event will be called.
-        this.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {l
-              String inputText = this.editor.getText().toString(); /* Gets the text from the editor */
+        this.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+              String inputText = this.editor.getText().toString(); 
               CheckforPossibleErrors(inputText, new DiagnosticListener() {
                      @Override
                      private void error(int line, int positionStart, int positionEnd, String msg) {
