@@ -66,11 +66,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         
         val diagnosticListener = object : DiagnosticListener {
             override fun onDiagnosticReceive (line: Int, positionStart: Int, postionEnd: Int, msg: String) {
-                if (status) {
-                   setDiagnosticOk()
-                } else {
-                   setDiagnosticError()
-                }
+                /*  not used yet */
             }
         }
 

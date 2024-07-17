@@ -31,12 +31,13 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
-
+        
+        val codeEditor = RobokCodeEditor(requireContext())
+        
         val editorTheme = Preference(requireContext()).apply {
             setTitle(getString(R.string.settings_editor_theme_title))
             setDescription(getString(R.string.settings_editor_theme_description))
             setPreferenceClickListener {
-                val codeEditor = RobokCodeEditor(requireContext())
                 ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
                     ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
                 }
@@ -45,7 +46,6 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         binding.content.addView(editorTheme)
 
         val savedThemeIndex = ThemeManager.loadTheme(requireContext())
-        val codeEditor = CodeEditorView(requireContext())
         ThemeManager.selectTheme(codeEditor.getCodeEditor(), savedThemeIndex)
     }
 
