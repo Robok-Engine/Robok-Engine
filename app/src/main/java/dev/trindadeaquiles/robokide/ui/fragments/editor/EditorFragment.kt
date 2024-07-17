@@ -129,13 +129,13 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             
             
        dotProgressBar = DotProgressBar.Builder()
-            .setMargin(4)
+            .setMargin(1)
             .setAnimationDuration(2000)
             .setDotBackground(R.drawable.ic_launcher_background)
             .setMaxScale(1f)
             .setMinScale(0.3f)
-            .setNumberOfDots(5)
-            .setdotRadius(8)
+            .setNumberOfDots(3)
+            .setdotRadius(4)
             .build(requireContext())
         binding.toopbar.addView(dotProgressBar)
         dotProgressBar.startAnimation()
