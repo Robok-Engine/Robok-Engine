@@ -57,20 +57,20 @@ public class RobokCodeEditor extends LinearLayout {
     }
 
     private void configEditor() {
-        this.setText(BASE_MESSAGE);
-        this.setTypefaceText(Typeface.MONOSPACE);
-        this.setTextSize(16);
-        this.setEditorLanguage(new JavaLanguage());
-        this.setWordwrap(false);
-        this.getProps().symbolPairAutoCompletion = true;
-        this.getComponent(EditorAutoCompletion.class).setEnabled(true);
+        this.editor.setText(BASE_MESSAGE);
+        this.editor.setTypefaceText(Typeface.MONOSPACE);
+        this.editor.setTextSize(16);
+        this.editor.setEditorLanguage(new JavaLanguage());
+        this.editor.setWordwrap(false);
+        this.editor.getProps().symbolPairAutoCompletion = true;
+        this.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
         applyEditorTheme();        
     }
     
     private void configDiagnostic () {
         //Editor event, if there is a change in the text, this event will be called.
-        this.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {l
-              String inputText = this.getText().toString(); /* Gets the text from the editor */
+        this.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {l
+              String inputText = this.editor.getText().toString(); /* Gets the text from the editor */
               CheckforPossibleErrors(inputText, new DiagnosticListener() {
                      @Override
                      private void error(int line, int positionStart, int positionEnd, String msg) {
@@ -132,7 +132,7 @@ public class RobokCodeEditor extends LinearLayout {
         ));
         
         //apply diagnostic
-        this.setDiagnostics(diagnostics);
+        this.editor.setDiagnostics(diagnostics);
     }
 
     public CodeEditor getCodeEditor() {
@@ -140,15 +140,15 @@ public class RobokCodeEditor extends LinearLayout {
     }
 
     public String getText() {
-        return this.getText().toString();
+        return this.editor.getText().toString();
     }
     
     private void redo() {
-        this.redo();
+        this.editor.redo();
     }
     
     private void undo () {
-        this.undo();
+        this.editor.undo();
     }
     
     public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
