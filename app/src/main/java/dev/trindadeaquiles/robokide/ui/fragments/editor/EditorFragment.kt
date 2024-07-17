@@ -4,10 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.MenuItem
 import android.view.Gravity
 
-import androidx.core.content.ContextCompat
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
@@ -24,17 +24,12 @@ import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFra
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
-import robok.dev.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
     
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -78,11 +73,12 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             terminal.show()
         }
 
-        tabLayoutConfig()
+        configureTabLayout()
         configureToolbar()
+        configureDrawer()
     }
 
-    fun tabLayoutConfig() {
+    private fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -103,7 +99,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         })
     }
     
-    fun configureToolbar() {
+    private fun configureToolbar() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_undo -> {
@@ -119,14 +115,50 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         }
         
         binding.toolbar.setNavigationOnClickListener {
-            binding.drawerLayout.openDrawer(Gravity.START)
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
         }
         
         binding.diagnosticStatusLoading.setOnClickListener {
-            binding.drawerLayout.openDrawer(Gravity.END)
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                binding.drawerLayout.closeDrawer(GravityCompat.END)
+            } else {
+                binding.drawerLayout.openDrawer(GravityCompat.END)
+            }
         }
     }
-   
+    
+    fun configureDrawer() {
+        binding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
+             private var leftDrawerOffset = 0f
+             private var rightDrawerOffset = 0f
+             
+             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
+                 val drawerWidth = drawerView.width
+                 when (drawerView.id) {
+                     R.id.navigation_view_left -> {
+                         leftDrawerOffset = drawerWidth * slideOffset
+                         binding.content.translationX = leftDrawerOffset
+                     }
+                     R.id.navigation_view_right -> {
+                         rightDrawerOffset = drawerWidth * slideOffset
+                         binding.content.translationX = -rightDrawerOffset
+                     }
+                 }
+             }
+             override fun onDrawerOpened(drawerView: View) {}
+             override fun onDrawerClosed(drawerView: View) {
+                 binding.content.translationX = 0f
+                 leftDrawerOffset = 0f
+                 rightDrawerOffset = 0f
+             }
+             override fun onDrawerStateChanged(newState: Int) { }
+        })
+    }
+    
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -135,6 +167,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     companion object {
         const val PROJECT_PATH = "arg_path"
 
+        @JvmStatic
         fun newInstance(path: String): EditorFragment {
             return EditorFragment(MaterialSharedAxis.X).apply {
                 arguments = Bundle().apply {
