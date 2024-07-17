@@ -26,9 +26,9 @@
                 app:titleCentered="false">
 
                 <com.agrawalsuneet.dotsloader.loaders.LazyLoader
-                    android:layout_width="80dp"
-                    android:layout_height="80dp"
-                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="25dp"
                     app:lazyloader_animDur="500"
                     app:lazyloader_dotsDist="6dp"
                     app:lazyloader_dotsRadius="10dp"
