@@ -21,10 +21,9 @@ import dev.trindadeaquiles.robokide.ui.components.progress.DotProgressBar
 import dev.trindadeaquiles.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
-import dev.trindadeaquiles.robokide.handlers.diagnostic.DiagnosticHandler
 
-import robok.dev.compiler.logic.LogicCompiler
-import robok.dev.compiler.logic.LogicCompilerListener
+import robok.dev.compiler.logic.*
+import robok.dev.diagnostic.logic.*
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -62,9 +61,16 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
-        val diagnosticHandlerListener = object : DiagnosticHandler.DiagnosticListener {
-            override fun onDiagnosticStatusReceive(status: Boolean) {
-               
+        val diagnosticHandlerListener = object : DiagnosticListener {
+            override fun onDiagnosticStatusReceive(isError: Boolean) {
+                if (isError) {
+                   // if diagnostic received
+                } else {
+                   // if no diagnostic received
+                }
+            }
+            override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
+                
             }
         }
         
