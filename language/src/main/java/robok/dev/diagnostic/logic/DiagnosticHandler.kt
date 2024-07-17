@@ -7,7 +7,6 @@ class DiagnosticHandler(private val diagnosticListener: DiagnosticListener) {
     private var diagnosticJob: Job? = null
 
     fun init() {
-        // Inicia o delay de 5 segundos para verificar diagnósticos
         startCheck()
     }
 
