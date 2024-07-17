@@ -50,42 +50,39 @@ public class RobokCodeEditor extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.layout_code_editor, this);
 
         editor = findViewById(R.id.editor);
+        diagnostics = new DiagnosticsContainer();
         
         configEditor();
+        configDiagnostic();
     }
 
     private void configEditor() {
-        editor.setText(BASE_MESSAGE);
-        editor.setTypefaceText(Typeface.MONOSPACE);
-        editor.setTextSize(16);
-        editor.setEditorLanguage(new JavaLanguage());
-        editor.setWordwrap(false);
-        editor.getProps().symbolPairAutoCompletion = true;
-        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
-        
-        //Diagnostics
-        diagnostics = new DiagnosticsContainer();
-        
-        //Editor event, if there is a change in the text, this event will be called.
-        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-                
-                String inputText = editor.getText().toString(); //Gets the text from the editor
-                    
-        
-                CheckforPossibleErrors(inputText, new DiagnosticListener() {
-                        @Override
-                        public void error(int line, int positionStart, int positionEnd, String msg) {
-                            //int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
-                            //int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd);
-                            addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
-                }
-                });
-    });
-        
-        applyEditorTheme();
+        this.setText(BASE_MESSAGE);
+        this.setTypefaceText(Typeface.MONOSPACE);
+        this.setTextSize(16);
+        this.setEditorLanguage(new JavaLanguage());
+        this.setWordwrap(false);
+        this.getProps().symbolPairAutoCompletion = true;
+        this.getComponent(EditorAutoCompletion.class).setEnabled(true);
+        applyEditorTheme();        
     }
     
-    public void applyEditorTheme() {
+    private void configDiagnostic () {
+        //Editor event, if there is a change in the text, this event will be called.
+        this.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {l
+              String inputText = this.getText().toString(); /* Gets the text from the editor */
+              CheckforPossibleErrors(inputText, new DiagnosticListener() {
+                     @Override
+                     private void error(int line, int positionStart, int positionEnd, String msg) {
+                          /* int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
+                             int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd); */
+                          addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+                     }
+             });
+        });
+    }
+    
+    private void applyEditorTheme() {
          int theme = ThemeManager.Companion.loadTheme(getContext());
          ThemeManager.Companion.selectTheme(this.editor, theme);
     }
@@ -119,7 +116,7 @@ public class RobokCodeEditor extends LinearLayout {
         }
     }
     
-    public void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
+    private void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
         diagnostics.addDiagnostic(new DiagnosticRegion(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, 0L,
                 new DiagnosticDetail(
                     "TestTitle, Hello Robok!","" + //diagnostic title 
@@ -135,7 +132,7 @@ public class RobokCodeEditor extends LinearLayout {
         ));
         
         //apply diagnostic
-        editor.setDiagnostics(diagnostics);
+        this.setDiagnostics(diagnostics);
     }
 
     public CodeEditor getCodeEditor() {
@@ -143,15 +140,15 @@ public class RobokCodeEditor extends LinearLayout {
     }
 
     public String getText() {
-        return this.editor.getText().toString();
+        return this.getText().toString();
     }
     
-    public void redo {
-        this.editor.redo();
+    private void redo() {
+        this.redo();
     }
     
-    public void undo {
-        this.editor.undo();
+    private void undo () {
+        this.undo();
     }
     
     public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
@@ -174,7 +171,7 @@ public class RobokCodeEditor extends LinearLayout {
                 "    static boolean withoutPrivacyConstBoolean = true;\n\n" +
                 "    // Methods\n\n" +
                 "    // methods#void\n" +
-                "    public void myVoidMethod() {\n" +
+                "    private void myVoidMethod() {\n" +
                 "        // method content\n" +
                 "    }\n\n" +
                 "    public static void myStaticVoidMethod() {\n" +
