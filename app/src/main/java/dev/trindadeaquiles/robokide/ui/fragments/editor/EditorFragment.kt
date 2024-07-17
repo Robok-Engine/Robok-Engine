@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.MenuItem
 import android.widget.FrameLayout
 
 import androidx.core.content.ContextCompat
@@ -32,6 +33,10 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
+    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)*
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,13 +48,9 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        configureToolbar()
-        
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
-
         val terminal = RobokTerminal(requireContext())
-
+        
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)
@@ -68,12 +69,6 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
-        val diagnosticListener = object : DiagnosticListener {
-            override fun onDiagnosticReceive (line: Int, positionStart: Int, postionEnd: Int, msg: String) {
-                /*  not used yet */
-            }
-        }
-
         val compiler = LogicCompiler(requireContext(), compilerListener)
 
         binding.runButton.setOnClickListener {
@@ -87,9 +82,10 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         }
 
         tabLayoutConfig()
+        configureToolbar()
     }
 
-    private fun tabLayoutConfig() {
+    fun tabLayoutConfig() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -107,50 +103,27 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                     }
                 }
             }
-
             override fun onTabReselected(tab: TabLayout.Tab?) { }
             override fun onTabUnselected(tab: TabLayout.Tab?) { }
         })
     }
     
-    fun setDiagnosticError () {
-    
-    }
-    
-    fun setDiagnosticOk () {
-    
-    }
-    
     fun configureToolbar() {
-        binding.toolbar.setTitleCentered(false)
-       /* val dotProgressBar = DotProgressBar.Builder()
-              .setMargin(4)
-              .setAnimationDuration(2000)
-              .setMaxScale(1f)
-              .setMinScale(0.3f) 
-              .setNumberOfDots(3)
-              .setDotRadius(8)
-              .setDotBackground(R.drawable.ic_launcher2_background)
-              .build(requireContext())*/
-              
-         /*var lazyLoader = LazyLoader(requireContext(), 15, 5,
-             ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
-             ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
-             ContextCompat.getColor(requireContext(), R.color.md_theme_primary))
-                .apply
-                 {
-                animDuration = 500
-                firstDelayDuration = 100
-                secondDelayDuration = 200
-                interpolator = DecelerateInterpolator()
-                
+        binding.toolbar.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                R.id.action_undo -> {
+                    binding.codeEditor.undo()
+                    true
                 }
-        
-               
-        binding.toolbar.addView(lazyLoader)      */
-        //dotProgressBar.startAnimation()
+                R.id.action_redo -> {
+                    binding.codeEditor.redo()
+                    true
+                }
+                else -> false
+            }
+        }
     }
-
+   
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
