@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindadeaquiles.robokide.R
 import dev.trindadeaquiles.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindadeaquiles.robokide.ui.base.RobokFragment
-import dev.trindadeaquiles.robokide.ui.components.editor.CodeEditorView
+import dev.trindadeaquiles.robokide.ui.components.editor.RobokCodeEditor
 import dev.trindadeaquiles.robokide.ui.components.editor.ThemeManager
 
 import dev.trindadeaquiles.lib.ui.components.preferences.Preference
@@ -36,7 +36,7 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
             setTitle(getString(R.string.settings_editor_theme_title))
             setDescription(getString(R.string.settings_editor_theme_description))
             setPreferenceClickListener {
-                val codeEditor = CodeEditorView(requireContext())
+                val codeEditor = RobokCodeEditor(requireContext())
                 ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
                     ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
                 }
