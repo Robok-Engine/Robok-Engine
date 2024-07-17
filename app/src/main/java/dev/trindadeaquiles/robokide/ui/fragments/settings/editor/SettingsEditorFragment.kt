@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import dev.trindadeaquiles.robokide.R
 import dev.trindadeaquiles.robokide.databinding.FragmentSettingsEditorBinding
 import dev.trindadeaquiles.robokide.ui.base.RobokFragment
-import dev.trindadeaquiles.robokide.ui.components.editor.CodeEditorView
+import dev.trindadeaquiles.robokide.ui.components.editor.RobokCodeEditor
 import dev.trindadeaquiles.robokide.ui.components.editor.ThemeManager
 
 import dev.trindadeaquiles.lib.ui.components.preferences.Preference
@@ -31,12 +31,13 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
-
+        
+        val codeEditor = RobokCodeEditor(requireContext())
+        
         val editorTheme = Preference(requireContext()).apply {
             setTitle(getString(R.string.settings_editor_theme_title))
             setDescription(getString(R.string.settings_editor_theme_description))
             setPreferenceClickListener {
-                val codeEditor = CodeEditorView(requireContext())
                 ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
                     ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
                 }
@@ -45,7 +46,6 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         binding.content.addView(editorTheme)
 
         val savedThemeIndex = ThemeManager.loadTheme(requireContext())
-        val codeEditor = CodeEditorView(requireContext())
         ThemeManager.selectTheme(codeEditor.getCodeEditor(), savedThemeIndex)
     }
 

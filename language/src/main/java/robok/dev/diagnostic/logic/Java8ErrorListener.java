@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.*;
 
 public class Java8ErrorListener extends BaseErrorListener {
     
-    ErrorDiagnostico d;
+    DiagnosticListener d;
     
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
@@ -25,7 +25,7 @@ public class Java8ErrorListener extends BaseErrorListener {
             
             String erro = "line " + token.getLine() + ":" + token.getCharPositionInLine() + " " + msg;
             
-             d.error(token.getLine(), startChar, endChar, erro);
+             d.onDiagnosticReceive(token.getLine(), startChar, endChar, erro);
             
           /*  if (msg.contains("missing '{'")) {
                 // Obtain the previous token
@@ -47,17 +47,17 @@ public class Java8ErrorListener extends BaseErrorListener {
                    (previousToken.getCharPositionInLine() + previousToken.getText().length()) + 
                    " missing '{' after " + previousToken.getText();
                 
-               // d.error(previousToken.getLine(), previousToken.getCharPositionInLine() + previousToken.getText().length(), erro);
+               // d.onDiagnosticReceive(previousToken.getLine(), previousToken.getCharPositionInLine() + previousToken.getText().length(), erro);
                 
-                d.error(previousToken.getLine(), startChar, endChar, erro);
+                d.onDiagnosticReceive(previousToken.getLine(), startChar, endChar, erro);
             } else {
                 String erro = "line " + token.getLine() + ":" + token.getCharPositionInLine() + " " + msg;
-                d.error(token.getLine(), token.getStartIndex(), token.getStopIndex(), erro);
-             //   d.error();
+                d.onDiagnosticReceive(token.getLine(), token.getStartIndex(), token.getStopIndex(), erro);
+             //   d.onDiagnosticReceive();
             }*/
         } else {
             Log.e("RobokErrorListener", "Error in find character from error");
-             d.error(line, charPositionInLine, charPositionInLine + 1, "line " + line + ":" + charPositionInLine + " " + msg);
+             d.onDiagnosticReceive(line, charPositionInLine, charPositionInLine + 1, "line " + line + ":" + charPositionInLine + " " + msg);
         }
         
     }
@@ -65,12 +65,8 @@ public class Java8ErrorListener extends BaseErrorListener {
     
     
     
-    public void getError(ErrorDiagnostico d){
+    public void getError(DiagnosticListener d){
         this.d = d;
-    }
-    
-    public static interface ErrorDiagnostico{
-        public void error(int line, int positionStart, int postionEnd, String msg);
     }
 }
 
