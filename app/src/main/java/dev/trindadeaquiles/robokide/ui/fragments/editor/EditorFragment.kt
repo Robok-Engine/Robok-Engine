@@ -21,6 +21,7 @@ import dev.trindadeaquiles.robokide.ui.components.progress.DotProgressBar
 import dev.trindadeaquiles.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
+import dev.trindadeaquiles.robokide.handlers.diagnostic.DiagnosticHandler
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
@@ -61,6 +62,12 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
+        val diagnosticHandlerListener = object : DiagnosticHandler.DiagnosticListener {
+            override fun onDiagnosticStatusReceive(status: Boolean) {
+               
+            }
+        }
+        
         val compiler = LogicCompiler(requireContext(), compilerListener)
 
         binding.runButton.setOnClickListener {
@@ -78,7 +85,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         configureDrawer()
     }
 
-    private fun configureTabLayout() {
+    fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -99,7 +106,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         })
     }
     
-    private fun configureToolbar() {
+    fun configureToolbar() {
         binding.toolbar.setOnMenuItemClickListener { item ->
             when (item.itemId) {
                 R.id.action_undo -> {
