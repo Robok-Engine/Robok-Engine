@@ -73,7 +73,7 @@ public class RobokCodeEditor extends LinearLayout {
               String inputText = this.editor.getText().toString(); 
               CheckforPossibleErrors(inputText, new DiagnosticListener() {
                      @Override
-                     private void error(int line, int positionStart, int positionEnd, String msg) {
+                     private void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
                           /* int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
                              int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd); */
                           addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
