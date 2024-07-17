@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.MenuItem
+import android.view.Gravity
 
 import androidx.core.content.ContextCompat
 
@@ -87,15 +88,13 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 tab?.let {
                     when (it.text) {
                         getString(R.string.text_logs) -> {
-                            openCustomFragment(R.id.drawer_editor_fragment_container, LogsFragment(MaterialSharedAxis.Y))
+                            openCustomFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
                         }
 
                         getString(R.string.text_diagnostic) -> {
-                            openCustomFragment(R.id.drawer_editor_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
+                            openCustomFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
                         }
-                        else -> {
-                            // Handle other tabs if needed
-                        }
+                        else -> {}
                     }
                 }
             }
@@ -118,6 +117,14 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 else -> false
             }
         }
+        
+        binding.toolbar.setNavigationOnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.START)
+        }
+        
+        binding.diagnosticLoader.setOnClickListener {
+            binding.drawerLayout.openDrawer(Gravity.END)
+        }
     }
    
     override fun onDestroyView() {
@@ -126,7 +133,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
 
     companion object {
-        private const val PROJECT_PATH = "arg_path"
+        const val PROJECT_PATH = "arg_path"
 
         fun newInstance(path: String): EditorFragment {
             return EditorFragment(MaterialSharedAxis.X).apply {
