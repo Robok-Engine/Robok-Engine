@@ -2,7 +2,6 @@ package dev.trindadeaquiles.robokide.ui.components.editor;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.util.AttributeSet;
@@ -34,30 +33,128 @@ import org.antlr.runtime.tree.ParseTree;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStreams;
+
 import robok.dev.diagnostic.logic.*;
 
-public class CodeEditorView extends LinearLayout {
+public class RobokCodeEditor extends LinearLayout {
 
     public CodeEditor editor;
-    public SharedPreferences pref;
     private DiagnosticsContainer diagnostics;
 
-    public CodeEditorView(Context context) {
+    public RobokCodeEditor(Context context) {
         this(context, null);
     }
 
-    public CodeEditorView(Context context, @Nullable AttributeSet attrs) {
+    public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.layout_code_editor, this);
 
         editor = findViewById(R.id.editor);
-        pref = context.getSharedPreferences("hsce", Activity.MODE_PRIVATE);
         
-        initialize();
+        configEditor();
     }
 
-    private void initialize() {
-        String defaultCode = "package com.my.newproject;\n\n" +
+    private void configEditor() {
+        editor.setText(BASE_MESSAGE);
+        editor.setTypefaceText(Typeface.MONOSPACE);
+        editor.setTextSize(16);
+        editor.setEditorLanguage(new JavaLanguage());
+        editor.setWordwrap(false);
+        editor.getProps().symbolPairAutoCompletion = true;
+        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
+        
+        //Diagnostics
+        diagnostics = new DiagnosticsContainer();
+        
+        //Editor event, if there is a change in the text, this event will be called.
+        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+                
+                String inputText = editor.getText().toString(); //Gets the text from the editor
+                    
+        
+                CheckforPossibleErrors(inputText, new DiagnosticListener() {
+                        @Override
+                        public void error(int line, int positionStart, int positionEnd, String msg) {
+                            //int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
+                            //int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd);
+                            addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+                }
+                });
+    });
+        
+        applyEditorTheme();
+    }
+    
+    public void applyEditorTheme() {
+         int theme = ThemeManager.Companion.loadTheme(getContext());
+         ThemeManager.Companion.selectTheme(this.editor, theme);
+    }
+    
+    /*
+       * Method used to check if the editor code has errors.
+       * If so, the listener will be called.
+       * This method must be called every time there is a change in the code.
+    */
+    private void CheckforPossibleErrors(String inputText, DiagnosticListener listener) {
+        diagnostics.reset(); //reset diagnostics.
+        try {
+            //Using antlr to compile the code.
+            
+            ANTLRInputStream input = new ANTLRInputStream(inputText);
+            Java8Lexer lexer = new Java8Lexer(input);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            Java8Parser parser = new Java8Parser(tokens);
+            parser.removeErrorListeners();
+            Java8ErrorListener robokError = new Java8ErrorListener();
+
+            robokError.getError(listener);
+                    
+            parser.addErrorListener(robokError);
+            
+            parser.compilationUnit();
+            // Use ParseTreeWalker to navigate the tree and apply checks 
+            //additional if necessary
+        } catch (Exception e) {
+            Log.e("MainActivity", "Error reading file", e);
+        }
+    }
+    
+    public void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
+        diagnostics.addDiagnostic(new DiagnosticRegion(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, 0L,
+                new DiagnosticDetail(
+                    "TestTitle, Hello Robok!","" + //diagnostic title 
+                     msg, 
+                    Arrays.asList(
+                        new Quickfix("Fix Quick", 0L, () -> {
+                            /*action here*/
+                        }),
+                        new Quickfix("Test", 0L, () -> {
+                            /*action here*/
+                        })
+                    ), null)
+        ));
+        
+        //apply diagnostic
+        editor.setDiagnostics(diagnostics);
+    }
+
+    public CodeEditor getCodeEditor() {
+        return this.editor;
+    }
+
+    public String getText() {
+        return this.editor.getText().toString();
+    }
+    
+    public void redo {
+        this.editor.redo();
+    }
+    
+    public void undo {
+        this.editor.undo();
+    }
+    
+    public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
                 "    // Variables\n\n" +
                 "    // Variables#string\n" +
@@ -94,93 +191,5 @@ public class CodeEditorView extends LinearLayout {
                 "    }\n\n" +
                 "    // and more...\n" +
                 "}";
-
-        editor.setText(defaultCode);
-        editor.setTypefaceText(Typeface.MONOSPACE);
-        editor.setTextSize(16);
-        editor.setEditorLanguage(new JavaLanguage());
-        editor.setWordwrap(false);
-        editor.getProps().symbolPairAutoCompletion = true;
-        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
-        
-        //Diagnostics
-        diagnostics = new DiagnosticsContainer();
-        
-        //Editor event, if there is a change in the text, this event will be called.
-        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-                
-                String inputText = editor.getText().toString(); //Gets the text from the editor
-                    
-        
-                CheckforPossibleErrors(inputText, new Java8ErrorListener.ErrorDiagnostico() {
-                        @Override
-                        public void error(int line, int positionStart, int positionEnd, String msg) {
-                                
-                            //int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
-                            
-                            //int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd);
-                                
-                            addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
-                }
-                });
-    });
-        
-        applyEditorTheme();
-    }
     
-    public void applyEditorTheme() {
-         int theme = ThemeManager.Companion.loadTheme(getContext());
-         ThemeManager.Companion.selectTheme(this.editor, theme);
-    }
-    
-    
-    /*Method used to check if the editor code has errors.
-    If so, the listener will be called.*/
-    //This method must be called every time there is a change in the code.
-    //Esse metodo devera ser chamado toda vez que houver uma modificação no codigo.
-    private void CheckforPossibleErrors(String inputText, Java8ErrorListener.ErrorDiagnostico listener) {
-        diagnostics.reset(); //reset diagnostics.
-        try {
-            //Using antlr to compile the code.
-            ANTLRInputStream input = new ANTLRInputStream(inputText);
-            Java8Lexer lexer = new Java8Lexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            Java8Parser parser = new Java8Parser(tokens);
-            parser.removeErrorListeners();
-            Java8ErrorListener roboError = new Java8ErrorListener();
-
-            roboError.getError(listener);
-                    
-            parser.addErrorListener(roboError);
-            
-            parser.compilationUnit();
-            // Use ParseTreeWalker to navigate the tree and apply checks 
-            //additional if necessary
-        } catch (Exception e) {
-            Log.e("MainActivity", "Error reading file", e);
-        }
-        
-        }
-    
-    public void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
-        diagnostics.addDiagnostic(new DiagnosticRegion(positionStart,positionEnd, DiagnosticRegion.SEVERITY_ERROR,0L,
-                new DiagnosticDetail(
-                    "TestTitle, Hello Robok!","" + //Title Diagnostic 
-                     msg, //Message diagnostic
-                    Arrays.asList(
-                                    new Quickfix("Fix Quick", 0L, () -> {/*action here*/}), //Option 1
-                                    new Quickfix("Test", 0L, () -> {/*action here*/})), null))); //Option 2
-        
-        //apply diagnostics
-        editor.setDiagnostics(diagnostics);
-        
-        }
-
-    public CodeEditor getCodeEditor() {
-        return this.editor;
-    }
-
-    public String getText() {
-        return this.editor.getText().toString();
-    }
 }

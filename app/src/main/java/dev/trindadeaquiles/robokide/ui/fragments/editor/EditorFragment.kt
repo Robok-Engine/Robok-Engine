@@ -14,11 +14,11 @@ import com.google.android.material.tabs.TabLayout
 import dev.trindadeaquiles.robokide.R
 import dev.trindadeaquiles.robokide.databinding.FragmentEditorBinding
 import dev.trindadeaquiles.robokide.ui.terminal.RobokTerminal
+import dev.trindadeaquiles.robokide.ui.base.RobokFragment
+import dev.trindadeaquiles.robokide.ui.components.progress.DotProgressBar
 import dev.trindadeaquiles.robokide.ui.fragments.build.output.OutputFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.logs.LogsFragment
 import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
-import dev.trindadeaquiles.robokide.ui.base.RobokFragment
-import dev.trindadeaquiles.robokide.ui.components.progress.DotProgressBar
 
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
