@@ -40,7 +40,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         
-        /*configureToolbar()*/
+        configureToolbar()
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
 
