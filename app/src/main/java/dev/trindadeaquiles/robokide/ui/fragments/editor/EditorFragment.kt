@@ -131,10 +131,10 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
               .setDotBackground(R.drawable.ic_launcher2_background)
               .build(requireContext())*/
               
-         var lazyLoader = LazyLoader(this, 15, 5,
-             ContextCompat.getColor(this, R.color.loader_selected),
-             ContextCompat.getColor(this, R.color.loader_selected),
-             ContextCompat.getColor(this, R.color.loader_selected))
+         var lazyLoader = LazyLoader(requireContext(), 15, 5,
+             ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
+             ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
+             ContextCompat.getColor(requireContext(), R.color.md_theme_primary))
                 .apply
                  {
                 animDuration = 500
