@@ -133,7 +133,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
               .setDotBackground(R.drawable.ic_launcher2_background)
               .build(requireContext())*/
               
-         var lazyLoader = LazyLoader(requireContext(), 15, 5,
+         /*var lazyLoader = LazyLoader(requireContext(), 15, 5,
              ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
              ContextCompat.getColor(requireContext(), R.color.md_theme_primary),
              ContextCompat.getColor(requireContext(), R.color.md_theme_primary))
@@ -147,7 +147,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 }
         
                
-        binding.toolbar.addView(lazyLoader)      
+        binding.toolbar.addView(lazyLoader)      */
         //dotProgressBar.startAnimation()
     }
 
