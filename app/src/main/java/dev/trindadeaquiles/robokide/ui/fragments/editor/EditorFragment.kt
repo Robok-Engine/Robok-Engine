@@ -29,6 +29,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     private var _binding: FragmentEditorBinding? = null
     private val binding get() = _binding!!
+    private var dotProgressBar = null
     
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -125,6 +126,19 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 }
                 else -> false
             }
+            
+            
+       dotProgressBar = DotProgressBar.Builder()
+            .setMargin(4)
+            .setAnimationDuration(2000)
+            .setDotBackground(R.drawable.ic_launcher_background)
+            .setMaxScale(1f)
+            .setMinScale(0.3f)
+            .setNumberOfDots(5)
+            .setdotRadius(8)
+            .build(requireContext())
+        binding.toopbar.addView(dotProgressBar)
+        dotProgressBar.startAnimation()
         }
         
         binding.toolbar.setNavigationOnClickListener {
@@ -135,7 +149,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
-        binding.diagnosticStatusLoading.setOnClickListener {
+        dotProgressBar.setOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.END)
             } else {
