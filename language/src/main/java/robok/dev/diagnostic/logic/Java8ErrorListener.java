@@ -25,7 +25,7 @@ public class Java8ErrorListener extends BaseErrorListener {
             
             String erro = "line " + token.getLine() + ":" + token.getCharPositionInLine() + " " + msg;
             
-             d.error(token.getLine(), startChar, endChar, erro);
+             d.onDiagnosticReceive(token.getLine(), startChar, endChar, erro);
             
           /*  if (msg.contains("missing '{'")) {
                 // Obtain the previous token
@@ -47,13 +47,13 @@ public class Java8ErrorListener extends BaseErrorListener {
                    (previousToken.getCharPositionInLine() + previousToken.getText().length()) + 
                    " missing '{' after " + previousToken.getText();
                 
-               // d.error(previousToken.getLine(), previousToken.getCharPositionInLine() + previousToken.getText().length(), erro);
+               // d.onDiagnosticReceive(previousToken.getLine(), previousToken.getCharPositionInLine() + previousToken.getText().length(), erro);
                 
-                d.error(previousToken.getLine(), startChar, endChar, erro);
+                d.onDiagnosticReceive(previousToken.getLine(), startChar, endChar, erro);
             } else {
                 String erro = "line " + token.getLine() + ":" + token.getCharPositionInLine() + " " + msg;
-                d.error(token.getLine(), token.getStartIndex(), token.getStopIndex(), erro);
-             //   d.error();
+                d.onDiagnosticReceive(token.getLine(), token.getStartIndex(), token.getStopIndex(), erro);
+             //   d.onDiagnosticReceive();
             }*/
         } else {
             Log.e("RobokErrorListener", "Error in find character from error");
