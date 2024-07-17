@@ -5,11 +5,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.MenuItem
-import android.widget.FrameLayout
 
 import androidx.core.content.ContextCompat
 
-import com.google.android.material.navigation.NavigationView
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.tabs.TabLayout
@@ -26,8 +24,6 @@ import dev.trindadeaquiles.robokide.ui.fragments.editor.diagnostic.DiagnosticFra
 import robok.dev.compiler.logic.LogicCompiler
 import robok.dev.compiler.logic.LogicCompilerListener
 import robok.dev.diagnostic.logic.DiagnosticListener
-import android.view.animation.DecelerateInterpolator
-import com.agrawalsuneet.dotsloader.loaders.LazyLoader
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
