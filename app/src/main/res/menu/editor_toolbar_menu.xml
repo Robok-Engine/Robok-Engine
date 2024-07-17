@@ -4,10 +4,10 @@
         android:id="@+id/action_undo"
         android:icon="@drawable/ic_undo_24"
         android:title="@string/common_word_undo"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always" />
     <item
         android:id="@+id/action_redo"
         android:icon="@drawable/ic_redo_24"
         android:title="@string/common_word_redo"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always" />
 </menu>
