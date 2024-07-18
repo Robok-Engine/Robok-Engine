@@ -126,6 +126,6 @@ dependencies {
     
     
     //Progress bouncy dots
-    implementation("com.github.agrawalsuneet:DotLoadersPack-Android:v1.4")
+    implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
     
 }
