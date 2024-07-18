@@ -4,26 +4,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/drawer_layout">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:id="@+id/content">
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/appbar"
             android:fitsSystemWindows="true">
-
+            
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu_24"
                 app:title="@string/app_name"
-                app:titleTextAppearance="@style/TextAppearance.Robok.TitleLarge.Bold"
-                app:titleCentered="false" />
+                app:menu="@menu/editor_toolbar_menu"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -62,14 +63,35 @@
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
-        android:id="@+id/navigation_view"
+        android:id="@+id/navigation_view_left"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:fitsSystemWindows="true">
+
+        <LinearLayout
+            android:id="@+id/content_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="4dp"
+            android:clickable="true">
+            <FrameLayout
+                android:id="@+id/drawer_editor_left_fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </LinearLayout>
+    </com.google.android.material.navigation.NavigationView>
+
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/navigation_view_right"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
         android:fitsSystemWindows="true">
 
         <LinearLayout
-            android:id="@+id/content"
+            android:id="@+id/content_right"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -93,7 +115,7 @@
             </com.google.android.material.tabs.TabLayout>
 
             <FrameLayout
-                android:id="@+id/drawer_editor_fragment_container"
+                android:id="@+id/drawer_editor_right_fragment_container"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </LinearLayout>
