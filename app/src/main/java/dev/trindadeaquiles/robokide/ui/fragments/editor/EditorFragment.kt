@@ -126,20 +126,18 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 }
                 else -> false
             }
-            
-            
-       dotProgressBar = DotProgressBar.Builder()
-            .setMargin(1)
-            .setAnimationDuration(2000)
-            .setDotBackground(R.drawable.ic_launcher_background)
-            .setMaxScale(1f)
-            .setMinScale(0.3f)
-            .setNumberOfDots(3)
-            .setdotRadius(4)
-            .build(requireContext())
-        binding.toopbar.addView(dotProgressBar)
-        dotProgressBar.startAnimation()
         }
+        val dotProgressBar = DotProgressBar.Builder()
+              .setMargin(1)
+              .setAnimationDuration(2000)
+              .setDotBackground(R.drawable.ic_launcher_background)
+              .setMaxScale(1f)
+              .setMinScale(0.3f)
+              .setNumberOfDots(3)
+              .setDotRadius(4)
+              .build(requireContext())
+        binding.toolbar.addView(dotProgressBar)
+        dotProgressBar.startAnimation()
         
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -149,6 +147,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
+        /*
         dotProgressBar.setOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.END)
@@ -156,6 +155,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 binding.drawerLayout.openDrawer(GravityCompat.END)
             }
         }
+        */
     }
     
     fun configureDrawer() {
