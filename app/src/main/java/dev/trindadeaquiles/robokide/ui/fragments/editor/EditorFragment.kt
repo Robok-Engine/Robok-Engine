@@ -127,7 +127,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 else -> false
             }
         }
-        dotProgressBar = DotProgressBar.Builder()
+        val dotProgressBar = DotProgressBar.Builder()
               .setMargin(1)
               .setAnimationDuration(2000)
               .setDotBackground(R.drawable.ic_launcher_background)
