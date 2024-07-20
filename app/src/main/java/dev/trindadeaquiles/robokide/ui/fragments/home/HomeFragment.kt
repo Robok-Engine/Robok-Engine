@@ -66,7 +66,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
             openFragment(AboutFragment(MaterialSharedAxis.X))
         }
         
-        binding.openOpenGL.setOnClickListener {
+        binding.openOpenGl.setOnClickListener {
             startActivity(Intent(requireContext(), GameActivity::class.java))
         }
     }
