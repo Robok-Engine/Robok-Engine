@@ -33,6 +33,12 @@
             android:name="dev.trindadeaquiles.robokide.ui.activities.DebugActivity"
             android:exported="true" />
             
+        <!-- Open GL 2.0 -->
+        <activity
+            android:name="robok.dev.opengl.GameActivity"
+            android:exported="true" 
+            android:orientation="horizontal" />     
+            
     </application>
 
 </manifest>
