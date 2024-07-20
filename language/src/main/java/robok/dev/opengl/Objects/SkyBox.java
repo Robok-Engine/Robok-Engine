@@ -4,7 +4,7 @@ import android.content.Context;
 import android.opengl.GLES20;
 import android.opengl.Matrix;
 
-import robok.dev.opengl.R;
+import robok.R;
 import robok.dev.opengl.Scene.RawResourceReader;
 
 import java.nio.ByteBuffer;

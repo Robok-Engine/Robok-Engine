@@ -8,7 +8,7 @@ import robok.dev.opengl.GameView.GameRenderer;
 import robok.dev.opengl.Objects.BasicObject;
 import robok.dev.opengl.Objects.GamePad;
 import robok.dev.opengl.Objects.SkyBox;
-import robok.dev.opengl.R;
+import robok.R;
 import robok.dev.opengl.Utils.Vector3D;
 
 import java.util.Vector;
