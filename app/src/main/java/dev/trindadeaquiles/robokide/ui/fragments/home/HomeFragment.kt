@@ -29,6 +29,8 @@ import dev.trindadeaquiles.robokide.ui.fragments.editor.EditorFragment
 import dev.trindadeaquiles.robokide.ui.fragments.about.AboutFragment
 import dev.trindadeaquiles.robokide.ui.fragments.settings.SettingsFragment
 
+import robok.dev.opengl.GameActivity 
+
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentHomeBinding? = null
@@ -62,6 +64,10 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         
         binding.openAbout.setOnClickListener {
             openFragment(AboutFragment(MaterialSharedAxis.X))
+        }
+        
+        binding.openOpenGL.setOnClickListener {
+            startActivity(Intent(requireContext(), GameActivity::class.java))
         }
     }
     

@@ -77,6 +77,17 @@
            android:id="@+id/open_about"
            app:icon="@drawable/ic_info_24"  />
            
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="7dp"
+           android:layout_marginBottom="7dp"
+           android:layout_marginRight="20dp"
+           android:layout_marginLeft="20dp"
+           android:text="@string/title_opengl"
+           android:id="@+id/open_open_gl"
+           app:icon="@drawable/ic_cube_24"  />
+           
     </LinearLayout>  
 </LinearLayout>
 
