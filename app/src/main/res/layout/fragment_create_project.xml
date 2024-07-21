@@ -35,14 +35,14 @@
             android:layout_weight="1"
             android:padding="8dp">
 
-            <dev.trindadeaquiles.robokide.ui.components.textfield.RbkTextField 
+            <com.robok.ide.ui.components.textfield.RbkTextField 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"
                 app:rbkTextFieldText="New App"
                 app:rbkTextFieldHint="@string/hint_project_name" />
 
-            <dev.trindadeaquiles.robokide.ui.components.textfield.RbkTextField 
+            <com.robok.ide.ui.components.textfield.RbkTextField 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="8dp"

@@ -28,7 +28,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-        <dev.trindadeaquiles.robokide.ui.components.editor.RobokCodeEditor
+        <com.robok.ide.ui.components.editor.RobokCodeEditor
             android:id="@+id/code_editor"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

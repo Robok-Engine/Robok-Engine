@@ -7,11 +7,11 @@ plugins {
 }
 
 android {
-    namespace = "dev.trindadeaquiles.robokide"
+    namespace = "com.robok.ide"
     compileSdk = 34
     
     defaultConfig {
-        applicationId = "dev.trindadeaquiles.robokide"
+        applicationId = "com.robok.ide"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
