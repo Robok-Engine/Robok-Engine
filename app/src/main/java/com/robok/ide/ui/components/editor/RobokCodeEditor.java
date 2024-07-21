@@ -34,7 +34,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStreams;
 
-import robok.dev.diagnostic.logic.*;
+import robok.diagnostic.logic.*;
 
 public class RobokCodeEditor extends LinearLayout {
 
