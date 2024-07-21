@@ -12,7 +12,7 @@ import com.robok.ide.databinding.FragmentSettingsBinding
 import com.robok.ide.ui.base.RobokFragment
 import com.robok.ide.ui.fragments.settings.editor.SettingsEditorFragment
 
-import dev.trindadeaquiles.lib.ui.components.preferences.Preference
+import dev.trindadedev.lib.ui.components.preferences.Preference
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
