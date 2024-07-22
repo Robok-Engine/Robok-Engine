@@ -68,7 +68,7 @@ dependencies {
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
-    val trindadeutilVersion = "3.0.3"
+    val trindadeutilVersion = "3.0.4"
     val antlrVersion = "4.9.2"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
@@ -114,7 +114,7 @@ dependencies {
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
     // aquiles trindade libs
-    implementation("com.github.aquilesTrindade.trindade-util:preferencesv2:$trindadeutilVersion")
+    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
     
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
