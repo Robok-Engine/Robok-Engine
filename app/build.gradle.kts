@@ -98,7 +98,6 @@ dependencies {
     // filepicker
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
     
-
     // Sora editor
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
@@ -115,8 +114,7 @@ dependencies {
     
     // aquiles trindade libs
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
-    implementation("com.github.aquilesTrindade:trindade-util:filepicker:$trindadeutilVersion")
-
+    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     
