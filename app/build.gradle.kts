@@ -115,7 +115,8 @@ dependencies {
     
     // aquiles trindade libs
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
-    
+    implementation("com.github.aquilesTrindade:trindade-util:filepicker:$trindadeutilVersion")
+
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     
