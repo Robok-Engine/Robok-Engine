@@ -23,7 +23,7 @@ class DotProgressBar : FrameLayout {
     private var maxScale = 1f
     private var primaryAnimator: ValueAnimator? = null
     private lateinit var dotProgressBar: LinearLayout
-    private var dotBackground = R.drawable.ic_dot
+    private var dotBackground = R.drawable.ic_dot_24
     private var dotAnimator: ValueAnimator? = null
 
     constructor(context: Context) : super(context)
@@ -112,7 +112,7 @@ class DotProgressBar : FrameLayout {
         private var minScale = 0.5f
         private var maxScale = 1f
         private var primaryAnimator: ValueAnimator? = null
-        private var dotBackground = R.drawable.ic_dot
+        private var dotBackground = R.drawable.ic_dot_24
         
         fun build(context: Context): DotProgressBar {
             val dotProgressBar = DotProgressBar(context)
