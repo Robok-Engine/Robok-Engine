@@ -68,7 +68,7 @@ dependencies {
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
-    val trindadeutilVersion = "3.0.5"
+    val trindadeutilVersion = "3.0.6"
     val antlrVersion = "4.9.2"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
