@@ -15,7 +15,7 @@ import com.robok.ide.ui.base.RobokFragment
 import com.robok.ide.ui.components.editor.RobokCodeEditor
 import com.robok.ide.ui.components.editor.ThemeManager
 
-import dev.trindadedev.lib.ui.components.preferences.PreferenceItem
+import dev.trindadedev.lib.ui.components.preferences.compose.*
 
 class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
