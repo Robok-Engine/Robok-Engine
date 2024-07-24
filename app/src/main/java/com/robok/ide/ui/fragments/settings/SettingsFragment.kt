@@ -36,11 +36,11 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         
         binding.composeView.setContent {
             Preference(
-                iconResId = R.drawable.ic_settings_24, 
+                iconResId = R.drawable.ic_settings_24,
                 title = getString(R.string.settings_editor_title),
                 summary = getString(R.string.settings_editor_description),
-                onClick = { 
-                    openFragment(SettingsEditorFragment(MaterialSharedAxis.X)) 
+                onClick = {
+                    openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
                 }
             )
         }
