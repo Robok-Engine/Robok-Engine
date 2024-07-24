@@ -68,7 +68,7 @@ dependencies {
     val okhttp3Version = "4.12.0"
     val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
-    val trindadeutilVersion = "3.0.6"
+    val trindadeutilVersion = "3.0.6-fix01"
     val antlrVersion = "4.9.2"
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
@@ -114,6 +114,7 @@ dependencies {
     
     // aquiles trindade libs
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
+    implementation("com.github.aquilesTrindade.trindade-util:components-compose:$trindadeutilVersion")
     
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
@@ -123,7 +124,11 @@ dependencies {
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
     
     
-    //Progress bouncy dots
+    // Progress bouncy dots
     implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
     
+    // Compose
+    implementation("androidx.compose.ui:ui:1.4.0")
+    implementation("androidx.compose.material:material:1.4.0")
+    implementation("androidx.compose.material3:material3:1.0.0")
 }
