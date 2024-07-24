@@ -34,8 +34,7 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
         
-        val composeView = binding.composeView
-        composeView.setContent {
+        binding.composeView.setContent {
             PreferenceItem(
                 iconResId = R.drawable.ic_settings_24, 
                 title = getString(R.string.settings_editor_title),
