@@ -128,7 +128,7 @@ dependencies {
     implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
     
     // Compose
-    implementation("androidx.compose.ui:ui:1.4.0")
+    implementation("androidx.compose.ui:ui:1.6.8")
     implementation("androidx.compose.material:material:1.4.0")
     implementation("androidx.compose.material3:material3:1.2.1")
 }
