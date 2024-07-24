@@ -1,3 +1,5 @@
+package com.robok.ide.ui.fragments.settings.editor
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
