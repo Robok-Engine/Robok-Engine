@@ -123,7 +123,11 @@ dependencies {
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
     
     
-    //Progress bouncy dots
+    // Progress bouncy dots
     implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
     
+    // Compose
+    implementation("androidx.compose.ui:ui:1.4.0")
+    implementation("androidx.compose.material:material:1.4.0")
+    implementation("androidx.compose.material3:material3:1.0.0")
 }
