@@ -37,7 +37,7 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         val codeEditor = RobokCodeEditor(requireContext())
         
         binding.composeView.setContent {
-            PreferenceItem(
+            Preference(
                 iconResId = R.drawable.ic_settings_24,
                 title = getString(R.string.settings_editor_theme_title),
                 summary = getString(R.string.settings_editor_theme_description),
