@@ -126,17 +126,4 @@ dependencies {
     
     // Progress bouncy dots
     implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
-    
-    // Compose
-    implementation(platform("androidx.compose:compose-bom:2024.05.00"))
-    implementation("androidx.compose.material3:material3")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.foundation:foundation")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.activity:activity-compose:1.9.1")
-    implementation("androidx.activity:activity:1.9.1")
-    implementation("androidx.navigation:navigation-compose:2.7.7")
 }
