@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/releaseCompile.yml
+      - .github/workflows/build.yml
       - app/**
       - language/**
       - build.gradle.kts
@@ -14,7 +14,7 @@ on:
       - settings.gradle.kts
   pull_request:
     paths:
-      - .github/workflows/releaseCompile.yml
+      - .github/workflows/build.yml
       - app/**
       - language/**
       - build.gradle.kts
