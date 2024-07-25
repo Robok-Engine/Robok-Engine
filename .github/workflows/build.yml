@@ -1,10 +1,10 @@
-name: RobokIDE Debug
+name: RobokIDE Release
 
 on:
   workflow_dispatch:
   push:
     paths:
-      - .github/workflows/debugCompile.yml
+      - .github/workflows/releaseCompile.yml
       - app/**
       - language/**
       - build.gradle.kts
@@ -14,7 +14,7 @@ on:
       - settings.gradle.kts
   pull_request:
     paths:
-      - .github/workflows/debugCompile.yml
+      - .github/workflows/releaseCompile.yml
       - app/**
       - language/**
       - build.gradle.kts
@@ -24,8 +24,8 @@ on:
       - settings.gradle.kts    
 
 jobs:
-  RobokIDE-debug-apk:
-    name: Build RobokIDE Debug APK
+  RobokIDE-release-apk:
+    name: Build RobokIDE Release APK
     runs-on: ubuntu-latest
 
     steps:
@@ -46,14 +46,26 @@ jobs:
         uses: gradle/wrapper-validation-action@v3
       
       - name: Build with Gradle
-        id: gradle_build_debug
-        run: ./gradlew assembleDebug 
+        id: gradle_build_release
+        run: ./gradlew assembleRelease
+        
+      - name: Sign APK
+        id: sign_apk
+        uses: noriban/sign-android-release@v3
+        with:
+          releaseDirectory: app/build/outputs/apk/release
+          signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
+          alias: ${{ secrets.KEYSTORE_ALIAS }}
+          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
+          keyPassword: ${{ secrets.KEY_PASSWORD }}
+        env:
+          BUILD_TOOLS_VERSION: "34.0.0"      
 
-      - name: Upload debug apk
+      - name: Upload release apk
         uses: actions/upload-artifact@v4
         with:
-          name: RobokIDE-debug
-          path: app/build/outputs/apk/debug/
+          name: robokide-apk
+          path: ${{steps.sign_apk.outputs.signedReleaseFile}}
           
       - name: Send APK to Telegram
         uses: appleboy/telegram-action@master
@@ -61,12 +73,12 @@ jobs:
           to: -1002213084840
           token: 7268140179:AAHidrnBwQeynxPMwgDrJCXasZ11quWIHOU
           format: markdown
-          document: app/build/outputs/apk/debug/app-debug.apk
+          document: ${{steps.sign_apk.outputs.signedReleaseFile}}
           disable_web_page_preview: false
           message: |
             *Build Success!*
             Repository: *${{ github.repository }}*
             Branch: *${{ github.ref_name }}*
-            App: RobokIDE
+            App: Robok IDE
             Commit message: `${{ github.event.head_commit.message }}`
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
