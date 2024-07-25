@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Process;
+import android.util.Log;
 
 import androidx.fragment.app.FragmentManager;
 
@@ -13,6 +14,8 @@ import com.google.android.material.color.DynamicColors;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
+
+import com.robok.ide.ui.activities.DebugActivity;
 
 public class Robok extends Application {
 
@@ -44,7 +47,6 @@ public class Robok extends Application {
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
             intent.putExtra("error", Log.getStackTraceString(throwable));
             startActivity(intent);
-            SketchLogger.broadcastLog(Log.getStackTraceString(throwable));
             Process.killProcess(Process.myPid());
             System.exit(1);
         });
