@@ -5,9 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.compose.ui.platform.ComposeView
-import androidx.fragment.app.Fragment
-
 import com.google.android.material.transition.MaterialSharedAxis
 
 import com.robok.ide.R
@@ -15,7 +12,7 @@ import com.robok.ide.databinding.FragmentSettingsBinding
 import com.robok.ide.ui.base.RobokFragment
 import com.robok.ide.ui.fragments.settings.editor.SettingsEditorFragment
 
-import dev.trindadedev.lib.ui.components.preferences.compose.*
+import dev.trindadedev.lib.ui.components.preferences.Preference
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -34,16 +31,13 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
         
-        binding.composeView.setContent {
-            Preference(
-                iconResId = R.drawable.ic_settings_24,
-                title = getString(R.string.settings_editor_title),
-                summary = getString(R.string.settings_editor_description),
-                onClick = {
-                    openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
-                }
-            )
+        val editorSettings = Preference(requireContext())
+        editorSettings.setTitle(getString(R.string.settings_editor_title))
+        editorSettings.setDescription(getString(R.string.settings_editor_description))
+        editorSettings.setPreferenceClickListener {
+             openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
         }
+        binding.content.addView(editorSettings)
     }
 
     override fun onDestroyView() {

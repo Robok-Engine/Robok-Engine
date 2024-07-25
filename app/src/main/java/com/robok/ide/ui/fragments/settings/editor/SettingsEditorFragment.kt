@@ -5,8 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-import androidx.compose.ui.platform.ComposeView
-
 import com.google.android.material.transition.MaterialSharedAxis
 
 import com.robok.ide.R
@@ -15,7 +13,7 @@ import com.robok.ide.ui.base.RobokFragment
 import com.robok.ide.ui.components.editor.RobokCodeEditor
 import com.robok.ide.ui.components.editor.ThemeManager
 
-import dev.trindadedev.lib.ui.components.preferences.compose.*
+import dev.trindadedev.lib.ui.components.preferences.Preference
 
 class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -36,18 +34,16 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         
         val codeEditor = RobokCodeEditor(requireContext())
         
-        binding.composeView.setContent {
-            Preference(
-                iconResId = R.drawable.ic_settings_24,
-                title = getString(R.string.settings_editor_theme_title),
-                summary = getString(R.string.settings_editor_theme_description),
-                onClick = { 
-                    ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
-                        ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
-                    }
+        val editorTheme = Preference(requireContext()).apply {
+            setTitle(getString(R.string.settings_editor_theme_title))
+            setDescription(getString(R.string.settings_editor_theme_description))
+            setPreferenceClickListener {
+                ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
+                    ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
                 }
-            )
+            }
         }
+        binding.content.addView(editorTheme)
 
         val savedThemeIndex = ThemeManager.loadTheme(requireContext())
         ThemeManager.selectTheme(codeEditor.getCodeEditor(), savedThemeIndex)
