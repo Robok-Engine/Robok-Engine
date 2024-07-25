@@ -1,16 +1,12 @@
 package com.robok.ide;
 
-import android.app.AlarmManager;
 import android.app.Application;
-import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Process;
 
 import androidx.fragment.app.FragmentManager;
-
-import com.robok.ide.ui.activities.DebugActivity;
 
 import com.google.android.material.color.DynamicColors;
 
@@ -28,42 +24,30 @@ public class Robok extends Application {
 
     public static String getOrientation(Context ctx) {
         Configuration configuration = ctx.getResources().getConfiguration();
-        if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
-            return "portrait";
-        } else if (configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            return "landscape";
-        } else {
-            return "undefined";
+        switch (configuration.orientation) {
+            case Configuration.ORIENTATION_PORTRAIT:
+                return "portrait";
+            case Configuration.ORIENTATION_LANDSCAPE:
+                return "landscape";
+            default:
+                return "undefined";
         }
     }
 
-    private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;
-
     @Override
     public void onCreate() {
-        this.uncaughtExceptionHandler = Thread.getDefaultUncaughtExceptionHandler();
-        Thread.setDefaultUncaughtExceptionHandler(
-                new Thread.UncaughtExceptionHandler() {
-                    @Override
-                    public void uncaughtException(Thread thread, Throwable ex) {
-                        Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
-                        Intent setFlags = intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                        intent.putExtra("error", getStackTrace(ex));
-                        PendingIntent pendingIntent =
-                                PendingIntent.getActivity(
-                                        getApplicationContext(),
-                                        11111,
-                                        intent,
-                                        PendingIntent.FLAG_ONE_SHOT);
-                        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-                        am.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, 1000, pendingIntent);
-                        Process.killProcess(Process.myPid());
-                        System.exit(2);
-                        uncaughtExceptionHandler.uncaughtException(thread, ex);
-                    }
-                });
         super.onCreate();
         DynamicColors.applyToActivitiesIfAvailable(this);
+
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            intent.putExtra("error", Log.getStackTraceString(throwable));
+            startActivity(intent);
+            SketchLogger.broadcastLog(Log.getStackTraceString(throwable));
+            Process.killProcess(Process.myPid());
+            System.exit(1);
+        });
     }
 
     private String getStackTrace(Throwable th) {
@@ -74,8 +58,7 @@ public class Robok extends Application {
             cause.printStackTrace(printWriter);
             cause = cause.getCause();
         }
-        final String stacktraceAsString = result.toString();
         printWriter.close();
-        return stacktraceAsString;
+        return result.toString();
     }
 }
