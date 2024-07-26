@@ -1,16 +1,16 @@
-package robok.method;
+package robok.compiler.logic.method;
 
 import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
+import android.app.*
 
 import robok.method.R; 
 import robok.util.*;
 import robok.util.terminal.*;
 import robok.compiler.logic.*;
 
-import com.google.android.material.dialog.*;
 
 public class Methods {
 
@@ -22,13 +22,12 @@ public class Methods {
     private TextUtil textUtil;
     
     private LogicCompilerListener compileListener;
-    	
+    
     public Methods (Context context, LogicCompilerListener compileListener) {
         robokContext = context;
         robokTerminal = new RobokTerminal();
         textUtil = new TextUtil(context);
     }
-    
     
     public void showToast (String val) {
         String value = textUtil.formatSpaces(val);
@@ -44,7 +43,6 @@ public class Methods {
         robokButton.setText(textUtil.formatWordWrap(txt));
         robokButton.setBackgroundColor(Color.parseColor(bgColor));
         
-        //robokTerminal.addToTerminal(robokButton); 
         compileListener.onCompiled(robokTerminal.getLogs());
     }
 
@@ -57,7 +55,6 @@ public class Methods {
         robokText.setText(textUtil.formatWordWrap(txt));
         robokText.setTextColor(Color.parseColor(txtColor));
         
-        //robokTerminal.addToTerminal(robokText);
         compileListener.onCompiled(robokTerminal.getLogs());
     }
     
@@ -65,13 +62,10 @@ public class Methods {
 	    String t = textUtil.formatSpaces(title);
 	    String m = textUtil.formatSpaces(message);
 	    
-		MaterialAlertDialogBuilder robokDialog = new MaterialAlertDialogBuilder(robokContext);
+		AlertDialog robokDialog = new AlertDialog.Builder(robokContext);
 		robokDialog.setTitle(textUtil.formatWordWrap(t));
 	    robokDialog.setMessage(textUtil.formatWordWrap(m));
 		robokDialog.setPositiveButton("OK", null);
 		robokDialog.show();
-		
-		//onExecute(0);
 	}
-    
 }
