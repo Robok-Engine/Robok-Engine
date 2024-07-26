@@ -34,7 +34,7 @@ android {
 
     kotlin {
         compilerOptions {
-            jvmTarget.set("17")
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
     }
 }
