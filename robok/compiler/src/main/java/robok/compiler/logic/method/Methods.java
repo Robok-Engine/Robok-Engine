@@ -4,7 +4,7 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import android.app.*
+import android.app.*;
 
 import robok.method.R; 
 import robok.util.*;
