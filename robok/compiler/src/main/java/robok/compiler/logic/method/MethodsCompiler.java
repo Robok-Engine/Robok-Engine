@@ -4,7 +4,6 @@ import android.content.*;
 import android.widget.*;
 
 import robok.util.terminal.*;
-import robok.method.*;
 import robok.lang.message.*;
 import robok.lang.exception.*;
 import robok.compiler.logic.*;
