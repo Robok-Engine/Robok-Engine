@@ -3,6 +3,7 @@ package com.robok.ide.ui.base
 import android.os.Bundle
 
 import androidx.fragment.app.Fragment
+import androidx.activity.OnBackPressedDispatcher
 
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
@@ -37,6 +38,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
     }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(requireActivity()))
+        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
+        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
 }

@@ -40,8 +40,10 @@ android {
         viewBinding = true
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
     
     signingConfigs {
@@ -60,13 +62,11 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
 
-    val robokLanguageVersion = "1.0.0"
     val materialVersion = "1.13.0-alpha04"
     val appcompatVersion = "1.7.0-alpha03"
     val kotlinVersion = "2.0.0"
     val kotlinCoroutinesVersion = "1.9.0-RC"
     val okhttp3Version = "4.12.0"
-    val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
     val trindadeutilVersion = "3.0.7"
     val antlrVersion = "4.9.2"
@@ -113,7 +113,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
-    // aquiles trindade libs
+    // trindade-util
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
     
     // Add desugaring dependency
