@@ -67,7 +67,6 @@ dependencies {
     val kotlinVersion = "2.0.0"
     val kotlinCoroutinesVersion = "1.9.0-RC"
     val okhttp3Version = "4.12.0"
-    val activityVersion = "1.9.0"
     val glideVersion = "4.16.0"
     val trindadeutilVersion = "3.0.7"
     val antlrVersion = "4.9.2"
