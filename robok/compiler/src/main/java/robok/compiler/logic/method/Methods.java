@@ -4,9 +4,8 @@ import android.content.*;
 import android.graphics.*;
 import android.view.*;
 import android.widget.*;
-import android.app.*;
 
-import robok.method.R; 
+import robok.compiler.R; 
 import robok.util.*;
 import robok.util.terminal.*;
 import robok.compiler.logic.*;
@@ -57,15 +56,4 @@ public class Methods {
         
         compileListener.onCompiled(robokTerminal.getLogs());
     }
-    
-    public void showDialog (String title, String message){
-	    String t = textUtil.formatSpaces(title);
-	    String m = textUtil.formatSpaces(message);
-	    
-		AlertDialog robokDialog = new AlertDialog.Builder(robokContext);
-		robokDialog.setTitle(textUtil.formatWordWrap(t));
-	    robokDialog.setMessage(textUtil.formatWordWrap(m));
-		robokDialog.setPositiveButton("OK", null);
-		robokDialog.show();
-	}
 }

@@ -29,8 +29,6 @@ public class MethodCaller {
             methodsMap.put("showToast", Methods.class.getDeclaredMethod("showToast", String.class));
             methodsMap.put("createButton", Methods.class.getDeclaredMethod("createButton", String.class, String.class));
             methodsMap.put("createText", Methods.class.getDeclaredMethod("createText", String.class, String.class));
-            methodsMap.put("openTerminal", Methods.class.getDeclaredMethod("openTerminal"));
-			methodsMap.put("showDialog", Methods.class.getDeclaredMethod("showDialog", String.class, String.class));
         } catch (NoSuchMethodException e) {
             e.printStackTrace();
             terminal.addErrorLog("IDE Error: ", e.toString());
