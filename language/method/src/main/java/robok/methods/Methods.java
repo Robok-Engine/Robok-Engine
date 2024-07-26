@@ -5,7 +5,7 @@ import android.graphics.*;
 import android.view.*;
 import android.widget.*;
 
-import robok.R; 
+import robok.methods.R; 
 import robok.util.*;
 import robok.terminal.*;
 import robok.compiler.logic.*;

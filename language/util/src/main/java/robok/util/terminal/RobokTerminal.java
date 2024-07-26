@@ -1,4 +1,4 @@
-package robok.terminal;
+package robok.util.terminal;
 
 import android.view.View;
 import android.widget.LinearLayout;
@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import java.util.List;
 import java.util.ArrayList;
 
-import robok.R;
+import robok.util.R;
 
 public class RobokTerminal {
 
