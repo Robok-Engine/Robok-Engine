@@ -43,7 +43,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     implementation(project(":robok:util"))
-    implementation(project(":robok:compiler")
+    implementation(project(":robok:compiler"))
 }
 
 publishing {
