@@ -113,7 +113,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
-    // aquiles trindade libs
+    // trindade-util
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
     
     // Add desugaring dependency

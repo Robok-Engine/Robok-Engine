@@ -2,11 +2,11 @@ package com.robok.ide.ui.base
 
 import android.os.Bundle
 
+import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
 import androidx.fragment.app.Fragment
 
-import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
 
 import com.robok.ide.R
@@ -21,15 +21,15 @@ open class RobokActivity : AppCompatActivity() {
         requestPerms()
     }
     
-    fun openFragment (fragment: Fragment) {
+    fun openFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-             replace(R.id.fragment_container, fragment)
+            replace(R.id.fragment_container, fragment)
         }
     }
     
-    fun openCustomFragment (layoutId: Int, fragment: Fragment) {
+    fun openCustomFragment(layoutId: Int, fragment: Fragment) {
         supportFragmentManager.commit {
-             replace(layoutId, fragment)
+            replace(layoutId, fragment)
         }
     }
     
@@ -38,6 +38,6 @@ open class RobokActivity : AppCompatActivity() {
     }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(this))
+        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
 }

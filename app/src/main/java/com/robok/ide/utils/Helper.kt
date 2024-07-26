@@ -1,8 +1,8 @@
 package com.robok.ide.utils
 
-import android.app.Activity
+import androidx.activity.OnBackPressedDispatcher
 import android.view.View
 
-fun getBackPressedClickListener(activity: Activity): View.OnClickListener {
-    return View.OnClickListener { activity.onBackPressed() }
+fun getBackPressedClickListener(dispatcher: OnBackPressedDispatcher): View.OnClickListener {
+    return View.OnClickListener { dispatcher.onBackPressed() }
 }
