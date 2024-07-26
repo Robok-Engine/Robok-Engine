@@ -4,7 +4,7 @@ package robok.lang.modifier;
   This class is responsible for obtaining non-accessible access modifiers.
 */
   
-import robok.lang.variables.VariableObject;
+import robok.lang.variable.VariableObject;
 
 public class ModifyNonAccess {
     
