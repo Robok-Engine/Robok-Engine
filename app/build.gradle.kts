@@ -106,8 +106,9 @@ dependencies {
     implementation("$editorGroupId:language-treesitter")
     implementation("$editorGroupId:language-textmate")
     
-    // implementation("com.github.Robok-Foundation:Robok-Language:$robokLanguageVersion")
-    implementation(project(":language"))
+    // Robok
+    implementation(project(":robok:compiler"))
+    implementation(project(":robok:diagnostic"))
     
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
@@ -121,7 +122,6 @@ dependencies {
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
-    
     
     // Progress bouncy dots
     implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
