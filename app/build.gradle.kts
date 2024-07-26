@@ -40,8 +40,10 @@ android {
         viewBinding = true
     }
 
-    kotlinOptions {
-        jvmTarget = "17"
+    kotlin {
+        compilerOptions {
+            jvmTarget.set("17")
+        }
     }
     
     signingConfigs {
@@ -60,7 +62,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 
 dependencies {
 
-    val robokLanguageVersion = "1.0.0"
     val materialVersion = "1.13.0-alpha04"
     val appcompatVersion = "1.7.0-alpha03"
     val kotlinVersion = "2.0.0"
