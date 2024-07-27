@@ -45,8 +45,6 @@ This project is licensed under the MIT License. See the [LICENSE](LICENSE) file 
 
 ### Contact
 
-For more information, suggestions, or support, contact us at: contact@robok.dev
-
 ---
 
 Thank you for using Robok! Together, let's make programming simpler and more powerful.
