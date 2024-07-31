@@ -75,16 +75,16 @@
                     android:layout_margin="10dp"
                     android:layout_weight="1"
                     android:id="@+id/button_back" 
-                    style="?materialButtonOutlinedStyle"
-                    android:text="@string/common_word_back" />
+                    android:text="@string/common_word_back" 
+                    style="?materialButtonOutlinedStyle"/>
                     
-                    <Button
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="10dp"
-                        android:layout_weight="1"
-                        android:id="@+id/button_go"
-                        android:text="@string/common_word_next" />    
+               <Button
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="10dp"
+                    android:layout_weight="1"
+                    android:id="@+id/button_go"
+                    android:text="@string/common_word_next" />    
            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

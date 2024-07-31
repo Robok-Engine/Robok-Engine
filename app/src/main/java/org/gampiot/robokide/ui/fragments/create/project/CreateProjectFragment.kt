@@ -5,10 +5,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import androidx.activity.OnBackPressedDispatcher
+
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robokide.databinding.FragmentCreateProjectBinding
 import org.gampiot.robokide.ui.base.RobokFragment
+import org.gampiot.robokide.utils.getBackPressedClickListener
 
 class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -26,6 +29,9 @@ class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
+        
+        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
+        binding.buttonBack.setOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
 
     override fun onDestroyView() {
