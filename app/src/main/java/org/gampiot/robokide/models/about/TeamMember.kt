@@ -1,4 +1,4 @@
-package com.robok.ide.models.about
+package org.gampiot.robokide.models.about
 
 data class TeamMember(
     val profileIcon: String,
