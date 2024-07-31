@@ -12,7 +12,7 @@ import org.gampiot.robokide.databinding.FragmentSettingsBinding
 import org.gampiot.robokide.ui.base.RobokFragment
 import org.gampiot.robokide.ui.fragments.settings.editor.SettingsEditorFragment
 
-import dev.trindadedev.lib.ui.components.preferences.Preference
+import dev.trindadedev.lib.ui.components.preferences.withicon.Preference
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -34,6 +34,7 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         val editorSettings = Preference(requireContext())
         editorSettings.setTitle(getString(R.string.settings_editor_title))
         editorSettings.setDescription(getString(R.string.settings_editor_description))
+        editorSettings.setIcon(R.drawable.ic_settings_24)
         editorSettings.setPreferenceClickListener {
              openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
         }
