@@ -6,7 +6,7 @@ on:
     paths:
       - .github/workflows/build.yml
       - app/**
-      - language/**
+      - robok/**
       - build.gradle.kts
       - gradle.properties
       - gradlew
@@ -16,7 +16,7 @@ on:
     paths:
       - .github/workflows/build.yml
       - app/**
-      - language/**
+      - robok/**
       - build.gradle.kts
       - gradle.properties
       - gradlew
