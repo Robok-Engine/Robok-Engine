@@ -61,4 +61,7 @@ dependencies {
     
     implementation(project(":feature:feature-base"))
     implementation(project(":feature:feature-res"))
+    
+    implementation(project(":robok:compiler"))
+    implementation(project(":robok:diagnostic"))
 }
