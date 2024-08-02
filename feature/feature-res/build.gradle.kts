@@ -6,10 +6,10 @@ plugins {
     id("maven-publish")
 }
 
-group = "org.gampiot.robokide.feature.util"
+group = "org.gampiot.robokide.feature.res"
 
 android {
-    namespace = "org.gampiot.robokide.feature.util"
+    namespace = "org.gampiot.robokide.feature.res"
     compileSdk = 34
     
     defaultConfig {

@@ -50,4 +50,5 @@ dependencies {
 
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-manage"))
+    implementation(project(":feature:feature-res"))
 }
