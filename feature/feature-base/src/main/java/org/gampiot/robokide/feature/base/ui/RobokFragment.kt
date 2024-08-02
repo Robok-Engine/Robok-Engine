@@ -8,7 +8,7 @@ import androidx.activity.OnBackPressedDispatcher
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
 
-import org.gampiot.robokide.feature.base.R
+import org.gampiot.robokide.feature.res.R
 import org.gampiot.robokide.feature.util.getBackPressedClickListener
 
 open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X) : Fragment() {
