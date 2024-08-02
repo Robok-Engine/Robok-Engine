@@ -32,8 +32,8 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         configureToolbarNavigationBack(binding.toolbar)
         
         val editorSettings = Preference(requireContext())
-        editorSettings.setTitle(getString(R.string.settings_editor_title))
-        editorSettings.setDescription(getString(R.string.settings_editor_description))
+        editorSettings.setTitle(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_title))
+        editorSettings.setDescription(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_description))
         editorSettings.setIcon(R.drawable.ic_settings_24)
         editorSettings.setPreferenceClickListener {
              openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
