@@ -18,8 +18,17 @@ dependencyResolutionManagement {
 rootProject.name = "Robok-IDE"
 
 include(":app")
-include(":robok:compiler")
-include(":robok:diagnostic")
-include(":robok:lang")
-include(":robok:method")
-include(":robok:util")
+
+include(":robok:robok-compiler")
+include(":robok:robok-diagnostic")
+include(":robok:robok-lang")
+include(":robok:robok-util")
+
+include(":feature:feature-base")
+include(":feature:feature-component")
+include(":feature:feature-manage")
+include(":feature:feature-model")
+include(":feature:feature-setting")
+include(":feature:feature-res:res")
+include(":feature:feature-res:strings")
+include(":feature:feature-util")

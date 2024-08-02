@@ -11,8 +11,8 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.R
-import org.gampiot.robokide.ui.base.RobokActivity
-
+import org.gampiot.robokide.feature.base.ui.RobokActivity
+import org.gampiot.robokide.feature.res.strings.Strings
 import java.io.InputStream
 
 class DebugActivity : RobokActivity() {
@@ -66,9 +66,9 @@ class DebugActivity : RobokActivity() {
         }
         error.text = madeErrMsg
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.title_debug_title)
+            .setTitle(Strings.title_debug_title)
             .setMessage(madeErrMsg)
-            .setPositiveButton(R.string.common_word_end) { _, _ ->
+            .setPositiveButton(Strings.common_word_end) { _, _ ->
                 finish()
             }
             .show()
