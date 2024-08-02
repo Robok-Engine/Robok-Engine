@@ -12,7 +12,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.R
 import org.gampiot.robokide.feature.base.ui.RobokActivity
-import org.gampiot.robokide.features.res.strings.Strings
+import org.gampiot.robokide.feature.res.strings.Strings
 import java.io.InputStream
 
 class DebugActivity : RobokActivity() {

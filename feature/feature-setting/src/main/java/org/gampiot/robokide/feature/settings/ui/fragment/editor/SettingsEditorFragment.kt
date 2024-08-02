@@ -12,7 +12,7 @@ import org.gampiot.robokide.feature.settings.databinding.FragmentSettingsEditorB
 import org.gampiot.robokide.feature.base.ui.RobokFragment
 import org.gampiot.robokide.feature.component.editor.RobokCodeEditor
 import org.gampiot.robokide.feature.component.editor.ThemeManager
-import org.gampiot.robokide.features.res.strings.Strings
+import org.gampiot.robokide.feature.res.strings.Strings
 
 import dev.trindadedev.lib.ui.components.preferences.Preference
 

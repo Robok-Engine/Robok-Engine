@@ -63,6 +63,6 @@ dependencies {
     implementation(project(":feature:feature-res:res"))
     implementation(project(":feature:feature-res:strings"))
     
-    implementation(project(":robok:compiler"))
-    implementation(project(":robok:diagnostic"))
+    implementation(project(":robok:robok-compiler"))
+    implementation(project(":robok:robok-diagnostic"))
 }

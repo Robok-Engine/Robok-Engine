@@ -21,7 +21,7 @@ import org.gampiot.robokide.feature.component.progress.DotProgressBar
 import org.gampiot.robokide.ui.fragments.build.output.OutputFragment
 import org.gampiot.robokide.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robokide.features.res.strings.Strings
+import org.gampiot.robokide.feature.res.strings.Strings
 
 import robok.compiler.logic.*
 import robok.diagnostic.logic.*

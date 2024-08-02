@@ -90,8 +90,8 @@ dependencies {
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
    
     // Robok
-    implementation(project(":robok:compiler"))
-    implementation(project(":robok:diagnostic"))
+    implementation(project(":robok:robok-compiler"))
+    implementation(project(":robok:robok-diagnostic"))
     
     // Features
     implementation(project(":feature:feature-base"))
