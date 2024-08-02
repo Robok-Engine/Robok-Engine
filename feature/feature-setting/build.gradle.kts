@@ -26,6 +26,10 @@ android {
             )
         }
     }
+    
+    buildFeatures {
+        viewBinding = true
+    }
    
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
@@ -52,4 +56,5 @@ dependencies {
     
     implementation(project(":feature:feature-base"))
     implementation(project(":feature:feature-component"))
+    implementation(project(":feature:feature-res"))
 }
