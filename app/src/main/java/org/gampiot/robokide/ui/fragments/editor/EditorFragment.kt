@@ -15,9 +15,9 @@ import com.google.android.material.tabs.TabLayout
 
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentEditorBinding
-import org.gampiot.robokide.feature.base.RobokFragment
-import org.gampiot.robokide.feature.component.terminal.RobokTerminal
-import org.gampiot.robokide.feature.component.progress.DotProgressBar
+import org.gampiot.robokide.ui.base.RobokFragment
+import org.gampiot.robokide.ui.components.terminal.RobokTerminal
+import org.gampiot.robokide.ui.components.progress.DotProgressBar
 import org.gampiot.robokide.ui.fragments.build.output.OutputFragment
 import org.gampiot.robokide.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
