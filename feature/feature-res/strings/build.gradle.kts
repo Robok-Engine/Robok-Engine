@@ -6,10 +6,10 @@ plugins {
     id("maven-publish")
 }
 
-group = "org.gampiot.robokide.feature.res"
+group = "org.gampiot.robokide.feature.res.strings"
 
 android {
-    namespace = "org.gampiot.robokide.feature.res"
+    namespace = "org.gampiot.robokide.feature.res.strings"
     compileSdk = 34
     
     defaultConfig {
@@ -43,4 +43,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     kotlinOptions.jvmTarget = "17"
 }
 
-dependencies { }
+dependencies { 
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
+}

@@ -21,6 +21,7 @@ import org.gampiot.robokide.feature.component.progress.DotProgressBar
 import org.gampiot.robokide.ui.fragments.build.output.OutputFragment
 import org.gampiot.robokide.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
+import org.gampiot.robokide.features.res.strings.Strings
 
 import robok.compiler.logic.*
 import robok.diagnostic.logic.*
@@ -53,8 +54,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 val outputFragment = OutputFragment(MaterialSharedAxis.X)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
 
-                Snackbar.make(binding.root, org.gampiot.robokide.feature.res.R.string.message_compiled, Snackbar.LENGTH_LONG)
-                    .setAction(org.gampiot.robokide.feature.res.R.string.go_to_outputs) {
+                Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
+                    .setAction(Strings.go_to_outputs) {
                         openFragment(outputFragment)
                         terminal.dismiss()
                     }
@@ -93,11 +94,11 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
                     when (it.text) {
-                        getString(org.gampiot.robokide.feature.res.R.string.text_logs) -> {
+                        getString(Strings.text_logs) -> {
                             openCustomFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
                         }
 
-                        getString(org.gampiot.robokide.feature.res.R.string.text_diagnostic) -> {
+                        getString(Strings.text_diagnostic) -> {
                             openCustomFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
                         }
                         else -> {}

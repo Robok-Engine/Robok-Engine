@@ -11,6 +11,7 @@ import org.gampiot.robokide.feature.settings.R
 import org.gampiot.robokide.feature.settings.databinding.FragmentSettingsBinding
 import org.gampiot.robokide.feature.base.ui.RobokFragment
 import org.gampiot.robokide.feature.settings.ui.fragment.editor.SettingsEditorFragment
+import org.gampiot.robokide.features.res.strings.Strings
 
 import dev.trindadedev.lib.ui.components.preferences.withicon.Preference
 
@@ -32,8 +33,8 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X) :
         configureToolbarNavigationBack(binding.toolbar)
         
         val editorSettings = Preference(requireContext())
-        editorSettings.setTitle(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_title))
-        editorSettings.setDescription(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_description))
+        editorSettings.setTitle(getString(Strings.settings_editor_title))
+        editorSettings.setDescription(getString(Strings.settings_editor_description))
         editorSettings.setIcon(R.drawable.ic_settings_24)
         editorSettings.setPreferenceClickListener {
              openFragment(SettingsEditorFragment(MaterialSharedAxis.X))

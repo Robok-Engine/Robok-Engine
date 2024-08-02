@@ -99,7 +99,8 @@ dependencies {
     implementation(project(":feature:feature-manage"))
     implementation(project(":feature:feature-model"))
     implementation(project(":feature:feature-setting"))
-    implementation(project(":feature:feature-res"))
+    implementation(project(":feature:feature-res:res"))
+    implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-util"))
     
     implementation("com.github.bumptech.glide:glide:$glideVersion")

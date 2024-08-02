@@ -1,0 +1,26 @@
+<resources>
+  <style name="TextAppearance.Robok.TitleLarge.Bold" parent="TextAppearance.Material3.TitleLarge">
+     <item name="android:textStyle">bold</item>
+     <item name="android:textAlignment">center</item>
+  </style>
+  
+  <style name="ThemeOverlay.Robok.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+    <item name="alertDialogStyle">@style/MaterialAlertDialog.Robok</item>
+  </style>
+  
+  <style name="MaterialAlertDialog.Robok" parent="MaterialAlertDialog.Material3">
+    <item name="shapeAppearance">@style/ShapeAppearance.Robok.MediumComponent</item>
+    <item name="shapeAppearanceOverlay">@null</item>
+  </style>
+  
+  <style name="ShapeAppearance.Robok.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+    <item name="cornerFamily">rounded</item>
+    <item name="cornerSize">15dp</item>
+  </style>
+  
+  <style name="ShapeAppearance.Robok.CircleImage" parent=""> 
+     <item name="cornerFamily">rounded</item> 
+     <item name="cornerSize">50%</item> 
+  </style> 
+  
+</resources>

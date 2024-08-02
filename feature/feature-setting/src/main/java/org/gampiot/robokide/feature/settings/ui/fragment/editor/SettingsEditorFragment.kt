@@ -12,6 +12,7 @@ import org.gampiot.robokide.feature.settings.databinding.FragmentSettingsEditorB
 import org.gampiot.robokide.feature.base.ui.RobokFragment
 import org.gampiot.robokide.feature.component.editor.RobokCodeEditor
 import org.gampiot.robokide.feature.component.editor.ThemeManager
+import org.gampiot.robokide.features.res.strings.Strings
 
 import dev.trindadedev.lib.ui.components.preferences.Preference
 
@@ -35,8 +36,8 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
         val codeEditor = RobokCodeEditor(requireContext())
         
         val editorTheme = Preference(requireContext()).apply {
-            setTitle(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_theme_title))
-            setDescription(getString(org.gampiot.robokide.feature.res.R.string.settings_editor_theme_description))
+            setTitle(getString(Strings.settings_editor_theme_title))
+            setDescription(getString(Strings.settings_editor_theme_description))
             setPreferenceClickListener {
                 ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
                     ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)

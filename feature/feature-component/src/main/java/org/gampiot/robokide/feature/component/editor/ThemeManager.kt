@@ -10,6 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.feature.component.R
 import org.gampiot.robokide.feature.component.editor.schemes.*
+import org.gampiot.robokide.features.res.strings.Strings
 
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.schemes.*
@@ -56,12 +57,12 @@ class ThemeManager {
             val themeItems = KNOWN_COLOR_SCHEMES.map { it.first }.toTypedArray()
 
             MaterialAlertDialogBuilder(activity)
-                .setTitle(activity.getString(org.gampiot.robokide.feature.res.R.string.title_select_theme))
+                .setTitle(activity.getString(Strings.title_select_theme))
                 .setSingleChoiceItems(themeItems, selectedThemeIndex) { _, which ->
                     listener(which)
                     saveTheme(activity, which)
                 }
-                .setPositiveButton(activity.getString(org.gampiot.robokide.feature.res.R.string.common_word_ok), null)
+                .setPositiveButton(activity.getString(Strings.common_word_ok), null)
                 .show()
         }
 
