@@ -1,3 +1,3 @@
-package org.gampiot.robokide.features.res.strings
+package org.gampiot.robokide.feature.res.strings
 
-typealias Strings = org.gampiot.robokide.features.res.strings.R.string
+typealias Strings = org.gampiot.robokide.feature.res.strings.R.string
