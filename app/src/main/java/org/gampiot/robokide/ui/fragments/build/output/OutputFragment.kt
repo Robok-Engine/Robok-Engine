@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robokide.databinding.FragmentOutputBinding
 import org.gampiot.robokide.feature.component.log.Log
-import org.gampiot.robokide.feature.base.RobokFragment
+import org.gampiot.robokide.feature.base.ui.RobokFragment
 
 class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
