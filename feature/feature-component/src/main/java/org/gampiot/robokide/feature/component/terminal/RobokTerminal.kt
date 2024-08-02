@@ -14,12 +14,12 @@ import org.gampiot.robokide.feature.component.log.Log
 class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
     public val terminal: LinearLayout
-    private val bottomSheetView = LayoutInflater.from(context).inflate(org.gampiot.robokide.feature.res.R.layout.dialog_terminal, null)
+    private val bottomSheetView = LayoutInflater.from(context).inflate(R.layout.dialog_terminal, null)
     
     init {
         setContentView(bottomSheetView)
         setCancelable(true)
-        terminal = bottomSheetView.findViewById(org.gampiot.robokide.feature.res.R.id.terminal)
+        terminal = bottomSheetView.findViewById(R.id.terminal)
     }
     
     fun addLog(value: String) {
