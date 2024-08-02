@@ -23,7 +23,7 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
     init {
         this.context = context
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground)) // set the background color
-        setColor(EditorColorScheme.CURRENT_LINE, getColor(org.gampiot.robokide.R.color.scheme_robok_current_line)) // set the current line color
+        setColor(EditorColorScheme.CURRENT_LINE, getColor(org.gampiot.robokide.feature.component.R.color.scheme_robok_current_line)) // set the current line color
         setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
         setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
         setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors

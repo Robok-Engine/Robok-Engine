@@ -60,4 +60,5 @@ dependencies {
     implementation("org.antlr:antlr4-runtime:$antlrVersion")
     
     implementation(project(":feature:feature-base"))
+    implementation(project(":feature:feature-res"))
 }
