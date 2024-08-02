@@ -53,8 +53,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 val outputFragment = OutputFragment(MaterialSharedAxis.X)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
 
-                Snackbar.make(binding.root, R.string.message_compiled, Snackbar.LENGTH_LONG)
-                    .setAction(R.string.go_to_outputs) {
+                Snackbar.make(binding.root, org.gampiot.robokide.feature.res.R.string.message_compiled, Snackbar.LENGTH_LONG)
+                    .setAction(org.gampiot.robokide.feature.res.R.string.go_to_outputs) {
                         openFragment(outputFragment)
                         terminal.dismiss()
                     }
@@ -93,11 +93,11 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
                     when (it.text) {
-                        getString(R.string.text_logs) -> {
+                        getString(org.gampiot.robokide.feature.res.R.string.text_logs) -> {
                             openCustomFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
                         }
 
-                        getString(R.string.text_diagnostic) -> {
+                        getString(org.gampiot.robokide.feature.res.R.string.text_diagnostic) -> {
                             openCustomFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
                         }
                         else -> {}

@@ -66,9 +66,9 @@ class DebugActivity : RobokActivity() {
         }
         error.text = madeErrMsg
         MaterialAlertDialogBuilder(this)
-            .setTitle(R.string.title_debug_title)
+            .setTitle(org.gampiot.robokide.feature.res.R.string.title_debug_title)
             .setMessage(madeErrMsg)
-            .setPositiveButton(R.string.common_word_end) { _, _ ->
+            .setPositiveButton(org.gampiot.robokide.feature.res.R.string.common_word_end) { _, _ ->
                 finish()
             }
             .show()
