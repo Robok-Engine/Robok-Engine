@@ -10,8 +10,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robokide.feature.settings.R
 import org.gampiot.robokide.feature.settings.databinding.FragmentSettingsEditorBinding
 import org.gampiot.robokide.feature.base.ui.RobokFragment
-import org.gampiot.robokide.feature.components.editor.RobokCodeEditor
-import org.gampiot.robokide.feature.components.editor.ThemeManager
+import org.gampiot.robokide.feature.component.editor.RobokCodeEditor
+import org.gampiot.robokide.feature.component.editor.ThemeManager
 
 import dev.trindadedev.lib.ui.components.preferences.Preference
 
