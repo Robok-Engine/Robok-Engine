@@ -66,13 +66,8 @@ dependencies {
     val appcompatVersion = "1.7.0-alpha03"
     val kotlinVersion = "2.0.0"
     val kotlinCoroutinesVersion = "1.9.0-RC"
-    val okhttp3Version = "4.12.0"
     val glideVersion = "4.16.0"
-    val trindadeutilVersion = "3.0.8"
-    val antlrVersion = "4.9.2"
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-        
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
@@ -81,15 +76,11 @@ dependencies {
     
     // google
     implementation("com.google.android.material:material:$materialVersion")
-    implementation("com.google.code.gson:gson:2.11.0")
     
     // jetbrains
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-    
-    // squareup
-    implementation("com.squareup.okhttp3:okhttp:$okhttp3Version")    
     
     // dagger
     implementation("com.google.dagger:hilt-android:2.51.1")
@@ -97,32 +88,23 @@ dependencies {
     
     // filepicker
     implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
-    
-    // Sora editor
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
-    implementation("$editorGroupId:editor-lsp")
-    implementation("$editorGroupId:language-java")
-    implementation("$editorGroupId:language-treesitter")
-    implementation("$editorGroupId:language-textmate")
-    
+   
     // Robok
     implementation(project(":robok:compiler"))
     implementation(project(":robok:diagnostic"))
     
+    // Features
+    implementation(project(":feature:feature-base"))
+    implementation(project(":feature:feature-component"))
+    implementation(project(":feature:feature-manage"))
+    implementation(project(":feature:feature-model"))
+    implementation(project(":feature:feature-setting"))
+    implementation(project(":feature:feature-string"))
+    implementation(project(":feature:feature-util"))
+    
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
     
-    // trindade-util
-    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeutilVersion")
-    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-    
-    //Antlr complete and runtime for diagnostics and compilers
-    implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
-    implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
-    
-    // Progress bouncy dots
-    implementation("com.github.agrawalsuneet:DotLoadersPack-Android:1.4.2")
 }

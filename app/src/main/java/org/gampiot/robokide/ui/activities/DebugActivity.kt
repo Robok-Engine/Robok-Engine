@@ -11,7 +11,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.R
-import org.gampiot.robokide.ui.base.RobokActivity
+import org.gampiot.robokide.feature.base.ui.RobokActivity
 
 import java.io.InputStream
 

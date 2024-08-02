@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import org.gampiot.robokide.databinding.ItemTeamMemberBinding
-import org.gampiot.robokide.models.about.TeamMember
+import org.gampiot.robokide.feature.model.about.TeamMember
 
 class TeamMemberAdapter(private val teamMembers: List<TeamMember>) :
     RecyclerView.Adapter<TeamMemberAdapter.TeamMemberViewHolder>() {

@@ -10,8 +10,8 @@ import androidx.activity.OnBackPressedDispatcher
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robokide.databinding.FragmentCreateProjectBinding
-import org.gampiot.robokide.ui.base.RobokFragment
-import org.gampiot.robokide.utils.getBackPressedClickListener
+import org.gampiot.robokide.feature.base.RobokFragment
+import org.gampiot.robokide.feature.util.getBackPressedClickListener
 
 class CreateProjectFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
