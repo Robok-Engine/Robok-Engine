@@ -54,6 +54,10 @@ dependencies {
     
     implementation("com.github.aquilesTrindade.trindade-util:components:3.0.9-beta")
     
+    val editorGroupId = "io.github.Rosemoe.sora-editor"
+    implementation(platform("$editorGroupId:bom:0.23.4"))
+    implementation("$editorGroupId:editor")
+    
     implementation(project(":feature:feature-base"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-res"))
