@@ -14,11 +14,12 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentHomeBinding
 import org.gampiot.robokide.feature.manage.file.getDefaultPath
+import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
+import org.gampiot.robokide.feature.base.ui.RobokFragment
+import org.gampiot.robokide.feature.terminal.TerminalActivity
 import org.gampiot.robokide.ui.fragments.create.project.CreateProjectFragment
 import org.gampiot.robokide.ui.fragments.editor.EditorFragment
 import org.gampiot.robokide.ui.fragments.about.AboutFragment
-import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
-import org.gampiot.robokide.feature.base.ui.RobokFragment
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -45,6 +46,10 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         
         binding.openSettings.setOnClickListener {
             openFragment(SettingsFragment(MaterialSharedAxis.X))
+        }
+        
+        binding.openTerminal.setOnClickListener {
+            startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
         
         binding.openEditor.setOnClickListener {

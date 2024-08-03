@@ -98,6 +98,7 @@ dependencies {
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-setting"))
+    implementation(project(":feature:feature-terminal"))
     
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
