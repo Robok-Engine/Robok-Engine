@@ -11,15 +11,6 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import com.jn.filepickersphere.filelist.common.mime.MimeType
-import com.jn.filepickersphere.filepicker.FilePickerCallbacks
-import com.jn.filepickersphere.filepicker.FilePickerSphereManager
-import com.jn.filepickersphere.filepicker.style.FileItemStyle
-import com.jn.filepickersphere.filepicker.style.FilePickerStyle
-import com.jn.filepickersphere.models.FileModel
-import com.jn.filepickersphere.models.FilePickerModel
-import com.jn.filepickersphere.models.PickOptions
-
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentHomeBinding
 import org.gampiot.robokide.feature.manage.file.getDefaultPath
@@ -67,28 +58,6 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
     
     private fun selectFolder() {
         // logic to select project folder
-        val options = PickOptions(
-            mimeType = listOf(MimeType.DIRECTORY),
-            localOnly = false,
-            rootPath = getDefaultPath(),
-            maxSelection = 1
-        )
-        
-        FilePickerSphereManager(requireContext(), true).callbacks(object : FilePickerCallbacks {
-            override fun onFileSelectionChanged(file: FileModel, selected: Boolean) { }
-            override fun onOpenFile(file: FileModel) {
-                 val dialog = MaterialAlertDialogBuilder(requireContext())
-                     .setTitle("File selected")
-                     .setMessage(file.name)
-                     .setPositiveButton("OK", null)
-                     .show();
-            }
-            override fun onSelectedFilesChanged(files: List<FileModel>) { }
-            override fun onAllFilesSelected(files: List<FileModel>) { }
-        }).container(R.id.fragment_container)
-        .model(FilePickerModel(options))
-        .picker()
-        
     }
     
     private fun onFolderSelect() {

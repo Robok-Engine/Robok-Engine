@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robokide.feature.base"
+    namespace = "org.gampiot.robokide.feature.debug"
     compileSdk = 34
     
     defaultConfig {
@@ -42,10 +42,6 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.2")
     
-    implementation(project(":feature:feature-util"))
-    implementation(project(":feature:feature-manage"))
-    implementation(project(":feature:feature-res:res"))
+    implementation(project(":feature:feature-res:strings"))
 }

@@ -1,4 +1,4 @@
-package org.gampiot.robokide.ui.activities
+package org.gampiot.robokide.feature.debug.ui.activities
 
 import android.app.Activity
 import android.app.AlertDialog
@@ -7,15 +7,17 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.TextView
 
+import androidx.appcompat.app.AppCompatActivity
+
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robokide.R
-import org.gampiot.robokide.feature.base.ui.RobokActivity
+import org.gampiot.robokide.feature.debug.R
 import org.gampiot.robokide.feature.res.strings.Strings
+
 import java.io.InputStream
 
-class DebugActivity : RobokActivity() {
+class DebugActivity : AppCompatActivity() {
     
     private var madeErrMsg: String = ""
     private lateinit var error: TextView

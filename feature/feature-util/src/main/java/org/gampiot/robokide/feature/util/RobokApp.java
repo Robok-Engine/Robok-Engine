@@ -1,4 +1,4 @@
-package org.gampiot.robokide;
+package org.gampiot.robokide.feature.util;
 
 import android.app.Application;
 import android.content.Context;
@@ -15,10 +15,11 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.gampiot.robokide.ui.activities.DebugActivity;
+import org.gampiot.robokide.feature.debug.ui.activities.DebugActivity;
 
-public class Robok extends Application {
+public class RobokApp extends Application {
 
+    private static RobokApp sInstance;
     private static FragmentManager sFragmentManager;
 
     public static void init(FragmentManager fragmentManager) {
@@ -40,6 +41,7 @@ public class Robok extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
+        sInstance = this;
         DynamicColors.applyToActivitiesIfAvailable(this);
 
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
@@ -62,5 +64,13 @@ public class Robok extends Application {
         }
         printWriter.close();
         return result.toString();
+    }
+    
+    public static RobokApp getApp() {
+        return sInstance;
+    }
+    
+    public static FragmentManager getFragmentManager() {
+        return sFragmentManager;
     }
 }

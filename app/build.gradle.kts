@@ -86,22 +86,18 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-compiler:2.51.1")
     
-    // filepicker
-    implementation("com.github.Ruan625Br:FilePickerSphere:1.0.0")
-   
     // Robok
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
     
     // Features
     implementation(project(":feature:feature-base"))
-    implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-manage"))
     implementation(project(":feature:feature-model"))
-    implementation(project(":feature:feature-setting"))
-    implementation(project(":feature:feature-res:res"))
-    implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
+    implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-setting"))
     
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")

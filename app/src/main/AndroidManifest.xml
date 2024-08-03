@@ -17,7 +17,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="org.gampiot.robokide.Robok"
+        android:name="org.gampiot.robokide.feature.util.RobokApp"
         android:theme="@style/RobokTheme"
         tools:replace="android:theme" >
         <activity
@@ -30,7 +30,7 @@
         </activity>
         
         <activity
-            android:name="org.gampiot.robokide.ui.activities.DebugActivity"
+            android:name="org.gampiot.robokide.feature.util.ui.activities.DebugActivity"
             android:exported="true" />
             
     </application>

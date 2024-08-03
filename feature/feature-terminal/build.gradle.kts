@@ -3,12 +3,14 @@ plugins {
     id("kotlin-android")
 }
 
+group = "org.gampiot.robokide.feature.terminal"
+
 android {
-    namespace = "org.gampiot.robokide.feature.base"
+    namespace = "org.gampiot.robokide.feature.terminal"
     compileSdk = 34
     
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,6 +28,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    
+    buildFeatures {
+        viewBinding = true
+    }
 
     kotlin {
         compilerOptions {
@@ -39,13 +45,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.2")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.code.gson:gson:2.8.7")
+    
+    implementation("com.termux.termux-app:terminal-view:0.117")
+    implementation("com.termux.termux-app:terminal-emulator:0.117")
     
     implementation(project(":feature:feature-util"))
-    implementation(project(":feature:feature-manage"))
-    implementation(project(":feature:feature-res:res"))
 }
