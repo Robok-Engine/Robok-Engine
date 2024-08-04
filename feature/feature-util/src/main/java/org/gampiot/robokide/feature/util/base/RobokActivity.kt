@@ -21,6 +21,7 @@ open class RobokActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
          requestPermissions()
+         configureWindow()
     }
     
     fun openFragment(fragment: Fragment) {

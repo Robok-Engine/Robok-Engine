@@ -34,7 +34,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           binding = ActivityTerminalBinding.inflate(getLayoutInflater());
-          configureWindow();
           setContentView(binding.getRoot());
           if (getIntent().hasExtra("path")) {
               cwd = getIntent().getStringExtra("path");
@@ -53,15 +52,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           this);
           binding.terminalView.attachSession(session);
           binding.terminalView.setTerminalViewClient(this);
-     }
-     
-     void configureWindow() {
-          var resUtils = new ResUtils(this);
-          var colorBg = resUtils.getAttrColor(android.R.attr.colorBackground);
-          getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-          getWindow().setStatusBarColor(colorBg);
-          getWindow().setNavigationBarColor(colorBg);
-          getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
      }
      
      @Override
