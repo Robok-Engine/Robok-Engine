@@ -18,10 +18,10 @@ import org.gampiot.robokide.databinding.FragmentEditorBinding
 import org.gampiot.robokide.feature.util.base.RobokFragment
 import org.gampiot.robokide.feature.component.terminal.RobokTerminal
 import org.gampiot.robokide.feature.component.progress.DotProgressBar
+import org.gampiot.robokide.feature.res.Strings
 import org.gampiot.robokide.ui.fragments.build.output.OutputFragment
 import org.gampiot.robokide.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robokide.feature.res.strings.Strings
 
 import robok.compiler.logic.*
 import robok.diagnostic.logic.*
