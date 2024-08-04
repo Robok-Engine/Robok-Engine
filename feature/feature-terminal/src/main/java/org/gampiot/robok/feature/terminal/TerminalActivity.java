@@ -45,7 +45,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
         binding = ActivityTerminalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
         extractAssets();
-        setupButtons();
+        configureButtons();
         createNewSession();
         
         if (getIntent().hasExtra("path")) {
@@ -59,6 +59,12 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
         binding.terminalView.setTextSize(28);
         binding.terminalView.attachSession(currentSession);
         binding.terminalView.setTerminalViewClient(this);
+    }
+    
+    private void configureButtons() {
+        binding.clearButton.setOnClickListener(v -> executeCommand("clear"));
+        binding.updateButton.setOnClickListener(v -> executeCommand("pkg update && pkg upgrade -y"));
+        binding.installButton.setOnClickListener(v -> executeCommand("pkg install git"));
     }
     
     private void extractAssets() {
@@ -79,18 +85,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
         }
     }
 
-
-    private void setupButtons() {
-        binding.clearButton.setOnClickListener(v -> currentSession.write("clear"));
-    }
-
-    private void setupButtons() {
-         binding.clearButton.setOnClickListener(v -> executeCommand("clear"));
-         binding.updateButton.setOnClickListener(v -> executeCommand("pkg update && pkg upgrade -y"));
-         binding.installButton.setOnClickListener(v -> executeCommand("pkg install git"));
-    }
-
-    
     private void executeCommand(String command) {
         if (currentSession != null) {
             currentSession.write(command + "\n"); // Send command followed by newline
@@ -222,7 +216,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     @Override
     public void logStackTrace(String tag, Exception e) {
         Log.e(tag, "", e);
-        Toast.makeText(TerminalActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, e.toString(), 4000).show();
     }
 
     @Override
