@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  CONTRIBUTORS_JSON_FILENAME: contributors/contributors-crowdin
+  CONTRIBUTORS_JSON_FILENAME: crowdin-contributors
 
 jobs:
   crowdin-contributors:
@@ -25,33 +25,26 @@ jobs:
         max_contributors: 32
         image_size: 64
         min_words_contributed: 100
-        files: contributors/CROWDIN_CONTRIBUTORS.MD
+        files: CROWDIN_CONTRIBUTORS.md
         crowdin_project_link: "https://crowdin.com/project/robokide"
       env:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
-    - name: Check if MD file is created
-      run: |
-        if [ ! -f contributors/CROWDIN_CONTRIBUTORS.MD ]; then
-          echo "File contributors/CROWDIN_CONTRIBUTORS.MD was not created!"
-          exit 1
-        fi
-
-    - name: Write JSON
-      uses: DamianReeves/write-file-action@master
+    - name: Write JSON report
+      uses: "DamianReeves/write-file-action@master"
       with:
         path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
         write-mode: overwrite
         contents: ${{ steps.generate_table.outputs.json_report }}
 
-    - name: Pretty-print JSON
+    - name: Pretty-print JSON report
       run: |
-        apt-get install -y jq
+        sudo apt-get install jq
         cat ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json | jq '.' > ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
         rm ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
 
-    - name: Upload JSON
+    - name: Upload JSON report
       uses: actions/upload-artifact@v4
       with:
         name: crowdin-contributors-json
@@ -60,8 +53,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
-        title: Update crowdin contributors list
+        title: Update crowdin contributors List
         body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
         commit-message: "chore: update crowdin contributors list"
         committer: Crowdin Bot <support+bot@crowdin.com>
-        branch: contributors-crowdin-patch
+        branch: crowdin-contributors/patch
