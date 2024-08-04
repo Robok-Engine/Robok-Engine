@@ -16,7 +16,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name="org.gampiot.robokide.feature.util.application.RobokApp"
-        android:theme="@style/RobokTheme" >
+        android:theme="@style/Theme.RobokIDE" >
         <activity
             android:name="org.gampiot.robokide.ui.activities.MainActivity"
             android:exported="true">
