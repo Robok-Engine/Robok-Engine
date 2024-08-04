@@ -1,5 +1,7 @@
 <resources>
 
+    <string name="app_name" translatable="false">Robok</string>
+
     <!-- common words section -->
 	<string name="common_word_back">Back</string>
 	<string name="common_word_result">Result</string>
