@@ -35,8 +35,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: Update GitHub Contributors report
+          title: Update github contributors list
           body: By GitHub Actions to update the list of contributors
-          commit-message: "chore: update GitHub contributors report"
+          commit-message: "chore: update github contributors list"
           committer: GitHub Actions <actions@github.com>
           branch: github-contributors/patch
