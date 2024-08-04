@@ -1,4 +1,4 @@
-name: Crowdin Contributors Action
+name: Crowdin Contributors
 
 on:
   schedule:
