@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     
     implementation("com.google.android.material:material:1.12.0")
-    implementation("com.google.code.gson:gson:2.8.7")
+    implementation("com.google.code.gson:gson:2.11.0")
     
     implementation("com.termux.termux-app:terminal-view:0.117")
     implementation("com.termux.termux-app:terminal-emulator:0.117")
