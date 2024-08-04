@@ -75,15 +75,12 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         }
         
         val filePickerDialog = FilePickerDialog(this, properties).apply {
-             setTitle(getString(Strings.title_select_folder)
+             setTitle(getString(Strings.title_select_folder))
              setDialogSelectionListener { files ->
                   if (files != null && files.isNotEmpty()) {
                         val fileNames = files.joinToString("\n") { file ->
                              file.substringAfterLast('/')
                         }
-                        Toast.makeText(requireContext(), "Selected file(s):\n$fileNames", 4000).show()
-                  } else {
-                        Toast.makeText(requireContext(), "No files selected", 4000).show()
                   }
              }
         }
