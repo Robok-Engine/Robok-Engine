@@ -38,7 +38,7 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X, p
         editorSettings.setDescription(getString(Strings.settings_editor_description))
         editorSettings.setIcon(R.drawable.ic_settings_24)
         editorSettings.setPreferenceClickListener {
-             openFragment(SettingsEditorFragment(MaterialSharedAxis.X))
+             openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
         }
         binding.content.addView(editorSettings)
     }

@@ -46,7 +46,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment(MaterialSharedAxis.X))
+            openFragment(SettingsFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         binding.openTerminal.setOnClickListener {
