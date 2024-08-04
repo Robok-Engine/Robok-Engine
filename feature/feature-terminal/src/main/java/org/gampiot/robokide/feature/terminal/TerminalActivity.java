@@ -57,7 +57,7 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      
      void configureWindow() {
           ResUtils.setResContext(this);
-          var colorBg = ResUtils.getAttrColor(android.attr.R.colorBackground)
+          var colorBg = ResUtils.getAttrColor(android.attr.R.colorBackground);
           getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
           getWindow().setStatusBarColor(colorBg);
           getWindow().setNavigationBarColor(colorBg);
