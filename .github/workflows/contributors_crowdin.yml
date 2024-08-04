@@ -25,7 +25,7 @@ jobs:
         max_contributors: 32
         image_size: 64
         min_words_contributed: 100
-        files: contributors/CROWDIN_CONTRIBUTORS.md
+        files: contributors/TABLE_CONTRIBUTORS_CROWDIN.md
         crowdin_project_link: "https://crowdin.com/project/robokide"
       env:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
@@ -47,14 +47,14 @@ jobs:
     - name: Upload JSON report
       uses: actions/upload-artifact@v4
       with:
-        name: contributors/crowdin-contributors-json
+        name: crowdin-contributors-json
         path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
 
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
-        title: Update crowdin contributors List
+        title: Update Crowdin Contributors
         body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
-        commit-message: "chore: update crowdin contributors list"
+        commit-message: "chore: update crowdin contributors table"
         committer: Crowdin Bot <support+bot@crowdin.com>
         branch: crowdin-contributors/patch

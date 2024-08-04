@@ -2,8 +2,8 @@ name: GitHub Contributors
 
 on:
   schedule:
-    - cron: '0 */12 * * *'  # Executar a cada 12 horas
-  workflow_dispatch: {}  # Permite a execução manual
+    - cron: '0 */12 * * *'
+  workflow_dispatch: {}
 
 jobs:
   github-contributors:
@@ -34,12 +34,12 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: github-contributors-table
-          path: contributors/CONTRIBUTORS_TABLE.MD
+          path: contributors/TABLE_CONTRIBUTORS_GITHUB.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: Update GitHub Contributors Table
+          title: Update GitHub Contributors
           body: By GitHub Actions to update the table of contributors
           commit-message: "chore: update github contributors table"
           committer: GitHub Actions <actions@github.com>
