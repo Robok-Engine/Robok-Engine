@@ -171,8 +171,12 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      }
      
      @Override
-     public void onClipboardText(TerminalSession arg0, String arg1) {}
+     public void onCopyTextToClipboard(@NonNull TerminalSession arg0, String arg1) {}
      
+     @Override 
+     public void onPasteTextFromClipboard(@Nullable TerminalSession session)) {
+     
+     }
      @Override
      @MainThread
      public void onBackPressed() {
