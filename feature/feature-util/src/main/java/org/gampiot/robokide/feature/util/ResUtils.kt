@@ -5,9 +5,7 @@ import android.util.TypedValue
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 
-class ResUtils {
- 
-     private lateinit var context: Context
+class ResUtils(val context: Context) {
      
      fun getAttrColor(@AttrRes resId: Int): Int {
           val typedValue = TypedValue()
@@ -17,10 +15,6 @@ class ResUtils {
           } else {
               typedValue.data
           }
-     }
-     
-     fun setResContext(ctx: Context) {
-          context = ctx
      }
 }
 
