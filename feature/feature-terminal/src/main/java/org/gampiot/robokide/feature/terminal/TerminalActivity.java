@@ -22,9 +22,7 @@ import com.termux.view.TerminalViewClient;
 
 import org.gampiot.robokide.feature.terminal.databinding.ActivityTerminalBinding;
 import org.gampiot.robokide.feature.util.KeyboardUtils;
-import org.gampiot.robokide.feature.util.getAttrColor;
-import org.gampiot.robokide.feature.util.AndroidAttr;
-import org.gampiot.robokide.feature.util.setResContext;
+import org.gampiot.robokide.feature.util.ResUtils;
 
 public class TerminalActivity extends AppCompatActivity implements TerminalSessionClient, TerminalViewClient {
 
@@ -58,10 +56,11 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      }
      
      void configureWindow() {
-          setResContext(this);
+          ResUtils.setResContext(this);
+          var colorBg = ResUtils.getAttrColor(android.attr.R.colorBackground)
           getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-          getWindow().setStatusBarColor(getAttrColor(AndroidAttr.colorBackground));
-          getWindow().setNavigationBarColor(getAttrColor(AndroidAttr.colorBackground));
+          getWindow().setStatusBarColor(colorBg);
+          getWindow().setNavigationBarColor(colorBg);
           getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
      }
      
