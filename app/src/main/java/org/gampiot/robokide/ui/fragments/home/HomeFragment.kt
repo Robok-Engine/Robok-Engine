@@ -13,13 +13,18 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentHomeBinding
-import org.gampiot.robokide.feature.util.getDefaultPath
-import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
+import org.gampiot.robokide.feature.util.getDefaultPathFile
 import org.gampiot.robokide.feature.util.base.RobokFragment
+import org.gampiot.robokide.feature.res.Strings
+import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
 import org.gampiot.robokide.feature.terminal.TerminalActivity
 import org.gampiot.robokide.ui.fragments.create.project.CreateProjectFragment
 import org.gampiot.robokide.ui.fragments.editor.EditorFragment
 import org.gampiot.robokide.ui.fragments.about.AboutFragment
+
+import dev.trindadedev.lib.filepicker.model.DialogConfigs
+import dev.trindadedev.lib.filepicker.model.DialogProperties
+import dev.trindadedev.lib.filepicker.view.FilePickerDialog
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -63,7 +68,23 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
     }
     
     private fun selectFolder() {
-        // logic to select project folder
+        val properties = DialogProperties().apply {
+             root = getDefaultPathFile()
+             selection_mode = DialogConfigs.SINGLE_MODE
+             selection_type = DialogConfigs.DIR_SELECT
+        }
+        
+        val filePickerDialog = FilePickerDialog(requireContext(), properties).apply {
+             setTitle(getString(Strings.title_select_folder))
+             setDialogSelectionListener { files ->
+                  if (files != null && files.isNotEmpty()) {
+                        val fileNames = files.joinToString("\n") { file ->
+                             file.substringAfterLast('/')
+                        }
+                  }
+             }
+        }
+        filePickerDialog.show()
     }
     
     private fun onFolderSelect() {
