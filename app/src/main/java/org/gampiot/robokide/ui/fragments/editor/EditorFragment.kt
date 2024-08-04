@@ -42,6 +42,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setFragmentLayoutResId(R.id.fragment_container)
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())
         

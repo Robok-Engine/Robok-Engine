@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.transition.MaterialSharedAxis
 
+import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentAboutBinding
 import org.gampiot.robokide.feature.util.base.RobokFragment
 import org.gampiot.robokide.feature.model.about.TeamMember
@@ -28,7 +29,7 @@ class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : Rob
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
-
+        setFragmentLayoutResId(R.id.fragment_container)
         val teamMembers = listOf(
             TeamMember(
                 "https://avatars.githubusercontent.com/u/147993300?s=400&u=07c34e0c463a0236d09be78f2df121206edb583d&v=4",

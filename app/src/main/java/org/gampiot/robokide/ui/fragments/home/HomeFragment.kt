@@ -36,6 +36,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setFragmentLayoutResId(R.id.fragment_container)
         binding.createProject.setOnClickListener {
             openFragment(CreateProjectFragment(MaterialSharedAxis.X))
         }

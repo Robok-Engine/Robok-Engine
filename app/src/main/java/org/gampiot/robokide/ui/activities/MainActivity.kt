@@ -13,6 +13,7 @@ class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setFragmentLayoutResId(binding.fragmentContainer.id)
         if (savedInstanceState == null) {
             openFragment(HomeFragment(MaterialSharedAxis.X))
         }

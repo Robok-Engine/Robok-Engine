@@ -8,6 +8,7 @@ import android.view.ViewGroup
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentOutputBinding
 import org.gampiot.robokide.feature.component.log.Log
 import org.gampiot.robokide.feature.util.base.RobokFragment
@@ -27,6 +28,7 @@ class OutputFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
+        setFragmentLayoutResId(R.id.fragment_container)
     }
     
     fun addOutput(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
