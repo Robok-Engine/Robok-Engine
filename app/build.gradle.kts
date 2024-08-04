@@ -9,11 +9,11 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robokide"
+    namespace = "org.gampiot.robok"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "org.gampiot.robokide"
+        applicationId = "org.gampiot.robok"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

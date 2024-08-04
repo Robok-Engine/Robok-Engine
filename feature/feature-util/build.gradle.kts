@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robokide.feature.util"
+    namespace = "org.gampiot.robok.feature.util"
     compileSdk = 34
     
     defaultConfig {
