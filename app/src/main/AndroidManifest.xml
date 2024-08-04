@@ -30,6 +30,10 @@
             android:name="org.gampiot.robokide.feature.util.ui.activities.DebugActivity"
             android:exported="true" />
             
+        <activity
+            android:name="org.gampiot.robokide.feature.terminal.TerminalActivity" 
+            android:exported="true" />
+            
     </application>
 
 </manifest>
