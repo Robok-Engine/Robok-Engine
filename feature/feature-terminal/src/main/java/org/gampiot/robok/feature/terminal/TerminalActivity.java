@@ -67,6 +67,18 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
         binding.installButton.setOnClickListener(v -> executeCommand("pkg install git"));
     }
     
+    private void createNewSession() {
+        currentSession = new TerminalSession(
+                "/system/bin/sh",
+                cwd,
+                new String[]{},
+                new String[]{},
+                TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE,
+                this
+        );
+        sessions.add(currentSession);
+    }
+    
     private void extractAssets() {
         try {
             String[] files = getAssets().list("");

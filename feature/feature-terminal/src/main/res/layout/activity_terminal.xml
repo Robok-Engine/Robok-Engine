@@ -24,13 +24,27 @@
         android:orientation="horizontal"
         android:gravity="center"
         android:paddingTop="8dp">
-
+            
+        <Button
+            android:id="@+id/install_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Install Package"
+            android:layout_marginEnd="8dp" />    
+            
         <Button
             android:id="@+id/clear_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Clear"
-            android:layout_marginEnd="8dp" />
+            android:layout_marginEnd="8dp" />    
+            
+        <Button
+            android:id="@+id/update_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update Packages"
+            android:layout_marginEnd="8dp" />         
 
     </LinearLayout>
 </LinearLayout>
