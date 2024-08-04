@@ -8,6 +8,7 @@ import android.view.ViewGroup
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentDiagnosticBinding
 import org.gampiot.robokide.feature.component.log.Log
 import org.gampiot.robokide.feature.util.base.RobokFragment
