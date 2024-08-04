@@ -92,7 +92,6 @@ dependencies {
     
     // Features
     implementation(project(":feature:feature-base"))
-    implementation(project(":feature:feature-manage"))
     implementation(project(":feature:feature-model"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))

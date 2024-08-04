@@ -1,4 +1,4 @@
-package org.gampiot.robokide.feature.manage.file
+package org.gampiot.robokide.feature.util
 
 import android.Manifest
 import android.app.Activity
@@ -50,12 +50,10 @@ fun getDefaultPath(): String {
 fun requestPermission(activity: Activity) {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         if (!Environment.isExternalStorageManager()) {
-            // Request MANAGE_EXTERNAL_STORAGE permission
             val intent = Intent(Settings.ACTION_MANAGE_ALL_FILES_ACCESS_PERMISSION)
             activity.startActivity(intent)
         }
     } else {
-        // Request read and write permissions
         if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
             ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
@@ -68,10 +66,8 @@ fun requestPermission(activity: Activity) {
     }
 }
 
-// Define a request code to identify the permission request
 const val REQUEST_CODE_STORAGE_PERMISSIONS = 1001
 
-// Handle the result of permission request
 fun onRequestPermissionsResult(
     requestCode: Int,
     permissions: Array<out String>,
@@ -86,7 +82,6 @@ fun onRequestPermissionsResult(
     }
 }
 
-// Method to read text files
 fun readTextFile(filePath: String): String {
     val file = File(filePath)
     return if (file.exists()) {
@@ -102,7 +97,6 @@ fun readTextFile(filePath: String): String {
     }
 }
 
-// Method to read binary files
 fun readBinaryFile(filePath: String): ByteArray? {
     val file = File(filePath)
     return if (file.exists()) {
@@ -115,27 +109,5 @@ fun readBinaryFile(filePath: String): ByteArray? {
     } else {
         println("File not found: $filePath")
         null
-    }
-}
-
-// Usage examples
-fun main() {
-    val folderPath = getDefaultPath() + "myFolder"
-    createFolder(folderPath)
-
-    val filePath = folderPath + "/myTextFile.txt"
-    createFile(filePath)
-
-    val textContent = readTextFile(filePath)
-    println(textContent)
-
-    val binaryFilePath = folderPath + "/myBinaryFile.dat"
-    createFile(binaryFilePath)
-
-    val binaryContent = readBinaryFile(binaryFilePath)
-    if (binaryContent != null) {
-        println("Binary file read successfully")
-    } else {
-        println("Failed to read binary file")
     }
 }

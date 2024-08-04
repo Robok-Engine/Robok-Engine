@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robokide.feature.debug.R
-import org.gampiot.robokide.feature.res.strings.Strings
+import org.gampiot.robokide.feature.util.R
+import org.gampiot.robokide.feature.res.Strings
 
 import java.io.InputStream
 
@@ -43,7 +43,6 @@ class DebugActivity : AppCompatActivity() {
         setContentView(R.layout.activity_debug)
         error = findViewById(R.id.error)
         /* toolbar = findViewById(R.id.toolbar)
-        
         configureToolbarNavigationBack(toolbar)
         */
         
