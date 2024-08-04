@@ -22,6 +22,8 @@ import com.termux.view.TerminalViewClient;
 
 import org.gampiot.robokide.feature.terminal.databinding.ActivityTerminalBinding;
 import org.gampiot.robokide.feature.util.KeyboardUtils;
+import org.gampiot.robokide.feature.util.getAttrColor;
+import org.gampiot.robokide.feature.util.AndroidAttr;
 
 public class TerminalActivity extends AppCompatActivity implements TerminalSessionClient, TerminalViewClient {
 
@@ -33,13 +35,7 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           binding = ActivityTerminalBinding.inflate(getLayoutInflater());
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-              Window window = getWindow();
-              window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
-              window.setStatusBarColor(Color.BLACK);
-              window.setNavigationBarColor(Color.BLACK);
-              getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-          }
+          configureWindow();
           setContentView(binding.getRoot());
           if (getIntent().hasExtra("path")) {
               cwd = getIntent().getStringExtra("path");
@@ -59,6 +55,14 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
           binding.terminalView.attachSession(session);
           binding.terminalView.setTerminalViewClient(this);
      }
+     
+     void configureWindow() {
+          getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
+          getWindow().setStatusBarColor(getAttrColor(AndroidAttr.colorBackground));
+          getWindow().setNavigationBarColor(getAttrColor(AndroidAttr.colorBackground));
+          getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+     }
+     
      @Override
      protected void onDestroy() {
          super.onDestroy();
@@ -87,6 +91,11 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      
      @Override
      public boolean shouldUseCtrlSpaceWorkaround() {
+          return false;
+     }
+     
+     @Override
+     public boolean isTerminalViewSelected () {
           return false;
      }
      
