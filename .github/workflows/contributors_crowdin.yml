@@ -31,6 +31,13 @@ jobs:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
+    - name: Check if MD file is created
+      run: |
+        if [ ! -f contributors/CROWDIN_CONTRIBUTORS.MD ]; then
+          echo "File contributors/CROWDIN_CONTRIBUTORS.MD was not created!"
+          exit 1
+        fi
+
     - name: Write JSON
       uses: DamianReeves/write-file-action@master
       with:
@@ -57,4 +64,4 @@ jobs:
         body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
         commit-message: "chore: update crowdin contributors list"
         committer: Crowdin Bot <support+bot@crowdin.com>
-        branch: contributors-crowdin-patch 
+        branch: contributors-crowdin-patch
