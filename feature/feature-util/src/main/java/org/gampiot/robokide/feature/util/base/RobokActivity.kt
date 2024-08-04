@@ -42,11 +42,11 @@ open class RobokActivity : AppCompatActivity() {
          toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
     
-    fun setLayoutResId (@IdRes layoutResId: Int) {
+    fun setFragmentLayoutResId (@IdRes layoutResId: Int) {
          this.layoutResId = layoutResId
     }
     
-    fun getLayoutResId () : Int {
+    fun getFragmentLayoutResId () : Int {
          return layoutResId;
     }
 }
