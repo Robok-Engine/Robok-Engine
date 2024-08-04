@@ -27,7 +27,7 @@
         </activity>
         
         <activity
-            android:name="org.gampiot.robokide.feature.util.ui.activities.DebugActivity"
+            android:name="org.gampiot.robokide.feature.util.activities.DebugActivity"
             android:exported="true" />
             
         <activity

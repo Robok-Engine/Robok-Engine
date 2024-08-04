@@ -32,6 +32,7 @@ class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxi
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
+        setFragmentLayoutResId(R.id.fragment_container)
         
         val codeEditor = RobokCodeEditor(requireContext())
         
