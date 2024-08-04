@@ -24,6 +24,7 @@ import org.gampiot.robokide.feature.terminal.databinding.ActivityTerminalBinding
 import org.gampiot.robokide.feature.util.KeyboardUtils;
 import org.gampiot.robokide.feature.util.getAttrColor;
 import org.gampiot.robokide.feature.util.AndroidAttr;
+import org.gampiot.robokide.feature.util.setResContext;
 
 public class TerminalActivity extends AppCompatActivity implements TerminalSessionClient, TerminalViewClient {
 
@@ -57,6 +58,7 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      }
      
      void configureWindow() {
+          setResContext(this);
           getWindow().addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN);
           getWindow().setStatusBarColor(getAttrColor(AndroidAttr.colorBackground));
           getWindow().setNavigationBarColor(getAttrColor(AndroidAttr.colorBackground));

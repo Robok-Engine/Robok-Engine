@@ -1,8 +1,11 @@
 package org.gampiot.robokide.feature.util
 
-import androidx.annotation.AttrRes
+import android.content.Context
 
+import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
+
+lateinit context : Context
 
 fun getAttrColor(@AttrRes resId: Int): Int {
     val typedValue = TypedValue()
@@ -12,6 +15,10 @@ fun getAttrColor(@AttrRes resId: Int): Int {
     } else {
         typedValue.data
     }
+}
+
+fun setResContext (context: Context) {
+    this.context = context
 }
 
 typealias AndroidAttr = android.R.attr
