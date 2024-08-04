@@ -15,7 +15,7 @@ import org.gampiot.robokide.feature.util.getBackPressedClickListener
 
 open class RobokActivity : AppCompatActivity() {
 
-    @IdRes var layoutResId: Int? = null
+    @IdRes var layoutResId: Int = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
@@ -42,11 +42,11 @@ open class RobokActivity : AppCompatActivity() {
          toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
     
-    fun setLayoutResId (@IdRes layoutResId: Int?) {
+    fun setLayoutResId (@IdRes layoutResId: Int) {
          this.layoutResId = layoutResId
     }
     
-    fun getLayoutResId () : Int? {
+    fun getLayoutResId () : Int {
          return layoutResId;
     }
 }
