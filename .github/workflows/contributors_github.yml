@@ -19,7 +19,7 @@ jobs:
           curl -H "Authorization: token ${{ secrets.TOKEN }}" \
                -H "Accept: application/vnd.github.v3+json" \
                https://api.github.com/repos/${{ github.repository }}/contributors \
-               -o contributors.json
+               -o contributors/contributors_github.json
 
       - name: Install Python and jq
         run: |
@@ -28,13 +28,13 @@ jobs:
 
       - name: Format Contributors Table
         run: |
-          python3 format_contributors.py
+          python3 contributors/logic/format_contributors.py
 
-      - name: Upload Table Report
+      - name: Upload Table
         uses: actions/upload-artifact@v4
         with:
           name: github-contributors-table
-          path: contributors_table.md
+          path: contributors/CONTRIBUTORS_TABLE.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
@@ -43,4 +43,4 @@ jobs:
           body: By GitHub Actions to update the table of contributors
           commit-message: "chore: update github contributors table"
           committer: GitHub Actions <actions@github.com>
-          branch: github-contributors/patch
+          branch: contributors-github/patch
