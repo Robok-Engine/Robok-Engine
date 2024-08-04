@@ -2,26 +2,25 @@ package org.gampiot.robok.feature.component.terminal
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.widget.LinearLayout
-
-import androidx.appcompat.app.AppCompatDelegate
 
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
 import org.gampiot.robok.feature.component.R
+import org.gampiot.robok.feature.component.databinding.LayoutBottomsheetTerminalBinding
 import org.gampiot.robok.feature.component.log.Log
 
 class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
-    public val terminal: LinearLayout
-    private val bottomSheetView = LayoutInflater.from(context).inflate(R.layout.dialog_terminal, null)
-    
+    private val binding: LayoutBottomsheetTerminalBinding =
+        LayoutBottomsheetTerminalBinding.inflate(LayoutInflater.from(context))
+
+    val terminal = binding.terminal
+
     init {
-        setContentView(bottomSheetView)
+        setContentView(binding.root)
         setCancelable(true)
-        terminal = bottomSheetView.findViewById(R.id.terminal)
     }
-    
+
     fun addLog(value: String) {
         val log = Log(context, value)
         terminal.addView(log)
