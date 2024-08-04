@@ -91,7 +91,6 @@ dependencies {
     implementation(project(":robok:robok-diagnostic"))
     
     // Features
-    implementation(project(":feature:feature-base"))
     implementation(project(":feature:feature-model"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
