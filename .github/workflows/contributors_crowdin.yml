@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  CONTRIBUTORS_JSON_FILENAME: crowdin-contributors
+  CONTRIBUTORS_JSON_FILENAME: contributors/crowdin-contributors
 
 jobs:
   crowdin-contributors:
@@ -25,7 +25,7 @@ jobs:
         max_contributors: 32
         image_size: 64
         min_words_contributed: 100
-        files: CROWDIN_CONTRIBUTORS.md
+        files: contributors/CROWDIN_CONTRIBUTORS.md
         crowdin_project_link: "https://crowdin.com/project/robokide"
       env:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
@@ -47,7 +47,7 @@ jobs:
     - name: Upload JSON report
       uses: actions/upload-artifact@v4
       with:
-        name: crowdin-contributors-json
+        name: contributors/crowdin-contributors-json
         path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
 
     - name: Create Pull Request
