@@ -128,7 +128,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val dotProgressBar = DotProgressBar.Builder()
               .setMargin(1)
               .setAnimationDuration(2000)
-              .setDotBackground(R.drawable.ic_dot_24)
+              .setDotBackground(org.gampiot.robokide.feature.component.R.drawable.ic_dot_24)
               .setMaxScale(1f)
               .setMinScale(0.3f)
               .setNumberOfDots(3)
