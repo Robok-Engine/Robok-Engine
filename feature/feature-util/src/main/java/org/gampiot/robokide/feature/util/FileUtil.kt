@@ -15,36 +15,11 @@ import java.io.File
 import java.io.FileInputStream
 import java.io.IOException
 
-fun createFolder(folderPath: String) {
-    val folder = File(folderPath)
-    if (!folder.exists()) {
-        val folderCreated = folder.mkdirs()
-        if (folderCreated) {
-            println("Folder created successfully: $folderPath")
-        } else {
-            println("Failed to create folder: $folderPath")
-        }
-    } else {
-        println("The folder already exists: $folderPath")
-    }
-}
-
-fun createFile(filePath: String) {
-    val file = File(filePath)
-    if (!file.exists()) {
-        val fileCreated = file.createNewFile()
-        if (fileCreated) {
-            println("File created successfully: $filePath")
-        } else {
-            println("Failed to create file: $filePath")
-        }
-    } else {
-        println("The file already exists: $filePath")
-    }
-}
-
 fun getDefaultPath(): String {
     return "/sdcard/"
+}
+fun getDefaultPathFile(): File {
+    return File("/sdcard/")
 }
 
 fun requestPermission(activity: Activity) {
@@ -109,5 +84,33 @@ fun readBinaryFile(filePath: String): ByteArray? {
     } else {
         println("File not found: $filePath")
         null
+    }
+}
+
+fun createFolder(folderPath: String) {
+    val folder = File(folderPath)
+    if (!folder.exists()) {
+        val folderCreated = folder.mkdirs()
+        if (folderCreated) {
+            println("Folder created successfully: $folderPath")
+        } else {
+            println("Failed to create folder: $folderPath")
+        }
+    } else {
+        println("The folder already exists: $folderPath")
+    }
+}
+
+fun createFile(filePath: String) {
+    val file = File(filePath)
+    if (!file.exists()) {
+        val fileCreated = file.createNewFile()
+        if (fileCreated) {
+            println("File created successfully: $filePath")
+        } else {
+            println("Failed to create file: $filePath")
+        }
+    } else {
+        println("The file already exists: $filePath")
     }
 }
