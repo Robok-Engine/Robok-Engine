@@ -15,7 +15,7 @@ import org.gampiot.robokide.feature.util.getBackPressedClickListener
 
 open class RobokActivity : AppCompatActivity() {
 
-    @IdRes var layoutResId: Int = null
+    @IdRes var layoutResId: Int = 0
     
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
