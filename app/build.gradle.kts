@@ -22,6 +22,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        
+        // git fields
+        buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
+        buildConfigField("String", "GIT_BRANCH", "\"${getGitBranch()}\"")
+        buildConfigField("String", "GIT_COMMIT_AUTHOR", "\"${getGitCommitAuthor()}\"")
     }
 
     compileOptions {
@@ -109,10 +114,21 @@ dependencies {
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 }
 
+// git fuctions
+
 fun getGitHash(): String {
     val stdout = ByteArrayOutputStream()
     exec {
         commandLine("git", "rev-parse", "HEAD")
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+fun getShortGitHash(): String {
+    val stdout = ByteArrayOutputStream()
+    exec {
+        commandLine("git", "rev-parse", "--short", "HEAD")
         standardOutput = stdout
     }
     return stdout.toString().trim()
@@ -127,9 +143,17 @@ fun getGitBranch(): String {
     return stdout.toString().trim()
 }
 
+fun getGitCommitAuthor(): String {
+    val stdout = ByteArrayOutputStream()
+    exec {
+        commandLine("git", "log", "-1", "--pretty=format:%an")
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
 fun getVersionName(): String {
     val baseVersion = "1.0.0"
-    val branch = getGitBranch()
-    val hash = getGitHash()
-    return "$baseVersion-$branch-$hash"
+    val shortHash = getShortGitHash()
+    return "$baseVersion-$shortHash"
 }
