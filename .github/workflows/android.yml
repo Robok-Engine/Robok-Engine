@@ -3,29 +3,11 @@ name: Android CI
 on:
   workflow_dispatch:
   push:
-    paths:
-      - .github/workflows/android.yml
-      - app/**
-      - robok/**
-      - feature/**
-      - gradle/**
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - settings.gradle.kts
+    branches:
+      - 'dev'
   pull_request:
-    paths:
-      - .github/workflows/build.yml
-      - app/**
-      - robok/**
-      - feature/**
-      - gradle/**
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - settings.gradle.kts    
+    branches:
+      - 'dev'
 
 jobs:
   IDE-release-apk:
