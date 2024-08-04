@@ -1,4 +1,4 @@
-package org.gampiot.robokide.feature.debug.ui.activities
+package org.gampiot.robokide.feature.util.activities
 
 import android.app.Activity
 import android.app.AlertDialog
