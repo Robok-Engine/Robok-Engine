@@ -54,10 +54,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     }
 
     private void setupButtons() {
-        Button clearButton = new Button(this);
-        clearButton.setText("Clear");
-        clearButton.setOnClickListener(v -> currentSession.write("\033c"));
-        binding.getRoot().addView(clearButton);
+        binding.clearButton.setOnClickListener(v -> currentSession.write("\033c"));
     }
 
     private void createNewSession() {

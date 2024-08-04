@@ -2,18 +2,35 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/root"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
     android:background="?android:attr/colorBackground">
 
     <com.termux.view.TerminalView
         android:id="@+id/terminal_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:autofillHints="password"
         android:focusableInTouchMode="true"
         android:importantForAutofill="no"
         android:scrollbars="vertical" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="8dp">
+
+        <Button
+            android:id="@+id/clear_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Clear"
+            android:layout_marginEnd="8dp" />
+
+    </LinearLayout>
 </LinearLayout>
