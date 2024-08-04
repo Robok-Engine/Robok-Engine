@@ -21,22 +21,26 @@ jobs:
                https://api.github.com/repos/${{ github.repository }}/contributors \
                -o contributors.json
 
-      - name: Pretty-print JSON report
+      - name: Install Python and jq
         run: |
-          sudo apt-get install jq
-          cat contributors.json | jq '.' > contributors_pretty.json
+          sudo apt-get update
+          sudo apt-get install -y python3 python3-pip jq
 
-      - name: Upload JSON report
+      - name: Format Contributors Table
+        run: |
+          python3 format_contributors.py
+
+      - name: Upload Table Report
         uses: actions/upload-artifact@v4
         with:
-          name: github-contributors-json
-          path: contributors_pretty.json
+          name: github-contributors-table
+          path: contributors_table.md
 
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          title: Update github contributors list
-          body: By GitHub Actions to update the list of contributors
-          commit-message: "chore: update github contributors list"
+          title: Update GitHub Contributors Table
+          body: By GitHub Actions to update the table of contributors
+          commit-message: "chore: update github contributors table"
           committer: GitHub Actions <actions@github.com>
           branch: github-contributors/patch
