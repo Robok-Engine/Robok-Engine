@@ -8,6 +8,7 @@ import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -38,36 +39,59 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
         super.onCreate(savedInstanceState);
         binding = ActivityTerminalBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
+        extractAssets();
+        setupButtons();
+        createNewSession();
+        
         if (getIntent().hasExtra("path")) {
             cwd = getIntent().getStringExtra("path");
         } else {
             cwd = Environment.getExternalStorageDirectory().getAbsolutePath();
         }
-
+    }
+    
+    private void configureTerminal () {
         binding.terminalView.setTextSize(28);
-        setupButtons();
-
-        createNewSession();
         binding.terminalView.attachSession(currentSession);
         binding.terminalView.setTerminalViewClient(this);
     }
+    
+    private void extractAssets() {
+        try {
+            String[] files = getAssets().list("");
+            for (String filename : files) {
+                 try (InputStream in = getAssets().open(filename);
+                      OutputStream out = new FileOutputStream(new File(getFilesDir(), filename))) {
+                      byte[] buffer = new byte[1024];
+                      int read;
+                      while ((read = in.read(buffer)) != -1) {
+                           out.write(buffer, 0, read);
+                      }
+                 }
+            }
+        } catch (IOException e) {
+            Log.e("TerminalActivity", "Failed to extract assets", e);
+        }
+    }
+
 
     private void setupButtons() {
-        binding.clearButton.setOnClickListener(v -> currentSession.write("\033c"));
+        binding.clearButton.setOnClickListener(v -> currentSession.write("clear"));
     }
 
-    private void createNewSession() {
-        currentSession = new TerminalSession(
-                "/system/bin/sh",
-                cwd,
-                new String[]{},
-                new String[]{},
-                TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE,
-                this
-        );
-        sessions.add(currentSession);
+    private void setupButtons() {
+         binding.clearButton.setOnClickListener(v -> executeCommand("clear"));
+         binding.updateButton.setOnClickListener(v -> executeCommand("pkg update && pkg upgrade -y"));
+         binding.installButton.setOnClickListener(v -> executeCommand("pkg install git"));
     }
+
+    
+    private void executeCommand(String command) {
+        if (currentSession != null) {
+            currentSession.write(command + "\n"); // Send command followed by newline
+        }
+    }
+
 
     @Override
     protected void onDestroy() {
@@ -156,36 +180,44 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     @Override
     public void logError(String tag, String message) {
         Log.e(tag, message);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
     public void logWarn(String tag, String message) {
         Log.w(tag, message);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
     public void logInfo(String tag, String message) {
         Log.i(tag, message);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
     public void logDebug(String tag, String message) {
         Log.d(tag, message);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
     public void logVerbose(String tag, String message) {
         Log.v(tag, message);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
     public void logStackTraceWithMessage(String tag, String message, Exception e) {
         Log.e(tag, message, e);
+        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(MainActivity.this, e.toString(), 4000).show();
     }
 
     @Override
     public void logStackTrace(String tag, Exception e) {
         Log.e(tag, "", e);
+        Toast.makeText(MainActivity.this, message, 4000).show();
     }
 
     @Override
