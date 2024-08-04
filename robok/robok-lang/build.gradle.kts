@@ -10,7 +10,7 @@ group = "robok.lang"
 
 android {
     namespace = "robok.lang"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 21

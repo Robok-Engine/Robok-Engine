@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  CONTRIBUTORS_JSON_FILENAME: contributors/crowdin-contributors
+  CONTRIBUTORS_JSON_FILENAME: contributors/contributors-crowdin
 
 jobs:
   crowdin-contributors:
@@ -57,4 +57,4 @@ jobs:
         body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
         commit-message: "chore: update crowdin contributors table"
         committer: Crowdin Bot <support+bot@crowdin.com>
-        branch: crowdin-contributors/patch
+        branch: contributors-crowdin/patch
