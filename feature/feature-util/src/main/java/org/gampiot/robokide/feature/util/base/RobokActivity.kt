@@ -1,6 +1,8 @@
 package org.gampiot.robokide.feature.util.base
 
 import android.os.Bundle
+import android.view.View
+import android.view.WindowManager
 
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
