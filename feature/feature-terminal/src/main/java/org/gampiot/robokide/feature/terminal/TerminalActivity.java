@@ -11,6 +11,8 @@ import android.view.Window;
 import android.view.WindowManager;
 
 import androidx.annotation.MainThread;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.termux.terminal.TerminalEmulator;
@@ -146,21 +148,21 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      public void logStackTrace(String tag, Exception e) {}
      
      @Override
-     public void onTextChanged(TerminalSession changedSession) {
+     public void onTextChanged(@NonNull TerminalSession changedSession) {
           binding.terminalView.onScreenUpdated();
      }
      
      @Override
-     public void onTitleChanged(TerminalSession changedSession) {}
+     public void onTitleChanged(@NonNull TerminalSession changedSession) {}
      
      @Override
-     public void onSessionFinished(TerminalSession finishedSession) {}
+     public void onSessionFinished(@NonNull TerminalSession finishedSession) {}
      
      @Override
-     public void onBell(TerminalSession session) {}
+     public void onBell(@NonNull TerminalSession session) {}
      
      @Override
-     public void onColorsChanged(TerminalSession session) {}
+     public void onColorsChanged(@NonNull TerminalSession session) {}
      
      @Override
      public void onTerminalCursorStateChange(boolean state) {}
