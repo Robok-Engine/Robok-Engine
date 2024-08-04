@@ -26,6 +26,11 @@ import org.gampiot.robok.feature.util.base.RobokActivity;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 
 public class TerminalActivity extends RobokActivity implements TerminalSessionClient, TerminalViewClient {
 
@@ -69,7 +74,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
                       }
                  }
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
             Log.e("TerminalActivity", "Failed to extract assets", e);
         }
     }
@@ -180,44 +185,44 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     @Override
     public void logError(String tag, String message) {
         Log.e(tag, message);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
     public void logWarn(String tag, String message) {
         Log.w(tag, message);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
     public void logInfo(String tag, String message) {
         Log.i(tag, message);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
     public void logDebug(String tag, String message) {
         Log.d(tag, message);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
     public void logVerbose(String tag, String message) {
         Log.v(tag, message);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
     public void logStackTraceWithMessage(String tag, String message, Exception e) {
         Log.e(tag, message, e);
-        Toast.makeText(MainActivity.this, message, 4000).show();
-        Toast.makeText(MainActivity.this, e.toString(), 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, e.toString(), 4000).show();
     }
 
     @Override
     public void logStackTrace(String tag, Exception e) {
         Log.e(tag, "", e);
-        Toast.makeText(MainActivity.this, message, 4000).show();
+        Toast.makeText(TerminalActivity.this, message, 4000).show();
     }
 
     @Override
