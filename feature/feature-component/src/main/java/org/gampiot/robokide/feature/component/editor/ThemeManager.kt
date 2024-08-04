@@ -10,7 +10,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robokide.feature.component.R
 import org.gampiot.robokide.feature.component.editor.schemes.*
-import org.gampiot.robokide.feature.res.strings.Strings
+import org.gampiot.robokide.feature.res.Strings
 
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.schemes.*

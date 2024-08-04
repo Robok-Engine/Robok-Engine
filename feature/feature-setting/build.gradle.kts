@@ -1,12 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
-    id("maven-publish")
 }
-
-group = "org.gampiot.robokide.feature.settings"
 
 android {
     namespace = "org.gampiot.robokide.feature.settings"
@@ -58,7 +53,7 @@ dependencies {
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
     
-    implementation(project(":feature:feature-base"))
+    implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-res:strings"))
 }

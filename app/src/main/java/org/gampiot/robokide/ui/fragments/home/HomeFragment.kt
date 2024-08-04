@@ -11,23 +11,15 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import com.jn.filepickersphere.filelist.common.mime.MimeType
-import com.jn.filepickersphere.filepicker.FilePickerCallbacks
-import com.jn.filepickersphere.filepicker.FilePickerSphereManager
-import com.jn.filepickersphere.filepicker.style.FileItemStyle
-import com.jn.filepickersphere.filepicker.style.FilePickerStyle
-import com.jn.filepickersphere.models.FileModel
-import com.jn.filepickersphere.models.FilePickerModel
-import com.jn.filepickersphere.models.PickOptions
-
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentHomeBinding
-import org.gampiot.robokide.feature.manage.file.getDefaultPath
+import org.gampiot.robokide.feature.util.getDefaultPath
+import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
+import org.gampiot.robokide.feature.util.base.RobokFragment
+import org.gampiot.robokide.feature.terminal.TerminalActivity
 import org.gampiot.robokide.ui.fragments.create.project.CreateProjectFragment
 import org.gampiot.robokide.ui.fragments.editor.EditorFragment
 import org.gampiot.robokide.ui.fragments.about.AboutFragment
-import org.gampiot.robokide.feature.settings.ui.fragment.SettingsFragment
-import org.gampiot.robokide.feature.base.ui.RobokFragment
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -44,6 +36,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setFragmentLayoutResId(R.id.fragment_container)
         binding.createProject.setOnClickListener {
             openFragment(CreateProjectFragment(MaterialSharedAxis.X))
         }
@@ -53,7 +46,11 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment(MaterialSharedAxis.X))
+            openFragment(SettingsFragment(MaterialSharedAxis.X, R.id.fragment_container))
+        }
+        
+        binding.openTerminal.setOnClickListener {
+            startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
         
         binding.openEditor.setOnClickListener {
@@ -67,28 +64,6 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
     
     private fun selectFolder() {
         // logic to select project folder
-        val options = PickOptions(
-            mimeType = listOf(MimeType.DIRECTORY),
-            localOnly = false,
-            rootPath = getDefaultPath(),
-            maxSelection = 1
-        )
-        
-        FilePickerSphereManager(requireContext(), true).callbacks(object : FilePickerCallbacks {
-            override fun onFileSelectionChanged(file: FileModel, selected: Boolean) { }
-            override fun onOpenFile(file: FileModel) {
-                 val dialog = MaterialAlertDialogBuilder(requireContext())
-                     .setTitle("File selected")
-                     .setMessage(file.name)
-                     .setPositiveButton("OK", null)
-                     .show();
-            }
-            override fun onSelectedFilesChanged(files: List<FileModel>) { }
-            override fun onAllFilesSelected(files: List<FileModel>) { }
-        }).container(R.id.fragment_container)
-        .model(FilePickerModel(options))
-        .picker()
-        
     }
     
     private fun onFolderSelect() {

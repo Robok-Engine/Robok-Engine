@@ -15,13 +15,13 @@ import com.google.android.material.tabs.TabLayout
 
 import org.gampiot.robokide.R
 import org.gampiot.robokide.databinding.FragmentEditorBinding
-import org.gampiot.robokide.feature.base.ui.RobokFragment
+import org.gampiot.robokide.feature.util.base.RobokFragment
 import org.gampiot.robokide.feature.component.terminal.RobokTerminal
 import org.gampiot.robokide.feature.component.progress.DotProgressBar
+import org.gampiot.robokide.feature.res.Strings
 import org.gampiot.robokide.ui.fragments.build.output.OutputFragment
 import org.gampiot.robokide.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robokide.ui.fragments.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robokide.feature.res.strings.Strings
 
 import robok.compiler.logic.*
 import robok.diagnostic.logic.*
@@ -42,6 +42,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setFragmentLayoutResId(R.id.fragment_container)
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())
         
@@ -127,7 +128,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val dotProgressBar = DotProgressBar.Builder()
               .setMargin(1)
               .setAnimationDuration(2000)
-              .setDotBackground(R.drawable.ic_launcher_background)
+              .setDotBackground(R.drawable.ic_dot_24)
               .setMaxScale(1f)
               .setMinScale(0.3f)
               .setNumberOfDots(3)

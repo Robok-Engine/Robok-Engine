@@ -1,15 +1,10 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
-    id("maven-publish")
 }
 
-group = "org.gampiot.robokide.feature.res.strings"
-
 android {
-    namespace = "org.gampiot.robokide.feature.res.strings"
+    namespace = "org.gampiot.robokide.feature.res"
     compileSdk = 34
     
     defaultConfig {

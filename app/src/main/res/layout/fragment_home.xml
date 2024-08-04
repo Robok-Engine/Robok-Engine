@@ -51,8 +51,18 @@
            android:layout_marginLeft="20dp"
            android:text="@string/common_word_settings"
            android:id="@+id/open_settings" 
-           
            app:icon="@drawable/ic_settings_anim" />    
+           
+       <Button
+           android:layout_width="match_parent"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="7dp"
+           android:layout_marginBottom="7dp"
+           android:layout_marginRight="20dp"
+           android:layout_marginLeft="20dp"
+           android:text="@string/title_terminal"
+           android:id="@+id/open_terminal"
+           app:icon="@drawable/ic_info_24"  />        
            
        <Button
            android:layout_width="match_parent"
@@ -76,7 +86,6 @@
            android:text="@string/title_about"
            android:id="@+id/open_about"
            app:icon="@drawable/ic_info_24"  />
-           
-    </LinearLayout>  
+    </LinearLayout>
 </LinearLayout>
 

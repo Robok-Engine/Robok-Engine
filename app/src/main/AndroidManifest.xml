@@ -9,17 +9,14 @@
     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <uses-sdk tools:overrideLibrary="com.jn.filepickersphere" />
-        
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name="org.gampiot.robokide.Robok"
-        android:theme="@style/RobokTheme"
-        tools:replace="android:theme" >
+        android:name="org.gampiot.robokide.feature.util.application.RobokApp"
+        android:theme="@style/RobokTheme" >
         <activity
             android:name="org.gampiot.robokide.ui.activities.MainActivity"
             android:exported="true">
@@ -30,7 +27,11 @@
         </activity>
         
         <activity
-            android:name="org.gampiot.robokide.ui.activities.DebugActivity"
+            android:name="org.gampiot.robokide.feature.util.activities.DebugActivity"
+            android:exported="true" />
+            
+        <activity
+            android:name="org.gampiot.robokide.feature.terminal.TerminalActivity" 
             android:exported="true" />
             
     </application>

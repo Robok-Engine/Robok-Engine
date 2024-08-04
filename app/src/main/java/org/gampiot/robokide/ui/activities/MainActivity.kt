@@ -6,13 +6,14 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robokide.R
 import org.gampiot.robokide.ui.fragments.home.HomeFragment
-import org.gampiot.robokide.feature.base.ui.RobokActivity
+import org.gampiot.robokide.feature.util.base.RobokActivity
 
 class MainActivity : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        setFragmentLayoutResId(R.id.fragment_container)
         if (savedInstanceState == null) {
             openFragment(HomeFragment(MaterialSharedAxis.X))
         }

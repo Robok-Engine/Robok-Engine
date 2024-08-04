@@ -3,12 +3,14 @@ plugins {
     id("kotlin-android")
 }
 
+group = "org.gampiot.robokide.feature.terminal"
+
 android {
-    namespace = "org.gampiot.robokide.feature.component"
+    namespace = "org.gampiot.robokide.feature.terminal"
     compileSdk = 34
     
     defaultConfig {
-        minSdk = 21
+        minSdk = 26
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -26,6 +28,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+    
+    buildFeatures {
+        viewBinding = true
+    }
 
     kotlin {
         compilerOptions {
@@ -39,23 +45,14 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
-    implementation("$editorGroupId:editor-lsp")
-    implementation("$editorGroupId:language-java")
-    implementation("$editorGroupId:language-textmate")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("com.google.code.gson:gson:2.8.7")
     
-    val antlrVersion = "4.9.2"
-    implementation("org.antlr:antlr4:$antlrVersion") 
-    implementation("org.antlr:antlr4-runtime:$antlrVersion")
+    implementation("com.termux.termux-app:terminal-view:0.117")
+    implementation("com.termux.termux-app:terminal-emulator:0.117")
     
-    implementation(project(":feature:feature-res:strings"))
-    
-    implementation(project(":robok:robok-compiler"))
-    implementation(project(":robok:robok-diagnostic"))
+    implementation(project(":feature:feature-util"))
 }
