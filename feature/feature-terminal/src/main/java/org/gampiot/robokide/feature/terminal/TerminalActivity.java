@@ -176,7 +176,7 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      public void onCopyTextToClipboard(@NonNull TerminalSession arg0, String arg1) {}
      
      @Override 
-     public void onPasteTextFromClipboard(@Nullable TerminalSession session)) {
+     public void onPasteTextFromClipboard(@Nullable TerminalSession session) {
      
      }
      @Override
