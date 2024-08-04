@@ -117,6 +117,16 @@ public class TerminalActivity extends AppCompatActivity implements TerminalSessi
      public boolean readAltKey() {
           return false;
      }
+     
+     @Override 
+     public boolean readFnKey() {
+          return false;
+     }
+     
+     @Override
+     public boolean readShiftKey() {
+          return false;
+     }
 
      @Override
      public boolean onCodePoint(int codePoint, boolean ctrlDown, TerminalSession session) {
