@@ -1,5 +1,5 @@
 <resources>
-	<style name="RobokTheme" parent="Theme.Material3.DynamicColors.Light" >
+	<style name="Base.Theme.RobokIDE" parent="Theme.Material3.DynamicColors.Light" >
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -60,4 +60,7 @@
         <item name="android:fontFamily">@font/gilroy_regular</item>
         <item name="android:forceDarkAllowed">false</item>
 	</style>
+	
+	<style name ="Theme.RobokIDE" parent="Base.Theme.RobokIDE" />
+	
 </resources>

@@ -24,7 +24,7 @@
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu_24"
                 app:title="@string/app_name"
-                app:menu="@menu/editor_toolbar_menu"/>
+                app:menu="@menu/menu_editor_toolbar"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
