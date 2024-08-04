@@ -3,6 +3,8 @@ name: Crowdin
 on:
   push:
     branches: [ dev ]
+    
+  workflow_dispatch:  
 
 jobs:
   synchronize-with-crowdin:
