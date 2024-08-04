@@ -14,6 +14,8 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.gampiot.robokide.feature.util.application.RobokApp;
+
 public final class KeyboardUtils {
 
     private KeyboardUtils() {

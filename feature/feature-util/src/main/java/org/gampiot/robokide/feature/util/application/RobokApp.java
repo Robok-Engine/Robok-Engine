@@ -15,7 +15,7 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-import org.gampiot.robokide.feature.util.ui.activities.DebugActivity;
+import org.gampiot.robokide.feature.util.activities.DebugActivity;
 
 public class RobokApp extends Application {
 
