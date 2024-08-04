@@ -9,7 +9,6 @@
 	<string name="common_word_output">Output</string>
 	<string name="common_word_end">End</string>
 	<string name="common_word_settings">Settings</string>
-	<string name="common_word_ok">OK</string>
 	<string name="common_word_cancel">CANCEL</string>
 	<string name="common_word_next">Next</string>
 	<string name="common_word_undo">Undo</string>
@@ -18,7 +17,6 @@
 	<!-- titles section -->
 	<string name="title_create_project">Create project</string>
 	<string name="title_open_project">Open project</string>
-	<string name="title_terminal">Terminal</string>
 	<string name="title_open_editor">Open editor</string>
 	<string name="title_debug_title">An error occured</string>
 	<string name="title_select_theme">Select theme</string>
