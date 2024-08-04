@@ -25,14 +25,14 @@ jobs:
         max_contributors: 32
         image_size: 64
         min_words_contributed: 100
-        files: contributors/crowdin_contributors.md
+        files: contributors/CROWDIN_CONTRIBUTORS.MD
         crowdin_project_link: "https://crowdin.com/project/robokide"
       env:
         CROWDIN_PROJECT_ID: ${{ secrets.CROWDIN_PROJECT_ID }}
         CROWDIN_PERSONAL_TOKEN: ${{ secrets.CROWDIN_PERSONAL_TOKEN }}
 
     - name: Write JSON
-      uses: "DamianReeves/write-file-action@master"
+      uses: DamianReeves/write-file-action@master
       with:
         path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
         write-mode: overwrite
@@ -40,7 +40,7 @@ jobs:
 
     - name: Pretty-print JSON
       run: |
-        sudo apt-get install jq
+        apt-get install -y jq
         cat ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json | jq '.' > ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
         rm ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
 
@@ -57,4 +57,4 @@ jobs:
         body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
         commit-message: "chore: update crowdin contributors list"
         committer: Crowdin Bot <support+bot@crowdin.com>
-        branch: contributors-crowdin/patch
+        branch: contributors-crowdin-patch 
