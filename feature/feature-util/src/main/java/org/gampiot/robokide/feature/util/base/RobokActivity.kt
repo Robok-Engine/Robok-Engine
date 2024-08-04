@@ -12,6 +12,7 @@ import com.google.android.material.appbar.MaterialToolbar
 
 import org.gampiot.robokide.feature.util.requestPermission
 import org.gampiot.robokide.feature.util.getBackPressedClickListener
+import org.gampiot.robokide.feature.util.ResUtils;
 
 open class RobokActivity : AppCompatActivity() {
 
@@ -36,6 +37,15 @@ open class RobokActivity : AppCompatActivity() {
     
     fun requestPermissions() {
          requestPermission(this)
+    }
+    
+    fun configureWindow() {
+         val resUtils = ResUtils(this)
+         val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
+         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
+         window.statusBarColor = colorBg
+         window.navigationBarColor = colorBg
+         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
     }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {

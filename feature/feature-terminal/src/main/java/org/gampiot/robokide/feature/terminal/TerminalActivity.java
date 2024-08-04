@@ -22,9 +22,9 @@ import com.termux.view.TerminalViewClient;
 
 import org.gampiot.robokide.feature.terminal.databinding.ActivityTerminalBinding;
 import org.gampiot.robokide.feature.util.KeyboardUtils;
-import org.gampiot.robokide.feature.util.ResUtils;
+import org.gampiot.robokide.feature.util.base.RobokActivity;
 
-public class TerminalActivity extends AppCompatActivity implements TerminalSessionClient, TerminalViewClient {
+public class TerminalActivity extends RobokActivity implements TerminalSessionClient, TerminalViewClient {
 
      private ActivityTerminalBinding binding;
      private String cwd;
