@@ -1,0 +1,3 @@
+files:
+  - source: /feature/feature-res/strings/src/main/res/values
+    translation: /feature/feature-res/strings/src/main/res/values-%two_letters_code%/%file_name%
