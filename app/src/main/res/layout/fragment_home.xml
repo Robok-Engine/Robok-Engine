@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
     
-    <org.gampiot.robok.feature.component.toolbar.Toolbar 
+    <org.gampiot.robok.feature.component.toolbar.CenteredTitleToolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:title="@string/app_name" />
