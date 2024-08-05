@@ -13,7 +13,7 @@ import org.gampiot.robok.feature.settings.ui.fragment.editor.SettingsEditorFragm
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 
-import dev.trindadedev.lib.ui.components.preferences.withicon.Preference
+import dev.trindadedev.lib.ui.components.preference.withicon.Preference
 
 class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X, private val fragmentLayoutResId: Int = 0) : RobokFragment(transitionAxis) {
 
