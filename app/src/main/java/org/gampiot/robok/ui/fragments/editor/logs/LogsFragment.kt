@@ -22,6 +22,7 @@ class LogsFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentLogsBinding.inflate(inflater, container, false)
         return binding.root
     }
 

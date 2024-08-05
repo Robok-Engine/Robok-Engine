@@ -22,6 +22,7 @@ class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        _binding = FragmentLogsBinding.inflate(inflater, container, false)
         return binding.root
     }
 
