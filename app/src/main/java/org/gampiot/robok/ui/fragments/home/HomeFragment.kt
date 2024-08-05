@@ -24,7 +24,6 @@ import org.gampiot.robok.ui.fragments.about.AboutFragment
 
 import dev.trindadedev.lib.filepicker.model.DialogConfigs
 import dev.trindadedev.lib.filepicker.model.DialogProperties
-import dev.trindadedev.lib.filepicker.view.FilePickerDialog
 
 class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -74,7 +73,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
              selection_type = DialogConfigs.DIR_SELECT
         }
         
-        val filePickerDialog = FilePickerDialog(requireContext(), properties).apply {
+        val filePickerDialog = Fp(requireContext(), properties).apply {
              setTitle(getString(Strings.title_select_folder))
              setDialogSelectionListener { files ->
                   if (files != null && files.isNotEmpty()) {

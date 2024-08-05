@@ -105,7 +105,7 @@ dependencies {
     implementation(project(":feature:feature-setting"))
     implementation(project(":feature:feature-terminal"))
 
-    implementation("com.github.aquilesTrindade.trindade-util:filepicker:3.0.9")
+    implementation("com.github.aquilesTrindade.trindade-util:filepicker:8cd3879f09")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")
