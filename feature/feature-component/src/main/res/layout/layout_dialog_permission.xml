@@ -23,7 +23,6 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginTop="20dp"
-            android:src="@drawable/default_image"
             android:scaleType="fitCenter"
             app:iconTint="?colorPrimary" />
 
