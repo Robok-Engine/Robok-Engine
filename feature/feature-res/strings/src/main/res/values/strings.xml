@@ -17,6 +17,7 @@
 	<string name="common_word_undo">Undo</string>
 	<string name="common_word_redo">Redo</string>
 	<string name="common_word_allow">Allow</string>
+	<string name="common_word_deny">Deny</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
@@ -56,6 +57,10 @@
 	<!-- ene section -->
 	
 	<!-- warnings section -->
-	<string name="warning_storage_perm_title">Storage permission </string>
+	<string name="warning_storage_perm_title">Storage permission</string>
 	<string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
+	
+	<!-- errors section -->
+	<string name="error_storage_perm_title">Storage permission error</string>
+	<string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
 </resources>
