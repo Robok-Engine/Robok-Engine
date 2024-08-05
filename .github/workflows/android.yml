@@ -86,10 +86,10 @@ jobs:
           compression-level: 0
           path: ${{steps.sign_apk.outputs.signedReleaseFile}}
 
-  send:
-    name: Send APK
+  send-debug:
+    name: Send Debug APK
     runs-on: ubuntu-latest
-    needs: [IDE-debug-apk, IDE-release-apk]
+    needs: IDE-debug-apk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -107,11 +107,6 @@ jobs:
         with:
           name: ide-debug
 
-      - name: Download Release APK
-        uses: actions/download-artifact@v4
-        with:
-          name: ide-release
-
       - name: Send Debug APK to Telegram
         uses: appleboy/telegram-action@master
         with:
@@ -127,6 +122,27 @@ jobs:
             App: Robok IDE
             Commit message: `${{ github.event.head_commit.message }}`
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
+
+  send-release:
+    name: Send Release APK
+    runs-on: ubuntu-latest
+    needs: IDE-release-apk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.pull_request.head.ref }}
+
+      - name: Get the last commit message
+        id: get_commit_msg
+        run: |
+          commit_message=$(git log -1 --pretty=format:'%s')
+          echo "::set-output name=message::$commit_message"
+
+      - name: Download Release APK
+        uses: actions/download-artifact@v4
+        with:
+          name: ide-release
 
       - name: Send Release APK to Telegram
         uses: appleboy/telegram-action@master
