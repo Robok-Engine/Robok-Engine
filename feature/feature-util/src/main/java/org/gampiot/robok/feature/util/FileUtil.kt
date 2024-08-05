@@ -41,6 +41,15 @@ fun requestStoragePerm(activity: Activity) {
     }
 }
 
+fun getStoragePermStatus (activity: Activity) {
+     if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+          ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+               return false
+     } else {
+          return true
+     }
+}
+
 const val REQUEST_CODE_STORAGE_PERMISSIONS = 1001
 
 fun onRequestPermissionsResult(

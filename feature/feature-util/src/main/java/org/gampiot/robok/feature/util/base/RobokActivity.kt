@@ -40,14 +40,16 @@ open class RobokActivity : AppCompatActivity() {
     }
     
     fun requestStoragePermDialog() {
-         MaterialAlertDialogBuilder(this)
-              .setTitle(getString(Strings.warning_storage_perm_title))
-              .setMessage(getString(Strings.warning_storage_perm_message))
-              .setCancelable(false)
-              .setPositiveButton(Strings.common_word_allow) { _, _ ->
-                   requestStoragePerm(this)
-              }
-              .show()
+         if (!getStoragePermStatus(this)) {
+               MaterialAlertDialogBuilder(this)
+                   .setTitle(getString(Strings.warning_storage_perm_title))
+                   .setMessage(getString(Strings.warning_storage_perm_message))
+                   .setCancelable(false)
+                   .setPositiveButton(Strings.common_word_allow) { _, _ ->
+                        requestStoragePerm(this)
+                   }
+               .show()
+         }
     }
     
     fun configureWindow() {
