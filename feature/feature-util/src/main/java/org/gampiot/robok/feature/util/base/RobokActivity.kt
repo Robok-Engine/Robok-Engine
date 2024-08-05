@@ -52,7 +52,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             setIconResId(R.drawable.ic_folder_24)
             setText(getString(Strings.warning_storage_perm_message))
             setAllowClickListener {
-                requestStoragePerm(this@RobokActivity, this@PermissionListener)
+                requestStoragePerm(this@RobokActivity, this)
             }
             setDenyClickListener {
                 finish()
