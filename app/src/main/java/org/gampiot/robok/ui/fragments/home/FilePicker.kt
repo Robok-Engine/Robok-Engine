@@ -51,7 +51,7 @@ class FilePicker(
                 },
                 denyClickListener = { }
             )
-            permissionDialog.show()
+            permissionDialog?.show()
         } else {
             throw IllegalArgumentException("The context needs to be an Activity.")
         }
