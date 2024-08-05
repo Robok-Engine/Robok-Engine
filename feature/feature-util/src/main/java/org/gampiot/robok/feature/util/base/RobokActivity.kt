@@ -28,7 +28,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     @IdRes var layoutResId: Int = 0
     
-    private lateinit var permissionDialog: PermissionDialog
+    private var permissionDialog: PermissionDialog? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,24 +53,22 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         if (isFinishing || isDestroyed) {
             return
         }
-        permissionDialog = PermissionDialog().apply {
-             setIconResId(R.drawable.ic_folder_24)
-             setText(getString(Strings.warning_storage_perm_message))
-             setAllowClickListener {
-                 requestStoragePerm(this@RobokActivity, this@RobokActivity)
-             }
-             setDenyClickListener {
-                 finish()
-             }
-        }
-        Handler(Looper.getMainLooper()).post {
-            if (supportFragmentManager.findFragmentByTag("PermissionDialog") == null) {
-                 permissionDialog.show(supportFragmentManager, "PermissionDialog")
+        permissionDialog = PermissionDialog(
+            context = this,
+            iconResId = R.drawable.ic_folder_24,
+            text = getString(Strings.warning_storage_perm_message),
+            allowClickListener = {
+                requestStoragePerm(this@RobokActivity, this@RobokActivity)
+            },
+            denyClickListener = {
+                finish()
             }
+        )
+        Handler(Looper.getMainLooper()).post {
+            permissionDialog?.show()
         }
     }
 
-    
     fun configureWindow() {
         val resUtils = ResUtils(this)
         val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
@@ -92,9 +90,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     
     override fun onReceive(status: Boolean) {
         if (status) {
-            if (::permissionDialog.isInitialized) {
-                permissionDialog.dismiss()
-            }
+            permissionDialog?.dismiss()
         } else {
             MaterialAlertDialogBuilder(this)
                 .setTitle(getString(Strings.error_storage_perm_title))
