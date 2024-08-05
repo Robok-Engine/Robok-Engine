@@ -73,7 +73,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
              selection_type = DialogConfigs.DIR_SELECT
         }
         
-        val filePickerDialog = Fp(requireContext(), properties).apply {
+        val filePickerDialog = FilePicker(requireContext(), properties).apply {
              setTitle(getString(Strings.title_select_folder))
              setDialogSelectionListener { files ->
                   if (files != null && files.isNotEmpty()) {
