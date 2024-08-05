@@ -11,14 +11,12 @@ import android.graphics.Color
 import androidx.fragment.app.DialogFragment
 import androidx.annotation.DrawableRes
 
+import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutDialogPermissionBinding
 
 class PermissionDialog(
     @DrawableRes private val iconResId: String,
     private val text: String,
-    private val backgroundColor: String,
-    private val buttonsColor: String,
-    private val textsColor: String
 ) : DialogFragment() {
 
     private var _binding: LayoutDialogPermissionBinding? = null
@@ -39,12 +37,6 @@ class PermissionDialog(
         binding.dialogIcon.setImageResource(iconResIdResId)
         binding.dialogText.text = Html.fromHtml(text)
 
-        binding.contentDialog.setBackgroundColor(Color.parseColor(backgroundColor))
-        binding.button1Text.setTextColor(Color.parseColor(textsColor))
-        binding.button2Text.setTextColor(Color.parseColor(textsColor))
-        binding.buttonAllow.setBackgroundColor(Color.parseColor(buttonsColor))
-        binding.buttonDeny.setBackgroundColor(Color.parseColor(buttonsColor))
-
         binding.buttonAllow.setOnClickListener {
             allowClickListener?.invoke()
             dismiss()
@@ -59,7 +51,7 @@ class PermissionDialog(
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return Dialog(requireContext(), R.style.Theme_AppCompat_Light_Dialog_Alert).apply {
+        return Dialog(requireContext(), R.style.Theme_Material3_DayNight_Dialog).apply {
             window?.decorView?.setBackgroundColor(0)
             setCancelable(false)
         }
