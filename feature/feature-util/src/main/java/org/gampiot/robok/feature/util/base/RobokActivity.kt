@@ -3,6 +3,8 @@ package org.gampiot.robok.feature.util.base
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import android.os.Handler
+import android.os.Looper
 
 import androidx.activity.OnBackPressedDispatcher
 import androidx.appcompat.app.AppCompatActivity
@@ -55,16 +57,19 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
              setIconResId(R.drawable.ic_folder_24)
              setText(getString(Strings.warning_storage_perm_message))
              setAllowClickListener {
-                  requestStoragePerm(this@RobokActivity, this@RobokActivity)
+                 requestStoragePerm(this@RobokActivity, this@RobokActivity)
              }
              setDenyClickListener {
-                  finish()
+                 finish()
              }
         }
-        if (supportFragmentManager.findFragmentByTag("PermissionDialog") == null) {
-              permissionDialog.show(supportFragmentManager, "PermissionDialog")
+        Handler(Looper.getMainLooper()).post {
+            if (supportFragmentManager.findFragmentByTag("PermissionDialog") == null) {
+                 permissionDialog.show(supportFragmentManager, "PermissionDialog")
+            }
         }
     }
+
     
     fun configureWindow() {
         val resUtils = ResUtils(this)
