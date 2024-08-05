@@ -11,7 +11,7 @@ env:
 jobs:
   crowdin-contributors:
     runs-on: ubuntu-latest
-    if: github.repository == 'gampiot-inc/Robok-IDE'
+    if: github.repository == 'gampiot-inc/Robok-Engine'
     steps:
     - name: Checkout
       uses: actions/checkout@v4
