@@ -47,14 +47,14 @@
                android:layout_weight="1"
                android:padding="8dp">
 
-               <dev.trindadedev.lib.ui.components.textfields.TInput
+               <dev.trindadedev.lib.ui.components.textfield.TInput
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
                    app:text="New App"
                    app:hint="@string/hint_project_name" />
 
-               <dev.trindadedev.lib.ui.components.textfields.TInput
+               <dev.trindadedev.lib.ui.components.textfield.TInput
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
