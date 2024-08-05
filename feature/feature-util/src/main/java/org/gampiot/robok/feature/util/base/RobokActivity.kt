@@ -58,8 +58,9 @@ open class RobokActivity : AppCompatActivity() {
     fun newDialog () {
          val permissionDialog = PermissionDialog(
              iconResId = "ic_settings_24",
-             text = getString(Strings.warning_storage_perm_title)
+             text = getString(Strings.warning_storage_perm_message)
          )
+         permissionDialog.setCancelable(false)
          permissionDialog.setAllowClickListener {
              requestStoragePerm(this)
          }

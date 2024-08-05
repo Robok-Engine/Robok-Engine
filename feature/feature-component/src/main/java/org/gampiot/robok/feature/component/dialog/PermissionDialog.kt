@@ -52,7 +52,7 @@ class PermissionDialog(
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return Dialog(requireContext(), MaterialStyle.Theme_Material3_DayNight_Dialog).apply {
+        return Dialog(requireContext()).apply {
             window?.decorView?.setBackgroundColor(0)
             setCancelable(false)
         }
