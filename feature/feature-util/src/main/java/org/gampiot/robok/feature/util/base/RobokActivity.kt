@@ -13,9 +13,11 @@ import androidx.annotation.IdRes
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
+import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.util.ResUtils
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.dialog.PermissionDialog
