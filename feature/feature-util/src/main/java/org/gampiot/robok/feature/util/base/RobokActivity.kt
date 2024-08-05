@@ -49,7 +49,7 @@ open class RobokActivity : AppCompatActivity() {
               }
               .show()
     }
-    .
+    
     fun configureWindow() {
          val resUtils = ResUtils(this)
          val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
