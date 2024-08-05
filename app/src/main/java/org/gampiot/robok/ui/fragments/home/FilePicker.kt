@@ -41,16 +41,19 @@ class FilePicker(
     }
 
     fun permDialog() {
-        permissionDialog = PermissionDialog(
-            context = context,
-            iconResId = org.gampiot.robok.feature.component.R.drawable.ic_folder_24,
-            text = context.getString(Strings.warning_storage_perm_message),
-            allowClickListener = {
-                requestStoragePerm(context, this@PermissionListener)
-            },
-            denyClickListener = { 
-                
-            }
-        )
+        if (context is Activity) {
+            permissionDialog = PermissionDialog(
+                context = context as Activity,
+                iconResId = org.gampiot.robok.feature.component.R.drawable.ic_folder_24,
+                text = context.getString(Strings.warning_storage_perm_message),
+                allowClickListener = {
+                     requestStoragePerm(context, this@FilePicker)
+                },
+                denyClickListener = { }
+            )
+        } else {
+            throw IllegalArgumentException("The context needs to be an Activity.")
+        }
     }
+
 }
