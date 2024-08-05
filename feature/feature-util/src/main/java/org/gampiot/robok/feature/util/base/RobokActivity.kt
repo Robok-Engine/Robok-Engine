@@ -18,6 +18,7 @@ import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.ResUtils;
 import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.component.dialog.PermissionDialog
 
 open class RobokActivity : AppCompatActivity() {
 
