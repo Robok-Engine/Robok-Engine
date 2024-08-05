@@ -53,8 +53,8 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
-        title: Update Crowdin Contributors
-        body: By [action-crowdin-contributors](https://github.com/andrii-bodnar/action-crowdin-contributors) GitHub action
+        title: chore: Crowdin Contribuitors Update
+          body: Update table and json from crowdin contributors
         commit-message: "chore: update crowdin contributors table"
         committer: Crowdin Bot <support+bot@crowdin.com>
         branch: contributors-crowdin/patch
