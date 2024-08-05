@@ -22,6 +22,7 @@ class FilePicker(
 
     override fun requestStoragePermission() {
         super.requestStoragePermission()
+        permDialog()
     }
 
     override fun onReceive(status: Boolean) {
@@ -45,10 +46,10 @@ class FilePicker(
             iconResId = org.gampiot.robok.feature.component.R.drawable.ic_folder_24,
             text = context.getString(Strings.warning_storage_perm_message),
             allowClickListener = {
-                requestStoragePerm(context, this@FilePicker)
+                requestStoragePerm(context, this@PermissionListener)
             },
-            denyClickListener = {
-                finish()
+            denyClickListener = { 
+                
             }
         )
     }
