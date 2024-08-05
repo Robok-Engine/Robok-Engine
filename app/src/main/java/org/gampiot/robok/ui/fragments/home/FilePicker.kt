@@ -22,7 +22,6 @@ class FilePicker(
     private var permissionDialog: PermissionDialog? = null
 
     override fun requestStoragePermission() {
-        super.requestStoragePermission()
         permDialog()
     }
 
