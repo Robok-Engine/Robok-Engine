@@ -48,17 +48,22 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     }
     
     private fun requestStoragePermDialog() {
-        permissionDialog = PermissionDialog().apply {
-            setIconResId(R.drawable.ic_folder_24)
-            setText(getString(Strings.warning_storage_perm_message))
-            setAllowClickListener {
-                requestStoragePerm(this@RobokActivity, this@RobokActivity)
-            }
-            setDenyClickListener {
-                finish()
-            }
+        if (isFinishing || isDestroyed) {
+            return
         }
-        permissionDialog.show(supportFragmentManager, "PermissionDialog")
+        permissionDialog = PermissionDialog().apply {
+             setIconResId(R.drawable.ic_folder_24)
+             setText(getString(Strings.warning_storage_perm_message))
+             setAllowClickListener {
+                  requestStoragePerm(this@RobokActivity, this@RobokActivity)
+             }
+             setDenyClickListener {
+                  finish()
+             }
+        }
+        if (supportFragmentManager.findFragmentByTag("PermissionDialog") == null) {
+              permissionDialog.show(supportFragmentManager, "PermissionDialog")
+        }
     }
     
     fun configureWindow() {
