@@ -41,6 +41,6 @@ jobs:
         with:
           title: Github Contribuitors Update
           body: Update table and json from github contributors
-          commit-message: "chore: update github contributors table"
+          commit-message: "chore: update github contributors"
           committer: GitHub Actions <actions@github.com>
           branch: contributors-github/patch

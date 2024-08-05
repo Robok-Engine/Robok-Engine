@@ -55,6 +55,6 @@ jobs:
       with:
         title: Crowdin Contribuitors Update
         body: Update table and json from crowdin contributors
-        commit-message: "chore: update crowdin contributors table"
+        commit-message: "chore: update crowdin contributors"
         committer: Crowdin Bot <support+bot@crowdin.com>
         branch: contributors-crowdin/patch

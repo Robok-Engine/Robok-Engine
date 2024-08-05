@@ -10,8 +10,8 @@ on:
       - 'dev'
 
 jobs:
-  IDE-debug-apk:
-    name: Build IDE Debug APK
+  Engine-debug-apk:
+    name: Build Engine Debug APK
     runs-on: ubuntu-latest
 
     steps:
@@ -38,12 +38,12 @@ jobs:
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: ide-debug
+          name: engine-debug
           compression-level: 0
           path: app/build/outputs/apk/debug
 
-  IDE-release-apk:
-    name: Build IDE Release APK
+  Engine-release-apk:
+    name: Build Engine Release APK
     runs-on: ubuntu-latest
 
     steps:
@@ -82,14 +82,14 @@ jobs:
       - name: Upload release apk
         uses: actions/upload-artifact@v4
         with:
-          name: ide-release
+          name: engine-release
           compression-level: 0
           path: ${{steps.sign_apk.outputs.signedReleaseFile}}
 
   send-debug:
     name: Send Debug APK
     runs-on: ubuntu-latest
-    needs: IDE-debug-apk
+    needs: Engine-debug-apk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -105,7 +105,7 @@ jobs:
       - name: Download Debug APK
         uses: actions/download-artifact@v4
         with:
-          name: ide-debug
+          name: engine-debug
 
       - name: Send Debug APK to Telegram
         uses: appleboy/telegram-action@master
@@ -119,14 +119,14 @@ jobs:
             *Debug Build Success!*
             Repository: *${{ github.repository }}*
             Branch: *${{ github.ref_name }}*
-            App: Robok IDE
+            App: Robok Engine
             Commit message: `${{ github.event.head_commit.message }}`
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
 
   send-release:
     name: Send Release APK
     runs-on: ubuntu-latest
-    needs: IDE-release-apk
+    needs: Engine-release-apk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -142,7 +142,7 @@ jobs:
       - name: Download Release APK
         uses: actions/download-artifact@v4
         with:
-          name: ide-release
+          name: engine-release
 
       - name: Send Release APK to Telegram
         uses: appleboy/telegram-action@master
@@ -156,6 +156,6 @@ jobs:
             *Release Build Success!*
             Repository: *${{ github.repository }}*
             Branch: *${{ github.ref_name }}*
-            App: Robok IDE
+            App: Robok Engine
             Commit message: `${{ github.event.head_commit.message }}`
             [Check the logs](https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }})
