@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- common words section -->
+    <string name="common_word_back">Voltar</string>
+    <string name="common_word_result">Resultado</string>
+    <string name="common_word_run">Executar</string>
+    <string name="common_word_code">Código</string>
+    <string name="common_word_logs">Registro</string>
+    <string name="common_word_output">Saída</string>
+    <string name="common_word_end">Fim</string>
+    <string name="common_word_settings">Configurações</string>
+    <string name="common_word_cancel">CANCELAR</string>
+    <string name="common_word_next">Próximo</string>
+    <string name="common_word_undo">Desfazer</string>
+    <string name="common_word_redo">Refazer</string>
+    <string name="common_word_allow">Allow</string>
+    <string name="common_word_deny">Deny</string>
+    <!-- end section -->
+    <!-- titles section -->
+    <string name="title_create_project">Criar Projeto</string>
+    <string name="title_open_project">Abrir Projeto</string>
+    <string name="title_open_editor">Abrir Editor</string>
+    <string name="title_debug_title">Um erro ocorreu</string>
+    <string name="title_select_theme">Selecionar tema</string>
+    <string name="title_about">Sobre</string>
+    <string name="title_select_folder">Selecionar pasta</string>
+    <!-- end section -->
+    <!-- messages section -->
+    <string name="message_compiled">Seu código foi compilado!</string>
+    <!-- end section -->
+    <!-- go to section -->
+    <string name="go_to_outputs">Ir para saída</string>
+    <!-- end section -->
+    <!-- hints section -->
+    <string name="hint_project_name">Nome do Projeto</string>
+    <string name="hint_package_name">Nome de Pacote</string>
+    <!-- end section -->
+    <!-- settings section -->
+    <string name="settings_editor_title">Editor de Código</string>
+    <string name="settings_editor_description">Algumas configurações do Editor.</string>
+    <string name="settings_editor_theme_title">Tema do Editor de Código</string>
+    <string name="settings_editor_theme_description">Mude o tema do Editor de Código.</string>
+    <!-- end section -->
+    <!-- texts section -->
+    <string name="text_diagnostic">Diagnóstico</string>
+    <string name="text_logs">Registros</string>
+    <!-- ene section -->
+    <!-- warnings section -->
+    <string name="warning_storage_perm_title">Storage permission</string>
+    <string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
+    <!-- errors section -->
+    <string name="error_storage_perm_title">Storage permission error</string>
+    <string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
+</resources>
