@@ -16,82 +16,82 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
-import org.gampiot.robok.feature.util.ResUtils;
+import org.gampiot.robok.feature.util.ResUtils
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.dialog.PermissionDialog
 
-open class RobokActivity : AppCompatActivity() : PermissionListener {
+open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     @IdRes var layoutResId: Int = 0
     
-    lateinit val permissionDialog : PermissionDialog
+    private lateinit var permissionDialog: PermissionDialog
     
     override fun onCreate(savedInstanceState: Bundle?) {
-         super.onCreate(savedInstanceState)
-         if (!getStoragePermStatus(this)) {
-              requestStoragePermDialog()
-         }
+        super.onCreate(savedInstanceState)
+        if (!getStoragePermStatus(this)) {
+            requestStoragePermDialog()
+        }
     }
     
     fun openFragment(fragment: Fragment) {
-         supportFragmentManager.commit {
-             replace(layoutResId, fragment)
-         }
+        supportFragmentManager.commit {
+            replace(layoutResId, fragment)
+        }
     }
     
     fun openCustomFragment(@IdRes layoutResId: Int, fragment: Fragment) {
-         supportFragmentManager.commit {
-             replace(layoutResId, fragment)
-         }
+        supportFragmentManager.commit {
+            replace(layoutResId, fragment)
+        }
     }
     
-    fun requestStoragePermDialog () {
-         permissionDialog = PermissionDialog().apply {
-              setIconResId(R.drawable.ic_folder_24)
-              setText(getString(Strings.warning_storage_perm_message))
-              setAllowClickListener {
-                    requestStoragePerm(this)
-              }
-              setDenyClickListener {
-                    finish()
-              }
-         }
-         permissionDialog.show(supportFragmentManager, "PermissionDialog")
+    private fun requestStoragePermDialog() {
+        permissionDialog = PermissionDialog().apply {
+            setIconResId(R.drawable.ic_folder_24)
+            setText(getString(Strings.warning_storage_perm_message))
+            setAllowClickListener {
+                requestStoragePerm(this@RobokActivity)
+            }
+            setDenyClickListener {
+                finish()
+            }
+        }
+        permissionDialog.show(supportFragmentManager, "PermissionDialog")
     }
     
     fun configureWindow() {
-         val resUtils = ResUtils(this)
-         val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
-         window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN)
-         window.statusBarColor = colorBg
-         window.navigationBarColor = colorBg
-         window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        val resUtils = ResUtils(this)
+        val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
+        /* window.statusBarColor = colorBg */
+        window.navigationBarColor = colorBg
     }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
+        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
     
-    fun setFragmentLayoutResId (@IdRes layoutResId: Int) {
-         this.layoutResId = layoutResId
+    fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
+        this.layoutResId = layoutResId
     }
     
-    fun getFragmentLayoutResId () : Int {
-         return layoutResId;
+    fun getFragmentLayoutResId(): Int {
+        return layoutResId
     }
     
-    override fun onReceive (status: Boolean) {
-         if (status) {
-             permissionDialog.dismiss()
-         } else {
-             MaterialAlertDialogBuilder(this)
-                   .setTitle(getString(Strings.error_storage_perm_title))
-                   .setMessage(getString(Strings.error_storage_perm_message))
-                   .setCancelable(false)
-                   .setPositiveButton(Strings.common_word_allow) { _, _ ->
-                        requestStoragePermDialog()
-                   }
-               .show()
-         }
+    override fun onReceive(status: Boolean) {
+        if (status) {
+            if (::permissionDialog.isInitialized) {
+                permissionDialog.dismiss()
+            }
+        } else {
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(Strings.error_storage_perm_title))
+                .setMessage(getString(Strings.error_storage_perm_message))
+                .setCancelable(false)
+                .setPositiveButton(Strings.common_word_allow) { _, _ ->
+                    requestStoragePermDialog()
+                }
+                .show()
+        }
     }
 }
