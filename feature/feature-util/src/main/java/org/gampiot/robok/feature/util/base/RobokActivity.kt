@@ -52,7 +52,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             setIconResId(R.drawable.ic_folder_24)
             setText(getString(Strings.warning_storage_perm_message))
             setAllowClickListener {
-                requestStoragePerm(this@RobokActivity, this)
+                requestStoragePerm(this@RobokActivity, this@RobokActivity)
             }
             setDenyClickListener {
                 finish()
@@ -64,7 +64,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     fun configureWindow() {
         val resUtils = ResUtils(this)
         val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
-        /* window.statusBarColor = colorBg */
+        window.statusBarColor = colorBg
         window.navigationBarColor = colorBg
     }
     
