@@ -5,7 +5,7 @@ import android.content.Context
 import dev.trindadedev.lib.filepicker.view.FilePickerDialog
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 
-class Fp (private val context: Context = this, private val props: DialogProperties = DialogProperties()) : FilePickerDialog(context, props) {
+class Fp (private val context: Context = null, private val props: DialogProperties = DialogProperties()) : FilePickerDialog(context, props) {
 
     override fun requestStoragePermission () {
          super.requestStoragePermission()
