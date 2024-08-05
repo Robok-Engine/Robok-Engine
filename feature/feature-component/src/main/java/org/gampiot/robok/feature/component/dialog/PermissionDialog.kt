@@ -17,7 +17,7 @@ import org.gampiot.robok.feature.component.databinding.LayoutDialogPermissionBin
 
 class PermissionDialog(
     @DrawableRes private val iconResId: String,
-    private val text: String,
+    private val text: String
 ) : DialogFragment() {
 
     private var _binding: LayoutDialogPermissionBinding? = null

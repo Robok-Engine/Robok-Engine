@@ -25,7 +25,8 @@ open class RobokActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
-         requestStoragePermDialog()
+         //requestStoragePermDialog()
+         newDialog()
     }
     
     fun openFragment(fragment: Fragment) {
@@ -51,6 +52,21 @@ open class RobokActivity : AppCompatActivity() {
                    }
                .show()
          }
+    }
+    
+    fun newDialog () {
+         val permissionDialog = PermissionDialog(
+             iconResId = "ic_settings_24",
+             text = getString(Strings.warning_storage_perm_title)
+         )
+         permissionDialog.setAllowClickListener {
+             requestStoragePerm(this)
+         }
+         
+         permissionDialog.setDenyClickListener {
+             finish()
+         }
+         permissionDialog.show(supportFragmentManager, "PermissionDialog")
     }
     
     fun configureWindow() {

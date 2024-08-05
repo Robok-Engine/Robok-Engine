@@ -46,4 +46,5 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.2")
     
     implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-component"))
 }
