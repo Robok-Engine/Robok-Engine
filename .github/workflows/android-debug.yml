@@ -34,25 +34,13 @@ jobs:
       - name: Build with Gradle
         id: gradle_build_debug
         run: ./gradlew assembleDebug
-        
-      - name: Sign APK (if necessary)
-        id: sign_apk
-        uses: noriban/sign-android-release@v5
-        with:
-          releaseDirectory: app/build/outputs/apk/debug
-          signingKeyBase64: ${{ secrets.KEYSTORE_FILE }}
-          alias: ${{ secrets.KEYSTORE_ALIAS }}
-          keyStorePassword: ${{ secrets.KEYSTORE_PASSWORD }}
-          keyPassword: ${{ secrets.KEY_PASSWORD }}
-        env:
-          BUILD_TOOLS_VERSION: "34.0.0"
 
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
           name: ide-debug
           compression-level: 0
-          path: ${{steps.sign_apk.outputs.signedDebugFile}}
+          path: app/build/outputs/apk/debug
 
   send:
     name: Send APK
