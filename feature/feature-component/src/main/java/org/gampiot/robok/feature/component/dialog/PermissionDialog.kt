@@ -11,7 +11,7 @@ import android.graphics.Color
 import androidx.fragment.app.DialogFragment
 import androidx.annotation.DrawableRes
 
-import org.gampiot.robok.databinding.LayoutDialogPermissionBinding
+import org.gampiot.robok.feature.component.databinding.LayoutDialogPermissionBinding
 
 class PermissionDialog(
     @DrawableRes private val iconResId: String,
