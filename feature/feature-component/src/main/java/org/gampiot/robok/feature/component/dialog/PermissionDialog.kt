@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.annotation.DrawableRes
 
 import org.gampiot.robok.feature.component.R
-import org.gampiot.robok.feature.Material
+import org.gampiot.robok.feature.component.Material
 import org.gampiot.robok.feature.component.databinding.LayoutDialogPermissionBinding
 
 class PermissionDialog(
