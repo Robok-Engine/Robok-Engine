@@ -17,6 +17,7 @@
 	<string name="common_word_undo">Undo</string>
 	<string name="common_word_redo">Redo</string>
 	<string name="common_word_allow">Allow</string>
+	<string name="common_word_deny">Deny</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
