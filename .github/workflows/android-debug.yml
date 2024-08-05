@@ -66,7 +66,7 @@ jobs:
       - name: Send APK to Telegram
         uses: appleboy/telegram-action@master
         with:
-          to: -1002213084840
+          to: -1002153863338
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           document: app-debug.apk
