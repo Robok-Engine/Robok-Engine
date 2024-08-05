@@ -61,5 +61,7 @@ fun handlePermissionsResult(
     if (requestCode == REQUEST_CODE_STORAGE_PERMISSIONS) {
         val allPermissionsGranted = grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
         listener.onReceive(allPermissionsGranted)
+    } else {
+        listener.onReceive(false)
     }
 }
