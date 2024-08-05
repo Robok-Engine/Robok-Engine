@@ -1,3 +1,3 @@
 package org.gampiot.robok.feature.component
 
-typealias Material = com.google.android.material.R
+typealias MaterialStyle = com.google.android.material.R.style

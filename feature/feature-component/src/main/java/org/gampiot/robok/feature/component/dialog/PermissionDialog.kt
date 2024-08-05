@@ -12,7 +12,7 @@ import androidx.fragment.app.DialogFragment
 import androidx.annotation.DrawableRes
 
 import org.gampiot.robok.feature.component.R
-import org.gampiot.robok.feature.component.Material
+import org.gampiot.robok.feature.component.MaterialStyle
 import org.gampiot.robok.feature.component.databinding.LayoutDialogPermissionBinding
 
 class PermissionDialog(
@@ -52,7 +52,7 @@ class PermissionDialog(
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        return Dialog(requireContext(), Material.style.Theme_Material3_DayNight_Dialog).apply {
+        return Dialog(requireContext(), MaterialStyle.Theme_Material3_DayNight_Dialog).apply {
             window?.decorView?.setBackgroundColor(0)
             setCancelable(false)
         }
