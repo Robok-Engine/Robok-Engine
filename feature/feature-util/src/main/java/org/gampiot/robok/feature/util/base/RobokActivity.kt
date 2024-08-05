@@ -20,14 +20,17 @@ import org.gampiot.robok.feature.util.ResUtils;
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.dialog.PermissionDialog
 
-open class RobokActivity : AppCompatActivity() {
+open class RobokActivity : AppCompatActivity() : PermissionListener {
 
     @IdRes var layoutResId: Int = 0
     
+    lateinit val permissionDialog : PermissionDialog
+    
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
-         //requestStoragePermDialog()
-         newDialog()
+         if (!getStoragePermStatus(this)) {
+              requestStoragePermDialog()
+         }
     }
     
     fun openFragment(fragment: Fragment) {
@@ -42,31 +45,16 @@ open class RobokActivity : AppCompatActivity() {
          }
     }
     
-    fun requestStoragePermDialog() {
-         if (!getStoragePermStatus(this)) {
-               MaterialAlertDialogBuilder(this)
-                   .setTitle(getString(Strings.warning_storage_perm_title))
-                   .setMessage(getString(Strings.warning_storage_perm_message))
-                   .setCancelable(false)
-                   .setPositiveButton(Strings.common_word_allow) { _, _ ->
-                        requestStoragePerm(this)
-                   }
-               .show()
-         }
-    }
-    
-    fun newDialog () {
-         val permissionDialog = PermissionDialog(
-             iconResId = "ic_settings_24",
-             text = getString(Strings.warning_storage_perm_message)
-         )
-         permissionDialog.setCancelable(false)
-         permissionDialog.setAllowClickListener {
-             requestStoragePerm(this)
-         }
-         
-         permissionDialog.setDenyClickListener {
-             finish()
+    fun requestStoragePermDialog () {
+         permissionDialog = PermissionDialog().apply {
+              setIconResId(R.drawable.ic_folder_24)
+              setText(getString(Strings.warning_storage_perm_message))
+              setAllowClickListener {
+                    requestStoragePerm(this)
+              }
+              setDenyClickListener {
+                    finish()
+              }
          }
          permissionDialog.show(supportFragmentManager, "PermissionDialog")
     }
@@ -90,5 +78,20 @@ open class RobokActivity : AppCompatActivity() {
     
     fun getFragmentLayoutResId () : Int {
          return layoutResId;
+    }
+    
+    override fun onReceive (status: Boolean) {
+         if (status) {
+             permissionDialog.dismiss()
+         } else {
+             MaterialAlertDialogBuilder(this)
+                   .setTitle(getString(Strings.error_storage_perm_title))
+                   .setMessage(getString(Strings.error_storage_perm_message))
+                   .setCancelable(false)
+                   .setPositiveButton(Strings.common_word_allow) { _, _ ->
+                        requestStoragePermDialog()
+                   }
+               .show()
+         }
     }
 }

@@ -57,6 +57,10 @@
 	<!-- ene section -->
 	
 	<!-- warnings section -->
-	<string name="warning_storage_perm_title">Storage permission </string>
+	<string name="warning_storage_perm_title">Storage permission</string>
 	<string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
+	
+	<!-- errors section -->
+	<string name="error_storage_perm_title">Storage permission error</string>
+	<string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
 </resources>
