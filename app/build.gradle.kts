@@ -91,7 +91,7 @@ dependencies {
 
     // dagger
     implementation("com.google.dagger:hilt-android:2.52")
-    kapt("com.google.dagger:hilt-compiler:2.51.1")
+    kapt("com.google.dagger:hilt-compiler:2.52")
 
     // Robok
     implementation(project(":robok:robok-compiler"))
