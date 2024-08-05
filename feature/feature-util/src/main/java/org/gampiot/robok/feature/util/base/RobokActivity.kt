@@ -13,7 +13,7 @@ import androidx.annotation.IdRes
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robok.feature.util.requestPermission
+import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.ResUtils;
 import org.gampiot.robok.feature.res.Strings
@@ -24,7 +24,7 @@ open class RobokActivity : AppCompatActivity() {
     
     override fun onCreate(savedInstanceState: Bundle?) {
          super.onCreate(savedInstanceState)
-         requestPermissions()
+         requestStoragePermDialog()
     }
     
     fun openFragment(fragment: Fragment) {
@@ -39,13 +39,13 @@ open class RobokActivity : AppCompatActivity() {
          }
     }
     
-    fun requestPermissions() {
+    fun requestStoragePermDialog() {
          MaterialAlertDialogBuilder(this)
               .setTitle(getString(Strings.warning_storage_perm_title))
               .setMessage(getString(Strings.warning_storage_perm_message))
               .setCancelable(false)
               .setPositiveButton(Strings.common_word_allow) { _, _ ->
-                   requestPermission(this)
+                   requestStoragePerm(this)
               }
               .show()
     }
