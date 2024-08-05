@@ -3,11 +3,11 @@ plugins {
     id("kotlin-android")
 }
 
-group = "org.gampiot.robokide.feature.terminal"
+group = "org.gampiot.robok.feature.terminal"
 
 android {
-    namespace = "org.gampiot.robokide.feature.terminal"
-    compileSdk = 34
+    namespace = "org.gampiot.robok.feature.terminal"
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 26

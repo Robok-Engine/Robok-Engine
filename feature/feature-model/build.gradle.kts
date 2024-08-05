@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robokide.feature.model"
-    compileSdk = 34
+    namespace = "org.gampiot.robok.feature.model"
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 21

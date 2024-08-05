@@ -4,8 +4,8 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robokide.feature.component"
-    compileSdk = 34
+    namespace = "org.gampiot.robok.feature.component"
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 21
@@ -20,6 +20,10 @@ android {
                 "proguard-rules.pro"
             )
         }
+    }
+    
+    buildFeatures {
+        viewBinding = true
     }
    
     compileOptions {

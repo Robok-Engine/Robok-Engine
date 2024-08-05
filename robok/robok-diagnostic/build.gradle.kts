@@ -10,7 +10,7 @@ group = "robok.diagnostic"
 
 android {
     namespace = "robok.diagnostic"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 21
