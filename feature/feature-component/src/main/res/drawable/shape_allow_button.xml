@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-    android:shape="rectangle">
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="?android:attr/colorControlHighlight">
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="?colorPrimary" />
 
-    <solid android:color="?colorPrimary" />
-
-    <corners
-        android:topLeftRadius="20dp"
-        android:bottomLeftRadius="10dp"
-        android:topRightRadius="20dp"
-        android:bottomRightRadius="10dp" />
-    
-    <Ripple
-        android:color="#FFFFFF"/>
-
-</shape>
+            <corners
+                android:topLeftRadius="20dp"
+                android:bottomLeftRadius="10dp"
+                android:topRightRadius="20dp"
+                android:bottomRightRadius="10dp" />
+        </shape>
+    </item>
+</ripple>
