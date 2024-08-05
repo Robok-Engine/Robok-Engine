@@ -12,6 +12,7 @@ import org.gampiot.robok.R
 import org.gampiot.robok.feature.component.dialog.PermissionDialog
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.util.requestStoragePerm
+import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.res.Strings
 
 class FilePicker(
@@ -20,9 +21,15 @@ class FilePicker(
 ) : FilePickerDialog(context, props), PermissionListener {
 
     private var permissionDialog: PermissionDialog? = null
-
-    override fun requestStoragePermission() {
-        permDialog()
+    
+    override fun show() {
+        if (context is Activity) {
+            if (getStoragePermStatus(context as Activity)) {
+                 showDialogW()
+            } else {
+                 permDialog()
+            }
+        }
     }
 
     override fun onReceive(status: Boolean) {
