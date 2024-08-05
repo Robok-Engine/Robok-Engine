@@ -16,6 +16,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import org.gampiot.robok.feature.util.requestPermission
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.ResUtils;
+import org.gampiot.robok.feature.res.Strings
 
 open class RobokActivity : AppCompatActivity() {
 

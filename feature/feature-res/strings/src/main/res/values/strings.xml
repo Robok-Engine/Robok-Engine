@@ -16,6 +16,7 @@
 	<string name="common_word_next">Next</string>
 	<string name="common_word_undo">Undo</string>
 	<string name="common_word_redo">Redo</string>
+	<string name="common_word_allow">Allow</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
@@ -53,4 +54,8 @@
 	<string name="text_diagnostic">Diagnostic</string>
 	<string name="text_logs">Logs</string>
 	<!-- ene section -->
+	
+	<!-- warnings section -->
+	<string name="warning_storage_perm_title">Storage permission </string>
+	<string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
 </resources>

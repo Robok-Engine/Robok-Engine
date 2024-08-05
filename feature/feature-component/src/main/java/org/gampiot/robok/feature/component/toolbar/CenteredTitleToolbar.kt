@@ -6,18 +6,18 @@ import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import com.google.android.material.appbar.AppBarLayout
 import org.gampiot.robok.feature.component.R
-import org.gampiot.robok.feature.component.databinding.RobokToolbarBinding
+import org.gampiot.robok.feature.component.databinding.LayoutCenteredTitleToolbarBindingBinding
 
-class Toolbar @JvmOverloads constructor(
+class CenteredTitleToolbar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     @AttrRes defStyleAttr: Int = 0
 ) : AppBarLayout(context, attrs, defStyleAttr) {
 
-    private val binding: RobokToolbarBinding
+    private val binding: LayoutCenteredTitleToolbarBinding
 
     init {
-        binding = RobokToolbarBinding.inflate(
+        binding = LayoutCenteredTitleToolbarBindingBinding.inflate(
             (context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as android.view.LayoutInflater),
             this,
             true
