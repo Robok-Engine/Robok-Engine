@@ -104,8 +104,10 @@ dependencies {
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-setting"))
     implementation(project(":feature:feature-terminal"))
-
-    implementation("com.github.aquilesTrindade.trindade-util:filepicker:7458e16ee8")
+    
+    val tUtilVersion = "a452174472"
+    implementation("com.github.aquilesTrindade.trindade-util:filepicker:$tUtilVersion")
+    implementation("com.github.aquilesTrindade.trindade-util:components:$tUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     kapt("com.github.bumptech.glide:compiler:$glideVersion")

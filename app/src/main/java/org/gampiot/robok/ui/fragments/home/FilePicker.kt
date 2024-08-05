@@ -5,11 +5,11 @@ import android.app.Activity
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
 import dev.trindadedev.lib.filepicker.view.FilePickerDialog
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 
 import org.gampiot.robok.R
-import org.gampiot.robok.feature.component.dialog.PermissionDialog
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus

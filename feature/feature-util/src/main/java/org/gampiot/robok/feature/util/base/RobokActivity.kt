@@ -22,7 +22,8 @@ import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.util.ResUtils
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.component.dialog.PermissionDialog
+
+import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
 
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
