@@ -114,6 +114,13 @@ dependencies {
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    
+    val editorGroupId = "io.github.Rosemoe.sora-editor"
+    implementation(platform("$editorGroupId:bom:0.23.4"))
+    implementation("$editorGroupId:editor")
+    implementation("$editorGroupId:editor-lsp")
+    implementation("$editorGroupId:language-java")
+    implementation("$editorGroupId:language-textmate")
 }
 
 // git fuctions
