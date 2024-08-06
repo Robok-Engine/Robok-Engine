@@ -39,7 +39,7 @@ import org.gampiot.robok.feature.component.databinding.LayoutCodeEditorBinding;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener {
 
-    public final Context context;
+    public Context context;
     public final DiagnosticsContainer diagnostics;
     public final LayoutCodeEditorBinding binding;
 

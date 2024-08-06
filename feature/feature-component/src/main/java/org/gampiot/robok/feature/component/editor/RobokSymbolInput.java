@@ -9,7 +9,7 @@ import org.gampiot.robok.feature.res.ResUtils;
 
 public class RobokSymbolInput extends SymbolInputView {
 
-     public final Context context;
+     public Context context;
 
      public RobokSymbolInput(Context context) {
           super(context);
