@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -34,6 +35,7 @@ import org.antlr.v4.runtime.CharStreams;
 import robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.component.R;
+import org.gampiot.robok.feature.component.databinding.LayoutCodeEditorBinding;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener {
 

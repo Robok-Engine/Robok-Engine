@@ -59,6 +59,7 @@ dependencies {
     implementation("org.antlr:antlr4-runtime:$antlrVersion")
     
     implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-util"))
     
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
