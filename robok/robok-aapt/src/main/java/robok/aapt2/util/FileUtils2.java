@@ -1,4 +1,4 @@
-package package robok.aapt2.compiler.util;
+package robok.aapt2.compiler.util;
 
 import android.content.Context;
 import java.io.File;

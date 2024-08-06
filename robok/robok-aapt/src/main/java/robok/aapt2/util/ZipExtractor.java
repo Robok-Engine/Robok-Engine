@@ -1,4 +1,4 @@
-package package robok.aapt2.compiler.util;
+package robok.aapt2.compiler.util;
 
 import java.io.File;
 import java.io.FileInputStream;
