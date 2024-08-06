@@ -20,7 +20,7 @@ import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.PermissionListener
-import org.gampiot.robok.feature.util.ResUtils
+import org.gampiot.robok.feature.res.ResUtils
 import org.gampiot.robok.feature.res.Strings
 
 import dev.trindadedev.lib.ui.components.dialog.PermissionDialog

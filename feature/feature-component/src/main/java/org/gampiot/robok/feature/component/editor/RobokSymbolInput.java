@@ -5,7 +5,7 @@ import android.util.AttributeSet;
 
 import io.github.rosemoe.sora.widget.SymbolInputView;
 
-import org.gampiot.robok.feature.util.ResUtils;
+import org.gampiot.robok.feature.res.ResUtils;
 
 public class RobokSymbolInput extends SymbolInputView {
 
