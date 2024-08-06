@@ -53,8 +53,9 @@ jobs:
     - name: Create Pull Request
       uses: peter-evans/create-pull-request@v6
       with:
-        title: Crowdin Contribuitors Update
+        token: ${{ secrets.TOKEN }}
+        title: Crowdin Contributors Update
         body: Update table and json from crowdin contributors
         commit-message: "chore: update crowdin contributors"
-        committer: Crowdin Bot <support+bot@crowdin.com>
+        committer: Aquiles Trindade <sempedra075@gmail.com>
         branch: contributors-crowdin/patch
