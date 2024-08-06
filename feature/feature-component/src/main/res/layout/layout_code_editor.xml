@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:transitionGroup="true">
     
     <io.github.rosemoe.sora.widget.CodeEditor
         android:id="@+id/editor"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:transitionGroup="true" />
+        android:layout_height="match_parent" />
+        
+    <org.gampiot.robok.feature.component.editor.symbol    
+        android:id="@+id/symbol_input_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </LinearLayout>

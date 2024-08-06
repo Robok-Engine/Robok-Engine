@@ -34,11 +34,13 @@ import org.antlr.v4.runtime.CharStreams;
 import robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.component.R;
+import org.gampiot.robok.feature.component.editor.symbol.SymbolInputView;
 
 public class RobokCodeEditor extends LinearLayout {
 
     public CodeEditor editor;
-    private DiagnosticsContainer diagnostics;
+    public DiagnosticsContainer diagnostics;
+    public SymbolInputView symbolInputView;
 
     public RobokCodeEditor(Context context) {
         this(context, null);
@@ -49,6 +51,7 @@ public class RobokCodeEditor extends LinearLayout {
         LayoutInflater.from(context).inflate(R.layout.layout_code_editor, this);
 
         editor = findViewById(R.id.editor);
+        symbolInputView = findViewById(R.id.symbol_input_view);
         diagnostics = new DiagnosticsContainer();
         
         configEditor();
@@ -85,6 +88,14 @@ public class RobokCodeEditor extends LinearLayout {
                      }
              });
         });
+    }
+    
+    public void configureSymbolView () {
+         symbolInputView.bindEditor(getCodeEditor());
+         symbolInputView.addSymbols(
+             new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
+             new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
+         );
     }
     
     private void applyEditorTheme() {
