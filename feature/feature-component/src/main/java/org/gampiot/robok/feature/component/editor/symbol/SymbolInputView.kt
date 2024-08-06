@@ -7,7 +7,9 @@ import android.util.AttributeSet
 import android.widget.Button
 import android.widget.LinearLayout
 import android.view.View
+
 import androidx.core.content.res.ResourcesCompat
+
 import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.SymbolChannel
 
