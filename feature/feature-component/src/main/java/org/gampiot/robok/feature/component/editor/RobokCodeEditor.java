@@ -51,7 +51,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, false);
+        binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
         diagnostics = new DiagnosticsContainer();
         configureEditor();
         configureDiagnostic();
