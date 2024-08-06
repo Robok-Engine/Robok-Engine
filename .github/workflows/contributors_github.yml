@@ -39,7 +39,7 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.TOKEN_DEVSUAY }}
+          token: ${{ secrets.TOKEN }}
           title: Github Contribuitors Update
           body: Update table and json from github contributors
           commit-message: "chore: update github contributors"
