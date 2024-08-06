@@ -91,8 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/navigation_header">
+        android:fitsSystemWindows="true">
 
         <FrameLayout
             android:id="@+id/drawer_editor_left_fragment_container"
@@ -107,8 +106,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_gravity="end"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/navigation_header">
+        android:fitsSystemWindows="true" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
