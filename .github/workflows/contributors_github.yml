@@ -39,9 +39,8 @@ jobs:
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v6
         with:
-          token: ${{ secrets.TOKEN }}
           title: Github Contribuitors Update
           body: Update table and json from github contributors
           commit-message: "chore: update github contributors"
-          committer: Aquiles Trindade <sempedra075@gmail.com>
+          committer: GitHub Actions <actions@github.com>
           branch: contributors-github/patch
