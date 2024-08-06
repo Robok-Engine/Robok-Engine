@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Gravity
+import android.widget.Toolbar
 
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -46,6 +47,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())
         
+        binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)
@@ -126,15 +128,22 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         val dotProgressBar = DotProgressBar.Builder()
-              .setMargin(1)
-              .setAnimationDuration(2000)
-              .setDotBackground(org.gampiot.robok.feature.component.R.drawable.ic_dot_24)
-              .setMaxScale(1f)
-              .setMinScale(0.3f)
-              .setNumberOfDots(3)
-              .setDotRadius(4)
-              .build(requireContext())
-        binding.toolbar.addView(dotProgressBar)
+             .setMargin(1)
+             .setAnimationDuration(2000)
+             .setDotBackground(org.gampiot.robok.feature.component.R.drawable.ic_dot_24)
+             .setMaxScale(1f)
+             .setMinScale(0.3f)
+             .setNumberOfDots(3)
+             .setDotRadius(4)
+             .build(requireContext())
+        
+        val layoutParams = Toolbar.LayoutParams(
+             Toolbar.LayoutParams.WRAP_CONTENT,
+             Toolbar.LayoutParams.WRAP_CONTENT
+        ).apply {
+             gravity = Gravity.END 
+        }
+        binding.toolbar.addView(dotProgressBar, layoutParams)
         dotProgressBar.startAnimation()
         
         binding.toolbar.setNavigationOnClickListener {

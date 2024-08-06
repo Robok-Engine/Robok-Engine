@@ -56,4 +56,6 @@ dependencies {
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-res:strings"))
+    
+    implementation(project(":robok:robok-diagnostic"))
 }

@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.util
+package org.gampiot.robok.feature.res
 
 import android.content.Context
 import android.util.TypedValue
