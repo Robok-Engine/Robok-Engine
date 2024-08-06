@@ -2,19 +2,18 @@ package robok.aapt2.compiler;
 
 import android.util.Log;
 
-import robok.aapt2.compiler.exception.CompilerException;
-
-import robok.aapt2.FileUtil;
-import robok.aapt2.BinaryExecutor;
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.ApplicationLoader;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
 import java.io.IOException;
 
+import robok.aapt2.compiler.exception.CompilerException;
+import robok.aapt2.compiler.exception.AAPT2CompileException;
+import robok.aapt2.util.FileUtil;
+import robok.aapt2.BinaryExecutor;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.ApplicationLoader;
 
 public class AAPT2Compiler extends Compiler {
 	

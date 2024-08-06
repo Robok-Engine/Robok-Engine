@@ -11,7 +11,6 @@ import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.io.Writer;
 
-
 public class ApplicationLoader extends Application {
 	
 	private Thread.UncaughtExceptionHandler uncaughtExceptionHandler;

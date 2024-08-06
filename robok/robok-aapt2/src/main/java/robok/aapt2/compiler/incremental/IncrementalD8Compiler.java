@@ -1,15 +1,15 @@
 package robok.aapt2.compiler.incremental;
 
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.compiler.Compiler;
-import robok.aapt2.compiler.exception.*;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.android.tools.r8.D8;
+
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.compiler.Compiler;
+import robok.aapt2.compiler.exception.*;
 
 public class IncrementalD8Compiler extends Compiler {
     

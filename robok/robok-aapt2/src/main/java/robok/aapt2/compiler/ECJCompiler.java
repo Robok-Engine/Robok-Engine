@@ -1,13 +1,5 @@
 package robok.aapt2.compiler;
 
-import robok.aapt2.compiler.exception.CompilerException;
-
-import robok.aapt2.FileUtil;
-import robok.aapt2.util.Decompress;
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.ApplicationLoader;
-
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import java.io.BufferedReader;
@@ -18,6 +10,14 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.List;
 import java.util.ArrayList;
+
+import robok.aapt2.util.FileUtil;
+import robok.aapt2.util.Decompress;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.ApplicationLoader;
+import robok.aapt2.compiler.exception.CompilerException;
+import robok.aapt2.compiler.exception.AAPT2CompileException;
 
 public class ECJCompiler extends Compiler {
     

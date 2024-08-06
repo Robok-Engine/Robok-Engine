@@ -3,8 +3,9 @@ package robok.aapt2.compiler;
 import robok.aapt2.ApplicationLoader;
 import robok.aapt2.util.Decompress;
 import robok.aapt2.compiler.exception.CompilerException;
-import java.io.IOException;
+import robok.aapt2.compiler.exception.AAPT2CompileException;
 
+import java.io.IOException;
 import java.io.File;
 
 public abstract class Compiler {
