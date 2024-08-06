@@ -54,11 +54,12 @@ public class RobokCodeEditor extends LinearLayout {
         symbolInputView = findViewById(R.id.symbol_input_view);
         diagnostics = new DiagnosticsContainer();
         
-        configEditor();
-        configDiagnostic();
+        configureEditor();
+        configureDiagnostic();
+        configureSymbolView();
     }
 
-    private void configEditor() {
+    private void configureEditor() {
         this.editor.setText(BASE_MESSAGE);
         this.editor.setTypefaceText(Typeface.MONOSPACE);
         this.editor.setTextSize(16);
@@ -69,7 +70,7 @@ public class RobokCodeEditor extends LinearLayout {
         applyEditorTheme();        
     }
     
-    private void configDiagnostic () {
+    private void configureDiagnostic () {
         //Editor event, if there is a change in the text, this event will be called.
         this.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
               String inputText = this.editor.getText().toString(); 
