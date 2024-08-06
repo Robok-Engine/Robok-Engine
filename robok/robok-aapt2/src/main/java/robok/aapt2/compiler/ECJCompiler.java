@@ -15,7 +15,6 @@ import robok.aapt2.util.FileUtil;
 import robok.aapt2.util.Decompress;
 import robok.aapt2.model.Project;
 import robok.aapt2.model.Library;
-import robok.aapt2.ApplicationLoader;
 import robok.aapt2.compiler.exception.CompilerException;
 import robok.aapt2.compiler.exception.AAPT2CompileException;
 

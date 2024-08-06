@@ -13,7 +13,8 @@ import robok.aapt2.util.FileUtil;
 import robok.aapt2.BinaryExecutor;
 import robok.aapt2.model.Project;
 import robok.aapt2.model.Library;
-import robok.aapt2.ApplicationLoader;
+
+import org.gampiot.robok.feature.util.application.RobokApp;
 
 public class AAPT2Compiler extends Compiler {
 	
@@ -32,7 +33,7 @@ public class AAPT2Compiler extends Compiler {
     
 	public AAPT2Compiler(Project project) {
 	    mProject = project;
-	    mFilesDir = ApplicationLoader.applicationContext.getFilesDir();
+	    mFilesDir = RobokApp.applicationContext.getFilesDir();
         setTag(TAG);
 	}
 	
@@ -222,7 +223,7 @@ public class AAPT2Compiler extends Compiler {
     }
 	
 	private File getAAPT2File() throws CompilerException, IOException {
-		/*File check = new File(ApplicationLoader.applicationContext.getFilesDir() + "/temp/aapt2");
+		/*File check = new File(RobokApp.applicationContext.getFilesDir() + "/temp/aapt2");
 	    
 		if (check.exists()) {
 			return check;
@@ -230,7 +231,7 @@ public class AAPT2Compiler extends Compiler {
 		
 		check.getParentFile().mkdirs();
 	    */
-		File nativeLibrary = new File(ApplicationLoader.applicationContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
+		File nativeLibrary = new File(RobokApp.applicationContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
 		
 		if (!nativeLibrary.exists()) {
 		//	throw new CompilerException("AAPT2 binary not found");
