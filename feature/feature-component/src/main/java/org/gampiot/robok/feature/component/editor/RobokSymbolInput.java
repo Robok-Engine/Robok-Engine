@@ -7,7 +7,7 @@ import io.github.rosemoe.sora.widget.SymbolInputView;
 
 import org.gampiot.robok.feature.util.ResUtils;
 
-public class RobokSymbolInput extends SymbolInputView
+public class RobokSymbolInput extends SymbolInputView {
 
      public final Context context;
 
