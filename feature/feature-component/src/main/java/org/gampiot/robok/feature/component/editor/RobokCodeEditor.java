@@ -35,84 +35,76 @@ import robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.component.R;
 
-public class RobokCodeEditor extends LinearLayout {
+public class RobokCodeEditor extends LinearLayout implements DiagnosticListener {
 
-    public CodeEditor editor;
-    public DiagnosticsContainer diagnostics;
-    public RobokSymbolInput symbolInputView;
+    public final Context context;
+    public final DiagnosticsContainer diagnostics;
+    public final LayoutCodeEditorBinding binding;
 
     public RobokCodeEditor(Context context) {
         this(context, null);
+        this.context = context;
     }
 
     public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        LayoutInflater.from(context).inflate(R.layout.layout_code_editor, this);
-
-        editor = findViewById(R.id.editor);
-        symbolInputView = findViewById(R.id.symbol_input_view);
+        this.context = context;
+        binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, false);
         diagnostics = new DiagnosticsContainer();
-        
         configureEditor();
         configureDiagnostic();
         configureSymbolView();
     }
 
-    private void configureEditor() {
-        editor.setText(BASE_MESSAGE);
-        editor.setTypefaceText(Typeface.MONOSPACE);
-        editor.setTextSize(16);
-        editor.setEditorLanguage(new JavaLanguage());
-        editor.setWordwrap(false);
-        editor.getProps().symbolPairAutoCompletion = true;
-        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
+    void configureEditor() {
+        binding.editor.setText(BASE_MESSAGE);
+        binding.editor.setTypefaceText(Typeface.MONOSPACE);
+        binding.editor.setTextSize(16);
+        binding.editor.setEditorLanguage(new JavaLanguage());
+        binding.editor.setWordwrap(false);
+        binding.editor.getProps().symbolPairAutoCompletion = true;
+        binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
         applyEditorTheme();        
     }
     
-    private void configureDiagnostic () {
+    void configureDiagnostic () {
         //Editor event, if there is a change in the text, this event will be called.
-        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-              String inputText = editor.getText().toString(); 
-              CheckforPossibleErrors(inputText, new DiagnosticListener() {
-                     @Override
-                     public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
-                          /* int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
-                             int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd); */
-                          onDiagnosticStatusReceive(true);
-                          addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
-                     }
-                        
-                    @Override
-                    public void onDiagnosticStatusReceive(boolean isError) {
-                         
-                     }
-             });
+        binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+              String inputText = binding.editor.getText().toString(); 
+              CheckforPossibleErrors(inputText, this);
         });
     }
     
     public void configureSymbolView () {
-         symbolInputView.bindEditor(getCodeEditor());
-         symbolInputView.addSymbols(
+         binding.robokSymbolInput.bindEditor(getCodeEditor());
+         binding.robokSymbolInput.addSymbols(
              new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
              new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
          );
     }
     
-    private void applyEditorTheme() {
+    void applyEditorTheme() {
          int theme = ThemeManager.Companion.loadTheme(getContext());
-         ThemeManager.Companion.selectTheme(editor, theme);
+         ThemeManager.Companion.selectTheme(binding.editor, theme);
     }
     
-    /*
-       * Method used to check if the editor code has errors.
-       * If so, the listener will be called.
-       * This method must be called every time there is a change in the code.
-    */
-    private void CheckforPossibleErrors(String inputText, DiagnosticListener listener) {
-        diagnostics.reset(); //reset diagnostics.
+    @Override
+    public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
+         onDiagnosticStatusReceive(true);
+         addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+    }
+    
+    @Override
+    public void onDiagnosticStatusReceive(boolean isError) {
+         if (isError) {
+            Toast.makeText(context, "error", 4000).show();
+         }
+    }
+    
+    void CheckforPossibleErrors(String inputText, DiagnosticListener listener) {
+        diagnostics.reset();
         try {
-            //Using antlr to compile the code.
-            
+            // use ANTLR to compile code and return diagnostic 
             ANTLRInputStream input = new ANTLRInputStream(inputText);
             Java8Lexer lexer = new Java8Lexer(input);
             CommonTokenStream tokens = new CommonTokenStream(lexer);
@@ -121,18 +113,14 @@ public class RobokCodeEditor extends LinearLayout {
             Java8ErrorListener robokError = new Java8ErrorListener();
 
             robokError.getError(listener);
-                    
             parser.addErrorListener(robokError);
-            
             parser.compilationUnit();
-            // Use ParseTreeWalker to navigate the tree and apply checks 
-            //additional if necessary
         } catch (Exception e) {
             Log.e("MainActivity", "Error reading file", e);
         }
     }
     
-    private void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
+    void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
         diagnostics.addDiagnostic(new DiagnosticRegion(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, 0L,
                 new DiagnosticDetail(
                     "Error detail:",""+
@@ -142,8 +130,7 @@ public class RobokCodeEditor extends LinearLayout {
                     ), null)
         ));
         
-        //apply diagnostic
-        editor.setDiagnostics(diagnostics);
+        binding.editor.setDiagnostics(diagnostics);
     }
     
     public void quickFix () {
@@ -151,19 +138,19 @@ public class RobokCodeEditor extends LinearLayout {
     }
 
     public CodeEditor getCodeEditor() {
-        return editor;
+        return binding.editor;
     }
 
     public String getText() {
-        return editor.getText().toString();
+        return binding.editor.getText().toString();
     }
     
     public void redo() {
-        editor.redo();
+        binding.editor.redo();
     }
     
     public void undo () {
-        editor.undo();
+        binding.editor.undo();
     }
     
     public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
