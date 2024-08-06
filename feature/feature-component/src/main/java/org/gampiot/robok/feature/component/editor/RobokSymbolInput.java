@@ -3,7 +3,7 @@ package org.gampiot.robok.feature.component.editor;
 import android.content.Context;
 import android.util.AttributeSet;
 
-import io.github.rosemoe.sora.widget.SymbolInputView
+import io.github.rosemoe.sora.widget.SymbolInputView;
 
 import org.gampiot.robok.feature.util.ResUtils;
 

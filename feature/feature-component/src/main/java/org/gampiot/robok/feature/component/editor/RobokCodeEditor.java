@@ -59,20 +59,20 @@ public class RobokCodeEditor extends LinearLayout {
     }
 
     private void configureEditor() {
-        this.editor.setText(BASE_MESSAGE);
-        this.editor.setTypefaceText(Typeface.MONOSPACE);
-        this.editor.setTextSize(16);
-        this.editor.setEditorLanguage(new JavaLanguage());
-        this.editor.setWordwrap(false);
-        this.editor.getProps().symbolPairAutoCompletion = true;
-        this.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
+        editor.setText(BASE_MESSAGE);
+        editor.setTypefaceText(Typeface.MONOSPACE);
+        editor.setTextSize(16);
+        editor.setEditorLanguage(new JavaLanguage());
+        editor.setWordwrap(false);
+        editor.getProps().symbolPairAutoCompletion = true;
+        editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
         applyEditorTheme();        
     }
     
     private void configureDiagnostic () {
         //Editor event, if there is a change in the text, this event will be called.
-        this.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-              String inputText = this.editor.getText().toString(); 
+        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+              String inputText = editor.getText().toString(); 
               CheckforPossibleErrors(inputText, new DiagnosticListener() {
                      @Override
                      public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
@@ -100,7 +100,7 @@ public class RobokCodeEditor extends LinearLayout {
     
     private void applyEditorTheme() {
          int theme = ThemeManager.Companion.loadTheme(getContext());
-         ThemeManager.Companion.selectTheme(this.editor, theme);
+         ThemeManager.Companion.selectTheme(editor, theme);
     }
     
     /*
@@ -135,36 +135,35 @@ public class RobokCodeEditor extends LinearLayout {
     private void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
         diagnostics.addDiagnostic(new DiagnosticRegion(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, 0L,
                 new DiagnosticDetail(
-                    "TestTitle, Hello Robok!","" + //diagnostic title 
-                     msg, 
+                    "Error detail:",""+
+                     msg,
                     Arrays.asList(
-                        new Quickfix("Fix Quick", 0L, () -> {
-                            /*action here*/
-                        }),
-                        new Quickfix("Test", 0L, () -> {
-                            /*action here*/
-                        })
+                        new Quickfix("Fix Quick", 0L, () -> quickFix()),
                     ), null)
         ));
         
         //apply diagnostic
-        this.editor.setDiagnostics(diagnostics);
+        editor.setDiagnostics(diagnostics);
+    }
+    
+    public void quickFix () {
+         // TO-DO: logic to fix basic errors quickly
     }
 
     public CodeEditor getCodeEditor() {
-        return this.editor;
+        return editor;
     }
 
     public String getText() {
-        return this.editor.getText().toString();
+        return editor.getText().toString();
     }
     
     public void redo() {
-        this.editor.redo();
+        editor.redo();
     }
     
     public void undo () {
-        this.editor.undo();
+        editor.undo();
     }
     
     public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
