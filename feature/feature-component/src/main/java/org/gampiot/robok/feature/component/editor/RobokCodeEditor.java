@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
+import io.github.rosemoe.sora.widget.SymbolInputView;
 import io.github.rosemoe.sora.langs.java.JavaLanguage;
 import io.github.rosemoe.sora.event.ContentChangeEvent;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
@@ -34,7 +35,6 @@ import org.antlr.v4.runtime.CharStreams;
 import robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.component.R;
-import org.gampiot.robok.feature.component.editor.symbol.SymbolInputView;
 
 public class RobokCodeEditor extends LinearLayout {
 
