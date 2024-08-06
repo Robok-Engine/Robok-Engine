@@ -11,7 +11,7 @@ Thanks to all these people, AndroidIDE has been translated into multiple languag
           <br />
           <sub><b>Aquiles Trindade (aquilesTrindade)</b></sub></a>
         <br />
-        <sub><b>114 words</b></sub>
+        <sub><b>178 words</b></sub>
       </td>
     </tr>
   </tbody>
