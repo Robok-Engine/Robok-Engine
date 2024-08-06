@@ -120,18 +120,25 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
         }
     }
     
-    void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg){
-        diagnostics.addDiagnostic(new DiagnosticRegion(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, 0L,
-                new DiagnosticDetail(
-                    "Error detail:",""+
-                     msg,
-                    Arrays.asList(
-                        new Quickfix("Fix Quick", 0L, () -> quickFix()),
-                    ), null)
-        ));
-        
-        binding.editor.setDiagnostics(diagnostics);
+    void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg) {
+         DiagnosticRegion diagnosticRegion = new DiagnosticRegion(
+              positionStart,
+              positionEnd,
+              DiagnosticRegion.SEVERITY_ERROR, // Certifique-se de que SEREVITY_ERROR é uma constante válida
+              0L,
+                  new DiagnosticDetail(
+                       "Error detail:", 
+                       msg,
+                       Arrays.asList(
+                            new Quickfix("Fix Quick", 0L, () -> quickFix()) 
+                       ),
+                       null
+                  )
+              );
+         diagnostics.addDiagnostic(diagnosticRegion);
+         binding.editor.setDiagnostics(diagnostics);
     }
+
     
     public void quickFix () {
          // TO-DO: logic to fix basic errors quickly
