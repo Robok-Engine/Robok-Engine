@@ -1,9 +1,9 @@
-package robok.aapt2.compiler.model;
-
-import robok.aapt2.logger.Logger;
+package robok.aapt2.model;
 
 import java.util.List;
 import java.io.File;
+
+import robok.aapt2.logger.Logger;
 
 public class Project {
     

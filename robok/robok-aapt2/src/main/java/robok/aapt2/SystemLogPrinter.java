@@ -4,6 +4,7 @@ import java.io.PrintStream;
 import java.io.OutputStream;
 
 import robok.aapt2.logger.Logger;
+import robok.aapt2.util.FileUtil;
 
 public class SystemLogPrinter {
 

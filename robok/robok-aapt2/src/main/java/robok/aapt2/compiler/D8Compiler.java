@@ -1,14 +1,15 @@
 package robok.aapt2.compiler;
 
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.compiler.exception.*;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.android.tools.r8.D8;
+
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.compiler.exception.CompilerException;
+import robok.aapt2.compiler.exception.AAPT2CompileException;
 
 public class D8Compiler extends Compiler {
     

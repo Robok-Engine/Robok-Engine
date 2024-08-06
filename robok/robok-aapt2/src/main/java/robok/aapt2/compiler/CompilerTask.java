@@ -9,13 +9,6 @@ import android.widget.TextView;
 import android.net.Uri;
 
 import com.android.sdklib.build.ApkBuilder;
-import robok.aapt2.FileUtil;
-import robok.aapt2.model.*;
-import robok.aapt2.compiler.AAPT2Compiler;
-import robok.aapt2.compiler.Compiler;
-import robok.aapt2.compiler.CompilerResult;
-import robok.aapt2.compiler.incremental.IncrementalECJCompiler;
-import robok.aapt2.compiler.incremental.IncrementalD8Compiler;
 
 import java.lang.ref.WeakReference;
 import java.io.File;
@@ -23,6 +16,15 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import robok.aapt2.util.FileUtil;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.compiler.AAPT2Compiler;
+import robok.aapt2.compiler.Compiler;
+import robok.aapt2.compiler.CompilerResult;
+import robok.aapt2.compiler.incremental.IncrementalECJCompiler;
+import robok.aapt2.compiler.incremental.IncrementalD8Compiler;
 
 public class CompilerTask {
 

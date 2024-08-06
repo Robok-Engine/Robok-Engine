@@ -1,4 +1,4 @@
-package robok.aapt2;
+package robok.aapt2.util;
 
 import android.content.ContentResolver;
 import android.content.ContentUris;
@@ -30,6 +30,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.net.URLDecoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -591,5 +592,17 @@ public class FileUtil {
         SimpleDateFormat date = new SimpleDateFormat("yyyyMMdd_HHmmss");
         String fileName = date.format(new Date()) + ".jpg";
         return new File(context.getExternalFilesDir(Environment.DIRECTORY_DCIM).getAbsolutePath() + File.separator + fileName);
+    }
+    
+    public static void copyFileFromAssets(Context context, String assetFileName, File outFile) throws IOException {
+        try (InputStream in = context.getAssets().open(assetFileName);
+             FileOutputStream out = new FileOutputStream(outFile)) {
+
+            byte[] buffer = new byte[1024];
+            int bytesRead;
+            while ((bytesRead = in.read(buffer)) != -1) {
+                out.write(buffer, 0, bytesRead);
+            }
+        }
     }
 }

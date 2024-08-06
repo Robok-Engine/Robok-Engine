@@ -1,12 +1,5 @@
 package robok.aapt2.compiler.incremental;
 
-import robok.aapt2.compiler.Compiler;
-import robok.aapt2.compiler.exception.CompilerException;
-import robok.aapt2.compiler.incremental.file.JavaFile;
-
-import robok.aapt2.FileUtil;
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import java.util.ArrayList;
@@ -17,6 +10,14 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+
+import robok.aapt2.util.FileUtil;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.compiler.Compiler;
+import robok.aapt2.compiler.exception.CompilerException;
+import robok.aapt2.compiler.exception.AAPT2CompileException;
+import robok.aapt2.compiler.incremental.file.JavaFile;
 
 public class IncrementalECJCompiler extends Compiler {
     

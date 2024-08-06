@@ -1,12 +1,12 @@
-package robok.aapt2.compiler.model;
-
-import robok.aapt2.FileUtil;
+package robok.aapt2.model;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
+
+import robok.aapt2.util.FileUtil;
 
 public class Library {
     
