@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.editor;
+package org.gampiot.robok.feature.component.editor.symbol;
 
 import android.content.Context;
 import android.util.AttributeSet;
