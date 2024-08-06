@@ -36,6 +36,7 @@ import robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.component.R;
 import org.gampiot.robok.feature.component.databinding.LayoutCodeEditorBinding;
+import org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener {
 
@@ -55,7 +56,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
         diagnostics = new DiagnosticsContainer();
         configureEditor();
         configureDiagnostic();
-        configureSymbolView();
     }
 
     void configureEditor() {
@@ -70,18 +70,17 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     }
     
     void configureDiagnostic () {
-        //Editor event, if there is a change in the text, this event will be called.
         binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
               String inputText = binding.editor.getText().toString(); 
-              CheckforPossibleErrors(inputText, this);
+              CheckforPossibleErrors(inputText);
         });
     }
     
-    public void configureSymbolView () {
-         binding.robokSymbolInput.bindEditor(getCodeEditor());
-         binding.robokSymbolInput.addSymbols(
-             new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
-             new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
+    public void configureSymbolView (RobokSymbolInput robokSymbolInput) {
+         robokSymbolInput.bindEditor(getCodeEditor());
+         robokSymbolInput.addSymbols(
+              new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
+              new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
          );
     }
     
@@ -103,7 +102,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
          }
     }
     
-    void CheckforPossibleErrors(String inputText, DiagnosticListener listener) {
+    void CheckforPossibleErrors(String inputText) {
         diagnostics.reset();
         try {
             // use ANTLR to compile code and return diagnostic 
@@ -114,7 +113,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
             parser.removeErrorListeners();
             Java8ErrorListener robokError = new Java8ErrorListener();
 
-            robokError.getError(listener);
+            robokError.getError(this);
             parser.addErrorListener(robokError);
             parser.compilationUnit();
         } catch (Exception e) {
@@ -162,7 +161,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
         binding.editor.undo();
     }
     
-    public static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
+    static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
                 "    // Variables\n\n" +
                 "    // Variables#string\n" +

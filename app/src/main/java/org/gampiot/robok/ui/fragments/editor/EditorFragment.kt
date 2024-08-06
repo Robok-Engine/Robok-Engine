@@ -46,6 +46,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())
         
+        binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)

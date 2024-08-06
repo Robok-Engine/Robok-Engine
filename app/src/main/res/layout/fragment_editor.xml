@@ -36,6 +36,11 @@
             android:gravity="top|start"
             android:padding="8dp"
             android:hint="@string/common_word_code" />
+            
+        <org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" 
+            android:id="@+id/robok_symbol_input" />
 
         <LinearLayout
             android:layout_width="wrap_content"
