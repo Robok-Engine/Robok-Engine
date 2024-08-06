@@ -39,9 +39,9 @@ public class RobokSymbolInput extends SymbolInputView {
     
     void setColors () {
          var resUtils = new ResUtils(context);
-         var backgroundColor = resUtils.getAttrColor(com.google.android.material.R.colorBackground);
+         var backgroundColor = resUtils.getAttrColor(android.R.attr.colorBackground);
          if (usePrimaryColor) {
-              var textColor = resUtils.getAttrColor(com.google.android.material.R.colorOnSurface);
+              var textColor = resUtils.getAttrColor(com.google.android.material.R.attr.colorOnSurface);
          }
          setBackgroundColor(backgroundColor);
          setTextColor(textColor);
