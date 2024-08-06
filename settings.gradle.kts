@@ -23,7 +23,7 @@ include(":robok:robok-compiler")
 include(":robok:robok-diagnostic")
 include(":robok:robok-lang")
 include(":robok:robok-util")
-include(":robok:robok-aapt")
+include(":robok:robok-aapt2")
 
 include(":feature:feature-component")
 include(":feature:feature-model")
