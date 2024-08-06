@@ -22,9 +22,13 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:gravity="end"
                 app:navigationIcon="@drawable/ic_menu_24"
                 app:title="@string/app_name"
-                app:menu="@menu/menu_editor_toolbar"/>
+                app:menu="@menu/menu_editor_toolbar">
+                
+                <!-- DotProgress is added here by the fragment class -->
+            </com.google.android.material.appbar.MaterialToolbar>
 
         </com.google.android.material.appbar.AppBarLayout>
 
