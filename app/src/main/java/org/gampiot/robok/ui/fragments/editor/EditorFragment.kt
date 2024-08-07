@@ -18,7 +18,6 @@ import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import org.gampiot.robok.feature.component.progress.DotProgressBar
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
@@ -114,6 +113,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureToolbar() {
+        /*
         val dotProgressBar = DotProgressBar.Builder()
              .setMargin(1)
              .setAnimationDuration(2000)
@@ -125,6 +125,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
              .build(requireContext())
         dotProgressBar.startAnimation()
         binding.actions.addView(dotProgressBar)
+        */
         
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
