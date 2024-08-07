@@ -43,6 +43,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 
 dependencies {
     val antlrVersion = "4.9.2"
+    
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
