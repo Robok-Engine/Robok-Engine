@@ -23,9 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu_24"
-                app:title="@string/app_name"
-                app:titleTextColor="@color/white"
-                android:background="?attr/colorPrimary">
+                app:title="@string/app_name">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -138,7 +136,7 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="?android:background/colorBackground">
+                android:background="?android:attr/colorBackground">
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
