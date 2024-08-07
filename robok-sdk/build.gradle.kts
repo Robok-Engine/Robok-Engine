@@ -6,10 +6,10 @@ plugins {
     id("maven-publish")
 }
 
-group = "robok.lang"
+group = "robok"
 
 android {
-    namespace = "robok.lang"
+    namespace = "robok"
     compileSdk = 35
     
     defaultConfig {
@@ -49,7 +49,7 @@ publishing {
     publications {
         register<MavenPublication>("release") {
             groupId = "com.github.gampiot-inc"
-            artifactId = "robok-lang"
+            artifactId = "robok-sdk"
             version = "1.0.0"
 
             afterEvaluate {
