@@ -47,6 +47,9 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         
+        <item name="rbkColorGreen">@color/rbk_color_green</item>
+        <item name="rbkColorRed">@color/rbk_color_red</item>
+        
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>

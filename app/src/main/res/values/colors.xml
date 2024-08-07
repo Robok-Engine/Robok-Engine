@@ -141,4 +141,7 @@
     <color name="md_theme_surfaceContainerHigh_highContrast">#F7E4E1</color>
     <color name="md_theme_surfaceContainerHighest_highContrast">#F1DFDC</color>
     
+    <color name="rbk_theme_green">#F44336</color>
+    <color name="rbk_theme_red">#4CAF50</color>
+    
 </resources>
