@@ -59,12 +59,19 @@
 
                     <org.gampiot.robok.feature.component.progress.DotProgressBar
                         android:id="@+id/progress"
-                        android:layout_width="@dimen/toolbar_icon_width"
-                        android:layout_height="@dimen/toolbar_icon_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:dotRadius="8dp"
+                        app:numberOfDots="3"
+                        app:animationDuration="1000"
+                        app:minScale="0.5"
+                        app:maxScale="1.0"
+                        app:dotBackground="@drawable/ic_dot_24"
+                        app:margin="4dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
-
+                        
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>

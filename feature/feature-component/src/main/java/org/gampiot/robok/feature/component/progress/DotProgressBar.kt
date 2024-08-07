@@ -4,18 +4,19 @@ import android.animation.Animator
 import android.animation.ValueAnimator
 import android.content.Context
 import android.util.AttributeSet
+import android.util.DisplayMetrics
 import android.view.Gravity
 import android.view.View
+import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.util.DisplayMetrics
-import android.view.animation.LinearInterpolator
 
 import org.gampiot.robok.feature.component.R
 
 class DotProgressBar : FrameLayout {
-    private var margin: Int = convertDpToPixel(4f, context)
-    private var dotRadius: Int = convertDpToPixel(8f, context)
+
+    private var margin: Int = 0
+    private var dotRadius: Int = 0
     private var numberOfDots = 3
     private val animators = mutableListOf<Animator>()
     private var animationDuration = 1000L
@@ -26,14 +27,38 @@ class DotProgressBar : FrameLayout {
     private var dotBackground = R.drawable.ic_dot_24
     private var dotAnimator: ValueAnimator? = null
 
-    constructor(context: Context) : super(context)
+    constructor(context: Context) : super(context) {
+        init()
+    }
 
     constructor(context: Context, attrs: AttributeSet) : super(context, attrs) {
+        initAttributes(context, attrs)
         init()
     }
 
     constructor(context: Context, attrs: AttributeSet, defStyleAttr: Int) : super(context, attrs, defStyleAttr) {
+        initAttributes(context, attrs)
         init()
+    }
+
+    private fun initAttributes(context: Context, attrs: AttributeSet) {
+        val typedArray = context.theme.obtainStyledAttributes(
+            attrs,
+            R.styleable.DotProgressBar,
+            0, 0
+        )
+
+        try {
+            dotRadius = typedArray.getDimensionPixelSize(R.styleable.DotProgressBar_dotRadius, convertDpToPixel(8f, context))
+            numberOfDots = typedArray.getInt(R.styleable.DotProgressBar_numberOfDots, 3)
+            animationDuration = typedArray.getInt(R.styleable.DotProgressBar_animationDuration, 1000).toLong()
+            minScale = typedArray.getFloat(R.styleable.DotProgressBar_minScale, 0.5f)
+            maxScale = typedArray.getFloat(R.styleable.DotProgressBar_maxScale, 1f)
+            dotBackground = typedArray.getResourceId(R.styleable.DotProgressBar_dotBackground, R.drawable.ic_dot_24)
+            margin = typedArray.getDimensionPixelSize(R.styleable.DotProgressBar_margin, convertDpToPixel(4f, context))
+        } finally {
+            typedArray.recycle()
+        }
     }
 
     private fun init() {
@@ -67,7 +92,7 @@ class DotProgressBar : FrameLayout {
         }
         primaryAnimator?.repeatMode = ValueAnimator.RESTART
         primaryAnimator?.repeatCount = ValueAnimator.INFINITE
-        primaryAnimator?.duration = animationDuration.toLong()
+        primaryAnimator?.duration = animationDuration
         primaryAnimator?.interpolator = LinearInterpolator()
     }
 
@@ -79,7 +104,7 @@ class DotProgressBar : FrameLayout {
             view.scaleX = it.animatedValue as Float
             view.scaleY = it.animatedValue as Float
         }
-        animator.duration = animationDuration / numberOfDots.toLong()
+        animator.duration = animationDuration / numberOfDots
         animator.repeatCount = 1
         animator.repeatMode = ValueAnimator.REVERSE
         animator.interpolator = LinearInterpolator()
@@ -95,7 +120,7 @@ class DotProgressBar : FrameLayout {
     }
 
     fun isAnimationRunning(): Boolean {
-        return primaryAnimator!!.isRunning
+        return primaryAnimator?.isRunning == true
     }
 
     override fun setVisibility(visibility: Int) {
@@ -113,7 +138,7 @@ class DotProgressBar : FrameLayout {
         private var maxScale = 1f
         private var primaryAnimator: ValueAnimator? = null
         private var dotBackground = R.drawable.ic_dot_24
-        
+
         fun build(context: Context): DotProgressBar {
             val dotProgressBar = DotProgressBar(context)
             dotProgressBar.maxScale = maxScale

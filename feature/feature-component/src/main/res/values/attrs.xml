@@ -1,8 +1,12 @@
 <resources>
     <declare-styleable name="DotProgressBar">
-        <attr name="color" format="color" />
-        <attr name="count" format="integer" />
-        <attr name="timeout" format="integer" />
+        <attr name="dotRadius" format="dimension" />
+        <attr name="numberOfDots" format="integer" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="minScale" format="float" />
+        <attr name="maxScale" format="float" />
+        <attr name="dotBackground" format="reference" />
+        <attr name="margin" format="dimension" />
     </declare-styleable>
     
     <declare-styleable name="CenteredTitleToolbar">
