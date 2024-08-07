@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.about.adapters
+package org.gampiot.robok.ui.fragments.about.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import org.gampiot.robok.databinding.ItemTeamMemberBinding
-import org.gampiot.robok.feature.model.about.TeamMember
+import org.gampiot.robok.ui.fragments.about.model.TeamMember
 
 class TeamMemberAdapter(private val teamMembers: List<TeamMember>) :
     RecyclerView.Adapter<TeamMemberAdapter.TeamMemberViewHolder>() {

@@ -28,7 +28,6 @@ include(":robok:robok-aapt2")
 include(":robok-sdk")
 
 include(":feature:feature-component")
-include(":feature:feature-model")
 include(":feature:feature-setting")
 include(":feature:feature-res:strings")
 include(":feature:feature-util")

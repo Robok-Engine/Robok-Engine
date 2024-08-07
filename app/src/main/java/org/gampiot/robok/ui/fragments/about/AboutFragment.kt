@@ -10,8 +10,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
-import org.gampiot.robok.feature.model.about.TeamMember
-import org.gampiot.robok.ui.fragments.about.adapters.TeamMemberAdapter
+import org.gampiot.robok.ui.fragments.about.model.TeamMember
+import org.gampiot.robok.ui.fragments.about.adapter.TeamMemberAdapter
 
 class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 

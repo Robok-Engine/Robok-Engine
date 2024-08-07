@@ -100,7 +100,6 @@ dependencies {
     implementation(project(":robok-sdk")) // This implementation will be removed in the future, it is just here to compile.
     
     // Features
-    implementation(project(":feature:feature-model"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
