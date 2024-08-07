@@ -1,15 +1,10 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
-    id("maven-publish")
 }
 
-group = "robok.lang"
-
 android {
-    namespace = "robok.lang"
+    namespace = "org.gampiot.robok.feature.template"
     compileSdk = 35
     
     defaultConfig {
@@ -43,18 +38,4 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
     kotlinOptions.jvmTarget = "17"
 }
 
-dependencies { }
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.gampiot-inc"
-            artifactId = "robok-lang"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
-}
+dependencies {}

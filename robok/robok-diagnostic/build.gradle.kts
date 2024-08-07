@@ -59,7 +59,7 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.Robok-Inc"
+            groupId = "com.github.gampiot-inc"
             artifactId = "robok-diagnostic"
             version = "1.0.0"
 
