@@ -77,7 +77,7 @@
                         android:id="@+id/diagnostic_status_image"
                         android:layout_width="@dimen/toolbar_icon_width"
                         android:layout_height="@dimen/toolbar_icon_height"
-                        android:visibily="invisible"
+                        android:visibility="invisible"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />    
