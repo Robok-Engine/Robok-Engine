@@ -114,9 +114,6 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureToolbar() {
-        binding.undo.setOnClickListener(v-> binding.editor.undo())
-        binding.redo.setOnClickListener(v-> binding.editor.redo())
-        
         val dotProgressBar = DotProgressBar.Builder()
              .setMargin(1)
              .setAnimationDuration(2000)
@@ -126,15 +123,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
              .setNumberOfDots(3)
              .setDotRadius(4)
              .build(requireContext())
-        
-        val layoutParams = Toolbar.LayoutParams(
-             Toolbar.LayoutParams.WRAP_CONTENT,
-             Toolbar.LayoutParams.WRAP_CONTENT
-        ).apply {
-             gravity = Gravity.END 
-        }
-        binding.toolbar.addView(dotProgressBar, layoutParams)
         dotProgressBar.startAnimation()
+        binding.toolbar.addView(dotProgressBar)
         
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -185,6 +175,12 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     
     fun configureEditor () {
         binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
+        binding.undo.setOnClickListener{
+             binding.editor.undo()
+        }
+        binding.redo.setOnClickListener {
+             binding.editor.redo()
+        }
     }
     
     override fun onDestroyView() {
