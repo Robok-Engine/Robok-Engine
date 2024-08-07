@@ -6,7 +6,9 @@ import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
-class NewSchemeRobok(context: Context) : EditorColorScheme(isDark = false) {
+class NewSchemeRobok(context: Context) : EditorColorScheme() {
+
+    val context : Context
 
     init {
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground))
@@ -64,7 +66,7 @@ class NewSchemeRobok(context: Context) : EditorColorScheme(isDark = false) {
         }
     }
 
-    private fun getColor(colorResId: Int): Int {
+    override fun getColor(colorResId: Int): Int {
         return ContextCompat.getColor(context, colorResId)
     }
 }
