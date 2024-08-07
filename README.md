@@ -1,49 +1,50 @@
-# Robok
-
-Robok is a programming language that enhances Java, making it easier and simpler, while also adding features that Java does not have. If you are familiar with Java, you will feel at home with Robok but will enjoy a cleaner syntax and new features that facilitate development.
+<div align="center">
+    <h1>Robok Engine</h1>
+    <p>A new generation Engine to facilitate the development of Java games</p>
+</div>
 
 ## Features
+- Material Design 3 UI : The Engine is fully developed following Google Material Design 3 guidelines.
+- Open Source : The Engine is completely open source, which means you can see how it works, and even contribute.
+- Build APK : After making your game, you can generate an APK and send it to your friends, or even publish it on the playstore.
+- Robok SDK : Various tools that facilitate the development of your games.
+- RBK Layouts : Own language to create GUI (Game UI)
 
-- **Simplified Syntax**: Robok maintains the familiarity of Java but with a more concise and less verbose syntax.
-- **New Functionalities**: Features not present in standard Java, providing more flexibility and power to the developer.
-- **Dedicated IDE**: Robok comes with its own IDE for Android, making it easy to compile and develop in the new language.
-
-## Version
-
-Robok is currently in beta. This means it is still in active development and may not contain all the expected features. However, we are continuously working to improve and expand the language.
-
-## Installation
 
 ### Prerequisites
 
-To start using Robok, you will need an Android device.
+- Robok is lightweight, and anyone can use it.
 
 ### Installation Steps
 
-1. Download the APK file from the repository or the release page.
-2. On your Android device, allow the installation of apps from unknown sources in the settings.
-3. Install the downloaded APK.
-4. Open the Robok IDE app and start developing.
+1. Download latest release
+2. Install the application that was downloaded.
+3. Open Robok, and done!
 
 ## Usage
 
-Open the Robok IDE, create a new project, and start exploring the simplicity and power of the Robok language.
+1. Open Robok
+2. Go to Create project
+3. Type, name, package name, version
+4. Wait creation, and done!
+5. Open de files and program!
 
 ## Contribution
 
-Contributions are welcome! Feel free to open issues and pull requests.
+Want to contribute to contribute to Robok? Follow this steps:
+1. Make commits with descriptive, non-complex names.
+2. Don't make long commits.
+3. Don't make unnecessary commits.
+4. Use tags to indicate what the commit does (e.g. feat: new feature to delete projects)
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-
----
-
-*Note*: Robok is constantly evolving. Stay tuned for updates and new features.
-
+This project was licensed under the GPL-3.0 License [LISCENSE](LISCENSE).
 ---
 
 ### Contact
+
+To contact Gampiot, send an email to: gampiot.inc@gmail.com
 
 ---
 
@@ -51,4 +52,4 @@ Thank you for using Robok! Together, let's make programming simpler and more pow
 
 ---
 
-Made with ❤️ by the Robok team.
+Made with ❤️ by the Gampiot Team.
