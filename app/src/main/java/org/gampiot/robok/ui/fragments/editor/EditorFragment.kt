@@ -44,6 +44,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         }
     }
 
+    private val diagnosticStandTime : Int = 800
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -189,7 +191,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
                 
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
-                handler.postDelayed(diagnosticTimeoutRunnable, 10000) // 10 segundos
+                handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
             }
         }
 
@@ -202,7 +204,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         binding.redo.setOnClickListener {
             binding.codeEditor.redo()
         }
-        handler.postDelayed(diagnosticTimeoutRunnable, 10000) // 10 segundos
+        handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
     }
 
     override fun onDestroyView() {
