@@ -66,8 +66,4 @@ class SchemeRobokTH(context: Context) : EditorColorScheme() {
             typedValue.data
         }
     }
-
-    override fun getColor(colorResId: Int): Int {
-        return ContextCompat.getColor(context, colorResId)
-    }
 }
