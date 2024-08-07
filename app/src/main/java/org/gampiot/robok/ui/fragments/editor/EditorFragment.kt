@@ -154,7 +154,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureEditor () {
-        val diagnosticHandlerListener = object : DiagnosticListener {
+        val diagnosticListener = object : DiagnosticListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                  if (isError) { 
                       binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
@@ -175,6 +175,9 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                  binding.diagnosticStatusImage.visibility = View.INVISIBLE
             }
         }
+        
+        binding.codeEditor.setDiagnosticListener(diagnosticListener)
+        binding.codeEditor.setEditorListener(editorListener)
     
         binding.undo.setOnClickListener{
              binding.codeEditor.undo()
