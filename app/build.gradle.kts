@@ -103,8 +103,7 @@ dependencies {
     implementation("com.github.aquilesTrindade.trindade-util:components:$tUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-    kapt("com.github.bumptech.glide:compiler:$glideVersion")
-
+    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     
