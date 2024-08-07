@@ -11,6 +11,7 @@ class NewSchemeRobok(context: Context) : EditorColorScheme() {
     val context : Context
 
     init {
+        this.context = context
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground))
         setColor(EditorColorScheme.CURRENT_LINE, getColor(org.gampiot.robok.feature.component.R.color.scheme_robok_current_line))
         setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground))
