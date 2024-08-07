@@ -87,12 +87,7 @@ dependencies {
     // jetbrains
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-
-    // dagger
-    implementation("com.google.dagger:hilt-android:2.52")
-    kapt("com.google.dagger:hilt-compiler:2.52")
-
+    
     // Robok
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
@@ -116,12 +111,7 @@ dependencies {
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
-    implementation("$editorGroupId:editor-lsp")
-    implementation("$editorGroupId:language-java")
-    implementation("$editorGroupId:language-textmate")
+    implementation("io.github.Rosemoe.sora-editor:editor:0.23.4")
 }
 
 // git fuctions
