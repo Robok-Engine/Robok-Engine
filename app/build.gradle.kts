@@ -98,9 +98,9 @@ dependencies {
     implementation(project(":feature:feature-setting"))
     implementation(project(":feature:feature-terminal"))
     
-    val tUtilVersion = "478659a60d"
-    implementation("com.github.aquilesTrindade.trindade-util:filepicker:$tUtilVersion")
-    implementation("com.github.aquilesTrindade.trindade-util:components:$tUtilVersion")
+    val trindadeUtilVersion = "3.1.1"
+    implementation("com.github.aquilesTrindade.trindade-util:filepicker:$trindadeUtilVersion")
+    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
     
