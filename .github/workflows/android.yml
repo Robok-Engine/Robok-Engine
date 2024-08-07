@@ -110,7 +110,7 @@ jobs:
       - name: Send Release APK to Telegram
         uses: appleboy/telegram-action@master
         with:
-          to: -1002213084840
+          to: -1002230892820
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           document: app-release-unsigned-signed.apk
