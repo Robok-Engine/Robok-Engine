@@ -14,6 +14,8 @@ import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.tabs.TabLayout
 
+import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
+
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
@@ -165,7 +167,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                  binding.diagnosticStatusImage.visibility = View.VISIBLE
             }
             override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
-                binding.codeEditor.addDiagnosticInEditor(positionStart, positionEnd, binding.codeEditor.SEVERITY_ERROR, msg);
+                binding.codeEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
                 onDiagnosticStatusReceive(true)
             }
         }
