@@ -174,7 +174,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureEditor () {
-        binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
+        binding.codeEditor.configureSymbolView(binding.codeEditor.DEFAULT_SYMBOL_VIEW)
         
         binding.undo.setOnClickListener{
              binding.codeEditor.undo()

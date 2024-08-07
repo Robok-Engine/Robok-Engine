@@ -43,6 +43,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     public Context context;
     public final DiagnosticsContainer diagnostics;
     public final LayoutCodeEditorBinding binding;
+    public static final RobokSymbolInput DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
 
     public RobokCodeEditor(Context context) {
         this(context, null);

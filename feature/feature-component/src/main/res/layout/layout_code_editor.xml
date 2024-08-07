@@ -11,4 +11,9 @@
         android:layout_height="0dp"
         android:layout_weight="1"
         android:id="@+id/editor"/>
+        
+    <org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/robok_smbol_input"/>    
 </LinearLayout>
