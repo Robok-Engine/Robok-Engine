@@ -159,9 +159,9 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val diagnosticListener = object : DiagnosticListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                  if (isError) { 
-                      binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
-                 } else { 
                       binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_error_24)
+                 } else { 
+                      binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
                  }
                  binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
                  binding.diagnosticStatusImage.visibility = View.VISIBLE
