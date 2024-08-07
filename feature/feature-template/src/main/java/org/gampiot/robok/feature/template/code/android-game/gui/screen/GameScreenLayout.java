@@ -24,7 +24,7 @@ public class GameScreenLayoutTemplate extends RBKLayoutTemplate {
           setContent(
                "GameScreenLayoutTemplate {" 
                + "     Button(" 
-               + "        id = \"button\"," 
+               + "        id = \"shoot_button\"," 
                + "        text = \"Shoot\"," 
                + "        width = px(20)," 
                + "        height = px(20)" 
