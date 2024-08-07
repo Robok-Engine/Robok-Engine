@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template;
+package org.gampiot.robok.feature.template.project.model;
 
 import androidx.annotation.DrawableRes;
 
