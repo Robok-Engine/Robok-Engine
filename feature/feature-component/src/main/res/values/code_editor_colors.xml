@@ -1,44 +1,41 @@
-
 <resources>
-    <!-- General Editor Colors -->
-    <color name="scheme_robok_current_line">#FFDDDD</color>
-    <color name="scheme_robok_line_number_panel">#EEEEEE</color>
-    <color name="scheme_robok_line_number_background">#FFFFFF</color>
-    <color name="scheme_robok_line_number">#AAAAAA</color>
-
-    <!-- Syntax Highlight Colors -->
-    <color name="scheme_robok_type_name">#FFB86C</color>
-    <color name="scheme_robok_literal">#BD93F9</color>
-    <color name="scheme_robok_string">#F1FA8C</color>
-    <color name="scheme_robok_comment">#6272A4</color>
-    <color name="scheme_robok_docs">#8BE9FD</color>
-    <color name="scheme_robok_identifier">#50FA7B</color>
-    <color name="scheme_robok_operator">#FF79C6</color>
-    <color name="scheme_robok_annotation">#FF5555</color>
-
-    <!-- Bracket Matching Colors -->
-    <color name="scheme_robok_matched_brace">#50FA7B</color>
-    <color name="scheme_robok_unmatched_brace">#FF5555</color>
-
-    <!-- Selection and Handles -->
-    <color name="scheme_robok_selection_background">#44475A</color>
-    <color name="scheme_robok_selection_handle">#FFB86C</color>
-
-    <!-- Error and Warning Underlines -->
-    <color name="scheme_robok_error_underline">#FF5555</color>
-    <color name="scheme_robok_warning_underline">#F1FA8C</color>
-
-    <!-- Editor Guide Lines -->
-    <color name="scheme_robok_gutter_divider">#44475A</color>
-    <color name="scheme_robok_non_printable">#6272A4</color>
-    <color name="scheme_robok_caret">#FFFFFF</color>
-    <color name="scheme_robok_caret_line">#44475A</color>
-
-    <!-- Additional UI Components -->
-    <color name="scheme_robok_block_line">#44475A</color>
-    <color name="scheme_robok_block_line_current">#50FA7B</color>
-    <color name="scheme_robok_right_margin">#6272A4</color>
-    <color name="scheme_robok_code_lens">#FFB86C</color>
-    <color name="scheme_robok_signature">#BD93F9</color>
-    <color name="scheme_robok_link">#8BE9FD</color>
+    <!-- Cores principais -->
+    <color name="scheme_robok_current_line">#e0e0e0</color>
+    <color name="scheme_robok_attribute_value">#FF8C00</color>
+    <color name="scheme_robok_attribute_name">#6A5ACD</color>
+    <color name="scheme_robok_html_tag">#FF4500</color>
+    <color name="scheme_robok_annotation">#8A2BE2</color>
+    <color name="scheme_robok_identifier_name">#00BFFF</color>
+    <color name="scheme_robok_identifier_var">#32CD32</color>
+    <color name="scheme_robok_literal">#FFD700</color>
+    <color name="scheme_robok_operator">#FF6347</color>
+    <color name="scheme_robok_comment">#2E8B57</color>
+    <color name="scheme_robok_text_selected">#B0C4DE</color>
+    <color name="scheme_robok_matched_text_background">#D3D3D3</color>
+    <color name="scheme_robok_selection_handle">#A9A9A9</color>
+    <color name="scheme_robok_selection_insert">#E6E6FA</color>
+    <color name="scheme_robok_selected_text_background">#ADD8E6</color>
+    <color name="scheme_robok_underline">#7B68EE</color>
+    <color name="scheme_robok_side_block_line">#B0C4DE</color>
+    <color name="scheme_robok_non_printable_char">#FF1493</color>
+    <color name="scheme_robok_sticky_scroll_divider">#B0C4DE</color>
+    <color name="scheme_robok_diagnostic_tooltip_action">#8B4513</color>
+    <color name="scheme_robok_diagnostic_tooltip_detailed_msg">#FF4500</color>
+    <color name="scheme_robok_diagnostic_tooltip_brief_msg">#2E8B57</color>
+    <color name="scheme_robok_diagnostic_tooltip_background">#F5F5F5</color>
+    <color name="scheme_robok_function_char_background_stroke">#8A2BE2</color>
+    <color name="scheme_robok_hard_wrap_marker">#DAA520</color>
+    <color name="scheme_robok_text_inlay_hint_foreground">#FF6347</color>
+    <color name="scheme_robok_text_inlay_hint_background">#F0E68C</color>
+    <color name="scheme_robok_snippet_background_editing">#E6E6FA</color>
+    <color name="scheme_robok_snippet_background_related">#D3D3D3</color>
+    <color name="scheme_robok_snippet_background_inactive">#B0C4DE</color>
+    <color name="scheme_robok_signature_text_normal">#7B68EE</color>
+    <color name="scheme_robok_signature_text_highlighted_parameter">#FF1493</color>
+    <color name="scheme_robok_static_span_background">#F5F5F5</color>
+    <color name="scheme_robok_static_span_foreground">#2E8B57</color>
+    <color name="scheme_robok_signature_background">#F0E68C</color>
+    <color name="scheme_robok_line_number">#8B4513</color>
+    <color name="scheme_robok_line_number_current">#FF4500</color>
+    <color name="scheme_robok_line_divider">#DCDCDC</color>
 </resources>
