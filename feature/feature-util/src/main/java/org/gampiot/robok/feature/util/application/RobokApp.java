@@ -21,6 +21,7 @@ public class RobokApp extends Application {
 
     private static RobokApp sInstance;
     private static FragmentManager sFragmentManager;
+    public static Context applicationContext;
 
     public static void init(FragmentManager fragmentManager) {
         sFragmentManager = fragmentManager;
@@ -42,6 +43,7 @@ public class RobokApp extends Application {
     public void onCreate() {
         super.onCreate();
         sInstance = this;
+        applicationContext = this;
         DynamicColors.applyToActivitiesIfAvailable(sInstance);
         
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {

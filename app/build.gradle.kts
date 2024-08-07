@@ -3,9 +3,6 @@ import java.io.ByteArrayOutputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
 }
 
 android {
@@ -87,18 +84,14 @@ dependencies {
     // jetbrains
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion")
-
-    // dagger
-    implementation("com.google.dagger:hilt-android:2.52")
-    kapt("com.google.dagger:hilt-compiler:2.52")
-
+    
     // Robok
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
-
+    implementation(project(":robok:robok-aapt2"))
+    implementation(project(":robok-sdk")) // This implementation will be removed in the future, it is just here to compile.
+    
     // Features
-    implementation(project(":feature:feature-model"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
@@ -110,17 +103,11 @@ dependencies {
     implementation("com.github.aquilesTrindade.trindade-util:components:$tUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-    kapt("com.github.bumptech.glide:compiler:$glideVersion")
-
+    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
-    implementation("$editorGroupId:editor-lsp")
-    implementation("$editorGroupId:language-java")
-    implementation("$editorGroupId:language-textmate")
+    implementation("io.github.Rosemoe.sora-editor:editor:0.23.4")
 }
 
 // git fuctions

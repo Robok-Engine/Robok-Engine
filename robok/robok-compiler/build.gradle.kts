@@ -1,8 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.devtools.ksp")
     id("maven-publish")
 }
 
@@ -51,7 +49,7 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.Robok-Inc"
+            groupId = "com.github.gampiot-inc"
             artifactId = "robok-compiler"
             version = "1.0.0"
 
