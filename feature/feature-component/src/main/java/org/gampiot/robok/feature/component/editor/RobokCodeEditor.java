@@ -57,6 +57,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
         diagnostics = new DiagnosticsContainer();
         DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
         configureEditor();
+        configureSymbolView();
         configureDiagnostic();
     }
 

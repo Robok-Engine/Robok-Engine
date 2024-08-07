@@ -5,15 +5,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:transitionGroup="true">
-    
+
     <io.github.rosemoe.sora.widget.CodeEditor
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/editor"/>
-        
-    <org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput
+        android:id="@+id/editor" />
+
+    <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/robok_symbol_input"/>    
+        android:layout_alignParentBottom="true"
+        android:overScrollMode="never"
+        android:scrollbars="none">
+
+        <org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/robok_symbol_input" />
+    
+    </HorizontalScrollView>
 </LinearLayout>
