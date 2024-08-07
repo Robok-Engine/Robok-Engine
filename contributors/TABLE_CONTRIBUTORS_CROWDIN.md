@@ -1,6 +1,6 @@
 # Crowdin Contributors
 
-Thanks to all these people, AndroidIDE has been translated into multiple languages!
+Thank you to everyone who contributed to Robok's translation.
 
 <!-- CROWDIN-CONTRIBUTORS-START -->
 <table>
