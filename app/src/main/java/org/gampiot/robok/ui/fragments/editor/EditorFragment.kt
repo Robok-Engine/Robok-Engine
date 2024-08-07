@@ -124,7 +124,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
              .setDotRadius(4)
              .build(requireContext())
         dotProgressBar.startAnimation()
-        binding.toolbar.addView(dotProgressBar)
+        binding.actions.addView(dotProgressBar)
         
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
