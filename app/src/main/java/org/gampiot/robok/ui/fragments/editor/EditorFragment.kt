@@ -6,12 +6,16 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.transition.MaterialSharedAxis
+
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
+
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.component.editor.EditorListener
@@ -21,8 +25,11 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
+
 import robok.compiler.logic.LogicCompiler
 import robok.compiler.logic.LogicCompilerListener
+
+import robok.diagnostic.logic.DiagnosticCompiler
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
