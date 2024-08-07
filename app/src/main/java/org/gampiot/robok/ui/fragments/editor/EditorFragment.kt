@@ -44,7 +44,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         }
     }
 
-    private val diagnosticStandTime : Int = 800
+    private val diagnosticStandTime : Long = 800
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
