@@ -29,7 +29,7 @@ import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 import robok.compiler.logic.LogicCompiler
 import robok.compiler.logic.LogicCompilerListener
 
-import robok.diagnostic.logic.DiagnosticCompiler
+import robok.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
