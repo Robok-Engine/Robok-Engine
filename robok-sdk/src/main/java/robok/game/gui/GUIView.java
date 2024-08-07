@@ -17,7 +17,13 @@ public class GUIView {
      }
      
      public void onViewCreated () {
-         
+         // TO-DO logic to create base view
+         /* a theoretical idea of how to program the click 
+         * view.setOnClickListener(v - > {
+         *      listener.onClick(view);
+         * });
+         * this code doesn't work, because GUIView is just an object, not a view.
+         */
      }
      
      @Override
