@@ -1,20 +1,16 @@
 package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
-import android.view.View
-import android.view.WindowManager
 import android.os.Handler
 import android.os.Looper
-
 import androidx.activity.OnBackPressedDispatcher
-import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.fragment.app.Fragment
 import androidx.annotation.IdRes
-
+import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
+import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
@@ -22,8 +18,6 @@ import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.ResUtils
 import org.gampiot.robok.feature.res.Strings
-
-import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
 
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
@@ -50,21 +44,21 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         }
     }
     
-    private fun requestStoragePermDialog() {
+    fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
             return
         }
-        permissionDialog = PermissionDialog(
-            context = this,
-            iconResId = R.drawable.ic_folder_24,
-            text = getString(Strings.warning_storage_perm_message),
-            allowClickListener = {
+        permissionDialog = PermissionDialog.Builder(this)
+            .setIconResId(R.drawable.ic_folder_24)
+            .setText(getString(Strings.warning_storage_perm_message))
+            .setAllowClickListener {
                 requestStoragePerm(this@RobokActivity, this@RobokActivity)
-            },
-            denyClickListener = {
+            }
+            .setDenyClickListener {
                 finish()
             }
-        )
+            .build()
+        
         Handler(Looper.getMainLooper()).post {
             permissionDialog?.show()
         }
