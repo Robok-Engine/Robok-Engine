@@ -1,0 +1,4 @@
+<resources>
+  <attr format="color" name="rbkColorRed" />
+  <attr format="color" name="rbkColorGreen" />
+</resources>  
