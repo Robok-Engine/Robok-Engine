@@ -113,19 +113,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureToolbar() {
-        /*
-        val dotProgressBar = DotProgressBar.Builder()
-             .setMargin(1)
-             .setAnimationDuration(2000)
-             .setDotBackground(org.gampiot.robok.feature.component.R.drawable.ic_dot_24)
-             .setMaxScale(1f)
-             .setMinScale(0.3f)
-             .setNumberOfDots(3)
-             .setDotRadius(4)
-             .build(requireContext())
-        dotProgressBar.startAnimation()
-        binding.actions.addView(dotProgressBar)
-        */
+        binding.diagnosticStatusDotProgress.startAnimation()
         
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
@@ -135,7 +123,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
-        /*
+        /* Logic to open Diagnostic Drawer
         dotProgressBar.setOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.END)
