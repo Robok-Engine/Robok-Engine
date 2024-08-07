@@ -43,7 +43,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
     public final DiagnosticsContainer diagnostics;
     public final LayoutCodeEditorBinding binding;
     
-    public static final int SEVERITY_ERROR = DiagnosticRegion.SEVERITY_ERROR;
+    public static final short SEVERITY_ERROR = DiagnosticRegion.SEVERITY_ERROR;
 
     public Context context;
     
