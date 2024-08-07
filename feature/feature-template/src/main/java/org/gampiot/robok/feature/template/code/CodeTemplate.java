@@ -36,7 +36,7 @@ public class CodeTemplate implements Parcelable {
            return codeContent;
       }
       
-      public final void setContents(String contents) {
+      public final void setContent(String contents) {
            codeContent = contents;
       }
       

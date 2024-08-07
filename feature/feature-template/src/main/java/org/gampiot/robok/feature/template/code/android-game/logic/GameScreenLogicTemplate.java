@@ -1,32 +1,32 @@
-package org.gampiot.robokide.feature.template.code.android;
+package org.gampiot.robokide.feature.template.code.android-game.logic;
 
 import android.os.Parcel;
 
 import org.gampiot.robokide.feature.template.code.CodeTemplate;
 import org.gampiot.robokide.feature.template.code.java.JavaClassTemplate;
 
-public class GameScreen extends JavaClassTemplate {
+public class GameScreenLogicTemplate extends JavaClassTemplate {
 
-     public GameScreen() {
+     public GameScreenLogicTemplate() {
            super();
      }
 
-     public GameScreen(Parcel in) {
+     public GameScreenLogicTemplate(Parcel in) {
           super(in);
      }
      
      @Override
      public String getName() {
-          return "GameScreen";
+          return "GameScreenLogicTemplate";
      }
      
      @Override
      public void configure() {
-          setContents(
+          setContent(
                "package "
                 + CodeTemplate.PACKAGE_NAME
                 + ";\n\n"
-                + "import robok.game.GameScreen;\n\n"
+                + "import robok.game.screen.GameScreen;\n\n"
                 + "public class "
                 + CodeTemplate.CLASS_NAME
                 + " extends GameScreen {\n\n"

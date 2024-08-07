@@ -19,7 +19,7 @@ public class JavaClassTemplate extends CodeTemplate {
      
      @Override
      public void configure() {
-          setContents(
+          setContent(
                "package "
                + CodeTemplate.PACKAGE_NAME
                + ";\n"
