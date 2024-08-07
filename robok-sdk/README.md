@@ -1,2 +1,2 @@
 ### Robok SDK
-This module is used to operate projects created on the Robok Engine.
+This module is used to operate projects created on the Robok Engine, like android.jar
