@@ -54,7 +54,7 @@
                         android:contentDescription="@string/common_word_redo"
                         android:src="@drawable/ic_redo_24"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/progress"
+                        app:layout_constraintEnd_toStartOf="@id/diagnostic_status_dot_progress"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <org.gampiot.robok.feature.component.progress.DotProgressBar
