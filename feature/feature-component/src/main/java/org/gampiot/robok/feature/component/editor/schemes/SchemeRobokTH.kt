@@ -2,8 +2,10 @@ package org.gampiot.robok.feature.component.editor.schemes
 
 import android.content.Context
 import android.util.TypedValue
+
 import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
+
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
 class SchemeRobokTH(context: Context) : EditorColorScheme() {
