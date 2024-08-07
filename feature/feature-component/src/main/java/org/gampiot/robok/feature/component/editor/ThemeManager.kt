@@ -23,7 +23,7 @@ class ThemeManager {
 
         val KNOWN_COLOR_SCHEMES: List<Pair<String, Class<out EditorColorScheme>>> = listOf(
             Pair("Robok Default", SchemeRobok::class.java),
-            Pair("Robok TH", SchemeRobokTH:class.java),
+            Pair("Robok TH", SchemeRobokTH::class.java),
             Pair("GitHub", SchemeGitHub::class.java),
             Pair("Eclipse", SchemeEclipse::class.java),
             Pair("Darcula", SchemeDarcula::class.java),
