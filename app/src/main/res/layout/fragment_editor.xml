@@ -74,7 +74,7 @@
                         app:layout_constraintTop_toTopOf="parent" />
                         
                     <ImageView
-                        android:id="@+id/diagnostic_status_dot_progress"
+                        android:id="@+id/diagnostic_status_image"
                         android:layout_width="@dimen/toolbar_icon_width"
                         android:layout_height="@dimen/toolbar_icon_height"
                         android:visibily="invisible"
