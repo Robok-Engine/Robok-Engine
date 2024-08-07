@@ -6,7 +6,7 @@ import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
-class NewSchemeRobok(context: Context) : EditorColorScheme() {
+class SchemeRobokTH(context: Context) : EditorColorScheme() {
 
     val context : Context
 

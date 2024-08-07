@@ -22,7 +22,8 @@ class ThemeManager {
         private const val KEY_THEME = "editor_theme"
 
         val KNOWN_COLOR_SCHEMES: List<Pair<String, Class<out EditorColorScheme>>> = listOf(
-            Pair("Robok IDE Default", SchemeRobok::class.java),
+            Pair("Robok Default", SchemeRobok::class.java),
+            Pair("Robok TH", SchemeRobokTH:class.java),
             Pair("GitHub", SchemeGitHub::class.java),
             Pair("Eclipse", SchemeEclipse::class.java),
             Pair("Darcula", SchemeDarcula::class.java),
@@ -33,11 +34,12 @@ class ThemeManager {
         fun selectTheme(editor: CodeEditor, which: Int) {
             val scheme: EditorColorScheme = when (which) {
                 0 -> SchemeRobok(editor.context)
-                1 -> SchemeGitHub()
-                2 -> SchemeEclipse()
-                3 -> SchemeDarcula()
-                4 -> SchemeVS2019()
-                5 -> SchemeNotepadXX()
+                1 -> SchemeRobokTH(editor.context)
+                2 -> SchemeGitHub()
+                3 -> SchemeEclipse()
+                4 -> SchemeDarcula()
+                5 -> SchemeVS2019()
+                6 -> SchemeNotepadXX()
                 else -> SchemeRobok(editor.context)
             }
             Log.d("ThemeManager", "Selected theme index: $which")
@@ -73,7 +75,7 @@ class ThemeManager {
 
         fun loadTheme(context: Context): Int {
             val prefs: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
-            return prefs.getInt(KEY_THEME, 0) // Default theme is index 0 (Robok IDE Default)
+            return prefs.getInt(KEY_THEME, 0) // Default theme is index 0 (Robok Default)
         }
     }
 }
