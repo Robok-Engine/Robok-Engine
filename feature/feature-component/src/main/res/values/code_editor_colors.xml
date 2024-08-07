@@ -1,3 +1,44 @@
+
 <resources>
-     <color name="scheme_robok_current_line">#30FFFFFF</color>
+    <!-- General Editor Colors -->
+    <color name="scheme_robok_current_line">#FFDDDD</color>
+    <color name="scheme_robok_line_number_panel">#EEEEEE</color>
+    <color name="scheme_robok_line_number_background">#FFFFFF</color>
+    <color name="scheme_robok_line_number">#AAAAAA</color>
+
+    <!-- Syntax Highlight Colors -->
+    <color name="scheme_robok_type_name">#FFB86C</color>
+    <color name="scheme_robok_literal">#BD93F9</color>
+    <color name="scheme_robok_string">#F1FA8C</color>
+    <color name="scheme_robok_comment">#6272A4</color>
+    <color name="scheme_robok_docs">#8BE9FD</color>
+    <color name="scheme_robok_identifier">#50FA7B</color>
+    <color name="scheme_robok_operator">#FF79C6</color>
+    <color name="scheme_robok_annotation">#FF5555</color>
+
+    <!-- Bracket Matching Colors -->
+    <color name="scheme_robok_matched_brace">#50FA7B</color>
+    <color name="scheme_robok_unmatched_brace">#FF5555</color>
+
+    <!-- Selection and Handles -->
+    <color name="scheme_robok_selection_background">#44475A</color>
+    <color name="scheme_robok_selection_handle">#FFB86C</color>
+
+    <!-- Error and Warning Underlines -->
+    <color name="scheme_robok_error_underline">#FF5555</color>
+    <color name="scheme_robok_warning_underline">#F1FA8C</color>
+
+    <!-- Editor Guide Lines -->
+    <color name="scheme_robok_gutter_divider">#44475A</color>
+    <color name="scheme_robok_non_printable">#6272A4</color>
+    <color name="scheme_robok_caret">#FFFFFF</color>
+    <color name="scheme_robok_caret_line">#44475A</color>
+
+    <!-- Additional UI Components -->
+    <color name="scheme_robok_block_line">#44475A</color>
+    <color name="scheme_robok_block_line_current">#50FA7B</color>
+    <color name="scheme_robok_right_margin">#6272A4</color>
+    <color name="scheme_robok_code_lens">#FFB86C</color>
+    <color name="scheme_robok_signature">#BD93F9</color>
+    <color name="scheme_robok_link">#8BE9FD</color>
 </resources>
