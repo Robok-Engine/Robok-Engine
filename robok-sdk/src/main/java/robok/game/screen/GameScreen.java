@@ -11,7 +11,7 @@ public class GameScreen extends Activity {
 
      @Override
      protected void onCreate(Bundle savedInstanceState) {
-          super.onCreate(savesInstanceState);
+          super.onCreate(savedInstanceState);
           onScreenCreated();
      }
      

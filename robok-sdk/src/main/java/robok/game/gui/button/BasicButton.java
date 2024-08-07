@@ -1,6 +1,6 @@
 package robok.game.gui.button;
 
-import robok.game.gui.GuiView;
+import robok.game.gui.GUIView;
 
 public class BasicButton extends GUIView {
      
