@@ -42,6 +42,8 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
 
     public final DiagnosticsContainer diagnostics;
     public final LayoutCodeEditorBinding binding;
+    
+    public static final int SEVERITY_ERROR = DiagnosticRegion.SEVERITY_ERROR;
 
     public Context context;
     
@@ -119,11 +121,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
         }
     }
     
-    void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg) {
+    public void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg) {
          DiagnosticRegion diagnosticRegion = new DiagnosticRegion(
               positionStart,
               positionEnd,
-              DiagnosticRegion.SEVERITY_ERROR,
+              SEVERITY_ERROR,
               0L,
                   new DiagnosticDetail(
                        "Error detail:", 
