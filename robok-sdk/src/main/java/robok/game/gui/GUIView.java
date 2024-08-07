@@ -2,13 +2,15 @@ package robok.game.gui;
 
 import android.view.View;
 
-public class GUIView implements GUIViewListener {
+public class GUIView {
      
      public String name;
      public String id;
      
      public int width;
      public int height;
+     
+     public GUIViewListener listener;
      
      public GUIView () {
      
@@ -31,16 +33,8 @@ public class GUIView implements GUIViewListener {
               + Integer.toString(getHeight());
      }
       
-     @Override
-     public void onClick (GUIView view) {
-          // example
-          if (view.getID().equals(getID())) { /* any action */}
-     }
-     
-     @Override
-     public void onLongClick (GUIView view) {
-          // example
-          if (view.getID().equals(getID())) { /* any action */}
+     public void setGUIViewListener (GUIViewListener listener) {
+          this.listener = listener;
      }
      
      public void setName (String name) {
