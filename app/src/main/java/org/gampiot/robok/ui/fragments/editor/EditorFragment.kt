@@ -47,7 +47,6 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())
         
-        binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
         val compilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)
@@ -90,8 +89,9 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         configureTabLayout()
         configureToolbar()
         configureDrawer()
+        configureEditor()
     }
-
+    
     fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
@@ -114,19 +114,9 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureToolbar() {
-        binding.toolbar.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                R.id.action_undo -> {
-                    binding.codeEditor.undo()
-                    true
-                }
-                R.id.action_redo -> {
-                    binding.codeEditor.redo()
-                    true
-                }
-                else -> false
-            }
-        }
+        binding.undo.setOnClickListener(v-> binding.editor.undo())
+        binding.redo.setOnClickListener(v-> binding.editor.redo())
+        
         val dotProgressBar = DotProgressBar.Builder()
              .setMargin(1)
              .setAnimationDuration(2000)
@@ -191,6 +181,10 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
              }
              override fun onDrawerStateChanged(newState: Int) { }
         })
+    }
+    
+    fun configureEditor () {
+        binding.codeEditor.configureSymbolView(binding.robokSymbolInput)
     }
     
     override fun onDestroyView() {

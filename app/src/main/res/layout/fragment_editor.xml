@@ -23,8 +23,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:navigationIcon="@drawable/ic_menu_24"
-                app:title="@string/app_name"
-                app:menu="@menu/menu_editor_toolbar" >
+                app:title="@string/app_name">
                 
                 <ImageView
                     android:id="@+id/undo"
