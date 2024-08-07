@@ -19,6 +19,7 @@ import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.component.editor.EditorListener
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
@@ -61,15 +62,6 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                         terminal.dismiss()
                     }
                     .show()
-            }
-        }
-        
-        val diagnosticHandlerListener = object : DiagnosticListener {
-            override fun onDiagnosticStatusReceive(isError: Boolean) {
-                if (isError) { /* if diagnostic received */  } else { /* if no diagnostic received */ }
-            }
-            override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
-                
             }
         }
         
@@ -123,15 +115,14 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
             }
         }
         
-        /* Logic to open Diagnostic Drawer
-        dotProgressBar.setOnClickListener {
+        binding.diagnosticStatusImage.setOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.END)
             } else {
                 binding.drawerLayout.openDrawer(GravityCompat.END)
             }
         }
-        */
+        
     }
     
     fun configureDrawer() {
@@ -163,8 +154,28 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
     
     fun configureEditor () {
-        binding.codeEditor.configureSymbolView(binding.codeEditor.DEFAULT_SYMBOL_VIEW)
+        val diagnosticHandlerListener = object : DiagnosticListener {
+            override fun onDiagnosticStatusReceive(isError: Boolean) {
+                 if (isError) { 
+                      binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
+                 } else { 
+                      binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_error_24)
+                 }
+                 binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
+                 binding.diagnosticStatusImage.visibility = View.VISIBLE
+            }
+            override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
+                
+            }
+        }
         
+        val editorListener = object : EditorListener {
+            override fun whenTyping () {
+                 binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
+                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
+            }
+        }
+    
         binding.undo.setOnClickListener{
              binding.codeEditor.undo()
         }

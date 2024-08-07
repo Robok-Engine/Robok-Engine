@@ -73,6 +73,15 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
                         
+                    <ImageView
+                        android:id="@+id/diagnostic_status_dot_progress"
+                        android:layout_width="@dimen/toolbar_icon_width"
+                        android:layout_height="@dimen/toolbar_icon_height"
+                        android:visibily="invisible"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />    
+                        
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>

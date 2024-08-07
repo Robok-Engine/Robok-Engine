@@ -38,13 +38,15 @@ import org.gampiot.robok.feature.component.R;
 import org.gampiot.robok.feature.component.databinding.LayoutCodeEditorBinding;
 import org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput;
 
-public class RobokCodeEditor extends LinearLayout implements DiagnosticListener {
+public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
     public final DiagnosticsContainer diagnostics;
     public final LayoutCodeEditorBinding binding;
 
     public Context context;
-    public DiagnosticListener listener;
+    
+    public DiagnosticListener diagnosticListener;
+    public EditorListener editorListener;
     
     public RobokSymbolInput DEFAULT_SYMBOL_VIEW;
 
@@ -56,7 +58,8 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
-        this.listener = this;
+        this.diagnosticListener = this;
+        this.editorListener = this;
         binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
         diagnostics = new DiagnosticsContainer();
         DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
@@ -79,6 +82,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     void configureDiagnostic () {
         binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
               String inputText = binding.editor.getText().toString(); 
+              editorListener.whenTyping();
               checkForPossibleErrors(inputText);
         });
     }
@@ -96,19 +100,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
          ThemeManager.Companion.selectTheme(binding.editor, theme);
     }
     
-    @Override
-    public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
-         onDiagnosticStatusReceive(true);
-         addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
-    }
-    
-    @Override
-    public void onDiagnosticStatusReceive(boolean isError) {
-         if (isError) {
-            Toast.makeText(context, "error", 4000).show();
-         }
-    }
-    
     void checkForPossibleErrors(String inputText) {
         diagnostics.reset();
         try {
@@ -120,7 +111,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
             parser.removeErrorListeners();
             Java8ErrorListener robokError = new Java8ErrorListener();
 
-            robokError.getError(listener);
+            robokError.getError(diagnosticListener);
             parser.addErrorListener(robokError);
             parser.compilationUnit();
         } catch (Exception e) {
@@ -152,8 +143,12 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
          // TO-DO: logic to fix basic errors quickly
     }
     
-    public void setDiagnosticListener (DiagnosticListener listener) {
-        this.listener = listener;
+    public void setDiagnosticListener (DiagnosticListener diagnosticListener) {
+        this.diagnosticListener = diagnosticListener;
+    }
+    
+    public void setEditorListener (EditorListener editorListener) {
+        this.editorListener = editorListener;
     }
 
     public CodeEditor getCodeEditor() {
@@ -170,6 +165,28 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener 
     
     public void undo () {
         binding.editor.undo();
+    }
+    
+    @Override
+    public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
+         onDiagnosticStatusReceive(true);
+         addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+    }
+    
+    @Override
+    public void onDiagnosticStatusReceive(boolean isError) {
+         if (isError) {
+            /*
+            * this run when receive any diagnostic status
+            */
+         }
+    }
+    
+    @Override 
+    public void whenTyping () {
+        /*
+        * method called when text of editor changed
+        */
     }
     
     static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
