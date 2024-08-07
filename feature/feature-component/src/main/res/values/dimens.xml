@@ -1,4 +1,3 @@
 <resources>
     <dimen name="log_padding">16dp</dimen>
-    <dimen name="dialog_elevation">2dp</dimen>
 </resources>
