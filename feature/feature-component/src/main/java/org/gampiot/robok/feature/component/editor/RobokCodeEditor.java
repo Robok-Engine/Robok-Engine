@@ -119,7 +119,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
         }
     }
     
-    public void addDiagnosticInEditor(int positionStart, int positionEnd, int severity, String msg) {
+    public void addDiagnosticInEditor(int positionStart, int positionEnd, short severity, String msg) {
          DiagnosticRegion diagnosticRegion = new DiagnosticRegion(
               positionStart,
               positionEnd,
