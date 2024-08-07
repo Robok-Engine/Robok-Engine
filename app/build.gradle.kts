@@ -3,9 +3,6 @@ import java.io.ByteArrayOutputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    id("kotlin-parcelize")
-    id("com.google.dagger.hilt.android")
-    kotlin("kapt")
 }
 
 android {
