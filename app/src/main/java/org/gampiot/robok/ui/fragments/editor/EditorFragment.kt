@@ -165,7 +165,8 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
                  binding.diagnosticStatusImage.visibility = View.VISIBLE
             }
             override fun onDiagnosticReceive(line: Int, positionStart: Int, postionEnd: Int, msg: String) {
-                
+                addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+                onDiagnosticStatusReceive(true)
             }
         }
         
