@@ -5,12 +5,14 @@
     android:layout_height="match_parent"
     android:layout_width="match_parent"
     android:id="@+id/root"
+    android:orientation="vertical"
     android:background="?android:attr/colorBackground">
 
     <com.termux.view.TerminalView
         android:id="@+id/terminal_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:autofillHints="password"
         android:focusableInTouchMode="true"
         android:importantForAutofill="no"
@@ -31,11 +33,8 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal|bottom"
         android:layout_marginBottom="10dp"
-        android:alpha="0"
-        android:animateLayoutChanges="true"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:translationY="200dp">
+        android:orientation="horizontal">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/install_package_button"
