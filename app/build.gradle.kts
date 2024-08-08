@@ -86,7 +86,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1") 
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4") 
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
 
     // Robok
