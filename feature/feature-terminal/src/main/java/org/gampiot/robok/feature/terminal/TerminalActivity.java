@@ -40,7 +40,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
               cwd = Environment.getExternalStorageDirectory().getAbsolutePath();
           }
           binding.terminalView.setTextSize(28);
-          String[] env = {};
+          String[] env = {"HOME=" + cwd};
           String[] argsList = {};
           session = new TerminalSession(
                 "/system/bin/sh",
