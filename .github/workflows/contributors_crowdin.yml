@@ -6,7 +6,7 @@ on:
   workflow_dispatch: {}
 
 env:
-  CONTRIBUTORS_JSON_FILENAME: contributors/contributors-crowdin
+  CONTRIBUTORS_JSON_FILENAME: contributors/contributors_crowdin
 
 jobs:
   crowdin-contributors:
@@ -47,7 +47,7 @@ jobs:
     - name: Upload JSON report
       uses: actions/upload-artifact@v4
       with:
-        name: crowdin-contributors-json
+        name: crowdin_contributors-json
         path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
 
     - name: Create Pull Request
