@@ -21,3 +21,6 @@
 #-renamesourcefileattribute SourceFile
 
 -keep class io.github.rosemoe.sora.widget.** { *; }
+
+-dontwarn org.eclipse.jdt.internal.compiler.**
+-keep class org.eclipse.jdt.internal.compiler.** { *; }
