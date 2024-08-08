@@ -105,7 +105,7 @@ dependencies {
     implementation(project(":feature:feature-setting"))
     implementation(project(":feature:feature-terminal"))
     
-    val trindadeUtilVersion = "865809e0cc"
+    val trindadeUtilVersion = "d049be6cc0"
     implementation("com.github.aquilesTrindade.trindade-util:filepicker:$trindadeUtilVersion")
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
 

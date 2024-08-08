@@ -19,7 +19,7 @@ public class NormalTextField extends TInput {
          super(context, attrs, defStyleAttr);
     }
 
-    void setCornerRadius (float radii) {
+    public void setCornerRadius (float radii) {
         textInputLayout.setBoxCornerRadii(radii, radii, radii, radii);
     }
 }
