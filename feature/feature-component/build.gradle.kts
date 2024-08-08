@@ -58,7 +58,7 @@ dependencies {
     implementation("org.antlr:antlr4:$antlrVersion") 
     implementation("org.antlr:antlr4-runtime:$antlrVersion")
     
-    val trindadeUtilVersion = "d049be6cc0"
+    val trindadeUtilVersion = "3.1.1"
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
     
     implementation(project(":feature:feature-res:strings"))

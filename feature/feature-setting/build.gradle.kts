@@ -47,7 +47,7 @@ dependencies {
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
     
-    val trindadeUtilVersion = "d049be6cc0"
+    val trindadeUtilVersion = "3.1.1"
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
