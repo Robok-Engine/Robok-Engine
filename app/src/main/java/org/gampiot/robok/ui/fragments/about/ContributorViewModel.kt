@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-import com.squareup.okhttp.OkHttpClient
-import com.squareup.okhttp.Request
+import okhttp.OkHttpClient
+import okhttp.Request
 
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString

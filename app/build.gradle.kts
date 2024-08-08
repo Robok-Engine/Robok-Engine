@@ -89,7 +89,8 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
     
     // squareup
-    implementation("com.squareup.okhttp3:okhttp:4.9.3")
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
     
     // Robok
     implementation(project(":robok:robok-compiler"))
