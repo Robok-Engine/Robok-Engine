@@ -16,6 +16,7 @@ import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 import org.gampiot.robok.ui.fragments.about.viewmodel.ContributorViewModel
 import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
@@ -23,11 +24,17 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
     private val binding get() = _binding!!
     private val viewModel: ContributorViewModel by viewModels()
 
+    private lateinit var terminal: RobokTerminal
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
+        
+        terminal = RobokTerminal(requireContext())
+        terminal.show()
+        
         return binding.root
     }
 
@@ -40,6 +47,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
         viewModel.contributors.observe(viewLifecycleOwner) { contributors ->
             binding.recyclerView.adapter = ContributorAdapter(contributors)
+            terminal.addLog("Contributors loaded: ${contributors.size}")
         }
     }
 
