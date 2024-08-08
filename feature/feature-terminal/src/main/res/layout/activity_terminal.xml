@@ -38,7 +38,7 @@
         android:translationY="200dp">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
-            android:id="@+id/install_packages_buttom"
+            android:id="@+id/install_package_buttom"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
