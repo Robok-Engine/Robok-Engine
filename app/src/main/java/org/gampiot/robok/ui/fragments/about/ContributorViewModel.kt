@@ -40,11 +40,11 @@ class ContributorViewModel : ViewModel() {
                             _contributors.postValue(contributorsList)
                         }
                     } else {
-                        // Tratar erro de requisição
+                        // error handle
                     }
                 }
             } catch (e: Exception) {
-                // Tratar exceção
+                // handle exeception
             }
         }
     }

@@ -77,6 +77,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.8.2")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4") 
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
 
     // google
     implementation("com.google.android.material:material:$materialVersion")
@@ -85,10 +87,10 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0")
+    
+    // squareup
     implementation("com.squareup.okhttp3:okhttp:4.9.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4") 
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.6.1")
-
+    
     // Robok
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))

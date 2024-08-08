@@ -14,8 +14,9 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
+import org.gampiot.robok.feature.util.base.RobokFragment
 
-class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Fragment() {
+class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
