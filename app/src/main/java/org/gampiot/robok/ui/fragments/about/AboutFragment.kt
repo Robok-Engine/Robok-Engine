@@ -10,8 +10,8 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
-import org.gampiot.robok.ui.fragments.about.model.TeamMember
-import org.gampiot.robok.ui.fragments.about.adapter.TeamMemberAdapter
+import org.gampiot.robok.ui.fragments.about.model.Contributor
+import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 
 class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
@@ -31,13 +31,13 @@ class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : Rob
         configureToolbarNavigationBack(binding.toolbar)
         setFragmentLayoutResId(R.id.fragment_container)
         val teamMembers = listOf(
-            TeamMember(
+            Contributor(
                 "https://avatars.githubusercontent.com/u/147993300?s=400&u=07c34e0c463a0236d09be78f2df121206edb583d&v=4",
                 "Aquiles Trindade",
                 "IDE Main Dev", 
                 "https://github.com/aquilesTrindade"
             ),
-            TeamMember(
+            Contributor(
                 "https://avatars.githubusercontent.com/u/174269512?v=4", 
                 "Th Dev", 
                 "Language Main Dev", 
@@ -47,7 +47,7 @@ class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : Rob
 
         binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = TeamMemberAdapter(teamMembers)
+            adapter = ContributorAdapter(teamMembers)
         }
     }
 
