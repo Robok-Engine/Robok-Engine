@@ -14,6 +14,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
+import org.gampiot.robok.ui.fragments.about.viewmodel.ContributorViewModel
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
@@ -37,8 +38,8 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
-        viewModel.contributors.observe(viewLifecycleOwner) { teamMembers ->
-            binding.recyclerView.adapter = ContributorAdapter(teamMembers)
+        viewModel.contributors.observe(viewLifecycleOwner) { contributors ->
+            binding.recyclerView.adapter = ContributorAdapter(contributors)
         }
     }
 

@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.about
+package org.gampiot.robok.ui.fragments.about.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
