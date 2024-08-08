@@ -56,6 +56,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      }
      
      public void configureFabs() {
+          setOptionsVisibility(true);
           binding.terminalOptionsButton.setOnClickListener(view -> setOptionsVisibility(false));
           binding.closeButton.setOnClickListener(view -> setOptionsVisibility(true));
           binding.installPackageButton.setOnClickListener(v -> {
