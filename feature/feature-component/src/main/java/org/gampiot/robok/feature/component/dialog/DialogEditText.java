@@ -16,7 +16,7 @@ import org.gampiot.robok.feature.component.textfield.NormalTextField;
 
 public class DialogEditText extends PermissionDialog {
 
-    public NormalTextField normalTextInputField
+    public NormalTextField normalTextInputField;
 
     public String textFieldHint;
     public String textFieldText;
