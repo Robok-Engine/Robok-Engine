@@ -20,6 +20,6 @@ public class NormalTextField extends TInput {
     }
 
     void setCornerRadius (float radii) {
-        textInputLayout.setBoxCornerRadii(radii);
+        textInputLayout.setBoxCornerRadii(radii, radii, radii, radii);
     }
 }
