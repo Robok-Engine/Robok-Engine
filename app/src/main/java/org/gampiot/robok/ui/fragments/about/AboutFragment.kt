@@ -4,19 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
-import org.gampiot.robok.feature.util.base.RobokFragment
-import org.gampiot.robok.ui.fragments.about.model.Contributor
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 
-class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
+class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Fragment() {
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ContributorViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,24 +33,11 @@ class AboutFragment(private val tansitionAxis: Int = MaterialSharedAxis.X) : Rob
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
         setFragmentLayoutResId(R.id.fragment_container)
-        val teamMembers = listOf(
-            Contributor(
-                "https://avatars.githubusercontent.com/u/147993300?s=400&u=07c34e0c463a0236d09be78f2df121206edb583d&v=4",
-                "Aquiles Trindade",
-                "IDE Main Dev", 
-                "https://github.com/aquilesTrindade"
-            ),
-            Contributor(
-                "https://avatars.githubusercontent.com/u/174269512?v=4", 
-                "Th Dev", 
-                "Language Main Dev", 
-                "https://github.com/ThDev-only"
-            ),
-        )
 
-        binding.recyclerView.apply {
-            layoutManager = LinearLayoutManager(context)
-            adapter = ContributorAdapter(teamMembers)
+        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+
+        viewModel.contributors.observe(viewLifecycleOwner) { teamMembers ->
+            binding.recyclerView.adapter = ContributorAdapter(teamMembers)
         }
     }
 
