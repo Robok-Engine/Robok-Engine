@@ -52,6 +52,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           this);
           binding.terminalView.attachSession(session);
           binding.terminalView.setTerminalViewClient(this);
+          configureFabs();
      }
      
      public void configureFabs() {
