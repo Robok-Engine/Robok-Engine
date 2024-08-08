@@ -29,10 +29,10 @@ class ContributorAdapter(private val teamMembers: List<Contributor>) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(teamMember: Contributor) {
-            binding.nameTextView.text = teamMember.name
-            binding.descriptionTextView.text = teamMember.description
+            binding.nameTextView.text = teamMember.login
+            binding.descriptionTextView.text = teamMember.role
             Glide.with(binding.profileImageView.context)
-                .load(teamMember.profileIcon)
+                .load(teamMember.avatar_url)
                 .into(binding.profileImageView)
         }
     }
