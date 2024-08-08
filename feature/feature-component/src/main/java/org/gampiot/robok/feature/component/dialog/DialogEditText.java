@@ -16,7 +16,8 @@ import org.gampiot.robok.feature.component.textfield.NormalTextField;
 
 public class DialogEditText extends PermissionDialog {
 
-    public NormalTextField tInput;
+    public NormalTextField normalTextInputField
+
     public String textFieldHint;
     public String textFieldText;
     public float textFieldRadii;
@@ -31,20 +32,20 @@ public class DialogEditText extends PermissionDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_dialog_edit_text);
+        setContentView(R.layout.layout_dialog_edittext);
 
-        ImageView dialogIcon = findViewById(R.id.dialog_icon);
-        TextView dialogText = findViewById(R.id.dialog_text);
-        tInput = findViewById(R.id.dialog_textfield);
-        Button buttonAllow = findViewById(R.id.button_allow);
-        Button buttonDeny = findViewById(R.id.button_deny);
+        dialogIcon = findViewById(R.id.dialog_icon);
+        dialogText = findViewById(R.id.dialog_text);
+        normalTextInputField = findViewById(R.id.dialog_textfield);
+        buttonAllow = findViewById(R.id.button_allow);
+        buttonDeny = findViewById(R.id.button_deny);
 
         dialogIcon.setImageResource(iconResId);
         dialogText.setText(Html.fromHtml(text));
 
-        tInput.setHint(textFieldHint);
-        tInput.setText(textFieldText);
-        tInput.setCornerRadius(textFieldRadii); 
+        normalTextInputField.setHint(textFieldHint);
+        normalTextInputField.setText(textFieldText);
+        normalTextInputField.setCornerRadius(textFieldRadii); 
 
         buttonAllow.setOnClickListener(v -> {
             if (allowClickListener != null) {
