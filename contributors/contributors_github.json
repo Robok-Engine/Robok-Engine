@@ -19,7 +19,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 668,
-    "role" "Developer"
+    "role": "Developer"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 76,
-    "role" "Developer"
+    "role": "Developer"
   },
   {
     "login": "renovate[bot]",
@@ -63,7 +63,7 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 50,
-    "role" "Dependency Bot"
+    "role": "Dependency Bot"
   },
   {
     "login": "devsuay",
@@ -85,7 +85,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 15,
-    "role" "Some helps"
+    "role": "Some helps"
   },
   {
     "login": "github-actions[bot]",
@@ -107,6 +107,6 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10,
-    "role" "Github Bot"
+    "role": "Github Bot"
   }
 ]
