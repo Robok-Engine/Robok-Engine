@@ -45,7 +45,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.8.2")
     
-    implementation("com.github.aquilesTrindade.trindade-util:components:3.1.1")
+    val trindadeUtilVersion = "d049be6cc0"
+    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-component"))
