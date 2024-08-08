@@ -34,7 +34,7 @@ class ContributorViewModel : ViewModel() {
             try {
                 client.newCall(request).execute().use { response ->
                     if (response.isSuccessful) {
-                        val jsonString = response.body()?.string()
+                        val jsonString = response.body?.string()
                         jsonString?.let {
                             val contributorsList = Json.decodeFromString<List<Contributor>>(it)
                             _contributors.postValue(contributorsList)
