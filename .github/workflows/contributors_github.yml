@@ -26,6 +26,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip jq
 
+      - name: Add Role to Contributors
+        run: |
+          jq 'map(if has("role") then . else . + {"role": "contributor"} end)' contributors/contributors_github.json > temp.json && mv temp.json contributors/contributors_github.json
+
       - name: Format Contributors Table
         run: |
           python3 contributors/logic/format_contributors.py
@@ -40,7 +44,7 @@ jobs:
         uses: peter-evans/create-pull-request@v6
         with:
           token: ${{ secrets.TOKEN }}
-          title: Github Contribuitors Update
+          title: Github Contributors Update
           body: Update table and json from github contributors
           commit-message: "chore: update github contributors"
           committer: Suay Dev <devsuay@gmail.com>
