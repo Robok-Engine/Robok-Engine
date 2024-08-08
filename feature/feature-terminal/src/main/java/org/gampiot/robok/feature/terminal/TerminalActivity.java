@@ -10,13 +10,10 @@ import android.view.View;
 import android.view.Window;
 import android.view.animation.OvershootInterpolator;
 
-import androidx.activity.EdgeToEdge;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
@@ -35,7 +32,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      
      @Override
      protected void onCreate(Bundle savedInstanceState) {
-          EdgeToEdge.enable(this);
           super.onCreate(savedInstanceState);
           binding = ActivityTerminalBinding.inflate(getLayoutInflater());
           setContentView(binding.getRoot());
@@ -71,9 +67,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
                // TO-DO : Logic to update packages
                setOptionsVisibility(true);
           });
-          
-          ViewCompat.setOnApplyWindowInsetsListener(binding.installPackageButton,
-                new AddMarginOnApplyWindowInsetsListener(WindowInsetsCompat.Type.navigationBars(), WindowInsetsCompat.CONSUMED));
      }
      
      public void setOptionsVisibility(boolean isHide) {
