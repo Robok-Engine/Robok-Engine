@@ -5,8 +5,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
-import okhttp.OkHttpClient
-import okhttp.Request
+import okhttp3.OkHttpClient
+import okhttp3.Request
 
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
