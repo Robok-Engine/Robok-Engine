@@ -8,6 +8,7 @@ import android.view.MotionEvent;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.OvershootInterpolator;
 
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
@@ -51,6 +52,31 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           this);
           binding.terminalView.attachSession(session);
           binding.terminalView.setTerminalViewClient(this);
+     }
+     
+     public void configureFabs() {
+          binding.terminalOptionsButton.setOnClickListener(view -> setOptionsVisibility(false));
+          binding.closeButton.setOnClickListener(view -> setOptionsVisibility(true));
+          binding.installPackageButton.setOnClickListener(v -> {
+               // TO-DO : Logic to install package
+               setOptionsVisibility(true);
+          });
+          binding.updatePackagesButton.setOnClickListener(v -> {
+               // TO-DO : Logic to update packages
+               setOptionsVisibility(true);
+          });
+     }
+     
+     public void setOptionsVisibility(boolean isHide) {
+          binding.terminalOptionsLayout.animate()
+                  .translationY(isHide ? 300 : 0)
+                  .alpha(isHide ? 0 : 1)
+                  .setInterpolator(new OvershootInterpolator());
+                  
+          binding.terminalOptionsButton.animate()
+                  .translationY(isHide ? 0 : 300)
+                  .alpha(isHide ? 1 : 0)
+                  .setInterpolator(new OvershootInterpolator());
      }
      
      @Override
