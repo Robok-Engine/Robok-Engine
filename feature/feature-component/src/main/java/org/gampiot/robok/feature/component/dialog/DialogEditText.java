@@ -70,6 +70,10 @@ public class DialogEditText extends PermissionDialog {
     public void setTextFieldHint(String hint) {
          normalTextInputField.setHint(hint);
     }
+    
+    public void setTextFieldCornerRadius(float radii) {
+         normalTextInputField.setCornerRadius(radii); 
+    }
 
     public static class Builder extends PermissionDialog.Builder {
     
@@ -91,11 +95,6 @@ public class DialogEditText extends PermissionDialog {
               return this;
          }
         
-         public Builder setTextFieldCornerRadius(float radii) {
-              this.textFieldRadii = radii;
-              return this;
-         }
-
          @Override
          public DialogEditText build() {
               return new DialogEditText(context, this);
