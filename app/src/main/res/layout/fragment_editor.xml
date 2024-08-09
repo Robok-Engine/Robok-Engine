@@ -37,7 +37,6 @@
                         android:layout_width="@dimen/toolbar_icon_width"
                         android:layout_height="@dimen/toolbar_icon_height"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/common_word_undo"
                         android:src="@drawable/ic_undo_24"
@@ -50,38 +49,43 @@
                         android:layout_width="@dimen/toolbar_icon_width"
                         android:layout_height="@dimen/toolbar_icon_height"
                         android:layout_marginEnd="8dp"
-                        android:layout_marginTop="8dp"
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:contentDescription="@string/common_word_redo"
                         android:src="@drawable/ic_redo_24"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/diagnostic_status_dot_progress"
+                        app:layout_constraintEnd_toStartOf="@id/relative_layout_diagnostics"
                         app:layout_constraintTop_toTopOf="parent" />
-
-                    <org.gampiot.robok.feature.component.progress.DotProgressBar
-                        android:id="@+id/diagnostic_status_dot_progress"
+                    
+                    <RelativeLayout
+                        android:id="@+id/relative_layout_diagnostics"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:dotRadius="4dp"
-                        app:numberOfDots="3"
-                        app:animationDuration="2000"
-                        app:minScale="0.3"
-                        app:maxScale="1.0"
-                        app:dotBackground="@drawable/ic_dot_24"
-                        app:margin="1dp"
+                        android:layout_marginEnd="10dp"
+                        android:gravity="center"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-                        
-                    <ImageView
-                        android:id="@+id/diagnostic_status_image"
-                        android:layout_width="@dimen/toolbar_icon_width"
-                        android:layout_height="@dimen/toolbar_icon_height"
-                        android:visibility="invisible"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />    
-                        
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <org.gampiot.robok.feature.component.progress.DotProgressBar
+                            android:id="@+id/diagnostic_status_dot_progress"
+                            android:layout_width="@dimen/toolbar_icon_width"
+                            android:layout_height="@dimen/toolbar_icon_height"
+                            app:dotRadius="4dp"
+                            app:numberOfDots="3"
+                            app:animationDuration="2000"
+                            app:minScale="0.3"
+                            app:maxScale="1.0"
+                            app:dotBackground="@drawable/ic_dot_24"
+                            app:margin="1dp" />
+
+                        <ImageView
+                            android:id="@+id/diagnostic_status_image"
+                            android:layout_width="@dimen/toolbar_icon_width"
+                            android:layout_height="@dimen/toolbar_icon_height"
+                            android:visibility="invisible"/>
+
+                    </RelativeLayout>
+
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
             </com.google.android.material.appbar.MaterialToolbar>
