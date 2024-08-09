@@ -57,4 +57,7 @@ dependencies {
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-component"))
+    
+    val trindadeUtilVersion = "d049be6cc0"
+    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
 }
