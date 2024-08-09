@@ -18,6 +18,7 @@ import org.gampiot.robok.feature.template.R;
 import org.gampiot.robok.feature.template.project.model.ProjectTemplate;
 import org.gampiot.robok.feature.template.project.adapter.ProjectTemplateAdapter;
 import org.gampiot.robok.feature.template.util.base.RobokFragment;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +28,8 @@ public class ProjectTemplatesFragment extends RobokFragment {
          super(MaterialSharedAxis.X);
     }
 
-    public ProjectTemplatesFragment (@NonNull int anim) {
-         super(anim);
+    public ProjectTemplatesFragment (@NonNull int transitionAxisMode) {
+         super(transitionAxisMode);
     }
 
     @Nullable
