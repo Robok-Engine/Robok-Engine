@@ -66,6 +66,10 @@ public class DialogEditText extends PermissionDialog {
          }
          setCancelable(false);
      }
+     
+    public void setTextFieldHint(String hint) {
+         normalTextInputField.setHint(hint);
+    }
 
     public static class Builder extends PermissionDialog.Builder {
     
