@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template.code.android-game.gui.screen;
+package org.gampiot.robok.feature.template.code.android.game.gui.screen;
 
 import android.os.Parcel;
 

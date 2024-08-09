@@ -1,4 +1,4 @@
-package org.gampiot.robokide.feature.template.code.android-game.logic;
+package org.gampiot.robokide.feature.template.code.android.game.logic;
 
 import android.os.Parcel;
 
