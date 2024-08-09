@@ -69,6 +69,7 @@
 	<!-- terminal section -->
 	<string name="terminal_options">Options</string>
 	<string name="terminal_install_package">Install Package</string>
+	<string name="terminal_install_package_hint">Type Package Name</string>
 	<string name="terminal_update_packages">Update Packages</string>
 	<!-- end section -->
 </resources>

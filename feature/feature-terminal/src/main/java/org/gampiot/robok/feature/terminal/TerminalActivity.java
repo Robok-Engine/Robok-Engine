@@ -23,6 +23,8 @@ import com.termux.view.TerminalViewClient;
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding;
 import org.gampiot.robok.feature.util.KeyboardUtils;
 import org.gampiot.robok.feature.util.base.RobokActivity;
+import org.gampiot.robok.res.Strings;
+import org.gampiot.robok.feature.component.dialog.DialogEditText;
 
 public class TerminalActivity extends RobokActivity implements TerminalSessionClient, TerminalViewClient {
 
@@ -79,6 +81,22 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
                   .translationY(isHide ? 0 : 300)
                   .alpha(isHide ? 1 : 0)
                   .setInterpolator(new OvershootInterpolator());
+     }
+     
+     public void showInstallPackageDialog () {
+          var installPackageDialog = DialogEditText.Builder(this)
+                .setIconResId(org.gampiot.robok.feature.component.R.drawable.ic_dot_24)
+                .setText(getString(Strings.terminal_install_package))
+                .setTextFieldHint(getString(Strings.terminal_install_package_hint))
+                .setTextFieldCornerRadius(10f)
+                .setAllowClickListener(v -> {
+                      // TO-DO: install package logic
+                });
+                .setDenyClickListener(v -> {
+                      installPackageDialog.dismiss();
+                });
+                .build();
+          installPackageDialog.show();
      }
      
      @Override
