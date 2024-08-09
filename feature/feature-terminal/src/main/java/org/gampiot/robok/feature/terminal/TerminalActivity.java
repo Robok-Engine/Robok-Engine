@@ -91,10 +91,10 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
                 .setTextFieldCornerRadius(10f)
                 .setAllowClickListener(v -> {
                       // TO-DO: install package logic
-                });
+                })
                 .setDenyClickListener(v -> {
                       installPackageDialog.dismiss();
-                });
+                })
                 .build();
           installPackageDialog.show();
      }
