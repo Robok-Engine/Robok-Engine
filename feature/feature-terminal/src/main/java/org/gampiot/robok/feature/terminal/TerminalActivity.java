@@ -83,16 +83,15 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      }
      
      public void showInstallPackageDialog () {
-          DialogEditText installPackageDialog = new DialogEditText.Builder(this)
-                .setIconResId(org.gampiot.robok.feature.component.R.drawable.ic_dot_24)
-                .setText(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package))
-                .setAllowClickListener(v -> {
-                      // TO-DO: install package logic
-                })
-                .setDenyClickListener(v -> {
-                      installPackageDialog.dismiss();
-                })
-                .build();
+          DialogEditText installPackageDialog = new DialogEditText.Builder(this);
+          installPackageDialog.setIconResId(org.gampiot.robok.feature.component.R.drawable.ic_dot_24);
+          installPackageDialog.setText(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package));
+          installPackageDialog.setAllowClickListener(v -> {
+                // TO-DO: install package logic
+          });
+          installPackageDialog.setDenyClickListener(v -> {
+                installPackageDialog.dismiss();
+          });
           installPackageDialog.show();
           installPackageDialog.setTextFieldHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
           installPackageDialog.setTextFieldCornerRadius(10f);

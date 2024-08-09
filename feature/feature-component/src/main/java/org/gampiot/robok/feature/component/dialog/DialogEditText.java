@@ -65,7 +65,7 @@ public class DialogEditText extends PermissionDialog {
              getWindow().getDecorView().setBackgroundColor(0);
          }
          setCancelable(false);
-     }
+    }
      
     public void setTextFieldHint(String hint) {
          normalTextInputField.setHint(hint);
@@ -76,25 +76,11 @@ public class DialogEditText extends PermissionDialog {
     }
 
     public static class Builder extends PermissionDialog.Builder {
-    
-         public String textFieldHint;
-         public String textFieldText;
-         public float textFieldRadii;
 
          public Builder(Context context) {
               super(context);
          }
-        
-         public Builder setTextFieldHint(String hint) {
-              this.textFieldHint = hint; 
-              return this;
-         }
-        
-         public Builder setTextFieldText(String text) {
-              this.textFieldText = text;
-              return this;
-         }
-        
+         
          @Override
          public DialogEditText build() {
               return new DialogEditText(context, this);
