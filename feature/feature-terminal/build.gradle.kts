@@ -54,6 +54,7 @@ dependencies {
     implementation("com.termux.termux-app:terminal-view:0.118.1")
     implementation("com.termux.termux-app:terminal-emulator:0.118.1")
     
-    implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-util"))
+    implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-component"))
 }
