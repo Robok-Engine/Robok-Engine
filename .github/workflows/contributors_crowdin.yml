@@ -44,18 +44,12 @@ jobs:
         cat ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json | jq '.' > ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
         rm ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
 
-    - name: Upload JSON report
-      uses: actions/upload-artifact@v4
-      with:
-        name: crowdin_contributors-json
-        path: ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
-
-    - name: Create Pull Request
-      uses: peter-evans/create-pull-request@v6
-      with:
-        token: ${{ secrets.TOKEN }}
-        title: Crowdin Contribuitors Update
-        body: Update table and json from crowdin contributors
-        commit-message: "chore: update crowdin contributors"
-        committer: Suay Dev <devsuay@gmail.com>
-        branch: contributors-crowdin/patch
+    - name: Commit and Push changes
+      run: |
+        git config --global user.name "Suay Dev"
+        git config --global user.email "devsuay@gmail.com"
+        git add .
+        git commit -m "chore: update crowdin contributors"
+        git push origin main
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
