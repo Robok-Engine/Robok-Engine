@@ -34,18 +34,13 @@ jobs:
         run: |
           python3 contributors/logic/format_contributors.py
 
-      - name: Upload Table
-        uses: actions/upload-artifact@v4
-        with:
-          name: github-contributors-table
-          path: contributors/TABLE_CONTRIBUTORS_GITHUB.md
-
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.TOKEN }}
-          title: Github Contributors Update
-          body: Update table and json from github contributors
-          commit-message: "chore: update github contributors"
-          committer: Suay Dev <devsuay@gmail.com>
-          branch: contributors-github/patch
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "devsuay"
+          git config --global user.email "devsuay@gmail.com"
+          git add .
+          git commit -m "chore: update github contributors"
+          git branch -M dev
+          git push origin dev
+        env:
+          TOKEN: ${{ secrets.TOKEN }}
