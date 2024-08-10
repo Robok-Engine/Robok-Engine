@@ -87,7 +87,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         filePickerDialog.show()
     }
     
-    private fun onFolderSelect(file: String) {
+    private fun onFolderSelect(file: Int) {
         /* example to open the editor:
         * val fragment = EditorFragment.newInstance(path)
         * openFragment(fragment)
