@@ -14,11 +14,11 @@ import androidx.core.content.ContextCompat
 import java.io.File
 
 fun getDefaultPath(): String {
-    return "/sdcard/"
+    return Environment.getExternalStorageDirectory().absolutePath
 }
 
 fun getDefaultPathFile(): File {
-    return File("/sdcard/")
+    return Environment.getExternalStorageDirectory()
 }
 
 interface PermissionListener {
