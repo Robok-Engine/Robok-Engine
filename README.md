@@ -37,6 +37,15 @@ Want to contribute to contribute to Robok? Follow this steps:
 3. Don't make unnecessary commits.
 4. Use tags to indicate what the commit does (e.g. feat: new feature to delete projects)
 
+## TO-DO
+ - [X] AAPT2 Compiler
+ - [X] Code diagnostic
+ - [X] Sora Editor 
+ - [ ] Project Creation
+ - [ ] 3D Modeling
+ - [ ] Classes for simplify development
+ - [ ] File Tree
+
 ## License
 
 This project was licensed under the GPL-3.0 License [LISCENSE](LISCENSE).
