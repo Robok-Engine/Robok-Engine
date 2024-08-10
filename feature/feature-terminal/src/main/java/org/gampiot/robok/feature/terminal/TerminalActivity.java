@@ -38,6 +38,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      private String cwd;
      private TerminalSession session;
      
+     /* TO-DO: logic to save necessary terminal files in this dir */
      public static final String APP_HOME_DATA_DIR = "/data/data/org.gampiot.robok/files/home";
      
      @Override
@@ -95,6 +96,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           LayoutDialogInputBinding dialogBinding = LayoutDialogInputBinding.inflate(getLayoutInflater());
           var textField = dialogBinding.dialogEdittext;
           textField.setHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
+          textField.setCornerRadius(10f);
           
           var dialog = new MaterialAlertDialogBuilder(this)
                  .setView(dialogBinding.getRoot())
