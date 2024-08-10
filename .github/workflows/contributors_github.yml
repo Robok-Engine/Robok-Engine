@@ -35,12 +35,13 @@ jobs:
           python3 contributors/logic/format_contributors.py
 
       - name: Check if there are changes
+        id: check_changes
         run: |
           git fetch origin dev
           git diff --exit-code origin/dev || echo "There are changes"
-        id: check_changes
 
       - name: Commit and Push changes
+        if: steps.check_changes.outputs.changes != ''
         run: |
           git config --global user.name "gampiot-bot"
           git config --global user.email "gampiot.inc@gmail.com"
