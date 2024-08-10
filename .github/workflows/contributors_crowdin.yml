@@ -51,7 +51,6 @@ jobs:
       id: check_changes
 
     - name: Commit and Push changes
-      if: steps.check_changes.outputs.exit_code != '0'
       run: |
         git config --global user.name "gampiot-bot"
         git config --global user.email "gampiot-inc@gmail.com"
