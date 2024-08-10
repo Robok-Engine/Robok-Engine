@@ -54,7 +54,7 @@ dependencies {
     implementation("$editorGroupId:language-java")
     implementation("$editorGroupId:language-textmate")
     
-    val antlrVersion = "4.9.2"
+    val antlrVersion = "4.13.2"
     implementation("org.antlr:antlr4:$antlrVersion") 
     implementation("org.antlr:antlr4-runtime:$antlrVersion")
     
