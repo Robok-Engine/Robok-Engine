@@ -18,10 +18,11 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.settings.ui.fragment.SettingsFragment
 import org.gampiot.robok.feature.terminal.TerminalActivity
-import org.gampiot.robok.feature.template.project.ProjectTemplatesFragment
-import org.gampiot.robok.ui.fragments.create.project.CreateProjectFragment
+import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
+import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.fragments.about.AboutFragment
+
 import dev.trindadedev.lib.filepicker.model.DialogConfigs
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 

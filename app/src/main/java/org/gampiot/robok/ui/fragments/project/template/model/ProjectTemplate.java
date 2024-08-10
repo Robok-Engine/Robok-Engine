@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.project.model;
+package org.gampiot.robok.ui.fragments.project.template.model;
 
 import androidx.annotation.DrawableRes;
 

@@ -1,15 +1,18 @@
-package org.gampiot.robok.ui.fragments.project.adapter;
+package org.gampiot.robok.ui.fragments.project.template.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.gampiot.robok.R;
-import org.gampiot.robok.ui.fragments.project.ProjectTemplate;
-import org.gampiot.robok.ui.fragments.project.ProjectTemplateView;
+import org.gampiot.robok.ui.fragments.project.template.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.template.ProjectTemplateView;
 
 import java.util.List;
 
@@ -49,5 +52,13 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
             super(itemView);
             projectTemplateView = (ProjectTemplateView) itemView;
         }
+    }
+    
+    public void goToCreateProject (ProjectTemplate) {
+         FragmentManager fragmentManager = getSupportFragmentManager();
+         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+         fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
+         fragmentTransaction.addToBackStack(null);
+         fragmentTransaction.commit();
     }
 }
