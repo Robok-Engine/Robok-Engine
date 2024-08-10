@@ -79,7 +79,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
                   if (files != null && files.isNotEmpty()) {
                         val fileNames = files.joinToString("\n") { file ->
                              file.substringAfterLast('/')
-                             onFolderSelect(file)
+                             
                         }
                   }
              }
@@ -87,7 +87,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         filePickerDialog.show()
     }
     
-    private fun onFolderSelect(file: Int) {
+    private fun onFolderSelect() {
         /* example to open the editor:
         * val fragment = EditorFragment.newInstance(path)
         * openFragment(fragment)
