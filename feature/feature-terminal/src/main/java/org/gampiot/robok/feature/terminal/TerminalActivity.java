@@ -25,7 +25,7 @@ import com.termux.view.TerminalViewClient;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding;
-import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInput;
+import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInputBinding;
 import org.gampiot.robok.feature.util.KeyboardUtils;
 import org.gampiot.robok.feature.util.base.RobokActivity;
 
@@ -89,7 +89,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      }
      
      public void showInstallPackageDialog () {
-          LayoutDialogInput dialogBinding = LayoutDialogInput.inflate(getLayoutInflater());
+          LayoutDialogInputBinding dialogBinding = LayoutDialogInputBinding.inflate(getLayoutInflater());
           var textField = dialogBinding.textField;
           textField.setHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
           
