@@ -18,8 +18,8 @@
     "received_events_url": "https://api.github.com/users/aquilesTrindade/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 668,
-    "role": "Developer"
+    "contributions": 717,
+    "role": "contributor"
   },
   {
     "login": "ThDev-only",
@@ -40,8 +40,8 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 76,
-    "role": "Developer"
+    "contributions": 84,
+    "role": "contributor"
   },
   {
     "login": "renovate[bot]",
@@ -62,8 +62,8 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 50,
-    "role": "Dependency Bot"
+    "contributions": 59,
+    "role": "contributor"
   },
   {
     "login": "devsuay",
@@ -84,8 +84,8 @@
     "received_events_url": "https://api.github.com/users/devsuay/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 15,
-    "role": "Some helps"
+    "contributions": 26,
+    "role": "contributor"
   },
   {
     "login": "github-actions[bot]",
@@ -107,6 +107,6 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10,
-    "role": "Github Bot"
+    "role": "contributor"
   }
 ]
