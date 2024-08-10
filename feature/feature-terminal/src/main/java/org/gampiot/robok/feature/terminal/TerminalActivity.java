@@ -96,7 +96,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           LayoutDialogInputBinding dialogBinding = LayoutDialogInputBinding.inflate(getLayoutInflater());
           var textField = dialogBinding.dialogEdittext;
           textField.setHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
-          textField.setCornerRadius(10f);
+          textField.setCornerRadius(15f);
           
           var dialog = new MaterialAlertDialogBuilder(this)
                  .setView(dialogBinding.getRoot())
