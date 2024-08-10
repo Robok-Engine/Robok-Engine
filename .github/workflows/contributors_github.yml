@@ -44,7 +44,7 @@ jobs:
         if: steps.check_changes.outputs.exit_code != '0'
         run: |
           git config --global user.name "gampiot-bot"
-        git config --global user.email "gampiot-inc@gmail.com"
+          git config --global user.email "gampiot-inc@gmail.com"
           git add .
           git commit -m "chore: update github contributors"
           git branch -M dev
