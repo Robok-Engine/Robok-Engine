@@ -70,11 +70,11 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           binding.terminalOptionsButton.setOnClickListener(view -> setOptionsVisibility(false));
           binding.closeButton.setOnClickListener(view -> setOptionsVisibility(true));
           binding.installPackageButton.setOnClickListener(v -> {
-               // TO-DO : Logic to install package
+               showInstallPackageDialog();
                setOptionsVisibility(true);
           });
           binding.updatePackagesButton.setOnClickListener(v -> {
-               // TO-DO : Logic to update packages
+               showUpdatePackagesDialog();
                setOptionsVisibility(true);
           });
      }
@@ -111,7 +111,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
                      if (packageName.isEmpty()) {
                           Toast.makeText(this, getString(org.gampiot.robok.feature.res.R.string.error_invalid_name), 4000).show();
                      } else {
-                          onRequestInstallPackage(packageName);
+                          installPackage(packageName);
                      }
                      dialogInterface.dismiss();
                });
@@ -122,7 +122,19 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           textField.requestFocus();
      }
      
-     public void onRequestInstallPackage(String packageName) {
+     public void showUpdatePackagesDialog() {
+          var dialog = new MaterialAlertDialogBuilder(this)
+                 .setTitle(getString(org.gampiot.robok.feature.res.R.string.terminal_update_packages))
+                 .setMessage(getString(org.gampiot.robok.feature.res.R.string.terminal_warning_update_packages))
+                 .setPositiveButton("Update", (dialogInterface, i) -> {
+                        // TO-DO: logic to update packages
+                 })
+                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                 .create();
+          dialog.show();       
+     }
+     
+     public void installPackage(String packageName) {
           // TO-DO : logic to install package 
      }
      

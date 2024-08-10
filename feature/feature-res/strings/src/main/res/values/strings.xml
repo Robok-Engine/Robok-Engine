@@ -72,5 +72,6 @@
 	<string name="terminal_install_package">Install Package</string>
 	<string name="terminal_install_package_hint">Type Package Name</string>
 	<string name="terminal_update_packages">Update Packages</string>
+	<string name="terminal_warning_update_packages">Do you want to update the packages?</string>
 	<!-- end section -->
 </resources>
