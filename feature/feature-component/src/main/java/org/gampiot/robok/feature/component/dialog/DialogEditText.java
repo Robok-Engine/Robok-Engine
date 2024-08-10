@@ -18,15 +18,8 @@ public class DialogEditText extends PermissionDialog {
 
     public NormalTextField normalTextInputField;
 
-    public String textFieldHint;
-    public String textFieldText;
-    public float textFieldRadii;
-
     public DialogEditText(Context context, Builder builder) {
          super(context, builder);
-         this.textFieldHint = builder.textFieldHint;
-         this.textFieldText = builder.textFieldText;
-         this.textFieldRadii = builder.textFieldRadii;
     }
 
     @Override
@@ -43,10 +36,6 @@ public class DialogEditText extends PermissionDialog {
          dialogIcon.setImageResource(iconResId);
          dialogText.setText(Html.fromHtml(text));
  
-         normalTextInputField.setHint(textFieldHint);
-         normalTextInputField.setText(textFieldText);
-         normalTextInputField.setCornerRadius(textFieldRadii); 
-
          buttonAllow.setOnClickListener(v -> {
              if (allowClickListener != null) {
                  allowClickListener.onClick(v);
@@ -69,6 +58,10 @@ public class DialogEditText extends PermissionDialog {
      
     public void setTextFieldHint(String hint) {
          normalTextInputField.setHint(hint);
+    }
+    
+    public void setTextFieldText(String text) {
+         normalTextInputField.setText(text);
     }
     
     public void setTextFieldCornerRadius(float radii) {
