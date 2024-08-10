@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template.project.adapter;
+package org.gampiot.robok.ui.fragments.project.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,9 +7,9 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.gampiot.robok.feature.template.R;
-import org.gampiot.robok.feature.template.project.model.ProjectTemplate;
-import org.gampiot.robok.feature.template.project.view.ProjectTemplateView;
+import org.gampiot.robok.R;
+import org.gampiot.robok.ui.fragments.project.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.ProjectTemplateView;
 
 import java.util.List;
 
@@ -32,6 +32,9 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProjectTemplate template = projectTemplates.get(position);
         holder.projectTemplateView.setProjectTemplate(template);
+        holder.projectTemplateView.setOnClickListener(v -> {
+              
+        });
     }
 
     @Override

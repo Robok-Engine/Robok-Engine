@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template.project;
+package org.gampiot.robok.ui.fragments.project;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.transition.MaterialSharedAxis;
 
-import org.gampiot.robok.feature.template.R;
-import org.gampiot.robok.feature.template.project.model.ProjectTemplate;
-import org.gampiot.robok.feature.template.project.adapter.ProjectTemplateAdapter;
+import org.gampiot.robok.R;
+import org.gampiot.robok.ui.fragments.project.model.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.adapter.ProjectTemplateAdapter;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 
 import java.util.ArrayList;

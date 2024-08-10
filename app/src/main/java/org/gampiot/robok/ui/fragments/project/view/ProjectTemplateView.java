@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template.project.view;
+package org.gampiot.robok.ui.fragments.project.view;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -8,8 +8,8 @@ import android.widget.TextView;
 
 import com.google.android.material.imageview.ShapeableImageView;
 
-import org.gampiot.robok.feature.template.R;
-import org.gampiot.robok.feature.template.project.model.ProjectTemplate;
+import org.gampiot.robok.R;
+import org.gampiot.robok.ui.fragments.project.model.ProjectTemplate;
 
 public class ProjectTemplateView extends LinearLayout {
 
