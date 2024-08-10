@@ -10,6 +10,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.animation.OvershootInterpolator;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -92,7 +93,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      
      public void showInstallPackageDialog () {
           LayoutDialogInputBinding dialogBinding = LayoutDialogInputBinding.inflate(getLayoutInflater());
-          var textField = dialogBinding.textField;
+          var textField = dialogBinding.dialogEdittext;
           textField.setHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
           
           var dialog = new MaterialAlertDialogBuilder(this)
