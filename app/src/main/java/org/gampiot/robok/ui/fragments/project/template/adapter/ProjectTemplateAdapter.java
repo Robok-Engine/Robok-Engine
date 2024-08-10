@@ -54,7 +54,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
         }
     }
     
-    public void goToCreateProject (ProjectTemplate) {
+    public void goToCreateProject (ProjectTemplate template) {
          FragmentManager fragmentManager = getSupportFragmentManager();
          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
          fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
