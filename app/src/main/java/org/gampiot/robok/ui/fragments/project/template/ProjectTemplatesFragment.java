@@ -17,6 +17,7 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import org.gampiot.robok.R;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.ui.fragments.project.template.adapter.ProjectTemplateAdapter;
+import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 
 import java.util.ArrayList;

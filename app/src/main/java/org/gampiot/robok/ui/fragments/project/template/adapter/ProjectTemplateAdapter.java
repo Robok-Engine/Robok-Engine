@@ -11,8 +11,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.gampiot.robok.R;
-import org.gampiot.robok.ui.fragments.project.template.ProjectTemplate;
-import org.gampiot.robok.ui.fragments.project.template.ProjectTemplateView;
+import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.template.view.ProjectTemplateView;
 
 import java.util.List;
 
