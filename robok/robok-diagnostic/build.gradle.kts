@@ -42,7 +42,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
-    val antlrVersion = "4.9.2"
+    val antlrVersion = "4.13.2"
     
     implementation("androidx.appcompat:appcompat:1.7.0")
 

@@ -1,4 +1,4 @@
-// Generated from Java8.g4 by ANTLR 4.9.2
+// Generated from Java8.g4 by ANTLR 4.13.2
 package robok.diagnostic.logic;
 
 import org.antlr.v4.runtime.ParserRuleContext;
@@ -10,6 +10,7 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  * which can be extended to create a listener which only needs to handle a subset
  * of the available methods.
  */
+@SuppressWarnings("CheckReturnValue")
 public class Java8BaseListener implements Java8Listener {
 	/**
 	 * {@inheritDoc}
