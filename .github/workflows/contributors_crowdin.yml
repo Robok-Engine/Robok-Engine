@@ -44,7 +44,14 @@ jobs:
         cat ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json | jq '.' > ${{ env.CONTRIBUTORS_JSON_FILENAME }}.json
         rm ${{ env.CONTRIBUTORS_JSON_FILENAME }}_staging.json
 
+    - name: Check if there are changes
+      run: |
+        git fetch origin dev
+        git diff --exit-code origin/dev || echo "There are changes"
+      id: check_changes
+
     - name: Commit and Push changes
+      if: steps.check_changes.outputs.exit_code != '0'
       run: |
         git config --global user.name "devsuay"
         git config --global user.email "devsuay@gmail.com"
