@@ -11,7 +11,7 @@ Thank you to everyone who contributed to Robok's translation.
           <br />
           <sub><b>Aquiles Trindade (aquilesTrindade)</b></sub></a>
         <br />
-        <sub><b>178 words</b></sub>
+        <sub><b>301 words</b></sub>
       </td>
     </tr>
   </tbody>
