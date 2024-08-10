@@ -4,6 +4,7 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.content.DialogInterface;
 import android.view.MotionEvent;
 import android.view.KeyEvent;
 import android.view.View;
@@ -14,22 +15,27 @@ import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 
 import com.termux.terminal.TerminalEmulator;
 import com.termux.terminal.TerminalSession;
 import com.termux.terminal.TerminalSessionClient;
 import com.termux.view.TerminalViewClient;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding;
+import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInput;
 import org.gampiot.robok.feature.util.KeyboardUtils;
 import org.gampiot.robok.feature.util.base.RobokActivity;
-import org.gampiot.robok.feature.component.dialog.DialogEditText;
 
 public class TerminalActivity extends RobokActivity implements TerminalSessionClient, TerminalViewClient {
 
      private ActivityTerminalBinding binding;
      private String cwd;
      private TerminalSession session;
+     
+     public static final String APP_HOME_DATA_DIR = "/data/data/org.gampiot.robok/files/home";
      
      @Override
      protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +51,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           String[] env = {};
           String[] argsList = {};
           session = new TerminalSession(
-                "/system/bin/sh",
+                APP_HOME_DATA_DIR,
                 cwd,
                 env,
                 argsList,
@@ -83,18 +89,38 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      }
      
      public void showInstallPackageDialog () {
-          DialogEditText installPackageDialog = new DialogEditText.Builder(this);
-          installPackageDialog.setIconResId(org.gampiot.robok.feature.component.R.drawable.ic_dot_24);
-          installPackageDialog.setText(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package));
-          installPackageDialog.setAllowClickListener(v -> {
-                // TO-DO: install package logic
+          LayoutDialogInput dialogBinding = LayoutDialogInput.inflate(getLayoutInflater());
+          var textField = dialogBinding.textField;
+          textField.setHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
+          
+          var dialog = new MaterialAlertDialogBuilder(this)
+                 .setView(dialogBinding.getRoot())
+                 .setTitle(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package))
+                 .setMessage(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint))
+                 .setPositiveButton("Install", null)
+                 .setNegativeButton("Cancel", (dialogInterface, i) -> dialogInterface.dismiss())
+                 .create();
+                 
+          dialog.setOnShowListener(dialogInterface -> {
+               Button positiveButton = ((AlertDialog) dialogInterface).getButton(DialogInterface.BUTTON_POSITIVE);
+               positiveButton.setOnClickListener(view -> {
+                     String packageName = textField.getText().toString().trim();
+                     if (packageName.isEmpty()) {
+                          Toast.makeText(this, getString(org.gampiot.robok.feature.res.R.string.error_invalid_name), 4000).show();
+                     } else {
+                          onRequestInstallPackage(packageName);
+                     }
+                     dialogInterface.dismiss();
+               });
           });
-          installPackageDialog.setDenyClickListener(v -> {
-                installPackageDialog.dismiss();
-          });
-          installPackageDialog.show();
-          installPackageDialog.setTextFieldHint(getString(org.gampiot.robok.feature.res.R.string.terminal_install_package_hint));
-          installPackageDialog.setTextFieldCornerRadius(10f);
+          dialog.setView(dialogBinding.getRoot());
+          dialog.show();
+          dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+          textField.requestFocus();
+     }
+     
+     public void onRequestInstallPackage(String packageName) {
+          // TO-DO : logic to install package 
      }
      
      @Override
