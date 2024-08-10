@@ -24,16 +24,4 @@ public class ProjectTemplate {
 	public void setImage (@DrawableRes int imageResId) {
 		this.imageResId = imageResId;
 	}
-	
-	public String getName () {
-		return name;
-	}
-	
-	public boolean isJavaSupport () {
-		return javaSupport;
-	}
-	
-	public boolean isKotlinSupport () {
-		return kotlinSupport;
-	}
 }

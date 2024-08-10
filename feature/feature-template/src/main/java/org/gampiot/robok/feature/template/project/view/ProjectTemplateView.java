@@ -31,7 +31,7 @@ public class ProjectTemplateView extends LinearLayout {
          init(context);
     }
 
-    private void init(Context context) {
+    public void init(Context context) {
          LayoutInflater inflater = LayoutInflater.from(context);
          inflater.inflate(R.layout.layout_template_view, this, true);
          iconView = findViewById(R.id.template_icon);
@@ -40,8 +40,8 @@ public class ProjectTemplateView extends LinearLayout {
 
     public void setProjectTemplate(ProjectTemplate template) {
          if (template != null) {
-             iconView.setImageResource(template.getImageResId());
-             nameView.setText(template.getName());
+             iconView.setImageResource(template.imageResId);
+             nameView.setText(template.name);
          }
     }
 }
