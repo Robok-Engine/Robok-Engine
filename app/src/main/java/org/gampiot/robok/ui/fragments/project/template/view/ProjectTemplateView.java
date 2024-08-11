@@ -6,6 +6,8 @@ import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.imageview.ShapeableImageView;
 
 import org.gampiot.robok.R;
@@ -15,7 +17,8 @@ public class ProjectTemplateView extends LinearLayout {
 
     private ShapeableImageView iconView;
     private TextView nameView;
-
+    private ProjectTemplate template;
+    
     public ProjectTemplateView(Context context) {
          super(context);
          init(context);
@@ -38,10 +41,18 @@ public class ProjectTemplateView extends LinearLayout {
          nameView = findViewById(R.id.template_name);
     }
 
-    public void setProjectTemplate(ProjectTemplate template) {
+    public void setProjectTemplate(@NonNull ProjectTemplate template) {
          if (template != null) {
+             this.template = template;
              iconView.setImageResource(template.imageResId);
              nameView.setText(template.name);
          }
+    }
+    
+    public ProjectTemplate getTemplate() {
+         if (template != null) {
+             return template;
+         }
+         return null;
     }
 }
