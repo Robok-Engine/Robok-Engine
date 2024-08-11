@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 import org.gampiot.robok.R;
+import org.gampiot.robok.databinding.FragmentProjectTemplateBinding;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.ui.fragments.project.template.adapter.ProjectTemplateAdapter;
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment;
@@ -24,6 +25,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProjectTemplatesFragment extends RobokFragment {
+
+    private FragmentProjectTemplatesBinding binding;
 
     public ProjectTemplatesFragment () {
          super(MaterialSharedAxis.X);
@@ -36,19 +39,19 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         return inflater.inflate(R.layout.fragment_project_templates, container, false);
+         binding = FragmentProjectTemplatesBinding.inflate(LayoutInflate.from(context), container, false);
+         return binding.getRoot();
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
 
-         RecyclerView recyView = view.findViewById(R.id.recycler_view);
-         recyView.setLayoutManager(new LinearLayoutManager(getContext()));
+         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
          List<ProjectTemplate> templates = createTemplates();
          ProjectTemplateAdapter adapter = new ProjectTemplateAdapter(templates, requireContext());
-         recyView.setAdapter(adapter);
+         binding.recyclerView.setAdapter(adapter);
     }
 
     private List<ProjectTemplate> createTemplates() {
