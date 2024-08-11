@@ -56,7 +56,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          
          public ViewHolder(@NonNull View itemView) {
               super(itemView);
-              projectTemplateView = (ProjectTemplateView) itemView.project_template_view;
+              projectTemplateView = itemView.findViewById(R.id.project_template_view);
               projectTemplateView.setOnClickListener(this);
          }
          
