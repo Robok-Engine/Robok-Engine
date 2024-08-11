@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +23,6 @@ import java.util.List;
 public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplateAdapter.ViewHolder> {
 
     private final List<ProjectTemplate> projectTemplates;
-    
     private final Context context;
     
     public ProjectTemplateAdapter(List<ProjectTemplate> projectTemplates, Context context) {
@@ -44,7 +42,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
         ProjectTemplate template = projectTemplates.get(position);
         holder.projectTemplateView.setProjectTemplate(template);
         holder.projectTemplateView.setOnClickListener(v -> {
-              goToCreateProject(template);
+            goToCreateProject(template);
         });
     }
 
@@ -62,11 +60,18 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
         }
     }
     
-    public void goToCreateProject (ProjectTemplate template) {
-         FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-         fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
-         fragmentTransaction.addToBackStack(null);
-         fragmentTransaction.commit();
+    public void goToCreateProject(ProjectTemplate template) {
+        if (!(context instanceof AppCompatActivity)) {
+            throw new IllegalStateException("Context must be an instance of AppCompatActivity");
+        }
+        
+        AppCompatActivity activity = (AppCompatActivity) context;
+        FragmentManager fragmentManager = activity.getSupportFragmentManager();
+        CreateProjectFragment createProjectFragment = new CreateProjectFragment(MaterialSharedAxis.X, template);
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        
+        fragmentTransaction.replace(R.id.fragment_container, createProjectFragment);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 }
