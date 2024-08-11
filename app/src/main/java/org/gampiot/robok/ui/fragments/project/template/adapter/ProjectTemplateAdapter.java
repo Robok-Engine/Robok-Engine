@@ -57,14 +57,16 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          public ViewHolder(@NonNull View itemView) {
               super(itemView);
               projectTemplateView = itemView.findViewById(R.id.project_template_view);
-              projectTemplateView.setOnClickListener(this);
+              projectTemplateView.setClick(this);
          }
          
          @Override
          public void onClick(View view) {
-              if (projectTemplate != null) {
-                   goToCreateProject(projectTemplate);
-              }
+              if (view instanceof ProjectTemplateView) {
+                    if (projectTemplate != null) {
+                         goToCreateProject(projectTemplate);
+                    }
+              } 
          }
 
          public void bind(ProjectTemplate template) {

@@ -9,12 +9,14 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.google.android.material.imageview.ShapeableImageView;
+import com.google.android.material.card.MaterialCardView;
 
 import org.gampiot.robok.R;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 
 public class ProjectTemplateView extends LinearLayout {
 
+    private MaterialCardView container;
     private ShapeableImageView iconView;
     private TextView nameView;
     private ProjectTemplate template;
@@ -39,6 +41,7 @@ public class ProjectTemplateView extends LinearLayout {
          inflater.inflate(R.layout.layout_template_view, this, true);
          iconView = findViewById(R.id.template_icon);
          nameView = findViewById(R.id.template_name);
+         container = findViewById(R.id.container);
     }
 
     public void setProjectTemplate(@NonNull ProjectTemplate template) {
@@ -47,6 +50,10 @@ public class ProjectTemplateView extends LinearLayout {
              iconView.setImageResource(template.imageResId);
              nameView.setText(template.name);
          }
+    }
+    
+    public void setClick (View.OnClickListener ls) {
+         container.setOnClickListener(ls);
     }
     
     public ProjectTemplate getTemplate() {
