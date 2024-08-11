@@ -10,6 +10,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.transition.MaterialSharedAxis;
+
 import org.gampiot.robok.R;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.ui.fragments.project.template.view.ProjectTemplateView;
@@ -27,7 +29,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.layout_project_template, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_template, parent, false);
         return new ViewHolder(view);
     }
 
@@ -36,7 +38,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
         ProjectTemplate template = projectTemplates.get(position);
         holder.projectTemplateView.setProjectTemplate(template);
         holder.projectTemplateView.setOnClickListener(v -> {
-              
+              goToCreateProject(template);
         });
     }
 
