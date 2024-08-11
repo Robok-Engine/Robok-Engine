@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -26,26 +27,26 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
     private final Context context;
     
     public ProjectTemplateAdapter(List<ProjectTemplate> projectTemplates, Context context) {
-        this.projectTemplates = projectTemplates;
-        this.context = context;
+         this.projectTemplates = projectTemplates;
+         this.context = context;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_template, parent, false);
-        return new ViewHolder(view);
+         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_project_template, parent, false);
+         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        ProjectTemplate template = projectTemplates.get(position);
-        holder.bind(template);
+         ProjectTemplate template = projectTemplates.get(position);
+         holder.bind(template);
     }
 
     @Override
     public int getItemCount() {
-        return projectTemplates.size();
+         return projectTemplates.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -63,10 +64,11 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
     }
     
     public void goToCreateProject(ProjectTemplate template) {
-        FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+         Toast.makeText(context, "d", 4000).show();
+         FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+         fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
+         fragmentTransaction.addToBackStack(null);
+         fragmentTransaction.commit();
     }
 }
