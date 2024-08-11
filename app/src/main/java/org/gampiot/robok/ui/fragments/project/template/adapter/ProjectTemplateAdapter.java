@@ -61,8 +61,8 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          }
          
          @Override
-         public void onClick(View p1) {
-              if(projectTemplate != null){
+         public void onClick(View view) {
+              if (projectTemplate != null) {
                    goToCreateProject(projectTemplate);
               }
          }
@@ -73,10 +73,11 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          }
          
          public void goToCreateProject(ProjectTemplate template) {
-              Toast.makeText(context, "d", 4000).show();
+              Toast.makeText(context, "Projeto selecionado: " + template.getName(), Toast.LENGTH_SHORT).show();
               FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-              fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
+              CreateProjectFragment createProjectFragment = new CreateProjectFragment(MaterialSharedAxis.X, template);
+              fragmentTransaction.replace(R.id.fragment_container, createProjectFragment);
               fragmentTransaction.addToBackStack(null);
               fragmentTransaction.commit();
           }
