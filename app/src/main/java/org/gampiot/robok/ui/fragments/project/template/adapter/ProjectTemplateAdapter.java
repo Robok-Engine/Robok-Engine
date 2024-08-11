@@ -68,6 +68,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          }
 
          public void bind(ProjectTemplate template) {
+              projectTemplate = template;
               projectTemplateView.setProjectTemplate(template);
          }
          
