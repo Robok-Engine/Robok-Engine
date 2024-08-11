@@ -39,7 +39,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-         binding = FragmentProjectTemplatesBinding.inflate(LayoutInflate.from(context), container, false);
+         binding = FragmentProjectTemplatesBinding.inflate(LayoutInflater.from(requireContext()), container, false);
          return binding.getRoot();
     }
 
