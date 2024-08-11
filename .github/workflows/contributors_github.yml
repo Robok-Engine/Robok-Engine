@@ -38,10 +38,10 @@ jobs:
         id: check_changes
         run: |
           git fetch origin dev
-          git diff --exit-code origin/dev || echo "There are changes"
+          git status
+          echo "these are the changes "
 
       - name: Commit and Push changes
-        if: steps.check_changes.outputs.changes != ''
         run: |
           git config --global user.name "gampiot-bot"
           git config --global user.email "gampiot.inc@gmail.com"
