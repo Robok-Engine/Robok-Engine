@@ -26,14 +26,16 @@ import java.util.List;
 
 public class ProjectTemplatesFragment extends RobokFragment {
 
-    private FragmentProjectTemplatesBinding binding;
+    public FragmentProjectTemplatesBinding binding;
 
     public ProjectTemplatesFragment () {
          super(MaterialSharedAxis.X);
+         setFragmentLayoutResId(R.id.fragment_container);
     }
 
     public ProjectTemplatesFragment (@NonNull int transitionAxisMode) {
          super(transitionAxisMode);
+         setFragmentLayoutResId(R.id.fragment_container);
     }
 
     @Nullable
@@ -46,8 +48,6 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
-         setFragmentLayoutResId(R.id.fragment_container);
-         
          binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
          List<ProjectTemplate> templates = createTemplates();
@@ -55,7 +55,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
          binding.recyclerView.setAdapter(adapter);
     }
 
-    private List<ProjectTemplate> createTemplates() {
+    public List<ProjectTemplate> createTemplates() {
          List<ProjectTemplate> templates = new ArrayList<>();
          templates.add(createTemplate(
                getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game),
@@ -67,7 +67,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
          return templates;
     }
 
-    private ProjectTemplate createTemplate(String name, String packageName, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
+    public ProjectTemplate createTemplate(String name, String packageName, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
          ProjectTemplate template = new ProjectTemplate();
          template.setName(name);
          template.setPackageName(packageName);

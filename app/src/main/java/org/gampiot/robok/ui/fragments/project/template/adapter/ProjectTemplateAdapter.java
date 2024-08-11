@@ -49,28 +49,35 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          return projectTemplates.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public ProjectTemplateView projectTemplateView;
-
-        public ViewHolder(@NonNull View itemView) {
-             super(itemView);
-             projectTemplateView = (ProjectTemplateView) itemView;
-        }
-        
-        public void bind(ProjectTemplate template) {
-             projectTemplateView.setProjectTemplate(template);
-             projectTemplateView.setOnClickListener(v -> {
-                   goToCreateProject(template);
-             });
-        }
-    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
     
-    public void goToCreateProject(ProjectTemplate template) {
-         Toast.makeText(context, "d", 4000).show();
-         FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
-         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-         fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
-         fragmentTransaction.addToBackStack(null);
-         fragmentTransaction.commit();
+         public ProjectTemplate projectTemplate;
+         public ProjectTemplateView projectTemplateView;
+         
+         public ViewHolder(@NonNull View itemView) {
+              projectTemplateView = itemView;
+              projectTemplateView.setOnClickListener(this);
+              super(itemView); 
+         }
+         
+         @Override
+         public void onClick(View p1) {
+              if(projectTemplate != null){
+                   goToCreateProject(projectTemplate);
+              }
+         }
+
+         public void bind(ProjectTemplate template) {
+              projectTemplateView.setProjectTemplate(template);
+         }
+         
+         public void goToCreateProject(ProjectTemplate template) {
+              Toast.makeText(context, "d", 4000).show();
+              FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
+              FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+              fragmentTransaction.replace(R.id.fragment_container, new CreateProjectFragment(MaterialSharedAxis.X, template));
+              fragmentTransaction.addToBackStack(null);
+              fragmentTransaction.commit();
+          }
     }
 }
