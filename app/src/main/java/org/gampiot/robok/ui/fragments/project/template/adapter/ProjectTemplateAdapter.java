@@ -59,7 +59,9 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
         
         public void bind(ProjectTemplate template) {
              projectTemplateView.setProjectTemplate(template);
-             projectTemplateView.setOnClickListener(v -> goToCreateProject(template));
+             projectTemplateView.setOnClickListener(v -> {
+                   goToCreateProject(template);
+             });
         }
     }
     
