@@ -1,6 +1,26 @@
 <resources>
-  <style name="ShapeAppearance.RobokIDE.CircleImageView" parent=""> 
-     <item name="cornerFamily">rounded</item> 
-     <item name="cornerSize">50%</item> 
+  <style name="ShapeAppearance.Robok.CircleImageView" parent=""> 
+        <item name="cornerFamily">rounded</item> 
+        <item name="cornerSize">50%</item> 
   </style> 
+  
+  <style name="Theme.Robok.TextInputLayoutStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:paddingHorizontal">0dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:bottomLeftRadius">14dp</item>
+        <item name="android:bottomRightRadius">14dp</item>
+        <item name="android:topLeftRadius">14dp</item>
+        <item name="android:topRightRadius">14dp</item>
+        <item name="hintEnabled">true</item>
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearance.Robok.TextInputLayoutStyle</item>
+    </style>
+
+    <style name="ShapeAppearance.Robok.TextInputLayoutStyle">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">10dp</item>
+    </style>
+    
+    <!-- just to fix bugs -->
+    <style name="ShapeAppearance" />
+    <style name="ShapeAppearance.Robok" />
 </resources>

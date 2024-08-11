@@ -1,5 +1,5 @@
 <resources>
-	<style name="Base.Theme.RobokIDE" parent="Theme.Material3.DynamicColors.Light" >
+	<style name="Base.Theme.Robok" parent="Theme.Material3.DynamicColors.Light" >
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -46,10 +46,10 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
-        
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
         
+        <!-- Bars -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -57,11 +57,14 @@
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
         
+        <!-- Components -->
+        <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
+        
         <item name="fontFamily">@font/gilroy_regular</item>
         <item name="android:fontFamily">@font/gilroy_regular</item>
         <item name="android:forceDarkAllowed">false</item>
 	</style>
 	
-	<style name ="Theme.RobokIDE" parent="Base.Theme.RobokIDE" />
+	<style name ="Theme.Robok" parent="Base.Theme.Robok" />
 	
 </resources>
