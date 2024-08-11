@@ -48,7 +48,17 @@
     <!-- warnings section -->
     <string name="warning_storage_perm_title">Permissão de Armazenamento</string>
     <string name="warning_storage_perm_message">Robok precisa de permissão de armazenamento para criar projetos, abrir projetos e muito mais</string>
+    <!-- end section -->
     <!-- errors section -->
     <string name="error_storage_perm_title">Erro na permissão de armazenamento</string>
     <string name="error_storage_perm_message">Você não aceitou a permissão de armazenamento, ela é necessária para que a Robok funcione.</string>
+    <string name="error_invalid_name">Invalid name</string>
+    <!-- end section -->
+    <!-- terminal section -->
+    <string name="terminal_options">Options</string>
+    <string name="terminal_install_package">Install Package</string>
+    <string name="terminal_install_package_hint">Type Package Name</string>
+    <string name="terminal_update_packages">Update Packages</string>
+    <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
+    <!-- end section -->
 </resources>
