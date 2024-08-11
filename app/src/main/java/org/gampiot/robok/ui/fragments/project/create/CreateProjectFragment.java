@@ -25,12 +25,12 @@ public class CreateProjectFragment extends RobokFragment {
     
     public CreateProjectFragment() {
          this(MaterialSharedAxis.X);
-         this.template = defaultProjectTemplate;
+         this.template = defaultProjectTemplate();
     }
     
     public CreateProjectFragment(int transitionAxis) {
          super(transitionAxis);
-         this.template = defaultProjectTemplate;
+         this.template = defaultProjectTemplate();
     }
     
     public CreateProjectFragment(int transitionAxis, ProjectTemplate template) {

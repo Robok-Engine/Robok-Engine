@@ -80,7 +80,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:id="@+id/button_go"
+                    android:id="@+id/button_next"
                     android:text="@string/common_word_next" />    
            </LinearLayout>
         </LinearLayout>
