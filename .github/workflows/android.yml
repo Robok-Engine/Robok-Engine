@@ -89,6 +89,7 @@ jobs:
   send-release:
     name: Send Release APK
     runs-on: ubuntu-latest
+    if: github.repository == 'robok-inc/Robok-Engine'
     needs: Engine-release-apk
     steps:
       - name: Checkout
