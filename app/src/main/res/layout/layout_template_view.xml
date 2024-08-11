@@ -2,7 +2,6 @@
 <com.google.android.material.card.MaterialCardView
       xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:app="http://schemas.android.com/apk/res-auto"
-      xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
       android:layout_margin="8dp"
@@ -31,7 +30,8 @@
                 android:layout_height="170dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:elevation="2dp" />
+                android:elevation="2dp"
+                app:shapeAppearance="@style/ShapeAppearance.Robok.RoundedImageView" />
                 
            <TextView
                 android:id="@+id/template_name"
@@ -39,8 +39,7 @@
                 android:layout_height="wrap_content"
                 android:maxLines="2"
                 android:layout_marginTop="8dp"
-                android:gravity="center_horizontal"
-                tools:text="Empty Activity" />
+                android:gravity="center_horizontal" />
 
       </LinearLayout>
 
