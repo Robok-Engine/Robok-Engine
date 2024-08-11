@@ -40,7 +40,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         ProjectTemplate template = projectTemplates.get(position);
-        holder.bind();
+        holder.bind(template);
     }
 
     @Override
