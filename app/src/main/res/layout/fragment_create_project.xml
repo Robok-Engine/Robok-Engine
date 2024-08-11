@@ -48,6 +48,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
+                   android:id="@+id/project_name"
                    app:text="New App"
                    app:hint="@string/hint_project_name" />
 
@@ -55,6 +56,7 @@
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
+                   android:id="@+id/project_package_name"
                    app:text="com.my.newapp"
                    app:hint="@string/hint_package_name" />    
                 
@@ -64,6 +66,7 @@
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:orientation="horizontal"
+               android:layout_gravity="bottom"
                android:padding="8dp"> 
                
                <Button
@@ -80,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
                     android:layout_weight="1"
-                    android:id="@+id/button_go"
+                    android:id="@+id/button_next"
                     android:text="@string/common_word_next" />    
            </LinearLayout>
         </LinearLayout>

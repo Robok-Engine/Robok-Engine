@@ -12,6 +12,7 @@
       android:elevation="2dp"
       android:gravity="center"
       android:focusable="true"
+      android:id="@+id/container"
       app:strokeWidth="0dp">
 
       <LinearLayout

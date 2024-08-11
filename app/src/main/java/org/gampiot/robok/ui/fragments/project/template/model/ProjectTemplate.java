@@ -1,10 +1,11 @@
-package org.gampiot.robok.feature.template.project.model;
+package org.gampiot.robok.ui.fragments.project.template.model;
 
 import androidx.annotation.DrawableRes;
 
 public class ProjectTemplate {
 	
 	public String name;
+	public String packageName;
 	public boolean javaSupport;
 	public boolean kotlinSupport;
 	@DrawableRes public int imageResId;
@@ -25,15 +26,7 @@ public class ProjectTemplate {
 		this.imageResId = imageResId;
 	}
 	
-	public String getName () {
-		return name;
-	}
-	
-	public boolean isJavaSupport () {
-		return javaSupport;
-	}
-	
-	public boolean isKotlinSupport () {
-		return kotlinSupport;
+	public void setPackageName (String packageName) {
+		this.packageName = packageName;
 	}
 }

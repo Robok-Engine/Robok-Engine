@@ -18,7 +18,8 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.settings.ui.fragment.SettingsFragment
 import org.gampiot.robok.feature.terminal.TerminalActivity
-import org.gampiot.robok.ui.fragments.create.project.CreateProjectFragment
+import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
+import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.fragments.about.AboutFragment
 
@@ -42,7 +43,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         super.onViewCreated(view, savedInstanceState)
         setFragmentLayoutResId(R.id.fragment_container)
         binding.createProject.setOnClickListener {
-            openFragment(CreateProjectFragment(MaterialSharedAxis.X))
+            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X))
         }
         
         binding.openProject.setOnClickListener {
@@ -79,6 +80,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
                   if (files != null && files.isNotEmpty()) {
                         val fileNames = files.joinToString("\n") { file ->
                              file.substringAfterLast('/')
+                             
                         }
                   }
              }
@@ -87,8 +89,10 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
     }
     
     private fun onFolderSelect() {
-        // example to open the editor:
-        // val fragment = EditorFragment.newInstance(path)
+        /* example to open the editor:
+        * val fragment = EditorFragment.newInstance(path)
+        * openFragment(fragment)
+        */
     }
 
     override fun onDestroyView() {
