@@ -73,7 +73,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          }
          
          public void goToCreateProject(ProjectTemplate template) {
-              Toast.makeText(context, "Projeto selecionado: " + template.getName(), Toast.LENGTH_SHORT).show();
+              Toast.makeText(context, "Projeto selecionado: " + template.name, Toast.LENGTH_SHORT).show();
               FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
               CreateProjectFragment createProjectFragment = new CreateProjectFragment(MaterialSharedAxis.X, template);
