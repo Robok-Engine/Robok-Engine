@@ -47,7 +47,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
          recyView.setLayoutManager(new LinearLayoutManager(getContext()));
 
          List<ProjectTemplate> templates = createTemplates();
-         ProjectTemplateAdapter adapter = new ProjectTemplateAdapter(templates);
+         ProjectTemplateAdapter adapter = new ProjectTemplateAdapter(templates, requireContext());
          recyView.setAdapter(adapter);
     }
 
