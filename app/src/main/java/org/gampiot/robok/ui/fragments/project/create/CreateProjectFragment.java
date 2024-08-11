@@ -53,8 +53,9 @@ public class CreateProjectFragment extends RobokFragment {
          
          binding.buttonNext.setOnClickListener(v -> create());
          
+         var helper = new Helper();
          OnBackPressedDispatcher onBackPressedDispatcher = requireActivity().getOnBackPressedDispatcher();
-         binding.buttonBack.setOnClickListener(Helper.getBackPressedClickListener(onBackPressedDispatcher));
+         binding.buttonBack.setOnClickListener(helper.getBackPressedClickListener(onBackPressedDispatcher));
     }
 
     @Override
