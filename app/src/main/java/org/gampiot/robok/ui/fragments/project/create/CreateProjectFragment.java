@@ -70,7 +70,7 @@ public class CreateProjectFragment extends RobokFragment {
     
     public ProjectTemplate defaultProjectTemplate () {
          ProjectTemplate template = new ProjectTemplate();
-         template.setName("Empty game");
+         template.setName(getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game));
          template.setJavaSupport(true);
          template.setKotlinSupport(false);
          template.setImage(R.drawable.ic_empty_game);
