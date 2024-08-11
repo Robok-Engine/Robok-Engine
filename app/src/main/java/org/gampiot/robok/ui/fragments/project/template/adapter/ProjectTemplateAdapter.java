@@ -62,10 +62,8 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          
          @Override
          public void onClick(View view) {
-              if (view instanceof ProjectTemplateView) {
-                    if (projectTemplate != null) {
-                         goToCreateProject(projectTemplate);
-                    }
+              if (projectTemplate != null) {
+                   goToCreateProject(projectTemplate);
               } 
          }
 
