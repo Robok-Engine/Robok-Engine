@@ -46,7 +46,8 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
-
+         setFragmentLayoutResId(R.id.fragment_container);
+         
          binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
          List<ProjectTemplate> templates = createTemplates();
@@ -58,16 +59,18 @@ public class ProjectTemplatesFragment extends RobokFragment {
          List<ProjectTemplate> templates = new ArrayList<>();
          templates.add(createTemplate(
                getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game),
-               true, 
-               false, 
+               "com.robokgame.empty",
+               true,
+               false,
                R.drawable.ic_empty_game
          ));
          return templates;
     }
 
-    private ProjectTemplate createTemplate(String name, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
+    private ProjectTemplate createTemplate(String name, String packageName, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
          ProjectTemplate template = new ProjectTemplate();
          template.setName(name);
+         template.setPackageName(packageName);
          template.setJavaSupport(javaSupport);
          template.setKotlinSupport(kotlinSupport);
          template.setImage(imageResId);

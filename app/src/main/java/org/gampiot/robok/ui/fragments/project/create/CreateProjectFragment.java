@@ -51,17 +51,23 @@ public class CreateProjectFragment extends RobokFragment {
          configureToolbarNavigationBack(binding.toolbar);
          setFragmentLayoutResId(R.id.fragment_container);
          
-         binding.buttonNext.setOnClickListener(v -> create());
-         
+         loadTemplate();
          var helper = new Helper();
          OnBackPressedDispatcher onBackPressedDispatcher = requireActivity().getOnBackPressedDispatcher();
+         
          binding.buttonBack.setOnClickListener(helper.getBackPressedClickListener(onBackPressedDispatcher));
+         binding.buttonNext.setOnClickListener(v -> create());
     }
 
     @Override
     public void onDestroyView() {
          super.onDestroyView();
          binding = null;
+    }
+    
+    public void loadTemplate() {
+         binding.projectName.setText(template.name);
+         binding.projectPackageName.setText(template.packageName);
     }
     
     public void create () {

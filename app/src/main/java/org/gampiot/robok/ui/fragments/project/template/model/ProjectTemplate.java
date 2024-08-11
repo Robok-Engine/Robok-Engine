@@ -5,6 +5,7 @@ import androidx.annotation.DrawableRes;
 public class ProjectTemplate {
 	
 	public String name;
+	public String packageName;
 	public boolean javaSupport;
 	public boolean kotlinSupport;
 	@DrawableRes public int imageResId;
@@ -23,5 +24,9 @@ public class ProjectTemplate {
 	
 	public void setImage (@DrawableRes int imageResId) {
 		this.imageResId = imageResId;
+	}
+	
+	public void setPackageName (String packageName) {
+		this.packageName = packageName;
 	}
 }
