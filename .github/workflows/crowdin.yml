@@ -8,6 +8,7 @@ on:
 jobs:
   synchronize-with-crowdin:
     runs-on: ubuntu-latest
+    if: github.repository == 'robok-inc/Robok-Engine'
 
     steps:
       - name: Checkout
