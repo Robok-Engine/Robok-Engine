@@ -47,9 +47,10 @@
                 android:transitionGroup="true" />
                 
             <Button 
-                android:id="@+id/a"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>    
+                android:id="@+id/show_logs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/common_word_logs"/>    
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

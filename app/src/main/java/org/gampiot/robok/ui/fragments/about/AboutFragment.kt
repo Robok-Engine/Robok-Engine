@@ -20,6 +20,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 
 import org.gampiot.robok.R
+import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 import org.gampiot.robok.ui.fragments.about.model.Contributor
@@ -41,8 +42,11 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
 
         terminal = RobokTerminal(requireContext())
-        binding.a.setOnClickListener {
+        binding.showLogs.setOnClickListener {
              terminal.show()
+        }
+        if (!BuildConfig.DEBUG) {
+            binding.showLogs.visibility = View.GONE
         }
         return binding.root
     }
