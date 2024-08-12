@@ -100,7 +100,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
              new MaterialAlertDialogBuilder(requireContext())
                   .setTitle(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_title))
                   .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
-                  .setPositiveButton(getString(R.string.common_word_ok), (d, i) -> {
+                  .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (d, i) -> {
                         d.dismiss();
                   })
                   .create();
