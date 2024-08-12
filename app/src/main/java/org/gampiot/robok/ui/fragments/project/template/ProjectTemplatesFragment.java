@@ -60,7 +60,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
          templates.add(createTemplate(
                getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game),
                "com.robokgame.empty",
-               "empty_game"
+               "empty_game",
                true,
                false,
                R.drawable.ic_empty_game
