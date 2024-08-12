@@ -22,7 +22,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ContributorViewModel by viewModels()
+    private val viewModel: ContributorViewModel by viewModels(requireContext())
 
     private lateinit var terminal: RobokTerminal
 
