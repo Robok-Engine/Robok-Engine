@@ -28,12 +28,7 @@ jobs:
 
       - name: Combine JSON Data
         run: |
-          jq --slurp '
-            (.[0] | map({login, id, role}) | from_entries) as $api_data |
-            (.[1] | map({login, id, role}) | from_entries) as $existing_data |
-            $api_data + $existing_data | to_entries | map(.value) 
-          ' contributors/contributors_github_temp.json contributors/contributors_github.json > contributors/contributors_combined.json
-          mv contributors/contributors_combined.json contributors/contributors_github.json
+          python3 contributors/logic/combine_json.py
 
       - name: Format Contributors Table
         run: |
