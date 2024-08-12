@@ -6,15 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.google.android.material.transition.MaterialSharedAxis
 
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
-import org.gampiot.robok.ui.fragments.about.viewmodel.ContributorViewModel
+import org.gampiot.robok.ui.fragments.about.model.Contributor
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
@@ -22,19 +30,19 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
-    private val viewModel: ContributorViewModel by viewModels(requireContext())
 
     private lateinit var terminal: RobokTerminal
+    private val client = OkHttpClient()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
-        
+
         terminal = RobokTerminal(requireContext())
         terminal.show()
-        
+
         return binding.root
     }
 
@@ -45,9 +53,34 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
         binding.recyclerView.layoutManager = LinearLayoutManager(context)
 
-        viewModel.contributors.observe(viewLifecycleOwner) { contributors ->
-            binding.recyclerView.adapter = ContributorAdapter(contributors)
-            terminal.addLog("Contributors loaded: ${contributors.size}")
+        fetchContributors()
+    }
+
+    private fun fetchContributors() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = Request.Builder()
+                .url("https://raw.githubusercontent.com/gampiot-inc/Robok-Engine/dev/contributors/contributors_github.json")
+                .build()
+
+            try {
+                client.newCall(request).execute().use { response ->
+                    if (response.isSuccessful) {
+                        val jsonString = response.body?.string()
+                        terminal.addLog("Response successful: $jsonString")
+                        jsonString?.let {
+                            val contributorsList = Json.decodeFromString<List<Contributor>>(it)
+                            launch(Dispatchers.Main) {
+                                binding.recyclerView.adapter = ContributorAdapter(contributorsList)
+                                terminal.addLog("Parsed contributors: ${contributorsList.size}")
+                            }
+                        }
+                    } else {
+                        terminal.addLog("Request failed with code: ${response.code}")
+                    }
+                }
+            } catch (e: Exception) {
+                terminal.addLog("Network request failed: ${e.message}")
+            }
         }
     }
 
