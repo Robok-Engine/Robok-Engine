@@ -1,7 +1,8 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| aquilesTrindade | 732 | contributor |
-| ThDev-only | 86 | contributor |
-| renovate[bot] | 59 | contributor |
-| antsummer | 35 | contributor |
-| github-actions[bot] | 10 | contributor |
+| aquilesTrindade | 746 | Contributor |
+| ThDev-only | 86 | Contributor |
+| renovate[bot] | 59 | Contributor |
+| antsummer | 35 | Contributor |
+| github-actions[bot] | 10 | Contributor |
+| gampiot-bot | 1 | Contributor |

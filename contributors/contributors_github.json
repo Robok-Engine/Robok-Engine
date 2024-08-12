@@ -18,8 +18,8 @@
     "received_events_url": "https://api.github.com/users/aquilesTrindade/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 732,
-    "role": "Developer"
+    "contributions": 746,
+    "role": "Contributor"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 86,
-    "role": "Developer"
+    "role": "Contributor"
   },
   {
     "login": "renovate[bot]",
@@ -63,7 +63,7 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 59,
-    "role": "contributor"
+    "role": "Contributor"
   },
   {
     "login": "antsummer",
@@ -107,6 +107,28 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10,
-    "role": "contributor"
+    "role": "Contributor"
+  },
+  {
+    "login": "gampiot-bot",
+    "id": 178045596,
+    "node_id": "U_kgDOCpzCnA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/178045596?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gampiot-bot",
+    "html_url": "https://github.com/gampiot-bot",
+    "followers_url": "https://api.github.com/users/gampiot-bot/followers",
+    "following_url": "https://api.github.com/users/gampiot-bot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gampiot-bot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gampiot-bot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gampiot-bot/subscriptions",
+    "organizations_url": "https://api.github.com/users/gampiot-bot/orgs",
+    "repos_url": "https://api.github.com/users/gampiot-bot/repos",
+    "events_url": "https://api.github.com/users/gampiot-bot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1,
+    "role": "Contributor"
   }
 ]
