@@ -102,7 +102,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
                   .setMessage(getString(R.string.warning_project_created_message))
                   .setPositiveButton(getString(R.string.common_word_ok), (d, i) -> {
                         d.dismiss();
-                  });
+                  })
                   .create();
          dialog.show();         
     }
