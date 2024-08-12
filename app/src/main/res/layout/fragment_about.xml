@@ -46,12 +46,18 @@
                 android:padding="16dp"
                 android:transitionGroup="true" />
                 
-            <Button 
-                android:id="@+id/show_logs"
-                android:layout_width="wrap_content"
+            <LinearLayout    
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/common_word_logs"/>    
-
+                android:gravity="center"
+                android:padding="16dp" >
+                
+                <Button 
+                     android:id="@+id/show_logs"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:text="@string/common_word_logs" />    
+            </LinearLayout>    
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
