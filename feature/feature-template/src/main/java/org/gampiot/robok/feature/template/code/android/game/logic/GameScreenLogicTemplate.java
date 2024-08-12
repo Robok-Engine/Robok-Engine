@@ -24,13 +24,13 @@ public class GameScreenLogicTemplate extends JavaClassTemplate {
      public void configure() {
           setContent(
                "package "
-                + CodeTemplate.PACKAGE_NAME
+                + PACKAGE_NAME
                 + ";\n\n"
                 + "import robok.game.screen.GameScreen;\n"
                 + "import robok.game.gui.GUIViewListener;\n"
-                + CodeTemplate.PACKAGE_NAME + ".datagui.MainGui;\n\n"
+                + PACKAGE_NAME + ".datagui.MainGui;\n\n"
                 + "public class "
-                + CodeTemplate.CLASS_NAME
+                + CLASS_NAME
                 + " extends GameScreen implements GUIViewListener {\n\n"
                 + "   MainGui views;\n\n"
                 + "   @Override\n"
