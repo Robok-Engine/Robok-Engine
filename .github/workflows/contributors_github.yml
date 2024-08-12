@@ -29,6 +29,7 @@ jobs:
       - name: Combine JSON Data
         run: |
           python3 contributors/logic/combine_json.py
+          mv contributors/contributors_combined.json contributors/contributors_github.json
 
       - name: Format Contributors Table
         run: |
