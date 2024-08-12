@@ -19,7 +19,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 732,
-    "role": "contributor"
+    "role": "Developer"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 86,
-    "role": "contributor"
+    "role": "Developer"
   },
   {
     "login": "renovate[bot]",
@@ -85,7 +85,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 35,
-    "role": "contributor"
+    "role": "Contributor"
   },
   {
     "login": "github-actions[bot]",
