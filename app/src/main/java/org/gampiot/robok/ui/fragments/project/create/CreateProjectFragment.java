@@ -77,7 +77,7 @@ public class CreateProjectFragment extends RobokFragment {
                "templates.zip",
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
-               template.name
+               template
          );
     }
     
