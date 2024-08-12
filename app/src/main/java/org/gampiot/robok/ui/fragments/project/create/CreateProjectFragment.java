@@ -97,9 +97,9 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     @Override
     public void onProjectCreate() {
          var dialog = 
-             new MaterialAlertDialogBuilder(this)
-                  .setTitle(getString(R.string.warning_project_created_title))
-                  .setMessage(getString(R.string.warning_project_created_message))
+             new MaterialAlertDialogBuilder(requireContext())
+                  .setTitle(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_title))
+                  .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
                   .setPositiveButton(getString(R.string.common_word_ok), (d, i) -> {
                         d.dismiss();
                   })
