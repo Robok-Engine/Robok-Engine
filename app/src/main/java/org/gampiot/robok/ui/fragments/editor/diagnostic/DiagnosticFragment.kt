@@ -9,20 +9,20 @@ import android.view.ViewGroup
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.R
-import org.gampiot.robok.databinding.FragmentDiagnosticBinding
+import org.gampiot.robok.databinding.FragmentEditorDiagnosticBinding
 import org.gampiot.robok.feature.component.log.Log
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
 
-    private var _binding: FragmentDiagnosticBinding? = null
+    private var _binding: FragmentEditorDiagnosticBinding? = null
     private val binding get() = _binding!!
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentDiagnosticBinding.inflate(inflater, container, false)
+        _binding = FragmentEditorDiagnosticBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -32,7 +32,7 @@ class DiagnosticFragment (private val tansitionAxis : Int = MaterialSharedAxis.X
     }
     
     fun addDiagnostic(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
-        _binding = FragmentDiagnosticBinding.inflate(inflater, container, false)
+        _binding = FragmentEditorDiagnosticBinding.inflate(inflater, container, false)
         setFragmentLayoutResId(R.id.fragment_container)
         val logView = Log(context, log)
         binding.content.addView(logView)
