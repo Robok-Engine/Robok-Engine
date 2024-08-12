@@ -19,21 +19,21 @@ jobs:
           curl -H "Authorization: token ${{ secrets.TOKEN }}" \
                -H "Accept: application/vnd.github.v3+json" \
                https://api.github.com/repos/${{ github.repository }}/contributors \
-               -o contributors/contributors_github.json
+               -o contributors/contributors_github_temp.json
 
       - name: Install Python and jq
         run: |
           sudo apt-get update
           sudo apt-get install -y python3 python3-pip jq
 
-      - name: Add Role to Contributors
+      - name: Combine JSON Data
         run: |
-          echo "Before:"
-          cat contributors/contributors_github.json
-          jq 'map(if .role == null then . + {"role": "Contributor"} else . end)' contributors/contributors_github.json > temp.json
-          echo "After:"
-          cat temp.json
-          mv temp.json contributors/contributors_github.json
+          jq --slurp '
+            (.[0] | map({login, id, role}) | from_entries) as $api_data |
+            (.[1] | map({login, id, role}) | from_entries) as $existing_data |
+            $api_data + $existing_data | to_entries | map(.value) 
+          ' contributors/contributors_github_temp.json contributors/contributors_github.json > contributors/contributors_combined.json
+          mv contributors/contributors_combined.json contributors/contributors_github.json
 
       - name: Format Contributors Table
         run: |
