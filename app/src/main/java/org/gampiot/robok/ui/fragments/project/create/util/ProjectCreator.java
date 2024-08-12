@@ -11,7 +11,7 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.gampiot.robok.feature.template.code.JavaClassTemplate;
+import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
 import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 
@@ -65,8 +65,8 @@ public class ProjectCreator {
     private static void createJavaClass(File outputDir, String projectName, String packageName) {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
-            template.setName("MainScreen");
-            template.setPackageName(packageName);
+            template.CLASS_NAME = "MainScreen";
+            template.PACKAGE_NAME = packageName;
             
             String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getName() + ".java";
             File javaFile = new File(outputDir, classFilePath);
@@ -76,7 +76,7 @@ public class ProjectCreator {
             }
 
             FileOutputStream fos = new FileOutputStream(javaFile);
-            fos.write(template.getContent().getBytes());
+            fos.write(template.codeContent.getBytes());
             fos.close();
 
         } catch (IOException e) {

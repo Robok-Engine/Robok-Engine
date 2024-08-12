@@ -20,10 +20,10 @@ public class CodeTemplate implements Parcelable {
                }
           };
           
-      public static final String PACKAGE_NAME = "${packageName}";
-      public static final String CLASS_NAME = "${className}";
+      public String PACKAGE_NAME;
+      public String CLASS_NAME;
       
-      protected String codeContent;
+      public String codeContent;
           
       public CodeTemplate() {}
           
