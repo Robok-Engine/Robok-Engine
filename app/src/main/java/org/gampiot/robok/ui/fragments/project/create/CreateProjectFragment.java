@@ -73,8 +73,7 @@ public class CreateProjectFragment extends RobokFragment {
     
     public void create () {
          ProjectCreator.create(
-               requireContext(), 
-               "templates.zip",
+               requireContext(),
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
                template

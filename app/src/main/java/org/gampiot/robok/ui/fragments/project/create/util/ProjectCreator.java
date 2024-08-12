@@ -11,13 +11,15 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.gampiot.robok.feature.template.code.JavaClassTemplate;
+import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 
 public class ProjectCreator {
 
-    public static void create(Context context, String zipFileName, String projectName, String packageName, ProjectTemplate template) {
+    public static void create(Context context, String projectName, String packageName, ProjectTemplate template) {
         try {
-            InputStream zipFileInputStream = context.getAssets().open(zipFileName);
+            InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
             File outputDir = new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + projectName);
 
             if (!outputDir.exists()) {
@@ -52,6 +54,30 @@ public class ProjectCreator {
             }
 
             zipInputStream.close();
+            
+            createJavaClass(outputDir, projectName, packageName);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void createJavaClass(File outputDir, String projectName, String packageName) {
+        try {
+            GameScreenLogicTemplate template = new GameScreenLogicTemplate();
+            template.setName("MainScreen");
+            template.setPackageName(packageName);
+            
+            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getName() + ".java";
+            File javaFile = new File(outputDir, classFilePath);
+
+            if (!javaFile.getParentFile().exists()) {
+                javaFile.getParentFile().mkdirs();
+            }
+
+            FileOutputStream fos = new FileOutputStream(javaFile);
+            fos.write(template.getContent().getBytes());
+            fos.close();
 
         } catch (IOException e) {
             e.printStackTrace();

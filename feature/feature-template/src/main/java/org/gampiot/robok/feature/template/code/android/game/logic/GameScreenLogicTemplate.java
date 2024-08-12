@@ -26,14 +26,24 @@ public class GameScreenLogicTemplate extends JavaClassTemplate {
                "package "
                 + CodeTemplate.PACKAGE_NAME
                 + ";\n\n"
-                + "import robok.game.screen.GameScreen;\n\n"
+                + "import robok.game.screen.GameScreen;\n"
+                + "import robok.game.gui.GUIViewListener;\n"
+                + CodeTemplate.PACKAGE_NAME + ".datagui.MainGui;\n\n"
                 + "public class "
                 + CodeTemplate.CLASS_NAME
-                + " extends GameScreen {\n\n"
+                + " extends GameScreen implements GUIViewListener {\n\n"
+                + "   MainGui views;\n\n"
                 + "   @Override\n"
                 + "   public void onScreenCreated() {\n"
-                + "       super.onScreenCreated();\n"
-            + "   }\n"
-            + "}");
+                + "       views = MainGui.inflate(this);\n"
+                + "       views.shootButton.setGUIViewListener(this);\n"
+                + "   }\n\n"
+                + "   @Override\n"
+                + "   public void onClick(GUIView view) {\n"
+                + "       if (view == views.shootButton) {\n"
+                + "           \n"
+                + "       }\n"
+                + "   }\n"
+                + "}");
      }
 }
