@@ -34,6 +34,9 @@ class ContributorAdapter(private val teamMembers: List<Contributor>) :
             Glide.with(binding.avatar.context)
                 .load(teamMember.avatar_url)
                 .into(binding.avatar)
+            binding.container.setOnClickListener {
+            
+            }    
         }
     }
 }
