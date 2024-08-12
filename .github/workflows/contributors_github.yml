@@ -28,7 +28,7 @@ jobs:
 
       - name: Add Role to Contributors
         run: |
-          jq 'map(if has("role") then . else . + {"role": "Contributor"} end)' contributors/contributors_github.json > temp.json && mv temp.json contributors/contributors_github.json
+          jq 'map(if .role then . else . + {"role": "Contributor"} end)' contributors/contributors_github.json > temp.json && mv temp.json contributors/contributors_github.json
 
       - name: Format Contributors Table
         run: |
