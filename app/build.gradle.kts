@@ -59,6 +59,12 @@ android {
             keyPassword = "testkey"
         }
     }
+    
+    sourceSets {
+        getByName("main") {
+            assets.srcDirs(files("contributors"))
+        }
+    }
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
