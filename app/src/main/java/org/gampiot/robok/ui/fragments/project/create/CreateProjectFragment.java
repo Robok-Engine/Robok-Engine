@@ -14,6 +14,7 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
 
@@ -71,7 +72,13 @@ public class CreateProjectFragment extends RobokFragment {
     }
     
     public void create () {
-         // 
+         ProjectCreator.create(
+               requireContext(), 
+               "templates.zip",
+               binding.projectName.getText().toString(),
+               binding.projectPackageName.getText().toString(),
+               template.name
+         );
     }
     
     public ProjectTemplate defaultProjectTemplate () {
