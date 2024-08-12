@@ -17,7 +17,11 @@ import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 
 public class ProjectCreator {
 
-    public static void create(Context context, String projectName, String packageName, ProjectTemplate template) {
+    public Listener listener;
+    
+    public ProjectCreator () {}
+
+    public void create(Context context, String projectName, String packageName, ProjectTemplate template) {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
             File outputDir = new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + projectName);
@@ -59,17 +63,18 @@ public class ProjectCreator {
 
         } catch (IOException e) {
             e.printStackTrace();
+            listener.onProjectCreateError();
         }
     }
 
-    private static void createJavaClass(File outputDir, String projectName, String packageName) {
+    private void createJavaClass(File outputDir, String projectName, String packageName) {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
             template.CLASS_NAME = "MainScreen";
             template.PACKAGE_NAME = packageName;
             template.configure();
             
-            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getName() + ".java";
+            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.CLASS_NAME + ".java";
             File javaFile = new File(outputDir, classFilePath);
 
             if (!javaFile.getParentFile().exists()) {
@@ -79,9 +84,20 @@ public class ProjectCreator {
             FileOutputStream fos = new FileOutputStream(javaFile);
             fos.write(template.codeContent.getBytes());
             fos.close();
+            listener.onProjectCreate();
 
         } catch (IOException e) {
             e.printStackTrace();
+            listener.onProjectCreateError();
         }
+    }
+    
+    public void setListener (Listener listener) {
+         this.listener = listener;
+    }
+    
+    public interface Listener {
+         public void onProjectCreate();
+         public void onProjectCreateError();
     }
 }
