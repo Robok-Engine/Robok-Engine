@@ -18,8 +18,7 @@
     "received_events_url": "https://api.github.com/users/aquilesTrindade/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 752,
-    "role": "Developer"
+    "contributions": 752
   },
   {
     "login": "ThDev-only",
@@ -40,8 +39,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 86,
-    "role": "Developer"
+    "contributions": 86
   },
   {
     "login": "renovate[bot]",
@@ -62,8 +60,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 59,
-    "role": "Bot"
+    "contributions": 59
   },
   {
     "login": "antsummer",
@@ -84,8 +81,7 @@
     "received_events_url": "https://api.github.com/users/antsummer/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 35,
-    "role": "Contributor"
+    "contributions": 35
   },
   {
     "login": "github-actions[bot]",
@@ -106,8 +102,7 @@
     "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 10,
-    "role": "Bot"
+    "contributions": 10
   },
   {
     "login": "gampiot-bot",
@@ -128,7 +123,6 @@
     "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 3,
-    "role": "Bot"
+    "contributions": 3
   }
 ]
