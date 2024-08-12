@@ -74,9 +74,12 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
                         terminal.addLog("Response successful: $jsonString")
                         jsonString?.let {
                             val contributorsList = Json.decodeFromString<List<Contributor>>(it)
+                            
+                            val usersList = contributorsList.filter { it.type == "User" }
+
                             launch(Dispatchers.Main) {
-                                binding.recyclerView.adapter = ContributorAdapter(contributorsList)
-                                terminal.addLog("Parsed contributors: ${contributorsList.size}")
+                                binding.recyclerView.adapter = ContributorAdapter(usersList)
+                                terminal.addLog("Parsed users: ${usersList.size}")
                             }
                         }
                     } else {
