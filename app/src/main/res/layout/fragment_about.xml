@@ -40,11 +40,16 @@
             android:orientation="vertical">
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recyclerView"
+                android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
                 android:transitionGroup="true" />
+                
+            <Button 
+                android:id="@+id/a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>    
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
