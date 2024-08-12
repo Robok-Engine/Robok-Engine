@@ -19,7 +19,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 742,
-    "role": "Contributor"
+    "role": "Developer"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 86,
-    "role": "Contributor"
+    "role": "Developer"
   },
   {
     "login": "renovate[bot]",
@@ -63,7 +63,7 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 59,
-    "role": "Contributor"
+    "role": "Bot"
   },
   {
     "login": "antsummer",
@@ -107,7 +107,7 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10,
-    "role": "Contributor"
+    "role": "Bot"
   },
   {
     "login": "gampiot-bot",
@@ -129,6 +129,6 @@
     "type": "User",
     "site_admin": false,
     "contributions": 1,
-    "role": "Contributor"
+    "role": "Bot"
   }
 ]
