@@ -176,12 +176,14 @@
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_logs" />
+                    android:text="@string/text_logs" 
+                    android:id="@+id/tab_item_logs" />
 
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/text_diagnostic" />
+                    android:text="@string/text_diagnostic"
+                    android:id="@+id/tab_item_diagnostic" />
 
             </com.google.android.material.tabs.TabLayout>
 

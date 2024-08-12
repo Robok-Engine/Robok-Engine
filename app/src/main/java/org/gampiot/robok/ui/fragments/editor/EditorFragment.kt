@@ -28,15 +28,14 @@ import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 
 import robok.compiler.logic.LogicCompiler
 import robok.compiler.logic.LogicCompilerListener
-
 import robok.diagnostic.logic.DiagnosticListener
 
-class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
+class EditorFragment(val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
-    private var _binding: FragmentEditorBinding? = null
-    private val binding get() = _binding!!
-    private val handler = Handler(Looper.getMainLooper())
-    private val diagnosticTimeoutRunnable = object : Runnable {
+    var _binding: FragmentEditorBinding? = null
+    val binding get() = _binding!!
+    val handler = Handler(Looper.getMainLooper())
+    val diagnosticTimeoutRunnable = object : Runnable {
         override fun run() {
             binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
             binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
@@ -44,7 +43,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         }
     }
 
-    private val diagnosticStandTime : Long = 800
+    val diagnosticStandTime : Long = 800
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -95,7 +94,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         configureEditor()
     }
 
-    private fun configureTabLayout() {
+    fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
@@ -115,30 +114,29 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         })
     }
 
-    private fun configureToolbar() {
+    fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
-
         binding.toolbar.setNavigationOnClickListener {
-            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.START)
-            }
+              if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                    binding.drawerLayout.closeDrawer(GravityCompat.START)
+              } else {
+                    binding.drawerLayout.openDrawer(GravityCompat.START)
+              }
         }
-
         binding.diagnosticStatusImage.setOnClickListener {
-            if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.END)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.END)
-            }
+              if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                    binding.drawerLayout.closeDrawer(GravityCompat.END)
+              } else {
+                    binding.drawerLayout.openDrawer(GravityCompat.END)
+              }
+              binding.tabLayout.getTabAt(1)?.select()
         }
     }
 
-    private fun configureDrawer() {
+    fun configureDrawer() {
         binding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
-            private var leftDrawerOffset = 0f
-            private var rightDrawerOffset = 0f
+            var leftDrawerOffset = 0f
+            var rightDrawerOffset = 0f
 
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 val drawerWidth = drawerView.width
@@ -165,7 +163,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
         })
     }
 
-    private fun configureEditor() {
+    fun configureEditor() {
         val diagnosticListener = object : DiagnosticListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
@@ -213,7 +211,7 @@ class EditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : R
     }
 
     companion object {
-        private const val PROJECT_PATH = "arg_path"
+        const val PROJECT_PATH = "arg_path"
 
         @JvmStatic
         fun newInstance(path: String): EditorFragment {
