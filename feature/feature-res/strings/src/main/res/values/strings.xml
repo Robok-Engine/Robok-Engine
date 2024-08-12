@@ -60,7 +60,7 @@
 	<!-- warnings section -->
 	<string name="warning_storage_perm_title">Storage permission</string>
 	<string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
-	<string name="warning_project_created_title"Project Created Successfully!></string>
+	<string name="warning_project_created_title">Project Created Successfully!</string>
 	<string name="warning_project_created_message">Your project has been created successfully!</string>
 	<!-- end section -->
 	
