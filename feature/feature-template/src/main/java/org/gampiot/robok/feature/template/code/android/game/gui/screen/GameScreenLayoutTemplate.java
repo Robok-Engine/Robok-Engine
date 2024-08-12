@@ -2,7 +2,7 @@ package org.gampiot.robok.feature.template.code.android.game.gui.screen;
 
 import android.os.Parcel;
 
-import org.gampiot.robokide.feature.template.code.rbk.RBKLayoutTemplate;
+import org.gampiot.robok.feature.template.code.rbk.RBKLayoutTemplate;
 
 public class GameScreenLayoutTemplate extends RBKLayoutTemplate {
 

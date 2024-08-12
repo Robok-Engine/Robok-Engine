@@ -1,8 +1,8 @@
-package org.gampiot.robokide.feature.template.code.rbk;
+package org.gampiot.robok.feature.template.code.rbk;
 
 import android.os.Parcel;
 
-import org.gampiot.robokide.feature.template.code.CodeTemplate;
+import org.gampiot.robok.feature.template.code.CodeTemplate;
 
 public class RBKLayoutTemplate extends CodeTemplate {
 

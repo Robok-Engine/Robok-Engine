@@ -1,8 +1,8 @@
-package org.gampiot.robokide.feature.template.code.java;
+package org.gampiot.robok.feature.template.code.java;
 
 import android.os.Parcel;
 
-import org.gampiot.robokide.feature.template.code.CodeTemplate;
+import org.gampiot.robok.feature.template.code.CodeTemplate;
 
 public class JavaClassTemplate extends CodeTemplate {
 

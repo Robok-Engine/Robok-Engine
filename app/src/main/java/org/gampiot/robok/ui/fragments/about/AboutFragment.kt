@@ -41,8 +41,9 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
 
         terminal = RobokTerminal(requireContext())
-        terminal.show()
-
+        binding.a.setOnClickListener {
+             terminal.show()
+        }
         return binding.root
     }
 
@@ -59,7 +60,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
     private fun fetchContributors() {
         CoroutineScope(Dispatchers.IO).launch {
             val request = Request.Builder()
-                .url("https://raw.githubusercontent.com/gampiot-inc/Robok-Engine/dev/contributors/contributors_github.json")
+                .url("https://raw.githubusercontent.com/robok-inc/Robok-Engine/dev/contributors/contributors_github.json")
                 .build()
 
             try {

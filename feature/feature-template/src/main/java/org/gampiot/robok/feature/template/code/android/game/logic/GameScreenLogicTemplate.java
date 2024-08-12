@@ -1,9 +1,9 @@
-package org.gampiot.robokide.feature.template.code.android.game.logic;
+package org.gampiot.robok.feature.template.code.android.game.logic;
 
 import android.os.Parcel;
 
-import org.gampiot.robokide.feature.template.code.CodeTemplate;
-import org.gampiot.robokide.feature.template.code.java.JavaClassTemplate;
+import org.gampiot.robok.feature.template.code.CodeTemplate;
+import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
 
 public class GameScreenLogicTemplate extends JavaClassTemplate {
 

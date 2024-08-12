@@ -1,4 +1,4 @@
-package org.gampiot.robokide.feature.template.code;
+package org.gampiot.robok.feature.template.code;
 
 import android.os.Parcel;
 import android.os.Parcelable;
