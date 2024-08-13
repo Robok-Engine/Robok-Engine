@@ -76,7 +76,7 @@ dependencies {
     val materialVersion = "1.13.0-alpha05"
     val appcompatVersion = "1.7.0-alpha03"
     val kotlinVersion = "2.0.10"
-    val kotlinCoroutinesVersion = "1.9.0-RC"
+    val kotlinCoroutinesVersion = "1.9.0-RC.2"
     val glideVersion = "4.16.0"
 
     // androidx
