@@ -5,4 +5,4 @@
 | renovate[bot] | 59 | Bot |
 | antsummer | 35 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| gampiot-bot | 4 | Bot |
+| gampiot-bot | 5 | Bot |
