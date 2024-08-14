@@ -45,7 +45,7 @@ jobs:
   Engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
-    if: github.repository == 'robok-inc/Robok-Engine'
+    if: github.repository == 'robok-inc/Robok-Engine' && github.event_name == 'push'
 
     steps:
       - name: Check out repository

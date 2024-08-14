@@ -35,7 +35,7 @@ Want to contribute to contribute to Robok? Follow this steps:
 1. Make commits with descriptive, non-complex names.
 2. Don't make long commits.
 3. Don't make unnecessary commits.
-4. Use tags to indicate what the commit does (e.g. feat: new feature to delete projects)
+4. Use tags to indicate what the commit does (example: feat: Use datagui v2 in project)
 
 ## TO-DO
  - [X] AAPT2 Compiler
@@ -49,6 +49,7 @@ Want to contribute to contribute to Robok? Follow this steps:
 ## License
 
 This project was licensed under the GPL-3.0 License [LISCENSE](LISCENSE).
+
 ---
 
 ### Contact

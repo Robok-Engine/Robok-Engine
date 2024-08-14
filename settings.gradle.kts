@@ -25,8 +25,6 @@ include(":robok:robok-lang")
 include(":robok:robok-util")
 include(":robok:robok-aapt2")
 
-include(":robok-sdk")
-
 include(":feature:feature-component")
 include(":feature:feature-setting")
 include(":feature:feature-res:strings")
