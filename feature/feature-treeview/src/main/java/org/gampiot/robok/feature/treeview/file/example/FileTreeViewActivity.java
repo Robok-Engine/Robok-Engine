@@ -107,17 +107,21 @@ public class FileTreeViewActivity extends AppCompatActivity {
             } else {
                 expandCollapseIcon.setVisibility(View.VISIBLE);
                 expandCollapseIcon.setImageResource(node.isExpanded() ? R.drawable.ic_collapse : R.drawable.ic_expand);
+                expandCollapseIcon.setOnClickListener(v -> {
+                    if (node.isExpanded()) {
+                        treeView.collapseNode(node);
+                    } else {
+                        treeView.expandNode(node);
+                    }
+                    updateExpandCollapseIcon(expandCollapseIcon, node.isExpanded());
+                });
             }
             
-            layout.setOnClickListener(v -> {
-                 if (node.isExpanded()) {
-                       node.setExpanded(false);
-                 } else {
-                       node.setExpanded(true);
-                 }
-            });
-
             return view;
+        }
+        
+        private void updateExpandCollapseIcon(ImageView imageView, boolean isExpanded) {
+            imageView.setImageResource(isExpanded ? R.drawable.ic_collapse : R.drawable.ic_expand);
         }
     }
 }
