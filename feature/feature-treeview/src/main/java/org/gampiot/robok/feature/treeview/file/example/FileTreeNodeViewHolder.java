@@ -53,6 +53,7 @@ public class FileTreeNodeViewHolder extends TreeNode.BaseNodeViewHolder<FileNode
             }
             return view;
         }
+        return null;
     }
 
     private void updateExpandCollapseIcon(ImageView imageView, boolean isExpanded) {
