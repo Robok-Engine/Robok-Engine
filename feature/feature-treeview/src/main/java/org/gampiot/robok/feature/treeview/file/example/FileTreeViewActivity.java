@@ -17,9 +17,9 @@ import java.io.File;
 
 public class FileTreeViewActivity extends AppCompatActivity {
 
-    private LinearLayout listContainer;
-    private TreeNode root;
-    private TreeNodeWrapperView treeView;
+    public LinearLayout listContainer;
+    public TreeNode root;
+    public TreeNodeWrapperView treeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,42 +32,40 @@ public class FileTreeViewActivity extends AppCompatActivity {
         setupFileTree(directory);
     }
 
-    private void setupFileTree(File rootDir) {
-        root = TreeNode.root();
-        buildFileTree(rootDir, root);
-
-        treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
-
-        for (TreeNode child : root.getChildren()) {
-            treeView.insertNodeView(createNodeView(child));
-        }
-
-        listContainer.addView(treeView);
+    public void setupFileTree(File rootDir) {
+         root = TreeNode.root();
+         buildFileTree(rootDir, root);
+         treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
+         for (TreeNode child : root.getChildren()) {
+               treeView.insertNodeView(createNodeView(child));
+         } 
+         listContainer.addView(treeView);
     }
 
-    private void buildFileTree(File dir, TreeNode parent) {
-        if (dir != null && dir.isDirectory()) {
-            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true))
-                    .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
-            parent.addChild(dirNode);
 
-            File[] files = dir.listFiles();
-            if (files != null) {
-                for (File file : files) {
-                    if (file.isDirectory()) {
-                        buildFileTree(file, dirNode);
-                    } else {
-                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false))
-                                .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
-                        dirNode.addChild(fileNode);
-                    }
-                }
-            }
-        }
+    public void buildFileTree(File dir, TreeNode parent) {
+         if (dir != null && dir.isDirectory()) {
+             TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true))
+                     .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
+             parent.addChild(dirNode);
+  
+             File[] files = dir.listFiles();
+             if (files != null) {
+                 for (File file : files) {
+                     if (file.isDirectory()) {
+                         buildFileTree(file, dirNode);
+                     } else {
+                         TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false))
+                                 .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
+                         dirNode.addChild(fileNode);
+                     }
+                 }
+             }
+         }
     }
 
-    private View createNodeView(TreeNode node) {
-        FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this, treeView);
-        return viewHolder.createNodeView(node, (FileNode) node.getValue());
+    public View createNodeView(TreeNode node) {
+         FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this, treeView);
+         return viewHolder.createNodeView(node, (FileNode) node.getValue());
     }
 }
