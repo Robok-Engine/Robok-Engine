@@ -2,6 +2,7 @@ package org.gampiot.robok.feature.treeview.view;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -10,6 +11,7 @@ import android.widget.RelativeLayout;
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 
+/** Created by Bogdan Melnychuk on 2/10/15. */
 public class TreeNodeWrapperView extends LinearLayout {
     private LinearLayout nodeItemsContainer;
     private ViewGroup nodeContainer;
@@ -25,14 +27,12 @@ public class TreeNodeWrapperView extends LinearLayout {
         setOrientation(LinearLayout.VERTICAL);
 
         nodeContainer = new RelativeLayout(getContext());
-        nodeContainer.setLayoutParams(
-            new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        nodeContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         nodeContainer.setId(R.id.node_header);
 
         ContextThemeWrapper newContext = new ContextThemeWrapper(getContext(), containerStyle);
         nodeItemsContainer = new LinearLayout(newContext, null, containerStyle);
-        nodeItemsContainer.setLayoutParams(
-            new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+        nodeItemsContainer.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
         nodeItemsContainer.setId(R.id.node_items);
         nodeItemsContainer.setOrientation(LinearLayout.VERTICAL);
         nodeItemsContainer.setVisibility(View.GONE);
@@ -45,11 +45,23 @@ public class TreeNodeWrapperView extends LinearLayout {
         nodeContainer.addView(nodeView);
     }
 
-    public void expandNode() {
-        nodeItemsContainer.setVisibility(View.VISIBLE);
+    public void expandNode(TreeNode node) {
+        if (nodeItemsContainer.getVisibility() == View.GONE) {
+            nodeItemsContainer.setVisibility(View.VISIBLE);
+            for (TreeNode child : node.getChildren()) {
+                View childView = ((FileTreeNodeViewHolder) child.getViewHolder()).createNodeView(child, (FileNode) child.getValue());
+                nodeItemsContainer.addView(childView);
+            }
+        }
     }
 
-    public void collapseNode() {
-        nodeItemsContainer.setVisibility(View.GONE);
+    public void collapseNode(TreeNode node) {
+        if (nodeItemsContainer.getVisibility() == View.VISIBLE) {
+            nodeItemsContainer.setVisibility(View.GONE);
+        }
+    }
+
+    public ViewGroup getNodeContainer() {
+        return nodeContainer;
     }
 }
