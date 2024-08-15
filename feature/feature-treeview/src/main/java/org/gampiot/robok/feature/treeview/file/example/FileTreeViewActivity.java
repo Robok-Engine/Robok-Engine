@@ -107,15 +107,15 @@ public class FileTreeViewActivity extends AppCompatActivity {
             } else {
                 expandCollapseIcon.setVisibility(View.VISIBLE);
                 expandCollapseIcon.setImageResource(node.isExpanded() ? R.drawable.ic_collapse : R.drawable.ic_expand);
-
-                layout.setOnClickListener(v -> {
-                    if (node.isExpanded()) {
-                         node.setExpanded(false);
-                    } else {
-                         node.setExpanded(true);
-                    }
-                });
             }
+            
+            layout.setOnClickListener(v -> {
+                 if (node.isExpanded()) {
+                       node.setExpanded(false);
+                 } else {
+                       node.setExpanded(true);
+                 }
+            });
 
             return view;
         }
