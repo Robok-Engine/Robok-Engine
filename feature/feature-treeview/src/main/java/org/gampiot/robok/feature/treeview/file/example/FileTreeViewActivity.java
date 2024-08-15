@@ -36,7 +36,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
         buildFileTree(rootDir, root);
 
         // Utilizando TreeNodeWrapperView para exibir a árvore
-        TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
+        TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
         
         for (TreeNode child : root.getChildren()) {
             treeView.insertNodeView(createNodeView(child));
