@@ -68,6 +68,6 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     private View createNodeView(TreeNode node) {
         FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this, treeView);
-        return viewHolder.createNodeView(node);
+        return viewHolder.createNodeView(node, (FileNode) node.getValue());
     }
 }
