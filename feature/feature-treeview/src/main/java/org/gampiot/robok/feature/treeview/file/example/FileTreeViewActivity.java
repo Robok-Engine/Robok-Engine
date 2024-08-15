@@ -1,14 +1,17 @@
 package org.gampiot.robok.feature.treeview.file.example;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.gampiot.robok.feature.treeview.R; 
+import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 import org.gampiot.robok.feature.treeview.view.AndroidTreeView;
-import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
 
 import java.io.File;
 
@@ -20,55 +23,92 @@ public class FileTreeViewActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_file_tree_view); // Certifique-se de que existe um layout chamado activity_file_tree_view.xml
+        setContentView(R.layout.activity_file_tree_view);
 
-        listContainer = findViewById(R.id.listContainer); // Certifique-se de que existe um LinearLayout com o id listContainer no layout
-
-        // Caminho para o diretório que você deseja exibir na árvore
-        File directory = new File("/path/to/your/directory");
-
-        // Inicialize a árvore de arquivos
+        listContainer = findViewById(R.id.listContainer);
+        
+        File directory = new File("/sdcard/Robok/.projects/A/");
         setupFileTree(directory);
     }
 
     private void setupFileTree(File rootDir) {
-        // Crie o nó raiz da árvore
         root = TreeNode.root();
+        buildFileTree(rootDir, root);
 
-        // Construa a árvore de arquivos a partir do diretório fornecido
-        buildFileTree(rootDir);
-
-        // Crie a visualização da árvore
         AndroidTreeView tView = new AndroidTreeView(this, root);
         tView.setDefaultAnimation(true);
 
-        // Adicione a visualização da árvore ao contêiner da lista
         listContainer.addView(tView.getView());
     }
 
-    private void buildFileTree(File dir) {
-        // Verifique se o diretório existe e é realmente um diretório
+    private void buildFileTree(File dir, TreeNode parent) {
         if (dir != null && dir.isDirectory()) {
-            // Crie um nó para o diretório
-            TreeNode dirNode = new TreeNode(dir.getName());
+            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true)).setViewHolder(new FileTreeNodeViewHolder(this));
+            parent.addChild(dirNode);
 
-            // Adicione o nó do diretório à raiz
-            root.addChild(dirNode);
-
-            // Adicione os arquivos e subdiretórios como filhos do diretório atual
             File[] files = dir.listFiles();
             if (files != null) {
                 for (File file : files) {
                     if (file.isDirectory()) {
-                        // Se for um subdiretório, recursivamente crie nós para ele
-                        buildFileTree(file);
+                        buildFileTree(file, dirNode);
                     } else {
-                        // Se for um arquivo, crie um nó para ele
-                        TreeNode fileNode = new TreeNode(file.getName());
+                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false)).setViewHolder(new FileTreeNodeViewHolder(this));
                         dirNode.addChild(fileNode);
                     }
                 }
             }
+        }
+    }
+
+    private static class FileNode {
+        String name;
+        boolean isDirectory;
+
+        FileNode(String name, boolean isDirectory) {
+            this.name = name;
+            this.isDirectory = isDirectory;
+        }
+    }
+
+    private class FileTreeNodeViewHolder extends TreeNode.BaseNodeViewHolder<FileNode> {
+
+        public FileTreeNodeViewHolder(FileTreeViewActivity context) {
+            super(context);
+        }
+
+        @Override
+        public View createNodeView(TreeNode node, FileNode value) {
+            final LayoutInflater inflater = LayoutInflater.from(context);
+            final View view = inflater.inflate(R.layout.tree_node_item, null, false);
+
+            TextView textView = view.findViewById(R.id.path);
+            textView.setText(value.name);
+
+            ImageView iconView = view.findViewById(R.id.icon);
+            if (value.isDirectory) {
+                iconView.setImageResource(R.drawable.ic_folder);
+            } else {
+                iconView.setImageResource(R.drawable.ic_file);
+            }
+
+            // Configurar visibilidade do ícone de expandir/colapsar
+            ImageView expandCollapseIcon = view.findViewById(R.id.expandCollapse);
+            if (node.isLeaf()) {
+                expandCollapseIcon.setVisibility(View.GONE);
+            } else {
+                expandCollapseIcon.setVisibility(View.VISIBLE);
+                expandCollapseIcon.setImageResource(node.isExpanded() ? R.drawable.ic_collapse : R.drawable.ic_expand);
+
+                expandCollapseIcon.setOnClickListener(v -> {
+                    if (node.isExpanded()) {
+                        tView.collapseNode(node);
+                    } else {
+                        tView.expandNode(node);
+                    }
+                });
+            }
+
+            return view;
         }
     }
 }
