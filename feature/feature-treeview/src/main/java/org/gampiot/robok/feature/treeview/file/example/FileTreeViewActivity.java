@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 import org.gampiot.robok.feature.treeview.view.AndroidTreeView;
+import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
 
 import java.io.File;
 
@@ -35,10 +36,11 @@ public class FileTreeViewActivity extends AppCompatActivity {
         root = TreeNode.root();
         buildFileTree(rootDir, root);
 
-        AndroidTreeView tView = new AndroidTreeView(this, root);
-        tView.setDefaultAnimation(true);
+        // Substitui AndroidTreeView por TreeNodeWrapperView
+        TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
+        treeView.setRoot(root);
 
-        listContainer.addView(tView.getView());
+        listContainer.addView(treeView);
     }
 
     private void buildFileTree(File dir, TreeNode parent) {
