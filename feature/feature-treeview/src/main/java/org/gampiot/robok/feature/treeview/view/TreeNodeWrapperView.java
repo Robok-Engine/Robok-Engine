@@ -46,7 +46,7 @@ public class TreeNodeWrapperView extends LinearLayout {
     }
 
     public void expandNode(TreeNode node) {
-        if (node != null)
+        if (node != null) {
             if (nodeItemsContainer.getVisibility() == View.GONE) {
                 nodeItemsContainer.setVisibility(View.VISIBLE);
                 for (TreeNode child : node.getChildren()) {
