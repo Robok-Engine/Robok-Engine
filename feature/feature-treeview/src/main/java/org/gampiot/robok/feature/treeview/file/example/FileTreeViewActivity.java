@@ -47,7 +47,8 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     private void buildFileTree(File dir, TreeNode parent) {
         if (dir != null && dir.isDirectory()) {
-            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true)).setViewHolder(new FileTreeNodeViewHolder(this, treeView));
+            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true))
+                    .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
             parent.addChild(dirNode);
 
             File[] files = dir.listFiles();
@@ -56,7 +57,8 @@ public class FileTreeViewActivity extends AppCompatActivity {
                     if (file.isDirectory()) {
                         buildFileTree(file, dirNode);
                     } else {
-                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false)).setViewHolder(new FileTreeNodeViewHolder(this, treeView));
+                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false))
+                                .setViewHolder(new FileTreeNodeViewHolder(this, treeView));
                         dirNode.addChild(fileNode);
                     }
                 }

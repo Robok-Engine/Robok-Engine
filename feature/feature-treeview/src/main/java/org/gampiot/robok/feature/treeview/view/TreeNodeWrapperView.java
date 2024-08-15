@@ -47,7 +47,7 @@ public class TreeNodeWrapperView extends LinearLayout {
         if (nodeItemsContainer.getVisibility() == View.GONE) {
             nodeItemsContainer.setVisibility(View.VISIBLE);
             for (TreeNode child : node.getChildren()) {
-                View childView = ((FileTreeNodeViewHolder) child.getViewHolder()).createNodeView(child);
+                View childView = child.getViewHolder().createNodeView(child);
                 nodeItemsContainer.addView(childView);
             }
         }
