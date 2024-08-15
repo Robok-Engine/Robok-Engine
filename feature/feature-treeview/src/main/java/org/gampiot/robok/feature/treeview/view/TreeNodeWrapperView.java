@@ -1,6 +1,5 @@
 package org.gampiot.robok.feature.treeview.view;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.ContextThemeWrapper;
 import android.view.View;
@@ -11,11 +10,10 @@ import android.widget.RelativeLayout;
 import org.gampiot.robok.feature.treeview.R;
 
 /** Created by Bogdan Melnychuk on 2/10/15. */
-@SuppressLint("ViewConstructor")
 public class TreeNodeWrapperView extends LinearLayout {
-  private final int containerStyle;
   private LinearLayout nodeItemsContainer;
   private ViewGroup nodeContainer;
+  private final int containerStyle;
 
   public TreeNodeWrapperView(Context context, int containerStyle) {
     super(context);

@@ -3,7 +3,6 @@ package org.gampiot.robok.feature.treeview.holder;
 import android.content.Context;
 import android.view.View;
 import android.widget.TextView;
-
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 
 /** Created by Bogdan Melnychuk on 2/11/15. */
