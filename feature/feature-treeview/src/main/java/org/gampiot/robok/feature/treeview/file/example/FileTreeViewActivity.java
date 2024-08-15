@@ -19,6 +19,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     private LinearLayout listContainer;
     private TreeNode root;
+    private TreeNodeWrapperView treeView; // Adicionar campo para TreeNodeWrapperView
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
         buildFileTree(rootDir, root);
 
         // Utilizando TreeNodeWrapperView para exibir a árvore
-        TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
+        treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
         
         for (TreeNode child : root.getChildren()) {
             treeView.insertNodeView(createNodeView(child));
@@ -47,7 +48,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     private void buildFileTree(File dir, TreeNode parent) {
         if (dir != null && dir.isDirectory()) {
-            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true)).setViewHolder(new FileTreeNodeViewHolder(this));
+            TreeNode dirNode = new TreeNode(new FileNode(dir.getName(), true)).setViewHolder(new FileTreeNodeViewHolder(this, treeView)); // Passar treeView
             parent.addChild(dirNode);
 
             File[] files = dir.listFiles();
@@ -56,7 +57,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
                     if (file.isDirectory()) {
                         buildFileTree(file, dirNode);
                     } else {
-                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false)).setViewHolder(new FileTreeNodeViewHolder(this));
+                        TreeNode fileNode = new TreeNode(new FileNode(file.getName(), false)).setViewHolder(new FileTreeNodeViewHolder(this, treeView)); // Passar treeView
                         dirNode.addChild(fileNode);
                     }
                 }
@@ -65,7 +66,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
     }
 
     private View createNodeView(TreeNode node) {
-        FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this);
+        FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this, treeView); // Passar treeView
         return viewHolder.createNodeView(node, (FileNode) node.getValue());
     }
 
@@ -80,9 +81,11 @@ public class FileTreeViewActivity extends AppCompatActivity {
     }
 
     private class FileTreeNodeViewHolder extends TreeNode.BaseNodeViewHolder<FileNode> {
+        private final TreeNodeWrapperView treeView; // Adicionar campo para TreeNodeWrapperView
 
-        public FileTreeNodeViewHolder(FileTreeViewActivity context) {
+        public FileTreeNodeViewHolder(FileTreeViewActivity context, TreeNodeWrapperView treeView) {
             super(context);
+            this.treeView = treeView; // Inicializar campo
         }
 
         @Override
@@ -109,9 +112,9 @@ public class FileTreeViewActivity extends AppCompatActivity {
                 expandCollapseIcon.setImageResource(node.isExpanded() ? R.drawable.ic_collapse : R.drawable.ic_expand);
                 expandCollapseIcon.setOnClickListener(v -> {
                     if (node.isExpanded()) {
-                        treeView.collapseNode(node);
+                        treeView.collapseNode(node); // Usar treeView
                     } else {
-                        treeView.expandNode(node);
+                        treeView.expandNode(node); // Usar treeView
                     }
                     updateExpandCollapseIcon(expandCollapseIcon, node.isExpanded());
                 });
