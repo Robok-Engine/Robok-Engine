@@ -2,7 +2,6 @@ package org.gampiot.robok.feature.treeview.view;
 
 import android.content.Context;
 import android.view.ContextThemeWrapper;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -11,7 +10,6 @@ import android.widget.RelativeLayout;
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 
-/** Created by Bogdan Melnychuk on 2/10/15. */
 public class TreeNodeWrapperView extends LinearLayout {
     private LinearLayout nodeItemsContainer;
     private ViewGroup nodeContainer;
@@ -49,7 +47,7 @@ public class TreeNodeWrapperView extends LinearLayout {
         if (nodeItemsContainer.getVisibility() == View.GONE) {
             nodeItemsContainer.setVisibility(View.VISIBLE);
             for (TreeNode child : node.getChildren()) {
-                View childView = ((FileTreeNodeViewHolder) child.getViewHolder()).createNodeView(child, (FileNode) child.getValue());
+                View childView = ((FileTreeNodeViewHolder) child.getViewHolder()).createNodeView(child);
                 nodeItemsContainer.addView(childView);
             }
         }

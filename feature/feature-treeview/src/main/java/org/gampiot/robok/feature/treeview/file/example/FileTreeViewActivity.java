@@ -66,7 +66,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     private View createNodeView(TreeNode node) {
         FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this, treeView);
-        return viewHolder.createNodeView(node, (FileNode) node.getValue());
+        return viewHolder.createNodeView(node);
     }
 
     private static class FileNode {
@@ -88,16 +88,16 @@ public class FileTreeViewActivity extends AppCompatActivity {
         }
 
         @Override
-        public View createNodeView(TreeNode node, FileNode value) {
+        public View createNodeView(TreeNode node) {
             final LayoutInflater inflater = LayoutInflater.from(context);
             final View view = inflater.inflate(R.layout.tree_node_item, null, false);
 
             LinearLayout layout = view.findViewById(R.id.layout);
             TextView textView = view.findViewById(R.id.path);
-            textView.setText(value.name);
+            textView.setText(((FileNode) node.getValue()).name);
 
             ImageView iconView = view.findViewById(R.id.icon);
-            if (value.isDirectory) {
+            if (((FileNode) node.getValue()).isDirectory) {
                 iconView.setImageResource(R.drawable.ic_folder);
             } else {
                 iconView.setImageResource(R.drawable.ic_file);
