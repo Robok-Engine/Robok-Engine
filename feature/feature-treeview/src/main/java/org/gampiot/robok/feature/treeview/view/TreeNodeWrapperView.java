@@ -40,22 +40,28 @@ public class TreeNodeWrapperView extends LinearLayout {
     }
 
     public void insertNodeView(View nodeView) {
-        nodeContainer.addView(nodeView);
+        if (nodeView != null) {
+             nodeContainer.addView(nodeView);
+        }
     }
 
     public void expandNode(TreeNode node) {
-        if (nodeItemsContainer.getVisibility() == View.GONE) {
-            nodeItemsContainer.setVisibility(View.VISIBLE);
-            for (TreeNode child : node.getChildren()) {
-                View childView = child.getViewHolder().createNodeView(child, child.getValue());
-                nodeItemsContainer.addView(childView);
+        if (node != null)
+            if (nodeItemsContainer.getVisibility() == View.GONE) {
+                nodeItemsContainer.setVisibility(View.VISIBLE);
+                for (TreeNode child : node.getChildren()) {
+                    View childView = child.getViewHolder().createNodeView(child, child.getValue());
+                    nodeItemsContainer.addView(childView);
+                }
             }
         }
     }
 
     public void collapseNode(TreeNode node) {
-        if (nodeItemsContainer.getVisibility() == View.VISIBLE) {
-            nodeItemsContainer.setVisibility(View.GONE);
+        if (node != null) {
+            if (nodeItemsContainer.getVisibility() == View.VISIBLE) {
+                nodeItemsContainer.setVisibility(View.GONE);
+            }
         }
     }
 
