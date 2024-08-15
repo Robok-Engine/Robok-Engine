@@ -90,18 +90,18 @@ public class FileTreeViewActivity extends AppCompatActivity {
             final LayoutInflater inflater = LayoutInflater.from(context);
             final View view = inflater.inflate(R.layout.tree_node_item, null, false);
             
-            var layout = view.findViewById(R.id.layout);
-            var textView = view.findViewById(R.id.path);
+            LinearLayout layout = view.findViewById(R.id.layout);
+            TextView textView = view.findViewById(R.id.path);
             textView.setText(value.name);
 
-            var iconView = view.findViewById(R.id.icon);
+            ImageView iconView = view.findViewById(R.id.icon);
             if (value.isDirectory) {
                 iconView.setImageResource(R.drawable.ic_folder);
             } else {
                 iconView.setImageResource(R.drawable.ic_file);
             }
 
-            var expandCollapseIcon = view.findViewById(R.id.expandCollapse);
+            ImageView expandCollapseIcon = view.findViewById(R.id.expandCollapse);
             if (node.isLeaf()) {
                 expandCollapseIcon.setVisibility(View.GONE);
             } else {
