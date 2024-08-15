@@ -112,9 +112,9 @@ public class FileTreeViewActivity extends AppCompatActivity {
                 expandCollapseIcon.setImageResource(node.isExpanded() ? R.drawable.ic_collapse : R.drawable.ic_expand);
                 expandCollapseIcon.setOnClickListener(v -> {
                     if (node.isExpanded()) {
-                        treeView.collapseNode(node); // Usar treeView
+                        treeView.collapseNode(); 
                     } else {
-                        treeView.expandNode(node); // Usar treeView
+                        treeView.expandNode(); 
                     }
                     updateExpandCollapseIcon(expandCollapseIcon, node.isExpanded());
                 });
