@@ -11,7 +11,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
-import org.gampiot.robok.feature.treeview.view.AndroidTreeView;
 import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
 
 import java.io.File;
@@ -36,9 +35,12 @@ public class FileTreeViewActivity extends AppCompatActivity {
         root = TreeNode.root();
         buildFileTree(rootDir, root);
 
-        // Substitui AndroidTreeView por TreeNodeWrapperView
+        // Utilizando TreeNodeWrapperView para exibir a árvore
         TreeNodeWrapperView treeView = new TreeNodeWrapperView(this, com.unnamed.b.atv.R.style.TreeNodeStyle);
-        treeView.setRoot(root);
+        
+        for (TreeNode child : root.getChildren()) {
+            treeView.insertNodeView(createNodeView(child));
+        }
 
         listContainer.addView(treeView);
     }
@@ -60,6 +62,11 @@ public class FileTreeViewActivity extends AppCompatActivity {
                 }
             }
         }
+    }
+
+    private View createNodeView(TreeNode node) {
+        FileTreeNodeViewHolder viewHolder = new FileTreeNodeViewHolder(this);
+        return viewHolder.createNodeView(node, (FileNode) node.getValue());
     }
 
     private static class FileNode {
@@ -103,9 +110,9 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
                 expandCollapseIcon.setOnClickListener(v -> {
                     if (node.isExpanded()) {
-                        tView.collapseNode(node);
+                        // lógica para colapsar o nó
                     } else {
-                        tView.expandNode(node);
+                        // lógica para expandir o nó
                     }
                 });
             }
