@@ -45,19 +45,11 @@ public class TreeNodeWrapperView extends LinearLayout {
         nodeContainer.addView(nodeView);
     }
 
-    public void expandNode(TreeNode node) {
+    public void expandNode() {
         nodeItemsContainer.setVisibility(View.VISIBLE);
     }
 
-    public void collapseNode(TreeNode node) {
+    public void collapseNode() {
         nodeItemsContainer.setVisibility(View.GONE);
-    }
-
-    public ViewGroup getNodeContainer() {
-        return nodeContainer;
-    }
-
-    public LinearLayout getNodeItemsContainer() {
-        return nodeItemsContainer;
     }
 }
