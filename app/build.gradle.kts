@@ -66,7 +66,7 @@ android {
 
     sourceSets {
         getByName("main") {
-            assets.srcDirs(files("contributors"))
+            assets.srcDirs(files("../contributors"))
         }
     }
 }
