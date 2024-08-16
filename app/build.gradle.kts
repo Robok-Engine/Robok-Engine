@@ -89,7 +89,7 @@ dependencies {
     implementation("androidx.fragment:fragment-ktx:1.8.2")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.4")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
-    implementation("androidx.core:core-splashscreen:1.0.0")
+    implementation("androidx.core:core-splashscreen:1.0.1")
     
     // google
     implementation("com.google.android.material:material:$materialVersion")
