@@ -17,6 +17,5 @@ class MainActivity : RobokActivity() {
         if (savedInstanceState == null) {
             openFragment(HomeFragment(MaterialSharedAxis.X))
         }
-        
     }
 }
