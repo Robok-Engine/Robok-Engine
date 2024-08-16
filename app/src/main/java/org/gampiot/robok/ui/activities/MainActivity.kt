@@ -2,7 +2,7 @@ package org.gampiot.robok.ui.activities
 
 import android.os.Bundle
 
-import androidx.core.splashscreen.installSplashScreen
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import com.google.android.material.transition.MaterialSharedAxis
 
@@ -13,8 +13,8 @@ import org.gampiot.robok.feature.util.base.RobokActivity
 class MainActivity : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
+        installSplashScreen()
         setContentView(R.layout.activity_main)
         setFragmentLayoutResId(R.id.fragment_container) // needed for open fragments
         
