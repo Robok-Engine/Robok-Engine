@@ -5,4 +5,5 @@
 | renovate[bot] | 61 | Bot |
 | antsummer | 37 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| gampiot-bot | 7 | Bot |
+| gampiot-bot | 8 | Bot |
+| skinvent | 1 | N/A |
