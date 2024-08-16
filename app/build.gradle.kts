@@ -21,6 +21,10 @@ android {
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
         buildConfigField("String", "GIT_BRANCH", "\"${getGitBranch()}\"")
         buildConfigField("String", "GIT_COMMIT_AUTHOR", "\"${getGitCommitAuthor()}\"")
+        
+        vectorDrawables {
+             useSupportLibrary = true
+        }
     }
 
     compileOptions {
@@ -45,10 +49,6 @@ android {
         compilerOptions {
             jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
         }
-    }
-
-    vectorDrawables {
-        useSupportLibrary = true
     }
 
     androidResources {
