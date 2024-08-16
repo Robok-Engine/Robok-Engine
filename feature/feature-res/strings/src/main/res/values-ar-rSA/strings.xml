@@ -1,64 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- common words section -->
-    <string name="common_word_back">عودة</string>
-    <string name="common_word_result">النتيجة</string>
-    <string name="common_word_run">تشغيل</string>
-    <string name="common_word_code">الكود</string>
-    <string name="common_word_logs">السجل</string>
-    <string name="common_word_output">الناتج</string>
-    <string name="common_word_end">النهاية</string>
-    <string name="common_word_settings">الإعدادت</string>
-    <string name="common_word_cancel">إلغاء</string>
-    <string name="common_word_next">التالي</string>
-    <string name="common_word_undo">التراجع</string>
-    <string name="common_word_redo">إعادة</string>
-    <string name="common_word_allow">السماح</string>
-    <string name="common_word_deny">رفض</string>
+    <string name="common_word_back">Back</string>
+    <string name="common_word_result">Result</string>
+    <string name="common_word_run">Run</string>
+    <string name="common_word_code">Code</string>
+    <string name="common_word_logs">Logs</string>
+    <string name="common_word_output">Output</string>
+    <string name="common_word_end">End</string>
+    <string name="common_word_settings">Settings</string>
+    <string name="common_word_cancel">CANCEL</string>
+    <string name="common_word_next">Next</string>
+    <string name="common_word_undo">Undo</string>
+    <string name="common_word_redo">Redo</string>
+    <string name="common_word_allow">Allow</string>
+    <string name="common_word_deny">Deny</string>
     <!-- end section -->
     <!-- titles section -->
-    <string name="title_create_project">إنشاء project</string>
-    <string name="title_open_project">فتح المشروع</string>
-    <string name="title_open_editor">فتح محرر النصوص</string>
-    <string name="title_debug_title">وقع خطأ</string>
-    <string name="title_select_theme">إختر السمة</string>
-    <string name="title_about">حول التطبيق</string>
-    <string name="title_select_folder">إختر مجلدا</string>
+    <string name="title_create_project">Create project</string>
+    <string name="title_open_project">Open project</string>
+    <string name="title_open_editor">Open editor</string>
+    <string name="title_debug_title">An error occured</string>
+    <string name="title_select_theme">Select theme</string>
+    <string name="title_about">About</string>
+    <string name="title_select_folder">Select folder</string>
+    <string name="title_templates">Templates</string>
     <!-- end section -->
     <!-- messages section -->
-    <string name="message_compiled">لقد تم تجميع الكود الخاص بك!</string>
+    <string name="message_compiled">Your code has been compiled!</string>
     <!-- end section -->
     <!-- go to section -->
-    <string name="go_to_outputs">الذهاب إلى الناتج</string>
+    <string name="go_to_outputs">Go to outputs</string>
     <!-- end section -->
     <!-- hints section -->
-    <string name="hint_project_name">إسم المشروع</string>
-    <string name="hint_package_name">إسم الحزمة</string>
+    <string name="hint_project_name">Project name</string>
+    <string name="hint_package_name">Package name</string>
     <!-- end section -->
     <!-- settings section -->
-    <string name="settings_editor_title">إعدادت محرر الكود</string>
-    <string name="settings_editor_description">بعض إعدادت محرر الكود</string>
-    <string name="settings_editor_theme_title">سمة محرر الكود</string>
-    <string name="settings_editor_theme_description">إختر سمة محرر الكود</string>
+    <string name="settings_editor_title">Code Editor Settings</string>
+    <string name="settings_editor_description">Some code editor settings.</string>
+    <string name="settings_editor_theme_title">Code Editor Theme</string>
+    <string name="settings_editor_theme_description">Change the code editor theme.</string>
     <!-- end section -->
     <!-- texts section -->
-    <string name="text_diagnostic">التشخيص</string>
-    <string name="text_logs">السجل</string>
+    <string name="text_diagnostic">Diagnostic</string>
+    <string name="text_logs">Logs</string>
     <!-- ene section -->
     <!-- warnings section -->
-    <string name="warning_storage_perm_title"> السماح بالتخزين</string>
-    <string name="warning_storage_perm_message">يحتاج روبوك إلى السماح بالتخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
+    <string name="warning_storage_perm_title">Storage permission</string>
+    <string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
     <!-- end section -->
     <!-- errors section -->
-    <string name="error_storage_perm_title">خطا في السماح بالتخزين</string>
-    <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل روبوك</string>
-    <string name="error_invalid_name">إسم غير صالح</string>
+    <string name="error_storage_perm_title">Storage permission error</string>
+    <string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
+    <string name="error_invalid_name">Invalid name</string>
     <!-- end section -->
     <!-- terminal section -->
-    <string name="terminal_options">خيارات</string>
-    <string name="terminal_install_package">تثبيت الحزمة</string>
-    <string name="terminal_install_package_hint">أكتب اسم الحزمة </string>
-    <string name="terminal_update_packages">تحديث الحزمات</string>
-    <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
+    <string name="terminal_options">Options</string>
+    <string name="terminal_install_package">Install Package</string>
+    <string name="terminal_install_package_hint">Type Package Name</string>
+    <string name="terminal_update_packages">Update Packages</string>
+    <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
+    <!-- end section -->
+    <!-- templates section -->
+    <string name="template_name_empty_game">Empty Game</string>
     <!-- end section -->
 </resources>

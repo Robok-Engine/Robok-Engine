@@ -24,6 +24,7 @@
     <string name="title_select_theme">Select theme</string>
     <string name="title_about">About</string>
     <string name="title_select_folder">Select folder</string>
+    <string name="title_templates">Templates</string>
     <!-- end section -->
     <!-- messages section -->
     <string name="message_compiled">Your code has been compiled!</string>
@@ -60,5 +61,8 @@
     <string name="terminal_install_package_hint">Type Package Name</string>
     <string name="terminal_update_packages">Update Packages</string>
     <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
+    <!-- end section -->
+    <!-- templates section -->
+    <string name="template_name_empty_game">Empty Game</string>
     <!-- end section -->
 </resources>
