@@ -3,7 +3,7 @@
    <locale android:name="en-US"/>
    <locale android:name="en-GB"/>
    <locale android:name="fr-FR"/>
-   <locale android:name"pt-BR"/>
+   <locale android:name="pt-BR"/>
    <locale android:name="es-ES"/>
    
 </locale-config>
