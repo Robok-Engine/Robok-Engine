@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:name="org.gampiot.robok.feature.util.application.RobokApp"
         android:theme="@style/Theme.Robok"
-        android:requestLegacyExternalStorage="true">
+        android:requestLegacyExternalStorage="true"
+        android:localeConfig="@xml/locales_config">
         <activity
             android:name="org.gampiot.robok.ui.activities.MainActivity"
             android:exported="true"
