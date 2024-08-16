@@ -79,4 +79,6 @@
 	<!-- templates section -->
 	<string name="template_name_empty_game">Empty Game</string>
 	<!-- end section -->
+	<!-- New About Section -->
+		<string name="slogan">Java to Game in a Snap</string>
 </resources>

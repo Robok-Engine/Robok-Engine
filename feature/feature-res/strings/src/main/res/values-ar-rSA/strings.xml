@@ -61,4 +61,6 @@
     <string name="terminal_update_packages">تحديث الحزمات</string>
     <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
     <!-- end section -->
+    <!-- New About Section -->
+		<string name="slogan">من جافا إلى لعبة في لحظة</string>
 </resources>

@@ -61,4 +61,6 @@
     <string name="terminal_update_packages">Update Packages</string>
     <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
     <!-- end section -->
+    <!-- New About Section -->
+		<string name="slogan">Java to Game in a Snap</string>
 </resources>

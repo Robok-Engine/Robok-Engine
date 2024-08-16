@@ -41,9 +41,9 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
     ): View? {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
 
-        terminal = RobokTerminal(requireContext())
+       /* terminal = RobokTerminal(requireContext())
         binding.showLogs.setOnClickListener {
-             terminal.show()
+             terminal.show()*/
         }
         if (!BuildConfig.DEBUG) {
             binding.showLogs.visibility = View.GONE
