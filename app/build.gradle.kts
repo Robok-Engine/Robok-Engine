@@ -16,7 +16,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = getVersionName()
-<<<<<<< HEAD
+
      /* resourceConfigurations += ["en-US","en-GB","ar","fr","es-ES","pt-BR"]*/
         vectorDrawables {
             useSupportLibrary = true
@@ -25,9 +25,6 @@ android {
         generateLocaleConfig = true
       }
         
-=======
-
->>>>>>> 97a40488f9a32dd87773e236b1f98e5b803331c3
         // git fields
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
         buildConfigField("String", "GIT_BRANCH", "\"${getGitBranch()}\"")
