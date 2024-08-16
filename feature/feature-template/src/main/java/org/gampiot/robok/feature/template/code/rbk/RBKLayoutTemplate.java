@@ -20,7 +20,7 @@ public class RBKLayoutTemplate extends CodeTemplate {
      @Override
      public void configure() {
           setContent(
-               CodeTemplate.CLASS_NAME
+               CLASS_NAME
                + " {" 
                + "     Button(" 
                + "        id = \"shoot_button\"," 

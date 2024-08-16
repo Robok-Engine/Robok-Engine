@@ -6,6 +6,7 @@ public class ProjectTemplate {
 	
 	public String name;
 	public String packageName;
+	public String zipFileName;
 	public boolean javaSupport;
 	public boolean kotlinSupport;
 	@DrawableRes public int imageResId;
@@ -28,5 +29,9 @@ public class ProjectTemplate {
 	
 	public void setPackageName (String packageName) {
 		this.packageName = packageName;
+	}
+	
+	public void setZipFileName (String zipFileName) {
+		this.zipFileName = zipFileName + ".zip";
 	}
 }
