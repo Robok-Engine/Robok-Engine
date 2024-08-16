@@ -3,7 +3,7 @@
 | aquilesTrindade | 772 | Developer |
 | ThDev-only | 96 | Developer |
 | renovate[bot] | 61 | Bot |
-| antsummer | 81 | Contributor |
+| antsummer | 87 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| gampiot-bot | 9 | Bot |
+| gampiot-bot | 10 | Bot |
 | skinvent | 2 | Contributor |

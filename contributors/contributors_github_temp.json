@@ -60,7 +60,7 @@
     "received_events_url": "https://api.github.com/users/antsummer/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 81
+    "contributions": 87
   },
   {
     "login": "renovate[bot]",
@@ -84,6 +84,27 @@
     "contributions": 61
   },
   {
+    "login": "gampiot-bot",
+    "id": 178045596,
+    "node_id": "U_kgDOCpzCnA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/178045596?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/gampiot-bot",
+    "html_url": "https://github.com/gampiot-bot",
+    "followers_url": "https://api.github.com/users/gampiot-bot/followers",
+    "following_url": "https://api.github.com/users/gampiot-bot/following{/other_user}",
+    "gists_url": "https://api.github.com/users/gampiot-bot/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/gampiot-bot/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/gampiot-bot/subscriptions",
+    "organizations_url": "https://api.github.com/users/gampiot-bot/orgs",
+    "repos_url": "https://api.github.com/users/gampiot-bot/repos",
+    "events_url": "https://api.github.com/users/gampiot-bot/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 10
+  },
+  {
     "login": "github-actions[bot]",
     "id": 41898282,
     "node_id": "MDM6Qm90NDE4OTgyODI=",
@@ -103,27 +124,6 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10
-  },
-  {
-    "login": "gampiot-bot",
-    "id": 178045596,
-    "node_id": "U_kgDOCpzCnA",
-    "avatar_url": "https://avatars.githubusercontent.com/u/178045596?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/gampiot-bot",
-    "html_url": "https://github.com/gampiot-bot",
-    "followers_url": "https://api.github.com/users/gampiot-bot/followers",
-    "following_url": "https://api.github.com/users/gampiot-bot/following{/other_user}",
-    "gists_url": "https://api.github.com/users/gampiot-bot/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/gampiot-bot/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/gampiot-bot/subscriptions",
-    "organizations_url": "https://api.github.com/users/gampiot-bot/orgs",
-    "repos_url": "https://api.github.com/users/gampiot-bot/repos",
-    "events_url": "https://api.github.com/users/gampiot-bot/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 9
   },
   {
     "login": "skinvent",
