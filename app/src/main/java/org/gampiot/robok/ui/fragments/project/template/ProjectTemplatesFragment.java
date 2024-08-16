@@ -60,6 +60,7 @@ public class ProjectTemplatesFragment extends RobokFragment {
          templates.add(createTemplate(
                getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game),
                "com.robokgame.empty",
+               "empty_game",
                true,
                false,
                R.drawable.ic_empty_game
@@ -67,10 +68,11 @@ public class ProjectTemplatesFragment extends RobokFragment {
          return templates;
     }
 
-    public ProjectTemplate createTemplate(String name, String packageName, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
+    public ProjectTemplate createTemplate(String name, String packageName, String zipFileName, boolean javaSupport, boolean kotlinSupport, @DrawableRes int imageResId) {
          ProjectTemplate template = new ProjectTemplate();
          template.setName(name);
          template.setPackageName(packageName);
+         template.setZipFileName(zipFileName);
          template.setJavaSupport(javaSupport);
          template.setKotlinSupport(kotlinSupport);
          template.setImage(imageResId);

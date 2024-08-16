@@ -21,10 +21,10 @@ public class JavaClassTemplate extends CodeTemplate {
      public void configure() {
           setContent(
                "package "
-               + CodeTemplate.PACKAGE_NAME
+               + PACKAGE_NAME
                + ";\n"
                + "\npublic class "
-               + CodeTemplate.CLASS_NAME
+               + CLASS_NAME
                + " {\n\t\n}"
           );
      }

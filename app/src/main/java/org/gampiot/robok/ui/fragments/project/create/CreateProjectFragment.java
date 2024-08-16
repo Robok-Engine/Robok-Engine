@@ -9,15 +9,17 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.activity.OnBackPressedDispatcher;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.transition.MaterialSharedAxis;
 
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
 
-public class CreateProjectFragment extends RobokFragment {
+public class CreateProjectFragment extends RobokFragment implements ProjectCreator.Listener {
 
     private FragmentCreateProjectBinding binding;
     
@@ -71,16 +73,42 @@ public class CreateProjectFragment extends RobokFragment {
     }
     
     public void create () {
-         // 
+         var projectCreator = new ProjectCreator();
+         projectCreator.setListener(this);
+         projectCreator.create(
+               requireContext(),
+               binding.projectName.getText().toString(),
+               binding.projectPackageName.getText().toString(),
+               template
+         );
     }
     
     public ProjectTemplate defaultProjectTemplate () {
          ProjectTemplate template = new ProjectTemplate();
          template.setName(getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game));
          template.setPackageName("com.robokgame.empty");
+         template.setZipFileName("empty_game");
          template.setJavaSupport(true);
          template.setKotlinSupport(false);
          template.setImage(R.drawable.ic_empty_game);
          return template;
+    }
+    
+    @Override
+    public void onProjectCreate() {
+         var dialog = 
+             new MaterialAlertDialogBuilder(requireContext())
+                  .setTitle(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_title))
+                  .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
+                  .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (d, i) -> {
+                        d.dismiss();
+                  })
+                  .create();
+         dialog.show();         
+    }
+    
+    @Override
+    public void onProjectCreateError() {
+         //
     }
 }

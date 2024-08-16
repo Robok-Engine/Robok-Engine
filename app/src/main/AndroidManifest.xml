@@ -43,6 +43,10 @@
             android:name="org.gampiot.robok.feature.terminal.TerminalActivity" 
             android:exported="true" />
             
+        <activity
+            android:name="org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity" 
+            android:exported="true" />
+            
     </application>
 
 </manifest>

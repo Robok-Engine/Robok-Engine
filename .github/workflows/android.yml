@@ -45,7 +45,7 @@ jobs:
   Engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
-    if: github.repository == 'robok-inc/Robok-Engine' && github.event_name == 'push'
+    if: github.repository == 'robok-inc/Robok-Engine' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
 
     steps:
       - name: Check out repository
@@ -112,7 +112,7 @@ jobs:
       - name: Send Release APK to Telegram
         uses: appleboy/telegram-action@master
         with:
-          to: -1002230892820
+          to: -1002152494924
           token: ${{ secrets.TELEGRAM_TOKEN }}
           format: markdown
           document: app-release-unsigned-signed.apk
