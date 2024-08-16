@@ -12,6 +12,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robok.R
+import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.databinding.FragmentHomeBinding
 import org.gampiot.robok.feature.util.getDefaultPathFile
 import org.gampiot.robok.feature.util.base.RobokFragment
@@ -67,6 +68,9 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
             openFragment(AboutFragment(MaterialSharedAxis.X))
         }
         
+        if (BuildConfig.DEBUG) {
+            binding.openFileTree.visibility = View.VISIBLE
+        }
         binding.openFileTree.setOnClickListener {
             startActivity(Intent(requireContext(), FileTreeViewActivity::class.java))
         }
