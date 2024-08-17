@@ -42,7 +42,7 @@ class RobokApp : Application() {
         return when (configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> 0
             Configuration.ORIENTATION_LANDSCAPE -> 1
-            else -> "undefined"
+            else -> 0
         }
     }
 
