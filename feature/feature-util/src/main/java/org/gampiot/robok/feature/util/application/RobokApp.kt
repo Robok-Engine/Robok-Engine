@@ -9,9 +9,6 @@ import android.util.Log
 import androidx.fragment.app.FragmentManager
 import com.google.android.material.color.DynamicColors
 import org.gampiot.robok.feature.util.activities.DebugActivity
-import java.io.PrintWriter
-import java.io.StringWriter
-import java.io.Writer
 
 class RobokApp : Application() {
 
@@ -46,9 +43,9 @@ class RobokApp : Application() {
         super.onCreate()
         sInstance = this
         applicationContext = this
-        DynamicColors.applyToActivitiesIfAvailable(sInstance)
+        DynamicColors.applyToActivitiesIfAvailable(this)
 
-        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             val intent = Intent(applicationContext, DebugActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 putExtra("error", Log.getStackTraceString(throwable))
@@ -58,17 +55,4 @@ class RobokApp : Application() {
             System.exit(1)
         }
     }
-
-    private fun getStackTrace(th: Throwable): String {
-        val result: Writer = StringWriter()
-        val printWriter = PrintWriter(result)
-        var cause: Throwable? = th
-        while (cause != null) {
-            cause.printStackTrace(printWriter)
-            cause = cause.cause
-        }
-        printWriter.close()
-        return result.toString()
-    }
 }
-
