@@ -62,8 +62,8 @@
 			android:orientation="vertical">
 			<ImageView
 				android:id="@+id/im_2"
-				android:layout_width="70dp"
-				android:layout_height="70dp"
+				android:layout_width="80dp"
+				android:layout_height="80dp"
 				android:layout_marginLeft="8dp"
 				android:layout_marginTop="8dp"
 				android:layout_marginRight="8dp"
@@ -88,7 +88,7 @@
 				android:paddingRight="8dp"
 				android:paddingBottom="8dp"
 				android:text="Java to Game in a Snap"
-				android:textSize="12sp" />
+				android:textSize="16sp" />
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
 	
@@ -117,7 +117,7 @@
 				android:layout_marginBottom="8dp"
 				android:padding="8dp"
 				android:text="See Us"
-				android:textSize="12sp"
+				android:textSize="16sp"
 				 />
 			<LinearLayout
 				android:id="@+id/ln_4"
@@ -153,14 +153,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Telegram"
-						android:textSize="12sp"
+						android:textSize="16sp"
 						/>
 					<TextView
 						android:id="@+id/tv_6"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Our Telegram Channel "
-						android:textSize="12sp"
+						android:textSize="16sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
 			</LinearLayout>
@@ -199,14 +199,14 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Github"
-						android:textSize="12sp"
+						android:textSize="16sp"
 						 />
 					<TextView
 						android:id="@+id/tv_7"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:text="Github Repository"
-						android:textSize="12sp"
+						android:textSize="16sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
 			</LinearLayout>
