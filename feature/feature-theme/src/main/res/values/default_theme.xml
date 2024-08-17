@@ -1,5 +1,21 @@
 <resources>
     <style name="Base.Theme.Robok" parent="Theme.Material3.DynamicColors.Light">
+        <!-- Bars -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+
+        <!-- Components -->
+        <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
+        <item name="fontFamily">@font/gilroy_regular</item>
+        <item name="android:fontFamily">@font/gilroy_regular</item>
+        <item name="android:forceDarkAllowed">false</item>
+    </style>
+
+    <style name="Theme.Robok" parent="Base.Theme.Robok">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_theme_primaryContainer</item>
@@ -48,23 +64,7 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
-
-        <!-- Bars -->
-        <item name="android:statusBarColor">@android:color/transparent</item>
-        <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar">true</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-
-        <!-- Components -->
-        <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
-        <item name="fontFamily">@font/gilroy_regular</item>
-        <item name="android:fontFamily">@font/gilroy_regular</item>
-        <item name="android:forceDarkAllowed">false</item>
-    </style>
-
-    <style name="Theme.Robok" parent="Base.Theme.Robok">
+        <!-- Splash -->
         <item name="android:windowSplashScreenBackground">@color/md_theme_background</item>
         <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
         <item name="android:windowSplashScreenIconBackgroundColor">@color/md_theme_background</item>
