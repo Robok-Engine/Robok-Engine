@@ -1,14 +1,5 @@
 <resources>
-    <style
-        name="Theme.ThemeEngine.Blue"
-        parent="Theme.Material3.DayNight.NoActionBar"
-        
-    >
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
-        <item name="popupMenuBackground">@drawable/menucustom</item>
-        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.App.BodyLarge</item>
-        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.App.BodyLarge</item>
+    <style name="Theme.Robok.Blue" parent="Theme.Material3.DayNight.NoActionBar">
         <item name="colorPrimary">@color/md_blue_theme_primary</item>
         <item name="colorOnPrimary">@color/md_blue_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_blue_theme_primaryContainer</item>

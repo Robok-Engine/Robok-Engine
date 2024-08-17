@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <style name="Theme.Robok.Amber" parent="Theme.Material3.Dark.NoActionBar" >
-        <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
-        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
-        <item name="popupMenuBackground">@drawable/menucustom</item>
-        <item name="textAppearanceLargePopupMenu">@style/TextAppearance.App.BodyLarge</item>
-        <item name="textAppearanceSmallPopupMenu">@style/TextAppearance.App.BodyLarge</item>
         <item name="colorPrimary">@color/md_amber_theme_primary</item>
         <item name="colorOnPrimary">@color/md_amber_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/md_amber_theme_primaryContainer</item>
