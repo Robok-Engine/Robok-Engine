@@ -1,9 +1,9 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
 | aquilesTrindade | 772 | Developer |
-| ThDev-only | 96 | Developer |
+| ThDev-only | 97 | Developer |
 | renovate[bot] | 61 | Bot |
-| antsummer | 87 | Contributor |
+| antsummer | 98 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| gampiot-bot | 10 | Bot |
+| gampiot-bot | 11 | Bot |
 | skinvent | 2 | Contributor |
