@@ -12,38 +12,15 @@ import org.gampiot.robok.feature.util.activities.DebugActivity
 
 class RobokApp : Application() {
 
-    companion object {
-        private lateinit var sInstance: RobokApp
-        private var sFragmentManager: FragmentManager? = null
-        lateinit var applicationContext: Context
-
-        fun init(fragmentManager: FragmentManager) {
-            sFragmentManager = fragmentManager
-        }
-
-        fun getOrientation(ctx: Context): String {
-            val configuration = ctx.resources.configuration
-            return when (configuration.orientation) {
-                Configuration.ORIENTATION_PORTRAIT -> "portrait"
-                Configuration.ORIENTATION_LANDSCAPE -> "landscape"
-                else -> "undefined"
-            }
-        }
-
-        fun getApp(): RobokApp {
-            return sInstance
-        }
-
-        fun getFragmentManager(): FragmentManager? {
-            return sFragmentManager
-        }
-    }
+    private lateinit var sInstance: RobokApp
+    private var sFragmentManager: FragmentManager? = null
+    lateinit var applicationContext: Context
 
     override fun onCreate() {
         super.onCreate()
         sInstance = this
         applicationContext = this
-        DynamicColors.applyToActivitiesIfAvailable(this)  // Esta linha deve estar correta
+        DynamicColors.applyToActivitiesIfAvailable(this)
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             val intent = Intent(applicationContext, DebugActivity::class.java).apply {
@@ -53,6 +30,39 @@ class RobokApp : Application() {
             startActivity(intent)
             Process.killProcess(Process.myPid())
             System.exit(1)
+        }
+    }
+
+    fun init(fragmentManager: FragmentManager) {
+        sFragmentManager = fragmentManager
+    }
+
+    fun getOrientation(ctx: Context): Int {
+        val configuration = ctx.resources.configuration
+        return when (configuration.orientation) {
+            Configuration.ORIENTATION_PORTRAIT -> 0
+            Configuration.ORIENTATION_LANDSCAPE -> 1
+            else -> "undefined"
+        }
+    }
+
+    fun getApp(): RobokApp {
+        return sInstance
+    }
+
+    fun getFragmentManager(): FragmentManager? {
+        return sFragmentManager
+    }
+
+    companion object {
+        // Singleton pattern to provide global access to the instance
+        @Volatile
+        private var INSTANCE: RobokApp? = null
+
+        fun getInstance(context: Context): RobokApp {
+            return INSTANCE ?: synchronized(this) {
+                INSTANCE ?: (context.applicationContext as RobokApp).also { INSTANCE = it }
+            }
         }
     }
 }
