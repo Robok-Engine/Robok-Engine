@@ -39,7 +39,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <!--Skinventions insertions-->
+            
      <com.google.android.material.card.MaterialCardView
 		android:id="@+id/materialcardview1"
 		android:layout_width="match_parent"
@@ -87,7 +87,7 @@
 				android:paddingLeft="8dp"
 				android:paddingRight="8dp"
 				android:paddingBottom="8dp"
-				android:text="Java to Game in a Snap"
+				android:text="@string/slogan"
 				android:textSize="14sp" />
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
@@ -116,7 +116,7 @@
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="8dp"
 				android:padding="8dp"
-				android:text="See Us"
+				android:text="@string/text_seeus"
 				android:textSize="14sp"
 				 />
 			<LinearLayout
@@ -154,14 +154,14 @@
 						android:id="@+id/tv_4"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Telegram"
+						android:text="@string/item_telegram_title"
 						android:textSize="14sp"
 						/>
 					<TextView
 						android:id="@+id/tv_6"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Our Telegram Channel "
+						android:text="@string/item_telegram_description"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
@@ -202,14 +202,14 @@
 						android:id="@+id/tv_5"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Github"
+						android:text="@string/item_github_title"
 						android:textSize="14sp"
 						 />
 					<TextView
 						android:id="@+id/tv_7"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Github Repository"
+						android:text="@string/item_github_description"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
@@ -240,7 +240,7 @@
 				android:layout_marginTop="8dp"
 				android:layout_marginBottom="8dp"
 				android:padding="8dp"
-				android:text="Contributors "
+				android:text="@string/text_contributors"
 				android:textSize="14sp"
 				 />
 			<!--recyclerview Goes here-->
@@ -288,14 +288,14 @@
 						android:id="@+id/tv_9"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Contribute"
+						android:text="@string/item_contribute_title"
 						android:textSize="14sp"
 						/>
 					<TextView
 						android:id="@+id/tv_10"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="See how you can contribute with us"
+						android:text="@string/item_contribute_description"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
@@ -336,14 +336,14 @@
 						android:id="@+id/tv_11"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Third-party Software"
+						android:text="@string/item_libraries_title"
 						android:textSize="14sp"
 						 />
 					<TextView
 						android:id="@+id/tv_12"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="The Libraries We Used"
+						android:text="@string/item_library_description"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
