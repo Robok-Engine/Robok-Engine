@@ -14,7 +14,7 @@ class RobokApp : Application() {
 
     private lateinit var sInstance: RobokApp
     private var sFragmentManager: FragmentManager? = null
-    lateinit var applicationContext: Context
+    lateinit var applicatinContext: Context
 
     override fun onCreate() {
         super.onCreate()
