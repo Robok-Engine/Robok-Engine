@@ -48,8 +48,8 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
              terminal.show()
         }
         binding.libv.setOnClickListener{
-        val fragment = LibsBuilder()
-    .supportFragment()
+        LibsBuilder()
+    .start(this) 
         }
         if (!BuildConfig.DEBUG) {
             binding.showLogs.visibility = View.GONE
