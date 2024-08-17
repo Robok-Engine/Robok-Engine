@@ -115,8 +115,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
         }
     }
     
-    fun openUrl() {
-        val url = "https://www.example.com"
+    fun openUrl(url: String) {
         val intent = Intent(Intent.ACTION_VIEW)
         intent.data = Uri.parse(url)
         startActivity(intent)
