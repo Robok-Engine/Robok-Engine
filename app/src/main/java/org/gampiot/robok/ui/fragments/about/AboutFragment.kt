@@ -6,7 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.contributorsRecyclerView.widget.LinearLayoutManager
 
 import com.google.android.material.transition.MaterialSharedAxis
 
@@ -19,6 +19,10 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
+import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
+import com.mikepenz.aboutlibraries.*
+
 import org.gampiot.robok.R
 import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.databinding.FragmentAboutBinding
@@ -26,9 +30,7 @@ import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 import org.gampiot.robok.ui.fragments.about.model.Contributor
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import com.mikepenz.aboutlibraries.Libs
-import com.mikepenz.aboutlibraries.LibsBuilder
-import com.mikepenz.aboutlibraries.*
+
 class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentAboutBinding? = null
@@ -42,18 +44,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentAboutBinding.inflate(inflater, container, false)
-
         terminal = RobokTerminal(requireContext())
-        binding.showLogs.setOnClickListener {
-             terminal.show()
-        }
-        binding.libv.setOnClickListener{
-val fragmentabout = LibsBuilder()
-    .supportFragment()
-        }
-        if (!BuildConfig.DEBUG) {
-            binding.showLogs.visibility = View.GONE
-        }
         return binding.root
     }
 
@@ -62,12 +53,13 @@ val fragmentabout = LibsBuilder()
         configureToolbarNavigationBack(binding.toolbar)
         setFragmentLayoutResId(R.id.fragment_container)
 
-        binding.recyclerView.layoutManager = LinearLayoutManager(context)
+        binding.contributorsRecyclerView.layoutManager = LinearLayoutManager(context)
 
         fetchContributors()
+        configureOpenLibs()
     }
 
-    private fun fetchContributors() {
+    fun fetchContributors() {
         CoroutineScope(Dispatchers.IO).launch {
             val request = Request.Builder()
                 .url("https://raw.githubusercontent.com/robok-inc/Robok-Engine/dev/contributors/contributors_github.json")
@@ -84,7 +76,7 @@ val fragmentabout = LibsBuilder()
                             val usersList = contributorsList.filter { it.type == "User" }
 
                             launch(Dispatchers.Main) {
-                                binding.recyclerView.adapter = ContributorAdapter(usersList)
+                                binding.contributorsRecyclerView.adapter = ContributorAdapter(usersList)
                                 terminal.addLog("Parsed users: ${usersList.size}")
                             }
                         }
@@ -95,6 +87,13 @@ val fragmentabout = LibsBuilder()
             } catch (e: Exception) {
                 terminal.addLog("Network request failed: ${e.message}")
             }
+        }
+    }
+    
+    fun configureOpenLibs() {
+        binding.openLibs.setOnClickListener {
+            val fragmentLibs = LibsBuilder()
+                 .supportFragment()
         }
     }
 
