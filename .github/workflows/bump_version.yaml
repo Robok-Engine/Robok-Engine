@@ -41,4 +41,4 @@ jobs:
           branch: "release/${{ github.event.inputs.version }}"
           title: "Build: prepare for v${{ env.VERSION_NAME }} (${{ env.VERSION_CODE }}) release"
           body: "Note: Add release notes"
-          base: "main"
+          base: "dev"
