@@ -27,8 +27,8 @@ import org.gampiot.robok.ui.fragments.about.model.Contributor
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import com.mikepenz.aboutlibraries.Libs
+import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.aboutlibraries.*
-
 class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentAboutBinding? = null
@@ -47,7 +47,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
         binding.showLogs.setOnClickListener {
              terminal.show()
         }
-        binding.lib.setOnClickListener{
+        binding.libv.setOnClickListener{
         val fragment = LibsBuilder()
     .supportFragment()
         }
