@@ -123,6 +123,7 @@
 				android:id="@+id/ln_4"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:background="?attr/selectableItemBackground"
 				android:padding="8dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
@@ -168,6 +169,7 @@
 				android:id="@+id/ln_5"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
+				android:background="?attr/selectableItemBackground"
 				android:layout_marginBottom="3dp"
 				android:padding="8dp"
 				android:gravity="center_vertical"
@@ -212,13 +214,138 @@
 			</LinearLayout>
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
-
-            <androidx.recyclerview.widget.RecyclerView
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/ln_11"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="24dp"
+		android:padding="5dp"
+		android:orientation="vertical"
+		app:cardElevation="@null"
+		app:cardCornerRadius="10dp"
+		app:strokeColor="?attr/colorOutline"
+		app:strokeWidth="1dp">
+		<LinearLayout
+			android:id="@+id/ln_12"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/tv_8"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="13dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:padding="8dp"
+				android:text="Contributors "
+				android:textSize="14sp"
+				 />
+			<!--recyclerview Goes here-->
+			            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:transitionGroup="true" />
+                android:padding="4dp"
+                android:transitionGroup="true" 
+                android:overScrollMode="never"/>
+			<LinearLayout
+				android:id="@+id/ln_13"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:background="?android:attr/selectableItemBackground">
+				<LinearLayout
+					android:id="@+id/ln_15"
+					android:layout_width="34dp"
+					android:layout_height="34dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:padding="2dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<ImageView
+						android:id="@+id/im_5"
+						android:layout_width="24dp"
+						android:layout_height="24dp"
+						android:src="@drawable/people"
+						android:scaleType="fitCenter"
+						app:iconTint="#FFFFFF" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/ln_16"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/tv_9"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Contribute"
+						android:textSize="14sp"
+						/>
+					<TextView
+						android:id="@+id/tv_10"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="See how you can contribute with us"
+						android:textSize="14sp"
+						android:textColor="?colorPrimary" />
+				</LinearLayout>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/ln_14"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="3dp"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal"
+				android:background="?android:attr/selectableItemBackground">
+				<LinearLayout
+					android:id="@+id/ln_17"
+					android:layout_width="34dp"
+					android:layout_height="34dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:padding="2dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<ImageView
+						android:id="@+id/im_6"
+						android:layout_width="24dp"
+						android:layout_height="24dp"
+						android:src="@drawable/libs"
+						android:scaleType="fitCenter"
+						app:iconTint="#FFFFFF" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/ln_18"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/tv_11"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Library used "
+						android:textSize="14sp"
+						 />
+					<TextView
+						android:id="@+id/tv_12"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="The Libraries we used"
+						android:textSize="14sp"
+						android:textColor="?colorPrimary" />
+				</LinearLayout>
+			</LinearLayout>
+		</LinearLayout>
+	</com.google.android.material.card.MaterialCardView>
+
+
                 
             <LinearLayout    
                 android:layout_width="match_parent"
