@@ -81,17 +81,18 @@
 	<!-- templates section -->
 	<string name="template_name_empty_game">Empty Game</string>
 	<!-- end section -->
-		<!--New About Section -->
-      <string name="slogan">Java to Game in a Snap</string>
-      <string name="text_seeus">See us </string>
-       <string name="item_telegram_title">Telegram</string>
-        <string name="item_telegram_description">Our Telegram Coumuntiy</string>
-         <string name="item_github_title">Github</string>
-          <string name="item_github_description">Github Repository</string>
-           <string name="text_contributors">Contributors</string>
-            <string name="item_contribute_title">Contribute</string>
-            <string name="item_contribute_description">See How You can contribute with us </string>
-             <string name="item_libraries_title">Third-party Software</string>
-              <string name="item_library_description">The Libraries we used</string>
-              <!--end section-->
+	
+	<!-- about section -->
+    <string name="slogan">Java to Game in a Snap</string>
+    <string name="text_seeus">See us</string>
+    <string name="item_telegram_title">Telegram</string>
+    <string name="item_telegram_description">Our Telegram Community</string>
+    <string name="item_github_title">GitHub</string>
+    <string name="item_github_description">GitHub Repository</string>
+    <string name="text_contributors">Contributors</string>
+    <string name="item_contribute_title">Contribute</string>
+    <string name="item_contribute_description">See how You can Contribute with Us</string>
+    <string name="item_libraries_title">Third-Party Softwares</string>
+    <string name="item_libraries_description">The Libraries we used</string>
+    <!--end section-->
 </resources>

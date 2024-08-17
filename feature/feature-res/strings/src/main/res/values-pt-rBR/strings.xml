@@ -16,6 +16,7 @@
     <string name="common_word_allow">Permitir</string>
     <string name="common_word_deny">Negar</string>
     <!-- end section -->
+    
     <!-- titles section -->
     <string name="title_create_project">Criar Projeto</string>
     <string name="title_open_project">Abrir Projeto</string>
@@ -25,35 +26,43 @@
     <string name="title_about">Sobre</string>
     <string name="title_select_folder">Selecionar pasta</string>
     <!-- end section -->
+    
     <!-- messages section -->
     <string name="message_compiled">Seu código foi compilado!</string>
     <!-- end section -->
+    
     <!-- go to section -->
     <string name="go_to_outputs">Ir para saída</string>
     <!-- end section -->
+    
     <!-- hints section -->
     <string name="hint_project_name">Nome do Projeto</string>
     <string name="hint_package_name">Nome de Pacote</string>
     <!-- end section -->
+    
     <!-- settings section -->
     <string name="settings_editor_title">Editor de Código</string>
     <string name="settings_editor_description">Algumas configurações do Editor.</string>
     <string name="settings_editor_theme_title">Tema do Editor de Código</string>
     <string name="settings_editor_theme_description">Mude o tema do Editor de Código.</string>
     <!-- end section -->
+    
     <!-- texts section -->
     <string name="text_diagnostic">Diagnóstico</string>
     <string name="text_logs">Registros</string>
     <!-- ene section -->
+    
     <!-- warnings section -->
     <string name="warning_storage_perm_title">Permissão de Armazenamento</string>
     <string name="warning_storage_perm_message">Robok precisa de permissão de armazenamento para criar projetos, abrir projetos e muito mais</string>
     <!-- end section -->
+    
     <!-- errors section -->
     <string name="error_storage_perm_title">Erro na permissão de armazenamento</string>
     <string name="error_storage_perm_message">Você não aceitou a permissão de armazenamento, ela é necessária para que a Robok funcione.</string>
     <string name="error_invalid_name">Invalid name</string>
     <!-- end section -->
+    
     <!-- terminal section -->
     <string name="terminal_options">Options</string>
     <string name="terminal_install_package">Install Package</string>
@@ -61,17 +70,18 @@
     <string name="terminal_update_packages">Update Packages</string>
     <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
     <!-- end section -->
-    	<!--New About Section -->
-      <string name="slogan">Java to Game in a Snap</string>
-      <string name="text_seeus">See us </string>
-       <string name="item_telegram_title">Telegram</string>
-        <string name="item_telegram_description">Our Telegram Coumuntiy</string>
-         <string name="item_github_title">Github</string>
-          <string name="item_github_description">Github Repository</string>
-           <string name="text_contributors">Contributors</string>
-            <string name="item_contribute_title">Contribute</string>
-            <string name="item_contribute_description">See How You can contribute with us </string>
-             <string name="item_libraries_title">Third-party Software</string>
-              <string name="item_library_description">The Libraries we used</string>
-              <!--end section-->
+    
+    <!-- about section -->
+    <string name="slogan">Java para jogo em um piscar de olhos/string>
+    <string name="text_seeus">Veja-nos</string>
+    <string name="item_telegram_title">Telegram</string>
+    <string name="item_telegram_description">Nossa Comunidade Telegram</string>
+    <string name="item_github_title">GitHub</string>
+    <string name="item_github_description">Repositório GitHub</string>
+    <string name="text_contributors">Contribuidores</string>
+    <string name="item_contribute_title">Contribuir</string>
+    <string name="item_contribute_description">Veja como você pode contribuir conosco</string>
+    <string name="item_libraries_title">Softwares de terceiros</string>
+    <string name="item_libraries_description">As bibliotecas que usamos</string>
+    <!--end section-->
 </resources>

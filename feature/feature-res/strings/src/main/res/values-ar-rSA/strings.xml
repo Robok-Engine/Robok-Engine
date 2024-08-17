@@ -61,18 +61,18 @@
     <string name="terminal_update_packages">تحديث الحزمات</string>
     <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
     <!-- end section -->
-    <!-- New About Section-->
-    	<!--New About Section -->
-      <string name="slogan">من جافا إلى لعبة في لحظات</string>
-      <string name="text_seeus">تابعنا على </string>
-       <string name="item_telegram_title">تلجرام</string>
-        <string name="item_telegram_description">مجتمع تلجرام الخاص بنا</string>
-         <string name="item_github_title">جيتهب</string>
-          <string name="item_github_description">مستودع الجيتهب</string>
-           <string name="text_contributors">المساهمون</string>
-            <string name="item_contribute_title">ساهم</string>
-            <string name="item_contribute_description">تعرف كيف تساهم معنا</string>
-             <string name="item_libraries_title">المكتبات</string>
-              <string name="item_library_description">المكتبات المستعملة في التطبيق</string>
-              <!--end section-->
+    
+    <!--about section-->
+    <string name="slogan">من جافا إلى لعبة في لحظات</string>
+    <string name="text_seeus">تابعنا على </string>
+    <string name="item_telegram_title">تلجرام</string>
+    <string name="item_telegram_description">مجتمع تلجرام الخاص بنا</string>
+    <string name="item_github_title">جيتهب</string>
+    <string name="item_github_description">مستودع الجيتهب</string>
+    <string name="text_contributors">المساهمون</string>
+    <string name="item_contribute_title">ساهم</string>
+    <string name="item_contribute_description">تعرف كيف تساهم معنا</string>
+    <string name="item_libraries_title">المكتبات</string>
+    <string name="item_libraries_description">المكتبات المستعملة في التطبيق</string>
+    <!--end section-->
 </resources>
