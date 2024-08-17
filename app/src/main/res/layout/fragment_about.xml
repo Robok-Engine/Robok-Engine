@@ -62,8 +62,8 @@
 			android:orientation="vertical">
 			<ImageView
 				android:id="@+id/im_2"
-				android:layout_width="60dp"
-				android:layout_height="60dp"
+				android:layout_width="70dp"
+				android:layout_height="70dp"
 				android:layout_marginLeft="8dp"
 				android:layout_marginTop="8dp"
 				android:layout_marginRight="8dp"
@@ -79,7 +79,7 @@
 				android:paddingTop="8dp"
 				android:paddingRight="8dp"
 				android:text="Robok"
-				android:textSize="22sp" />
+				android:textSize="28sp" />
 			<TextView
 				android:id="@+id/tv_2"
 				android:layout_width="wrap_content"
@@ -89,6 +89,127 @@
 				android:paddingBottom="8dp"
 				android:text="Java to Game in a Snap"
 				android:textSize="12sp" />
+		</LinearLayout>
+	</com.google.android.material.card.MaterialCardView>
+	
+	<com.google.android.material.card.MaterialCardView
+		android:id="@+id/materialcardview2"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="24dp"
+		android:padding="5dp"
+		android:orientation="vertical"
+		app:cardElevation="@null"
+		app:cardCornerRadius="10dp"
+		app:strokeColor="?attr/colorOutline"
+		app:strokeWidth="1dp">
+		<LinearLayout
+			android:id="@+id/ln_8"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:orientation="vertical">
+			<TextView
+				android:id="@+id/tv_3"
+				android:layout_width="wrap_content"
+				android:layout_height="wrap_content"
+				android:layout_marginLeft="13dp"
+				android:layout_marginTop="8dp"
+				android:layout_marginBottom="8dp"
+				android:padding="8dp"
+				android:text="See Us"
+				android:textSize="12sp"
+				 />
+			<LinearLayout
+				android:id="@+id/ln_4"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				<LinearLayout
+					android:id="@+id/ln_6"
+					android:layout_width="34dp"
+					android:layout_height="34dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:padding="2dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<ImageView
+						android:id="@+id/im_3"
+						android:layout_width="24dp"
+						android:layout_height="24dp"
+						android:src="@drawable/send"
+						android:scaleType="fitCenter"
+						app:iconTint="#FFFFFF" />
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/ln_9"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/tv_4"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Telegram"
+						android:textSize="12sp"
+						/>
+					<TextView
+						android:id="@+id/tv_6"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Our Telegram Channel "
+						android:textSize="12sp"
+						android:textColor="?Primary" />
+				</LinearLayout>
+			</LinearLayout>
+			<LinearLayout
+				android:id="@+id/ln_5"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:layout_marginBottom="3dp"
+				android:padding="8dp"
+				android:gravity="center_vertical"
+				android:orientation="horizontal">
+				<LinearLayout
+					android:id="@+id/ln_7"
+					android:layout_width="34dp"
+					android:layout_height="34dp"
+					android:layout_marginLeft="10dp"
+					android:layout_marginRight="10dp"
+					android:padding="2dp"
+					android:gravity="center_horizontal|center_vertical"
+					android:orientation="vertical">
+					<ImageView
+						android:id="@+id/im_4"
+						android:layout_width="24dp"
+						android:layout_height="24dp"
+						android:src="@drawable/github"
+						android:scaleType="fitCenter"
+					/>
+				</LinearLayout>
+				<LinearLayout
+					android:id="@+id/ln_10"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:orientation="vertical">
+					<TextView
+						android:id="@+id/tv_5"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Github"
+						android:textSize="12sp"
+						 />
+					<TextView
+						android:id="@+id/tv_7"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="Github Repository"
+						android:textSize="12sp"
+						android:textColor="?Primary" />
+				</LinearLayout>
+			</LinearLayout>
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
 
