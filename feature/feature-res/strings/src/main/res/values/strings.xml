@@ -20,6 +20,11 @@
 	<string name="common_word_deny">Deny</string>
 	<!-- end section -->
 	
+	<!-- links section -->
+	<string name="link_github">https://github.com/robok-inc/Robok-Engine</string>
+	<string name="link_telegram">https://t.me/robokinc</string>
+	<!-- end section -->
+	
 	<!-- titles section -->
 	<string name="title_create_project">Create project</string>
 	<string name="title_open_project">Open project</string>

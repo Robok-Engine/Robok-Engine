@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.content.Intent
+import android.net.Uri
 
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -28,6 +30,7 @@ import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.databinding.FragmentAboutBinding
 import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
 import org.gampiot.robok.ui.fragments.about.model.Contributor
+import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
@@ -57,6 +60,7 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
 
         fetchContributors()
         configureOpenLibs()
+        configureSocialLinks()
     }
 
     fun fetchContributors() {
@@ -95,6 +99,27 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
             val fragmentLibs = LibsBuilder()
                  .supportFragment()
         }
+    }
+    
+    fun configureSocialLinks () {
+        binding.openTelegram.setOnClickListener {
+            openUrl(getString(Strings.link_telegram))
+        }
+        
+        binding.openGithub.setOnClickListener {
+            openUrl(getString(Strings.link_github))
+        }
+        
+        binding.openContribute.setOnClickListener {
+            openUrl(getString(Strings.link_github))
+        }
+    }
+    
+    fun openUrl() {
+        val url = "https://www.example.com"
+        val intent = Intent(Intent.ACTION_VIEW)
+        intent.data = Uri.parse(url)
+        startActivity(intent)
     }
 
     override fun onDestroyView() {
