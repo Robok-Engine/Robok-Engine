@@ -5,4 +5,11 @@ plugins {
     id("org.jetbrains.kotlin.android") version "2.0.10" apply false
     id("com.google.devtools.ksp") version "2.0.10-1.0.24" apply false
     id("com.google.dagger.hilt.android") version "2.52" apply false
+    id("com.mikepenz.aboutlibraries.plugin") version "11.2.2" apply false
 }
+
+
+// Root build.gradle
+
+// App build.gradle
+id 'com.mikepenz.aboutlibraries.plugin'
