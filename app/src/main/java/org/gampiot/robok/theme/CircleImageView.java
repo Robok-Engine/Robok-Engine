@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;

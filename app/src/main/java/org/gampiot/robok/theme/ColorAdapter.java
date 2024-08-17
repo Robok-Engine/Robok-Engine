@@ -1,12 +1,12 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.gampiot.robok.feature.theme.R;
-import org.gampiot.robok.feature.theme.databinding.LayoutColorItemBinding;
+import org.gampiot.robok.R;
+import org.gampiot.robok.databinding.LayoutColorItemBinding;
 
 import java.util.List;
 

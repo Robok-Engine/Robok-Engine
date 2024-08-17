@@ -1,9 +1,9 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 import androidx.annotation.ColorRes;
 import androidx.annotation.StyleRes;
 
-import org.gampiot.robok.feature.theme.R;
+import org.gampiot.robok.R;
 
 public enum Theme {
      AMBER(R.style.Theme_Robok_Amber, R.color.md_amber_theme_primary),

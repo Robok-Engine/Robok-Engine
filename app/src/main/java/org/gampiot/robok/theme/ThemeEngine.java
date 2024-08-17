@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 import android.app.Activity;
 import android.app.Application;
@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.content.ContextCompat;
 import androidx.core.content.res.ResourcesCompat;
 
-import org.gampiot.robok.feature.theme.R;
+import org.gampiot.robok.R;
 
 /** ThemeEngine class to manage theme-related preferences and behaviors */
 public class ThemeEngine {

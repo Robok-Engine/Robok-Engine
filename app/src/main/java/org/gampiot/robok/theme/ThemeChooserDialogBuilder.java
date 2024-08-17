@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -11,8 +11,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
-import org.gampiot.robok.feature.theme.R;
-import org.gampiot.robok.feature.theme.databinding.LayoutRecyclerviewBinding;
+import org.gampiot.robok.R;
+import org.gampiot.robok.databinding.LayoutRecyclerviewBinding;
 
 import java.util.ArrayList;
 import java.util.List;

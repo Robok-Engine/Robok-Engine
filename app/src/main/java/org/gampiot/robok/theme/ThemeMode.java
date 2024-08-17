@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.theme;
+package org.gampiot.robok.theme;
 
 public class ThemeMode {
      public static final int AUTO = 0;
