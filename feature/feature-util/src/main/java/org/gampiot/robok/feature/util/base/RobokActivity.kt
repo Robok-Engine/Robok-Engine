@@ -3,14 +3,21 @@ package org.gampiot.robok.feature.util.base
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.graphics.Color
+
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
+
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
@@ -26,6 +33,10 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     private var permissionDialog: PermissionDialog? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge(
+            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+        )
         super.onCreate(savedInstanceState)
         if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()

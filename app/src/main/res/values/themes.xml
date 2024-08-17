@@ -1,21 +1,26 @@
 <resources>
-    <style name="Base.Theme.Robok" parent="Theme.Material3.DynamicColors.Dark" >
-	    <!-- Bars -->
+    <style name="Base.Theme.Robok" parent="Theme.Material3.DynamicColors.Light">
+        <!-- Bars -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
-        <item name="android:windowLightStatusBar">false</item>
-        <item name="android:windowLightNavigationBar">false</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
-        
+
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
-        
         <item name="fontFamily">@font/gilroy_regular</item>
         <item name="android:fontFamily">@font/gilroy_regular</item>
         <item name="android:forceDarkAllowed">false</item>
-	</style>
-	
+    </style>
+    
+    <style name="Theme.Robok.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
+        <item name="windowSplashScreenBackground">?android:attr/colorBackground</item>
+        <item name="postSplashScreenTheme">@style/Theme.Robok</item>
+    </style>
+
     <style name="Theme.Robok" parent="Base.Theme.Robok">
         <item name="colorPrimary">@color/md_theme_primary</item>
         <item name="colorOnPrimary">@color/md_theme_onPrimary</item>
@@ -65,10 +70,5 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
-	    <!-- Splash -->
-        <item name="android:windowSplashScreenBackground">@color/md_theme_background</item>
-        <item name="android:windowSplashScreenAnimatedIcon">@mipmap/ic_launcher</item>
-        <item name="android:windowSplashScreenIconBackgroundColor">@color/md_theme_background</item>
-        <item name="android:windowSplashScreenAnimationDuration">300</item>
     </style>
 </resources>

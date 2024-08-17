@@ -65,9 +65,9 @@
 				android:layout_marginTop="8dp"
 				android:layout_marginRight="8dp"
 				android:padding="12dp"
-				android:src="@drawable/logo"
+				android:src="@drawable/ic_robok_white"
 				android:scaleType="fitCenter"
-				android:background="@drawable/clover" />
+				android:background="@drawable/shape_clover" />
 			<TextView
 				android:layout_width="wrap_content"
 				android:layout_height="wrap_content"
@@ -130,7 +130,7 @@
 					<ImageView
 						android:layout_width="24dp"
 						android:layout_height="24dp"
-						android:src="@drawable/send"
+						android:src="@drawable/ic_send_24"
 						android:scaleType="fitCenter"
 						app:iconTint="#FFFFFF" />
 				</LinearLayout>
@@ -173,7 +173,7 @@
 					<ImageView
 						android:layout_width="24dp"
 						android:layout_height="24dp"
-						android:src="@drawable/github"
+						android:src="@drawable/ic_github_24"
 						android:scaleType="fitCenter"
 					/>
 				</LinearLayout>
@@ -250,7 +250,7 @@
 					<ImageView
 						android:layout_width="24dp"
 						android:layout_height="24dp"
-						android:src="@drawable/people"
+						android:src="@drawable/ic_people_24"
 						android:scaleType="fitCenter"
 						app:iconTint="#FFFFFF" />
 				</LinearLayout>
@@ -293,7 +293,7 @@
 					<ImageView
 						android:layout_width="24dp"
 						android:layout_height="24dp"
-						android:src="@drawable/libs"
+						android:src="@drawable/ic_book_24"
 						android:scaleType="fitCenter"
 						app:iconTint="#FFFFFF" />
 				</LinearLayout>
