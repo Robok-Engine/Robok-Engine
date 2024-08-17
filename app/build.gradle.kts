@@ -4,6 +4,7 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     kotlin("plugin.serialization") version "2.0.10"
+    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 android {
