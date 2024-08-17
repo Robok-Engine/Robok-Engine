@@ -161,7 +161,7 @@
 						android:layout_height="wrap_content"
 						android:text="Our Telegram Channel "
 						android:textSize="12sp"
-						android:textColor="?Primary" />
+						android:textColor="?colorPrimary" />
 				</LinearLayout>
 			</LinearLayout>
 			<LinearLayout
@@ -207,7 +207,7 @@
 						android:layout_height="wrap_content"
 						android:text="Github Repository"
 						android:textSize="12sp"
-						android:textColor="?Primary" />
+						android:textColor="?colorPrimary" />
 				</LinearLayout>
 			</LinearLayout>
 		</LinearLayout>
