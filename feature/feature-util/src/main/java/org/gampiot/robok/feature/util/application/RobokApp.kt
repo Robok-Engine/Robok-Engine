@@ -43,7 +43,7 @@ class RobokApp : Application() {
         super.onCreate()
         sInstance = this
         applicationContext = this
-        DynamicColors.applyToActivitiesIfAvailable(this)
+        DynamicColors.applyToActivitiesIfAvailable(this)  // Esta linha deve estar correta
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
             val intent = Intent(applicationContext, DebugActivity::class.java).apply {
