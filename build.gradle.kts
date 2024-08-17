@@ -7,9 +7,3 @@ plugins {
     id("com.google.dagger.hilt.android") version "2.52" apply false
     id("com.mikepenz.aboutlibraries.plugin") version "11.2.2" apply false
 }
-
-
-// Root build.gradle
-
-// App build.gradle
-id 'com.mikepenz.aboutlibraries.plugin'
