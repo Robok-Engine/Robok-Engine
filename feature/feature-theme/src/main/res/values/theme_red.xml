@@ -1,5 +1,5 @@
 <resources>
-    <style name="Theme.ThemeEngine.RED" parent="Theme.Material3.Dark.NoActionBar">
+    <style name="Theme.Robok.Red" parent="Theme.Material3.Dark.NoActionBar">
         <item name="colorPrimary">@color/red_theme_primary</item>
         <item name="colorOnPrimary">@color/red_theme_onPrimary</item>
         <item name="colorPrimaryContainer">@color/red_theme_primaryContainer</item>

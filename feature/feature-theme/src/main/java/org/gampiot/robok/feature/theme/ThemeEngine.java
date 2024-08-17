@@ -92,7 +92,7 @@ public class ThemeEngine {
    */
   public int getTheme() {
     return (hasS() && isDynamicTheme())
-        ? R.style.Theme_ThemeEngine_Dynamic
+        ? R.style.Theme_Robok_Dynamic
         : getStaticTheme().getThemeId();
   }
 
