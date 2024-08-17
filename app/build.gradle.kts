@@ -122,6 +122,7 @@ dependencies {
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
+    implementation("com.mikepenz:aboutlibraries:11.2.2")
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
