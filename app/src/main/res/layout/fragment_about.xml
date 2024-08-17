@@ -307,7 +307,7 @@
 					<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="@string/item_library_description"
+						android:text="@string/item_libraries_description"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
