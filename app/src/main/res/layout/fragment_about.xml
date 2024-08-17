@@ -34,6 +34,11 @@
         android:fillViewport="true"
         android:paddingBottom="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
             <!--Skinventions insertions-->
      <com.google.android.material.card.MaterialCardView
 		android:id="@+id/materialcardview1"
@@ -87,12 +92,6 @@
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
 
-
-
-
-
-        
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_view"
                 android:layout_width="match_parent"
@@ -112,6 +111,6 @@
                      android:layout_height="wrap_content"
                      android:text="@string/common_word_logs" />    
             </LinearLayout>    
-        
+        </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
