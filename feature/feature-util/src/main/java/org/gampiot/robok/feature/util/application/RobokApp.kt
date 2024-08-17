@@ -19,7 +19,7 @@ class RobokApp : Application() {
     override fun onCreate() {
         super.onCreate()
         sInstance = this
-        applicationContext = this
+        applicatinContext = this
         DynamicColors.applyToActivitiesIfAvailable(this)
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
