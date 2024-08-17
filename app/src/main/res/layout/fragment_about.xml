@@ -124,6 +124,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:background="?attr/selectableItemBackground"
+				android:clickable="true"
 				android:padding="8dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal">
@@ -170,6 +171,7 @@
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
 				android:background="?attr/selectableItemBackground"
+				android:clickable="true"
 				android:layout_marginBottom="3dp"
 				android:padding="8dp"
 				android:gravity="center_vertical"
@@ -258,7 +260,8 @@
 				android:padding="8dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal"
-				android:background="?android:attr/selectableItemBackground">
+				android:background="?android:attr/selectableItemBackground"
+				android:clickable="true">
 				<LinearLayout
 					android:id="@+id/ln_15"
 					android:layout_width="34dp"
@@ -305,7 +308,8 @@
 				android:padding="8dp"
 				android:gravity="center_vertical"
 				android:orientation="horizontal"
-				android:background="?android:attr/selectableItemBackground">
+				android:background="?android:attr/selectableItemBackground"
+				android:clickable="true">
 				<LinearLayout
 					android:id="@+id/ln_17"
 					android:layout_width="34dp"
@@ -332,14 +336,14 @@
 						android:id="@+id/tv_11"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="Library used "
+						android:text="Third-party Software"
 						android:textSize="14sp"
 						 />
 					<TextView
 						android:id="@+id/tv_12"
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:text="The Libraries we used"
+						android:text="The Libraries We Used"
 						android:textSize="14sp"
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
