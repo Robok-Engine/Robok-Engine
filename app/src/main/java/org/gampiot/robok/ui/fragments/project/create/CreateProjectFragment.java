@@ -106,7 +106,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
                         d.dismiss();
                   })
                   .setNegativeButton("Build", (dd, ii) -> {
-                       build();
+                       projectManager.build();
                   })
                   .create();
          dialog.show();         
