@@ -21,22 +21,22 @@ open class CodeTemplate() : Parcelable {
         return 0
     }
 
-    fun get(): String? {
+    open fun get(): String? {
         configure()
         return codeContent
     }
 
-    fun setContent(contents: String) {
+    open fun setContent(contents: String) {
         codeContent = contents
     }
 
-    fun configure() {}
+    open fun configure() {}
 
-    fun getName(): String {
+    open fun getName(): String {
         throw IllegalStateException("getName() is not subclassed")
     }
 
-    fun getExtension(): String {
+    open fun getExtension(): String {
         throw IllegalStateException("getExtension() is not subclassed")
     }
 
