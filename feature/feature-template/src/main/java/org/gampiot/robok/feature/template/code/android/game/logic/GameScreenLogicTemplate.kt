@@ -18,22 +18,24 @@ open class GameScreenLogicTemplate : JavaClassTemplate {
     override fun configure() {
         setContent(
             """
-            package $PACKAGE_NAME
+            package ${getClassPackageName()};
 
-            import robok.game.screen.GameScreen
-            import robok.game.gui.GUIViewListener
-            import $PACKAGE_NAME.datagui.MainGui
+            import robok.game.screen.GameScreen;
+            import robok.game.gui.GUIViewListener;
+            import $PACKAGE_NAME.datagui.MainGui;
 
-            class $CLASS_NAME : GameScreen(), GUIViewListener {
+            public class ${getClassName()} extends GameScreen implements GUIViewListener {
 
-                private lateinit var views: MainGui
+                private MainGui views;
 
-                override fun onScreenCreated() {
-                    views = MainGui.inflate(this)
-                    views.shootButton.setGUIViewListener(this)
+                @Override
+                public void onScreenCreated() {
+                    views = MainGui.inflate(this);
+                    views.shootButton.setGUIViewListener(this);
                 }
-
-                override fun onClick(view: GUIView) {
+                
+                @Override
+                public void onClick(GUIView view) {
                     if (view == views.shootButton) {
                         
                     }

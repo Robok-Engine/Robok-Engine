@@ -70,11 +70,11 @@ public class ProjectCreator {
     private void createJavaClass(File outputDir, String projectName, String packageName) {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
-            template.CLASS_NAME = "MainScreen";
-            template.PACKAGE_NAME = packageName;
+            template.setClassName("MainScreen");
+            template.setClassPackageName("packageName);
             template.configure();
             
-            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.CLASS_NAME + ".java";
+            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
             File javaFile = new File(outputDir, classFilePath);
 
             if (!javaFile.getParentFile().exists()) {

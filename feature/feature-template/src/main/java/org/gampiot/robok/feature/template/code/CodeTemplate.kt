@@ -5,16 +5,16 @@ import android.os.Parcelable
 
 open class CodeTemplate() : Parcelable {
 
-    open public var PACKAGE_NAME: String? = null
-    open public var CLASS_NAME: String? = null
-    open public var codeContent: String? = null
+    open public var classPackageName: String? = null
+    open public var className: String? = null
+    open public var classCodeContent: String? = null
 
     constructor(parcel: Parcel) : this() {
-        codeContent = parcel.readString()
+        classCodeContent = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(codeContent)
+        parcel.writeString(classCodeContent)
     }
 
     override fun describeContents(): Int {
@@ -23,13 +23,33 @@ open class CodeTemplate() : Parcelable {
 
     open fun get(): String? {
         configure()
-        return codeContent
+        return classCodeContent
     }
 
-    open fun setContent(contents: String) {
-        codeContent = contents
+    open fun setContent(value: String) {
+        classCodeContent = value
     }
-
+    
+    open fun setClassName(value: String) {
+        className = value
+    }
+    
+    open fun setClassPackageName(value: String) {
+        classPackageName = value
+    }
+    
+    open fun getClassContent() : String {
+        return classCodeContent
+    }
+    
+    open fun getClassName () : String {
+        return className
+    }
+    
+    open fun getClassPackageName () : String {
+        return classPackageName
+    }
+    
     open fun configure() {}
 
     open fun getName(): String {
