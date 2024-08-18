@@ -5,7 +5,7 @@ import android.os.Parcel
 import org.gampiot.robok.feature.template.code.CodeTemplate
 import org.gampiot.robok.feature.template.code.java.JavaClassTemplate
 
-class GameScreenLogicTemplate : JavaClassTemplate {
+open class GameScreenLogicTemplate : JavaClassTemplate {
 
     constructor() : super()
 

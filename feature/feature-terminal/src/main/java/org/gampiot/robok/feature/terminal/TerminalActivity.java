@@ -153,7 +153,8 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     
      @Override
      public void onSingleTapUp(MotionEvent e) {
-          KeyboardUtils.showSoftInput(binding.terminalView);
+          var keyboardUtils = new KeyboardUtils();
+          keyboardUtils.showSoftInput(binding.terminalView);
      }
      
      @Override
