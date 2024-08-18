@@ -16,11 +16,10 @@ import androidx.annotation.Nullable
 
 import org.gampiot.robok.feature.util.application.RobokApp
 
-open class KeyboardUtils {
+open class KeyboardUtil {
 
     open fun showSoftInput() {
-        val robokApp = RobokApp()
-        val imm = robokApp.getApp().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
@@ -35,8 +34,7 @@ open class KeyboardUtils {
     }
 
     open fun showSoftInput(view: View, flags: Int) {
-        val robokApp = RobokApp()
-        val imm = robokApp.getApp().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.let {
             view.isFocusable = true
             view.isFocusableInTouchMode = true
@@ -72,8 +70,7 @@ open class KeyboardUtils {
     }
 
     open fun hideSoftInput(view: View) {
-        val robokApp = RobokApp()
-        val imm = robokApp.getApp().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
 
