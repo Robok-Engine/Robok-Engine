@@ -19,6 +19,12 @@ import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
 
+import java.io.File;
+
+import robok.aapt2.compiler.CompilerTask;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+
 public class CreateProjectFragment extends RobokFragment implements ProjectCreator.Listener {
 
     private FragmentCreateProjectBinding binding;
@@ -103,10 +109,26 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
                   .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (d, i) -> {
                         d.dismiss();
                   })
+                  .setNegativeButton("Build", (dd, ii) -> {
+                       build();
+                  })
                   .create();
          dialog.show();         
     }
     
+    public void build () {
+         Project project = new Project();
+         project.setLibraries(Library.fromFile(new File("")));
+         project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
+         project.setOutputFile(new File("/sdcard/Robok/.projects/project/build/"));
+         project.setJavaFile(new File("/sdcard/Robok/.projects/project/logic/"));
+         project.setManifestFile(new File("/sdcard/Robok/.projects/project/res"));
+         project.setMinSdk(21);
+         project.setTargetSdk(28);
+         CompilerTask task = new CompilerTask(requireContext());
+         task.execute(project);
+    }
+        
     @Override
     public void onProjectCreateError() {
          //
