@@ -109,10 +109,10 @@ public class ProjectManager {
          logger.attach(terminal.getRecyclerView());
          Project project = new Project();
          project.setLibraries(Library.fromFile(new File("")));
-         project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
+         project.setResourcesFile(new File("/sdcard/Robok/.projects/project/game/res/"));
          project.setOutputFile(new File("/sdcard/Robok/.projects/project/build/"));
-         project.setJavaFile(new File("/sdcard/Robok/.projects/project/logic/"));
-         project.setManifestFile(new File("/sdcard/Robok/.projects/project/res"));
+         project.setJavaFile(new File("/sdcard/Robok/.projects/project/game/logic/"));
+         project.setManifestFile(new File("/sdcard/Robok/.projects/project/game/AndroidManifest.xml"));
          project.setLogger(logger);
          project.setMinSdk(21);
          project.setTargetSdk(28);
