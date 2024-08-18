@@ -42,10 +42,10 @@ public class RobokApp extends Application {
     @Override
     public void onCreate() {
          super.onCreate();
-         sInstance = this;
+         instance = this;
          robokContext = this;
          Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
-              Intent intent = new Intent(getrobokContext(), DebugActivity.class);
+              Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
               intent.putExtra(ERROR_TAG, Log.getStackTraceString(throwable));
               startActivity(intent);
@@ -53,7 +53,7 @@ public class RobokApp extends Application {
               System.exit(1);
          });
          
-         DynamicColors.applyToActivitiesIfAvailable(sInstance);
+         DynamicColors.applyToActivitiesIfAvailable(instance);
     }
 
     public String getStackTrace(Throwable th) {
