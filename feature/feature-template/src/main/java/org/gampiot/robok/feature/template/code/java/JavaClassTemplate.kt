@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.template.code.kotlin
+package org.gampiot.robok.feature.template.code.java
 
 import android.os.Parcel
 
