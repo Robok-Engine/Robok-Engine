@@ -3,6 +3,16 @@ package org.gampiot.robok.ui.fragments.project.create.util;
 import android.content.Context;
 import android.os.Environment;
 
+import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
+import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
+import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
+import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
+
+import robok.aapt2.compiler.CompilerTask;
+import robok.aapt2.model.Project;
+import robok.aapt2.model.Library;
+import robok.aapt2.logger.Logger;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -11,17 +21,18 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
-import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
-import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
-import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
-
-public class ProjectCreator {
+public class ProjectManager {
 
     public Listener listener;
+    public Context context;
     
-    public ProjectCreator () {}
+    public ProjectManager () {}
+    
+    public ProjectManager (Context context) {
+         this.context = context;
+    }
 
-    public void create(Context context, String projectName, String packageName, ProjectTemplate template) {
+    public void create(String projectName, String packageName, ProjectTemplate template) {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
             File outputDir = new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + projectName);
@@ -90,6 +101,24 @@ public class ProjectCreator {
             e.printStackTrace();
             listener.onProjectCreateError();
         }
+    }
+    
+    public void build () {
+         var terminal = new RobokTerminalWithRecycler(context);
+         var logger = new Logger();
+         logger.attach(terminal.getRecyclerView());
+         Project project = new Project();
+         project.setLibraries(Library.fromFile(new File("")));
+         project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
+         project.setOutputFile(new File("/sdcard/Robok/.projects/project/build/"));
+         project.setJavaFile(new File("/sdcard/Robok/.projects/project/logic/"));
+         project.setManifestFile(new File("/sdcard/Robok/.projects/project/res"));
+         project.setLogger(logger);
+         project.setMinSdk(21);
+         project.setTargetSdk(28);
+         CompilerTask task = new CompilerTask(context);
+         task.execute(project);
+         terminal.show();
     }
     
     public void setListener (Listener listener) {

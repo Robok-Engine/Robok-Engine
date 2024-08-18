@@ -15,19 +15,13 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
-import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
-import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
 
 import java.io.File;
 
-import robok.aapt2.compiler.CompilerTask;
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.logger.Logger;
-
-public class CreateProjectFragment extends RobokFragment implements ProjectCreator.Listener {
+public class CreateProjectFragment extends RobokFragment implements ProjectManager.Listener {
 
     private FragmentCreateProjectBinding binding;
     
@@ -81,9 +75,9 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     }
     
     public void create () {
-         var projectCreator = new ProjectCreator();
-         projectCreator.setListener(this);
-         projectCreator.create(
+         var projectManager = new ProjectManager();
+         projectManager.setListener(this);
+         projectManager.create(
                requireContext(),
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
@@ -116,24 +110,6 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
                   })
                   .create();
          dialog.show();         
-    }
-    
-    public void build () {
-         var terminal = new RobokTerminalWithRecycler(requireContext());
-         var logger = new Logger();
-         logger.attach(terminal.getRecyclerView());
-         Project project = new Project();
-         project.setLibraries(Library.fromFile(new File("")));
-         project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
-         project.setOutputFile(new File("/sdcard/Robok/.projects/project/build/"));
-         project.setJavaFile(new File("/sdcard/Robok/.projects/project/logic/"));
-         project.setManifestFile(new File("/sdcard/Robok/.projects/project/res"));
-         project.setLogger(logger);
-         project.setMinSdk(21);
-         project.setTargetSdk(28);
-         CompilerTask task = new CompilerTask(requireContext());
-         task.execute(project);
-         terminal.show();
     }
         
     @Override
