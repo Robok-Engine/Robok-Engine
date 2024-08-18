@@ -26,6 +26,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     private FragmentCreateProjectBinding binding;
     
     private ProjectTemplate template;
+    private ProjectManager projectManager;
     
     public CreateProjectFragment() {
          this(MaterialSharedAxis.X);
@@ -75,7 +76,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     }
     
     public void create () {
-         var projectManager = new ProjectManager();
+         projectManager = new ProjectManager(requireContext());
          projectManager.setListener(this);
          projectManager.create(
                requireContext(),
@@ -86,7 +87,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     }
     
     public ProjectTemplate defaultProjectTemplate () {
-         ProjectTemplate template = new ProjectTemplate();
+         var template = new ProjectTemplate();
          template.setName(getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game));
          template.setPackageName("com.robokgame.empty");
          template.setZipFileName("empty_game");
