@@ -15,7 +15,7 @@ open class RBKLayoutTemplate : CodeTemplate {
 
     override fun configure() {
         setContent("""
-            ${getClassName()} {
+            ${getCodeClassName()} {
                 Button(
                     id = "shoot_button",
                     text = "Shoot",

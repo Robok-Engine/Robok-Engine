@@ -30,28 +30,23 @@ open class CodeTemplate() : Parcelable {
         classCodeContent = value
     }
 
-    @JvmName("updateClassName")
-    open fun setClassName(value: String) {
+    open fun setCodeClassName(value: String) {
         className = value
     }
 
-    @JvmName("updateClassPackageName")
-    open fun setClassPackageName(value: String) {
+    open fun setCodeClassPackageName(value: String) {
         classPackageName = value
     }
 
-    @JvmName("retrieveClassContent")
-    open fun getClassContent() : String? {
+    open fun getCodeClassContent() : String? {
         return classCodeContent
     }
 
-    @JvmName("retrieveClassName")
-    open fun getClassName () : String? {
+    open fun getCodeClassName () : String? {
         return className
     }
 
-    @JvmName("retrieveClassPackageName")
-    open fun getClassPackageName () : String? {
+    open fun getCodeClassPackageName () : String? {
         return classPackageName
     }
 

@@ -17,9 +17,9 @@ open class JavaClassTemplate : CodeTemplate {
     override fun configure() {
         setContent(
             """
-            package ${getClassPackageName()}
+            package ${getCodeClassPackageName()}
 
-            class ${getClassName()} {
+            class ${getCodeClassName()} {
 
             }
             """.trimIndent()

@@ -70,8 +70,8 @@ public class ProjectCreator {
     private void createJavaClass(File outputDir, String projectName, String packageName) {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
-            template.setClassName("MainScreen");
-            template.setClassPackageName("packageName);
+            template.setCodeClassName("MainScreen");
+            template.setCodeClassPackageName("packageName);
             template.configure();
             
             String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
@@ -82,7 +82,7 @@ public class ProjectCreator {
             }
 
             FileOutputStream fos = new FileOutputStream(javaFile);
-            fos.write(template.codeContent.getBytes());
+            fos.write(template.getCodeClassContent().getBytes());
             fos.close();
             listener.onProjectCreate();
 

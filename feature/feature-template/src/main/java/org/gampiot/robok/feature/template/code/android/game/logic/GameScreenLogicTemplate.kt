@@ -18,13 +18,13 @@ open class GameScreenLogicTemplate : JavaClassTemplate {
     override fun configure() {
         setContent(
             """
-            package ${getClassPackageName()};
+            package ${getCodeClassPackageName()};
 
             import robok.game.screen.GameScreen;
             import robok.game.gui.GUIViewListener;
-            import ${getClassPackageName()}.datagui.MainGui;
+            import ${getCodeClassPackageName()}.datagui.MainGui;
 
-            public class ${getClassName()} extends GameScreen implements GUIViewListener {
+            public class ${getCodeClassName()} extends GameScreen implements GUIViewListener {
 
                 private MainGui views;
 
