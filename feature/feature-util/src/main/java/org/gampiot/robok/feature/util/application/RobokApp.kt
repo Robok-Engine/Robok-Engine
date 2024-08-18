@@ -14,12 +14,12 @@ class RobokApp : Application() {
 
     private lateinit var sInstance: RobokApp
     private var sFragmentManager: FragmentManager? = null
-    lateinit var applicatinContext: Context
+    lateinit var robokContext: Context
 
     override fun onCreate() {
         super.onCreate()
         sInstance = this
-        applicatinContext = this
+        robokContext = this
         DynamicColors.applyToActivitiesIfAvailable(this)
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
