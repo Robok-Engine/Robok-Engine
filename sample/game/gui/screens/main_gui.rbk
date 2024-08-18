@@ -1,0 +1,8 @@
+GameScreenLayoutTemplate {
+     Button(
+        id = "button_shoot",
+        text = "Shoot",
+        width = px(20),
+        height = px(20)
+     )
+}
