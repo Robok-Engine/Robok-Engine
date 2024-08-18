@@ -71,7 +71,7 @@ public class ProjectCreator {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
             template.setCodeClassName("MainScreen");
-            template.setCodeClassPackageName("packageName);
+            template.setCodeClassPackageName("packageName");
             template.configure();
             
             String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
