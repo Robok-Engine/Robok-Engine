@@ -70,6 +70,7 @@ jobs:
         
       - name: Upload mapping
         uses: actions/upload-artifact@v4
+        if: always()
         with:
           name: engine-release-mapping
           compression-level: 0
