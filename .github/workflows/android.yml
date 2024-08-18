@@ -68,6 +68,13 @@ jobs:
         id: gradle_build_release
         run: ./gradlew assembleRelease
         
+      - name: Upload mapping
+        uses: actions/upload-artifact@v4
+        with:
+          name: engine-release-mapping
+          compression-level: 0
+          path: app/build/outputs/mapping/release/
+             
       - name: Sign APK
         id: sign_apk
         uses: noriban/sign-android-release@v5
