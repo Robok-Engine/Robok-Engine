@@ -38,7 +38,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
          this.template = defaultProjectTemplate();
     }
     
-    public CreateProjectFragment(int transitionAxis, ProjectTemplate template) {
+    public CreateProjectFragment(int transitionAxis, @NonNull ProjectTemplate template) {
          super(transitionAxis);
          this.template = template;
     }
@@ -57,11 +57,15 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
          setFragmentLayoutResId(R.id.fragment_container);
          
          loadTemplate();
-         var helper = new Helper();
+         
          OnBackPressedDispatcher onBackPressedDispatcher = requireActivity().getOnBackPressedDispatcher();
          
+         projectManager = new ProjectManager(requireContext());
+         projectManager.setListener(this);
+         
+         var helper = new Helper();
          binding.buttonBack.setOnClickListener(helper.getBackPressedClickListener(onBackPressedDispatcher));
-         binding.buttonNext.setOnClickListener(v -> create());
+         binding.buttonNext.setOnClickListene<r(v -> create());
     }
 
     @Override
@@ -76,8 +80,6 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     }
     
     public void create () {
-         projectManager = new ProjectManager(requireContext());
-         projectManager.setListener(this);
          projectManager.create(
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
@@ -88,7 +90,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     public ProjectTemplate defaultProjectTemplate () {
          var template = new ProjectTemplate();
          template.setName(getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game));
-         template.setPackageName("com.robokgame.empty");
+         template.setPackageName("com.robok.empty");
          template.setZipFileName("empty_game");
          template.setJavaSupport(true);
          template.setKotlinSupport(false);
