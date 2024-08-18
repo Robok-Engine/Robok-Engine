@@ -33,14 +33,14 @@
                         android:textSize="18sp" />
 
                     <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:padding="6dp"
-                android:transitionGroup="true" 
-                android:overScrollMode="never"
-                android:layout_marginLeft="10dp"
-				android:layout_marginRight="10dp"/>
+                         android:id="@+id/recycler"
+                         android:layout_width="match_parent"
+                         android:layout_height="wrap_content"
+                         android:padding="6dp"
+                         android:transitionGroup="true" 
+                         android:overScrollMode="never"
+                         android:layout_marginLeft="10dp"
+                         android:layout_marginRight="10dp"/>
                 </LinearLayout>
         </LinearLayout>
 </LinearLayout>
