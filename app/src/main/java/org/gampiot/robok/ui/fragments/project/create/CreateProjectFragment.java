@@ -18,7 +18,7 @@ import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
-import org.gampiot.robok.feature.component.terminal.*;
+import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
 
 import java.io.File;
 
@@ -119,9 +119,9 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     }
     
     public void build () {
-         var terminal = new RobokTerminalR(requireContext());
+         var terminal = new RobokTerminalWithRecycler(requireContext());
          var logger = new Logger();
-         logger.attach(terminal.getRecycler());
+         logger.attach(terminal.getRecyclerView());
          Project project = new Project();
          project.setLibraries(Library.fromFile(new File("")));
          project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
