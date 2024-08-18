@@ -5,38 +5,58 @@ import android.os.Parcelable
 
 open class CodeTemplate() : Parcelable {
 
-    var PACKAGE_NAME: String? = null
-    var CLASS_NAME: String? = null
-    var codeContent: String? = null
+    open public var classPackageName: String? = null
+    open public var className: String? = null
+    open public var classCodeContent: String? = null
 
     constructor(parcel: Parcel) : this() {
-        codeContent = parcel.readString()
+        classCodeContent = parcel.readString()
     }
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
-        parcel.writeString(codeContent)
+        parcel.writeString(classCodeContent)
     }
 
     override fun describeContents(): Int {
         return 0
     }
 
-    fun get(): String? {
+    open fun get(): String? {
         configure()
-        return codeContent
+        return classCodeContent
     }
 
-    fun setContent(contents: String) {
-        codeContent = contents
+    open fun setContent(value: String) {
+        classCodeContent = value
     }
 
-    fun configure() {}
+    open fun setCodeClassName(value: String) {
+        className = value
+    }
 
-    fun getName(): String {
+    open fun setCodeClassPackageName(value: String) {
+        classPackageName = value
+    }
+
+    open fun getCodeClassContent() : String? {
+        return classCodeContent
+    }
+
+    open fun getCodeClassName () : String? {
+        return className
+    }
+
+    open fun getCodeClassPackageName () : String? {
+        return classPackageName
+    }
+
+    open fun configure() {}
+
+    open fun getName(): String {
         throw IllegalStateException("getName() is not subclassed")
     }
 
-    fun getExtension(): String {
+    open fun getExtension(): String {
         throw IllegalStateException("getExtension() is not subclassed")
     }
 
@@ -54,4 +74,3 @@ open class CodeTemplate() : Parcelable {
         }
     }
 }
-

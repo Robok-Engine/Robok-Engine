@@ -5,7 +5,7 @@ import android.os.Parcelable
 
 import org.gampiot.robok.feature.template.code.rbk.RBKLayoutTemplate
 
-class GameScreenLayoutTemplate : RBKLayoutTemplate {
+open class GameScreenLayoutTemplate : RBKLayoutTemplate {
 
     constructor() : super()
 

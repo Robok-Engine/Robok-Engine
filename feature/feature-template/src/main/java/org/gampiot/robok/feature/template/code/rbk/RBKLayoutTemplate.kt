@@ -3,7 +3,7 @@ package org.gampiot.robok.feature.template.code.rbk
 import android.os.Parcel
 import org.gampiot.robok.feature.template.code.CodeTemplate
 
-class RBKLayoutTemplate : CodeTemplate {
+open class RBKLayoutTemplate : CodeTemplate {
 
     constructor() : super()
 
@@ -14,8 +14,8 @@ class RBKLayoutTemplate : CodeTemplate {
     }
 
     override fun configure() {
-        content = """
-            $CLASS_NAME {
+        setContent("""
+            ${getCodeClassName()} {
                 Button(
                     id = "shoot_button",
                     text = "Shoot",
@@ -24,6 +24,7 @@ class RBKLayoutTemplate : CodeTemplate {
                 )
             }
         """.trimIndent()
+        )
     }
 
     override fun getExtension(): String {

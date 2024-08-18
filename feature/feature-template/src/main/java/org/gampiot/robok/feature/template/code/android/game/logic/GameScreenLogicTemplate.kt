@@ -5,7 +5,7 @@ import android.os.Parcel
 import org.gampiot.robok.feature.template.code.CodeTemplate
 import org.gampiot.robok.feature.template.code.java.JavaClassTemplate
 
-class GameScreenLogicTemplate : JavaClassTemplate {
+open class GameScreenLogicTemplate : JavaClassTemplate {
 
     constructor() : super()
 
@@ -18,22 +18,24 @@ class GameScreenLogicTemplate : JavaClassTemplate {
     override fun configure() {
         setContent(
             """
-            package $PACKAGE_NAME
+            package ${getCodeClassPackageName()};
 
-            import robok.game.screen.GameScreen
-            import robok.game.gui.GUIViewListener
-            import $PACKAGE_NAME.datagui.MainGui
+            import robok.game.screen.GameScreen;
+            import robok.game.gui.GUIViewListener;
+            import ${getCodeClassPackageName()}.datagui.MainGui;
 
-            class $CLASS_NAME : GameScreen(), GUIViewListener {
+            public class ${getCodeClassName()} extends GameScreen implements GUIViewListener {
 
-                private lateinit var views: MainGui
+                private MainGui views;
 
-                override fun onScreenCreated() {
-                    views = MainGui.inflate(this)
-                    views.shootButton.setGUIViewListener(this)
+                @Override
+                public void onScreenCreated() {
+                    views = MainGui.inflate(this);
+                    views.shootButton.setGUIViewListener(this);
                 }
-
-                override fun onClick(view: GUIView) {
+                
+                @Override
+                public void onClick(GUIView view) {
                     if (view == views.shootButton) {
                         
                     }

@@ -29,7 +29,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding;
 import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInputBinding;
-import org.gampiot.robok.feature.util.KeyboardUtils;
+import org.gampiot.robok.feature.util.KeyboardUtil;
 import org.gampiot.robok.feature.util.base.RobokActivity;
 
 public class TerminalActivity extends RobokActivity implements TerminalSessionClient, TerminalViewClient {
@@ -153,7 +153,8 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
     
      @Override
      public void onSingleTapUp(MotionEvent e) {
-          KeyboardUtils.showSoftInput(binding.terminalView);
+         var kUtil = new KeyboardUtil();
+         kUtil.showSoftInput(binding.terminalView);
      }
      
      @Override

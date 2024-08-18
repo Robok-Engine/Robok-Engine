@@ -1,10 +1,10 @@
-package org.gampiot.robok.feature.template.code.kotlin
+package org.gampiot.robok.feature.template.code.java
 
 import android.os.Parcel
 
 import org.gampiot.robok.feature.template.code.CodeTemplate
 
-class KotlinClassTemplate : CodeTemplate {
+open class JavaClassTemplate : CodeTemplate {
 
     constructor() : super()
 
@@ -17,9 +17,9 @@ class KotlinClassTemplate : CodeTemplate {
     override fun configure() {
         setContent(
             """
-            package $PACKAGE_NAME
+            package ${getCodeClassPackageName()}
 
-            class $CLASS_NAME {
+            class ${getCodeClassName()} {
 
             }
             """.trimIndent()
