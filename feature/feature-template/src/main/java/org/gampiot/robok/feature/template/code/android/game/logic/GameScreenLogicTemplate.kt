@@ -22,7 +22,7 @@ open class GameScreenLogicTemplate : JavaClassTemplate {
 
             import robok.game.screen.GameScreen;
             import robok.game.gui.GUIViewListener;
-            import $PACKAGE_NAME.datagui.MainGui;
+            import ${getClassPackageName()}.datagui.MainGui;
 
             public class ${getClassName()} extends GameScreen implements GUIViewListener {
 

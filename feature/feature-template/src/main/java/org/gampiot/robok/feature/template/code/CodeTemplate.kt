@@ -38,15 +38,15 @@ open class CodeTemplate() : Parcelable {
         classPackageName = value
     }
     
-    open fun getClassContent() : String {
+    open fun getClassContent() : String? {
         return classCodeContent
     }
     
-    open fun getClassName () : String {
+    open fun getClassName () : String? {
         return className
     }
     
-    open fun getClassPackageName () : String {
+    open fun getClassPackageName () : String? {
         return classPackageName
     }
     
