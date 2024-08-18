@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.material.bottomsheet.BottomSheetDialog
 
@@ -12,12 +13,16 @@ import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutBottomsheetTerminalRBinding
 import org.gampiot.robok.feature.component.log.Log
 
-class RobokTerminalR(context: Context) : BottomSheetDialog(context) {
+open class RobokTerminalR(context: Context) : BottomSheetDialog(context) {
 
     private val binding: LayoutBottomsheetTerminalRBinding =
         LayoutBottomsheetTerminalRBinding.inflate(LayoutInflater.from(context))
 
     val recycler = binding.recycler
+    
+    open fun getRecycler() : RecyclerView {
+         return recyclerview
+    }
 
     init {
         setContentView(binding.root)

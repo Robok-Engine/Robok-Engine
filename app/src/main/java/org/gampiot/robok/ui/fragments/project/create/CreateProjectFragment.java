@@ -121,7 +121,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     public void build () {
          var terminal = new RobokTerminalR(requireContext());
          var logger = new Logger();
-         logger.attach(terminal.recycler);
+         logger.attach(terminal.getRecycler());
          Project project = new Project();
          project.setLibraries(Library.fromFile(new File("")));
          project.setResourcesFile(new File("/sdcard/Robok/.projects/project/res/"));
@@ -133,6 +133,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
          project.setTargetSdk(28);
          CompilerTask task = new CompilerTask(requireContext());
          task.execute(project);
+         terminal.show();
     }
         
     @Override
