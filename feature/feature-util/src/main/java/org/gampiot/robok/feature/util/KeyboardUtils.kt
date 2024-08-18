@@ -10,11 +10,13 @@ import android.view.ViewGroup
 import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
+
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
+
 import org.gampiot.robok.feature.util.application.RobokApp
 
-object KeyboardUtils {
+open class KeyboardUtils {
 
     open fun showSoftInput() {
         val robokApp = RobokApp()
@@ -22,17 +24,17 @@ object KeyboardUtils {
         imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 
-    fun showSoftInput(activity: Activity?) {
+    open fun showSoftInput(activity: Activity?) {
         if (activity != null && !isSoftInputVisible(activity)) {
             showSoftInput()
         }
     }
 
-    fun showSoftInput(view: View) {
+    open fun showSoftInput(view: View) {
         showSoftInput(view, 0)
     }
 
-    fun showSoftInput(view: View, flags: Int) {
+    open fun showSoftInput(view: View, flags: Int) {
         val robokApp = RobokApp()
         val imm = robokApp.getApp().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.let {
@@ -40,7 +42,7 @@ object KeyboardUtils {
             view.isFocusableInTouchMode = true
             view.requestFocus()
             it.showSoftInput(view, flags, object : ResultReceiver(Handler()) {
-                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+                override open fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
                     if (resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN || resultCode == InputMethodManager.RESULT_HIDDEN) {
                         showSoftInput()
                     }
@@ -49,11 +51,11 @@ object KeyboardUtils {
         }
     }
 
-    fun hideSoftInput(activity: Activity?) {
+    open fun hideSoftInput(activity: Activity?) {
         activity?.let { hideSoftInput(it.window) }
     }
 
-    fun hideSoftInput(window: Window?) {
+    open fun hideSoftInput(window: Window?) {
         window?.let {
             var view = it.currentFocus
             if (view == null) {
@@ -69,7 +71,7 @@ object KeyboardUtils {
         }
     }
 
-    fun hideSoftInput(view: View) {
+    open fun hideSoftInput(view: View) {
         val robokApp = RobokApp()
         val imm = robokApp.getApp().getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
