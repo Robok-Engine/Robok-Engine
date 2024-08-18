@@ -14,12 +14,12 @@ class RobokApp : Application() {
 
     private lateinit var sInstance: RobokApp
     private var sFragmentManager: FragmentManager? = null
-    lateinit var applicationContext: Context
+    lateinit var applicatinContext: Context
 
     override fun onCreate() {
         super.onCreate()
         sInstance = this
-        applicationContext = this
+        applicatinContext = this
         DynamicColors.applyToActivitiesIfAvailable(this)
 
         Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
@@ -42,7 +42,7 @@ class RobokApp : Application() {
         return when (configuration.orientation) {
             Configuration.ORIENTATION_PORTRAIT -> 0
             Configuration.ORIENTATION_LANDSCAPE -> 1
-            else -> "undefined"
+            else -> 0
         }
     }
 
