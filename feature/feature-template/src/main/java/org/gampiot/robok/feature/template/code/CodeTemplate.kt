@@ -5,9 +5,9 @@ import android.os.Parcelable
 
 open class CodeTemplate() : Parcelable {
 
-    var PACKAGE_NAME: String? = null
-    var CLASS_NAME: String? = null
-    var codeContent: String? = null
+    public var PACKAGE_NAME: String? = null
+    public var CLASS_NAME: String? = null
+    public var codeContent: String? = null
 
     constructor(parcel: Parcel) : this() {
         codeContent = parcel.readString()
