@@ -97,6 +97,8 @@ class AboutFragment(private val transitionAxis: Int = MaterialSharedAxis.X) : Ro
     fun configureOpenLibs() {
         binding.openLibs.setOnClickListener {
             val fragmentLibs = LibsBuilder()
+            .withAboutIconShown(true)
+            .withAboutVersionShown(true)
                  .supportFragment()
             openFragment(fragmentLibs)
         }
