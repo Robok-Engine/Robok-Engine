@@ -24,3 +24,6 @@
 
 -dontwarn org.eclipse.jdt.internal.compiler.**
 -keep class org.eclipse.jdt.internal.compiler.** { *; }
+
+-keep class com.android.sdklib.** { *; }
+-keep class sun.security.** { *; }
