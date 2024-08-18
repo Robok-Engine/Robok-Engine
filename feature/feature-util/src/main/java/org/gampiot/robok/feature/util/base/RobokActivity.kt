@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.graphics.Color
+import android.content.res.Configuration
+import android.content.Context
 
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
@@ -33,10 +35,17 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     private var permissionDialog: PermissionDialog? = null
     
     override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge(
-            statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
-            navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
-        )
+        if (isDarkMode()) {
+            enableEdgeToEdge(
+                 statusBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+                 navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, Color.TRANSPARENT),
+            )
+        } else {
+            enableEdgeToEdge(
+                statusBarStyle = SystemBarStyle.dark(Color.TRANSPARENT, Color.TRANSPARENT),
+                 navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT, Color.TRANSPARENT),
+            )
+        }
         super.onCreate(savedInstanceState)
         if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
@@ -94,6 +103,11 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         return layoutResId
     }
     
+    fun isDarkMode(): Boolean {
+        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
+    }
+
     override fun onReceive(status: Boolean) {
         if (status) {
             permissionDialog?.dismiss()

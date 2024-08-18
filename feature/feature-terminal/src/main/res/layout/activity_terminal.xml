@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:id="@+id/root"
     android:orientation="vertical"
+    android:paddingTop="20dp"
     android:background="?android:attr/colorBackground">
 
     <com.termux.view.TerminalView
