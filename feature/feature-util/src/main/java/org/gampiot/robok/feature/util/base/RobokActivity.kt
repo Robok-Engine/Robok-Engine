@@ -37,13 +37,13 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val isDarkMode = isDarkMode()
+        T/*val isDarkMode = isDarkMode()
         val scrimColor = Color.TRANSPARENT 
 
         val statusBarStyle = if (isDarkMode) {
              SystemBarStyle.light(scrimColor)
         } else {
-            SystemBarStyle.dark(scrimColor)
+             SystemBarStyle.dark(scrimColor)
         }
         val navigationBarStyle = statusBarStyle
 
@@ -51,6 +51,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             statusBarStyle = statusBarStyle,
             navigationBarStyle = navigationBarStyle
         )
+        */
    
          if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
