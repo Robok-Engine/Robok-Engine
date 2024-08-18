@@ -119,7 +119,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     }
     
     public void build () {
-         var terminal = new RobokTerminalR(requireContext())
+         var terminal = new RobokTerminalR(requireContext());
          var logger = new Logger();
          logger.attach(terminal.recycler);
          Project project = new Project();
