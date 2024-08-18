@@ -51,14 +51,14 @@ public abstract class Compiler {
 
     public File getAndroidJarFile() {
         File check =
-                new File(RobokApp.applicationContext.getFilesDir() + "/temp/android.jar");
+                new File(RobokApp.robokContext.getFilesDir() + "/temp/android.jar");
 
         if (check.exists()) {
             return check;
         }
 
         Decompress.unzipFromAssets(
-                RobokApp.applicationContext,
+                RobokApp.robokContext,
                 "android.jar.zip",
                 check.getParentFile().getAbsolutePath());
 
@@ -68,7 +68,7 @@ public abstract class Compiler {
     public File getLambdaFactoryFile() {
         File check =
                 new File(
-                        RobokApp.applicationContext.getFilesDir()
+                        RobokApp.robokContext.getFilesDir()
                                 + "/temp/core-lambda-stubs.jar");
 
         if (check.exists()) {
@@ -76,7 +76,7 @@ public abstract class Compiler {
         }
 
         Decompress.unzipFromAssets(
-                RobokApp.applicationContext,
+                RobokApp.robokContext,
                 "core-lambda-stubs.zip",
                 check.getParentFile().getAbsolutePath());
 

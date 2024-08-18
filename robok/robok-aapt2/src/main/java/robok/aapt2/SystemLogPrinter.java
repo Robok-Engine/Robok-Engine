@@ -12,7 +12,7 @@ public class SystemLogPrinter {
 
     public static void start(Logger logger) {
         //reset
-        FileUtil.writeFile(RobokApp.applicationContext.getExternalFilesDir(null) + "/logs.txt", "");
+        FileUtil.writeFile(RobokApp.robokContext.getExternalFilesDir(null) + "/logs.txt", "");
 
         PrintStream ps = new PrintStream(new OutputStream() {
             private String cache;

@@ -19,60 +19,52 @@ import org.gampiot.robok.feature.util.activities.DebugActivity;
 
 public class RobokApp extends Application {
 
-    private static RobokApp sInstance;
-    private static FragmentManager sFragmentManager;
-    public static Context applicationContext;
+    public static RobokApp instance;
+    public static Context robokContext;
+    public static FragmentManager fragmentManager;
+    
+    public static final int PORTRAIT = Configuration.ORIENTATION_PORTRAIT;
+    public static final int LANDSCAPE = Configuration.ORIENTATION_LANDSCAPE;
+    
+    public static final String ERROR_TAG = "error";
+        
+    public RobokApp() { }
 
-    public static void init(FragmentManager fragmentManager) {
-        sFragmentManager = fragmentManager;
+    public RobokApp(FragmentManager fragmentManager) {
+         this.fragmentManager = fragmentManager;
     }
-
-    public static String getOrientation(Context ctx) {
-        Configuration configuration = ctx.getResources().getConfiguration();
-        switch (configuration.orientation) {
-            case Configuration.ORIENTATION_PORTRAIT:
-                return "portrait";
-            case Configuration.ORIENTATION_LANDSCAPE:
-                return "landscape";
-            default:
-                return "undefined";
-        }
+    
+    public static int getOrientation() {
+         Configuration configuration = robokContext.getResources().getConfiguration();
+         return configuration.orientation;
     }
 
     @Override
     public void onCreate() {
-        super.onCreate();
-        sInstance = this;
-        applicationContext = this;
-        DynamicColors.applyToActivitiesIfAvailable(sInstance);
-        
-        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
-            Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            intent.putExtra("error", Log.getStackTraceString(throwable));
-            startActivity(intent);
-            Process.killProcess(Process.myPid());
-            System.exit(1);
-        });
+         super.onCreate();
+         instance = this;
+         robokContext = this;
+         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+              Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
+              intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+              intent.putExtra(ERROR_TAG, Log.getStackTraceString(throwable));
+              startActivity(intent);
+              Process.killProcess(Process.myPid());
+              System.exit(1);
+         });
+         
+         DynamicColors.applyToActivitiesIfAvailable(instance);
     }
 
-    private String getStackTrace(Throwable th) {
-        final Writer result = new StringWriter();
-        final PrintWriter printWriter = new PrintWriter(result);
-        Throwable cause = th;
-        while (cause != null) {
-            cause.printStackTrace(printWriter);
-            cause = cause.getCause();
-        }
-        printWriter.close();
-        return result.toString();
-    }
-    
-    public static RobokApp getApp() {
-        return sInstance;
-    }
-    
-    public static FragmentManager getFragmentManager() {
-        return sFragmentManager;
+    public String getStackTrace(Throwable th) {
+         final Writer result = new StringWriter();
+         final PrintWriter printWriter = new PrintWriter(result);
+         Throwable cause = th;
+         while (cause != null) {
+              cause.printStackTrace(printWriter);
+              cause = cause.getCause();
+         }
+         printWriter.close();
+         return result.toString();
     }
 }
