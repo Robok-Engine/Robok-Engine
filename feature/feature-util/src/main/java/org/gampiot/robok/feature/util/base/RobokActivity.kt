@@ -7,6 +7,8 @@ import android.graphics.Color
 import android.content.res.Configuration
 import android.content.Context
 
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
