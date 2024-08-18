@@ -37,7 +37,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        T/*val isDarkMode = isDarkMode()
+        /*val isDarkMode = isDarkMode()
         val scrimColor = Color.TRANSPARENT 
 
         val statusBarStyle = if (isDarkMode) {
