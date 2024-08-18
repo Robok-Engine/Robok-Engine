@@ -37,23 +37,13 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val isDarkMode = isDarkMode()
         val scrimColor = Color.TRANSPARENT
-
-        val statusBarStyle = if (isDarkMode) { 
-                     SystemBarStyle.light(scrimColor, darkScrim = scrimColor) 
-              } else { 
-                     SystemBarStyle.dark(scrimColor, darkScrim = scrimColor)
-               }
-        val navigationBarStyle = statusBarStyle
-
+        val style = SystemBarStyle.auto(scrimColor, scrimColor) 
         enableEdgeToEdge(
-            statusBarStyle = statusBarStyle,
-            navigationBarStyle = navigationBarStyle
+            statusBarStyle = style,
+            navigationBarStyle = style
         )
-   
-         if (!getStoragePermStatus(this)) {
+        if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
         }
     }
