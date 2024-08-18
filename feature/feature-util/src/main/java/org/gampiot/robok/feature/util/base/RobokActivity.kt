@@ -41,11 +41,11 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         val isDarkMode = isDarkMode()
         val scrimColor = Color.TRANSPARENT
 
-        val statusBarStyle = if (isDarkMode) {
-            SystemBarStyle.light(scrimColor)
-        } else {
-            SystemBarStyle.dark(scrimColor)
-        }
+        val statusBarStyle = if (isDarkMode) { 
+                     SystemBarStyle.light(scrimColor, darkScrim = scrimColor) 
+              } else { 
+                     SystemBarStyle.dark(scrimColor, darkScrim = scrimColor)
+               }
         val navigationBarStyle = statusBarStyle
 
         enableEdgeToEdge(
