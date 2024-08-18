@@ -15,15 +15,18 @@ import com.google.android.material.transition.MaterialSharedAxis;
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
-import org.gampiot.robok.ui.fragments.project.create.util.ProjectCreator;
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.feature.util.Helper;
 
-public class CreateProjectFragment extends RobokFragment implements ProjectCreator.Listener {
+import java.io.File;
+
+public class CreateProjectFragment extends RobokFragment implements ProjectManager.Listener {
 
     private FragmentCreateProjectBinding binding;
     
     private ProjectTemplate template;
+    private ProjectManager projectManager;
     
     public CreateProjectFragment() {
          this(MaterialSharedAxis.X);
@@ -35,7 +38,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
          this.template = defaultProjectTemplate();
     }
     
-    public CreateProjectFragment(int transitionAxis, ProjectTemplate template) {
+    public CreateProjectFragment(int transitionAxis, @NonNull ProjectTemplate template) {
          super(transitionAxis);
          this.template = template;
     }
@@ -54,9 +57,13 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
          setFragmentLayoutResId(R.id.fragment_container);
          
          loadTemplate();
-         var helper = new Helper();
+         
          OnBackPressedDispatcher onBackPressedDispatcher = requireActivity().getOnBackPressedDispatcher();
          
+         projectManager = new ProjectManager(requireContext());
+         projectManager.setListener(this);
+         
+         var helper = new Helper();
          binding.buttonBack.setOnClickListener(helper.getBackPressedClickListener(onBackPressedDispatcher));
          binding.buttonNext.setOnClickListener(v -> create());
     }
@@ -73,10 +80,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     }
     
     public void create () {
-         var projectCreator = new ProjectCreator();
-         projectCreator.setListener(this);
-         projectCreator.create(
-               requireContext(),
+         projectManager.create(
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
                template
@@ -84,9 +88,9 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
     }
     
     public ProjectTemplate defaultProjectTemplate () {
-         ProjectTemplate template = new ProjectTemplate();
+         var template = new ProjectTemplate();
          template.setName(getString(org.gampiot.robok.feature.res.R.string.template_name_empty_game));
-         template.setPackageName("com.robokgame.empty");
+         template.setPackageName("com.robok.empty");
          template.setZipFileName("empty_game");
          template.setJavaSupport(true);
          template.setKotlinSupport(false);
@@ -103,10 +107,13 @@ public class CreateProjectFragment extends RobokFragment implements ProjectCreat
                   .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (d, i) -> {
                         d.dismiss();
                   })
+                  .setNegativeButton("Build", (dd, ii) -> {
+                       projectManager.build();
+                  })
                   .create();
          dialog.show();         
     }
-    
+        
     @Override
     public void onProjectCreateError() {
          //

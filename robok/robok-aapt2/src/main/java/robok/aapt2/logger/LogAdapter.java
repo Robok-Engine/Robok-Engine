@@ -51,6 +51,7 @@ public class LogAdapter extends RecyclerView.Adapter<LogAdapter.ViewHolder> {
 			super(view);
 			
 			mText = new TextView(view.getContext());
+			mText.setTextIsSelectable(true);
 			((ViewGroup) view).addView(mText);
 		}
 	}

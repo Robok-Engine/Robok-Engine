@@ -27,13 +27,4 @@ class RobokTerminal(context: Context) : BottomSheetDialog(context) {
         val log = Log(context, value)
         terminal.addView(log)
     }
-
-    private val isDarkMode: Boolean
-        get() = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
-
-    companion object {
-        const val ERROR_COLOR = "#FF0000"
-        const val WARNING_COLOR = "#FFC400"
-        const val SUCCESS_COLOR = "#198754"
-    }
 }

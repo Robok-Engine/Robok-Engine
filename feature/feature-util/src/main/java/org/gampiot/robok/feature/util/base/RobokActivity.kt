@@ -14,6 +14,7 @@ import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
+import androidx.core.content.ContextCompat
 
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -36,23 +37,13 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val isDarkMode = isDarkMode()
-        val scrimColor = Color.TRANSPARENT 
-
-        val statusBarStyle = if (isDarkMode) {
-             SystemBarStyle.light(scrimColor)
-        } else {
-            SystemBarStyle.dark(scrimColor)
-        }
-        val navigationBarStyle = statusBarStyle
-
+        val scrimColor = Color.TRANSPARENT
+        val style = SystemBarStyle.auto(scrimColor, scrimColor) 
         enableEdgeToEdge(
-            statusBarStyle = statusBarStyle,
-            navigationBarStyle = navigationBarStyle
+            statusBarStyle = style,
+            navigationBarStyle = style
         )
-   
-         if (!getStoragePermStatus(this)) {
+        if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
         }
     }
