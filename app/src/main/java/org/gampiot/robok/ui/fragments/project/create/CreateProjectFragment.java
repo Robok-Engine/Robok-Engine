@@ -79,7 +79,6 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
          projectManager = new ProjectManager(requireContext());
          projectManager.setListener(this);
          projectManager.create(
-               requireContext(),
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
                template
