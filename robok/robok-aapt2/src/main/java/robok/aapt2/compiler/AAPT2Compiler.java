@@ -33,7 +33,7 @@ public class AAPT2Compiler extends Compiler {
     
 	public AAPT2Compiler(Project project) {
 	    mProject = project;
-	    mFilesDir = RobokApp.getInstance().robokContext.getFilesDir();
+	    mFilesDir = RobokApp.robokContext.getFilesDir();
         setTag(TAG);
 	}
 	
@@ -223,7 +223,7 @@ public class AAPT2Compiler extends Compiler {
     }
 	
 	private File getAAPT2File() throws CompilerException, IOException {
-		/*File check = new File(RobokApp.getInstance().robokContext.getFilesDir() + "/temp/aapt2");
+		/*File check = new File(RobokApp.robokContext.getFilesDir() + "/temp/aapt2");
 	    
 		if (check.exists()) {
 			return check;
@@ -231,7 +231,7 @@ public class AAPT2Compiler extends Compiler {
 		
 		check.getParentFile().mkdirs();
 	    */
-		File nativeLibrary = new File(RobokApp.getInstance().robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
+		File nativeLibrary = new File(RobokApp.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
 		
 		if (!nativeLibrary.exists()) {
 		//	throw new CompilerException("AAPT2 binary not found");
