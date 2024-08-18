@@ -4,7 +4,7 @@ import android.os.Parcel
 
 import org.gampiot.robok.feature.template.code.CodeTemplate
 
-class KotlinClassTemplate : CodeTemplate {
+class JavaClassTemplate : CodeTemplate {
 
     constructor() : super()
 
