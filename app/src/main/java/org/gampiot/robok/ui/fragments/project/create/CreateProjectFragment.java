@@ -65,7 +65,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
          
          var helper = new Helper();
          binding.buttonBack.setOnClickListener(helper.getBackPressedClickListener(onBackPressedDispatcher));
-         binding.buttonNext.setOnClickListene<r(v -> create());
+         binding.buttonNext.setOnClickListener(v -> create());
     }
 
     @Override
