@@ -11,8 +11,6 @@ on:
         description: 'The minimum runs to keep for each workflow.'
         required: true
         default: '0'
-  schedule:
-    - cron: '0 * * * *'
 
 jobs:
   deleteWorkflowRuns:
