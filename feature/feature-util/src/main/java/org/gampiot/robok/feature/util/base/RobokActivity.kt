@@ -39,11 +39,14 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        
+        if (!getStoragePermStatus(this)) {
+            requestStoragePermDialog()
+        }
+    }
+    
+    open fun configureEdgeToEdge () {
         WindowCompat.setDecorFitsSystemWindows(window, false)
-
-       /*
-       val rootView = window.decorView.findViewById<View>(android.R.id.content)
+        val rootView = window.decorView.findViewById<View>(android.R.id.content)
         rootView.setOnApplyWindowInsetsListener { view, insets ->
             view.setPadding(
                 insets.systemGestureInsets.left,
@@ -53,33 +56,28 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             )
             insets.consumeSystemWindowInsets()
         }
-        */
-
+        
         val scrimColor = Color.TRANSPARENT
         val style = SystemBarStyle.auto(scrimColor, scrimColor) 
         enableEdgeToEdge(
             statusBarStyle = style,
             navigationBarStyle = style
         )
-        
-        if (!getStoragePermStatus(this)) {
-            requestStoragePermDialog()
-        }
     }
 
-    fun openFragment(fragment: Fragment) {
+    open fun openFragment(fragment: Fragment) {
         supportFragmentManager.commit {
             replace(layoutResId, fragment)
         }
     }
     
-    fun openCustomFragment(@IdRes layoutResId: Int, fragment: Fragment) {
+    open fun openCustomFragment(@IdRes layoutResId: Int, fragment: Fragment) {
         supportFragmentManager.commit {
             replace(layoutResId, fragment)
         }
     }
     
-    fun requestStoragePermDialog() {
+    open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
             return
         }
@@ -99,19 +97,19 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         }
     }
     
-    fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
+    open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
     
-    fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
+    open fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
         this.layoutResId = layoutResId
     }
     
-    fun getFragmentLayoutResId(): Int {
+    open fun getFragmentLayoutResId(): Int {
         return layoutResId
     }
     
-    fun isDarkMode(): Boolean {
+    open fun isDarkMode(): Boolean {
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return currentNightMode == Configuration.UI_MODE_NIGHT_YES
     }
