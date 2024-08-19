@@ -53,8 +53,8 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
-         configureToolbarNavigationBack(binding.toolbar);
          setFragmentLayoutResId(R.id.fragment_container);
+         configureToolbarNavigationBack(binding.toolbar);
          
          loadTemplate();
          

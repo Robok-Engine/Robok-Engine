@@ -30,12 +30,10 @@ public class ProjectTemplatesFragment extends RobokFragment {
 
     public ProjectTemplatesFragment () {
          super(MaterialSharedAxis.X);
-         setFragmentLayoutResId(R.id.fragment_container);
     }
 
     public ProjectTemplatesFragment (@NonNull int transitionAxisMode) {
          super(transitionAxisMode);
-         setFragmentLayoutResId(R.id.fragment_container);
     }
 
     @Nullable
@@ -48,8 +46,11 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
+         setFragmentLayoutResId(R.id.fragment_container);
+         configureToolbarNavigationBack(binding.toolbar);
+         
          binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+         
          List<ProjectTemplate> templates = createTemplates();
          ProjectTemplateAdapter adapter = new ProjectTemplateAdapter(templates, requireContext());
          binding.recyclerView.setAdapter(adapter);
