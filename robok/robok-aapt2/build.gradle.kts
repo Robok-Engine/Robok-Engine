@@ -10,12 +10,6 @@ android {
     namespace = "robok.aapt2"
     compileSdk = 35
     
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDirs("src/main/jniLibs")
-        }
-    }
-    
     defaultConfig {
         minSdk = 21
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
