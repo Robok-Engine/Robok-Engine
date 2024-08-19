@@ -1,20 +1,17 @@
 package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.graphics.Color
 import android.content.res.Configuration
-import android.content.Context
+import android.view.View
+import android.view.WindowInsets
 
-import androidx.activity.SystemBarStyle
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.OnBackPressedDispatcher
+import androidx.activity.viewModels
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.core.content.ContextCompat
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsCompat
 
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -26,7 +23,6 @@ import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.PermissionListener
-import org.gampiot.robok.feature.res.ResUtils
 import org.gampiot.robok.feature.res.Strings
 
 open class RobokActivity : AppCompatActivity(), PermissionListener {
@@ -37,12 +33,27 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val rootView = window.decorView.findViewById<View>(android.R.id.content)
+        rootView.setOnApplyWindowInsetsListener { view, insets ->
+            view.setPadding(
+                insets.systemGestureInsets.left,
+                insets.systemGestureInsets.top,
+                insets.systemGestureInsets.right,
+                insets.systemGestureInsets.bottom
+            )
+            insets.consumeSystemWindowInsets()
+        }
+
         val scrimColor = Color.TRANSPARENT
         val style = SystemBarStyle.auto(scrimColor, scrimColor) 
         enableEdgeToEdge(
             statusBarStyle = style,
             navigationBarStyle = style
         )
+        
         if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
         }
