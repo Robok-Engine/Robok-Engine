@@ -1,3 +1,5 @@
 # For users who uses android ide for building app
 .androidide/
 /.androidide
+
+.gradle/
