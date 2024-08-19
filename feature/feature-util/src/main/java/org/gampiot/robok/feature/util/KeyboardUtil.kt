@@ -4,8 +4,8 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.os.ResultReceiver
 import android.os.Looper
+import android.os.ResultReceiver
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -21,7 +21,7 @@ open class KeyboardUtil {
 
     open fun showSoftInput() {
         val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
+        imm?.showSoftInput(null, InputMethodManager.SHOW_IMPLICIT)
     }
 
     open fun showSoftInput(activity: Activity?) {
@@ -74,9 +74,4 @@ open class KeyboardUtil {
         val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
-
-    open fun isSoftInputVisible(activity: Activity): Boolean {
-        return false
-    }
 }
-
