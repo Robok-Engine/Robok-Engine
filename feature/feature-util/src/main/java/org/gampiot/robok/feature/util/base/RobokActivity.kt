@@ -79,13 +79,6 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             permissionDialog?.show()
         }
     }
-
-    fun configureWindow() {
-        val resUtils = ResUtils(this)
-        val colorBg = resUtils.getAttrColor(android.R.attr.colorBackground)
-        window.statusBarColor = colorBg
-        window.navigationBarColor = colorBg
-    }
     
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
