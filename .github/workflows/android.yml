@@ -124,4 +124,4 @@ jobs:
 
             Branch: *${{ github.head_ref }}*
             Commit message: `${{ steps.get_commit_msg.outputs.message }}`
-            Download APK : https://nightly.link/robok-inc/Robok-Engine/workflows/android/dev/engine-debug
+            Download APK : https://nightly.link/robok-inc/Robok-Engine/workflows/android/dev/engine-release.zip
