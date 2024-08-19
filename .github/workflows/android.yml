@@ -10,7 +10,7 @@ on:
       - 'dev'
 
 jobs:
-  Engine-debug-apk:
+  engine-debug-apk:
     name: Build Engine Debug APK
     runs-on: ubuntu-latest
 
@@ -42,7 +42,7 @@ jobs:
           compression-level: 0
           path: app/build/outputs/apk/debug
 
-  Engine-release-apk:
+  engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
     if: github.repository == 'robok-inc/Robok-Engine' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
@@ -95,11 +95,11 @@ jobs:
           compression-level: 0
           path: ${{steps.sign_apk.outputs.signedReleaseFile}}
 
-  send-release:
-    name: Send Release APK
+  send-notify:
+    name: Send Notify to Telegram
     runs-on: ubuntu-latest
     if: github.repository == 'robok-inc/Robok-Engine'
-    needs: Engine-release-apk
+    needs: engine-release-apk
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -112,7 +112,7 @@ jobs:
           commit_message=$(git log -1 --pretty=format:'%s')
           echo "::set-output name=message::$commit_message"
 
-      - name: Send Release APK to Telegram
+      - name: Send Notify to Telegram
         uses: appleboy/telegram-action@master
         with:
           to: -1002152494924
@@ -124,4 +124,4 @@ jobs:
 
             Branch: *${{ github.head_ref }}*
             Commit message: `${{ steps.get_commit_msg.outputs.message }}`
-            Download APK : https://nightly.link/robok-inc/Robok-Engine/workflows/android/dev/engine-release.zip
+            Download APK here : https://nightly.link/robok-inc/Robok-Engine/workflows/android/dev/engine-release.zip
