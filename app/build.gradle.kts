@@ -3,8 +3,6 @@ import java.io.ByteArrayOutputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
-    kotlin("plugin.serialization") version "2.0.10"
-    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 android {
@@ -74,7 +72,6 @@ dependencies {
 
     val materialVersion = "1.13.0-alpha05"
     val appcompatVersion = "1.7.0-alpha03"
-    val kotlinCoroutinesVersion = "1.9.0-RC.2"
     val glideVersion = "4.16.0"
 
     // androidx
@@ -88,15 +85,6 @@ dependencies {
     
     // google
     implementation("com.google.android.material:material:$materialVersion")
-
-    // jetbrains
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
-
-    // squareup
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
-    implementation("com.squareup.okhttp3:okhttp")
 
     // Robok
     implementation(project(":robok:robok-compiler"))
@@ -117,8 +105,7 @@ dependencies {
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
 
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-    implementation("com.mikepenz:aboutlibraries:11.2.2")
-
+    
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
 

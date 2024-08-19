@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.about
+package org.gampiot.robok.feature.settings.ui.fragments.about
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -25,11 +25,11 @@ import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.LibsBuilder
 import com.mikepenz.aboutlibraries.*
 
-import org.gampiot.robok.R
-import org.gampiot.robok.BuildConfig
-import org.gampiot.robok.databinding.FragmentAboutBinding
-import org.gampiot.robok.ui.fragments.about.adapter.ContributorAdapter
-import org.gampiot.robok.ui.fragments.about.model.Contributor
+import org.gampiot.robok.feature.settings.R
+import org.gampiot.robok.feature.settings.BuildConfig
+import org.gampiot.robok.feature.settings.databinding.FragmentAboutBinding
+import org.gampiot.robok.feature.settings.ui.fragments.about.adapter.ContributorAdapter
+import org.gampiot.robok.feature.settings.ui.fragments.about.model.Contributor
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal

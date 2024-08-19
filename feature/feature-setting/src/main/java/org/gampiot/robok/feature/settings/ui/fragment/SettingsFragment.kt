@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.ui.fragment
+package org.gampiot.robok.feature.settings.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -9,7 +9,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.settings.databinding.FragmentSettingsBinding
-import org.gampiot.robok.feature.settings.ui.fragment.editor.SettingsEditorFragment
+import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 

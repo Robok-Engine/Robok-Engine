@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.ui.fragment.editor
+package org.gampiot.robok.feature.settings.ui.fragments.editor
 
 import android.os.Bundle
 import android.view.LayoutInflater

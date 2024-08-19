@@ -1,6 +1,8 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    kotlin("plugin.serialization") version "2.0.10"
+    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 android {
@@ -43,9 +45,21 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 }
 
 dependencies {
+
+    val kotlinCoroutinesVersion = "1.9.0-RC.2"
+
+    // common
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.appcompat:appcompat:1.7.0")
+    
+    // kotlinx
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
     
     val trindadeUtilVersion = "d049be6cc0"
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
@@ -59,4 +73,6 @@ dependencies {
     implementation(project(":feature:feature-res:strings"))
     
     implementation(project(":robok:robok-diagnostic"))
+    
+    implementation("com.mikepenz:aboutlibraries:11.2.2")
 }

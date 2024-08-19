@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.about.model
+package org.gampiot.robok.feature.settings.ui.fragments.about.model
 
 import kotlinx.serialization.Serializable
 
