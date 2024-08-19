@@ -74,4 +74,8 @@ open class KeyboardUtil {
         val imm = RobokApp.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
+    
+    open fun isSoftInputVisible (act: Activity): Boolean {
+        return false
+    }
 }
