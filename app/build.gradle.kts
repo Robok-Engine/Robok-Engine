@@ -72,7 +72,6 @@ dependencies {
 
     val materialVersion = "1.13.0-alpha05"
     val appcompatVersion = "1.7.0-alpha03"
-    val glideVersion = "4.16.0"
 
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")

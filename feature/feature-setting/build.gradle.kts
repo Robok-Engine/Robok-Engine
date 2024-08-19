@@ -47,6 +47,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 dependencies {
 
     val kotlinCoroutinesVersion = "1.9.0-RC.2"
+    val glideVersion = "4.16.0"
 
     // common
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
