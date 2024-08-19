@@ -40,7 +40,7 @@ open class KeyboardUtil {
             view.isFocusableInTouchMode = true
             view.requestFocus()
             it.showSoftInput(view, flags, object : ResultReceiver(Handler()) {
-                override open fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
                     if (resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN || resultCode == InputMethodManager.RESULT_HIDDEN) {
                         showSoftInput()
                     }
