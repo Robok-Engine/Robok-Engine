@@ -232,7 +232,8 @@ public class AAPT2Compiler extends Compiler {
 		check.getParentFile().mkdirs();
 	    */
 		File nativeLibrary = new File(RobokApp.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
-		
+		m.getLogger().d("getApplicationInfo()", RobokApp.robokContext.getApplicationInfo());
+		m.getLogger().d("getApplicationInfo().nativeLibraryDir", RobokApp.robokContext.getApplicationInfo().nativeLibraryDir);
 		if (!nativeLibrary.exists()) {
 		//	throw new CompilerException("AAPT2 binary not found");
             mProject.getLogger().e(TAG, "AAPT2 binary not found");
