@@ -23,7 +23,6 @@
     <string name="title_open_editor">Abrir Editor</string>
     <string name="title_debug_title">Um erro ocorreu</string>
     <string name="title_select_theme">Selecionar tema</string>
-    <string name="title_about">Sobre</string>
     <string name="title_select_folder">Selecionar pasta</string>
     <!-- end section -->
     
@@ -45,6 +44,8 @@
     <string name="settings_editor_description">Algumas configurações do Editor.</string>
     <string name="settings_editor_theme_title">Tema do Editor de Código</string>
     <string name="settings_editor_theme_description">Mude o tema do Editor de Código.</string>
+    <string name="settings_about_title">Sobre</string>
+	<string name="settings_about_description">Tudo sobre a Robok Engine</string>
     <!-- end section -->
     
     <!-- texts section -->

@@ -32,7 +32,6 @@
 	<string name="title_open_editor">Open editor</string>
 	<string name="title_debug_title">An error occured</string>
 	<string name="title_select_theme">Select theme</string>
-	<string name="title_about">About</string>
 	<string name="title_select_folder">Select folder</string>
 	<string name="title_templates">Templates</string>
 	<!-- end section -->
@@ -55,6 +54,8 @@
 	<string name="settings_editor_description">Some code editor settings.</string>
 	<string name="settings_editor_theme_title">Code Editor Theme</string>
 	<string name="settings_editor_theme_description">Change the code editor theme.</string>
+	<string name="settings_about_title">About</string>
+	<string name="settings_about_description">All about Robok Engine</string>
 	<!-- end section -->
 	
 	<!-- texts section -->

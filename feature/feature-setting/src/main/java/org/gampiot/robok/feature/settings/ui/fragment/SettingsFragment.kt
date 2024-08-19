@@ -33,14 +33,25 @@ class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X, p
         configureToolbarNavigationBack(binding.toolbar)
         setFragmentLayoutResId(fragmentLayoutResId)
         
-        val editorSettings = Preference(requireContext())
-        editorSettings.setTitle(getString(Strings.settings_editor_title))
-        editorSettings.setDescription(getString(Strings.settings_editor_description))
-        editorSettings.setIcon(R.drawable.ic_settings_24)
-        editorSettings.setPreferenceClickListener {
-             openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+        val editorSettings = Preference(requireContext()).apply {
+               setTitle(getString(Strings.settings_editor_title))
+               setDescription(getString(Strings.settings_editor_description))
+               setIcon(R.drawable.ic_settings_24)
+               setPreferenceClickListener {
+                      openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+               }
         }
         binding.content.addView(editorSettings)
+        
+        val aboutPage = Preference(requireContext()).apply {
+               setTitle(getString(Strings.settings_about_title))
+               setDescription(getString(Strings.settings_about_description))
+               setIcon(R.drawable.ic_info_24)
+               setPreferenceClickListener {
+                      openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+               }
+        }
+        binding.content.addView(aboutPage)
     }
 
     override fun onDestroyView() {
