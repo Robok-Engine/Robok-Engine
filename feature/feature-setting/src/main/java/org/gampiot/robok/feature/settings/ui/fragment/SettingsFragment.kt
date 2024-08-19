@@ -10,7 +10,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.settings.databinding.FragmentSettingsBinding
 import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
-import org.gampiot.robok.feature.settings.ui.fragments.editor.about.AboutFragment
+import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 
