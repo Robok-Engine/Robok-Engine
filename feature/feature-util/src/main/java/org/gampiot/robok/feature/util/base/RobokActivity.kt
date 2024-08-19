@@ -42,7 +42,8 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        val rootView = window.decorView.findViewById<View>(android.R.id.content)
+       /*
+       val rootView = window.decorView.findViewById<View>(android.R.id.content)
         rootView.setOnApplyWindowInsetsListener { view, insets ->
             view.setPadding(
                 insets.systemGestureInsets.left,
@@ -52,6 +53,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
             )
             insets.consumeSystemWindowInsets()
         }
+        */
 
         val scrimColor = Color.TRANSPARENT
         val style = SystemBarStyle.auto(scrimColor, scrimColor) 
