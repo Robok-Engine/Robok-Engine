@@ -1,78 +1,99 @@
 package org.gampiot.robok.feature.util.activities
 
+import android.annotation.SuppressLint
 import android.app.Activity
-import android.app.AlertDialog
-import android.content.DialogInterface
+import android.content.ClipboardManager
+import android.content.ClipData
+import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.text.format.Formatter
 import android.widget.TextView
+import android.widget.Toast
 
-import androidx.appcompat.app.AppCompatActivity
-
-import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.util.base.RobokActivity
 
-import java.io.InputStream
+class DebugActivity : RobokActivity() {
 
-class DebugActivity : AppCompatActivity() {
-    
-    private var madeErrMsg: String = ""
     private lateinit var error: TextView
-    private lateinit var toolbar: MaterialToolbar
-    
-    private val exceptionType = arrayOf(
-        "StringIndexOutOfBoundsException",
-        "IndexOutOfBoundsException",
-        "ArithmeticException",
-        "NumberFormatException",
-        "ActivityNotFoundException"
-    )
-    private val errMessage = arrayOf(
-        "Invalid string operation\n",
-        "Invalid list operation\n",
-        "Invalid arithmetical operation\n",
-        "Invalid toNumber block operation\n",
-        "Invalid intent operation"
-    )
+    private var madeErrMsg: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_debug)
         error = findViewById(R.id.error)
-        /* toolbar = findViewById(R.id.toolbar)
-        configureToolbarNavigationBack(toolbar)
-        */
-        
+
         val intent = intent
         var errMsg = ""
         madeErrMsg = ""
         if (intent != null) {
             errMsg = intent.getStringExtra("error") ?: ""
-            val spilt = errMsg.split("\n")
+            val split = errMsg.split("\n")
             try {
-                for (j in exceptionType.indices) {
-                    if (spilt[0].contains(exceptionType[j])) {
-                        madeErrMsg = errMessage[j]
-                        val addIndex = spilt[0].indexOf(exceptionType[j]) + exceptionType[j].length
-                        madeErrMsg += spilt[0].substring(addIndex, spilt[0].length)
-                        break
-                    }
-                }
-                if (madeErrMsg.isEmpty()) madeErrMsg = errMsg
+                madeErrMsg = errMsg
             } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
         error.text = madeErrMsg
-        MaterialAlertDialogBuilder(this)
+
+        val deviceInfo = getDeviceInfo()
+        val appInfo = getAppInfo()
+        val fullInfo = "$madeErrMsg\n\n$deviceInfo\n$appInfo"
+
+        val dialog = MaterialAlertDialogBuilder(this)
             .setTitle(Strings.title_debug_title)
-            .setMessage(madeErrMsg)
-            .setPositiveButton(Strings.common_word_end) { _, _ ->
-                finish()
+            .setMessage("Error details and device information are provided below.")
+            .setPositiveButton(Strings.common_word_end) { _, _ -> finish() }
+            .setNeutralButton("Show error") { dialog, _ ->
+                val messageView = dialog.findViewById<TextView>(android.R.id.message)
+                messageView?.let {
+                    it.setTextIsSelectable(true)
+                    it.text = fullInfo
+                }
+            }
+            .setNegativeButton("Copy") { _, _ ->
+                copyToClipboard(fullInfo)
             }
             .show()
     }
-}
 
+    private fun getDeviceInfo(): String {
+        return "Device Info:\n" +
+                "Brand: ${Build.BRAND}\n" +
+                "Model: ${Build.MODEL}\n" +
+                "Manufacturer: ${Build.MANUFACTURER}\n" +
+                "Android Version: ${Build.VERSION.RELEASE}\n" +
+                "SDK Version: ${Build.VERSION.SDK_INT}"
+    }
+
+    private fun getAppInfo(): String {
+        val packageManager = packageManager
+        val packageName = packageName
+        val packageInfo: PackageInfo
+        return try {
+            packageInfo = packageManager.getPackageInfo(packageName, 0)
+            "App Info:\n" +
+                    "Package Name: $packageName\n" +
+                    "Version: ${packageInfo.versionName}\n" +
+                    "Version Code: ${packageInfo.versionCode}\n" +
+                    "APK Size: ${Formatter.formatFileSize(this, File(packageInfo.applicationInfo.sourceDir).length())}"
+        } catch (e: PackageManager.NameNotFoundException) {
+            "App Info:\nCould not retrieve app info.\nStack trace:\n${e.stackTraceToString()}"
+        }
+    }
+
+    private fun copyToClipboard(text: String) {
+        val clipboard = getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+        val clip = ClipData.newPlainText("Debug Info", text)
+        clipboard.setPrimaryClip(clip)
+        Toast.makeText(this, "Copied to clipboard", Toast.LENGTH_LONG).show()
+    }
+}
