@@ -1,4 +1,4 @@
-name: Update version code, version name and open pull request
+name: Prepare for release
 on:
   workflow_dispatch:
     inputs:
