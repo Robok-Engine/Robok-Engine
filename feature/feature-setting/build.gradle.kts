@@ -75,4 +75,5 @@ dependencies {
     implementation(project(":robok:robok-diagnostic"))
     
     implementation("com.mikepenz:aboutlibraries:11.2.2")
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
 }
