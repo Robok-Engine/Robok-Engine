@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.recyclerview.widget.LinearLayoutManager
+5import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -15,10 +15,12 @@ import org.gampiot.robok.feature.component.log.Log
 
 open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(context) {
 
-    private val binding: LayoutBottomsheetTerminalWithRecyclerBinding =
+    val binding: LayoutBottomsheetTerminalWithRecyclerBinding =
         LayoutBottomsheetTerminalWithRecyclerBinding.inflate(LayoutInflater.from(context))
 
     val recycler = binding.recycler
+    val terminalTitle = binding.terminalTitle
+
     
     open fun getRecyclerView() : RecyclerView {
          return recycler
@@ -28,5 +30,13 @@ open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(conte
         setContentView(binding.root)
         setCancelable(true)
         binding.recycler.layoutManager = LinearLayoutManager(context)
+    }
+    
+    open fun setTerminalTitle(title: String) {
+        terminalTitle.text = title
+    }
+    
+    open fun getTerminalTitle(): String {
+        return terminalTitle.text.toString()
     }
 }
