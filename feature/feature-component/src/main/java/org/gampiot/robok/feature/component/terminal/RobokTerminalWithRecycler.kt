@@ -4,7 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 
 import androidx.appcompat.app.AppCompatDelegate
-5import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.material.bottomsheet.BottomSheetDialog
