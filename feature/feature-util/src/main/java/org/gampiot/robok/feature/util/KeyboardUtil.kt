@@ -5,6 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.os.Handler
 import android.os.ResultReceiver
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
@@ -39,7 +40,7 @@ open class KeyboardUtil {
             view.isFocusable = true
             view.isFocusableInTouchMode = true
             view.requestFocus()
-            it.showSoftInput(view, flags, object : ResultReceiver(Handler()) {
+            it.showSoftInput(view, flags, object : ResultReceiver(Handler(Looper.getMainLooper())) {
                 override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
                     if (resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN || resultCode == InputMethodManager.RESULT_HIDDEN) {
                         showSoftInput()
