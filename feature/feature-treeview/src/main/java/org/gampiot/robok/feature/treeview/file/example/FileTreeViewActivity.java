@@ -11,7 +11,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
-import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
+import org.gampiot.robok.feature.treeview.view.TreeWrapperView;
 
 import java.io.File;
 
@@ -19,7 +19,7 @@ public class FileTreeViewActivity extends AppCompatActivity {
 
     public LinearLayout listContainer;
     public TreeNode root;
-    public TreeNodeWrapperView treeView;
+    public TreeWrapperView treeView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,7 +35,8 @@ public class FileTreeViewActivity extends AppCompatActivity {
     public void setupFileTree(File rootDir) {
          root = TreeNode.root();
          buildFileTree(rootDir, root);
-         treeView = new TreeNodeWrapperView(this, R.style.TreeNodeStyle);
+         treeView = new TreeWrapperView(this, R.style.TreeNodeStyle);
+         
          for (TreeNode child : root.getChildren()) {
                treeView.insertNodeView(createNodeView(child));
          } 

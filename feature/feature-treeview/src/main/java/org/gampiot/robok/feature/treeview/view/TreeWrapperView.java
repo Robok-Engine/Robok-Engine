@@ -10,12 +10,12 @@ import android.widget.RelativeLayout;
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
 
-public class TreeNodeWrapperView extends LinearLayout {
+public class TreeWrapperView extends LinearLayout {
     private LinearLayout nodeItemsContainer;
     private ViewGroup nodeContainer;
     private final int containerStyle;
 
-    public TreeNodeWrapperView(Context context, int containerStyle) {
+    public TreeWrapperView(Context context, int containerStyle) {
         super(context);
         this.containerStyle = containerStyle;
         init();

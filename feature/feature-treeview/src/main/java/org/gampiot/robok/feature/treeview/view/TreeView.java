@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Set;
 
 /** Created by Bogdan Melnychuk on 2/10/15. */
-public class AndroidTreeView {
+public class TreeView {
   private static final String NODES_PATH_SEPARATOR = ";";
 
   protected TreeNode mRoot;
@@ -37,7 +37,7 @@ public class AndroidTreeView {
   private boolean use2dScroll = false;
   private boolean enableAutoToggle = true;
 
-  public AndroidTreeView(Context context) {
+  public TreeView(Context context) {
     mContext = context;
   }
 
@@ -45,7 +45,7 @@ public class AndroidTreeView {
     this.mRoot = mRoot;
   }
 
-  public AndroidTreeView(Context context, TreeNode root) {
+  public TreeView(Context context, TreeNode root) {
     mRoot = root;
     mContext = context;
   }

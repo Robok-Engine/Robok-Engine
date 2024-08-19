@@ -8,12 +8,12 @@ import android.widget.TextView;
 
 import org.gampiot.robok.feature.treeview.R;
 import org.gampiot.robok.feature.treeview.model.TreeNode;
-import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
+import org.gampiot.robok.feature.treeview.view.TreeWrapperView;
 
 public class FileTreeNodeViewHolder extends TreeNode.BaseNodeViewHolder<FileNode> {
-    private final TreeNodeWrapperView treeView;
+    private final TreeWrapperView treeView;
 
-    public FileTreeNodeViewHolder(FileTreeViewActivity context, TreeNodeWrapperView treeView) {
+    public FileTreeNodeViewHolder(FileTreeViewActivity context, TreeWrapperView treeView) {
         super(context);
         this.treeView = treeView;
     }

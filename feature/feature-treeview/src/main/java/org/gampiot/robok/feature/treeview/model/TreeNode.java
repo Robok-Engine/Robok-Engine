@@ -10,8 +10,8 @@ import java.util.Collections;
 import java.util.List;
 
 import org.gampiot.robok.feature.treeview.R;
-import org.gampiot.robok.feature.treeview.view.AndroidTreeView;
-import org.gampiot.robok.feature.treeview.view.TreeNodeWrapperView;
+import org.gampiot.robok.feature.treeview.view.TreeView;
+import org.gampiot.robok.feature.treeview.view.TreeWrapperView;
 
 /** Created by Bogdan Melnychuk on 2/10/15. */
 public class TreeNode {
@@ -217,7 +217,7 @@ public class TreeNode {
   }
 
   public abstract static class BaseNodeViewHolder<E> {
-    protected AndroidTreeView tView;
+    protected TreeView tView;
     protected TreeNode mNode;
     private View mView;
     protected int containerStyle;
@@ -232,19 +232,19 @@ public class TreeNode {
         return mView;
       }
       final View nodeView = getNodeView();
-      final TreeNodeWrapperView nodeWrapperView =
-          new TreeNodeWrapperView(nodeView.getContext(), getContainerStyle());
+      final TreeWrapperView nodeWrapperView =
+          new TreeWrapperView(nodeView.getContext(), getContainerStyle());
       nodeWrapperView.insertNodeView(nodeView);
       mView = nodeWrapperView;
 
       return mView;
     }
 
-    public void setTreeViev(AndroidTreeView treeViev) {
+    public void setTreeViev(TreeView treeViev) {
       this.tView = treeViev;
     }
 
-    public AndroidTreeView getTreeView() {
+    public TreeView getTreeView() {
       return tView;
     }
 
