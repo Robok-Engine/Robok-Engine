@@ -32,7 +32,7 @@ import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
 open class RobokActivity(
-    @IdRes private val fragmentLayoutResId: Int = 0
+    @IdRes private val fragmentLayoutResId: Int
 ) : AppCompatActivity(), PermissionListener {
     
     private var permissionDialog: PermissionDialog? = null
