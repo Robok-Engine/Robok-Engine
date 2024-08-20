@@ -11,10 +11,11 @@ import com.google.android.material.appbar.MaterialToolbar
 
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
+import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class BaseSettingFragment(private val str: Int,
                                    private val fragmentCreator: () -> BasePreferenceFragment)
-	: BaseFragment(false) {
+	: RobokFragment(false) {
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
