@@ -217,7 +217,7 @@ class EditorFragment(
         const val PROJECT_PATH = "arg_path"
 
         @JvmStatic
-        fun newInstance(path: String): EditorFragment {
+        fun newInstance(path: String, @IdRes fragmentLayoutResId: Int): EditorFragment {
             return EditorFragment(MaterialSharedAxis.X, fragmentLayoutResId).apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
