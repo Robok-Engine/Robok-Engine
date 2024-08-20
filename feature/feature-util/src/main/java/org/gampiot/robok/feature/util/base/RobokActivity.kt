@@ -1,8 +1,6 @@
 package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.graphics.Color
 import android.content.res.Configuration
 import android.view.View
@@ -10,8 +8,6 @@ import android.view.WindowInsets
 
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.OnBackPressedDispatcher
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import androidx.annotation.IdRes
@@ -32,7 +28,7 @@ import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
 open class RobokActivity(
-    @IdRes public var fragmentLayoutd: Int
+    @IdRes var fragmentLayoutd: Int 
 ) : AppCompatActivity(), PermissionListener {
     
     private var permissionDialog: PermissionDialog? = null
@@ -58,7 +54,7 @@ open class RobokActivity(
         }
         
         val scrimColor = Color.TRANSPARENT
-        val style = SystemBarStyle.auto(scrimColor, scrimColor) 
+        val style = SystemBarStyle.auto(scrimColor, scrimColor)
         enableEdgeToEdge(
             statusBarStyle = style,
             navigationBarStyle = style
@@ -82,7 +78,7 @@ open class RobokActivity(
     }
     
     @IdRes 
-    open fun getFragmentLayoutResId(): Int = fragmentLayoutd
+    fun getFragmentLayoutResId(): Int = fragmentLayoutd
         
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
@@ -99,9 +95,7 @@ open class RobokActivity(
             }
             .build()
         
-        Handler(Looper.getMainLooper()).post {
-            permissionDialog?.show()
-        }
+        permissionDialog?.show() 
     }
     
     open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
