@@ -15,6 +15,7 @@ import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
 import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment 
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class SettingsFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
@@ -31,6 +32,8 @@ class SettingsTopFragment(
      @IdRes private val fragmentLayoutResId: Int
 ) : BasePreferenceFragment(fragmentLayoutResId) {
 
+    private lateinit var terminal: RobokTerminal
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enterTransition = MaterialSharedAxis(transitionAxis, true)
@@ -41,6 +44,9 @@ class SettingsTopFragment(
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)
+        terminal = RobokTerminal(requireContext())
+        terminal.addLogs("fragmentLayoutResId: ${fragmentLayoutResId}")
+        terminal.show()
     }
     
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
