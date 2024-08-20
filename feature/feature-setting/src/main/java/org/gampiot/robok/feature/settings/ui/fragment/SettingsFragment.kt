@@ -3,6 +3,7 @@ package org.gampiot.robok.feature.settings.ui.fragments
 import android.os.Bundle
 
 import androidx.preference.Preference
+import androidx.annotation.IdRes
 
 import com.google.android.material.transition.MaterialSharedAxis
 
