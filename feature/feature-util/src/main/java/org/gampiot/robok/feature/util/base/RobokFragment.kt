@@ -19,7 +19,6 @@ open class RobokFragment(
      @IdRes private val fragmentLayoutResId: Int = 0
 ) : Fragment() {
 
-    @IdRes var fragmentLayoutResId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +50,9 @@ open class RobokFragment(
     }
    
     @Deprecated
-    fun openFragment(@IdRes fragmentLayoutResId: Int, fragment: Fragment) {
+    fun openFragment(@IdRes IdRes: Int, fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
-            replace(fragmentLayoutResId, fragment)
+            replace(IdRes, fragment)
             addToBackStack(null)
             commit()
         }
