@@ -7,6 +7,7 @@ import android.view.ViewGroup
 
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
@@ -22,8 +23,8 @@ import org.gampiot.robok.feature.util.getBackPressedClickListener
 
 abstract class RobokPreferenceFragment(
     private val str: Int,
-    private val fragmentCreator: () -> Fragment
-) : Fragment() {
+    private val fragmentCreator: () -> RobokFragment 
+) : PreferenceFragmentCompat() {
 
     @IdRes
     var layoutResId: Int = 0
@@ -64,6 +65,14 @@ abstract class RobokPreferenceFragment(
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
+    }
+    
+    fun openFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction().apply {
+            replace(layoutResId, fragment)
+            addToBackStack(null)
+            commit()
+        }
     }
 
     fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
