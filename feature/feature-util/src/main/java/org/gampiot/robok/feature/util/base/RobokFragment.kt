@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.fragment.app.Fragment
+import androidx.preference.PreferenceFragmentCompat
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.IdRes
 
@@ -38,7 +39,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         }
     }
     
-    fun openFragment(fragment: RobokPreferenceFragment) {
+    fun openFragment(fragment: PreferenceFragmentCompat) {
         parentFragmentManager.beginTransaction().apply {
             replace(layoutResId, fragment)
             addToBackStack(null)
