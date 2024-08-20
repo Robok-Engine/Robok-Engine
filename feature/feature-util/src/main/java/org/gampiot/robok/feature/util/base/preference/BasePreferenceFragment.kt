@@ -6,6 +6,8 @@ import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.View
 
+import androidx.annotation.IdRes 
+import androidx.fragment.app.Fragment
 import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.RecyclerView
 
