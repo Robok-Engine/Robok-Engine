@@ -13,10 +13,14 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.util.base.RobokPreferenceFragment
 
-class SettingsFragment : RobokPreferenceFragment(
+abstract class SettingsFragment : RobokPreferenceFragment(
     str = Strings.common_word_settings,
     fragmentCreator = { SettingsContentFragment() }
 ) {
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings_top, rootKey)
+    }
+    
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         when (preference.key) {
             "settings_editor" -> {
@@ -36,6 +40,5 @@ class SettingsContentFragment : RobokFragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setPreferencesFromResource(R.xml.settings_top, null)
     }
 }
