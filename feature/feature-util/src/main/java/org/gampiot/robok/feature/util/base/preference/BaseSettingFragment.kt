@@ -20,7 +20,7 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 abstract class BaseSettingFragment(
      private val transitionModeA: Int = MaterialSharedAxis.X,
      private val str: Int,
-     private val fragmentCreator: () -> /*BasePreferenceFragment*/ fragment,
+     private val fragmentCreator: () -> /*BasePreferenceFragment*/ Fragment,
      @IdRes private val fragmentLayoutResIdA: Int
 ): RobokFragment(transitionModeA, fragmentLayoutResIdA) {
 
