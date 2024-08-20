@@ -77,6 +77,13 @@ open class RobokActivity(
         }
     }
     
+    open fun setFragmentLayoutResId(@IdRes fragmentLayoutResIdV: Int) {
+        fragmentLayoutResId = fragmentLayoutResIdV
+    }
+    
+    @IdRes 
+    open fun getFragmentLayoutResId(): Int = fragmentLayoutResId
+        
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
             return
