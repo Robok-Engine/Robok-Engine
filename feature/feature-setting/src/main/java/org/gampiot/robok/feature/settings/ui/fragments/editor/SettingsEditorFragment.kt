@@ -25,7 +25,7 @@ class SettingsEditorFragment(
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
-       { SettingsEditorTopFragment(transitionAxis, fragmentLayoutResId) },
+       { SettingsEditorTopFragment(transitionAxis, fragmentLayoutResIdBSF) },
        fragmentLayoutResIdBSF
    )
 
