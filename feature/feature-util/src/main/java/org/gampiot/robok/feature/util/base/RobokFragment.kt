@@ -15,8 +15,8 @@ import com.google.android.material.color.MaterialColors
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 
 open class RobokFragment(
-     val transitionMode: Int = MaterialSharedAxis.X,
-     @IdRes val fragmentLayoutd: Int
+    val transitionMode: Int = MaterialSharedAxis.X,
+    @IdRes var fragmentLayoutd: Int 
 ) : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,7 +41,7 @@ open class RobokFragment(
         
     fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
-            replace(fragmentLayoutResId, fragment)
+            replace(fragmentLayoutd, fragment)
             addToBackStack(null)
             commit()
         }
@@ -49,7 +49,7 @@ open class RobokFragment(
     
     fun openFragment(fragment: PreferenceFragmentCompat) {
         parentFragmentManager.beginTransaction().apply {
-            replace(fragmentLayoutResId, fragment)
+            replace(fragmentLayoutd, fragment)
             addToBackStack(null)
             commit()
         }
