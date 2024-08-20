@@ -43,7 +43,7 @@ public class RobokApp extends Application {
     public void onCreate() {
          super.onCreate();
          instance = this;
-         robokContext = this;
+         robokContext = getApplicationContext();
          Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
               Intent intent = new Intent(getApplicationContext(), DebugActivity.class);
               intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
