@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import androidx.annotation.IdRes
+
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.R
@@ -13,7 +15,10 @@ import org.gampiot.robok.databinding.FragmentEditorLogsBinding
 import org.gampiot.robok.feature.component.log.Log
 import org.gampiot.robok.feature.util.base.RobokFragment
 
-class LogsFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
+class LogsFragment (
+    private val tansitionAxis : Int = MaterialSharedAxis.X,
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentEditorLogsBinding? = null
     private val binding get() = _binding!!

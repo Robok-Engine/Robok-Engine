@@ -16,10 +16,9 @@ class MainActivity : RobokActivity() {
         super.onCreate(savedInstanceState)
         installSplashScreen()
         setContentView(R.layout.activity_main)
-        setFragmentLayoutResId(R.id.fragment_container) // needed for open fragments
         
         if (savedInstanceState == null) {
-            openFragment(HomeFragment(MaterialSharedAxis.X))
+            openFragment(HomeFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
     }
 }

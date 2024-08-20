@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.activity.OnBackPressedDispatcher;
+import androidx.annotation.IdRes 
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.transition.MaterialSharedAxis;
@@ -28,18 +29,13 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     private ProjectTemplate template;
     private ProjectManager projectManager;
     
-    public CreateProjectFragment() {
-         this(MaterialSharedAxis.X);
+    public CreateProjectFragment(int transitionAxis, @NonNull int fragmentLayoutResId) {
+         super(transitionAxis, fragmentLayoutResId);
          this.template = defaultProjectTemplate();
     }
     
-    public CreateProjectFragment(int transitionAxis) {
-         super(transitionAxis);
-         this.template = defaultProjectTemplate();
-    }
-    
-    public CreateProjectFragment(int transitionAxis, @NonNull ProjectTemplate template) {
-         super(transitionAxis);
+    public CreateProjectFragment(int transitionAxis, @NonNull int fragmentLayoutResId, @NonNull ProjectTemplate template) {
+         super(transitionAxis, fragmentLayoutResId);
          this.template = template;
     }
 
@@ -53,7 +49,6 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
-         setFragmentLayoutResId(R.id.fragment_container);
          configureToolbarNavigationBack(binding.toolbar);
          
          loadTemplate();

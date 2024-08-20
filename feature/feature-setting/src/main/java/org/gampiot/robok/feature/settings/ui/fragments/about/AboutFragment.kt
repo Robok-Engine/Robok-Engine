@@ -36,9 +36,9 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class AboutFragment(
-    private val transitionAxis: Int = MaterialSharedAxis.X, 
+    private val tansitionAxis : Int = MaterialSharedAxis.X,
     @IdRes private val fragmentLayoutResId: Int = 0
-) : RobokFragment(transitionAxis) {
+) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!
@@ -58,8 +58,7 @@ class AboutFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
-        setFragmentLayoutResId(fragmentLayoutResId)
-
+        
         binding.contributorsRecyclerView.layoutManager = LinearLayoutManager(context)
 
         fetchContributors()

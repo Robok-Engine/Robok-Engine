@@ -19,9 +19,9 @@ import org.gampiot.robok.feature.res.Strings
 import dev.trindadedev.lib.ui.components.preference.Preference
 
 class SettingsEditorFragment(
-    private val transitionAxis: Int = MaterialSharedAxis.X, 
+    private val tansitionAxis : Int = MaterialSharedAxis.X,
     @IdRes private val fragmentLayoutResId: Int = 0
-) : RobokFragment(transitionAxis) {
+) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentSettingsEditorBinding? = null
     private val binding get() = _binding!!
@@ -37,7 +37,6 @@ class SettingsEditorFragment(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         configureToolbarNavigationBack(binding.toolbar)
-        setFragmentLayoutResId(fragmentLayoutResId)
         
         val codeEditor = RobokCodeEditor(requireContext())
         

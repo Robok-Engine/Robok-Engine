@@ -9,6 +9,7 @@ import android.view.ViewGroup
 
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.annotation.IdRes 
 
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -30,7 +31,10 @@ import robok.compiler.logic.LogicCompiler
 import robok.compiler.logic.LogicCompilerListener
 import robok.diagnostic.logic.DiagnosticListener
 
-class EditorFragment(val transitionAxis: Int = MaterialSharedAxis.X) : RobokFragment(transitionAxis) {
+class EditorFragment(
+    private val tansitionAxis : Int = MaterialSharedAxis.X,
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
@@ -55,7 +59,6 @@ class EditorFragment(val transitionAxis: Int = MaterialSharedAxis.X) : RobokFrag
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentLayoutResId(R.id.fragment_container)
         
         val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
         val terminal = RobokTerminal(requireContext())

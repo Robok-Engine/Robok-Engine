@@ -14,16 +14,19 @@ import com.google.android.material.color.MaterialColors
 
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 
-open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X) : Fragment() {
+open class RobokFragment(
+     private val transitionMode: Int = MaterialSharedAxis.X,
+     @IdRes private val fragmentLayoutResId: Int = 0
+) : Fragment() {
 
-    @IdRes var layoutResId: Int = 0
+    @IdRes var fragmentLayoutResId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(transitionMode, true))
-        setReturnTransition(MaterialSharedAxis(transitionMode, false))
-        setExitTransition(MaterialSharedAxis(transitionMode, true))
-        setReenterTransition(MaterialSharedAxis(transitionMode, false))
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
     }
     
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -33,7 +36,7 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
     
     fun openFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
+            replace(fragmentLayoutResId, fragment)
             addToBackStack(null)
             commit()
         }
@@ -41,15 +44,16 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
     
     fun openFragment(fragment: PreferenceFragmentCompat) {
         parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
+            replace(fragmentLayoutResId, fragment)
             addToBackStack(null)
             commit()
         }
     }
    
-    fun openFragment(@IdRes layoutResId: Int, fragment: Fragment) {
+    @Deprecated
+    fun openFragment(@IdRes fragmentLayoutResId: Int, fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
+            replace(fragmentLayoutResId, fragment)
             addToBackStack(null)
             commit()
         }
@@ -58,13 +62,5 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
-    }
-    
-    fun setFragmentLayoutResId (@IdRes layoutResId: Int) {
-         this.layoutResId = layoutResId
-    }
-    
-    fun getFragmentLayoutResId () : Int {
-         return layoutResId;
     }
 }

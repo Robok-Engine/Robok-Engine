@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -28,12 +29,8 @@ public class ProjectTemplatesFragment extends RobokFragment {
 
     public FragmentProjectTemplatesBinding binding;
 
-    public ProjectTemplatesFragment () {
-         super(MaterialSharedAxis.X);
-    }
-
-    public ProjectTemplatesFragment (@NonNull int transitionAxisMode) {
-         super(transitionAxisMode);
+    public ProjectTemplatesFragment (int transitionAxisMode, @NonNull int fragmentLayoutResId) {
+         super(transitionAxisMode, fragmentLayoutResId);
     }
 
     @Nullable
@@ -46,7 +43,6 @@ public class ProjectTemplatesFragment extends RobokFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
          super.onViewCreated(view, savedInstanceState);
-         setFragmentLayoutResId(R.id.fragment_container);
          configureToolbarNavigationBack(binding.toolbar);
          
          binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));

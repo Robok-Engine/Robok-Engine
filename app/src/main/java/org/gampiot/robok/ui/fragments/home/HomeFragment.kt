@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.content.Intent
 
 import androidx.fragment.app.Fragment
+import androidx.annotation.IdRes 
 
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -27,7 +28,10 @@ import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import dev.trindadedev.lib.filepicker.model.DialogConfigs
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 
-class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : RobokFragment(tansitionAxis) {
+class HomeFragment (
+    private val tansitionAxis : Int = MaterialSharedAxis.X,
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -42,9 +46,9 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentLayoutResId(R.id.fragment_container)
+        
         binding.createProject.setOnClickListener {
-            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X))
+            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         binding.openProject.setOnClickListener {
@@ -60,7 +64,7 @@ class HomeFragment (private val tansitionAxis : Int = MaterialSharedAxis.X) : Ro
         }
         
         binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment(MaterialSharedAxis.X))
+            openFragment(EditorFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         if (BuildConfig.DEBUG) {
