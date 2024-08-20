@@ -12,7 +12,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import com.google.android.material.appbar.MaterialToolbar
 
-open class RobokPreferenceFragment(private val transitionMode: Int = MaterialSharedAxis.X) : PreferenceFragmentCompat() {
+open abstract class RobokPreferenceFragment(private val transitionMode: Int = MaterialSharedAxis.X) : PreferenceFragmentCompat() {
 
     @IdRes var layoutResId: Int = 0
 
