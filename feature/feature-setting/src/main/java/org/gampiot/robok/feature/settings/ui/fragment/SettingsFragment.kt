@@ -1,62 +1,36 @@
 package org.gampiot.robok.feature.settings.ui.fragments
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+
+import androidx.preference.Preference
 
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.settings.R
-import org.gampiot.robok.feature.settings.databinding.FragmentSettingsBinding
 import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
 import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
-import org.gampiot.robok.feature.util.base.RobokFragment
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.util.base.RobokPreferenceFragment
 
-import dev.trindadedev.lib.ui.components.preference.withicon.Preference
 
-class SettingsFragment(private val transitionAxis: Int = MaterialSharedAxis.X, private val fragmentLayoutResId: Int = 0) : RobokFragment(transitionAxis) {
+class SettingsFragment(
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : RobokPreferenceFragment(MaterialSharedAxis.X) {
 
-    private var _binding: FragmentSettingsBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSettingsBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings_top, rootKey)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        configureToolbarNavigationBack(binding.toolbar)
-        setFragmentLayoutResId(fragmentLayoutResId)
-        
-        val editorSettings = Preference(requireContext()).apply {
-               setTitle(getString(Strings.settings_editor_title))
-               setDescription(getString(Strings.settings_editor_description))
-               setIcon(R.drawable.ic_settings_24)
-               setPreferenceClickListener {
-                      openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
-               }
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        when (preference.key) {
+            "settings_editor" -> {
+                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+                return true
+            }
+            "settings_about" -> {
+                openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+                return true
+            }
         }
-        binding.content.addView(editorSettings)
-        
-        val aboutPage = Preference(requireContext()).apply {
-               setTitle(getString(Strings.settings_about_title))
-               setDescription(getString(Strings.settings_about_description))
-               setIcon(R.drawable.ic_info_24)
-               setPreferenceClickListener {
-                      openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResId))
-               }
-        }
-        binding.content.addView(aboutPage)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return super.onPreferenceTreeClick(preference)
     }
 }
