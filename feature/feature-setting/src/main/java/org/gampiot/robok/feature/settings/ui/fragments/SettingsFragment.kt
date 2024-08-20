@@ -14,7 +14,7 @@ import org.gampiot.robok.feature.util.base.RobokPreferenceFragment
 
 
 class SettingsFragment(
-    private val transitionMode: Int = MaterialSharedAxis.X
+    private val transitionMode: Int = MaterialSharedAxis.X,
     @IdRes private val fragmentLayoutResId: Int = 0
 ) : RobokPreferenceFragment(transitionMode) {
 
