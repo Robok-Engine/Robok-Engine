@@ -1,43 +1,61 @@
 package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 
-import androidx.preference.Preference
-import androidx.preference.PreferenceFragmentCompat
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
 
+import com.google.android.material.appbar.AppBarLayout
+import com.google.android.material.appbar.CollapsingToolbarLayout
+import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.transition.MaterialSharedAxis
 
+import org.gampiot.robok.R
 import org.gampiot.robok.feature.util.getBackPressedClickListener
-import com.google.android.material.appbar.MaterialToolbar
+import org.gampiot.robok.logic.enableEdgeToEdgePaddingListener
 
-open abstract class RobokPreferenceFragment(private val transitionMode: Int = MaterialSharedAxis.X) : PreferenceFragmentCompat() {
+abstract class RobokPreferenceFragment(
+    private val str: Int,
+    private val fragmentCreator: () -> Fragment
+) : Fragment() {
 
-    @IdRes var layoutResId: Int = 0
+    @IdRes
+    var layoutResId: Int = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(transitionMode, true))
-        setReturnTransition(MaterialSharedAxis(transitionMode, false))
-        setExitTransition(MaterialSharedAxis(transitionMode, true))
-        setReenterTransition(MaterialSharedAxis(transitionMode, false))
+        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
+        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
+        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
+        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
     }
 
-    fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
+    ): View? {
+        val rootView = inflater.inflate(R.layout.fragment_top_settings, container, false)
+        val topAppBar = rootView.findViewById<MaterialToolbar>(R.id.topAppBar)
+        val collapsingToolbar = rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
 
-    fun openCustomFragment(@IdRes layoutResId: Int, fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
-            addToBackStack(null)
-            commit()
+        rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener()
+        collapsingToolbar.title = getString(str)
+
+        topAppBar.setNavigationOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
         }
+
+        childFragmentManager
+            .beginTransaction()
+            .addToBackStack(System.currentTimeMillis().toString())
+            .add(R.id.settings, fragmentCreator())
+            .commit()
+
+        return rootView
     }
 
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {

@@ -8,6 +8,7 @@ import androidx.annotation.IdRes
 
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
+import com.google.android.material.color.MaterialColors
 
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 
@@ -21,6 +22,11 @@ open class RobokFragment(private val transitionMode: Int = MaterialSharedAxis.X)
         setReturnTransition(MaterialSharedAxis(transitionMode, false))
         setExitTransition(MaterialSharedAxis(transitionMode, true))
         setReenterTransition(MaterialSharedAxis(transitionMode, false))
+    }
+    
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
     }
     
     fun openFragment(fragment: Fragment) {
