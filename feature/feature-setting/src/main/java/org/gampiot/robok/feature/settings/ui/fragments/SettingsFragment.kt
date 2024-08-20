@@ -14,8 +14,9 @@ import org.gampiot.robok.feature.util.base.RobokPreferenceFragment
 
 
 class SettingsFragment(
+    private val transitionMode: Int = MaterialSharedAxis.X
     @IdRes private val fragmentLayoutResId: Int = 0
-) : RobokPreferenceFragment(MaterialSharedAxis.X) {
+) : RobokPreferenceFragment(transitionMode) {
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)
