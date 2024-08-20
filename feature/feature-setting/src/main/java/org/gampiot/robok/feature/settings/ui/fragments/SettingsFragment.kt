@@ -12,13 +12,21 @@ import com.google.android.material.transition.MaterialSharedAxis
 import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
 import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
+import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
 
 class SettingsFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
      @IdRes private val fragmentLayoutResId: Int = 0
-): BaseSettingFragment(R.string.settings_about_title, 
-    { SettingsTopFragment(transitionAxis, fragmentLayoutResId) })
+): BaseSettingFragment(
+       Strings.settings_about_title, 
+       {
+            SettingsTopFragment(transitionAxis, fragmentLayoutResId) 
+       },
+       fragmentLayoutResId
+   )
+
+
 
 class SettingsTopFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X, 

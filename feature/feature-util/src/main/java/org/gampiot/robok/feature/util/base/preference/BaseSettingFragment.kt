@@ -20,7 +20,7 @@ abstract class BaseSettingFragment(
      private val transitionMode: Int = MaterialSharedAxis.X,
      private val str: Int,
      private val fragmentCreator: () -> BasePreferenceFragment,
-     @IdRes private val fragmentLayoutResId: Int = 0
+     @IdRes private val fragmentLayoutResId: Int
 ): RobokFragment(transitionMode, fragmentLayoutResId) {
 
 	override fun onCreateView(

@@ -16,7 +16,7 @@ import org.gampiot.robok.feature.util.getBackPressedClickListener
 
 open class RobokFragment(
      private val transitionMode: Int = MaterialSharedAxis.X,
-     @IdRes private val fragmentLayoutResId: Int = 0
+     @IdRes private val fragmentLayoutResId: Int
 ) : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
