@@ -19,7 +19,6 @@ open class RobokFragment(
      @IdRes private val fragmentLayoutResId: Int = 0
 ) : Fragment() {
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
@@ -49,10 +48,9 @@ open class RobokFragment(
         }
     }
    
-    @Deprecated
-    fun openFragment(@IdRes IdRes: Int, fragment: Fragment) {
+    fun openFragment(@IdRes idRes: Int, fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
-            replace(IdRes, fragment)
+            replace(idRes, fragment)
             addToBackStack(null)
             commit()
         }
