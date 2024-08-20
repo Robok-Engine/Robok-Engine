@@ -45,7 +45,7 @@ class SettingsTopFragment(
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)
         terminal = RobokTerminal(requireContext())
-        terminal.addLogs("fragmentLayoutResId: ${fragmentLayoutResId}")
+        terminal.addLog("fragmentLayoutResId: ${fragmentLayoutResId}")
         terminal.show()
     }
     
