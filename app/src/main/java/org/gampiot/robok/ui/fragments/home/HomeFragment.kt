@@ -30,7 +30,7 @@ import dev.trindadedev.lib.filepicker.model.DialogProperties
 
 class HomeFragment (
     private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int = 0
+    @IdRes private val fragmentLayoutResId: Int
 ) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentHomeBinding? = null

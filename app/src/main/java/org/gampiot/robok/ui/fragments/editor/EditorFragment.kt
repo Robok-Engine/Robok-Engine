@@ -33,7 +33,7 @@ import robok.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(
     private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int = 0
+    @IdRes private val fragmentLayoutResId: Int
 ) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     var _binding: FragmentEditorBinding? = null

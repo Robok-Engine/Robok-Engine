@@ -18,7 +18,7 @@ import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment
 
 class SettingsFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
-     @IdRes private val fragmentLayoutResId: Int = 0
+     @IdRes private val fragmentLayoutResId: Int
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
@@ -28,7 +28,7 @@ class SettingsFragment(
 
 class SettingsTopFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X, 
-     @IdRes private val fragmentLayoutResId: Int = 0
+     @IdRes private val fragmentLayoutResId: Int
 ) : BasePreferenceFragment(fragmentLayoutResId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {

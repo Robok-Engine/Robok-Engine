@@ -17,6 +17,7 @@ import android.widget.Toast;
 import androidx.annotation.MainThread;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.IdRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AlertDialog;
 
@@ -41,6 +42,10 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      /* TO-DO: logic to save necessary terminal files in this dir */
      public static final String APP_HOME_DATA_DIR = "/data/data/org.gampiot.robok/files/home";
      
+     public TerminalActivity (@IdRes int fragmentLayoutResId) {
+          super(fragmentLayoutResId);
+     }
+          
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);

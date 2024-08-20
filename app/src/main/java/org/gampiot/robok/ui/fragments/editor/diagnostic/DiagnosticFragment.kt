@@ -17,7 +17,7 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 
 class DiagnosticFragment (
     private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int = 0
+    @IdRes private val fragmentLayoutResId: Int
 ) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
 
     private var _binding: FragmentEditorDiagnosticBinding? = null

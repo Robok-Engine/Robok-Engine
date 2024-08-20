@@ -31,9 +31,9 @@ import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
-open class RobokActivity : AppCompatActivity(), PermissionListener {
-
-    @IdRes var layoutResId: Int = 0
+open class RobokActivity(
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : AppCompatActivity(), PermissionListener {
     
     private var permissionDialog: PermissionDialog? = null
     
@@ -67,13 +67,13 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     open fun openFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-            replace(layoutResId, fragment)
+            replace(fragmentLayoutResId, fragment)
         }
     }
     
-    open fun openCustomFragment(@IdRes layoutResId: Int, fragment: Fragment) {
+    open fun openFragment(@IdRes fragmentLayoutResId: Int, fragment: Fragment) {
         supportFragmentManager.commit {
-            replace(layoutResId, fragment)
+            replace(fragmentLayoutResId, fragment)
         }
     }
     
@@ -100,15 +100,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
-    
-    open fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
-        this.layoutResId = layoutResId
-    }
-    
-    open fun getFragmentLayoutResId(): Int {
-        return layoutResId
-    }
-    
+   
     open fun isDarkMode(): Boolean {
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return currentNightMode == Configuration.UI_MODE_NIGHT_YES
