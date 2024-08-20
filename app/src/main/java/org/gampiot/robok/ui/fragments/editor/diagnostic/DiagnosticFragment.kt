@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import androidx.annotation.IdRes 
+
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.R
@@ -31,12 +33,10 @@ class DiagnosticFragment (
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentLayoutResId(R.id.fragment_container)
     }
     
     fun addDiagnostic(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
         _binding = FragmentEditorDiagnosticBinding.inflate(inflater, container, false)
-        setFragmentLayoutResId(R.id.fragment_container)
         val logView = Log(context, log)
         binding.content.addView(logView)
     }

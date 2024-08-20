@@ -33,12 +33,10 @@ class LogsFragment (
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setFragmentLayoutResId(R.id.fragment_container)
     }
     
     fun addLog(context: Context, inflater: LayoutInflater, container: ViewGroup?, log: String) {
         _binding = FragmentEditorLogsBinding.inflate(inflater, container, false)
-        setFragmentLayoutResId(R.id.fragment_container)
         val logView = Log(context, log)
         binding.content.addView(logView)
     }
