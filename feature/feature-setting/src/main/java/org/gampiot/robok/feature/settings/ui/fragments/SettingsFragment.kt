@@ -14,24 +14,22 @@ import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFrag
 import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
+import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment 
 
 class SettingsFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
      @IdRes private val fragmentLayoutResId: Int = 0
 ): BaseSettingFragment(
+       MaterialSharedAxis.X, 
        Strings.settings_about_title, 
-       {
-            SettingsTopFragment(transitionAxis, fragmentLayoutResId) 
-       },
+       { SettingsTopFragment(transitionAxis, fragmentLayoutResId) },
        fragmentLayoutResId
    )
-
-
 
 class SettingsTopFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X, 
      @IdRes private val fragmentLayoutResId: Int = 0
-) : BadePreferenceFragment(fragmentLayoutResId) {
+) : BasePreferenceFragment(fragmentLayoutResId) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
