@@ -23,7 +23,7 @@ class SettingsFragment(
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
-       { SettingsTopFragment(transitionAxis, fragmentLayoutResId) },
+       { SettingsTopFragment(transitionAxis, fragmentLayoutResIdBSF) },
        fragmentLayoutResIdBSF
    )
 
@@ -45,18 +45,18 @@ class SettingsTopFragment(
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)
         terminal = RobokTerminal(requireContext())
-        terminal.addLog("fragmentLayoutResId: ${fragmentLayoutResId}")
+        terminal.addLog("fragmentLayoutResId: ${fragmentLayoutResIdBPF}")
         terminal.show()
     }
     
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         when (preference.key) {
             "settings_editor" -> {
-                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResIdBPF))
                 return true
             }
             "settings_about" -> {
-                openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+                openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResIdBPF))
                 return true
             }
         }
