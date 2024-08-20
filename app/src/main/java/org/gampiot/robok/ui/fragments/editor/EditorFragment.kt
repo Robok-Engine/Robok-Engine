@@ -100,10 +100,10 @@ class EditorFragment(val transitionAxis: Int = MaterialSharedAxis.X) : RobokFrag
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openCustomFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
+                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openCustomFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
+                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
                         }
                     }
                 }
