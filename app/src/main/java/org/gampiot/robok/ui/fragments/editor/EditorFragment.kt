@@ -68,7 +68,7 @@ class EditorFragment(
             }
 
             override fun onCompiled(output: String) {
-                val outputFragment = OutputFragment(MaterialSharedAxis.X)
+                val outputFragment = OutputFragment(MaterialSharedAxis.X, fragmentLayoutResId)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
 
                 Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
@@ -103,10 +103,10 @@ class EditorFragment(
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y))
+                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y, fragmentLayoutResId))
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y))
+                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y, fragmentLayoutResId))
                         }
                     }
                 }
@@ -218,7 +218,7 @@ class EditorFragment(
 
         @JvmStatic
         fun newInstance(path: String): EditorFragment {
-            return EditorFragment(MaterialSharedAxis.X).apply {
+            return EditorFragment(MaterialSharedAxis.X, fragmentLayoutResId).apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
                 }
