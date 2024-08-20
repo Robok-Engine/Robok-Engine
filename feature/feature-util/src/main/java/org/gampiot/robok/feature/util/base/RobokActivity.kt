@@ -24,6 +24,7 @@ import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.requestStoragePerm
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
+import org.gampiot.robok.feature.util.enableEdgeToEdgeProperly
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
@@ -35,6 +36,7 @@ open class RobokActivity(
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdgeProperly()
         if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
         }

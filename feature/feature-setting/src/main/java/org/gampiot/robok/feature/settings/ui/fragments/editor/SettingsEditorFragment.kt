@@ -1,62 +1,58 @@
 package org.gampiot.robok.feature.settings.ui.fragments.editor
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 
+import androidx.preference.Preference
+import androidx.preference.PreferenceFragmentCompat
 import androidx.annotation.IdRes 
+import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.settings.R
-import org.gampiot.robok.feature.settings.databinding.FragmentSettingsEditorBinding
-import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
+import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
+import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
+import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment 
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.component.editor.RobokCodeEditor
 import org.gampiot.robok.feature.component.editor.ThemeManager
-import org.gampiot.robok.feature.res.Strings
-
-import dev.trindadedev.lib.ui.components.preference.Preference
 
 class SettingsEditorFragment(
-    private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int
-) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
+     private val transitionAxis: Int = MaterialSharedAxis.X,
+     @IdRes private val fragmentLayoutResId: Int
+): BaseSettingFragment(
+       MaterialSharedAxis.X, 
+       Strings.settings_about_title, 
+       { SettingsEditorTopFragment(transitionAxis, fragmentLayoutResId) },
+       fragmentLayoutResId
+   )
 
-    private var _binding: FragmentSettingsEditorBinding? = null
-    private val binding get() = _binding!!
+class SettingsEditorTopFragment(
+     private val transitionAxis: Int = MaterialSharedAxis.X, 
+     @IdRes private val fragmentLayoutResId: Int
+) : BasePreferenceFragment(fragmentLayoutResId) {
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentSettingsEditorBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        configureToolbarNavigationBack(binding.toolbar)
+    private lateinit var terminal: RobokTerminal
+    private lateinit var codeEditor: RobokCodeEditor
         
-        val codeEditor = RobokCodeEditor(requireContext())
-        
-        val editorTheme = Preference(requireContext()).apply {
-            setTitle(getString(Strings.settings_editor_theme_title))
-            setDescription(getString(Strings.settings_editor_theme_description))
-            setPreferenceClickListener {
-                ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
-                    ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
-                }
-            }
-        }
-        binding.content.addView(editorTheme)
-
+    override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
+        setPreferencesFromResource(R.xml.settings_editor, rootKey)
+        codeEditor = RobokCodeEditor(requireContext())
         val savedThemeIndex = ThemeManager.loadTheme(requireContext())
         ThemeManager.selectTheme(codeEditor.getCodeEditor(), savedThemeIndex)
     }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+    
+    override fun onPreferenceTreeClick(preference: Preference): Boolean {
+        when (preference.key) {
+            "settings_editor_theme" -> {
+                ThemeManager.showSwitchThemeDialog(requireActivity(), codeEditor.getCodeEditor()) { which ->
+                    ThemeManager.selectTheme(codeEditor.getCodeEditor(), which)
+                }
+                return true
+            }
+        }
+        return super.onPreferenceTreeClick(preference)
     }
 }
