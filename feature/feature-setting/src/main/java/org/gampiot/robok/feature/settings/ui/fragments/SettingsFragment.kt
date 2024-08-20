@@ -4,6 +4,8 @@ import android.os.Bundle
 
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
+import androidx.annotation.IdRes 
+import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
 
