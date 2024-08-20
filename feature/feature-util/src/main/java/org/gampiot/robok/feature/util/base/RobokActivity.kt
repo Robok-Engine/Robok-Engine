@@ -77,7 +77,7 @@ open class RobokActivity(
         }
     }
     
-    open fun setFragmentLayoutResId(@IdRes fragmentLayoutResIdV: Int) {
+    open fun setFragmenResId(@IdRes fragmentLayoutResIdV: Int) {
         fragmentLayoutResId = fragmentLayoutResIdV
     }
     
