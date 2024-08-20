@@ -41,7 +41,7 @@ abstract class RobokPreferenceFragment(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
-    ): View? {
+    ): View {
         val rootView = inflater.inflate(R.layout.fragment_top_settings, container, false)
         val topAppBar = rootView.findViewById<MaterialToolbar>(R.id.topAppBar)
         val collapsingToolbar = rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
