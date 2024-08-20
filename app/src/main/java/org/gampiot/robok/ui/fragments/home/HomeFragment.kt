@@ -60,7 +60,9 @@ class HomeFragment (
         }
         
         binding.openTerminal.setOnClickListener {
-            startActivity(Intent(requireContext(), TerminalActivity::class.java))
+              val intent = Intent(requireContext(), TerminalActivity::class.java)
+              intent.putExtra("fragmentLayoutResId", fragmentLayoutResId) 
+              startActivity(intent)
         }
         
         binding.openEditor.setOnClickListener {

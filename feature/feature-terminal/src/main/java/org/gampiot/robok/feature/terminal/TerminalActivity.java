@@ -45,15 +45,12 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      public TerminalActivity () {
           super(0);
      }
-     
-     public TerminalActivity (@IdRes int fragmentLayoutResId) {
-          super(fragmentLayoutResId);
-     }
           
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
-          binding = ActivityTerminalBinding.inflate(getLayoutInflater());
+          binding = ActivityTerminalBinding.inflate(getLayoutInflater());          
+          fragmentLayoutResId = getIntent().getIntExtra("fragmentLayoutResId", -1);
           setContentView(binding.getRoot());
           if (getIntent().hasExtra("path")) {
               cwd = getIntent().getStringExtra("path");
