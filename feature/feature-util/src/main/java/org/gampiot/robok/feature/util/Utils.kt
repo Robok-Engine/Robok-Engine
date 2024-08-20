@@ -1,90 +1,12 @@
-package org.gampiot.robok.feature.util.base
+package org.gampiot.robok.feature.util
 
-import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.ViewGroup
 import android.view.View
-
-import androidx.annotation.IdRes
-import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceFragmentCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
 import androidx.core.graphics.Insets
 
-import com.google.android.material.appbar.AppBarLayout
-import com.google.android.material.appbar.CollapsingToolbarLayout
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.transition.MaterialSharedAxis
-
-import org.gampiot.robok.feature.util.R
-import org.gampiot.robok.feature.util.getBackPressedClickListener
-
-abstract class RobokPreferenceFragment(
-    private val str: Int,
-    private val fragmentCreator: () -> RobokFragment 
-) : PreferenceFragmentCompat() {
-
-    @IdRes
-    var layoutResId: Int = 0
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setEnterTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReturnTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
-        setExitTransition(MaterialSharedAxis(MaterialSharedAxis.X, true))
-        setReenterTransition(MaterialSharedAxis(MaterialSharedAxis.X, false))
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?,
-    ): View {
-        val rootView = inflater.inflate(R.layout.fragment_top_settings, container, false)
-        val topAppBar = rootView.findViewById<MaterialToolbar>(R.id.topAppBar)
-        val collapsingToolbar = rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
-
-        rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener()
-        collapsingToolbar.title = getString(str)
-
-        topAppBar.setNavigationOnClickListener {
-            requireActivity().supportFragmentManager.popBackStack()
-        }
-
-        childFragmentManager
-            .beginTransaction()
-            .addToBackStack(System.currentTimeMillis().toString())
-            .add(R.id.settings, fragmentCreator())
-            .commit()
-
-        return rootView
-    }
-
-    fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
-    }
-    
-    fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(layoutResId, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
-
-    fun setFragmentLayoutResId(@IdRes layoutResId: Int) {
-        this.layoutResId = layoutResId
-    }
-
-    fun getFragmentLayoutResId(): Int {
-        return layoutResId
-    }
-
-    // Função para habilitar Listener de Padding para Edge-to-Edge
-    fun View.enableEdgeToEdgePaddingListener(ime: Boolean = false, top: Boolean = false,
+fun View.enableEdgeToEdgePaddingListener(ime: Boolean = false, top: Boolean = false,
                                              extra: ((Insets) -> Unit)? = null) {
         if (fitsSystemWindows) throw IllegalArgumentException("must have fitsSystemWindows disabled")
         if (this is AppBarLayout) {
@@ -141,4 +63,3 @@ abstract class RobokPreferenceFragment(
             }
         }
     }
-}

@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import androidx.annotation.IdRes 
+
 import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.settings.R
@@ -16,7 +18,10 @@ import org.gampiot.robok.feature.res.Strings
 
 import dev.trindadedev.lib.ui.components.preference.Preference
 
-class SettingsEditorFragment(private val transitionAxis: Int = MaterialSharedAxis.X, private val fragmentLayoutResId: Int = 0) : RobokFragment(transitionAxis) {
+class SettingsEditorFragment(
+    private val transitionAxis: Int = MaterialSharedAxis.X, 
+    @IdRes private val fragmentLayoutResId: Int = 0
+) : RobokFragment(transitionAxis) {
 
     private var _binding: FragmentSettingsEditorBinding? = null
     private val binding get() = _binding!!
