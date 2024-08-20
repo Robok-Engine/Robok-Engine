@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
+import androidx.fragment.app.Fragment
 import androidx.annotation.IdRes
 
 import com.google.android.material.appbar.AppBarLayout
@@ -19,7 +20,7 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 abstract class BaseSettingFragment(
      private val transitionModeA: Int = MaterialSharedAxis.X,
      private val str: Int,
-     private val fragmentCreator: () -> BasePreferenceFragment,
+     private val fragmentCreator: () -> /*BasePreferenceFragment*/ fragment,
      @IdRes private val fragmentLayoutResIdA: Int
 ): RobokFragment(transitionModeA, fragmentLayoutResIdA) {
 
