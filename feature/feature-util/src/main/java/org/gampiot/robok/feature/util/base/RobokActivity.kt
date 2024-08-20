@@ -73,12 +73,12 @@ open class RobokActivity(
         }
     }
     
-    open fun setFragmentLayoutd(@IdRes fragmentLayoutResIdV: Int) {
+    open fun updateFragmentLayoutd(@IdRes fragmentLayoutResIdV: Int) {
         fragmentLayoutd = fragmentLayoutResIdV
     }
     
     @IdRes 
-    fun getFragmentLayoutResId(): Int = fragmentLayoutd
+    fun getFragmentLayoutResId(): Int = fragmentLayoutd  // Removido `open`
         
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
@@ -95,7 +95,7 @@ open class RobokActivity(
             }
             .build()
         
-        permissionDialog?.show() 
+        permissionDialog?.show()
     }
     
     open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
