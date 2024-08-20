@@ -48,7 +48,7 @@ class HomeFragment (
         super.onViewCreated(view, savedInstanceState)
         
         binding.createProject.setOnClickListener {
-            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X, R.id.fragment_container))
+            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X, fragmentLayoutResId))
         }
         
         binding.openProject.setOnClickListener {
@@ -56,7 +56,7 @@ class HomeFragment (
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment(MaterialSharedAxis.X, R.id.fragment_container))
+            openFragment(SettingsFragment(MaterialSharedAxis.X, fragmentLayoutResId))
         }
         
         binding.openTerminal.setOnClickListener {
@@ -66,7 +66,7 @@ class HomeFragment (
         }
         
         binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment(MaterialSharedAxis.X, R.id.fragment_container))
+            openFragment(EditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
         }
         
         if (BuildConfig.DEBUG) {

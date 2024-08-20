@@ -19,18 +19,18 @@ import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class SettingsFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
-     @IdRes private val fragmentLayoutResId: Int
+     @IdRes private val fragmentLayoutResIdBSF: Int
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
        { SettingsTopFragment(transitionAxis, fragmentLayoutResId) },
-       fragmentLayoutResId
+       fragmentLayoutResIdBSF
    )
 
 class SettingsTopFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X, 
-     @IdRes private val fragmentLayoutResId: Int
-) : BasePreferenceFragment(fragmentLayoutResId) {
+     @IdRes private val fragmentLayoutResIdBPF: Int
+) : BasePreferenceFragment(fragmentLayoutResIdBPF) {
 
     private lateinit var terminal: RobokTerminal
     

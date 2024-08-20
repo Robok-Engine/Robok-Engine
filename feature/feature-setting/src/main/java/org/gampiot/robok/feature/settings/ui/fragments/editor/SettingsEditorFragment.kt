@@ -21,18 +21,18 @@ import org.gampiot.robok.feature.component.editor.ThemeManager
 
 class SettingsEditorFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X,
-     @IdRes private val fragmentLayoutResId: Int
+     @IdRes private val fragmentLayoutResIdBSF: Int
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
        { SettingsEditorTopFragment(transitionAxis, fragmentLayoutResId) },
-       fragmentLayoutResId
+       fragmentLayoutResIdBSF
    )
 
 class SettingsEditorTopFragment(
      private val transitionAxis: Int = MaterialSharedAxis.X, 
-     @IdRes private val fragmentLayoutResId: Int
-) : BasePreferenceFragment(fragmentLayoutResId) {
+     @IdRes private val fragmentLayoutResIdBPF: Int
+) : BasePreferenceFragment(fragmentLayoutResIdBPF) {
 
     private lateinit var terminal: RobokTerminal
     private lateinit var codeEditor: RobokCodeEditor
