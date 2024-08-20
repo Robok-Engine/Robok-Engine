@@ -2,11 +2,16 @@ package org.gampiot.robok.feature.util
 
 import android.view.View
 import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color
 
 import androidx.core.graphics.Insets
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.children
+import androidx.activity.ComponentActivity
+import androidx.activity.SystemBarStyle
+import androidx.activity.enableEdgeToEdge
 
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
@@ -100,3 +105,13 @@ inline fun Int.dpToPx(context: Context): Int =
 @Suppress("NOTHING_TO_INLINE")
 inline fun Float.dpToPx(context: Context): Float =
     (this * context.resources.displayMetrics.density)
+
+fun ComponentActivity.enableEdgeToEdgeProperly() {
+    if ((resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK) ==
+        Configuration.UI_MODE_NIGHT_YES) {
+        enableEdgeToEdge(navigationBarStyle = SystemBarStyle.dark(Color.TRANSPARENT))
+    } else {
+        val darkScrim = Color.argb(0x80, 0x1b, 0x1b, 0x1b)
+        enableEdgeToEdge(navigationBarStyle = SystemBarStyle.light(Color.TRANSPARENT, darkScrim))
+    }
+}

@@ -67,7 +67,7 @@ open class RobokActivity(
 
     open fun openFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-            replace(fragmentLayoutResId, fragment)
+            replace(fragmentLayoutd, fragment)
         }
     }
     
@@ -82,7 +82,7 @@ open class RobokActivity(
     }
     
     @IdRes 
-    open fun getFragmentLayoutResId(): Int = fragmentLayoutResId
+    open fun getFragmentLayoutResId(): Int = fragmentLayoutd
         
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
