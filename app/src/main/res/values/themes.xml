@@ -7,9 +7,12 @@
         <item name="android:windowLightNavigationBar">true</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+        <item name="android:windowLayoutInDisplayCutoutMode" tools:targetApi="o_mr1">shortEdges</item>
 
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
+        <item name="collapsingToolbarLayoutLargeStyle">@style/CollapsingToolbarLarge</item>
+        <item name="popupMenuBackground">@drawable/popup_background</item>
         <item name="fontFamily">@font/gilroy_regular</item>
         <item name="android:fontFamily">@font/gilroy_regular</item>
         <item name="android:forceDarkAllowed">false</item>
@@ -19,6 +22,11 @@
         <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
         <item name="windowSplashScreenBackground">?android:attr/colorBackground</item>
         <item name="postSplashScreenTheme">@style/Theme.Robok</item>
+    </style>
+    
+    <style name="CollapsingToolbarLarge" parent="Widget.Material3.CollapsingToolbar.Large">
+        <item name="titleCollapseMode">scale</item>
+        <item name="contentScrim">?attr/colorSurfaceContainer</item>
     </style>
 
     <style name="Theme.Robok" parent="Base.Theme.Robok">
