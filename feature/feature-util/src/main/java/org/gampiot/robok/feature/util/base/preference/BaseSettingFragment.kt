@@ -17,11 +17,11 @@ import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class BaseSettingFragment(
-     private val transitionMode: Int = MaterialSharedAxis.X,
+     private val transitionModeA: Int = MaterialSharedAxis.X,
      private val str: Int,
      private val fragmentCreator: () -> BasePreferenceFragment,
-     @IdRes private val fragmentLayoutResId: Int
-): RobokFragment(transitionMode, fragmentLayoutResId) {
+     @IdRes private val fragmentLayoutResIdA: Int
+): RobokFragment(transitionModeA, fragmentLayoutResIdA) {
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
