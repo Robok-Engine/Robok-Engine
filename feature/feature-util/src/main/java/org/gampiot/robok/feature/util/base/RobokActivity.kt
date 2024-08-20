@@ -78,7 +78,7 @@ open class RobokActivity(
     }
     
     @IdRes 
-    fun getFragmentLayoutResId(): Int = fragmentLayoutd  // Removido `open`
+    fun getFragmentLayoutResId(): Int = fragmentLayoutd 
         
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
