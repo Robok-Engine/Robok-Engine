@@ -10,17 +10,16 @@
         
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
-        
+        <item name="collapsingToolbarLayoutLargeStyle">@style/CollapsingToolbarLarge</item>
         <item name="fontFamily">@font/gilroy_regular</item>
         <item name="android:fontFamily">@font/gilroy_regular</item>
         <item name="android:forceDarkAllowed">false</item>
+        
+        <!-- SplashScreen -->
+        <item name="android:windowSplashScreenBackground">?colorSurface</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
+        <item name="android:windowSplashScreenAnimationDuration">1000</item>
 	</style>
-	
-	<style name="Theme.Robok.Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenAnimatedIcon">@mipmap/ic_launcher_foreground</item>
-        <item name="windowSplashScreenBackground">?android:attr/colorBackground</item>
-        <item name="postSplashScreenTheme">@style/Theme.Robok</item>
-    </style>
 	
     <style name="Theme.Robok" parent="Base.Theme.Robok">
         <item name="colorPrimary">@color/md_theme_primary</item>
@@ -71,10 +70,5 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
-                    <!--New Splash Screen -->
-    <item name="android:windowSplashScreenBackground">?colorSurface</item>
-    <item name="android:windowSplashScreenAnimatedIcon">@drawable/roboksp</item>
-    <item name="android:windowSplashScreenAnimationDuration">1000</item>
-    <!--<item name="android:windowSplashScreenBrandingImage">@drawable/...</item>-->
     </style>
 </resources>
