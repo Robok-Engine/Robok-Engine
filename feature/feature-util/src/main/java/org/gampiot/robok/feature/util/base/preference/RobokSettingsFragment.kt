@@ -17,11 +17,11 @@ import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 import org.gampiot.robok.feature.util.base.RobokFragment
 
-abstract class BaseSettingFragment(
-     private val transitionModeA: Int = MaterialSharedAxis.X,
-     private val str: Int,
-     private val fragmentCreator: () -> /*BasePreferenceFragment*/ Fragment
-): RobokFragment(transitionModeA) {
+abstract class RobokSettingsFragment(
+     private val transition: Int = MaterialSharedAxis.X,
+     private val settingsTitle: Int,
+     private val fragmentCreator: () -> Fragment
+): RobokFragment(transition) {
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
@@ -34,7 +34,7 @@ abstract class BaseSettingFragment(
 			rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
 
 		rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener()
-		collapsingToolbar.title = getString(str)
+		collapsingToolbar.title = getString(settingsTitle)
 
 		topAppBar.setNavigationOnClickListener {
 			requireActivity().supportFragmentManager.popBackStack()

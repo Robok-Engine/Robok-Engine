@@ -13,23 +13,18 @@ import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
 import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
-import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment 
+import org.gampiot.robok.feature.util.base.preference.RobokSettingsFragment
+import org.gampiot.robok.feature.util.base.preference.RobokPreferenceFragment 
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.component.editor.RobokCodeEditor
 import org.gampiot.robok.feature.component.editor.ThemeManager
 
-class SettingsEditorFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X
-): BaseSettingFragment(
-       MaterialSharedAxis.X, 
+class SettingsEditorFragment(): RobokSettingsFragment(
        Strings.settings_about_title, 
-       { SettingsEditorTopFragment(transitionAxis) }
+       { SettingsEditorTopFragment() }
    )
 
-class SettingsEditorTopFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X
-) : BasePreferenceFragment() {
+class SettingsEditorTopFragment() : RobokPreferenceFragment() {
 
     private lateinit var terminal: RobokTerminal
     private lateinit var codeEditor: RobokCodeEditor

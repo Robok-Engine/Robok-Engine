@@ -13,31 +13,18 @@ import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
 import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.util.base.preference.BaseSettingFragment
-import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment 
+import org.gampiot.robok.feature.util.base.preference.RobokSettingsFragment
+import org.gampiot.robok.feature.util.base.preference.RobokPreferenceFragment 
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
-class SettingsFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X
-): BaseSettingFragment(
-       MaterialSharedAxis.X, 
+class SettingsFragment(): RobokSettingsFragment(
        Strings.settings_about_title, 
-       { SettingsTopFragment(transitionAxis, fragmentLayoutResIdBSF) }
+       { SettingsTopFragment(fragmentLayoutResIdBSF) }
    )
 
-class SettingsTopFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X
-) : BasePreferenceFragment() {
+class SettingsTopFragment() : RobokPreferenceFragment() {
 
     private lateinit var terminal: RobokTerminal
-    
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enterTransition = MaterialSharedAxis(transitionAxis, true)
-        returnTransition = MaterialSharedAxis(transitionAxis, false)
-        exitTransition = MaterialSharedAxis(transitionAxis, true)
-        reenterTransition = MaterialSharedAxis(transitionAxis, false)
-    }
 
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)

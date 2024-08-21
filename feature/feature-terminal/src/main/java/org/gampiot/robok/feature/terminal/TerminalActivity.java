@@ -42,10 +42,6 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
      /* TO-DO: logic to save necessary terminal files in this dir */
      public static final String APP_HOME_DATA_DIR = "/data/data/org.gampiot.robok/files/home";
      
-     public TerminalActivity () {
-          super(0);
-     }
-          
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
