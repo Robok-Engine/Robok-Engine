@@ -12,6 +12,7 @@ import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.color.MaterialColors
 
+import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 
 open class RobokFragment(
