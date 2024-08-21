@@ -18,7 +18,28 @@
     "received_events_url": "https://api.github.com/users/aquilesTrindade/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 844
+    "contributions": 888
+  },
+  {
+    "login": "ThDev-only",
+    "id": 174269512,
+    "node_id": "U_kgDOCmMkSA",
+    "avatar_url": "https://avatars.githubusercontent.com/u/174269512?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/ThDev-only",
+    "html_url": "https://github.com/ThDev-only",
+    "followers_url": "https://api.github.com/users/ThDev-only/followers",
+    "following_url": "https://api.github.com/users/ThDev-only/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ThDev-only/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/ThDev-only/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ThDev-only/subscriptions",
+    "organizations_url": "https://api.github.com/users/ThDev-only/orgs",
+    "repos_url": "https://api.github.com/users/ThDev-only/repos",
+    "events_url": "https://api.github.com/users/ThDev-only/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 112
   },
   {
     "login": "antsummer",
@@ -40,27 +61,6 @@
     "type": "User",
     "site_admin": false,
     "contributions": 111
-  },
-  {
-    "login": "ThDev-only",
-    "id": 174269512,
-    "node_id": "U_kgDOCmMkSA",
-    "avatar_url": "https://avatars.githubusercontent.com/u/174269512?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/ThDev-only",
-    "html_url": "https://github.com/ThDev-only",
-    "followers_url": "https://api.github.com/users/ThDev-only/followers",
-    "following_url": "https://api.github.com/users/ThDev-only/following{/other_user}",
-    "gists_url": "https://api.github.com/users/ThDev-only/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/ThDev-only/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/ThDev-only/subscriptions",
-    "organizations_url": "https://api.github.com/users/ThDev-only/orgs",
-    "repos_url": "https://api.github.com/users/ThDev-only/repos",
-    "events_url": "https://api.github.com/users/ThDev-only/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 109
   },
   {
     "login": "renovate[bot]",
@@ -102,7 +102,7 @@
     "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 17
+    "contributions": 18
   },
   {
     "login": "github-actions[bot]",
