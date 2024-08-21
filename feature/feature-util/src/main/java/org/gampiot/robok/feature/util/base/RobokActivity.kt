@@ -34,7 +34,6 @@ open class RobokActivity() : AppCompatActivity(), PermissionListener {
     
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdgeProperly()
         if (!getStoragePermStatus(this)) {
             requestStoragePermDialog()
         }
