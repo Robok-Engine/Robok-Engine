@@ -28,9 +28,7 @@ import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import dev.trindadedev.lib.filepicker.model.DialogConfigs
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 
-class HomeFragment (
-    private val tansitionAxis : Int = MaterialSharedAxis.X
-) : RobokFragment(tansitionAxis) {
+class HomeFragment () : RobokFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!

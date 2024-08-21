@@ -13,7 +13,7 @@ import org.gampiot.robok.databinding.FragmentEditorLogsBinding
 import org.gampiot.robok.feature.component.log.Log
 import org.gampiot.robok.feature.util.base.RobokFragment
 
-class LogsFragment () : RobokFragment(l) {
+class LogsFragment () : RobokFragment() {
 
     private var _binding: FragmentEditorLogsBinding? = null
     private val binding get() = _binding!!

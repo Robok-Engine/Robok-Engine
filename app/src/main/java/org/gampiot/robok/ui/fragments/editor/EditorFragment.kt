@@ -214,7 +214,7 @@ class EditorFragment() : RobokFragment() {
 
         @JvmStatic
         fun newInstance(path: String): EditorFragment {
-            return EditorFragment(MaterialSharedAxis.X, R.id.fragment_container).apply {
+            return EditorFragment().apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
                 }
