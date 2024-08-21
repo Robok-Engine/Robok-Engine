@@ -18,7 +18,7 @@ import org.gampiot.robok.databinding.FragmentHomeBinding
 import org.gampiot.robok.feature.util.getDefaultPathFile
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.settings.ui.fragments.SettingsFragment
+import org.gampiot.robok.feature.settings.ui.activities.SettingsActivity 
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
@@ -53,13 +53,11 @@ class HomeFragment () : RobokFragment() {
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment())
+            startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
         
         binding.openTerminal.setOnClickListener {
-              val intent = Intent(requireContext(), TerminalActivity::class.java)
-              intent.putExtra("fragmentLayoutResId", R.id.fragment_container) 
-              startActivity(intent)
+            startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
         
         binding.openEditor.setOnClickListener {
