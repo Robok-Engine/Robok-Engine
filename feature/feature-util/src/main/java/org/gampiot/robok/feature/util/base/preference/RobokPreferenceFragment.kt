@@ -56,4 +56,12 @@ abstract class RobokPreferenceFragment(): PreferenceFragmentCompat() {
             .addToBackStack(null)
             .commit()
     }
+    
+    open fun openFragment(@IdRes rato: Int, fragment: Fragment) {
+        parentFragmentManager
+            .beginTransaction()
+            .replace(rato, fragment)
+            .addToBackStack(null)
+            .commit()
+    }
 }
