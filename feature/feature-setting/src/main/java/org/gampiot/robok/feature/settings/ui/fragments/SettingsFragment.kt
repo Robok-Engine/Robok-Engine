@@ -18,19 +18,16 @@ import org.gampiot.robok.feature.util.base.preference.BasePreferenceFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class SettingsFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X,
-     @IdRes private val fragmentLayoutResIdBSF: Int
+     private val transitionAxis: Int = MaterialSharedAxis.X
 ): BaseSettingFragment(
        MaterialSharedAxis.X, 
        Strings.settings_about_title, 
-       { SettingsTopFragment(transitionAxis, fragmentLayoutResIdBSF) },
-       fragmentLayoutResIdBSF
+       { SettingsTopFragment(transitionAxis, fragmentLayoutResIdBSF) }
    )
 
 class SettingsTopFragment(
-     private val transitionAxis: Int = MaterialSharedAxis.X, 
-     @IdRes private val fragmentLayoutResIdBPF: Int
-) : BasePreferenceFragment(fragmentLayoutResIdBPF) {
+     private val transitionAxis: Int = MaterialSharedAxis.X
+) : BasePreferenceFragment() {
 
     private lateinit var terminal: RobokTerminal
     
@@ -45,18 +42,16 @@ class SettingsTopFragment(
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.settings_top, rootKey)
         terminal = RobokTerminal(requireContext())
-        terminal.addLog("fragmentLayoutResId: ${fragmentLayoutResIdBPF}")
-        terminal.show()
     }
     
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         when (preference.key) {
             "settings_editor" -> {
-                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, fragmentLayoutResIdBPF))
+                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, R.id.fragment_container))
                 return true
             }
             "settings_about" -> {
-                openFragment(AboutFragment(MaterialSharedAxis.X, fragmentLayoutResIdBPF))
+                openFragment(AboutFragment(MaterialSharedAxis.X, R.id.fragment_container))
                 return true
             }
         }

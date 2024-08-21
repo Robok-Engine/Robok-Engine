@@ -17,9 +17,7 @@ import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.dpToPx
 import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 
-abstract class BasePreferenceFragment(
-    @IdRes val fragmentLayoutResd: Int
-): PreferenceFragmentCompat() {
+abstract class BasePreferenceFragment(): PreferenceFragmentCompat() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -45,7 +43,7 @@ abstract class BasePreferenceFragment(
     open fun openFragment(fragment: Fragment) {
         parentFragmentManager
             .beginTransaction()
-            .replace(fragmentLayoutResd, fragment)
+            .replace(R.id.fragment_container, fragment)
             .addToBackStack(null)
             .commit()
     }

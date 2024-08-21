@@ -11,7 +11,7 @@ import org.gampiot.robok.R
 import org.gampiot.robok.ui.fragments.home.HomeFragment
 import org.gampiot.robok.feature.util.base.RobokActivity
 
-class MainActivity() : RobokActivity(R.id.fragment_container) {
+class MainActivity() : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

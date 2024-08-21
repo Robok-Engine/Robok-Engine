@@ -16,9 +16,8 @@ import org.gampiot.robok.feature.component.log.Log
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 class LogsFragment (
-    private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int
-) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
+    private val tansitionAxis : Int = MaterialSharedAxis.X
+) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentEditorLogsBinding? = null
     private val binding get() = _binding!!

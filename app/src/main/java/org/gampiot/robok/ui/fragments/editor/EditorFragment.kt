@@ -32,9 +32,8 @@ import robok.compiler.logic.LogicCompilerListener
 import robok.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(
-    private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int
-) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
+    private val tansitionAxis : Int = MaterialSharedAxis.X
+) : RobokFragment(tansitionAxis) {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
@@ -68,7 +67,7 @@ class EditorFragment(
             }
 
             override fun onCompiled(output: String) {
-                val outputFragment = OutputFragment(MaterialSharedAxis.X, fragmentLayoutResId)
+                val outputFragment = OutputFragment(MaterialSharedAxis.X, R.id.fragment_container)
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
 
                 Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
@@ -103,10 +102,10 @@ class EditorFragment(
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y, fragmentLayoutResId))
+                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y, R.id.fragment_container))
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y, fragmentLayoutResId))
+                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y, R.id.fragment_container))
                         }
                     }
                 }
@@ -217,8 +216,8 @@ class EditorFragment(
         const val PROJECT_PATH = "arg_path"
 
         @JvmStatic
-        fun newInstance(path: String, @IdRes fragmentLayoutResId: Int): EditorFragment {
-            return EditorFragment(MaterialSharedAxis.X, fragmentLayoutResId).apply {
+        fun newInstance(path: String): EditorFragment {
+            return EditorFragment(MaterialSharedAxis.X, R.id.fragment_container).apply {
                 arguments = Bundle().apply {
                     putString(PROJECT_PATH, path)
                 }

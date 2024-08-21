@@ -28,9 +28,7 @@ import org.gampiot.robok.feature.util.enableEdgeToEdgeProperly
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
-open class RobokActivity(
-    @IdRes var fragmentLayoutd: Int 
-) : AppCompatActivity(), PermissionListener {
+open class RobokActivity() : AppCompatActivity(), PermissionListener {
     
     private var permissionDialog: PermissionDialog? = null
     
@@ -65,7 +63,7 @@ open class RobokActivity(
 
     open fun openFragment(fragment: Fragment) {
         supportFragmentManager.commit {
-            replace(fragmentLayoutd, fragment)
+            replace(R.id.fragment_container, fragment)
         }
     }
     
@@ -75,13 +73,6 @@ open class RobokActivity(
         }
     }
     
-    open fun updateFragmentLayoutd(@IdRes fragmentLayoutResIdV: Int) {
-        fragmentLayoutd = fragmentLayoutResIdV
-    }
-    
-    @IdRes 
-    fun getFragmentLayoutResId(): Int = fragmentLayoutd 
-        
     open fun requestStoragePermDialog() {
         if (isFinishing || isDestroyed) {
             return

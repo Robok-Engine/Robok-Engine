@@ -29,8 +29,8 @@ public class ProjectTemplatesFragment extends RobokFragment {
 
     public FragmentProjectTemplatesBinding binding;
 
-    public ProjectTemplatesFragment (int transitionAxisMode, @NonNull int fragmentLayoutResId) {
-         super(transitionAxisMode, fragmentLayoutResId);
+    public ProjectTemplatesFragment (int transitionAxisMode) {
+         super(transitionAxisMode);
     }
 
     @Nullable

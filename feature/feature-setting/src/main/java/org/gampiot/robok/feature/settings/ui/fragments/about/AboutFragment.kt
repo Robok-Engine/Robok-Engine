@@ -36,9 +36,8 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class AboutFragment(
-    private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int
-) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
+    private val tansitionAxis : Int = MaterialSharedAxis.X
+) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentAboutBinding? = null
     private val binding get() = _binding!!

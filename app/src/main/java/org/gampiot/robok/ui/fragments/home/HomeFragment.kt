@@ -29,9 +29,8 @@ import dev.trindadedev.lib.filepicker.model.DialogConfigs
 import dev.trindadedev.lib.filepicker.model.DialogProperties
 
 class HomeFragment (
-    private val tansitionAxis : Int = MaterialSharedAxis.X,
-    @IdRes private val fragmentLayoutResId: Int
-) : RobokFragment(tansitionAxis, fragmentLayoutResId) {
+    private val tansitionAxis : Int = MaterialSharedAxis.X
+) : RobokFragment(tansitionAxis) {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -48,7 +47,7 @@ class HomeFragment (
         super.onViewCreated(view, savedInstanceState)
         
         binding.createProject.setOnClickListener {
-            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+            openFragment(ProjectTemplatesFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         binding.openProject.setOnClickListener {
@@ -56,17 +55,17 @@ class HomeFragment (
         }
         
         binding.openSettings.setOnClickListener {
-            openFragment(SettingsFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+            openFragment(SettingsFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         binding.openTerminal.setOnClickListener {
               val intent = Intent(requireContext(), TerminalActivity::class.java)
-              intent.putExtra("fragmentLayoutResId", fragmentLayoutResId) 
+              intent.putExtra("fragmentLayoutResId", R.id.fragment_container) 
               startActivity(intent)
         }
         
         binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment(MaterialSharedAxis.X, fragmentLayoutResId))
+            openFragment(EditorFragment(MaterialSharedAxis.X, R.id.fragment_container))
         }
         
         if (BuildConfig.DEBUG) {
