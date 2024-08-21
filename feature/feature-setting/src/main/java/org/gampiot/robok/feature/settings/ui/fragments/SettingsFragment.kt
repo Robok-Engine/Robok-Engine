@@ -34,11 +34,11 @@ class SettingsTopFragment() : RobokPreferenceFragment() {
     override fun onPreferenceTreeClick(preference: Preference): Boolean {
         when (preference.key) {
             "settings_editor" -> {
-                openFragment(SettingsEditorFragment(MaterialSharedAxis.X, R.id.fragment_container))
+                openFragment(SettingsEditorFragment())
                 return true
             }
             "settings_about" -> {
-                openFragment(AboutFragment(MaterialSharedAxis.X, R.id.fragment_container))
+                openFragment(AboutFragment())
                 return true
             }
         }
