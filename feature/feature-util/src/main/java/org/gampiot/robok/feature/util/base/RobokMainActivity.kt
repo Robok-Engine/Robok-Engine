@@ -1,9 +1,8 @@
-package org.gampiot.robok.feature.util.activities
+package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
 
 import androidx.annotation.IdRes 
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 
 import com.google.android.material.transition.MaterialSharedAxis
 
