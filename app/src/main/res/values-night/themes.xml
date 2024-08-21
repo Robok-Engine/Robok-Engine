@@ -71,5 +71,10 @@
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
+                    <!--New Splash Screen -->
+    <item name="android:windowSplashScreenBackground">?colorSurface</item>
+    <item name="android:windowSplashScreenAnimatedIcon">@drawable/roboksp</item>
+    <item name="android:windowSplashScreenAnimationDuration">1000</item>
+    <!--<item name="android:windowSplashScreenBrandingImage">@drawable/...</item>-->
     </style>
 </resources>
