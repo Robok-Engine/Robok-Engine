@@ -18,8 +18,8 @@ import org.gampiot.robok.feature.util.base.preference.RobokPreferenceFragment
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 
 class SettingsFragment(): RobokSettingsFragment(
-       Strings.settings_about_title, 
-       { SettingsTopFragment(fragmentLayoutResIdBSF) }
+       settingsTitle = Strings.settings_about_title, 
+       fragmentCreator = { SettingsTopFragment() }
    )
 
 class SettingsTopFragment() : RobokPreferenceFragment() {

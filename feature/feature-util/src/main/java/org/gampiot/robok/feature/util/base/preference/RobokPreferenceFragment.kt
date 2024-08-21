@@ -12,6 +12,7 @@ import androidx.preference.PreferenceFragmentCompat
 import androidx.recyclerview.widget.RecyclerView
 
 import com.google.android.material.color.MaterialColors
+import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.dpToPx
@@ -19,6 +20,14 @@ import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 
 abstract class RobokPreferenceFragment(): PreferenceFragmentCompat() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+    }
+    
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))

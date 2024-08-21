@@ -29,10 +29,6 @@ public class ProjectTemplatesFragment extends RobokFragment {
 
     public FragmentProjectTemplatesBinding binding;
 
-    public ProjectTemplatesFragment (int transitionAxisMode) {
-         super(transitionAxisMode);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

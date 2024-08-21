@@ -20,8 +20,8 @@ import org.gampiot.robok.feature.component.editor.RobokCodeEditor
 import org.gampiot.robok.feature.component.editor.ThemeManager
 
 class SettingsEditorFragment(): RobokSettingsFragment(
-       Strings.settings_about_title, 
-       { SettingsEditorTopFragment() }
+       settingsTitle = Strings.settings_about_title, 
+       fragmentCreator = { SettingsEditorTopFragment() }
    )
 
 class SettingsEditorTopFragment() : RobokPreferenceFragment() {

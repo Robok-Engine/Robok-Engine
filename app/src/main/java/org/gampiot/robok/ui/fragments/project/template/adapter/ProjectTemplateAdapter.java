@@ -75,7 +75,7 @@ public class ProjectTemplateAdapter extends RecyclerView.Adapter<ProjectTemplate
          public void goToCreateProject(ProjectTemplate template) {
               FragmentManager fragmentManager = ((AppCompatActivity) context).getSupportFragmentManager();
               FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-              CreateProjectFragment createProjectFragment = new CreateProjectFragment(MaterialSharedAxis.X, R.id.fragment_container, template);
+              CreateProjectFragment createProjectFragment = new CreateProjectFragment(template);
               fragmentTransaction.replace(R.id.fragment_container, createProjectFragment);
               fragmentTransaction.addToBackStack(null);
               fragmentTransaction.commit();

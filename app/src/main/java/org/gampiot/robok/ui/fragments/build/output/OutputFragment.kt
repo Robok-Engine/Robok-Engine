@@ -8,16 +8,12 @@ import android.view.ViewGroup
 
 import androidx.annotation.IdRes 
 
-import com.google.android.material.transition.MaterialSharedAxis
-
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentOutputBinding
 import org.gampiot.robok.feature.component.log.Log
 import org.gampiot.robok.feature.util.base.RobokFragment
 
-class OutputFragment (
-    private val tansitionAxis : Int = MaterialSharedAxis.X
-) : RobokFragment(tansitionAxis) {
+class OutputFragment () : RobokFragment() {
 
     private var _binding: FragmentOutputBinding? = null
     private val binding get() = _binding!!

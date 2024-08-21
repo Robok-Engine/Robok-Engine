@@ -13,7 +13,6 @@ import androidx.annotation.IdRes
 
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
-import com.google.android.material.transition.MaterialSharedAxis
 
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
@@ -31,9 +30,7 @@ import robok.compiler.logic.LogicCompiler
 import robok.compiler.logic.LogicCompilerListener
 import robok.diagnostic.logic.DiagnosticListener
 
-class EditorFragment(
-    private val tansitionAxis : Int = MaterialSharedAxis.X
-) : RobokFragment(tansitionAxis) {
+class EditorFragment() : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
@@ -67,7 +64,7 @@ class EditorFragment(
             }
 
             override fun onCompiled(output: String) {
-                val outputFragment = OutputFragment(MaterialSharedAxis.X, R.id.fragment_container)
+                val outputFragment = OutputFragment()
                 outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
 
                 Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
@@ -102,10 +99,10 @@ class EditorFragment(
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment(MaterialSharedAxis.Y, R.id.fragment_container))
+                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment())
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(MaterialSharedAxis.Y, R.id.fragment_container))
+                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment())
                         }
                     }
                 }

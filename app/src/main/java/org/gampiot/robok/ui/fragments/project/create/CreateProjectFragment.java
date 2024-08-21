@@ -29,13 +29,11 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     private ProjectTemplate template;
     private ProjectManager projectManager;
     
-    public CreateProjectFragment(int transitionAxis) {
-         super(transitionAxis);
+    public CreateProjectFragment() {
          this.template = defaultProjectTemplate();
     }
     
-    public CreateProjectFragment(int transitionAxis, @NonNull ProjectTemplate template) {
-         super(transitionAxis);
+    public CreateProjectFragment(@NonNull ProjectTemplate template) {
          this.template = template;
     }
 

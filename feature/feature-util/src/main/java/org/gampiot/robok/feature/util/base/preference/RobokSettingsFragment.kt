@@ -11,17 +11,15 @@ import androidx.annotation.IdRes
 import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.transition.MaterialSharedAxis
 
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class RobokSettingsFragment(
-     private val transition: Int = MaterialSharedAxis.X,
      private val settingsTitle: Int,
      private val fragmentCreator: () -> Fragment
-): RobokFragment(transition) {
+): RobokFragment() {
 
 	override fun onCreateView(
 		inflater: LayoutInflater,
