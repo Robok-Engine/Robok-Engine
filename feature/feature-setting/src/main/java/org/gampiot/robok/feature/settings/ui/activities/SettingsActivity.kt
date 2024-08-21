@@ -22,7 +22,7 @@ class SettingsActivity : RobokActivity() {
         openFragment(SettingsFragment())
     }
 
-    private fun openFragment(fragment: Fragment) {
+    override fun openFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(binding.settingFragmentContainer.id, fragment)
             .commit()
