@@ -71,6 +71,7 @@ dependencies {
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
     
+    implementation(project(":app"))
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-res:strings"))
