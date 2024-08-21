@@ -12,7 +12,7 @@ import org.gampiot.robok.feature.util.R
    I don't like leaving the MainActivity here at all, but it's to avoid errors.
 */
 
-class RobokMainActivity() : RobokActivity() {
+open class RobokMainActivity() : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
