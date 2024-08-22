@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.util.base.preference
+package org.gampiot.robok.ui.fragments.settings.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,8 +12,8 @@ import com.google.android.material.appbar.AppBarLayout
 import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
-import org.gampiot.robok.feature.util.R
-import org.gampiot.robok.feature.util.databinding.FragmentTopSettingsBinding
+import org.gampiot.robok.R
+import org.gampiot.robok.databinding.FragmentTopSettingsBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class RobokSettingsFragment(

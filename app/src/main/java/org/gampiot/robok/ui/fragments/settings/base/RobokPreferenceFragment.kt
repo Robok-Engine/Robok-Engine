@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.util.base.preference
+package org.gampiot.robok.ui.fragments.settings.base
 
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.color.MaterialColors
 import com.google.android.material.transition.MaterialSharedAxis
 
-import org.gampiot.robok.feature.util.R
+import org.gampiot.robok.R
 import org.gampiot.robok.feature.util.dpToPx
 import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 
