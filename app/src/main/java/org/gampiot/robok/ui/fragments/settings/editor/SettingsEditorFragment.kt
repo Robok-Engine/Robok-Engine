@@ -13,8 +13,8 @@ import org.gampiot.robok.R
 import org.gampiot.robok.ui.fragments.settings.editor.SettingsEditorFragment
 import org.gampiot.robok.ui.fragments.settings.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.util.base.preference.RobokSettingsFragment
-import org.gampiot.robok.feature.util.base.preference.RobokPreferenceFragment 
+import org.gampiot.robok.ui.fragments.settings.base.RobokSettingsFragment
+import org.gampiot.robok.ui.fragments.settings.base.RobokPreferenceFragment 
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.component.editor.RobokCodeEditor
 import org.gampiot.robok.feature.component.editor.ThemeManager
