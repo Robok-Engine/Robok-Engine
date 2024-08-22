@@ -44,7 +44,7 @@ Want to contribute to contribute to Robok? Follow this steps:
  - [X] AAPT2 Compiler
  - [X] Code diagnostic
  - [X] Sora Editor 
- - [ ] Project Creation
+ - [X] Project Creation
  - [ ] 3D Modeling
  - [ ] Classes for simplify development
  - [ ] File Tree
