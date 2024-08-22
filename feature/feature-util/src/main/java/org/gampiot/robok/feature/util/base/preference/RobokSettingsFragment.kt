@@ -13,7 +13,6 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 import org.gampiot.robok.feature.util.R
-import org.gampiot.robok.feature.util.enableEdgeToEdgePaddingListener
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class RobokSettingsFragment(
@@ -31,7 +30,7 @@ abstract class RobokSettingsFragment(
 		val collapsingToolbar =
 			rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
 
-		rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener()
+		/* rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener() */
 		collapsingToolbar.title = getString(settingsTitle)
 
 		topAppBar.setNavigationOnClickListener {
