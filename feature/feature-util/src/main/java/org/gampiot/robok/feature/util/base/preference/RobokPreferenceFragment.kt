@@ -31,10 +31,12 @@ abstract class RobokPreferenceFragment(): PreferenceFragmentCompat() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
-        view.findViewById<RecyclerView>(androidx.preference.R.id.recycler_view).apply {
-            setPadding(paddingLeft, paddingTop + 12.dpToPx(context), paddingRight, paddingBottom)
-            enableEdgeToEdgePaddingListener()
-        }
+        /*
+            view.findViewById<RecyclerView>(androidx.preference.R.id.recycler_view).apply {
+                  setPadding(paddingLeft, paddingTop + 12.dpToPx(context), paddingRight, paddingBottom)
+                  enableEdgeToEdgePaddingListener()
+            }
+        */
     }
 
     override fun setPreferencesFromResource(preferencesResId: Int, key: String?) {
