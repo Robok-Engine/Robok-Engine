@@ -6,12 +6,14 @@
         android:key="settings_editor"
         android:title="@string/settings_editor_title"
         android:summary="@string/settings_editor_description"
-        android:icon="@drawable/ic_settings_24" />
+        android:icon="@drawable/ic_settings_24"
+        android:layout="@layout/preference_basic" />
 
     <Preference
         android:key="settings_about"
         android:title="@string/settings_about_title"
         android:summary="@string/settings_about_description"
-        android:icon="@drawable/ic_info_24" />
+        android:icon="@drawable/ic_info_24"
+        android:layout="@layout/preference_basic"/>
 
 </PreferenceScreen>
