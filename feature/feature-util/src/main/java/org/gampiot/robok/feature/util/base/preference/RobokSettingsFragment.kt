@@ -13,6 +13,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 import org.gampiot.robok.feature.util.R
+import org.gampiot.robok.feature.settings.databinding.FragmentTopSettingsBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class RobokSettingsFragment(
@@ -20,29 +21,26 @@ abstract class RobokSettingsFragment(
      private val fragmentCreator: () -> Fragment
 ): RobokFragment() {
 
+    private lateinit var binding: FragmentTopSettingsBinding
+
 	override fun onCreateView(
 		inflater: LayoutInflater,
 		container: ViewGroup?,
 		savedInstanceState: Bundle?,
 	): View? {
-		val rootView = inflater.inflate(R.layout.fragment_top_settings, container, false)
-		val topAppBar = rootView.findViewById<MaterialToolbar>(R.id.topAppBar)
-		val collapsingToolbar =
-			rootView.findViewById<CollapsingToolbarLayout>(R.id.collapsingtoolbar)
-
-		/* rootView.findViewById<AppBarLayout>(R.id.appbarlayout).enableEdgeToEdgePaddingListener() */
-		collapsingToolbar.title = getString(settingsTitle)
-
-		topAppBar.setNavigationOnClickListener {
+	    binding = FragmentTopSettingsBinding.inflate(layoutInflater)
+		binding.collapsingToolbar.title = getString(settingsTitle)
+		
+		binding.toolbar.setNavigationOnClickListener {
 			requireActivity().supportFragmentManager.popBackStack()
 		}
 
 		childFragmentManager
 			.beginTransaction()
 			.addToBackStack(System.currentTimeMillis().toString())
-			.add(R.id.settings, fragmentCreator())
+			.add(binding.settingFragmentContainerBase.id, fragmentCreator())
 			.commit()
 
-		return rootView
+		return binding.root
 	}
 }
