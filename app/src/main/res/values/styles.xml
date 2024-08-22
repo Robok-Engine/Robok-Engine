@@ -4,6 +4,11 @@
         <item name="cornerSize">10dp</item> 
   </style> 
   
+  <style name="ShapeAppearance.Robok.CircleImageView"> 
+        <item name="cornerFamily">rounded</item> 
+        <item name="cornerSize">50%</item> 
+  </style> 
+  
   <style name="Theme.Robok.TextInputLayoutStyle" parent="Widget.Material3.TextInputLayout.OutlinedBox">
         <item name="android:paddingHorizontal">0dp</item>
         <item name="android:textStyle">normal</item>

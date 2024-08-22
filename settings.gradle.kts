@@ -26,7 +26,6 @@ include(":robok:robok-util")
 include(":robok:robok-aapt2")
 
 include(":feature:feature-component")
-include(":feature:feature-setting")
 include(":feature:feature-res:strings")
 include(":feature:feature-util")
 include(":feature:feature-template")

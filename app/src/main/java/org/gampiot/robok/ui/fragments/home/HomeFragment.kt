@@ -18,9 +18,9 @@ import org.gampiot.robok.databinding.FragmentHomeBinding
 import org.gampiot.robok.feature.util.getDefaultPathFile
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.settings.ui.activities.SettingsActivity 
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity
+import org.gampiot.robok.ui.activities.SettingsActivity 
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment

@@ -3,6 +3,8 @@ import java.io.ByteArrayOutputStream
 plugins {
     id("com.android.application")
     id("kotlin-android")
+    kotlin("plugin.serialization") version "2.0.20"
+    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 android {
@@ -15,7 +17,7 @@ android {
         targetSdk = 34
         versionCode = 1
         versionName = getVersionName()
-
+        
         // git fields
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
         buildConfigField("String", "GIT_BRANCH", "\"${getGitBranch()}\"")
@@ -72,6 +74,8 @@ dependencies {
 
     val materialVersion = "1.13.0-alpha05"
     val appcompatVersion = "1.7.0-alpha03"
+    val kotlinCoroutinesVersion = "1.9.0-RC.2"
+    val glideVersion = "4.16.0"
 
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
@@ -82,6 +86,14 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
     implementation("androidx.preference:preference:1.2.1")
+    
+    // kotlinx
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.1")
+    
+    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation("com.squareup.okhttp3:okhttp")
     
     // google
     implementation("com.google.android.material:material:$materialVersion")
@@ -95,7 +107,6 @@ dependencies {
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
-    implementation(project(":feature:feature-setting"))
     implementation(project(":feature:feature-terminal"))
     implementation(project(":feature:feature-template"))
     implementation(project(":feature:feature-treeview"))
@@ -103,11 +114,16 @@ dependencies {
     val trindadeUtilVersion = "d049be6cc0"
     implementation("com.github.aquilesTrindade.trindade-util:filepicker:$trindadeUtilVersion")
     implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
+    
+    val editorGroupId = "io.github.Rosemoe.sora-editor"
+    implementation(platform("$editorGroupId:bom:0.23.4"))
+    implementation("$editorGroupId:editor")
+    
+    implementation("com.mikepenz:aboutlibraries:11.2.2")
+    implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
-
-    implementation("io.github.Rosemoe.sora-editor:editor:0.23.4")
 }
 
 // git functions

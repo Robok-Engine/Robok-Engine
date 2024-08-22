@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.ui.fragments.editor
+package org.gampiot.robok.ui.fragments.settings.editor
 
 import android.os.Bundle
 
@@ -9,9 +9,9 @@ import androidx.fragment.app.Fragment
 
 import com.google.android.material.transition.MaterialSharedAxis
 
-import org.gampiot.robok.feature.settings.R
-import org.gampiot.robok.feature.settings.ui.fragments.editor.SettingsEditorFragment
-import org.gampiot.robok.feature.settings.ui.fragments.about.AboutFragment
+import org.gampiot.robok.R
+import org.gampiot.robok.ui.fragments.settings.editor.SettingsEditorFragment
+import org.gampiot.robok.ui.fragments.settings.about.AboutFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.preference.RobokSettingsFragment
 import org.gampiot.robok.feature.util.base.preference.RobokPreferenceFragment 

@@ -1,13 +1,13 @@
-package org.gampiot.robok.feature.settings.ui.activities
+package org.gampiot.robok.ui.activities
 
 import android.os.Bundle
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 
-import org.gampiot.robok.feature.settings.R
-import org.gampiot.robok.feature.settings.databinding.ActivitySettingsBinding
-import org.gampiot.robok.feature.settings.ui.fragments.SettingsFragment
+import org.gampiot.robok.R
+import org.gampiot.robok.databinding.ActivitySettingsBinding
+import org.gampiot.robok.ui.fragments.settings.SettingsFragment
 import org.gampiot.robok.feature.util.base.RobokActivity
 
 class SettingsActivity : RobokActivity() {
