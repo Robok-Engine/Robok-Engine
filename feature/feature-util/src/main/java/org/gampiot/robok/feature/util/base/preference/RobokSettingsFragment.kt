@@ -13,7 +13,7 @@ import com.google.android.material.appbar.CollapsingToolbarLayout
 import com.google.android.material.appbar.MaterialToolbar
 
 import org.gampiot.robok.feature.util.R
-import org.gampiot.robok.feature.settings.databinding.FragmentTopSettingsBinding
+import org.gampiot.robok.feature.util.databinding.FragmentTopSettingsBinding
 import org.gampiot.robok.feature.util.base.RobokFragment
 
 abstract class RobokSettingsFragment(
