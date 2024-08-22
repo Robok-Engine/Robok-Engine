@@ -35,11 +35,11 @@
         </activity>
         
         <activity
-            android:name="org.gampiot.robok.feature.util.activities.DebugActivity"
+            android:name="org.gampiot.robok.ui.activities.SettingsActivity"
             android:exported="true" />
             
         <activity
-            android:name="org.gampiot.robok.feature.settings.ui.activities.SettingsActivity"
+            android:name="org.gampiot.robok.feature.util.activities.DebugActivity"
             android:exported="true" />
             
         <activity
