@@ -119,7 +119,7 @@ dependencies {
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
     
-    implementation("com.mikepenz:aboutlibraries:11.2.2")
+    implementation("com.mikepenz:aboutlibraries:11.2.3")
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     // Add desugaring dependency
