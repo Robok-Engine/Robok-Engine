@@ -29,8 +29,8 @@
 	<string name="title_create_project">Créer un projet</string>
 	<string name="title_open_project">Ouvrir le projet</string>
 	<string name="title_terminal" translatable="false" >Terminal</string>
-	<string name="title_open_editor">Ouvrir l'éditeur</string>
-	<string name="title_debug_title">Une erreur s'est produite</string>
+	<string name="title_open_editor">Ouvrir l\'éditeur</string>
+	<string name="title_debug_title">Une erreur s\'est produite</string>
 	<string name="title_select_theme">Sélectionner le Thème</string>
 	<string name="title_select_folder">Sélectionner un dossier</string>
 	<string name="title_templates">Modèles</string>
@@ -50,10 +50,10 @@
 	<!-- end section -->
 	
 	<!-- settings section -->
-	<string name="settings_editor_title">Paramètres de l'Éditeur</string>
-	<string name="settings_editor_description">Quelques paramètres de l'éditeur de code</string>
-	<string name="settings_editor_theme_title">Thème de l'éditeur de code</string>
-	<string name="settings_editor_theme_description">Changer le thème de l'éditeur de code</string>
+	<string name="settings_editor_title">Paramètres de l\'Éditeur</string>
+	<string name="settings_editor_description">Quelques paramètres de l\'éditeur de code</string>
+	<string name="settings_editor_theme_title">Thème de l\'éditeur de code</string>
+	<string name="settings_editor_theme_description">Changer le thème de l\'éditeur de code</string>
 	<string name="settings_about_title">À-propos</string>
 	<string name="settings_about_description">Tout sur Robok Engine</string>
 	<!-- end section -->
@@ -65,7 +65,7 @@
 	
 	<!-- warnings section -->
 	<string name="warning_storage_perm_title">Accéder Aux Stockage</string>
-	<string name="warning_storage_perm_message">Robok a besoin d'une autorisation de stockage pour créer des projets, ouvrir des projets, etc</string>
+	<string name="warning_storage_perm_message">Robok a besoin d\'une autorisation de stockage pour créer des projets, ouvrir des projets, etc</string>
 	<string name="warning_project_created_title">Projet créé avec succès!</string>
 	<string name="warning_project_created_message">Votre projet a été créé avec succès !</string>
 	<!-- end section -->
@@ -89,7 +89,7 @@
 	<!-- end section -->
 	
 	<!-- about section -->
-    <string name="slogan">Du Java au Jeux dans un clin d'œil</string>
+    <string name="slogan">Du Java au Jeux dans un clin d\'œil</string>
     <string name="text_seeus">Contacter nous </string>
     <string name="item_telegram_title">Telegram</string>
     <string name="item_telegram_description">Notre Communauté Telegram</string>
