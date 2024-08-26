@@ -1,0 +1,9 @@
+| Contributor | Contributions | Role |
+| ------------ | -------------- | ---- |
+| aquilesTrindade | 921 | N/A |
+| ThDev-only | 121 | N/A |
+| aquilesTrindade13 | 116 | N/A |
+| renovate[bot] | 67 | N/A |
+| gampiot-bot | 26 | N/A |
+| github-actions[bot] | 10 | N/A |
+| skinvent | 6 | N/A |
