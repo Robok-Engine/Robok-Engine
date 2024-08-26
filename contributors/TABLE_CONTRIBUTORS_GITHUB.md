@@ -5,5 +5,6 @@
 | renovate[bot] | 67 | Bot |
 | antsummer | 116 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| gampiot-bot | 24 | Bot |
+| gampiot-bot | 25 | Bot |
 | skinvent | 6 | Contributor |
+| aquilesTrindade13 | 116 | N/A |
