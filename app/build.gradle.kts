@@ -123,7 +123,7 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     // Add desugaring dependency
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.0.4")
+    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.0")
 }
 
 // git functions
