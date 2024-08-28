@@ -4,6 +4,7 @@
 | ThDev-only | 121 | N/A |
 | aquilesTrindade13 | 116 | N/A |
 | renovate[bot] | 68 | N/A |
-| gampiot-bot | 27 | N/A |
+| gampiot-bot | 28 | N/A |
 | github-actions[bot] | 10 | N/A |
 | skinvent | 6 | N/A |
+| trindadeDev13 | 116 | N/A |
