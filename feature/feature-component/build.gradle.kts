@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "org.gampiot.robok.feature.component"
-    compileSdk = 35
+    compileSdk = 34
     
     defaultConfig {
         minSdk = 21

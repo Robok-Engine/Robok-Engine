@@ -9,7 +9,7 @@ plugins {
 
 android {
     namespace = "dev.trindadedev.easyui.filepicker"
-    compileSdk = 33
+    compileSdk = 34
     
     defaultConfig {
         minSdk = 21

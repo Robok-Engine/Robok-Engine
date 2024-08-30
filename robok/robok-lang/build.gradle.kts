@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "robok.lang"
-    compileSdk = 33
+    compileSdk = 34
     
     defaultConfig {
         minSdk = 21
