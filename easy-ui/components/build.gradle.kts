@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = "dev.trindadedev.easyui.components"
-    compileSdk = 34
+    compileSdk = 33
 
     defaultConfig {
         minSdk = 21

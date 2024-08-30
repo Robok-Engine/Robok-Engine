@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "org.gampiot.robok.feature.treeview"
-    compileSdk = 35
+    compileSdk = 33
     
     defaultConfig {
         minSdk = 21
