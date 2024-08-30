@@ -53,7 +53,7 @@ publishing {
             artifactId = "components"
             version = "0.0.1"
 
-            from(components.findByName("release") ?: components["java"])
+            from(components.findByName("release"))
 
             pom {
                 name.set("Easy UI FilePicker")
