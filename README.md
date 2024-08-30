@@ -6,7 +6,6 @@
     <p>A new generation Engine to facilitate the development of Java games</p>
 </div>
 
-
 ## Features
 - Material Design 3 UI : The Engine is fully developed following Google Material Design 3 guidelines.
 - Open Source : The Engine is completely open source, which means you can see how it works, and even contribute.
