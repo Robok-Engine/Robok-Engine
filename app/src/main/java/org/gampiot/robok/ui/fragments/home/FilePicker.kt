@@ -5,7 +5,7 @@ import android.app.Activity
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import dev.trindadedev.easyui.components.dialog.PermissionDialog
+import dev.trindadedev.easyui.components.dialogs.PermissionDialog
 import dev.trindadedev.easyui.filepicker.view.FilePickerDialog
 import dev.trindadedev.easyui.filepicker.model.DialogProperties
 

@@ -1,4 +1,4 @@
-package dev.trindadedev.easyui.components.dialogz;
+package dev.trindadedev.easyui.components.dialogs;
 
 import android.app.Dialog;
 import android.content.Context;
