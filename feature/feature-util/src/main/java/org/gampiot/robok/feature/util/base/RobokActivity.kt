@@ -18,7 +18,7 @@ import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import dev.trindadedev.lib.ui.components.dialog.PermissionDialog
+import dev.trindadedev.easyui.components.dialog.PermissionDialog
 
 import org.gampiot.robok.feature.util.R
 import org.gampiot.robok.feature.util.requestStoragePerm

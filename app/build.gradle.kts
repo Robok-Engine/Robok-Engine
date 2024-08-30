@@ -111,9 +111,9 @@ dependencies {
     implementation(project(":feature:feature-template"))
     implementation(project(":feature:feature-treeview"))
     
-    val trindadeUtilVersion = "d049be6cc0"
-    implementation("com.github.aquilesTrindade.trindade-util:filepicker:$trindadeUtilVersion")
-    implementation("com.github.aquilesTrindade.trindade-util:components:$trindadeUtilVersion")
+    // Easy - UI
+    implementation(project(":easy-ui:components"))
+    implementation(project(":easy-ui:filepicker"))
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation(platform("$editorGroupId:bom:0.23.4"))

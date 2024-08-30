@@ -25,8 +25,8 @@ import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 
-import dev.trindadedev.lib.filepicker.model.DialogConfigs
-import dev.trindadedev.lib.filepicker.model.DialogProperties
+import dev.trindadedev.easyui.filepicker.model.DialogConfigs
+import dev.trindadedev.easyui.filepicker.model.DialogProperties
 
 class HomeFragment () : RobokFragment() {
 

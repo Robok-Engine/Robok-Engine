@@ -3,7 +3,7 @@ package org.gampiot.robok.feature.component.textfield
 import android.content.Context
 import android.util.AttributeSet
 
-import dev.trindadedev.lib.ui.components.textfield.TInput
+import dev.trindadedev.easyui.components.textfield.TInput
 
 class NormalTextField @JvmOverloads constructor(
     context: Context,
