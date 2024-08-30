@@ -4,8 +4,6 @@ plugins {
     id("maven-publish")
 }
 
-group = "robok.compiler"
-
 android {
     namespace = "robok.compiler"
     compileSdk = 35
@@ -49,7 +47,7 @@ dependencies {
 publishing {
     publications {
         register<MavenPublication>("release") {
-            groupId = "com.github.gampiot-inc"
+            groupId = "com.github.robok-inc"
             artifactId = "robok-compiler"
             version = "1.0.0"
 
