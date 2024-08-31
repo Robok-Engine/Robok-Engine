@@ -124,6 +124,9 @@ jobs:
         with:
           name: engine-debug
           
+      - name: List all repo
+        run: ls
+          
       - name: Rename debug apk file 
         run: |
           mv app-debug-unsigned-signed.apk robok-engine-debug.apk
