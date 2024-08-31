@@ -24,7 +24,8 @@ jobs:
         run: |
           commit_message=$(git log -1 --pretty=%B)
           commit_hash=$(git log -1 --pretty=%h)
-          message="🔨 1 new commit to ${{ github.repository }}:${{ github.ref }}:\n\n${commit_hash}: ${commit_message}"
+          commit_author=$(git log -1 --pretty=%an) # Get the author's name
+          message="🔨 1 new commit to Robok-Engine:dev:\n\n${commit_hash}: ${commit_message} by ${commit_author}"
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \
             -d "text=${message}"
