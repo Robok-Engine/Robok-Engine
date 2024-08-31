@@ -25,9 +25,14 @@ jobs:
           commit_message=$(git log -1 --pretty=%B)
           commit_hash=$(git log -1 --pretty=%h)
           commit_author=$(git log -1 --pretty=%an) # Get the author's name
-          message="🔨 1 new commit to Robok-Engine:dev:%0A%0A${commit_hash}: ${commit_message} by ${commit_author}"
+          previous_commit_hash=$(git log -2 --pretty=%h | tail -n 1) # Get the previous commit hash
+          repo_url="https://github.com/${{ github.repository }}"
+          compare_url="${repo_url}/compare/${previous_commit_hash}...${commit_hash}"
+          commit_url="${repo_url}/commit/${commit_hash}"
+          message="🔨 [1 new commit](${compare_url}) to Robok-Engine:dev:%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "parse_mode=Markdown" \
             -d "text=${message}"
         
   engine-debug-apk:
