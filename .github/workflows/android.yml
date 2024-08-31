@@ -12,7 +12,7 @@ on:
 jobs:
   init:
     name: Init
-    runs-on: ubuntu-latest   
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -21,6 +21,7 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
+          TELEGRAM_TOPIC_ID: 1100
         run: |
           commit_message=$(git log -1 --pretty=%B)
           commit_hash=$(git log -1 --pretty=%h)
@@ -136,7 +137,7 @@ jobs:
         id: get_commit_msg
         run: |
           commit_message=$(git log -1 --pretty=format:'%s')
-          echo "message=$commit_message" >> $GITHUB_OUTPUT
+          echo "message=$commit_message" >> $GITHUB_ENV
           
       - name: Download Release APK
         uses: actions/download-artifact@v4
@@ -169,7 +170,7 @@ jobs:
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
           APK_RELEASE: robok-engine-release.apk
           APK_DEBUG: robok-engine-debug.apk
-          TOPIC_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_TOPIC_ID }}
+          TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}  # Adicione o ID do tópico aqui se necessário
           DESCRIPTION: |
             *${{ github.actor }}* committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
