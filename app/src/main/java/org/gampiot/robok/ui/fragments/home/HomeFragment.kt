@@ -24,6 +24,7 @@ import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.fragments.about.AboutFragment
+import org.gampiot.robok.ui.activities.SettingsActivity
 import dev.trindadedev.easyui.filepicker.model.DialogConfigs
 import dev.trindadedev.easyui.filepicker.model.DialogProperties
 
