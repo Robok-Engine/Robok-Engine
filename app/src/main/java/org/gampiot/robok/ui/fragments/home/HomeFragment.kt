@@ -20,11 +20,11 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity
-import org.gampiot.robok.ui.activities.SettingsActivity 
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
-
+import org.gampiot.robok.ui.fragments.about.AboutFragment
+import org.gampiot.robok.ui.activities.SettingsActivity
 import dev.trindadedev.easyui.filepicker.model.DialogConfigs
 import dev.trindadedev.easyui.filepicker.model.DialogProperties
 
@@ -62,6 +62,10 @@ class HomeFragment () : RobokFragment() {
         
         binding.openEditor.setOnClickListener {
             openFragment(EditorFragment())
+        }
+        
+        binding.openAbout.setOnClickListener {
+            openFragment(AboutFragment())
         }
         
         if (BuildConfig.DEBUG) {

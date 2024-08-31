@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.settings.about.adapter
+package org.gampiot.robok.ui.fragments.about.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 import org.gampiot.robok.databinding.ItemContributorBinding
-import org.gampiot.robok.ui.fragments.settings.about.model.Contributor
+import org.gampiot.robok.ui.fragments.about.model.Contributor
 
 class ContributorAdapter(private val teamMembers: List<Contributor>) :
     RecyclerView.Adapter<ContributorAdapter.ContributorViewHolder>() {

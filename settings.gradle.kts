@@ -32,6 +32,8 @@ include(":feature:feature-template")
 include(":feature:feature-terminal")
 include(":feature:feature-treeview")
 
+include(":feature-compose:feature-component")
+
 include(":easy-ui:components")
 include(":easy-ui:components-compose")
 include(":easy-ui:filepicker")

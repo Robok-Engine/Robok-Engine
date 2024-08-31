@@ -95,33 +95,27 @@ jobs:
           compression-level: 0
           path: ${{steps.sign_apk.outputs.signedReleaseFile}}
 
-  send-notify:
-    name: Send Notify to Telegram
+  send-apks-to-telegram:
+    name: Send APKs to Telegram
     runs-on: ubuntu-latest
-    if: github.repository == 'robok-inc/Robok-Engine'
-    needs: engine-release-apk
+    needs: [engine-debug-apk, engine-release-apk]
     steps:
-      - name: Checkout
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
 
-      - name: Get the last commit message
-        id: get_commit_msg
+      - name: Install dependencies
         run: |
-          commit_message=$(git log -1 --pretty=format:'%s')
-          echo "::set-output name=message::$commit_message"
+          python -m pip install --upgrade pip
+          pip install telethon
 
-      - name: Send Notify to Telegram
-        uses: appleboy/telegram-action@master
-        with:
-          to: -1002152494924
-          token: ${{ secrets.TELEGRAM_SIMPLE_BOT_TOKEN }}
-          format: markdown
-          disable_web_page_preview: false
-          message: |
-            *${{ github.actor }}* committed to *${{ github.repository }}*
-
-            Branch: *${{ github.head_ref }}*
-            Commit message: `${{ steps.get_commit_msg.outputs.message }}`
-            Download APK here : https://nightly.link/robok-inc/Robok-Engine/workflows/android/dev/engine-release.zip
+      - name: Send APKs to Telegram
+        env:
+          API_ID: ${{ secrets.TELEGRAM_API_ID }}
+          API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
+          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          DESCRIPTION: ${{ secrets.TELEGRAM_DESCRIPTION }}
+          APK_RELEASE: ${{ steps.engine-release-apk.outputs.signedReleaseFile }}
+          APK_DEBUG: ${{ steps.engine-debug-apk.outputs.debugFile }}
+          TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}
+        run: python .github/telegram/send_apk.py
