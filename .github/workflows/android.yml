@@ -45,8 +45,7 @@ jobs:
   engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
-    if: github.repository == 'robok-inc/Robok-Engine' && (github.event_name == 'push' || github.event_name == 'workflow_dispatch')
-
+    
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -152,3 +151,4 @@ jobs:
             Branch: *${{ github.head_ref }}*
             Commit message: `${{ steps.get_commit_msg.outputs.message }}`
         run: python .github/telegram/send_apk.py
+        continue-on-error: true
