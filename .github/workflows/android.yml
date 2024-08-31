@@ -21,7 +21,7 @@ jobs:
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          TELEGRAM_TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}  # Adicione o ID do tópico se necessário
+          TELEGRAM_TOPIC_ID: 1100
         run: |
           commit_message=$(git log -1 --pretty=%B)
           commit_hash=$(git log -1 --pretty=%h)
