@@ -113,15 +113,35 @@ jobs:
         run: |
           commit_message=$(git log -1 --pretty=format:'%s')
           echo "message=$commit_message" >> $GITHUB_OUTPUT
-
+          
+      - name: Download Release APK
+        uses: actions/download-artifact@v4
+        with:
+          name: engine-release
+          
+      - name: Download Debug APK
+        uses: actions/download-artifact@v4
+        with:
+          name: engine-debug
+          
+      - name: Rename debug apk file 
+        run: |
+          mv app-debug-unsigned-signed.apk robok-engine-debug.apk
+          ls 
+          
+      - name: Rename release apk file 
+        run: |
+          mv app-release-unsigned-signed.apk robok-engine-release.apk
+          ls 
+          
       - name: Send APKs to Telegram
         env:
           API_ID: ${{ secrets.TELEGRAM_APP_API_ID }}
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_RELEASE: ${{ steps.engine-release-apk.outputs.signedReleaseFile }}
-          APK_DEBUG: ${{ steps.engine-debug-apk.outputs.debugFile }}
+          APK_RELEASE: robok-engine-release.apk
+          APK_DEBUG: robok-engine-debug.apk
           TOPIC_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_TOPIC_ID }}
           DESCRIPTION: |
             *${{ github.actor }}* committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
