@@ -107,15 +107,25 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install telethon
+          
+      - name: Get the last commit message
+        id: get_commit_msg
+        run: |
+          commit_message=$(git log -1 --pretty=format:'%s')
+          echo "message=$commit_message" >> $GITHUB_OUTPUT
 
       - name: Send APKs to Telegram
         env:
-          API_ID: ${{ secrets.TELEGRAM_API_ID }}
-          API_HASH: ${{ secrets.TELEGRAM_API_HASH }}
-          BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-          CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          DESCRIPTION: ${{ secrets.TELEGRAM_DESCRIPTION }}
+          API_ID: ${{ secrets.TELEGRAM_APP_API_ID }}
+          API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
+          BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
+          CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
           APK_RELEASE: ${{ steps.engine-release-apk.outputs.signedReleaseFile }}
           APK_DEBUG: ${{ steps.engine-debug-apk.outputs.debugFile }}
-          TOPIC_ID: ${{ secrets.TELEGRAM_TOPIC_ID }}
+          TOPIC_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_TOPIC_ID }}
+          DESCRIPTION: |
+            *${{ github.actor }}* committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
+
+            Branch: *${{ github.head_ref }}*
+            Commit message: `${{ steps.get_commit_msg.outputs.message }}`
         run: python .github/telegram/send_apk.py

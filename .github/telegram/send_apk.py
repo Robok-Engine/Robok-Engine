@@ -1,6 +1,6 @@
 # Code from 
 #   https://github.com/Sketchware-Pro/Sketchware-Pro/tree/main/.github/workflows/deploay_artifacts.py
-
+# thanks ilyassealama
 from telethon import TelegramClient
 import os
 
