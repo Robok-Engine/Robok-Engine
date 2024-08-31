@@ -129,7 +129,7 @@ jobs:
           
       - name: Rename debug apk file 
         run: |
-          mv app-debug-unsigned-signed.apk robok-engine-debug.apk
+          mv app-debug.apk robok-engine-debug.apk
           ls 
           
       - name: Rename release apk file 
