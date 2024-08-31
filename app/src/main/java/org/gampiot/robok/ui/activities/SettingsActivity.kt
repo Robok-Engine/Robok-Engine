@@ -18,7 +18,7 @@ class SettingsActivity : RobokActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySettingsBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.root.addView(Log(requireContext(), "Not Ready"))
+        binding.root.addView(Log(this, "Not Ready"))
     }
 
     override fun openFragment(fragment: Fragment) {
