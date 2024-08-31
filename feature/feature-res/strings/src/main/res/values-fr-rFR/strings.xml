@@ -1,7 +1,4 @@
 <resources>
-
-    <string name="app_name" translatable="false">Robok</string>
-
     <!-- common words section -->
 	<string name="common_word_back">Retour</string>
 	<string name="common_word_result">Résultat</string>
@@ -18,11 +15,6 @@
 	<string name="common_word_redo">Refaire</string>
 	<string name="common_word_allow">Autoriser</string>
 	<string name="common_word_deny">Annuler</string>
-	<!-- end section -->
-	
-	<!-- links section -->
-	<string name="link_github">https://github.com/robok-inc/Robok-Engine</string>
-	<string name="link_telegram">https://t.me/robokinc</string>
 	<!-- end section -->
 	
 	<!-- titles section -->

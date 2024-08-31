@@ -21,8 +21,9 @@
 	<!-- end section -->
 	
 	<!-- links section -->
-	<string name="link_github">https://github.com/robok-inc/Robok-Engine</string>
-	<string name="link_telegram">https://t.me/robokinc</string>
+	<string name="link_github" translatable="false">https://github.com/robok-inc/Robok-Engine</string>
+	<string name="link_telegram" translatable="false">https://t.me/robokinc</string>
+	<string name="link_contributors" translatable="false">https://raw.githubusercontent.com/robok-inc/Robok-Engine/dev/.github/contributors/contributors_github.json</string>
 	<!-- end section -->
 	
 	<!-- titles section -->

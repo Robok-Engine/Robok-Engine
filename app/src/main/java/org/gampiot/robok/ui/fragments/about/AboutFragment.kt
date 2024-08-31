@@ -66,7 +66,7 @@ class AboutFragment() : RobokFragment() {
     fun fetchContributors() {
         CoroutineScope(Dispatchers.IO).launch {
             val request = Request.Builder()
-                .url("https://raw.githubusercontent.com/robok-inc/Robok-Engine/dev/contributors/contributors_github.json")
+                .url(getString(Strings.link_contributors))
                 .build()
 
             try {
