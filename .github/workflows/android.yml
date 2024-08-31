@@ -10,10 +10,29 @@ on:
       - 'dev'
 
 jobs:
+  init:
+    name: Init
+    runs-on: ubuntu-latest   
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Notify Telegram
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
+        run: |
+          commit_message=$(git log -1 --pretty=%B)
+          commit_hash=$(git log -1 --pretty=%h)
+          message="🔨 1 new commit to ${{ github.repository }}:${{ github.ref }}:\n\n${commit_hash}: ${commit_message}"
+          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
+            -d "chat_id=${TELEGRAM_CHAT_ID}" \
+            -d "text=${message}"
+        
   engine-debug-apk:
     name: Build Engine Debug APK
+    needs: init
     runs-on: ubuntu-latest
-
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -45,7 +64,7 @@ jobs:
   engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
-    
+    needs: init
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -97,7 +116,7 @@ jobs:
   send-apks-to-telegram:
     name: Send APKs to Telegram
     runs-on: ubuntu-latest
-    needs: [engine-debug-apk, engine-release-apk]
+    needs: [init, engine-debug-apk, engine-release-apk]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
