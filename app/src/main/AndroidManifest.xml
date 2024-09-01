@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
-        android:name="org.gampiot.robok.feature.util.application.RobokApp"
+        android:name="org.gampiot.robok.feature.util.application.RobokApplication"
         android:theme="@style/Theme.Robok"
         android:requestLegacyExternalStorage="true">
         <activity

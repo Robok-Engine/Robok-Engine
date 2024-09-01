@@ -5,6 +5,8 @@ plugins {
     id("kotlin-android")
     kotlin("plugin.serialization") version "2.0.20"
     id("com.mikepenz.aboutlibraries.plugin")
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
@@ -44,6 +46,7 @@ android {
     buildFeatures {
         buildConfig = true
         viewBinding = true
+        compose = true
     }
 
     kotlin {
@@ -76,6 +79,8 @@ dependencies {
     val appcompatVersion = "1.7.0"
     val kotlinCoroutinesVersion = "1.9.0-RC.2"
     val glideVersion = "4.16.0"
+    val aboutLibrariesVersion = "11.2.3"
+    val koinVersion = "3.5.6"
 
     // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
@@ -86,6 +91,7 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.4")
     implementation("androidx.core:core-splashscreen:1.2.0-alpha01")
     implementation("androidx.preference:preference:1.2.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     
     // kotlinx
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
@@ -110,6 +116,10 @@ dependencies {
     implementation(project(":feature:feature-terminal"))
     implementation(project(":feature:feature-template"))
     implementation(project(":feature:feature-treeview"))
+    // Features Compose
+    implementation(project(":feature-compose:feature-component"))
+    implementation(project(":feature-compose:feature-settings"))
+    
     
     // Easy - UI
     implementation(project(":easy-ui:components"))
@@ -124,6 +134,27 @@ dependencies {
 
     // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.1")
+   
+    // compose
+    implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
+    implementation("io.insert-koin:koin-android:$koinVersion")
+    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    
+    //compose
+    implementation(platform("androidx.compose:compose-bom:2024.08.00"))
+    debugImplementation("androidx.compose.ui:ui-tooling")
+    implementation("androidx.compose.material3:material3")
+    implementation("androidx.compose.material:material")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.compose.ui:ui-graphics")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.activity:activity-compose:1.9.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.4")
+    debugImplementation("androidx.compose.ui:ui-test-manifest")
+    implementation("androidx.navigation:navigation-compose:2.7.7")
+    implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
+    implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
+    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")    
 }
 
 // git functions

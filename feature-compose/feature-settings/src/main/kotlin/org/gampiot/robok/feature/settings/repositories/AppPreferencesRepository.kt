@@ -8,17 +8,17 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.map
 
-private val editorThemePreference = intPreferencesKey("is_use_monet")
+private val editorThemePreference = intPreferencesKey("editor_theme")
 
 class AppPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) {
      val editorTheme = dataStore.data
           .map {
-              it[isUseMonetPreference] ?: 0
+              it[editorThemePreference] ?: 0
           }
         
-     suspend fun changeEditorTheme(value: String) {
+     suspend fun changeEditorTheme(value: Int) {
          dataStore.edit { preferences ->
              preferences[editorThemePreference] = value
          }

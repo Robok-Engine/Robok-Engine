@@ -33,6 +33,7 @@ include(":feature:feature-terminal")
 include(":feature:feature-treeview")
 
 include(":feature-compose:feature-component")
+include(":feature-compose:feature-settings")
 
 include(":easy-ui:components")
 include(":easy-ui:components-compose")

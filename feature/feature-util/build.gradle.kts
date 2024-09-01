@@ -48,11 +48,16 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.8.2")
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.preference:preference:1.2.1")
+    
+   val koinVersion = "3.5.6"
+    implementation("io.insert-koin:koin-android:$koinVersion")
     
     // Easy - UI
     implementation(project(":easy-ui:components"))
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-component"))
+    implementation(project(":feature-compose:feature-settings"))
 }
