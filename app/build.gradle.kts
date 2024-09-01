@@ -5,6 +5,8 @@ plugins {
     id("kotlin-android")
     kotlin("plugin.serialization") version "2.0.20"
     id("com.mikepenz.aboutlibraries.plugin")
+    id("kotlin-kapt")
+    id("org.jetbrains.kotlin.plugin.compose")
 }
 
 android {
