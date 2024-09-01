@@ -17,8 +17,8 @@ android {
         applicationId = "org.gampiot.robok"
         minSdk = 26
         targetSdk = 34
-        versionCode = 1
-        versionName = "0.0.1" + getShortGitHash()
+        versionCode = 2
+        versionName = "0.0.2" + getShortGitHash()
         
         // git fields
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
