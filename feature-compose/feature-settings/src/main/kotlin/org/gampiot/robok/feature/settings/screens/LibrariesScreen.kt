@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.screens.preferences
+package org.gampiot.robok.feature.settings.screens
 
 import android.os.Bundle
 

@@ -18,7 +18,7 @@ class AppPreferencesRepository(
               it[editorThemePreference] ?: 0
           }
         
-     suspend fun changeEditorTheme(value: String) {
+     suspend fun changeEditorTheme(value: Int) {
          dataStore.edit { preferences ->
              preferences[editorThemePreference] = value
          }
