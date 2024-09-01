@@ -44,8 +44,8 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
     
      public final Context context; // Global context
     
-     public final DiagnosticListener diagnosticListener; // DiagnosticListener used.
-     public final EditorListener editorListener; // EditorListener used.
+     public DiagnosticListener diagnosticListener; // DiagnosticListener used.
+     public EditorListener editorListener; // EditorListener used.
      
      public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
       
