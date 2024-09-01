@@ -1,28 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="send_group_message">Send group message (Bot)</string>
-    <string name="send_community_message">Send message in community (Bot)</string>
     
-    <string name="chat_id_label">Chat ID</string>
-    <string name="token_label">Bot Token</string>
-    <string name="message_label">Message</string>
-    <string name="send_label">Send</string>
-    <string name="topic_id_label">Topic ID</string>
-    <string name="image_url_label">Image URL</string>
-    <string name="settings_label">Settings</string>
-    <string name="appearance_label">Appearance</string>
-    <string name="use_monet_label">Use Dynamic Colors</string>
-    <string name="about_label">About</string>
-    <string name="libraries_label">Libraries</string>
-    <string name="use_high_contrast_label">Use High Contrast Theme</string>
-    
-    <string name="use_monet_description">Use Dynamic Colors in app if available.</string>
-    <string name="use_high_contrast_description">Use pure black in dark mode.</string>
-    <string name="libraries_description">All the libraries we use in the application.</string>
-    
-    <string name="dialog_success_title">Success!</string>
-    <string name="dialog_success_text">Your message has been sent successfully!</string>
-    <string name="dialog_error_title">Error!</string>
-    <string name="dialog_error_text">An error occurred while sending your message!</string>
 </resources>
