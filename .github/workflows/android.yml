@@ -176,6 +176,6 @@ jobs:
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
             Branch: **dev**
-            Commit message: `${{ env.COMMIT_MESSAGE }}
+            Commit message: `${{ env.COMMIT_MESSAGE }}`
         run: python .github/telegram/send_apk.py
         continue-on-error: true
