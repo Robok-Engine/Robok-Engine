@@ -31,6 +31,7 @@ include(":feature:feature-util")
 include(":feature:feature-template")
 include(":feature:feature-terminal")
 include(":feature:feature-treeview")
+include(":feature:feature-editor")
 
 include(":feature-compose:feature-component")
 include(":feature-compose:feature-settings")

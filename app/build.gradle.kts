@@ -116,6 +116,8 @@ dependencies {
     implementation(project(":feature:feature-terminal"))
     implementation(project(":feature:feature-template"))
     implementation(project(":feature:feature-treeview"))
+    implementation(project(":feature:feature-editor"))
+    
     // Features Compose
     implementation(project(":feature-compose:feature-component"))
     implementation(project(":feature-compose:feature-settings"))

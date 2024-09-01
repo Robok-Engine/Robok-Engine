@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.editor.schemes
+package org.gampiot.robok.feature.editor.schemes
 
 /* 
  *  Class responsible for changing the colors of the Darcula Theme.
@@ -14,7 +14,7 @@ import androidx.core.content.ContextCompat
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
-import org.gampiot.robok.feature.component.R
+import org.gampiot.robok.feature.editor.R
 
 class SchemeRobok(context: Context) : SchemeDarcula() {
 
@@ -23,7 +23,7 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
     init {
         this.context = context
         setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground)) // set the background color
-        setColor(EditorColorScheme.CURRENT_LINE, getColor(org.gampiot.robok.feature.component.R.color.scheme_robok_current_line)) // set the current line color
+        setColor(EditorColorScheme.CURRENT_LINE, getColor(org.gampiot.robok.feature.editor.R.color.scheme_robok_current_line)) // set the current line color
         setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
         setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
         setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors

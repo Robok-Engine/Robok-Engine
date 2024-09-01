@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.editor
+package org.gampiot.robok.feature.editor
 
 import android.content.Context
 import android.content.SharedPreferences
@@ -8,8 +8,8 @@ import android.app.Activity
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robok.feature.component.R
-import org.gampiot.robok.feature.component.editor.schemes.*
+import org.gampiot.robok.feature.editor.R
+import org.gampiot.robok.feature.editor.schemes.*
 import org.gampiot.robok.feature.res.Strings
 
 import io.github.rosemoe.sora.widget.CodeEditor

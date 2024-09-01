@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.editor
+package org.gampiot.robok.feature.editor
 
 interface EditorListener {
     fun whenTyping ()

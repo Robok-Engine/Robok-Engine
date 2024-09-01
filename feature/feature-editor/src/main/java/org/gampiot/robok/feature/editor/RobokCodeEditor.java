@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.editor;
+package org.gampiot.robok.feature.editor;
 
 import android.app.Activity;
 import android.content.Context;
@@ -34,9 +34,9 @@ import org.antlr.v4.runtime.CharStreams;
 
 import robok.diagnostic.logic.*;
 
-import org.gampiot.robok.feature.component.R;
-import org.gampiot.robok.feature.component.databinding.LayoutCodeEditorBinding;
-import org.gampiot.robok.feature.component.editor.symbol.RobokSymbolInput;
+import org.gampiot.robok.feature.editor.R;
+import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
+import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
