@@ -19,11 +19,8 @@
         <!-- SplashScreen -->
         <item name="android:windowSplashScreenBackground">@drawable/splash_bg</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
-<<<<<<< HEAD
+
         <item name="android:windowSplashScreenAnimationDuration">1500</item>
-=======
-        <item name="android:windowSplashScreenAnimationDuration">3000</item>
->>>>>>> 2b06288e1cbc54d0d75965afd23e7ebbae3ffd6d
     </style>
     
     <style name="CollapsingToolbarLarge" parent="Widget.Material3.CollapsingToolbar.Large">
