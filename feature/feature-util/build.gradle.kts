@@ -55,4 +55,5 @@ dependencies {
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-component"))
+    implementation(project(":feature-compose:feature-settings"))
 }
