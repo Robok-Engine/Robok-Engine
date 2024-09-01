@@ -30,7 +30,7 @@ import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.feature.settings.screens.SettingsScreen
 import org.gampiot.robok.feature.settings.screens.LibrariesScreen
 
-class SettingsActivity : ComponentActity() {
+class SettingsActivity : ComponentActivity() {
 
     companion object {
          const val MSAX_SLIDE_DISTANCE: Int = 100
