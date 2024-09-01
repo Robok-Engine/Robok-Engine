@@ -11,7 +11,7 @@ import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutBottomsheetTerminalBinding
 import org.gampiot.robok.feature.component.log.Log
 
-class RobokTerminal(context: Context) : BottomSheetDialog(context) {
+open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
     val binding: LayoutBottomsheetTerminalBinding =
         LayoutBottomsheetTerminalBinding.inflate(LayoutInflater.from(context))
