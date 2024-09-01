@@ -29,8 +29,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 
-import org.koin.androidx.compose.koinViewModel
-
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.ApplicationScreen
 import org.gampiot.robok.feature.component.appbars.TopBar
@@ -43,7 +41,7 @@ import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
 fun SettingsScreen(
     navController: NavController
 ) {
-    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+    val appPrefsViewModel = viewModel<AppPreferencesViewModel>()
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
     
     val context = LocalContext.current
