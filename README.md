@@ -1,9 +1,9 @@
 <p align="center">
-  <img src="./images/icon.png" alt="RobokEngine" width="80" height="80"/>
+  <img src="https://github.com/robok-inc.png" alt="RobokEngine" width="120" height="120"/>
 </p>
 <div align="center">
     <h1>Robok Engine</h1>
-    <p>A new generation Engine to facilitate the development of Java games</p>
+    <p>A new generation Engine to facilitate the development of Java games.</p>
 </div>
 
 ## Features
