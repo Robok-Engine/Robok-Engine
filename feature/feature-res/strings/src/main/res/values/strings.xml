@@ -62,7 +62,8 @@
 	<!-- texts section -->
 	<string name="text_diagnostic">Diagnostic</string>
 	<string name="text_logs">Logs</string>
-	<!-- ene section -->
+	<string name="text_error_details">Error details:</string>
+	<!-- end section -->
 	
 	<!-- warnings section -->
 	<string name="warning_storage_perm_title">Storage permission</string>

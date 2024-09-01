@@ -51,6 +51,7 @@
     <!-- texts section -->
     <string name="text_diagnostic">Diagnóstico</string>
     <string name="text_logs">Registros</string>
+    <string name="text_error_details">Detalhes do erro:</string>
     <!-- ene section -->
     
     <!-- warnings section -->

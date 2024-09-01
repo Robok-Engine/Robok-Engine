@@ -53,6 +53,7 @@
 	<!-- texts section -->
 	<string name="text_diagnostic">Diagnostique</string>
 	<string name="text_logs">Journaux</string>
+	<string name="text_error_details">Error details:</string>
 	<!-- ene section -->
 	
 	<!-- warnings section -->

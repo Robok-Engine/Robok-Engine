@@ -51,6 +51,7 @@
     <!-- texts section -->
     <string name="text_diagnostic">التشخيص</string>
     <string name="text_logs">السجل</string>
+    <string name="text_error_details">Error details:</string>
     <!-- ene section -->
     
     <!-- warnings section -->
