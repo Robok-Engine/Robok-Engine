@@ -40,156 +40,219 @@ import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
-    public final DiagnosticsContainer diagnostics;
-    public final LayoutCodeEditorBinding binding;
+     public final DiagnosticsContainer diagnostics; // popup/box of Diagnostic
     
-    public Context context;
+     public final Context context; // Global context
     
-    public DiagnosticListener diagnosticListener;
-    public EditorListener editorListener;
+     public final DiagnosticListener diagnosticListener; // DiagnosticListener used.
+     public final EditorListener editorListener; // EditorListener used.
+     
+     public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
+      
+     private final LayoutCodeEditorBinding binding;
+     
+     /*
+     * Default constructor.
+     */
+     public RobokCodeEditor(Context context) {
+          this(context, null);
+          this.context = context;
+     }
+     
+     /*
+     * Complete constructor.
+     */
+     public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
+          super(context, attrs);
+          this.context = context;
+          this.diagnosticListener = this;
+          this.editorListener = this;
+          binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
+          diagnostics = new DiagnosticsContainer();
+          DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
+          configureEditor();
+          configureSymbolView(DEFAULT_SYMBOL_VIEW); 
+          configureDiagnostic();
+     }
+     
+     /*
+     * This method sets the editor's initial text, font, language...
+     */
+     private void configureEditor() {
+          binding.editor.setText(BASE_MESSAGE);
+          binding.editor.setTypefaceText(Typeface.MONOSPACE);
+          binding.editor.setTextSize(16);
+          binding.editor.setEditorLanguage(new JavaLanguage());
+          binding.editor.setWordwrap(false);
+          binding.editor.getProps().symbolPairAutoCompletion = true;
+          binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
+          applyEditorTheme();
+     }
+     
+     /*
+     * Method to configure diagnostics.
+     * add a "listener" for when the text is changed. 
+     * and when it is changed, checkForPossibleErrors is called.
+     */
+     private void configureDiagnostic () {
+          binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+               var inputText = binding.editor.getText().toString(); 
+               editorListener.whenTyping();
+               checkForPossibleErrors(inputText);
+          });
+     }
     
-    public RobokSymbolInput DEFAULT_SYMBOL_VIEW;
-
-    public RobokCodeEditor(Context context) {
-        this(context, null);
-        this.context = context;
-    }
-
-    public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        this.context = context;
-        this.diagnosticListener = this;
-        this.editorListener = this;
-        binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
-        diagnostics = new DiagnosticsContainer();
-        DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
-        configureEditor();
-        configureSymbolView(DEFAULT_SYMBOL_VIEW); 
-        configureDiagnostic();
-    }
-
-    void configureEditor() {
-        binding.editor.setText(BASE_MESSAGE);
-        binding.editor.setTypefaceText(Typeface.MONOSPACE);
-        binding.editor.setTextSize(16);
-        binding.editor.setEditorLanguage(new JavaLanguage());
-        binding.editor.setWordwrap(false);
-        binding.editor.getProps().symbolPairAutoCompletion = true;
-        binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
-        applyEditorTheme();
-    }
+     /*
+     * Method to define a symbol view.
+     * is already included in the editor, but you can remove it.
+     */
+     public void configureSymbolView (RobokSymbolInput robokSymbolInput) {
+          robokSymbolInput.bindEditor(getCodeEditor());
+          robokSymbolInput.addSymbols(
+               new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
+               new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
+          );
+     }
+     
+     /*
+     * Method to set the editor theme.
+     * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
+     */
+     private void applyEditorTheme() {
+          int theme = ThemeManager.Companion.loadTheme(getContext());
+          ThemeManager.Companion.selectTheme(binding.editor, theme);
+     }
+     
+     /*
+     * Method to check if there are any errors in the code with ANTLR 4 Java 8.
+     * @param inputText text to be checked, usually the editor code.
+     */
+     private void checkForPossibleErrors(String inputText) {
+          diagnostics.reset();
+          try {
+              // use ANTLR to compile code and return diagnostic 
+              ANTLRInputStream input = new ANTLRInputStream(inputText);
+              Java8Lexer lexer = new Java8Lexer(input);
+              CommonTokenStream tokens = new CommonTokenStream(lexer);
+              Java8Parser parser = new Java8Parser(tokens);
+              parser.removeErrorListeners();
+              Java8ErrorListener robokError = new Java8ErrorListener();
+  
+              robokError.getError(diagnosticListener);
+              parser.addErrorListener(robokError);
+              parser.compilationUnit();
+          } catch (Exception e) {
+              Log.e("MainActivity", "Error reading file", e);
+          }
+     }
     
-    void configureDiagnostic () {
-        binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-              String inputText = binding.editor.getText().toString(); 
-              editorListener.whenTyping();
-              checkForPossibleErrors(inputText);
-        });
-    }
-    
-    public void configureSymbolView (RobokSymbolInput robokSymbolInput) {
-         robokSymbolInput.bindEditor(getCodeEditor());
-         robokSymbolInput.addSymbols(
-              new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
-              new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
-         );
-    }
-    
-    void applyEditorTheme() {
-         int theme = ThemeManager.Companion.loadTheme(getContext());
-         ThemeManager.Companion.selectTheme(binding.editor, theme);
-    }
-    
-    void checkForPossibleErrors(String inputText) {
-        diagnostics.reset();
-        try {
-            // use ANTLR to compile code and return diagnostic 
-            ANTLRInputStream input = new ANTLRInputStream(inputText);
-            Java8Lexer lexer = new Java8Lexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            Java8Parser parser = new Java8Parser(tokens);
-            parser.removeErrorListeners();
-            Java8ErrorListener robokError = new Java8ErrorListener();
-
-            robokError.getError(diagnosticListener);
-            parser.addErrorListener(robokError);
-            parser.compilationUnit();
-        } catch (Exception e) {
-            Log.e("MainActivity", "Error reading file", e);
-        }
-    }
-    
-    public void addDiagnosticInEditor(int positionStart, int positionEnd, short severity, String msg) {
-         DiagnosticRegion diagnosticRegion = new DiagnosticRegion(
-              positionStart,
-              positionEnd,
-              DiagnosticRegion.SEVERITY_ERROR,
-              0L,
-                  new DiagnosticDetail(
-                       "Error detail:", 
-                       msg,
-                       Arrays.asList(
+     /* 
+     * Method to add a diagnostic box/popup in the sora editor.
+     * @param positionStart corresponds to the first character of the error code.
+     * @param positionEnd corresponds to the end character of the error code.
+     * @param severity corresponds to the severity of the error.
+     * @param msg a message about the error to the user.
+     */
+     public void addDiagnosticInEditor(int positionStart, int positionEnd, short severity, String msg) {
+          DiagnosticRegion diagnosticRegion = new DiagnosticRegion(
+               positionStart,
+               positionEnd,
+               severity,
+               0L,
+                   new DiagnosticDetail(
+                        getString(org.gampiot.robok.feature.res.R.string.error_details_label), 
+                        msg,
+                        Arrays.asList(
                             new Quickfix("Fix Quick", 0L, () -> quickFix()) 
-                       ),
-                       null
-                  )
-              );
-         diagnostics.addDiagnostic(diagnosticRegion);
-         binding.editor.setDiagnostics(diagnostics);
-    }
-
+                        ),
+                        null
+                   )
+               );
+          diagnostics.addDiagnostic(diagnosticRegion);
+          binding.editor.setDiagnostics(diagnostics);
+     }
+     
+     /*
+     * Method to resolve a simple error quickly 
+     * not implemented yet.
+     */
+     public void quickFix () {
+          // TO-DO: logic to fix basic errors quickly
+     }
+     
+     /*
+     * Method to set the DiagnosticListener
+     * @param diagnosticListener New listener instance (DiagnosticListener interface)
+     */
+     public void setDiagnosticListener (DiagnosticListener diagnosticListener) {
+          this.diagnosticListener = diagnosticListener;
+     }
+     
+     /*
+     * Method to set the EditorListener
+     * @param editorListener New listener instance (EditorListener interface)
+     */
+     public void setEditorListener (EditorListener editorListener) {
+          this.editorListener = editorListener;
+     }
+     
+     /*
+     * Method to directly work with the editor (sora)
+     * @return Returns current *io.github.rosemoe.sora.widget.CodeEditor* instance
+     */
+     public CodeEditor getCodeEditor() {
+          return binding.editor;
+     }
+     
+     /*
+     * Method to get editor text
+     * @return Returns a CharSequence like every textview & etc.
+     */
+     public ChatSequence getText() {
+          return binding.editor.getText();
+     }
     
-    public void quickFix () {
-         // TO-DO: logic to fix basic errors quickly
-    }
+     /*
+     * Method to redo the text editor.
+     */
+     public void redo() {
+          binding.editor.redo();
+     }   
+     
+     /*
+     * Method to undo the text editor.
+     */
+     public void undo () {
+          binding.editor.undo();
+     }
+     
+     /*
+     * This method is used to notify the editor that a new error dialigost has been received.
+     * @param line an integer corresponding to the error line
+     * @param positionStart corresponds to the first character of the error code.
+     * @param positionEnd corresponds to the end character of the error code.
+     * @param msg a message about the error to the user.
+     */
+     @Override
+     public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
+          onDiagnosticStatusReceive(true);
+          addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+     }
+     
+     /*
+     * This method is called when some diagnostic status is received. 
+     * @param isError: returns whether it is an error or not.
+     */
+     @Override
+     public void onDiagnosticStatusReceive(boolean isError) { }
     
-    public void setDiagnosticListener (DiagnosticListener diagnosticListener) {
-        this.diagnosticListener = diagnosticListener;
-    }
+     /*
+     * This method is called whenever the editor text is changed.
+     */
+     @Override 
+     public void onEditorTextChange () { }
     
-    public void setEditorListener (EditorListener editorListener) {
-        this.editorListener = editorListener;
-    }
-
-    public CodeEditor getCodeEditor() {
-        return binding.editor;
-    }
-
-    public String getText() {
-        return binding.editor.getText().toString();
-    }
-    
-    public void redo() {
-        binding.editor.redo();
-    }
-    
-    public void undo () {
-        binding.editor.undo();
-    }
-    
-    @Override
-    public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
-         onDiagnosticStatusReceive(true);
-         addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
-    }
-    
-    @Override
-    public void onDiagnosticStatusReceive(boolean isError) {
-         if (isError) {
-            /*
-            * this run when receive any diagnostic status
-            */
-         }
-    }
-    
-    @Override 
-    public void whenTyping () {
-        /*
-        * method called when text of editor changed
-        */
-    }
-    
-    static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
+     private static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
                 "    // Variables\n\n" +
                 "    // Variables#string\n" +
