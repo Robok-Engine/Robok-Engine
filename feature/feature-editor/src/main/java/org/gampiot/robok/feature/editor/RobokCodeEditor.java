@@ -162,7 +162,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                severity,
                0L,
                    new DiagnosticDetail(
-                        getString(org.gampiot.robok.feature.res.R.string.text_error_details), 
+                        context.getResources().getString(org.gampiot.robok.feature.res.R.string.text_error_details), 
                         msg,
                         Arrays.asList(
                             new Quickfix("Fix Quick", 0L, () -> quickFix()) 
