@@ -210,7 +210,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to get editor text
      * @return Returns a CharSequence like every textview & etc.
      */
-     public ChatSequence getText() {
+     public CharSequence getText() {
           return binding.editor.getText();
      }
     
