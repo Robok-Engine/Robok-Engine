@@ -51,6 +51,7 @@ dependencies {
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     implementation("androidx.preference:preference:1.2.1")
     
+   val koinVersion = "3.5.6"
     implementation("io.insert-koin:koin-android:$koinVersion")
     
     // Easy - UI
