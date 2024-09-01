@@ -18,7 +18,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = getVersionName()
+        versionName = "0.0.1" + getShortGitHash()
         
         // git fields
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
@@ -177,9 +177,3 @@ fun getShortGitHash() = execAndGetOutput("git", "rev-parse", "--short", "HEAD")
 fun getGitBranch() = execAndGetOutput("git", "rev-parse", "--abbrev-ref", "HEAD")
 
 fun getGitCommitAuthor() = execAndGetOutput("git", "log", "-1", "--pretty=format:%an")
-
-fun getVersionName(): String {
-    val baseVersion = "1.0.0"
-    val shortHash = getShortGitHash()
-    return "$baseVersion-$shortHash"
-}
