@@ -26,11 +26,12 @@ jobs:
           commit_message=$(git log -1 --pretty=%B)
           commit_hash=$(git log -1 --pretty=%h)
           commit_author=$(git log -1 --pretty=%an)
+          branch_name=$(git rev-parse --abbrev-ref HEAD)
           previous_commit_hash=$(git log -2 --pretty=%h | tail -n 1)
           repo_url="https://github.com/${{ github.repository }}"
           compare_url="${repo_url}/compare/${previous_commit_hash}...${commit_hash}"
           commit_url="${repo_url}/commit/${commit_hash}"
-          message="🔨 [1 new commit](${compare_url}) to Robok-Engine:dev:%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
+          message="🔨 [1 new commit](${compare_url}) to Robok-Engine:${branch_name}:%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \
             -d "parse_mode=Markdown" \
@@ -161,8 +162,9 @@ jobs:
       - name: Get git commit info
         id: gh_info
         run: |
-          echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
-          
+            echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+            echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+
       - name: Send APKs to Telegram
         env:
           API_ID: ${{ secrets.TELEGRAM_APP_API_ID }}
@@ -175,7 +177,7 @@ jobs:
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
-            Branch: **dev**
+            Branch: **${{ env.BRANCH_NAME }}**
             Commit message: `${{ env.COMMIT_MESSAGE }}`
         run: python .github/telegram/send_apk.py
         continue-on-error: true
