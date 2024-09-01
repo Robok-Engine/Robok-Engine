@@ -38,6 +38,8 @@ import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
 
+import java.lang.CharSequence;
+
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
      public final DiagnosticsContainer diagnostics; // popup/box of Diagnostic
