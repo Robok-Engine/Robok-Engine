@@ -15,7 +15,7 @@ class AppPreferencesRepository(
 ) {
      val editorTheme = dataStore.data
           .map {
-              it[isUseMonetPreference] ?: 0
+              it[editorThemePreference] ?: 0
           }
         
      suspend fun changeEditorTheme(value: String) {

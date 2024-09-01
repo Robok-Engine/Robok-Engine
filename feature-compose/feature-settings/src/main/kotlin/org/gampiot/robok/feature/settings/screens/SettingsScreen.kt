@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.ui.screens.preferences
+package org.gampiot.robok.feature.settings.screens.preferences
 
 import android.os.Bundle
 
@@ -44,7 +44,7 @@ fun SettingsScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    val isUseMonet by appPrefsViewModel.isUseMonet.collectAsState(initial = true)
+    val isUseMonet by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
     
     val context = LocalContext.current
     
@@ -68,9 +68,7 @@ fun SettingsScreen(
                      title = stringResource(id = Strings.settings_editor_title),
                      description = stringResource(id = Strings.settings_editor_description),
                      showToggle = false,
-                     onClick = {
-                          appPrefsViewModel.enableMonet(!it)
-                     }
+                     onClick = {}
                 )
                 Title(title = stringResource(id = Strings.about_label))
                 PreferenceItem (
