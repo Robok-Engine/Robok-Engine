@@ -133,13 +133,7 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           pip install telethon
-          
-      - name: Get the last commit message
-        id: get_commit_msg
-        run: |
-          commit_message=$(git log -1 --pretty=format:'%s')
-          echo "message=$commit_message" >> $GITHUB_ENV
-          
+      
       - name: Download Release APK
         uses: actions/download-artifact@v4
         with:
@@ -163,6 +157,11 @@ jobs:
           mv app-release-unsigned-signed.apk robok-engine-release.apk
           ls 
           
+      - name: Get git commit info
+        id: gh_info
+        run: |
+          echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
+          
       - name: Send APKs to Telegram
         env:
           API_ID: ${{ secrets.TELEGRAM_APP_API_ID }}
@@ -173,9 +172,9 @@ jobs:
           APK_DEBUG: robok-engine-debug.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
-            *${{ github.actor }}* committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
+            **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
-            Branch: *${{ github.head_ref }}*
-            Commit message: `${{ steps.get_commit_msg.outputs.message }}`
+            Branch: **dev**
+            Commit message: `${{ env.COMMIT_MESSAGE }}
         run: python .github/telegram/send_apk.py
         continue-on-error: true
