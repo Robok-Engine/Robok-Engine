@@ -44,7 +44,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
 
      public final DiagnosticsContainer diagnostics; // popup/box of Diagnostic
     
-     public final Context context; // Global context
+     public Context context; // Global context
     
      public DiagnosticListener diagnosticListener; // DiagnosticListener used.
      public EditorListener editorListener; // EditorListener used.
