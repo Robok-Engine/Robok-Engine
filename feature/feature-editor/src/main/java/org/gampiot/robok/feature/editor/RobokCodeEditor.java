@@ -99,7 +99,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      private void configureDiagnostic () {
           binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
                var inputText = binding.editor.getText().toString(); 
-               editorListener.whenTyping();
+               editorListener.onEditorTextChange();
                checkForPossibleErrors(inputText);
           });
      }
