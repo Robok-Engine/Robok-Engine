@@ -36,7 +36,7 @@
 			<LinearLayout
 				android:id="@+id/ln_2"
 				android:layout_width="match_parent"
-				android:layout_height="200dp"
+				android:layout_height="350dp"
 				android:padding="8dp"
 				android:gravity="center_horizontal|center_vertical"
 				android:orientation="vertical">
@@ -51,7 +51,7 @@
 					android:layout_width="wrap_content"
 					android:layout_height="wrap_content"
 					android:padding="8dp"
-					android:text="Start a Wonderful Project"
+					android:text="@string/appname"
 					android:textSize="12sp" />
 			</LinearLayout>
 			<LinearLayout
@@ -76,7 +76,7 @@
 						<com.google.android.material.card.MaterialCardView
 							android:id="@+id/create_project"
 							android:layout_width="match_parent"
-							android:layout_height="80dp"
+							android:layout_height="100dp"
 							android:orientation="vertical"
 							
 							app:cardCornerRadius="17dp"
@@ -115,7 +115,7 @@
 						<com.google.android.material.card.MaterialCardView
 							android:id="@+id/open_project"
 							android:layout_width="match_parent"
-							android:layout_height="80dp"
+							android:layout_height="100dp"
 							android:orientation="vertical"
 							app:cardCornerRadius="17dp"
 							style="?attr/materialCardViewFilledStyle">
@@ -160,7 +160,7 @@
 							<com.google.android.material.card.MaterialCardView
 								android:id="@+id/open_settings"
 								android:layout_width="match_parent"
-								android:layout_height="80dp"
+								android:layout_height="100dp"
 								android:orientation="vertical"
 								app:cardCornerRadius="17dp"
 								style="?attr/materialCardViewFilledStyle">
@@ -200,7 +200,7 @@
 							<com.google.android.material.card.MaterialCardView
 								android:id="@+id/open_terminal"
 								android:layout_width="match_parent"
-								android:layout_height="wrap_content"
+								android:layout_height="100dp"
 								android:orientation="vertical"
 								app:cardCornerRadius="17dp"
 								style="?attr/materialCardViewFilledStyle">
