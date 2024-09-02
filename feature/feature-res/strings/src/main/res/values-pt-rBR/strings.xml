@@ -47,7 +47,7 @@
     <string name="settings_about_title">Sobre</string>
 	<string name="settings_about_description">Tudo sobre a Robok Engine</string>
 	<string name="settings_libraries_title">Bibliotecas</string>
-    <string name="settings_libraries_description">Todas as bibliotecas que usamos no aplicativo.</string>
+	<string name="settings_libraries_description">Todas as bibliotecas que usamos no aplicativo.</string>
     <!-- end section -->
     
     <!-- texts section -->

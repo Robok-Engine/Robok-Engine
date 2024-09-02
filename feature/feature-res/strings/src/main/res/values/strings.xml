@@ -56,7 +56,7 @@
 	<string name="settings_about_title">About</string>
 	<string name="settings_about_description">All about Robok Engine</string>
 	<string name="settings_libraries_title">Libraries</string>
-    <string name="settings_libraries_description">All the libraries we use in the application.</string>
+	<string name="settings_libraries_description">All the libraries we use in the application.</string>
 	<!-- end section -->
 	
 	<!-- texts section -->
