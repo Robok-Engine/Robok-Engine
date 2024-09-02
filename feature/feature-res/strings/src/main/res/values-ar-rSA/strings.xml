@@ -46,6 +46,8 @@
     <string name="settings_editor_theme_description">إختر سمة محرر الكود</string>
     <string name="settings_about_title">حول التطبيق</string>
     <string name="settings_about_description">All about Robok Engine</string>
+    <string name="settings_libraries_title">Libraries</string>
+    <string name="settings_libraries_description">All the libraries we use in the application.</string>
     <!-- end section -->
     
     <!-- texts section -->

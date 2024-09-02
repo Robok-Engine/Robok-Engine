@@ -68,7 +68,7 @@ fun LibrariesScreen(
             .nestedScroll(scrollBehavior.nestedScrollConnection),
         topBar = {
             TopBar(
-                barTitle = stringResource(id = Strings.libraries_label),
+                barTitle = stringResource(id = Strings.settings_libraries_title),
                 scrollBehavior = scrollBehavior,
                 onClickBackButton = {
                     navController.popBackStack()

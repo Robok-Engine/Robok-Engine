@@ -55,7 +55,7 @@ fun SettingsScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         topBar = {
             TopBar(
-                barTitle = stringResource(id = Strings.settings_label),
+                barTitle = stringResource(id = Strings.common_word_settings),
                 scrollBehavior = it,
                 onClickBackButton = {
                     navController.popBackStack()
@@ -63,17 +63,17 @@ fun SettingsScreen(
             )
         },
         content = {
-                Title(title = stringResource(id = Strings.appearance_label))
+                Title(title = stringResource(id = Strings.settings_appearance_title))
                 PreferenceItem (
                      title = stringResource(id = Strings.settings_editor_title),
                      description = stringResource(id = Strings.settings_editor_description),
                      showToggle = false,
                      onClick = {}
                 )
-                Title(title = stringResource(id = Strings.about_label))
+                Title(title = stringResource(id = Strings.settings_about_title))
                 PreferenceItem (
-                     title = stringResource(id = Strings.libraries_label),
-                     description = stringResource(id = Strings.libraries_description),
+                     title = stringResource(id = Strings.settings_libraries_title),
+                     description = stringResource(id = Strings.settings_libraries_description),
                      onClick = {
                          navController.navigate("settings/libraries")
                      }
