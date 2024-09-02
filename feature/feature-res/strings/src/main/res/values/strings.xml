@@ -9,6 +9,7 @@
 	<string name="common_word_end">End</string>
 	<string name="common_word_settings">Settings</string>
 	<string name="common_word_ok" translatable="false" >OK</string>
+	<string name="common_word_confirm" >Confirm</string>
 	<string name="common_word_cancel">CANCEL</string>
 	<string name="common_word_next">Next</string>
 	<string name="common_word_undo">Undo</string>
