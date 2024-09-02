@@ -1,13 +1,32 @@
 name: Android CI
 
+
 on:
   workflow_dispatch:
   push:
-    branches:
-      - 'dev'
+    paths:
+      - .github/workflows/debugCompile.yml
+      - app/**
+      - feature/**
+      - feature-compose/**
+      - robok/**
+      - build.gradle.kts
+      - gradle.properties
+      - gradlew
+      - gradlew.bat
+      - settings.gradle.kts
   pull_request:
-    branches:
-      - 'dev'
+    paths:
+      - .github/workflows/debugCompile.yml
+      - app/**
+      - feature/**
+      - feature-compose/**
+      - robok/**
+      - build.gradle.kts
+      - gradle.properties
+      - gradlew
+      - gradlew.bat
+      - settings.gradle.kts
 
 jobs:
   init:
