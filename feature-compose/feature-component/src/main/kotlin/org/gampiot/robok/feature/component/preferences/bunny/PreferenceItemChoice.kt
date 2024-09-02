@@ -9,6 +9,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 
+import org.gampiot.robok.feature.component.dialog.RobokChoiceDialog
+
 @Composable
 inline fun <reified E : Enum<E>> PreferenceItemChoice(
     label: String,
@@ -29,7 +31,7 @@ inline fun <reified E : Enum<E>> PreferenceItemChoice(
         modifier = Modifier.clickable(enabled = !disabled) { opened.value = true },
         text = { Text(text = label) },
     ) {
-        SettingsChoiceDialog(
+        RobokChoiceDialog(
             visible = opened.value,
             title = { Text(title) },
             default = pref,
