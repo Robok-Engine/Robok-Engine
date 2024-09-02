@@ -59,7 +59,6 @@ class AboutFragment() : RobokFragment() {
         binding.contributorsRecyclerView.layoutManager = LinearLayoutManager(context)
 
         fetchContributors()
-        configureOpenLibs()
         configureSocialLinks()
     }
 
@@ -91,16 +90,6 @@ class AboutFragment() : RobokFragment() {
             } catch (e: Exception) {
                 terminal.addLog("Network request failed: ${e.message}")
             }
-        }
-    }
-    
-    fun configureOpenLibs() {
-        binding.openLibs.setOnClickListener {
-            val fragmentLibs = LibsBuilder()
-                .withAboutIconShown(true)
-                .withAboutVersionShown(true)
-                .supportFragment()
-            openFragment(fragmentLibs)
         }
     }
     

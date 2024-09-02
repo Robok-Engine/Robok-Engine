@@ -272,49 +272,6 @@
 						android:textColor="?colorPrimary" />
 				</LinearLayout>
 			</LinearLayout>
-			<LinearLayout
-				android:id="@+id/open_libs"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginBottom="3dp"
-				android:padding="8dp"
-				android:gravity="center_vertical"
-				android:orientation="horizontal"
-				android:background="?android:attr/selectableItemBackground"
-				android:clickable="true">
-				<LinearLayout
-					android:layout_width="34dp"
-					android:layout_height="34dp"
-					android:layout_marginLeft="10dp"
-					android:layout_marginRight="10dp"
-					android:padding="2dp"
-					android:gravity="center_horizontal|center_vertical"
-					android:orientation="vertical">
-					<ImageView
-						android:layout_width="24dp"
-						android:layout_height="24dp"
-						android:src="@drawable/ic_book_24"
-						android:scaleType="fitCenter"
-						app:iconTint="#FFFFFF" />
-				</LinearLayout>
-				<LinearLayout
-					android:layout_width="match_parent"
-					android:layout_height="match_parent"
-					android:orientation="vertical">
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="@string/item_libraries_title"
-						android:textSize="14sp"
-						 />
-					<TextView
-						android:layout_width="wrap_content"
-						android:layout_height="wrap_content"
-						android:text="@string/item_libraries_description"
-						android:textSize="14sp"
-						android:textColor="?colorPrimary" />
-				</LinearLayout>
-			</LinearLayout>
 		</LinearLayout>
 	</com.google.android.material.card.MaterialCardView>
         </LinearLayout>
