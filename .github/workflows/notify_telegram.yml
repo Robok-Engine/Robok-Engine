@@ -70,7 +70,7 @@ jobs:
             pr_number="${{ github.event.pull_request.number }}"
             pr_author="${{ github.event.pull_request.user.login }}"
             pr_url="${{ github.event.pull_request.html_url }}"
-            message="🔍 [New Pull Request ${pr_number}](${pr_url}) to Robok-Engine:%0A%0A**Title:** \`${pr_title}\`%0A**Author:** \`${pr_author}\`%0A[View PR](${pr_url})"
+            message="🔍 [New Update in Pull Request ${pr_number}](${pr_url}) to Robok-Engine:%0A%0A**Title:** \`${pr_title}\`%0A**Author:** \`${pr_author}\`%0A[View PR](${pr_url})"
           else
             echo "Unsupported event: ${{ github.event_name }}"
             exit 1
