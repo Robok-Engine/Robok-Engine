@@ -378,32 +378,3 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                 "}";
     
 }
-
-
-
-
-
-
-import android.content.Context;
-import android.util.AttributeSet;
-import android.util.Log;
-import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel;
-import org.gampiot.robok.feature.settings.repositories.AppPreferencesRepository;
-import androidx.datastore.core.DataStore;
-import androidx.datastore.preferences.core.Preferences;
-
-public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
-
-    private static final String TAG = "RobokCodeEditor";
-
-    private AppPreferencesViewModel preferencesViewModel;
-    
-    // Constructor
-    public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
-        
-    }
