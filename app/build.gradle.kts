@@ -38,10 +38,12 @@ android {
 
     buildTypes {
         getByName("release") {
+            resValue("string", "app_name", "Robok")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
         }
         getByName("debug") {
+            resValue("string", "app_name", "Robok Debug")
             applicationIdSuffix = ".debug"
             versionNameSuffix = getShortGitHash()
         }
