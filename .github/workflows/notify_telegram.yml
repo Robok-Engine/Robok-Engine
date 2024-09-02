@@ -56,7 +56,6 @@ jobs:
           TELEGRAM_TOPIC_ID: 1100
         run: |
           if [ "${{ github.event_name }}" == "push" ]; then
-            # collect commit info
             commit_message=$(git log -1 --pretty=%B)
             commit_hash=$(git log -1 --pretty=%h)
             commit_author=$(git log -1 --pretty=%an)
@@ -67,19 +66,16 @@ jobs:
             commit_url="${repo_url}/commit/${commit_hash}"
             message="🔨 [1 new commit](${compare_url}) to Robok-Engine:${branch_name}:%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
           elif [ "${{ github.event_name }}" == "pull_request" ]; then
-            # collect PR info
             pr_title="${{ github.event.pull_request.title }}"
             pr_number="${{ github.event.pull_request.number }}"
             pr_author="${{ github.event.pull_request.user.login }}"
             pr_url="${{ github.event.pull_request.html_url }}"
-            repo_url="https://github.com/${{ github.repository }}"
-            message="🔍 [New Pull Request #${pr_number}]((${pr_url})) to Robok-Engine:%0A%0A**Title:** ${pr_title}%0A**Author:** ${pr_author}"
+            message="🔍 [New Pull Request #${pr_number}](${pr_url}) to Robok-Engine:%0A%0A**Title:** `${pr_title}`%0A**Author:** `${pr_author}`%0A[View PR](${pr_url})"
           else
             echo "Unsupported event: ${{ github.event_name }}"
             exit 1
           fi
 
-          # send the notify to telegram
           curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
             -d "chat_id=${TELEGRAM_CHAT_ID}" \
             -d "parse_mode=Markdown" \
