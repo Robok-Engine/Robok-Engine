@@ -44,7 +44,7 @@
 					android:id="@+id/im_5"
 					android:layout_width="70dp"
 					android:layout_height="70dp"
-					android:src="@drawable/log"
+					android:src="@drawable/logo"
 					android:scaleType="fitCenter" />
 				<TextView
 					android:id="@+id/tv_2"
