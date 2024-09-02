@@ -20,13 +20,8 @@ android {
         versionCode = 1
         versionName = "0.0.1"
         
-        // git fields
-        buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
-        buildConfigField("String", "GIT_BRANCH", "\"${getGitBranch()}\"")
-        buildConfigField("String", "GIT_COMMIT_AUTHOR", "\"${getGitCommitAuthor()}\"")
-        
         vectorDrawables {
-             useSupportLibrary = true
+            useSupportLibrary = true
         }
     }
 
@@ -38,14 +33,20 @@ android {
 
     buildTypes {
         getByName("release") {
-            resValue("string", "app_name", "Robok")
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            resValue("string", "app_name", "Robok")
+            resValue("string", "GIT_COMMIT_HASH", getGitHash())
+            resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
+            resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
         getByName("debug") {
-            resValue("string", "app_name", "Robok Debug")
             applicationIdSuffix = ".debug"
             versionNameSuffix = getShortGitHash()
+            resValue("string", "app_name", "Robok Debug")
+            resValue("string", "GIT_COMMIT_HASH", getGitHash())
+            resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
+            resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
     }
 
@@ -80,7 +81,6 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-
     val materialVersion = "1.13.0-alpha05"
     val appcompatVersion = "1.7.0"
     val kotlinCoroutinesVersion = "1.9.0-RC.2"
@@ -88,7 +88,6 @@ dependencies {
     val aboutLibrariesVersion = "11.2.3"
     val koinVersion = "3.5.6"
 
-    // androidx
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.4")
     implementation("androidx.core:core-ktx:1.13.1")
@@ -99,7 +98,6 @@ dependencies {
     implementation("androidx.preference:preference:1.2.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     
-    // kotlinx
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
@@ -107,15 +105,12 @@ dependencies {
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
     implementation("com.squareup.okhttp3:okhttp")
     
-    // google
     implementation("com.google.android.material:material:$materialVersion")
 
-    // Robok
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
     implementation(project(":robok:robok-aapt2"))
 
-    // Features
     implementation(project(":feature:feature-component"))
     implementation(project(":feature:feature-util"))
     implementation(project(":feature:feature-res:strings"))
@@ -124,12 +119,9 @@ dependencies {
     implementation(project(":feature:feature-treeview"))
     implementation(project(":feature:feature-editor"))
     
-    // Features Compose
     implementation(project(":feature-compose:feature-component"))
     implementation(project(":feature-compose:feature-settings"))
     
-    
-    // Easy - UI
     implementation(project(":easy-ui:components"))
     implementation(project(":easy-ui:filepicker"))
     
@@ -140,15 +132,12 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries:11.2.3")
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
-    // Add desugaring dependency
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.1")
-   
-    // compose
+    
     implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     
-    //compose
     implementation(platform("androidx.compose:compose-bom:2024.08.00"))
     debugImplementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.material3:material3")
@@ -162,10 +151,8 @@ dependencies {
     implementation("androidx.navigation:navigation-compose:2.7.7")
     implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
     implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")    
+    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
 }
-
-// git functions
 
 fun execAndGetOutput(vararg command: String): String {
     val stdout = ByteArrayOutputStream()
