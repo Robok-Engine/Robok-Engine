@@ -78,7 +78,7 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
     implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
     
-    implementation(project(":feature-res:strings"))
+    implementation(project(":feature:feature-res:strings"))
 }
 
 kapt {
