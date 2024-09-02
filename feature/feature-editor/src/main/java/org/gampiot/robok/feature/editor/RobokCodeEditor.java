@@ -11,8 +11,13 @@ import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
+import androidx.datastore.core.DataStore;
+import androidx.datastore.preferences.core.Preferences;
+import androidx.datastore.preferences.preferencesDataStore;
+import androidx.datastore.preferences.PreferencesDataStoreFactory;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
@@ -44,6 +49,11 @@ import org.gampiot.robok.feature.editor.schemes.*;
 import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel;
 import org.gampiot.robok.feature.settings.repositories.AppPreferencesRepository;
 
+import kotlinx.coroutines.CoroutineScope;
+import kotlinx.coroutines.Dispatchers;
+import kotlinx.coroutines.SupervisorJob;
+
+import java.io.File;
 import java.lang.CharSequence;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
@@ -83,8 +93,30 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           diagnostics = new DiagnosticsContainer();
           DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
           configureEditor();
-          configureSymbolView(DEFAULT_SYMBOL_VIEW); 
+          configureSymbolView(DEFAULT_SYMBOL_VIEW);
           configureDiagnostic();
+          if (context instanceof ViewModelStoreOwner) {
+                 ViewModelStoreOwner owner = (ViewModelStoreOwner) context;
+                 DataStore<Preferences> dataStore = PreferencesDataStoreFactory.create(
+                       new PreferencesDataStoreFactory.CoroutineScopeFactory(
+                            new CoroutineScope(SupervisorJob() + Dispatchers.IO)
+                       ),
+                       new File(context.getFilesDir(), "settings_preferences.pb")
+                 );
+                 AppPreferencesRepository repository = new AppPreferencesRepository(dataStore);
+                 preferencesViewModel = new ViewModelProvider(owner, new ViewModelProvider.Factory() {
+                       @Override
+                       public <T extends ViewModel> T create(Class<T> modelClass) {
+                            if (modelClass.isAssignableFrom(AppPreferencesViewModel.class)) {
+                                  return (T) new AppPreferencesViewModel(repository);
+                            }
+                            throw new IllegalArgumentException("Unknown ViewModel class");
+                       }
+                 }).get(AppPreferencesViewModel.class);
+                 applyEditorTheme();
+          } else {
+                 Log.e(TAG, "Context is not a ViewModelStoreOwner. Cannot initialize ViewModel.");
+          }
      }
      
      /*
@@ -131,21 +163,10 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
      */
      private void applyEditorTheme() {
-          if (context instanceof ViewModelStoreOwner) {
-                ViewModelStoreOwner owner = (ViewModelStoreOwner) context;
-                AppPreferencesRepository repository = new AppPreferencesRepository();
-                preferencesViewModel = new ViewModelProvider(owner, new ViewModelProvider.Factory() {
-                      @Override
-                      public <T extends ViewModel> T create(Class<T> modelClass) {
-                             if (modelClass.isAssignableFrom(AppPreferencesViewModel.class)) {
-                                   return (T) new AppPreferencesViewModel(repository);
-                             }
-                             throw new IllegalArgumentException("Unknown ViewModel class");
-                      }
-                }).get(AppPreferencesViewModel.class);
-                binding.editor.setColorScheme(selectTheme(preferencesViewModel.editorTheme));
+          if (preferencesViewModel != null) {
+                binding.editor.setColorScheme(selectTheme(preferencesViewModel.editorTheme.getValue()));
           } else {
-                Log.e(TAG, "Context is not a ViewModelStoreOwner. Cannot initialize ViewModel.");
+                Log.e(TAG, "PreferencesViewModel is not initialized.");
           }
      }
 
@@ -357,3 +378,32 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                 "}";
     
 }
+
+
+
+
+
+
+import android.content.Context;
+import android.util.AttributeSet;
+import android.util.Log;
+import androidx.annotation.Nullable;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
+import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel;
+import org.gampiot.robok.feature.settings.repositories.AppPreferencesRepository;
+import androidx.datastore.core.DataStore;
+import androidx.datastore.preferences.core.Preferences;
+
+public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
+
+    private static final String TAG = "RobokCodeEditor";
+
+    private AppPreferencesViewModel preferencesViewModel;
+    
+    // Constructor
+    public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        
+    }
