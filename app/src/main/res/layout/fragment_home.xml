@@ -36,7 +36,7 @@
 			<LinearLayout
 				android:id="@+id/ln_2"
 				android:layout_width="match_parent"
-				android:layout_height="350dp"
+				android:layout_height="300dp"
 				android:padding="8dp"
 				android:gravity="center_horizontal|center_vertical"
 				android:orientation="vertical">
@@ -52,7 +52,7 @@
 					android:layout_height="wrap_content"
 					android:padding="8dp"
 					android:text="@string/app_name"
-					android:textSize="12sp" />
+					android:textSize="25sp" />
 			</LinearLayout>
 			<LinearLayout
 				android:id="@+id/ln_3"
