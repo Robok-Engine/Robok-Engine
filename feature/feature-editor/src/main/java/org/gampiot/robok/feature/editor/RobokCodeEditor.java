@@ -95,28 +95,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           configureEditor();
           configureSymbolView(DEFAULT_SYMBOL_VIEW);
           configureDiagnostic();
-          if (context instanceof ViewModelStoreOwner) {
-                 ViewModelStoreOwner owner = (ViewModelStoreOwner) context;
-                 DataStore<Preferences> dataStore = PreferencesDataStoreFactory.create(
-                       new PreferencesDataStoreFactory.CoroutineScopeFactory(
-                            new CoroutineScope(SupervisorJob() + Dispatchers.IO)
-                       ),
-                       new File(context.getFilesDir(), "settings_preferences.pb")
-                 );
-                 AppPreferencesRepository repository = new AppPreferencesRepository(dataStore);
-                 preferencesViewModel = new ViewModelProvider(owner, new ViewModelProvider.Factory() {
-                       @Override
-                       public <T extends ViewModel> T create(Class<T> modelClass) {
-                            if (modelClass.isAssignableFrom(AppPreferencesViewModel.class)) {
-                                  return (T) new AppPreferencesViewModel(repository);
-                            }
-                            throw new IllegalArgumentException("Unknown ViewModel class");
-                       }
-                 }).get(AppPreferencesViewModel.class);
-                 applyEditorTheme();
-          } else {
-                 Log.e(TAG, "Context is not a ViewModelStoreOwner. Cannot initialize ViewModel.");
-          }
      }
      
      /*

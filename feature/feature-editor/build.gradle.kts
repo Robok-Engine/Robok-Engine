@@ -50,6 +50,8 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     
+    implementation("io.insert-koin:koin-android:3.5.6")
+    
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
