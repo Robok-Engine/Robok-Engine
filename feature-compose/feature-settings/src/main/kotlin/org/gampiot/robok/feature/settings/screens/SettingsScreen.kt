@@ -35,7 +35,7 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.ApplicationScreen
 import org.gampiot.robok.feature.component.appbars.TopBar
 import org.gampiot.robok.feature.component.Title
-import org.gampiot.robok.feature.component.preferences.PreferenceItem
+import org.gampiot.robok.feature.component.preferences.vegabobo.PreferenceItem
 import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
