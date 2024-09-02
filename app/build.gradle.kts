@@ -18,7 +18,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "0.0.1" + getShortGitHash()
+        versionName = "0.0.1"
         
         // git fields
         buildConfigField("String", "GIT_COMMIT_HASH", "\"${getGitHash()}\"")
@@ -40,6 +40,10 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+        }
+        getByName("debug") {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = getShortGitHash()
         }
     }
 
