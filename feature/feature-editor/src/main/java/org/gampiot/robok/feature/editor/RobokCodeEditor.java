@@ -126,11 +126,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
      */
      private void applyEditorTheme() {
-          if (preferencesViewModel != null) {
-                binding.editor.setColorScheme(selectTheme(preferencesViewModel.editorTheme.getValue()));
-          } else {
-                Log.e(TAG, "PreferencesViewModel is not initialized.");
-          }
+          binding.editor.setColorScheme(selectTheme(0));
      }
 
      /*
