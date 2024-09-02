@@ -1,7 +1,8 @@
 package org.gampiot.robok.feature.editor
 
+// form A.I lol
+
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.runBlocking
 
 import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
 import org.koin.core.component.KoinComponent
@@ -14,9 +15,7 @@ class Manager : KoinComponent {
     val editorTheme: StateFlow<Int> get() = appPreferencesViewModel.editorTheme
 
     fun getEditorTheme(): Int {
-        return runBlocking {
-            editorTheme.value
-        }
+        return editorTheme.value
     }
 
     fun setEditorTheme(value: Int) {
