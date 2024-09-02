@@ -11,7 +11,7 @@ import androidx.annotation.IdRes
 
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
+import com.google.android.material.card.MaterialCardView
 import org.gampiot.robok.R
 import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.databinding.FragmentHomeBinding
@@ -68,13 +68,13 @@ class HomeFragment () : RobokFragment() {
             openFragment(AboutFragment())
         }
         
-        if (BuildConfig.DEBUG) {
+      /*  if (BuildConfig.DEBUG) {
             binding.openFileTree.visibility = View.VISIBLE
         }
         
         binding.openFileTree.setOnClickListener {
             startActivity(Intent(requireContext(), FileTreeViewActivity::class.java))
-        }
+        }*/
     }
     
     private fun selectFolder() {
