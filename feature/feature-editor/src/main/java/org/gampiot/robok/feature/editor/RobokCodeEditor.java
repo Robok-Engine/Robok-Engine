@@ -23,7 +23,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
 import io.github.rosemoe.sora.lang.diagnostic.Quickfix;
 import io.github.rosemoe.sora.text.Content;
 import io.github.rosemoe.sora.event.ContentChangeEvent;
-import io.github.rosemoe.sora.widget.schemes.*!
+import io.github.rosemoe.sora.widget.schemes.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
