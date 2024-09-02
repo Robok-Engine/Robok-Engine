@@ -1,12 +1,12 @@
 name: Android CI
 
-
 on:
   workflow_dispatch:
   push:
     paths:
       - .github/workflows/android.yml
       - app/**
+      - easy-ui/**
       - feature/**
       - feature-compose/**
       - robok/**
@@ -19,6 +19,7 @@ on:
     paths:
       - .github/workflows/android.yml
       - app/**
+      - easy-ui/**
       - feature/**
       - feature-compose/**
       - robok/**
@@ -29,37 +30,8 @@ on:
       - settings.gradle.kts
 
 jobs:
-  init:
-    name: Init
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Notify Telegram
-        env:
-          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
-          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          TELEGRAM_TOPIC_ID: 1100
-        run: |
-          commit_message=$(git log -1 --pretty=%B)
-          commit_hash=$(git log -1 --pretty=%h)
-          commit_author=$(git log -1 --pretty=%an)
-          branch_name=$(git rev-parse --abbrev-ref HEAD)
-          previous_commit_hash=$(git log -2 --pretty=%h | tail -n 1)
-          repo_url="https://github.com/${{ github.repository }}"
-          compare_url="${repo_url}/compare/${previous_commit_hash}...${commit_hash}"
-          commit_url="${repo_url}/commit/${commit_hash}"
-          message="🔨 [1 new commit](${compare_url}) to Robok-Engine:${branch_name}:%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
-          curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage" \
-            -d "chat_id=${TELEGRAM_CHAT_ID}" \
-            -d "parse_mode=Markdown" \
-            -d "text=${message}" \
-            -d "message_thread_id=${TELEGRAM_TOPIC_ID}" 
-        
   engine-debug-apk:
     name: Build Engine Debug APK
-    needs: init
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository
@@ -92,7 +64,6 @@ jobs:
   engine-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
-    needs: init
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
@@ -145,7 +116,7 @@ jobs:
   send-apks-to-telegram:
     name: Send APKs to Telegram
     runs-on: ubuntu-latest
-    needs: [init, engine-debug-apk, engine-release-apk]
+    needs: [engine-debug-apk, engine-release-apk]
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
