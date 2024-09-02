@@ -11,13 +11,6 @@ import android.widget.Toast;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStoreOwner;
-import androidx.datastore.core.DataStore;
-import androidx.datastore.preferences.core.Preferences;
-import androidx.datastore.preferences.preferencesDataStore;
-import androidx.datastore.preferences.PreferencesDataStoreFactory;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
@@ -46,14 +39,7 @@ import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
 import org.gampiot.robok.feature.editor.schemes.*;
-import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel;
-import org.gampiot.robok.feature.settings.repositories.AppPreferencesRepository;
 
-import kotlinx.coroutines.CoroutineScope;
-import kotlinx.coroutines.Dispatchers;
-import kotlinx.coroutines.SupervisorJob;
-
-import java.io.File;
 import java.lang.CharSequence;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
@@ -71,7 +57,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      
      public final static String TAG = "RobokCodeEditor";
      
-     private AppPreferencesViewModel preferencesViewModel;
      
      /*
      * Default constructor.
