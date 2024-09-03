@@ -49,7 +49,7 @@ jobs:
           git add .
           git commit -m "chore: update github contributors"
           git branch -M host
-          git push origin host
+          git push -f origin host
         env:
           TOKEN: ${{ secrets.SUPER_TOKEN }}
 
