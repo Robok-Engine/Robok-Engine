@@ -127,7 +127,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      */
      private void applyEditorTheme() {
           var mng = new Manager();
-          binding.editor.setColorScheme(selectTheme(mng.getEditorTheme()));
+          binding.editor.setColorScheme(selectTheme(mng.getEditorThemeInt()));
      }
 
      /*

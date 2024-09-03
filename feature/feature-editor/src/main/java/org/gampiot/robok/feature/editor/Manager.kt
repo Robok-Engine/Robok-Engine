@@ -17,7 +17,7 @@ class Manager : KoinComponent {
     val editorTheme: Flow<Int> get() = appPreferencesViewModel.editorTheme
 
     // Method to get the current theme value
-    fun getEditorTheme(): Int {
+    fun getEditorThemeInt(): Int {
         return runBlocking {
             // Collect the first value from the Flow
             editorTheme.first()
