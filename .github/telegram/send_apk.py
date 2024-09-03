@@ -11,8 +11,7 @@ bot_token = os.getenv("BOT_TOKEN")
 group_id = int(os.getenv("CHAT_ID"))
 
 # File paths to send
-apk_release = os.getenv("APK_RELEASE")
-apk_debug = os.getenv("APK_DEBUG")
+apk_to_send = os.getenv("APK_TO_SEND")
 
 # Create the client with bot token directly
 os.remove('bot_session.session') if os.path.exists('bot_session.session') else None
@@ -60,8 +59,7 @@ async def send_file(file_path, version):
 
 try:
     with client:
-        client.loop.run_until_complete(send_file(apk_release, 21))
-        client.loop.run_until_complete(send_file(apk_debug, 26))
+        client.loop.run_until_complete(send_file(apk_to_send, 21))
 finally:
     if client.is_connected():
         client.loop.run_until_complete(client.disconnect())
