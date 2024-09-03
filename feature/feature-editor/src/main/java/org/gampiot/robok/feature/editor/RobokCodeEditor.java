@@ -14,7 +14,7 @@ import androidx.annotation.Nullable;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
-import io.github.rosemoe.sora.langs.java.JavaLanguage;
+import com.example.soraeditortest.langs.java.JavaLanguage;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
@@ -54,9 +54,30 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
      
      private final LayoutCodeEditorBinding binding;
+    
+     private JavaLanguage language;
      
      public final static String TAG = "RobokCodeEditor";
      
+    
+    //errorListener
+    Java8ErrorListener.ErrorDiagnostico errorListener = new Java8ErrorListener.ErrorDiagnostico() {
+                        @Override
+                        public void error(int line, int positionStart, int positionEnd, String msg) {
+                            
+                          // runOnUiThread(() -> {
+                // Código que precisa ser executado na UI thread
+                                
+                            //int indexStart = getAbsoluteIndexIgnoringNewlines(inputText, line, positionStart);
+                            
+                            //int indexEnd = getAbsoluteIndexIgnoringNewlines(inputText, line, positionEnd);
+                                
+                            addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
+                        
+              //  });
+                }
+    
+    };
      
      /*
      * Default constructor.
@@ -86,10 +107,13 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * This method sets the editor's initial text, font, language...
      */
      private void configureEditor() {
+                 //Diagnostics
+          diagnostics = new DiagnosticsContainer();
+          language = new com.example.soraeditortest.langs.java.JavaLanguage(binding.editor, errorListener, diagnostics);
           binding.editor.setText(BASE_MESSAGE);
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
-          binding.editor.setEditorLanguage(new JavaLanguage());
+          binding.editor.setEditorLanguage(language);
           binding.editor.setWordwrap(false);
           binding.editor.getProps().symbolPairAutoCompletion = true;
           binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
@@ -102,11 +126,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * and when it is changed, checkForPossibleErrors is called.
      */
      private void configureDiagnostic () {
-          binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-               var inputText = binding.editor.getText().toString(); 
-               editorListener.onEditorTextChange();
-               checkForPossibleErrors(inputText);
-          });
+         // binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+            //   var inputText = binding.editor.getText().toString(); 
+            //   editorListener.onEditorTextChange();
+           //    checkForPossibleErrors(inputText);
+      //    });
      }
     
      /*
@@ -174,7 +198,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to check if there are any errors in the code with ANTLR 4 Java 8.
      * @param inputText text to be checked, usually the editor code.
      */
-     private void checkForPossibleErrors(String inputText) {
+    /* private void checkForPossibleErrors(String inputText) {
           diagnostics.reset();
           try {
               // use ANTLR to compile code and return diagnostic 
@@ -191,7 +215,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           } catch (Exception e) {
               Log.e(TAG, "Error reading file", e);
           }
-     }
+     }*/
     
      /* 
      * Method to add a diagnostic box/popup in the sora editor.
