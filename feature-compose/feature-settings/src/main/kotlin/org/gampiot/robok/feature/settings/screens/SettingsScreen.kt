@@ -13,6 +13,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.gampiot.robok.feature.component.ApplicationScreen
 import org.gampiot.robok.feature.component.appbars.TopBar
 import org.gampiot.robok.feature.component.Title
+import org.gampiot.robok.feature.component.preferences.vegabobo.PreferenceItem
 import org.gampiot.robok.feature.component.preferences.bunny.PreferenceItemChoice
 import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
@@ -25,14 +26,24 @@ fun SettingsScreen(
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0) // Assume 0 as the initial value
 
-    // Define the list of options
+    // Define the list of options as Int
     val editorThemes = listOf(
-        "Robok", 
-        "Robok TH", 
-        "GitHub", 
-        "Eclipse", 
-        "Darcula", 
-        "Visual Studio Code 19", 
+        0, // Robok
+        1, // Robok TH
+        2, // GitHub
+        3, // Eclipse
+        4, // Darcula
+        5, // Visual Studio Code 19
+        6  // Notepad XX
+    )
+
+    val editorThemeLabels = listOf(
+        "Robok",
+        "Robok TH",
+        "GitHub",
+        "Eclipse",
+        "Darcula",
+        "Visual Studio Code 19",
         "Notepad XX"
     )
 
@@ -55,10 +66,10 @@ fun SettingsScreen(
                     label = stringResource(id = Strings.settings_editor_title),
                     title = stringResource(id = Strings.settings_editor_title),
                     pref = editorTheme,
-                    options = editorThemes, // Pass options here
+                    options = editorThemes, // Pass options as Int
                     excludedOptions = emptyList(),
                     labelFactory = { index ->
-                        editorThemes.getOrElse(index) { "Robok" }
+                        editorThemeLabels.getOrElse(index) { "Unknown" } // Map index to label
                     },
                     onPrefChange = { newTheme ->
                         appPrefsViewModel.changeEditorTheme(newTheme)
