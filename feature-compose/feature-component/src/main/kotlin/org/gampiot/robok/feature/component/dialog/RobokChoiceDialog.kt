@@ -12,6 +12,7 @@ fun RobokChoiceDialog(
     visible: Boolean,
     title: @Composable () -> Unit,
     default: Int,
+    options: List<Int>, // Added options parameter
     labelFactory: (Int) -> String,
     excludedOptions: List<Int>,
     onRequestClose: () -> Unit,
@@ -23,10 +24,11 @@ fun RobokChoiceDialog(
             title = title,
             text = {
                 Column(
-                    modifier = Modifier.padding(16.dp) // Added padding
+                    modifier = Modifier.padding(16.dp)
                 ) {
                     IntRadioController(
                         default = default,
+                        options = options, // Passing options here
                         excludedOptions = excludedOptions,
                         labelFactory = labelFactory,
                         onChoiceSelected = { selectedOption ->
@@ -38,7 +40,7 @@ fun RobokChoiceDialog(
             },
             confirmButton = {
                 TextButton(onClick = { onRequestClose() }) {
-                    Text("Close") // Consider making this label more descriptive
+                    Text("Close")
                 }
             }
         )

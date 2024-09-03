@@ -11,7 +11,7 @@ import androidx.compose.ui.Modifier
 @Composable
 fun IntRadioController(
     default: Int,
-    options: List<Int>,
+    options: List<Int>, // Ensure options is included here
     excludedOptions: List<Int> = emptyList(),
     labelFactory: (Int) -> String = { it.toString() },
     onChoiceSelected: (Int) -> Unit
@@ -25,7 +25,7 @@ fun IntRadioController(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp) // Added vertical padding for better spacing
+                        .padding(vertical = 8.dp)
                         .clickable {
                             selectedChoice = option
                             onChoiceSelected(option)
@@ -34,7 +34,7 @@ fun IntRadioController(
                 ) {
                     Text(
                         text = labelFactory(option),
-                        modifier = Modifier.weight(1f) // Ensures text takes available space
+                        modifier = Modifier.weight(1f)
                     )
                     RadioButton(
                         selected = option == selectedChoice,
