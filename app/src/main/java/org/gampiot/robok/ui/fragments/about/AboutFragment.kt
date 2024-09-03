@@ -104,6 +104,7 @@ class AboutFragment() : RobokFragment() {
         
         binding.openGithub.setOnLongClickListener {
             terminal.show()
+            return true
         }
         
         binding.openContribute.setOnClickListener {
