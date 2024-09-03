@@ -17,41 +17,36 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.radio.EnumRadioController
 
 @Composable
-inline fun <reified E : Enum<E>> RobokChoiceDialog(
-    visible: Boolean = false,
-    default: E,
-    excludedOptions: List<E> = emptyList(),
-    noinline title: @Composable () -> Unit,
-    crossinline labelFactory: (E) -> String = { it.toString() },
-    noinline onRequestClose: () -> Unit = {},
-    crossinline description: @Composable () -> Unit = {},
-    noinline onChoice: (E) -> Unit = {},
+fun RobokChoiceDialog(
+    visible: Boolean,
+    title: @Composable () -> Unit,
+    default: Int,
+    labelFactory: (Int) -> String,
+    excludedOptions: List<Int>,
+    onRequestClose: () -> Unit,
+    onChoice: (Int) -> Unit
 ) {
-
-    var choice by remember { mutableStateOf(default) }
-
-    AnimatedVisibility(
-        visible = visible,
-        enter = slideInVertically(),
-        exit = slideOutVertically()
-    ) {
+    if (visible) {
         AlertDialog(
             onDismissRequest = { onRequestClose() },
             title = title,
             text = {
-                description()
-                EnumRadioController(
-                    default,
-                    excludedOptions,
-                    labelFactory
-                ) { choice = it }
+                Column {
+                    (0..6).filterNot { it in excludedOptions }.forEach { option ->
+                        Text(
+                            text = labelFactory(option),
+                            modifier = Modifier
+                                .clickable { onChoice(option) }
+                                .padding(8.dp)
+                        )
+                    }
+                }
             },
             confirmButton = {
-                FilledTonalButton(onClick = { onChoice(choice) }) {
-                    Text(text = stringResource(id = Strings.common_word_confirm))
+                TextButton(onClick = { onRequestClose() }) {
+                    Text("Close")
                 }
             }
         )
     }
-
 }

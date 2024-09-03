@@ -21,13 +21,13 @@ fun PreferenceItemChoice(
     labelFactory: (Int) -> String = { it.toString() },
     onPrefChange: (Int) -> Unit,
 ) {
-    val ctx = LocalContext.current
+    val context = LocalContext.current
     val choiceLabel = labelFactory(pref)
     var opened by remember { mutableStateOf(false) }
 
     PreferenceItem(
         modifier = Modifier.clickable(enabled = !disabled) { opened = true },
-        text = { Text(text = label) },
+        text = { Text(text = label) }
     ) {
         RobokChoiceDialog(
             visible = opened,
