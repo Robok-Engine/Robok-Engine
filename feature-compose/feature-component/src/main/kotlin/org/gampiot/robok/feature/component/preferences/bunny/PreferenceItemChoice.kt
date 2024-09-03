@@ -21,7 +21,6 @@ fun PreferenceItemChoice(
     labelFactory: (Int) -> String = { it.toString() },
     onPrefChange: (Int) -> Unit,
 ) {
-    val context = LocalContext.current
     val choiceLabel = labelFactory(pref)
     var opened by remember { mutableStateOf(false) }
 
