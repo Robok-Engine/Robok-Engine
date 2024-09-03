@@ -22,7 +22,7 @@ fun PreferenceItemChoice(
     onPrefChange: (Int) -> Unit,
 ) {
     val choiceLabel = labelFactory(pref)
-    var opened by remember { mutableStateOf(false) }
+    val opened by remember { mutableStateOf(false) }
 
     PreferenceItem(
         modifier = Modifier.clickable(enabled = !disabled) { opened = true },
