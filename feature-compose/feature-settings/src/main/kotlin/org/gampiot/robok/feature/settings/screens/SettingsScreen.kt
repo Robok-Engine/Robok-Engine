@@ -77,7 +77,7 @@ fun SettingsScreen(
                     }
                 },
                 onPrefChange = { newTheme ->
-                    appPrefsViewModel.updateEditorTheme(newTheme)
+                    appPrefsViewModel.changeEditorTheme(newTheme)
                 }
             )
             
