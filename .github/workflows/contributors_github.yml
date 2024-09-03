@@ -52,3 +52,15 @@ jobs:
           git push origin host
         env:
           TOKEN: ${{ secrets.SUPER_TOKEN }}
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-get install gh
+
+      - name: Authenticate GitHub CLI
+        run: |
+          echo ${{ secrets.SUPER_TOKEN }} | gh auth login --with-token
+
+      - name: Create Pull Request
+        run: |
+          gh pr create --base dev --head host --title "Update GitHub Contributors" --body "This PR updates the GitHub contributors list."
