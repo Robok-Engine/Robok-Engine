@@ -1,6 +1,8 @@
 package org.gampiot.robok.feature.util.base
 
 import android.os.Bundle
+import android.os.Environment
+import android.os.Build
 import android.graphics.Color
 import android.content.res.Configuration
 import android.view.View
@@ -21,25 +23,26 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.trindadedev.easyui.components.dialogs.PermissionDialog
 
 import org.gampiot.robok.feature.util.R
-import org.gampiot.robok.feature.util.requestStoragePerm
+import org.gampiot.robok.feature.util.requestReadWritePermissions
+import org.gampiot.robok.feature.util.requestAllFilesAccessPermission
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.util.getBackPressedClickListener
 import org.gampiot.robok.feature.util.enableEdgeToEdgeProperly
 import org.gampiot.robok.feature.util.PermissionListener
 import org.gampiot.robok.feature.res.Strings
 
-open class RobokActivity() : AppCompatActivity(), PermissionListener {
-    
+open class RobokActivity : AppCompatActivity(), PermissionListener {
+
     private var permissionDialog: PermissionDialog? = null
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!getStoragePermStatus(this)) {
-            requestStoragePermDialog()
+            requestReadWritePermissionsDialog()
         }
     }
-    
-    open fun configureEdgeToEdge () {
+
+    open fun configureEdgeToEdge() {
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val rootView = window.decorView.findViewById<View>(android.R.id.content)
         rootView.setOnApplyWindowInsetsListener { view, insets ->
@@ -51,7 +54,7 @@ open class RobokActivity() : AppCompatActivity(), PermissionListener {
             )
             insets.consumeSystemWindowInsets()
         }
-        
+
         val scrimColor = Color.TRANSPARENT
         val style = SystemBarStyle.auto(scrimColor, scrimColor)
         enableEdgeToEdge(
@@ -65,14 +68,14 @@ open class RobokActivity() : AppCompatActivity(), PermissionListener {
             replace(R.id.fragment_container, fragment)
         }
     }
-    
+
     open fun openFragment(@IdRes fragmentLayoutResId: Int, fragment: Fragment) {
         supportFragmentManager.commit {
             replace(fragmentLayoutResId, fragment)
         }
     }
-    
-    open fun requestStoragePermDialog() {
+
+    private fun requestReadWritePermissionsDialog() {
         if (isFinishing || isDestroyed) {
             return
         }
@@ -80,20 +83,38 @@ open class RobokActivity() : AppCompatActivity(), PermissionListener {
             .setIconResId(R.drawable.ic_folder_24)
             .setText(getString(Strings.warning_storage_perm_message))
             .setAllowClickListener {
-                requestStoragePerm(this@RobokActivity, this@RobokActivity)
+                requestReadWritePermissions(this@RobokActivity, this@RobokActivity)
             }
             .setDenyClickListener {
                 finish()
             }
             .build()
-        
+
         permissionDialog?.show()
     }
-    
+
+    private fun requestAllFilesAccessPermissionDialog() {
+        if (isFinishing || isDestroyed) {
+            return
+        }
+        permissionDialog = PermissionDialog.Builder(this)
+            .setIconResId(R.drawable.ic_folder_24)
+            .setText(getString(Strings.warning_all_files_perm_message))
+            .setAllowClickListener {
+                requestAllFilesAccessPermission(this@RobokActivity, this@RobokActivity)
+            }
+            .setDenyClickListener {
+                finish()
+            }
+            .build()
+
+        permissionDialog?.show()
+    }
+
     open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
     }
-   
+
     open fun isDarkMode(): Boolean {
         val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
         return currentNightMode == Configuration.UI_MODE_NIGHT_YES
@@ -101,14 +122,22 @@ open class RobokActivity() : AppCompatActivity(), PermissionListener {
 
     override fun onReceive(status: Boolean) {
         if (status) {
-            permissionDialog?.dismiss()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (!Environment.isExternalStorageManager()) {
+                    requestAllFilesAccessPermissionDialog()
+                } else {
+                    permissionDialog?.dismiss()
+                }
+            } else {
+                permissionDialog?.dismiss()
+            }
         } else {
             MaterialAlertDialogBuilder(this)
                 .setTitle(getString(Strings.error_storage_perm_title))
                 .setMessage(getString(Strings.error_storage_perm_message))
                 .setCancelable(false)
                 .setPositiveButton(Strings.common_word_allow) { _, _ ->
-                    requestStoragePermDialog()
+                    requestReadWritePermissionsDialog()
                 }
                 .show()
         }

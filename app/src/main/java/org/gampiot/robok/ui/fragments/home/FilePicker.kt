@@ -1,5 +1,7 @@
 package org.gampiot.robok.ui.fragments.home
 
+import android.os.Build
+import android.os.Environment
 import android.content.Context
 import android.app.Activity
 
@@ -11,7 +13,8 @@ import dev.trindadedev.easyui.filepicker.model.DialogProperties
 
 import org.gampiot.robok.R
 import org.gampiot.robok.feature.util.PermissionListener
-import org.gampiot.robok.feature.util.requestStoragePerm
+import org.gampiot.robok.feature.util.requestReadWritePermissions
+import org.gampiot.robok.feature.util.requestAllFilesAccessPermission
 import org.gampiot.robok.feature.util.getStoragePermStatus
 import org.gampiot.robok.feature.res.Strings
 
@@ -27,39 +30,57 @@ class FilePicker(
             if (getStoragePermStatus(context as Activity)) {
                 showDialogW()
             } else {
-                permDialog()
+                requestReadWritePermissionsDialog()
             }
         }
     }
 
     override fun onReceive(status: Boolean) {
         if (status) {
-            permissionDialog?.dismiss()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                if (!Environment.isExternalStorageManager()) {
+                    requestAllFilesAccessPermissionDialog()
+                } else {
+                    permissionDialog?.dismiss()
+                }
+            } else {
+                permissionDialog?.dismiss()
+            }
         } else {
             MaterialAlertDialogBuilder(context)
                 .setTitle(context.getString(Strings.error_storage_perm_title))
                 .setMessage(context.getString(Strings.error_storage_perm_message))
                 .setCancelable(false)
                 .setPositiveButton(context.getString(Strings.common_word_allow)) { _, _ ->
-                    permDialog()
+                    requestReadWritePermissionsDialog()
                 }
                 .show()
         }
     }
 
-    fun permDialog() {
-        if (context is Activity) {
-            permissionDialog = PermissionDialog.Builder(context)
-                .setIconResId(org.gampiot.robok.feature.component.R.drawable.ic_folder_24)
-                .setText(context.getString(Strings.warning_storage_perm_message))
-                .setAllowClickListener {
-                    requestStoragePerm(context, this@FilePicker)
-                }
-                .setDenyClickListener { }
-                .build()
-            permissionDialog?.show()
-        } else {
-            throw IllegalArgumentException("The context needs to be an Activity.")
-        }
+    private fun requestReadWritePermissionsDialog() {
+        permissionDialog = PermissionDialog.Builder(context)
+            .setIconResId(R.drawable.ic_folder_24)
+            .setText(context.getString(Strings.warning_storage_perm_message))
+            .setAllowClickListener {
+                requestReadWritePermissions(context, this@FilePicker)
+            }
+            .setDenyClickListener { }
+            .build()
+
+        permissionDialog?.show()
+    }
+    
+    private fun requestAllFilesAccessPermissionDialog() {
+        permissionDialog = PermissionDialog.Builder(context)
+            .setIconResId(R.drawable.ic_folder_24)
+            .setText(context.getString(Strings.warning_all_files_perm_message))
+            .setAllowClickListener {
+                requestAllFilesAccessPermission(context, this@FilePicker)
+            }
+            .setDenyClickListener { }
+            .build()
+
+        permissionDialog?.show()
     }
 }

@@ -60,6 +60,9 @@
     <!-- warnings section -->
     <string name="warning_storage_perm_title">Permissão de Armazenamento</string>
     <string name="warning_storage_perm_message">Robok precisa de permissão de armazenamento para criar projetos, abrir projetos e muito mais</string>
+    <string name="warning_all_files_perm_message">no Android 11+, para que o Robok funcione corretamente, ele precisa de permissão para acessar todos os arquivos.</string>
+    <string name="warning_project_created_title">Project Created Successfully!</string>
+	<string name="warning_project_created_message">Your project has been created successfully!</string>
     <!-- end section -->
     
     <!-- errors section -->
