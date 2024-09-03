@@ -28,7 +28,7 @@ fun PreferenceItemChoice(
 
     PreferenceItem(
         modifier = 
-           Modifier.clickable(enabled = !disabled) { opened = true },
+           Modifier.clickable(enabled = !disabled) { setOpened(true) },
         text = { 
            Text(text = label)
         }
