@@ -22,29 +22,29 @@ fun PreferenceItemChoice(
     onPrefChange: (Int) -> Unit,
 ) {
     val choiceLabel = labelFactory(pref)
-    var opened by remember { 
+    var opin by remember { 
         mutableStateOf(false) 
     }
 
     PreferenceItem(
-        modifier = Modifier.clickable(enabled = !disabled) { opened = true },
+        modifier = Modifier.clickable(enabled = !disabled) { opin = true },
         text = { Text(text = label) }
     ) {
         RobokChoiceDialog(
-            visible = opened,
+            visible = opin,
             title = { Text(title) },
             default = pref,
             labelFactory = labelFactory,
             excludedOptions = excludedOptions,
             onRequestClose = {
-                opened = false
+                opin = false
             },
             onChoice = {
-                opened = false
+                opin = false
                 onPrefChange(it)
             }
         )
-        FilledTonalButton(onClick = { opened = true }, enabled = !disabled) {
+        FilledTonalButton(onClick = { opin = true }, enabled = !disabled) {
             Text(choiceLabel)
         }
     }
