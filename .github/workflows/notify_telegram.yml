@@ -64,7 +64,7 @@ jobs:
             repo_url="https://github.com/${{ github.repository }}"
             compare_url="${repo_url}/compare/${previous_commit_hash}...${commit_hash}"
             commit_url="${repo_url}/commit/${commit_hash}"
-            message="🔨 [1 new commit](${compare_url}) to Robok-Engine:${branch_name}%0A%0A[${commit_hash}](${commit_url}): ${commit_message} by ${commit_author}"
+            message="🔨 [1 new commit](${compare_url}) to Robok-Engine:`${branch_name}`%0A%0A[${commit_hash}](${commit_url}): `${commit_message}` by `${commit_author}`"
           elif [ "${{ github.event_name }}" = "pull_request" ]; then
             pr_title="${{ github.event.pull_request.title }}"
             pr_number="${{ github.event.pull_request.number }}"
