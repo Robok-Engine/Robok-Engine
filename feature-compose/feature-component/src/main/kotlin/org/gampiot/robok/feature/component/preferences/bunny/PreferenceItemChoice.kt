@@ -12,40 +12,38 @@ import androidx.compose.ui.platform.LocalContext
 import org.gampiot.robok.feature.component.dialog.RobokChoiceDialog
 
 @Composable
-inline fun <reified E : Enum<E>> PreferenceItemChoice(
+fun PreferenceItemChoice(
     label: String,
     title: String = label,
     disabled: Boolean = false,
-    pref: E,
-    excludedOptions: List<E> = emptyList(),
-    crossinline labelFactory: (E) -> String = { it.toString() },
-    crossinline onPrefChange: (E) -> Unit,
+    pref: Int,
+    excludedOptions: List<Int> = emptyList(),
+    labelFactory: (Int) -> String = { it.toString() },
+    onPrefChange: (Int) -> Unit,
 ) {
     val ctx = LocalContext.current
     val choiceLabel = labelFactory(pref)
-    var opened = remember {
-        mutableStateOf(false)
-    }
+    var opened by remember { mutableStateOf(false) }
 
     PreferenceItem(
-        modifier = Modifier.clickable(enabled = !disabled) { opened.value = true },
+        modifier = Modifier.clickable(enabled = !disabled) { opened = true },
         text = { Text(text = label) },
     ) {
         RobokChoiceDialog(
-            visible = opened.value,
+            visible = opened,
             title = { Text(title) },
             default = pref,
             labelFactory = labelFactory,
             excludedOptions = excludedOptions,
             onRequestClose = {
-                opened.value = false
+                opened = false
             },
             onChoice = {
-                opened.value = false
+                opened = false
                 onPrefChange(it)
             }
         )
-        FilledTonalButton(onClick = { opened.value = true }, enabled = !disabled) {
+        FilledTonalButton(onClick = { opened = true }, enabled = !disabled) {
             Text(choiceLabel)
         }
     }

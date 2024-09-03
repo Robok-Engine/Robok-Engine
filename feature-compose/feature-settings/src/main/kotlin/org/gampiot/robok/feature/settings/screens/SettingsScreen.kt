@@ -44,10 +44,6 @@ fun SettingsScreen(
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0) // Assume 0 as the initial value
 
-    val context = LocalContext.current
-
-    val defaultModifier = Modifier.fillMaxWidth()
-
     ApplicationScreen(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
