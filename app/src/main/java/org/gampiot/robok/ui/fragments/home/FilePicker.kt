@@ -63,7 +63,7 @@ class FilePicker(
             .setIconResId(R.drawable.ic_folder_24)
             .setText(context.getString(Strings.warning_storage_perm_message))
             .setAllowClickListener {
-                requestReadWritePermissions(context, this@FilePicker)
+                requestReadWritePermissions(context as Activity, this@FilePicker)
             }
             .setDenyClickListener { }
             .build()
@@ -76,7 +76,7 @@ class FilePicker(
             .setIconResId(R.drawable.ic_folder_24)
             .setText(context.getString(Strings.warning_all_files_perm_message))
             .setAllowClickListener {
-                requestAllFilesAccessPermission(context, this@FilePicker)
+                requestAllFilesAccessPermission(context as Activity, this@FilePicker)
             }
             .setDenyClickListener { }
             .build()
