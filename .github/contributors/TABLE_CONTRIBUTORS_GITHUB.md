@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 193 | N/A |
+| trindadedev13 | 192 | N/A |
 | ThDev-only | 124 | N/A |
 | renovate[bot] | 76 | N/A |
 | gampiot-bot | 29 | N/A |
