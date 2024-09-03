@@ -67,15 +67,7 @@ class HomeFragment () : RobokFragment() {
         binding.openAbout.setOnClickListener {
             openFragment(AboutFragment())
         }
-        
-        if (BuildConfig.DEBUG) {
-            binding.openFileTree.visibility = View.VISIBLE
-        }
-        
-        binding.openFileTree.setOnClickListener {
-            startActivity(Intent(requireContext(), FileTreeViewActivity::class.java))
-        }
-    }
+     }
     
     private fun selectFolder() {
         val properties = DialogProperties().apply {
