@@ -17,6 +17,7 @@ fun PreferenceItemChoice(
     title: String = label,
     disabled: Boolean = false,
     pref: Int,
+    options: List<Int>,
     excludedOptions: List<Int> = emptyList(),
     labelFactory: (Int) -> String = { it.toString() },
     onPrefChange: (Int) -> Unit,
@@ -39,6 +40,7 @@ fun PreferenceItemChoice(
                Text(title) 
             },
             default = pref,
+            options = options,
             labelFactory = labelFactory,
             excludedOptions = excludedOptions,
             onRequestClose = {
