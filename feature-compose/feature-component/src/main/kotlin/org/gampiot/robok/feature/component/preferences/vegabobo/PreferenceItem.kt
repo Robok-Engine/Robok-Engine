@@ -1,6 +1,4 @@
-package org.gampiot.robok.feature.component.preferences
-
-// from VegaBobo/DSU-Sideloader
+package org.gampiot.robok.feature.component.preferences.vegabobo
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

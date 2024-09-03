@@ -21,6 +21,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
 import io.github.rosemoe.sora.lang.diagnostic.Quickfix;
 import io.github.rosemoe.sora.text.Content;
 import io.github.rosemoe.sora.event.ContentChangeEvent;
+import io.github.rosemoe.sora.widget.schemes.*;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -37,6 +38,7 @@ import robok.diagnostic.logic.*;
 import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
+import org.gampiot.robok.feature.editor.schemes.*;
 
 import java.lang.CharSequence;
 
@@ -50,8 +52,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      public EditorListener editorListener; // EditorListener used.
      
      public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
-      
+     
      private final LayoutCodeEditorBinding binding;
+     
+     public final static String TAG = "RobokCodeEditor";
+     
      
      /*
      * Default constructor.
@@ -73,7 +78,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           diagnostics = new DiagnosticsContainer();
           DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
           configureEditor();
-          configureSymbolView(DEFAULT_SYMBOL_VIEW); 
+          configureSymbolView(DEFAULT_SYMBOL_VIEW);
           configureDiagnostic();
      }
      
@@ -121,8 +126,48 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
      */
      private void applyEditorTheme() {
-          int theme = ThemeManager.Companion.loadTheme(getContext());
-          ThemeManager.Companion.selectTheme(binding.editor, theme);
+          var mng = new Manager();
+          binding.editor.setColorScheme(selectTheme(mng.getEditorThemeInt()));
+     }
+
+     /*
+     * Method to choose editor theme.
+     * @param themeIndex number of theme 0...6 
+     */
+     private EditorColorScheme selectTheme(int themeIndex) {
+          EditorColorScheme scheme;
+          try {
+               switch (themeIndex) {
+                    case 0:
+                         scheme = new SchemeRobok(binding.editor.getContext());
+                         break;
+                    case 1:
+                         scheme = new SchemeRobokTH(binding.editor.getContext());
+                         break;
+                    case 2:
+                         scheme = new SchemeGitHub();
+                         break;
+                    case 3:
+                         scheme = new SchemeEclipse();
+                         break;
+                    case 4:
+                         scheme = new SchemeDarcula();
+                         break;
+                    case 5:
+                         scheme = new SchemeVS2019();
+                         break;
+                    case 6:
+                         scheme = new SchemeNotepadXX();
+                         break;
+                    default:
+                         scheme = new SchemeRobok(binding.editor.getContext());
+                         break;
+               }
+          } catch (Exception e) {
+               Log.e(TAG, "fail on select theme: " + themeIndex, e);
+               scheme = new SchemeRobok(binding.editor.getContext());
+          }
+          return scheme;
      }
      
      /*
@@ -144,7 +189,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
               parser.addErrorListener(robokError);
               parser.compilationUnit();
           } catch (Exception e) {
-              Log.e("MainActivity", "Error reading file", e);
+              Log.e(TAG, "Error reading file", e);
           }
      }
     

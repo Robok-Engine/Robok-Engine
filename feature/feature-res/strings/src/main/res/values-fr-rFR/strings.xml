@@ -7,8 +7,8 @@
 	<string name="common_word_logs">Journaux</string>
 	<string name="common_word_output">Sortie</string>
 	<string name="common_word_end">Fin</string>
+	<string name="common_word_confirm" >Confirm</string>
 	<string name="common_word_settings">Paramètres</string>
-	<string name="common_word_ok" translatable="false" >OK</string>
 	<string name="common_word_cancel">ANNULER</string>
 	<string name="common_word_next">Suivant</string>
 	<string name="common_word_undo">Annuler</string>
