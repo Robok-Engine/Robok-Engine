@@ -102,6 +102,10 @@ class AboutFragment() : RobokFragment() {
             openUrl(getString(Strings.link_github))
         }
         
+        binding.openGithub.setOnLongClickListener {
+            terminal.show()
+        }
+        
         binding.openContribute.setOnClickListener {
             openUrl(getString(Strings.link_github))
         }
