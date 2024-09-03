@@ -73,8 +73,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="@dimen/home_card_icon_width"
+                                    android:layout_height="@dimen/home_card_icon_height"
                                     android:src="@drawable/ic_add_24"
                                     android:scaleType="fitCenter" />
 
@@ -85,7 +85,7 @@
                                     android:paddingRight="8dp"
                                     android:paddingBottom="8dp"
                                     android:text="@string/title_create_project"
-                                    android:textSize="13sp" />
+                                    android:textSize="@dimen/home_card_title_size" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
@@ -112,8 +112,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="@dimen/home_card_icon_width"
+                                    android:layout_height="@dimen/home_card_icon_height"
                                     android:src="@drawable/ic_folder_open_24"
                                     android:scaleType="fitCenter" />
 
@@ -124,7 +124,7 @@
                                     android:paddingRight="8dp"
                                     android:paddingBottom="8dp"
                                     android:text="@string/title_open_project"
-                                    android:textSize="13sp" />
+                                    android:textSize="@dimen/home_card_title_size" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
@@ -157,8 +157,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="@dimen/home_card_icon_width"
+                                    android:layout_height="@dimen/home_card_icon_height"
                                     android:src="@drawable/ic_settings_anim"
                                     android:scaleType="fitCenter" />
 
@@ -169,7 +169,7 @@
                                     android:paddingRight="8dp"
                                     android:paddingBottom="8dp"
                                     android:text="@string/common_word_settings"
-                                    android:textSize="13sp" />
+                                    android:textSize="@dimen/home_card_title_size" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>
@@ -196,8 +196,8 @@
                                 android:orientation="vertical">
 
                                 <ImageView
-                                    android:layout_width="25dp"
-                                    android:layout_height="25dp"
+                                    android:layout_width="@dimen/home_card_icon_width"
+                                    android:layout_height="@dimen/home_card_icon_height"
                                     android:src="@drawable/ic_info_24"
                                     android:scaleType="fitCenter" />
 
@@ -208,7 +208,7 @@
                                     android:paddingRight="8dp"
                                     android:paddingBottom="8dp"
                                     android:text="@string/title_terminal"
-                                    android:textSize="13sp" />
+                                    android:textSize="@dimen/home_card_title_size" />
                             </LinearLayout>
                         </com.google.android.material.card.MaterialCardView>
                     </LinearLayout>

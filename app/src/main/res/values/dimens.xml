@@ -3,4 +3,7 @@
     <dimen name="toolbar_icon_height">30dp</dimen>
     
     <dimen name="home_card_height">100dp</dimen>
+    <dimen name="home_card_title_size">14sp</dimen>
+    <dimen name="home_card_icon_height">25dp</dimen>
+    <dimen name="home_card_icon_width">25dp</dimen>
 </resources>
