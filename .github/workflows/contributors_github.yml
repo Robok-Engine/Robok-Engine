@@ -62,5 +62,6 @@ jobs:
           echo ${{ secrets.SUPER_TOKEN }} | gh auth login --with-token
 
       - name: Create Pull Request
+        continue-on-error: true
         run: |
           gh pr create --base dev --head host --title "Update GitHub Contributors" --body "This PR updates the GitHub contributors list."
