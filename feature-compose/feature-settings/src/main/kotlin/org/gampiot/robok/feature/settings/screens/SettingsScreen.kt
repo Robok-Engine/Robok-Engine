@@ -26,7 +26,6 @@ fun SettingsScreen(
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0) // Assume 0 as the initial value
 
-    // Define the list of options as Int
     val editorThemes = listOf(
         0, // Robok
         1, // Robok TH
@@ -53,33 +52,29 @@ fun SettingsScreen(
         topBar = {
             TopBar(
                 barTitle = stringResource(id = Strings.common_word_settings),
+                scrollBehavior = it,
                 onClickBackButton = {
                     navController.popBackStack()
                 }
             )
         },
         content = {
-            Column(modifier = Modifier.padding(16.dp)) {
+            Column(modifier = Modifier) {
                 Title(title = stringResource(id = Strings.settings_appearance_title))
-                
                 PreferenceItemChoice(
                     label = stringResource(id = Strings.settings_editor_title),
                     title = stringResource(id = Strings.settings_editor_title),
                     pref = editorTheme,
-                    options = editorThemes, // Pass options as Int
+                    options = editorThemes,
                     excludedOptions = emptyList(),
                     labelFactory = { index ->
-                        editorThemeLabels.getOrElse(index) { "Unknown" } // Map index to label
+                        editorThemeLabels.getOrElse(index) { "Unknown" }
                     },
                     onPrefChange = { newTheme ->
                         appPrefsViewModel.changeEditorTheme(newTheme)
                     }
                 )
-                
-                Spacer(modifier = Modifier.height(16.dp))
-                
                 Title(title = stringResource(id = Strings.settings_about_title))
-                
                 PreferenceItem(
                     title = stringResource(id = Strings.settings_libraries_title),
                     description = stringResource(id = Strings.settings_libraries_description),

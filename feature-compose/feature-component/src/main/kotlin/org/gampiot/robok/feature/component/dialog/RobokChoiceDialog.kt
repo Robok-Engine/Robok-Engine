@@ -25,11 +25,11 @@ fun RobokChoiceDialog(
             title = title,
             text = {
                 Column(
-                    modifier = Modifier.padding(16.dp)
+                    modifier = Modifier.padding(4.dp)
                 ) {
                     IntRadioController(
                         default = default,
-                        options = options, // Passing options here
+                        options = options,
                         excludedOptions = excludedOptions,
                         labelFactory = labelFactory,
                         onChoiceSelected = { selectedOption ->
