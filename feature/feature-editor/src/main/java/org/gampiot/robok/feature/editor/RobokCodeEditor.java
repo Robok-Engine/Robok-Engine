@@ -126,7 +126,8 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
      */
      private void applyEditorTheme() {
-          binding.editor.setColorScheme(selectTheme(0));
+          var mng = new Manager();
+          binding.editor.setColorScheme(selectTheme(mng.getEditorTheme()));
      }
 
      /*
