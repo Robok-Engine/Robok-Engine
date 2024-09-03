@@ -25,14 +25,17 @@ fun IntRadioController(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .padding(vertical = 8.dp) // Added vertical padding for better spacing
                         .clickable {
                             selectedChoice = option
                             onChoiceSelected(option)
                         },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(text = labelFactory(option))
-                    Spacer(modifier = Modifier.weight(1f))
+                    Text(
+                        text = labelFactory(option),
+                        modifier = Modifier.weight(1f) // Ensures text takes available space
+                    )
                     RadioButton(
                         selected = option == selectedChoice,
                         onClick = {

@@ -22,7 +22,9 @@ fun RobokChoiceDialog(
             onDismissRequest = { onRequestClose() },
             title = title,
             text = {
-                Column {
+                Column(
+                    modifier = Modifier.padding(16.dp) // Added padding
+                ) {
                     IntRadioController(
                         default = default,
                         excludedOptions = excludedOptions,
@@ -36,7 +38,7 @@ fun RobokChoiceDialog(
             },
             confirmButton = {
                 TextButton(onClick = { onRequestClose() }) {
-                    Text("Close")
+                    Text("Close") // Consider making this label more descriptive
                 }
             }
         )
