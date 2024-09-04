@@ -115,7 +115,7 @@ public class JavaLanguage implements Language {
     
     public static String inputText = "";
     
-    public JavaLanguage(CodeEditor editor, Java8ErrorListener.ErrorDiagnostico errorListener, DiagnosticsContainer diagnosticsContainer) {
+    public JavaLanguage(CodeEditor editor, DiagnosticListener errorListener, DiagnosticsContainer diagnosticsContainer) {
         identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
         manager = new JavaIncrementalAnalyzeManager();
         variables = new HashMap<>();
@@ -538,7 +538,7 @@ public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationCo
     
     public static class Diagnostics {
         
-        public Java8ErrorListener.ErrorDiagnostico errorListener;
+        public DiagnosticListener errorListener;
         DiagnosticsContainer diagnostics;
         public boolean onSucess= true;
         /*Method used to check if the editor code has errors.

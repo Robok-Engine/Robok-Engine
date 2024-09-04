@@ -1,6 +1,6 @@
 package org.gampiot.robok.feature.editor.languages.java;
 
-import com.example.compiler2.Java8Parser;
+import robok.diagnostic.logic.Java8Parser;
 
 import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
 

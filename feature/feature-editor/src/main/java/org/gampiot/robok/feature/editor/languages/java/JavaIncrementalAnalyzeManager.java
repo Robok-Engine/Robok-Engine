@@ -24,8 +24,9 @@
 package org.gampiot.robok.feature.editor.languages.java;
 
 import android.os.Bundle;
+
 import androidx.annotation.NonNull;
-import com.example.soraeditortest.autocomplete.IdentifierAutoComplete;
+
 import io.github.rosemoe.sora.lang.analysis.AsyncIncrementalAnalyzeManager;
 import io.github.rosemoe.sora.lang.brackets.SimpleBracketsCollector;
 import io.github.rosemoe.sora.lang.styling.CodeBlock;
@@ -40,6 +41,9 @@ import io.github.rosemoe.sora.text.ContentReference;
 import io.github.rosemoe.sora.util.ArrayList;
 import io.github.rosemoe.sora.util.IntPair;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
+
+import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
+
 import java.util.List;
 import java.util.Stack;
 import java.util.regex.Pattern;
