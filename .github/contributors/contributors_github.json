@@ -18,7 +18,8 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 203
+    "contributions": 203,
+    "role": "Developer"
   },
   {
     "login": "ThDev-only",
@@ -39,7 +40,8 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 124
+    "contributions": 124,
+    "role": "Developer"
   },
   {
     "login": "renovate[bot]",
@@ -60,7 +62,8 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 77
+    "contributions": 77,
+    "role": "Bot"
   },
   {
     "login": "gampiot-bot",
@@ -79,9 +82,10 @@
     "repos_url": "https://api.github.com/users/gampiot-bot/repos",
     "events_url": "https://api.github.com/users/gampiot-bot/events{/privacy}",
     "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
-    "type": "User",
+    "type": "Bot",
     "site_admin": false,
-    "contributions": 30
+    "contributions": 30,
+    "role": "Bot"
   },
   {
     "login": "skinvent",
@@ -102,7 +106,8 @@
     "received_events_url": "https://api.github.com/users/skinvent/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 12
+    "contributions": 12,
+    "role": "Contributor"
   },
   {
     "login": "github-actions[bot]",
@@ -123,6 +128,7 @@
     "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 10
+    "contributions": 10,
+    "role": "Bot"
   }
 ]
