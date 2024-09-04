@@ -93,6 +93,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  */
 public class JavaLanguage implements Language, EditorListener, DiagnosticListener {
 
+     private final static String TAG = "JavaLanguage";
      private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
      private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
      private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
@@ -385,7 +386,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
     
     public class JavaListener extends Java8BaseListener {
         
-         private int cursorIndex;
+         private static int cursorIndex = 0;
         
          public JavaListener(int positionIndex){
               this.cursorIndex = positionIndex;
