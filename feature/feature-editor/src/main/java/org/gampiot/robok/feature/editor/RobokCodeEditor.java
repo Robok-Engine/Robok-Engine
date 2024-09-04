@@ -275,28 +275,20 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                switch (themeIndex) {
                     case 0:
                         return new SchemeRobok(ctx);
-                        break;
                     case 1:
                         return new SchemeRobokTH(ctx);
-                        break;
                     case 2:
                         return new SchemeGitHub();
-                        break;
                     case 3:
                         return new SchemeEclipse();
-                        break;
                     case 4:
                         return new SchemeDarcula();
-                        break;
                     case 5:
                         return new SchemeVS2019();
-                        break;
                     case 6:
                         return new SchemeNotepadXX();
-                        break;
                     default:
                         return new SchemeRobok(ctx);
-                        break;
                }
           }
      }
