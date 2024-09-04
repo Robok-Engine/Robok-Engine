@@ -57,6 +57,8 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
     
      private JavaLanguage language; // Configuration of JavaLanguage
      
+     private EditorConfigManager editorConfigManager;
+     
      public final static String TAG = "RobokCodeEditor"; 
     
      /*
@@ -77,6 +79,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           this.editorListener = this;
           binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
           diagnostics = new DiagnosticsContainer();
+          editorConfigManager = new EditorConfigManager();
           DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
           configureEditor();
           configureSymbolView(DEFAULT_SYMBOL_VIEW);
@@ -118,8 +121,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
      */
      private void applyEditorTheme() {
-          var mng = new Manager();
-          binding.editor.setColorScheme(selectTheme(mng.getEditorThemeInt()));
+          binding.editor.setColorScheme(selectTheme(editorConfigManager.getEditorThemeInt()));
      }
 
      /*
