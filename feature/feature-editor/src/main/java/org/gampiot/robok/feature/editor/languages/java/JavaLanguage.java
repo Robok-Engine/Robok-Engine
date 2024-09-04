@@ -128,8 +128,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
           subscribeEventEditor();
           diagnostics = new JavaLanguage.Diagnostics();
           
-          editorListener = this:
-          
+          editorListener = this;
           diagnostics.diagnosticListener = this;
           diagnostics.diagnostics = diagnosticsContainer;
           start();
