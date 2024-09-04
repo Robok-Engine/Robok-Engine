@@ -11,11 +11,18 @@ class AppPreferencesViewModel(
     private val repo: AppPreferencesRepository
 ) : ViewModel() {
      val editorTheme = repo.editorTheme
+     val editorTypeface = repo.editorTypeface
      val editorIsUseWordWrap = repo.editorIsUseWordWrap
- 
+     
      fun changeEditorTheme (value: Int) {
          viewModelScope.launch {
               repo.changeEditorTheme(value)
+         }
+     }
+     
+     fun changeEditorTypeface (value: Int) {
+         viewModelScope.launch {
+              repo.changeEditorTypeface(value)
          }
      }
      
