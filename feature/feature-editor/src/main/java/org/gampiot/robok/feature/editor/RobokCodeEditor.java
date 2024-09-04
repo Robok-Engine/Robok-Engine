@@ -161,29 +161,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           }
           return scheme;
      }
-     
-     /*
-     * Method to check if there are any errors in the code with ANTLR 4 Java 8.
-     * @param inputText text to be checked, usually the editor code.
-     */
-     private void checkForPossibleErrors(String inputText) {
-          diagnostics.reset();
-          try {
-              // use ANTLR to compile code and return diagnostic 
-              ANTLRInputStream input = new ANTLRInputStream(inputText);
-              Java8Lexer lexer = new Java8Lexer(input);
-              CommonTokenStream tokens = new CommonTokenStream(lexer);
-              Java8Parser parser = new Java8Parser(tokens);
-              parser.removeErrorListeners();
-              Java8ErrorListener robokError = new Java8ErrorListener();
-  
-              robokError.getError(diagnosticListener);
-              parser.addErrorListener(robokError);
-              parser.compilationUnit();
-          } catch (Exception e) {
-              Log.e(TAG, "Error reading file", e);
-          }
-     }
     
      /* 
      * Method to add a diagnostic box/popup in the sora editor.
@@ -269,14 +246,14 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to get if can redo
      */
      public boolean isCanRedo() {
-          return getSoraEditor().canRedo();
+          return getSoraCodeEditor().canRedo();
      }
      
      /*
      * Method to get if can undo
      */
      public boolean isCanUndo() {
-          return getSoraEditor().canUndo();
+          return getSoraCodeEditor().canUndo();
      }
      
      /*
