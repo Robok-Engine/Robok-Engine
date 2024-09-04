@@ -244,16 +244,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           binding.editor.undo();
      }
     
-    /*
-    * Method to update undo/redo arrows steat
-    */
-    public void updateUndoRedo() {
-        if (redo != null) {
-            redo.setEnabled(editor.canRedo());
-            undo.setEnabled(editor.canUndo());
-        }
-    }
-    
      /*
      * Method to get if can redo
      */
