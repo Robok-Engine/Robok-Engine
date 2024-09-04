@@ -21,7 +21,7 @@
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
-package org.gampiot.robok.feature.editor.languages.java;
+package org.gampiot.robok.feature.editor.languages.java.models;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,41 +29,36 @@ import java.util.Objects;
 
 public class State {
 
-    public int state = 0;
+     public int state = 0;
 
-    public boolean hasBraces = false;
+     public boolean hasBraces = false;
     
+     public List<String> identifiers = null;
 
-    public List<String> identifiers = null;
+     public void addIdentifier(CharSequence identifier) {
+          if (identifiers == null) {
+               identifiers = new ArrayList<>();
+          }        
+          String name = null;
+          if (identifier instanceof String) {
+              name = (String) identifier;
+          } else {
+              name = identifier.toString();
+          }
+          identifiers.add(name);        
+     }
 
-    public void addIdentifier(CharSequence idt) {
-        if (identifiers == null) {
-            identifiers = new ArrayList<>();
-        }
-        
-        String name = null;
-        
-        if (idt instanceof String) {
-            name = (String) idt;
-        } else {
-            name = idt.toString();
-            
-        }
-         identifiers.add(name);
-        
-    }
+     @Override
+     public boolean equals(Object o) {
+          // `identifiers` is ignored because it is unrelated to tokenization for next line
+          if (this == o) return true;
+          if (o == null || getClass() != o.getClass()) return false;
+          State state1 = (State) o;
+          return state == state1.state && hasBraces == state1.hasBraces;
+     }
 
-    @Override
-    public boolean equals(Object o) {
-        // `identifiers` is ignored because it is unrelated to tokenization for next line
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        State state1 = (State) o;
-        return state == state1.state && hasBraces == state1.hasBraces;
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(state, hasBraces);
-    }
+     @Override
+     public int hashCode() {
+          return Objects.hash(state, hasBraces);
+     }
 }
