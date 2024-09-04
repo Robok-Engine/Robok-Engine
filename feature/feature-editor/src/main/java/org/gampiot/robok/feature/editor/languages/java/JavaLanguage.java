@@ -510,7 +510,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
         }
     }
   
-    public static class Diagnostics {
+    public class Diagnostics {
         
         public DiagnosticListener diagnosticListener;
         public DiagnosticsContainer diagnostics;
