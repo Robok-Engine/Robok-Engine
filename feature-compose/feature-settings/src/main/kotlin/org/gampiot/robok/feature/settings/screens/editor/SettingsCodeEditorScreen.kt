@@ -25,7 +25,8 @@ fun SettingsCodeEditorScreen(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0) // Assume 0 as the initial value
-
+    val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
+    
     val editorThemes = listOf(
         0, // Robok
         1, // Robok TH
