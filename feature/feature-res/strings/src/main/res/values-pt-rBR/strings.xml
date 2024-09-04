@@ -41,14 +41,19 @@
     <!-- end section -->
     
     <!-- settings section -->
-    <string name="settings_editor_title">Editor de Código</string>
-    <string name="settings_editor_description">Algumas configurações do Editor.</string>
-    <string name="settings_editor_theme_title">Tema do Editor de Código</string>
-    <string name="settings_editor_theme_description">Mude o tema do Editor de Código.</string>
+    <string name="settings_code_editor_title">Editor de Código</string>
+    <string name="settings_code_editor_description">Algumas configurações do Editor de Código.</string>
+    <string name="settings_code_editor_theme_title">Tema do Editor de Código</string>
+    <string name="settings_code_editor_theme_description">Mude o tema do Editor de Código.</string>
+    <string name="settings_code_editor_word_wrap_title">Quebra de Linha</string>
+	<string name="settings_code_editor_word_wrap_description">Ativar quebra de linha no editor de código.</string>
     <string name="settings_about_title">Sobre</string>
 	<string name="settings_about_description">Tudo sobre a Robok Engine</string>
 	<string name="settings_libraries_title">Bibliotecas</string>
 	<string name="settings_libraries_description">Todas as bibliotecas que usamos no aplicativo.</string>
+	<string name="settings_formatting_title">Formatação</string>
+	<string name="settings_appearance_title">Aparência</string>
+	<string name="settings_general_title">Geral</string>
     <!-- end section -->
     
     <!-- texts section -->

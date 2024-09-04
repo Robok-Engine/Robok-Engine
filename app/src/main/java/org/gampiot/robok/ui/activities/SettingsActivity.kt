@@ -28,7 +28,7 @@ import soup.compose.material.motion.animation.materialSharedAxisXOut
 
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.feature.settings.screens.SettingsScreen
-import org.gampiot.robok.feature.settings.screens.editor.SettingsEditorScreen
+import org.gampiot.robok.feature.settings.screens.editor.SettingsCodeEditorScreen
 import org.gampiot.robok.feature.settings.screens.libraries.LibrariesScreen
 
 class SettingsActivity : ComponentActivity() {
@@ -84,8 +84,8 @@ class SettingsActivity : ComponentActivity() {
                            LibrariesScreen(navController)
                       }
                       
-                      composable("settings/editor") {
-                           SettingsEditorScreen(navController)
+                      composable("settings/codeeditor") {
+                           SettingsCodeEditorScreen(navController)
                       }
                  }
             }

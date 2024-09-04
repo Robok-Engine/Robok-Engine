@@ -42,14 +42,19 @@
 	<!-- end section -->
 	
 	<!-- settings section -->
-	<string name="settings_editor_title">Paramètres de l\'Éditeur</string>
-	<string name="settings_editor_description">Quelques paramètres de l\'éditeur de code</string>
-	<string name="settings_editor_theme_title">Thème de l\'éditeur de code</string>
-	<string name="settings_editor_theme_description">Changer le thème de l\'éditeur de code</string>
+	<string name="settings_code_editor_title">Paramètres de l\'Éditeur</string>
+	<string name="settings_code_editor_description">Quelques paramètres de l\'éditeur de code</string>
+	<string name="settings_code_editor_theme_title">Thème de l\'éditeur de code</string>
+	<string name="settings_code_editor_theme_description">Changer le thème de l\'éditeur de code</string>
+	<string name="settings_code_editor_word_wrap_title">Word Wrap</string>
+	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
 	<string name="settings_about_title">À-propos</string>
 	<string name="settings_about_description">Tout sur Robok Engine</string>
 	<string name="settings_libraries_title">Libraries</string>
 	<string name="settings_libraries_description">All the libraries we use in the application.</string>
+	<string name="settings_formatting_title">Formatting</string>
+	<string name="settings_appearance_title">Appearance</string>
+	<string name="settings_general_title">General</string>
 	<!-- end section -->
 	
 	<!-- texts section -->

@@ -20,7 +20,7 @@ import org.gampiot.robok.feature.res.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsEditorScreen(
+fun SettingsCodeEditorScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
@@ -51,7 +51,7 @@ fun SettingsEditorScreen(
         verticalArrangement = Arrangement.spacedBy(8.dp),
         topBar = {
             TopBar(
-                barTitle = stringResource(id = Strings.settings_editor_title),
+                barTitle = stringResource(id = Strings.settings_code_editor_title),
                 scrollBehavior = it,
                 onClickBackButton = {
                     navController.popBackStack()
@@ -62,8 +62,8 @@ fun SettingsEditorScreen(
             Column(modifier = Modifier) {
                 Title(title = stringResource(id = Strings.settings_appearance_title))
                 PreferenceItemChoice(
-                    label = stringResource(id = Strings.settings_editor_title),
-                    title = stringResource(id = Strings.settings_editor_title),
+                    label = stringResource(id = Strings.settings_code_editor_theme_title),
+                    title = stringResource(id = Strings.settings_code_editor_theme_description),
                     pref = editorTheme,
                     options = editorThemes,
                     excludedOptions = emptyList(),
@@ -73,6 +73,16 @@ fun SettingsEditorScreen(
                     onPrefChange = { newTheme ->
                         appPrefsViewModel.changeEditorTheme(newTheme)
                     }
+                )
+                Title(title = stringResource(id = Strings.settings_formatting_title))
+                PreferenceItem (
+                     title = stringResource(id = Strings.settings_code_editor_word_wrap_title),
+                     description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
+                     showToggle = true,
+                     isChecked = editorIsUseWordWrap,
+                     onClick = {
+                          appPrefsViewModel.enableEditorWordWrap(!it)
+                     }
                 )
             }
         }

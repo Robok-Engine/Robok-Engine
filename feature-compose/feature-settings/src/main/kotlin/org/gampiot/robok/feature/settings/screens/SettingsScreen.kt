@@ -35,12 +35,12 @@ fun SettingsScreen(
         },
         content = {
             Column(modifier = Modifier) {
-                Title(title = stringResource(id = Strings.settings_appearance_title))
+                Title(title = stringResource(id = Strings.settings_general_title))
                 PreferenceItem(
-                    title = stringResource(id = Strings.settings_editor_title),
-                    description = stringResource(id = Strings.settings_editor_description),
+                    title = stringResource(id = Strings.settings_code_editor_title),
+                    description = stringResource(id = Strings.settings_code_editor_description),
                     onClick = {
-                        navController.navigate("settings/editor")
+                        navController.navigate("settings/codeeditor")
                     }
                 )
                 Title(title = stringResource(id = Strings.settings_about_title))
