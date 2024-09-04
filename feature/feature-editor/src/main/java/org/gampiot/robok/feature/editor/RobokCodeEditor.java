@@ -14,7 +14,6 @@ import androidx.annotation.Nullable;
 
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
-import io.github.rosemoe.sora.langs.java.JavaLanguage;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
@@ -39,12 +38,13 @@ import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.gampiot.robok.feature.editor.symbol.RobokSymbolInput;
 import org.gampiot.robok.feature.editor.schemes.*;
+import org.gampiot.robok.feature.editor.languages.java.*;
 
 import java.lang.CharSequence;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
-     public final DiagnosticsContainer diagnostics; // popup/box of Diagnostic
+     public DiagnosticsContainer diagnostics; // popup/box of Diagnostic
     
      public Context context; // Global context
     
@@ -54,10 +54,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
      
      private final LayoutCodeEditorBinding binding;
+    
+     private JavaLanguage language; // Configuration of JavaLanguage
      
-     public final static String TAG = "RobokCodeEditor";
-     
-     
+     public final static String TAG = "RobokCodeEditor"; 
+    
      /*
      * Default constructor.
      */
@@ -79,17 +80,21 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
           configureEditor();
           configureSymbolView(DEFAULT_SYMBOL_VIEW);
-          configureDiagnostic();
      }
      
      /*
      * This method sets the editor's initial text, font, language...
      */
      private void configureEditor() {
+          //Diagnostics
+          diagnostics = new DiagnosticsContainer();
+          language = new JavaLanguage(this, diagnostics);
+          language.setEditorListener(editorListener);
+          language.setDiagnosticListener(diagnosticListener);
           binding.editor.setText(BASE_MESSAGE);
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
-          binding.editor.setEditorLanguage(new JavaLanguage());
+          binding.editor.setEditorLanguage(language);
           binding.editor.setWordwrap(false);
           binding.editor.getProps().symbolPairAutoCompletion = true;
           binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
@@ -97,24 +102,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      }
      
      /*
-     * Method to configure diagnostics.
-     * add a "listener" for when the text is changed. 
-     * and when it is changed, checkForPossibleErrors is called.
-     */
-     private void configureDiagnostic () {
-          binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-               var inputText = binding.editor.getText().toString(); 
-               editorListener.onEditorTextChange();
-               checkForPossibleErrors(inputText);
-          });
-     }
-    
-     /*
      * Method to define a symbol view.
      * is already included in the editor, but you can remove it.
      */
      public void configureSymbolView (RobokSymbolInput robokSymbolInput) {
-          robokSymbolInput.bindEditor(getCodeEditor());
+          robokSymbolInput.bindEditor(getSoraCodeEditor());
           robokSymbolInput.addSymbols(
                new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
                new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
@@ -247,7 +239,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to directly work with the editor (sora)
      * @return Returns current *io.github.rosemoe.sora.widget.CodeEditor* instance
      */
-     public CodeEditor getCodeEditor() {
+     public CodeEditor getSoraCodeEditor() {
           return binding.editor;
      }
      
