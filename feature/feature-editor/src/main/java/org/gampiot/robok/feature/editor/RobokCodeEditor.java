@@ -44,7 +44,7 @@ import java.lang.CharSequence;
 
 public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
 
-     public final DiagnosticsContainer diagnostics; // popup/box of Diagnostic
+     public DiagnosticsContainer diagnostics; // popup/box of Diagnostic
     
      public Context context; // Global context
     
