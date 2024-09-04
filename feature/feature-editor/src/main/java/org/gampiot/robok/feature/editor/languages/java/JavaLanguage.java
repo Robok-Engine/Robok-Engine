@@ -96,11 +96,12 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
      private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
      private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
-
+     private final static JavaQuoteHandler JAVA_QUOTE_HANDLER = new JavaQuoteHandler();
+     
      private IdentifierAutoComplete identifierAutoComplete;
-     private final JavaIncrementalAnalyzeManager javaAnalyzeManager;
-     private final JavaQuoteHandler javaQuoteHandler = new JavaQuoteHandler();
-     private final Diagnostics diagnostics;
+     private JavaIncrementalAnalyzeManager javaAnalyzeManager;
+     private Diagnostics diagnostics;
+     private EditorListener editorListener;
      private static String log = "";
      private static HashMap<String, Variable> variablesMap;
      private static HashMap<String, Method> methodsMap;
@@ -116,8 +117,8 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
     
      private static String inputText = "";
     
-     public JavaLanguage(CodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
-          init(editor, diagnosticContainer);
+     public JavaLanguage(RobokCodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
+          init(editor, diagnosticsContainer);
      }
      
      private void init(RobokCodeEditor editor, DiagnosticsContainer diagnosticsContainer) {

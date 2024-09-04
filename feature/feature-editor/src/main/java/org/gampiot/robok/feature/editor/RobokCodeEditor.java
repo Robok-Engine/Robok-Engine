@@ -55,7 +55,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      
      private final LayoutCodeEditorBinding binding;
     
-     private final JavaLanguage language; // Configuration of JavaLanguage
+     private JavaLanguage language; // Configuration of JavaLanguage
      
      public final static String TAG = "RobokCodeEditor"; 
     
