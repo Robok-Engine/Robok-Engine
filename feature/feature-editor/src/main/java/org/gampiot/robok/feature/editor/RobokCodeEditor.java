@@ -266,6 +266,20 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      }
      
      /*
+     * Method to get if can redo
+     */
+     public boolean isCanRedo() {
+          return getSoraEditor().canRedo();
+     }
+     
+     /*
+     * Method to get if can undo
+     */
+     public boolean isCanUndo() {
+          return getSoraEditor().canUndo();
+     }
+     
+     /*
      * This method is used to notify the editor that a new error dialigost has been received.
      * @param line an integer corresponding to the error line
      * @param positionStart corresponds to the first character of the error code.

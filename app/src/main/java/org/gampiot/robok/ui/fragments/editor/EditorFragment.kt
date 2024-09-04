@@ -197,11 +197,20 @@ class EditorFragment() : RobokFragment() {
 
         binding.undo.setOnClickListener {
             binding.codeEditor.undo()
+            updateUndoRedo()
         }
         binding.redo.setOnClickListener {
             binding.codeEditor.redo()
+            updateUndoRedo()
         }
         handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
+    }
+    
+    fun updateUndoRedo() {
+        if (binding.redo != null) {
+            binding.redo.setEnable(binding.editor.isCanRedo())
+            binding.undo.setEnable(binding.editor.isCanUndo())
+        }
     }
 
     override fun onDestroyView() {
