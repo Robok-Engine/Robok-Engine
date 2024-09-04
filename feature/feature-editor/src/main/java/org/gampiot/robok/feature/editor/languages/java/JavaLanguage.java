@@ -75,11 +75,7 @@ import java.util.regex.Pattern;
 import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 
-import com.example.compiler2.Java8BaseListener;
-import com.example.compiler2.Java8ErrorListener;
-import com.example.compiler2.Java8Lexer;
-import com.example.compiler2.Java8Parser;
-import com.example.soraeditortest.SrcCodeEditor;
+import robok.diagnostic.logic.*;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
