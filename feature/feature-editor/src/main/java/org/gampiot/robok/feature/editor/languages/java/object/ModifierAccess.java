@@ -8,7 +8,7 @@ public enum ModifierAccess {
     
      private String s;
      
-     public ModifierAccess(String s){
+     ModifierAccess(String s){
           this.s = s;
      }
     
