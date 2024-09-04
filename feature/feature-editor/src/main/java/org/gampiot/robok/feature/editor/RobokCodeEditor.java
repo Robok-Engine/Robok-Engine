@@ -55,7 +55,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      
      private final LayoutCodeEditorBinding binding;
     
-     private JavaLanguage language;
+     private final JavaLanguage language; // Configuration of JavaLanguage
      
      public final static String TAG = "RobokCodeEditor"; 
     
@@ -80,7 +80,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           DEFAULT_SYMBOL_VIEW = binding.robokSymbolInput;
           configureEditor();
           configureSymbolView(DEFAULT_SYMBOL_VIEW);
-          configureDiagnostic();
      }
      
      /*
@@ -89,7 +88,9 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      private void configureEditor() {
           //Diagnostics
           diagnostics = new DiagnosticsContainer();
-          language = new JavaLanguage(binding.editor, this, diagnostics, editorListener);
+          language = new JavaLanguage(this, diagnostics);
+          language.setEditorListener(editorListener);
+          language.setDiagnosticListener(diagnosticListener);
           binding.editor.setText(BASE_MESSAGE);
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
@@ -105,7 +106,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * is already included in the editor, but you can remove it.
      */
      public void configureSymbolView (RobokSymbolInput robokSymbolInput) {
-          robokSymbolInput.bindEditor(getCodeEditor());
+          robokSymbolInput.bindEditor(getSoraCodeEditor());
           robokSymbolInput.addSymbols(
                new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
                new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
@@ -238,7 +239,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to directly work with the editor (sora)
      * @return Returns current *io.github.rosemoe.sora.widget.CodeEditor* instance
      */
-     public CodeEditor getCodeEditor() {
+     public CodeEditor getSoraCodeEditor() {
           return binding.editor;
      }
      

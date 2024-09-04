@@ -72,6 +72,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.gampiot.robok.feature.editor.RobokCodeEditor;
 import org.gampiot.robok.feature.editor.EditorListener;
 import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
@@ -99,32 +100,32 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      private IdentifierAutoComplete identifierAutoComplete;
      private final JavaIncrementalAnalyzeManager javaAnalyzeManager;
      private final JavaQuoteHandler javaQuoteHandler = new JavaQuoteHandler();
-     private final Diagnostic diagnostics;
+     private final Diagnostics diagnostics;
      private static String log = "";
      private static HashMap<String, Variable> variablesMap;
      private static HashMap<String, Method> methodsMap;
      
-     //Code Editor
+     // Code Editor 
      private CodeEditor editor;
      
-     //cursor
-     private int cursorIndex;
+     // Cursor
+     private final int cursorIndex;
     
-     //String do metodo editando
+     // Method string editing
      private static String currentMethod = null;
     
-     public static String inputText = "";
+     private static String inputText = "";
     
      public JavaLanguage(CodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
           init(editor, diagnosticContainer);
      }
      
-     private void init(CodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
+     private void init(RobokCodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
           identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
           javaAnalyzeManager = new JavaIncrementalAnalyzeManager();
           variablesMap = new HashMap<>();
           methodsMap = new HashMap<>();
-          this.editor = editor;
+          this.editor = editor.getSoraCodeEditor();
           subscribeEventEditor();
           diagnostics = new JavaLanguage.Diagnostics();
           
@@ -140,6 +141,10 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      
      public static HashMap<String, Variable> getVariables() {
           return variablesMap;
+     }
+     
+     public static String getInputText() {
+          return inputText;
      }
      
      public void setEditorListener(EditorListener value) { 
