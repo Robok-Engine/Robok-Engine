@@ -131,7 +131,7 @@ public class JavaLanguage implements Language, EditorListener {
           this.editor = editor;
           subscribeEventEditor();
           diagnostics = new JavaLanguage.Diagnostics();
-          if (editorListener != null)
+          if (editorListener != null) {
                this.editorListener = editorListener;
           } else {
                this.editorListener = this;
@@ -152,135 +152,108 @@ public class JavaLanguage implements Language, EditorListener {
           });
      }
     
-    private Runnable runnable;
-    Handler handler = new Handler(Looper.getMainLooper());
-    private void start() {
-          runnable = new Runnable() {
-               @Override
-               public void run() {
-                    if (diagnostics.onSucess) {
-                         diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
-                    }
-                    handler.postDelayed(this, 1000);
-               }
-          };
-          handler.postDelayed(runnable, 15);
-    }
+     private Runnable runnable;
+     Handler handler = new Handler(Looper.getMainLooper());
+     private void start() {
+           runnable = new Runnable() {
+                @Override
+                public void run() {
+                     if (diagnostics.onSucess) {
+                          diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
+                     }
+                     handler.postDelayed(this, 1000);
+                }
+           };
+           handler.postDelayed(runnable, 15);
+     }
 
-    @NonNull
-    @Override
-    public AnalyzeManager getAnalyzeManager() {
-        return manager;
-    }
+     @NonNull
+     @Override
+     public AnalyzeManager getAnalyzeManager() {
+          return manager;
+     }
 
-    @Nullable
-    @Override
-    public QuickQuoteHandler getQuickQuoteHandler() {
-        return javaQuoteHandler;
-    }
+     @Nullable
+     @Override
+     public QuickQuoteHandler getQuickQuoteHandler() {
+          return javaQuoteHandler;
+     }
 
-    @Override
-    public void destroy() {
-        identifierAutoComplete = null;
-    }
+     @Override
+     public void destroy() {
+          identifierAutoComplete = null;
+     }
+ 
+     @Override
+     public int getInterruptionLevel() {
+          return INTERRUPTION_LEVEL_STRONG;
+     }
 
-    @Override
-    public int getInterruptionLevel() {
-        return INTERRUPTION_LEVEL_STRONG;
-    }
+     @Override
+     public void requireAutoComplete(
+         @NonNull ContentReference content, 
+         @NonNull CharPosition position,
+         @NonNull CompletionPublisher publisher, 
+         @NonNull Bundle extraArguments
+     ) {
+         /*
+           prefix: contains the text of the current line in parts, String type
+           content: contains the text of all lines, appears to be a StringBuilder
+           position: contains the positions of the character, line, column, index, type CharPosition
+         */
 
-    @Override
-    public void requireAutoComplete(@NonNull ContentReference content, @NonNull CharPosition position,
-                                    @NonNull CompletionPublisher publisher, @NonNull Bundle extraArguments) {
+         var prefix = CompletionHelper.computePrefix(
+               content, 
+               position, 
+               MyCharacter::isJavaIdentifierPart
+         );
+         final var idt = manager.identifiers;
 
-        /*prefix: contém o texto da linha atual em partes, tipo String
-          content: contém o texto de todas as linhas, parece ser um StringBuilder
-          position: contém as posições do caractere, linha, coluna, index, tipo CharPosition
-        */
+         int lineIndex = position.getLine(); // get the index of the current line from the position
+         String currentLine = content.getLine(lineIndex).toString(); // get the line content
 
-        var prefix =
-                CompletionHelper.computePrefix(
-                        content, position, MyCharacter::isJavaIdentifierPart);
-        final var idt = manager.identifiers;
-
-        // Nova variável para armazenar a linha inteira onde o cursor está localizado
-        int lineIndex = position.getLine(); // obtém o índice da linha atual a partir da posição
-        String currentLine = content.getLine(lineIndex).toString(); // obtém o conteúdo da linha
-
-        // Agora você tem duas variáveis:
-        // 'prefix' contém a palavra que termina no cursor
-        // 'currentLine' contém todo o conteúdo da linha onde o cursor está localizado
-        cursorIndex = position.getIndex(); // índice do cursor no texto completo
+         // Now you have two variables:
+         // 'prefix' contains the word ending at the cursor
+         // 'currentLine' contains the entire contents of the line where the cursor is located
+         cursorIndex = position.getIndex(); // full text cursor index
         
-        inputText = content.toString(); //Gets the text from the editor
-        //  log = inputText;          
-        
-        //log = methods.toString();
+         inputText = content.toString(); //Gets the text from the editor
                         
-        if (idt != null) {
-            //Variables : hashmap de variaveis
-            //CurrentIndex: index do cursor
-            //CurrentMethod: nome do metodo one es esta editando
-           identifierAutoComplete.setVariables(variables);
-           identifierAutoComplete.setMethods(methods);
-           identifierAutoComplete.requireAutoComplete(content, currentLine, position,prefix, publisher, idt, currentMethod);
-            
-        }
-            //Toast.makeText(SrcCodeEditor.context, "test ", Toast.LENGTH_LONG).show();
-      /*  List<CompletionItem> result = new ArrayList<>();
-        for(Method method : methods.values()){
-            
-            //Method method = methods.get(title);
-          //  String[] parts = title.split(":");
-            
-            
-        result.add(new SimpleCompletionItem(method.getName(), method.getReturnType(), 2, "test")
-                            .kind(CompletionItemKind.Color));
-        }*/
-        /*
-        List<CompletionItem> result = new ArrayList<>();
-        result.add(new SimpleCompletionItem("a " + currentMethod, "keyword", 2, "test")
-                            .kind(CompletionItemKind.Variable));*/
-        /*result.add(new SimpleCompletionItem("String", "class", 2, "Stringg")
-                            .kind(CompletionItemKind.Class));
-        result.add(new SimpleCompletionItem("StringBuilder", "class", 2, "StringBuilder")
-                            .kind(CompletionItemKind.Class));*/
+         if (idt != null) {
+              identifierAutoComplete.setVariables(variables);
+              identifierAutoComplete.setMethods(methods);
+              identifierAutoComplete.requireAutoComplete(content, currentLine, position,prefix, publisher, idt, currentMethod);         
+         }
         
-        //publisher.addItems(result);
-        
-       /* 
-        
-        */
-        if ("fori".startsWith(prefix) && prefix.length() > 0) {
-            publisher.addItem(new SimpleSnippetCompletionItem("fori", "Snippet - For loop on index", new SnippetDescription(prefix.length(), FOR_SNIPPET, true)));
-        }
-        if ("sconst".startsWith(prefix) && prefix.length() > 0) {
-            publisher.addItem(new SimpleSnippetCompletionItem("sconst", "Snippet - Static Constant", new SnippetDescription(prefix.length(), STATIC_CONST_SNIPPET, true)));
-        }
-        if ("clip".startsWith(prefix) && prefix.length() > 0) {
-            publisher.addItem(new SimpleSnippetCompletionItem("clip", "Snippet - Clipboard contents", new SnippetDescription(prefix.length(), CLIPBOARD_SNIPPET, true)));
-        }
-    }
+         if ("fori".startsWith(prefix) && prefix.length() > 0) {
+             publisher.addItem(new SimpleSnippetCompletionItem("fori", "Snippet - For loop on index", new SnippetDescription(prefix.length(), FOR_SNIPPET, true)));
+         }
+         if ("sconst".startsWith(prefix) && prefix.length() > 0) {
+             publisher.addItem(new SimpleSnippetCompletionItem("sconst", "Snippet - Static Constant", new SnippetDescription(prefix.length(), STATIC_CONST_SNIPPET, true)));
+         }
+         if ("clip".startsWith(prefix) && prefix.length() > 0) {
+             publisher.addItem(new SimpleSnippetCompletionItem("clip", "Snippet - Clipboard contents", new SnippetDescription(prefix.length(), CLIPBOARD_SNIPPET, true)));
+         }
+     }
 
-    @Override
-    public int getIndentAdvance(@NonNull ContentReference text, int line, int column) {
-        var content = text.getLine(line).substring(0, column);
-        return getIndentAdvance(content);
-    }
+     @Override
+     public int getIndentAdvance(@NonNull ContentReference text, int line, int column) {
+          var content = text.getLine(line).substring(0, column);
+          return getIndentAdvance(content);
+     }
 
-    private int getIndentAdvance(String content) {
-        
-        JavaTextTokenizer t = new JavaTextTokenizer(content);
-        Tokens token;
-        int advance = 0;
-        while ((token = t.nextToken()) != Tokens.EOF) {
-            if (token == Tokens.LBRACE) {
-                advance++;
-            }
-        }
-        advance = Math.max(0, advance);
-        return advance * 4;
-    }
+     private int getIndentAdvance(String content) {
+          JavaTextTokenizer t = new JavaTextTokenizer(content);
+          Tokens token;
+          int advance = 0;
+          while ((token = t.nextToken()) != Tokens.EOF) {
+                if (token == Tokens.LBRACE) {
+                    advance++;
+                }
+          }
+          advance = Math.max(0, advance);
+          return advance * 4;
+     }
 
     private final NewlineHandler[] newlineHandlers = new NewlineHandler[]{new BraceHandler()};
 
