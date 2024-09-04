@@ -208,10 +208,10 @@ class EditorFragment() : RobokFragment() {
     
     fun updateUndoRedo() {
         binding.redo?.let {
-            it.isEnabled = binding.editor.isCanRedo()
+            it.isEnabled = binding.codeEditor.isCanRedo()
         }
         binding.undo?.let {
-            it.isEnabled = binding.editor.isCanUndo()
+            it.isEnabled = binding.codeEditor.isCanUndo()
         }
     }
 
