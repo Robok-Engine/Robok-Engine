@@ -165,7 +165,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * Method to check if there are any errors in the code with ANTLR 4 Java 8.
      * @param inputText text to be checked, usually the editor code.
      */
-    private void checkForPossibleErrors(String inputText) {
+     private void checkForPossibleErrors(String inputText) {
           diagnostics.reset();
           try {
               // use ANTLR to compile code and return diagnostic 

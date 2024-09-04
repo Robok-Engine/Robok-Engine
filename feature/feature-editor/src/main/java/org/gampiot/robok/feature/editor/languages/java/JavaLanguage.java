@@ -90,19 +90,19 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  *
  * @author Rosemoe
  */
-public class JavaLanguage implements Language, EditorListener {
+public class JavaLanguage implements Language, EditorListener, DiagnosticListener {
 
      private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
      private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
      private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
 
      private IdentifierAutoComplete identifierAutoComplete;
-     private final JavaIncrementalAnalyzeManager manager;
+     private final JavaIncrementalAnalyzeManager javaAnalyzeManager;
      private final JavaQuoteHandler javaQuoteHandler = new JavaQuoteHandler();
-     public static String log = "";
-     public static HashMap<String, Variable> variables;
-     public static HashMap<String, Method> methods;
-     private JavaLanguage.Diagnostics diagnostics;
+     private final Diagnostic diagnostics;
+     private static String log = "";
+     private static HashMap<String, Variable> variablesMap;
+     private static HashMap<String, Method> methodsMap;
      
      //Code Editor
      private CodeEditor editor;
@@ -115,35 +115,66 @@ public class JavaLanguage implements Language, EditorListener {
     
      public static String inputText = "";
     
-     public JavaLanguage(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer) {
-          init(editor, diagnosticListener, diagnosticContainer, null);
+     public JavaLanguage(CodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
+          init(editor, diagnosticContainer);
      }
      
-     public JavaLanguage(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer, EditorListener editorListener) {
-          init(editor, diagnosticListener, diagnosticContainer, editorListener);
-     }
-     
-     private void init(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer, EditorListener editorListener) {
+     private void init(CodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
           identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
-          manager = new JavaIncrementalAnalyzeManager();
-          variables = new HashMap<>();
-          methods = new HashMap<>();
+          javaAnalyzeManager = new JavaIncrementalAnalyzeManager();
+          variablesMap = new HashMap<>();
+          methodsMap = new HashMap<>();
           this.editor = editor;
           subscribeEventEditor();
           diagnostics = new JavaLanguage.Diagnostics();
-          if (editorListener != null) {
-               this.editorListener = editorListener;
-          } else {
-               this.editorListener = this;
-          }
-        
-          diagnostics.diagnosticListener = diagnosticListener;
+          
+          editorListener = this:
+          
+          diagnostics.diagnosticListener = this;
           diagnostics.diagnostics = diagnosticsContainer;
           start();
      }
      
+     public static HashMap<String, Method> getMethods() {
+          return methodsMap;
+     }
+     
+     public static HashMap<String, Variable> getVariables() {
+          return variablesMap;
+     }
+     
+     public void setEditorListener(EditorListener value) { 
+          editorListener = value;
+     }
+     
+     public void setDiagnosticListener(DiagnosticListener value) { 
+          diagnosticListener = value;
+     }
+     
+     /*
+     * This method is used to notify the editor that a new error dialigost has been received.
+     * @param line an integer corresponding to the error line
+     * @param positionStart corresponds to the first character of the error code.
+     * @param positionEnd corresponds to the end character of the error code.
+     * @param msg a message about the error to the user.
+     */
      @Override
-     public void onEditorTextChange() { /* nothing happened */ }
+     public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
+          onDiagnosticStatusReceive(true);
+     }
+     
+     /*
+     * This method is called when some diagnostic status is received. 
+     * @param isError: returns whether it is an error or not.
+     */
+     @Override
+     public void onDiagnosticStatusReceive(boolean isError) { }
+     
+     /*
+     * This method is called whenever the editor text is changed.
+     */
+     @Override 
+     public void onEditorTextChange () { }
     
      private void subscribeEventEditor(){
           editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
@@ -158,7 +189,7 @@ public class JavaLanguage implements Language, EditorListener {
            runnable = new Runnable() {
                 @Override
                 public void run() {
-                     if (diagnostics.onSucess) {
+                     if (diagnostics.onSuccess) {
                           diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
                      }
                      handler.postDelayed(this, 1000);
@@ -170,7 +201,7 @@ public class JavaLanguage implements Language, EditorListener {
      @NonNull
      @Override
      public AnalyzeManager getAnalyzeManager() {
-          return manager;
+          return javaAnalyzeManager;
      }
 
      @Nullable
@@ -207,12 +238,12 @@ public class JavaLanguage implements Language, EditorListener {
                position, 
                MyCharacter::isJavaIdentifierPart
          );
-         final var idt = manager.identifiers;
+         final var idt = javaAnalyzeManager.identifiers;
 
          int lineIndex = position.getLine(); // get the index of the current line from the position
          String currentLine = content.getLine(lineIndex).toString(); // get the line content
 
-         // Now you have two variables:
+         // Now you have two variablesMap:
          // 'prefix' contains the word ending at the cursor
          // 'currentLine' contains the entire contents of the line where the cursor is located
          cursorIndex = position.getIndex(); // full text cursor index
@@ -220,8 +251,8 @@ public class JavaLanguage implements Language, EditorListener {
          inputText = content.toString(); //Gets the text from the editor
                         
          if (idt != null) {
-              identifierAutoComplete.setVariables(variables);
-              identifierAutoComplete.setMethods(methods);
+              identifierAutoComplete.setVariables(variablesMap);
+              identifierAutoComplete.setMethods(methodsMap);
               identifierAutoComplete.requireAutoComplete(content, currentLine, position,prefix, publisher, idt, currentMethod);         
          }
         
@@ -255,314 +286,259 @@ public class JavaLanguage implements Language, EditorListener {
           return advance * 4;
      }
 
-    private final NewlineHandler[] newlineHandlers = new NewlineHandler[]{new BraceHandler()};
+     private final NewlineHandler[] newlineHandlers = new NewlineHandler[]{new BraceHandler()};
 
-    @Override
-    public boolean useTab() {
-        return false;
-    }
+     @Override
+     public boolean useTab() {
+          return false;
+     }
 
-    @NonNull
-    @Override
-    public Formatter getFormatter() {
-        return EmptyLanguage.EmptyFormatter.INSTANCE;
-    }
+     @NonNull
+     @Override
+     public Formatter getFormatter() {
+          return EmptyLanguage.EmptyFormatter.INSTANCE;
+     }
 
-    @Override
-    public SymbolPairMatch getSymbolPairs() {
-        return new SymbolPairMatch.DefaultSymbolPairs();
-    }
+     @Override
+     public SymbolPairMatch getSymbolPairs() {
+          return new SymbolPairMatch.DefaultSymbolPairs();
+     }
 
-    @Override
-    public NewlineHandler[] getNewlineHandlers() {
-        return newlineHandlers;
-    }
+     @Override
+     public NewlineHandler[] getNewlineHandlers() {
+          return newlineHandlers;
+     }
 
-    private static String getNonEmptyTextBefore(CharSequence text, int index, int length) {
-        while (index > 0 && isWhitespace(text.charAt(index - 1))) {
-            index--;
-        }
-        return text.subSequence(Math.max(0, index - length), index).toString();
-    }
+     private static String getNonEmptyTextBefore(CharSequence text, int index, int length) {
+          while (index > 0 && isWhitespace(text.charAt(index - 1))) {
+              index--;
+          }
+          return text.subSequence(Math.max(0, index - length), index).toString();
+     }
 
-    private static String getNonEmptyTextAfter(CharSequence text, int index, int length) {
-        while (index < text.length() && isWhitespace(text.charAt(index))) {
-            index++;
-        }
-        return text.subSequence(index, Math.min(index + length, text.length())).toString();
-    }
+     private static String getNonEmptyTextAfter(CharSequence text, int index, int length) {
+          while (index < text.length() && isWhitespace(text.charAt(index))) {
+              index++;
+          }
+          return text.subSequence(index, Math.min(index + length, text.length())).toString();
+     }
 
-    class BraceHandler implements NewlineHandler {
+     private static class BraceHandler implements NewlineHandler {
 
-        @Override
-        public boolean matchesRequirement(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style) {
-            var line = text.getLine(position.line);
-            return !StylesUtils.checkNoCompletion(style, position) && getNonEmptyTextBefore(line, position.column, 1).equals("{") &&
-                    getNonEmptyTextAfter(line, position.column, 1).equals("}");
-        }
+          @Override
+          public boolean matchesRequirement(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style) {
+               var line = text.getLine(position.line);
+               return !StylesUtils.checkNoCompletion(style, position) && getNonEmptyTextBefore(line, position.column, 1).equals("{") &&
+                       getNonEmptyTextAfter(line, position.column, 1).equals("}");
+          }
 
-        @NonNull
-        @Override
-        public NewlineHandleResult handleNewline(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style, int tabSize) {
-            var line = text.getLine(position.line);
-            int index = position.column;
-            var beforeText = line.subSequence(0, index).toString();
-            var afterText = line.subSequence(index, line.length()).toString();
-            return handleNewline(beforeText, afterText, tabSize);
-        }
+          @NonNull
+          @Override
+          public NewlineHandleResult handleNewline(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style, int tabSize) {
+               var line = text.getLine(position.line);
+               int index = position.column;
+               var beforeText = line.subSequence(0, index).toString();
+               var afterText = line.subSequence(index, line.length()).toString();
+               return handleNewline(beforeText, afterText, tabSize);
+          }
 
-        @NonNull
-        public NewlineHandleResult handleNewline(String beforeText, String afterText, int tabSize) {
-            int count = TextUtils.countLeadingSpaceCount(beforeText, tabSize);
-            int advanceBefore = getIndentAdvance(beforeText);
-            int advanceAfter = getIndentAdvance(afterText);
-            String text;
-            StringBuilder sb = new StringBuilder("\n")
-                    .append(TextUtils.createIndent(count + advanceBefore, tabSize, useTab()))
-                    .append('\n')
-                    .append(text = TextUtils.createIndent(count + advanceAfter, tabSize, useTab()));
-            int shiftLeft = text.length() + 1;
-            return new NewlineHandleResult(sb, shiftLeft);
-        }
-    }
+          @NonNull
+          public NewlineHandleResult handleNewline(String beforeText, String afterText, int tabSize) {
+               int count = TextUtils.countLeadingSpaceCount(beforeText, tabSize);
+               int advanceBefore = getIndentAdvance(beforeText);
+               int advanceAfter = getIndentAdvance(afterText);
+               String text;
+               StringBuilder sb = new StringBuilder("\n")
+                      .append(TextUtils.createIndent(count + advanceBefore, tabSize, useTab()))
+                      .append('\n')
+                      .append(text = TextUtils.createIndent(count + advanceAfter, tabSize, useTab()));
+               int shiftLeft = text.length() + 1;
+               return new NewlineHandleResult(sb, shiftLeft);
+          }
+     }
 
     
-    private boolean codeIsVariable(String line) {
-        Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
-        Matcher matcher = pattern.matcher(line);
-        return matcher.matches();
-    }
+     private boolean codeIsVariable(String line) {
+          Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+          Matcher matcher = pattern.matcher(line);
+          return matcher.matches();
+     }
 
     private void extractDataVariable(String line) {
-        Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
-        Matcher matcher = pattern.matcher(line);
+          Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+          Matcher matcher = pattern.matcher(line);
 
-        if (matcher.find()) {
-            String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
+          if (matcher.find()) {
+               String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
 
-            // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
-            String type = matcher.group(2);
-            String name = matcher.group(3);
-            String value = matcher.group(4);
-            
-           // variablesTypes.put(name, type);
-        }
+               // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
+              String type = matcher.group(2);
+              String name = matcher.group(3);
+              String value = matcher.group(4);
+          }
     }
-
-  public static class JavaListener extends Java8BaseListener {
+    
+    public static class JavaListener extends Java8BaseListener {
         
-        private int cursorIndex;
+         private int cursorIndex;
         
-        public JavaListener(int positionIndex){
-            this.cursorIndex = positionIndex;
-            JavaLanguage.currentMethod = null;
-            variables.clear();
-            methods.clear();
-            
-          //  log = "";
-        }
+         public JavaListener(int positionIndex){
+              this.cursorIndex = positionIndex;
+              JavaLanguage.currentMethod = null;
+              variablesMap.clear();
+              methodsMap.clear();
+         }
         
+         @Override
+         public void enterMethodDeclaration(Java8Parser.MethodDeclarationContext ctx) {
+              if (ctx.start.getStartIndex() <= cursorIndex && ctx.stop.getStopIndex() >= cursorIndex) {
+                   JavaLanguage.currentMethod = ctx.methodHeader().methodDeclarator().Identifier().getText();
+              }
+              // Capturing the access modifier
+              List<Java8Parser.MethodModifierContext> accessModifiers = null;// Presume 'default' se nenhum modificador estiver presente
+              if (ctx.methodModifier() != null && !ctx.methodModifier().isEmpty()) {
+                    accessModifiers = ctx.methodModifier();
+              }
+              String returnType = ctx.methodHeader().result().getText();  // Capturing the method return type
+              String methodName = ctx.methodHeader().methodDeclarator().Identifier().getText(); // Capturing the method name
+              
+              // Capturando os parâmetros do método
+              List<String> parameters = new ArrayList<>();
+              if (ctx.methodHeader().methodDeclarator().formalParameterList() != null) {
+                    Java8Parser.FormalParameterListContext paramListCtx = ctx.methodHeader().methodDeclarator().formalParameterList();
+                    if (paramListCtx.formalParameters() != null) {
+                          for (Java8Parser.FormalParameterContext paramCtx : paramListCtx.formalParameters().formalParameter()) {
+                                String paramType = paramCtx.unannType().getText();
+                                String paramName = paramCtx.variableDeclaratorId().getText();
+                                parameters.add(paramType + " " + paramName);
+                          }
+                    }
+                    // Capturing the last parameter (can be VarArgs or a normal parameter)
+                    if (paramListCtx.lastFormalParameter() != null) {
+                          if (paramListCtx.lastFormalParameter().formalParameter() != null) {
+                               // Parâmetro normal final
+                               Java8Parser.FormalParameterContext lastParamCtx = paramListCtx.lastFormalParameter().formalParameter();
+                               String paramType = lastParamCtx.unannType().getText();
+                               String paramName = lastParamCtx.variableDeclaratorId().getText();
+                               parameters.add(paramType + " " + paramName);
+                          } else if (paramListCtx.lastFormalParameter().formalParameter().variableDeclaratorId() != null) {
+                                // VarArgs parameter
+                               Java8Parser.LastFormalParameterContext varArgsCtx = paramListCtx.lastFormalParameter();
+                               String paramType = varArgsCtx.unannType().getText() + "...";
+                               String paramName = varArgsCtx.variableDeclaratorId().getText();
+                               parameters.add(paramType + " " + paramName);
+                          }
+                    }
+              }
+              Method method = new Method(accessModifiers, returnType, methodName, parameters);
+              methodsMap.put(methodName, method);
+         }  
+         @Override
+         public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationContext ctx) {
+              String type = ctx.unannType().getText();
+              ModifiersAcess accessModifier = null;
+              String initialValue = null;
+              String enclosingMethod = null; // Adds the variable to store the enclosing method or block
+              if (ctx.variableModifier() != null && !ctx.variableModifier().isEmpty()) {
+                    String modify = ctx.variableModifier(0).getText();
+                    accessModifier = mapToModifierAccess(modify);
+              }
+              // Capturing the variable name and initial value
+              for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
+                    String variableName = varCtx.variableDeclaratorId().getText();
+                    if (varCtx.variableInitializer() != null) {
+                         initialValue = varCtx.variableInitializer().getText();
+                    }
+                    // Determining the method or code block where the variable is declared
+                    ParserRuleContext parentCtx = ctx.getParent();
+                    while (parentCtx != null) {
+                          if (parentCtx instanceof Java8Parser.MethodDeclarationContext) {
+                               Java8Parser.MethodDeclarationContext methodCtx = (Java8Parser.MethodDeclarationContext) parentCtx;
+                               enclosingMethod = methodCtx.methodHeader().methodDeclarator().Identifier().getText(); // Captura o nome do método ou assinatura
+                               break;
+                          }
+                          parentCtx = parentCtx.getParent(); // Sobe um nível na árvore de análise
+                    }
+                    type = enclosingMethod + " : " + type;
+                    // Adding variable information to the variable map, including the enclosing method
+                    variablesMap.put(enclosingMethod + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
+              }
+         }
+         
         @Override
-    public void enterMethodDeclaration(Java8Parser.MethodDeclarationContext ctx) {
-        // Verifica se o cursor está dentro do método
-        if (ctx.start.getStartIndex() <= cursorIndex && ctx.stop.getStopIndex() >= cursorIndex) {
-            JavaLanguage.currentMethod = ctx.methodHeader().methodDeclarator().Identifier().getText();
+        public void enterFieldDeclaration(Java8Parser.FieldDeclarationContext ctx) {
+             String type = ctx.unannType().getText();
+             ModifiersAcess accessModifier = null;
+             String initialValue = null;
+             if (ctx.fieldModifier() != null && !ctx.fieldModifier().isEmpty()) {
+                  String modify = ctx.fieldModifier(0).getText();
+                  accessModifier = mapToModifierAccess(modify);
+             }
+             for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
+                  String variableName = varCtx.variableDeclaratorId().getText();
+                  if (varCtx.variableInitializer() != null) {
+                       initialValue = varCtx.variableInitializer().getText();
+                  }
+                  type = "global" + " : " + type;
+                  variablesMap.put("global" + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
+                  //log += "\n" + "global" + ":" + variableName;
+             }
         }
-            
-        // Capturando o modificador de acesso
-        List<Java8Parser.MethodModifierContext> accessModifiers = null;// Presume 'default' se nenhum modificador estiver presente
-        if (ctx.methodModifier() != null && !ctx.methodModifier().isEmpty()) {
-            accessModifiers = ctx.methodModifier();
-        }
-
-        // Capturando o tipo de retorno do método
-        String returnType = ctx.methodHeader().result().getText();
-
-        // Capturando o nome do método
-        String methodName = ctx.methodHeader().methodDeclarator().Identifier().getText();
-
-        // Capturando os parâmetros do método
-        List<String> parameters = new ArrayList<>();
-        if (ctx.methodHeader().methodDeclarator().formalParameterList() != null) {
-            Java8Parser.FormalParameterListContext paramListCtx = ctx.methodHeader().methodDeclarator().formalParameterList();
-            // Capturando os parâmetros normais
-            if (paramListCtx.formalParameters() != null) {
-                for (Java8Parser.FormalParameterContext paramCtx : paramListCtx.formalParameters().formalParameter()) {
-                    String paramType = paramCtx.unannType().getText();
-                    String paramName = paramCtx.variableDeclaratorId().getText();
-                    parameters.add(paramType + " " + paramName);
-                }
-            }
-            // Capturando o último parâmetro (pode ser varargs ou um parâmetro normal)
-            if (paramListCtx.lastFormalParameter() != null) {
-                if (paramListCtx.lastFormalParameter().formalParameter() != null) {
-                    // Parâmetro normal final
-                    Java8Parser.FormalParameterContext lastParamCtx = paramListCtx.lastFormalParameter().formalParameter();
-                    String paramType = lastParamCtx.unannType().getText();
-                    String paramName = lastParamCtx.variableDeclaratorId().getText();
-                    parameters.add(paramType + " " + paramName);
-                } else if (paramListCtx.lastFormalParameter().formalParameter().variableDeclaratorId() != null) {
-                    // Parâmetro de varargs
-                    Java8Parser.LastFormalParameterContext varArgsCtx = paramListCtx.lastFormalParameter();
-                    String paramType = varArgsCtx.unannType().getText() + "...";
-                    String paramName = varArgsCtx.variableDeclaratorId().getText();
-                    parameters.add(paramType + " " + paramName);
-                }
+        private ModifiersAcess mapToModifierAccess(String text) {
+            switch (text) {
+                case "private":
+                     return ModifiersAcess.PRIVATE;
+                case "public":
+                     return ModifiersAcess.PUBLIC;
+                case "protected":
+                     return ModifiersAcess.PROTECTED;
+                default:
+                     return ModifiersAcess.DEFAULT;
             }
         }
-            
-           // log = parameters.toString();
-            
-            Method method = new Method(accessModifiers, returnType, methodName, parameters);
-            
-            methods.put(methodName, method);
-            
-            log = "ggg";
-            
-    }
-
-   @Override
-public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationContext ctx) {
-    // Capturando o tipo da variável
-    String type = ctx.unannType().getText();
-    ModifiersAcess accessModifier = null;
-    String initialValue = null;
-    String enclosingMethod = null; // Adiciona a variável para armazenar o método ou bloco envolvente
-    
-    // Tentando capturar o modificador de acesso, se existir
-    if (ctx.variableModifier() != null && !ctx.variableModifier().isEmpty()) {
-        String modify = ctx.variableModifier(0).getText();
-                
-        accessModifier = mapToModifierAccess(modify);
-    }
-
-    // Capturando o nome da variável e o valor inicial
-    for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
-        String variableName = varCtx.variableDeclaratorId().getText();
-
-        if (varCtx.variableInitializer() != null) {
-            initialValue = varCtx.variableInitializer().getText();
+        public String getCurrentMethod() {
+             return JavaLanguage.currentMethod;
         }
-
-        // Determinando o método ou bloco de código onde a variável está declarada
-        ParserRuleContext parentCtx = ctx.getParent();
-        while (parentCtx != null) {
-            if (parentCtx instanceof Java8Parser.MethodDeclarationContext) {
-                Java8Parser.MethodDeclarationContext methodCtx = (Java8Parser.MethodDeclarationContext) parentCtx;
-                enclosingMethod = methodCtx.methodHeader().methodDeclarator().Identifier().getText(); // Captura o nome do método ou assinatura
-                break;
-            }
-            parentCtx = parentCtx.getParent(); // Sobe um nível na árvore de análise
-        }
-                type = enclosingMethod + " : " + type;
-        // Adicionando informações da variável ao mapa de variáveis, incluindo o método envolvente
-        variables.put(enclosingMethod + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
-       // log += "\n" + enclosingMethod + ":" + variableName;
-    }
-
-            }
-
-
-        @Override
-    public void enterFieldDeclaration(Java8Parser.FieldDeclarationContext ctx) {
-        // Captura de variáveis de classe
-        String type = ctx.unannType().getText();
-        ModifiersAcess accessModifier = null;
-        String initialValue = null;
-
-        if (ctx.fieldModifier() != null && !ctx.fieldModifier().isEmpty()) {
-            String modify = ctx.fieldModifier(0).getText();
-            accessModifier = mapToModifierAccess(modify);
-        }
-
-        for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
-            String variableName = varCtx.variableDeclaratorId().getText();
-
-            if (varCtx.variableInitializer() != null) {
-                initialValue = varCtx.variableInitializer().getText();
-            }
-                
-                type = "global" + " : " + type;
-
-            variables.put("global" + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
-                //log += "\n" + "global" + ":" + variableName;
+        public void setCurrentMethod(String currentMethod) {
+             JavaLanguage.currentMethod = currentMethod;
         }
     }
-
-    // / Método para mapear texto para o enum ModifierAccess
-    private ModifiersAcess mapToModifierAccess(String text) {
-        switch (text) {
-            case "private":
-                return ModifiersAcess.PRIVATE;
-            case "public":
-                return ModifiersAcess.PUBLIC;
-            case "protected":
-                return ModifiersAcess.PROTECTED;
-            default:
-                return ModifiersAcess.DEFAULT;
-        }
-    }
-
-
-            public String getCurrentMethod() {
-                return JavaLanguage.currentMethod;
-            }
-            public void setCurrentMethod(String currentMethod) {
-                JavaLanguage.currentMethod = currentMethod;
-            }}
-    
-    
+  
     public static class Diagnostics {
         
         public DiagnosticListener diagnosticListener;
-        DiagnosticsContainer diagnostics;
-        public boolean onSucess= true;
-        /*Method used to check if the editor code has errors.
-    If so, the listener will be called.*/
-    //This method must be called every time there is a change in the code.
-    //Esse metodo devera ser chamado toda vez que houver uma modificação no codigo.
-    public void CheckforPossibleErrors(String inputText, int positionIndex) {
-        if(diagnostics != null) diagnostics.reset();
-            
-        Thread th = new Thread(() -> {
-                
-        try {
-    // Código a ser executado na nova thread
-            //Using antlr to compile the code.
-            ANTLRInputStream input = new ANTLRInputStream(inputText);
-            Java8Lexer lexer = new Java8Lexer(input);
-            CommonTokenStream tokens = new CommonTokenStream(lexer);
-            Java8Parser parser = new Java8Parser(tokens);
-            parser.removeErrorListeners();
-            parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
-            Java8ErrorListener roboError = new Java8ErrorListener();
-
-            roboError.getError(diagnosticListener);
-                    
-            parser.addErrorListener(roboError);
-            
-            //parser.compilationUnit();
-            
-            Java8Parser.CompilationUnitContext compilationUnitContext = parser.compilationUnit();
-
-        // Crie e adicione o listener personalizado
-        ParseTreeWalker walker = new ParseTreeWalker();
-        JavaListener compiler = new JavaListener(positionIndex);
-                        
-        walker.walk(compiler, compilationUnitContext);
-            
-           // parser.program(); // Start the analysis from the 'program' rule
-            // Use ParseTreeWalker to navigate the tree and apply checks 
-            //additional if necessary
-        } catch (Exception e) {
-            Log.e("MainActivity", "Error reading file", e);
-        }
+        public DiagnosticsContainer diagnostics;
+        public boolean onSuccess = true;
         
-        });
-        th.setPriority(Thread.MIN_PRIORITY);
-        
-        th.start();
-        
+        /*
+        * Method used to check if the editor code has errors.
+        * If so, the listener will be called.
+        * This method must be called every time there is a change in the code. 
+        */
+        public void CheckforPossibleErrors(String inputText, int positionIndex) {
+             if(diagnostics != null) diagnostics.reset();
+                  Thread th = new Thread(() -> {
+                       try {
+                            ANTLRInputStream input = new ANTLRInputStream(inputText);
+                            Java8Lexer lexer = new Java8Lexer(input);
+                            CommonTokenStream tokens = new CommonTokenStream(lexer);
+                            Java8Parser parser = new Java8Parser(tokens);
+                            parser.removeErrorListeners();
+                            parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+                            Java8ErrorListener rbkError = new Java8ErrorListener();
+                            rbkError.getError(diagnosticListener);
+                            parser.addErrorListener(rbkError);
+                            Java8Parser.CompilationUnitContext compilationUnitContext = parser.compilationUnit();
+                            // Create and add the custom listener
+                            ParseTreeWalker walker = new ParseTreeWalker();
+                            JavaListener compiler = new JavaListener(positionIndex);
+                            walker.walk(compiler, compilationUnitContext);
+                       } catch (Exception e) {
+                            Log.e(TAG, "Error reading file", e);
+                       }
+                  });
+                  th.setPriority(Thread.MIN_PRIORITY);
+                  th.start();
         }
     }
 }
