@@ -110,7 +110,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      private CodeEditor editor;
      
      // Cursor
-     private final int cursorIndex;
+     private int cursorIndex;
     
      // Method string editing
      private static String currentMethod = null;
@@ -153,7 +153,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      }
      
      public void setDiagnosticListener(DiagnosticListener value) { 
-          diagnosticListener = value;
+          diagnostics.diagnosticListener = value;
      }
      
      /*
@@ -212,7 +212,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
      @Nullable
      @Override
      public QuickQuoteHandler getQuickQuoteHandler() {
-          return javaQuoteHandler;
+          return JAVA_QUOTE_HANDLER;
      }
 
      @Override
@@ -383,7 +383,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
           }
     }
     
-    public static class JavaListener extends Java8BaseListener {
+    public class JavaListener extends Java8BaseListener {
         
          private int cursorIndex;
         
