@@ -2,7 +2,7 @@ package org.gampiot.robok.feature.editor.languages.java.models;
 
 import static robok.diagnostic.logic.Java8Parser.MethodModifierContext;
 
-import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
+import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 
 import java.util.List;
 

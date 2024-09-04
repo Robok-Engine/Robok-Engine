@@ -53,8 +53,8 @@ import io.github.rosemoe.sora.text.ContentReference;
 import io.github.rosemoe.sora.text.TextUtils;
 import io.github.rosemoe.sora.util.MutableInt;
 
-import org.gampiot.robok.feature.editor.languages.java.Method;
-import org.gampiot.robok.feature.editor.languages.java.Variable;
+import org.gampiot.robok.feature.editor.languages.java.models.Method;
+import org.gampiot.robok.feature.editor.languages.java.models.Variable;
 
 
 /**

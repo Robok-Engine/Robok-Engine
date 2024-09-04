@@ -1,6 +1,6 @@
 package org.gampiot.robok.feature.editor.languages.java.models;
 
-import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
+import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 
 /*
  * Data class to store variable information.
@@ -11,10 +11,10 @@ public class Variable {
 
      private String type;
      private String name;
-     private ModifiersAcess acessModifier;
+     private ModifierAccess acessModifier;
      private String value;
 
-     public Variable(ModifiersAcess acessModifier, String type, String name, String value) {
+     public Variable(ModifierAccess acessModifier, String type, String name, String value) {
           this.acessModifier = acessModifier;
           this.type = type;
           this.name = name;
@@ -37,11 +37,11 @@ public class Variable {
           this.type = type;
      }
 
-     public ModifiersAcess getAcessModifier() {
+     public ModifierAccess getAcessModifier() {
           return this.acessModifier;
      }
 
-     public void setAcessModifier(ModifiersAcess acessModifier) {
+     public void setAcessModifier(ModifierAccess acessModifier) {
           this.acessModifier = acessModifier;
      }
 

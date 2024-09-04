@@ -74,7 +74,7 @@ import java.util.regex.Pattern;
 
 import org.gampiot.robok.feature.editor.RobokCodeEditor;
 import org.gampiot.robok.feature.editor.EditorListener;
-import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
+import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 
 import robok.diagnostic.logic.*;
@@ -442,7 +442,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
          @Override
          public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationContext ctx) {
               String type = ctx.unannType().getText();
-              ModifiersAcess accessModifier = null;
+              ModifierAccess accessModifier = null;
               String initialValue = null;
               String enclosingMethod = null; // Adds the variable to store the enclosing method or block
               if (ctx.variableModifier() != null && !ctx.variableModifier().isEmpty()) {
@@ -474,7 +474,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
         @Override
         public void enterFieldDeclaration(Java8Parser.FieldDeclarationContext ctx) {
              String type = ctx.unannType().getText();
-             ModifiersAcess accessModifier = null;
+             ModifierAccess accessModifier = null;
              String initialValue = null;
              if (ctx.fieldModifier() != null && !ctx.fieldModifier().isEmpty()) {
                   String modify = ctx.fieldModifier(0).getText();
@@ -490,16 +490,16 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
                   //log += "\n" + "global" + ":" + variableName;
              }
         }
-        private ModifiersAcess mapToModifierAccess(String text) {
+        private ModifierAccess mapToModifierAccess(String text) {
             switch (text) {
                 case "private":
-                     return ModifiersAcess.PRIVATE;
+                     return ModifierAccess.PRIVATE;
                 case "public":
-                     return ModifiersAcess.PUBLIC;
+                     return ModifierAccess.PUBLIC;
                 case "protected":
-                     return ModifiersAcess.PROTECTED;
+                     return ModifierAccess.PROTECTED;
                 default:
-                     return ModifiersAcess.DEFAULT;
+                     return ModifierAccess.DEFAULT;
             }
         }
         public String getCurrentMethod() {
