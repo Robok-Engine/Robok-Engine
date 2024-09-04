@@ -21,7 +21,7 @@
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
-package com.example.soraeditortest.langs.java;
+package org.gampiot.robok.feature.editor.languages.java;
 
 import static io.github.rosemoe.sora.lang.styling.StylesUtils.checkNoCompletion;
 

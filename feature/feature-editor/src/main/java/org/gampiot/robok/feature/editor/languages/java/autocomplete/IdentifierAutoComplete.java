@@ -1,4 +1,4 @@
-package com.example.soraeditortest.autocomplete;
+package org.gampiot.robok.feature.editor.languages.java.autocomplete;
 /*
  *    sora-editor - the awesome code editor for Android
  *    https://github.com/Rosemoe/sora-editor
@@ -22,9 +22,6 @@ package com.example.soraeditortest.autocomplete;
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
-import com.example.soraeditortest.langs.java.Method;
-import com.example.soraeditortest.langs.java.Variable;
-
 import android.os.Build;
 import android.os.Bundle;
 
@@ -38,6 +35,7 @@ import io.github.rosemoe.sora.lang.completion.CompletionItemKind;
 import io.github.rosemoe.sora.lang.completion.SimpleCompletionItem;
 import io.github.rosemoe.sora.lang.completion.CompletionItem;
 import io.github.rosemoe.sora.lang.completion.CompletionPublisher;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -54,6 +52,9 @@ import io.github.rosemoe.sora.text.CharPosition;
 import io.github.rosemoe.sora.text.ContentReference;
 import io.github.rosemoe.sora.text.TextUtils;
 import io.github.rosemoe.sora.util.MutableInt;
+
+import org.gampiot.robok.feature.editor.languages.java.Method;
+import org.gampiot.robok.feature.editor.languages.java.Variable;
 
 
 /**

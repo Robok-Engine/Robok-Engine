@@ -1,4 +1,4 @@
-package com.example.soraeditortest.langs.java.object;
+package org.gampiot.robok.feature.editor.languages.java.object;
 
 public enum ModifiersAcess {
     DEFAULT("default"),

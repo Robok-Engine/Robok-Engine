@@ -1,7 +1,9 @@
-package com.example.soraeditortest.langs.java;
+package org.gampiot.robok.feature.editor.languages.java;
 
 import com.example.compiler2.Java8Parser;
-import com.example.soraeditortest.langs.java.object.ModifiersAcess;
+
+import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
+
 import java.util.List;
 
 /**

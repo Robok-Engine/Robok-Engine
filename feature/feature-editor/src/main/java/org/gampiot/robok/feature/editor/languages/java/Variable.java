@@ -1,6 +1,6 @@
-package com.example.soraeditortest.langs.java;
+package org.gampiot.robok.feature.editor.languages.java;
 
-import com.example.soraeditortest.langs.java.object.ModifiersAcess;
+import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
 
 /**
  * Class Variable Created By ThDev-only This class stores identifiers The process was modified

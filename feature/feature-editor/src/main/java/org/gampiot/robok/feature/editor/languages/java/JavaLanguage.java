@@ -21,22 +21,13 @@
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
-package com.example.soraeditortest.langs.java;
+package org.gampiot.robok.feature.editor.languages.java;
 
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
 import android.widget.Toast;
-import com.example.compiler2.Java8BaseListener;
-import com.example.compiler2.Java8ErrorListener;
-import com.example.compiler2.Java8Lexer;
-import com.example.compiler2.Java8Parser;
-import com.example.soraeditortest.SrcCodeEditor;
-import io.github.rosemoe.sora.event.ContentChangeEvent;
-import io.github.rosemoe.sora.lang.completion.CompletionItem;
-import io.github.rosemoe.sora.lang.completion.CompletionItemKind;
-import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
-import io.github.rosemoe.sora.widget.CodeEditor;
+
 import static java.lang.Character.isWhitespace;
 
 import android.os.Bundle;
@@ -50,7 +41,6 @@ import io.github.rosemoe.sora.lang.QuickQuoteHandler;
 import io.github.rosemoe.sora.lang.analysis.AnalyzeManager;
 import io.github.rosemoe.sora.lang.completion.CompletionHelper;
 import io.github.rosemoe.sora.lang.completion.CompletionPublisher;
-import com.example.soraeditortest.autocomplete.IdentifierAutoComplete;
 import io.github.rosemoe.sora.lang.completion.SimpleSnippetCompletionItem;
 import io.github.rosemoe.sora.lang.completion.SnippetDescription;
 import io.github.rosemoe.sora.lang.completion.snippet.CodeSnippet;
@@ -66,22 +56,37 @@ import io.github.rosemoe.sora.text.ContentReference;
 import io.github.rosemoe.sora.text.TextUtils;
 import io.github.rosemoe.sora.util.MyCharacter;
 import io.github.rosemoe.sora.widget.SymbolPairMatch;
+import io.github.rosemoe.sora.lang.completion.SimpleCompletionItem;
+import io.github.rosemoe.sora.event.ContentChangeEvent;
+import io.github.rosemoe.sora.lang.completion.CompletionItem;
+import io.github.rosemoe.sora.lang.completion.CompletionItemKind;
+import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
+import io.github.rosemoe.sora.widget.CodeEditor;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import io.github.rosemoe.sora.lang.completion.SimpleCompletionItem;
 import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-import com.example.soraeditortest.langs.java.object.ModifiersAcess;
+
+import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
+import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
+
+import com.example.compiler2.Java8BaseListener;
+import com.example.compiler2.Java8ErrorListener;
+import com.example.compiler2.Java8Lexer;
+import com.example.compiler2.Java8Parser;
+import com.example.soraeditortest.SrcCodeEditor;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.atn.PredictionMode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
 /**
  * Java language.
  * Simple implementation.
