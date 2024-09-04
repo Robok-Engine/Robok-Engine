@@ -89,7 +89,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      private void configureEditor() {
           //Diagnostics
           diagnostics = new DiagnosticsContainer();
-          language = new JavaLanguage(binding.editor, errorListener, diagnostics);
+          language = new JavaLanguage(binding.editor, this, diagnostics);
           binding.editor.setText(BASE_MESSAGE);
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
