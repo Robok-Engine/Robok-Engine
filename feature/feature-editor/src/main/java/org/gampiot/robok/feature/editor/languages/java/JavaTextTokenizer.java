@@ -27,6 +27,8 @@ package org.gampiot.robok.feature.editor.languages.java;
 import io.github.rosemoe.sora.util.MyCharacter;
 import io.github.rosemoe.sora.util.TrieTree;
 
+import org.gampiot.robok.feature.editor.languages.java.models.*;
+
 /**
  * @author Rose
  */

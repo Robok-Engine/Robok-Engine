@@ -33,6 +33,8 @@ import io.github.rosemoe.sora.lang.styling.Styles;
 import io.github.rosemoe.sora.text.Content;
 import io.github.rosemoe.sora.text.TextRange;
 
+import org.gampiot.robok.feature.editor.languages.java.models.*;
+
 public class JavaQuoteHandler implements QuickQuoteHandler {
 
     @NonNull

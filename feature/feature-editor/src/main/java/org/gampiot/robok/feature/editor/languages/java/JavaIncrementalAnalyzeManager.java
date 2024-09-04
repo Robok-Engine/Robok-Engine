@@ -43,6 +43,7 @@ import io.github.rosemoe.sora.util.IntPair;
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme;
 
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
+import org.gampiot.robok.feature.editor.languages.java.models.*;
 
 import java.util.List;
 import java.util.Stack;
