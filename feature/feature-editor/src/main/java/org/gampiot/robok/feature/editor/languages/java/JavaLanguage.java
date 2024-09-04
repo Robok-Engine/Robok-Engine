@@ -328,7 +328,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
           return text.subSequence(index, Math.min(index + length, text.length())).toString();
      }
 
-     private static class BraceHandler implements NewlineHandler {
+     private class BraceHandler implements NewlineHandler {
 
           @Override
           public boolean matchesRequirement(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style) {
