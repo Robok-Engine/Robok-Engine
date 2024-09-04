@@ -82,6 +82,10 @@ class SettingsActivity : ComponentActivity() {
                       composable("settings/libraries") {
                            LibrariesScreen(navController)
                       }
+                      
+                      composable("settings/editor") {
+                           SettingsEditorScreen(navController)
+                      }
                  }
             }
         }
