@@ -386,9 +386,9 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
     
     public class JavaListener extends Java8BaseListener {
         
-         private static int cursorIndex = 0;
+         private int cursorIndex = 0;
         
-         public JavaListener(static int positionIndex){
+         public JavaListener(int positionIndex){
               this.cursorIndex = positionIndex;
               JavaLanguage.currentMethod = null;
               variablesMap.clear();
