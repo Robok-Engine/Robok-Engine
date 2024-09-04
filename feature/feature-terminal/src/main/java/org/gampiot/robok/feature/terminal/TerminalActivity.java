@@ -51,7 +51,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           if (getIntent().hasExtra("path")) {
               cwd = getIntent().getStringExtra("path");
           } else {
-              cwd = Environment.getExternalStorageDirectory().getAbsolutePath();
+              cwd = getFilesDir().getAbsolutePath();
           }
           binding.terminalView.setTextSize(28);
           String shell = "/system/bin/sh";
@@ -60,7 +60,7 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
             "HOME=" + getFilesDir().getAbsolutePath(),
             "PUBLIC_HOME="
              + (getExternalFilesDir(null) != null
-             ? getExternalFilesDir(null).getAbsolutePath() : ""),
+             ? getExternalFilesDir(null).getAbsolutePath() : getFilesDir().getAbsolutePath()),
             "SHELL=" + shell,
             "COLORTERM=truecolor",
             "TERM=xterm-256color"
