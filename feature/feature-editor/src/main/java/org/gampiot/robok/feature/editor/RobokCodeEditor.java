@@ -89,7 +89,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      private void configureEditor() {
           //Diagnostics
           diagnostics = new DiagnosticsContainer();
-          language = new JavaLanguage(binding.editor, this, diagnostics);
+          language = new JavaLanguage(binding.editor, this, diagnostics, editorListener);
           binding.editor.setText(BASE_MESSAGE);
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
@@ -100,21 +100,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           applyEditorTheme();
      }
      
-     /*
-     * Method to configure diagnostics.
-     * add a "listener" for when the text is changed. 
-     * and when it is changed, checkForPossibleErrors is called.
-     */
-     private void configureDiagnostic () {
-         /*
-         binding.editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-              var inputText = binding.editor.getText().toString(); 
-              editorListener.onEditorTextChange();
-              checkForPossibleErrors(inputText);
-         });
-         */
-     }
-    
      /*
      * Method to define a symbol view.
      * is already included in the editor, but you can remove it.

@@ -72,6 +72,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.gampiot.robok.feature.editor.EditorListener;
 import org.gampiot.robok.feature.editor.languages.java.object.ModifiersAcess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 
@@ -89,80 +90,82 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  *
  * @author Rosemoe
  */
-public class JavaLanguage implements Language {
+public class JavaLanguage implements Language, EditorListener {
 
-    private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
-    private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
-    private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
+     private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
+     private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
+     private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
 
-    private IdentifierAutoComplete identifierAutoComplete;
-    private final JavaIncrementalAnalyzeManager manager;
-    private final JavaQuoteHandler javaQuoteHandler = new JavaQuoteHandler();
-    public static String log = "";
-    public static HashMap<String, Variable> variables;
-    public static HashMap<String, Method> methods;
-    JavaLanguage.Diagnostics diagnostics;
+     private IdentifierAutoComplete identifierAutoComplete;
+     private final JavaIncrementalAnalyzeManager manager;
+     private final JavaQuoteHandler javaQuoteHandler = new JavaQuoteHandler();
+     public static String log = "";
+     public static HashMap<String, Variable> variables;
+     public static HashMap<String, Method> methods;
+     private JavaLanguage.Diagnostics diagnostics;
+     
+     //Code Editor
+     private CodeEditor editor;
+     
+     //cursor
+     private int cursorIndex;
     
+     //String do metodo editando
+     private static String currentMethod = null;
     
-    //Code Editor
-    private CodeEditor editor;
+     public static String inputText = "";
     
-    //cursor
-    private int cursorIndex;
-    
-    //String do metodo editando
-    private static String currentMethod = null;
-    
-    public static String inputText = "";
-    
-    public JavaLanguage(CodeEditor editor, DiagnosticListener errorListener, DiagnosticsContainer diagnosticsContainer) {
-        identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
-        manager = new JavaIncrementalAnalyzeManager();
-        variables = new HashMap<>();
-        methods = new HashMap<>();
-        this.editor = editor;
-        subscribeEventEditor();
-        diagnostics = new JavaLanguage.Diagnostics();
-        
-        diagnostics.errorListener = errorListener;
-        diagnostics.diagnostics = diagnosticsContainer;
-        start();
-     //   JavaLanguage.variablesTypes.put("up", "String");
-    }
-    
-    private void subscribeEventEditor(){
-        
-        editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-                
-                this.inputText = editor.getText().toString();
-              //  String inputText = editor.getText().toString(); //Gets the text from the editor
-                    
-                        
-             //   CheckforPossibleErrors(inputText, errorListener);
-        
-    });
-        }
-
-  private Runnable runnable; // Definindo o Runnable como uma variável de classe para controle
-  Handler handler = new Handler(Looper.getMainLooper());
-  private void start() {
-    runnable =
-        new Runnable() {
-          @Override
-          public void run() {
-            // Sua lógica a ser repetida
-            if (diagnostics.onSucess) {
-              diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
-            }
-
-            // Reagendar o runnable para ser executado novamente após 4 segundos
-            handler.postDelayed(this, 1000);
+     public JavaLanguage(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer) {
+          init(editor, diagnosticListener, diagnosticContainer, null);
+     }
+     
+     public JavaLanguage(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer, EditorListener editorListener) {
+          init(editor, diagnosticListener, diagnosticContainer, editorListener);
+     }
+     
+     private void init(CodeEditor editor, DiagnosticListener diagnosticListener, DiagnosticsContainer diagnosticsContainer, EditorListener editorListener) {
+          identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
+          manager = new JavaIncrementalAnalyzeManager();
+          variables = new HashMap<>();
+          methods = new HashMap<>();
+          this.editor = editor;
+          subscribeEventEditor();
+          diagnostics = new JavaLanguage.Diagnostics();
+          if (editorListener != null)
+               this.editorListener = editorListener;
+          } else {
+               this.editorListener = this;
           }
-        };
-
-    // Agendar o runnable para ser executado pela primeira vez após 15 milissegundos
-    handler.postDelayed(runnable, 15);
-  }
+        
+          diagnostics.diagnosticListener = diagnosticListener;
+          diagnostics.diagnostics = diagnosticsContainer;
+          start();
+     }
+     
+     @Override
+     public void onEditorTextChange() { /* nothing happened */ }
+    
+     private void subscribeEventEditor(){
+          editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
+                this.inputText = editor.getText().toString();
+                editorListener.onEditorTextChange();
+          });
+     }
+    
+    private Runnable runnable;
+    Handler handler = new Handler(Looper.getMainLooper());
+    private void start() {
+          runnable = new Runnable() {
+               @Override
+               public void run() {
+                    if (diagnostics.onSucess) {
+                         diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
+                    }
+                    handler.postDelayed(this, 1000);
+               }
+          };
+          handler.postDelayed(runnable, 15);
+    }
 
     @NonNull
     @Override
@@ -538,7 +541,7 @@ public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationCo
     
     public static class Diagnostics {
         
-        public DiagnosticListener errorListener;
+        public DiagnosticListener diagnosticListener;
         DiagnosticsContainer diagnostics;
         public boolean onSucess= true;
         /*Method used to check if the editor code has errors.
@@ -561,7 +564,7 @@ public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationCo
             parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
             Java8ErrorListener roboError = new Java8ErrorListener();
 
-            roboError.getError(errorListener);
+            roboError.getError(diagnosticListener);
                     
             parser.addErrorListener(roboError);
             
