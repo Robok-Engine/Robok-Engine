@@ -35,7 +35,7 @@ class SettingsActivity : ComponentActivity() {
 
     companion object {
          const val MSAX_SLIDE_DISTANCE: Int = 100
-         const val MSAX_DURATION: Int = 700
+         const val MSAX_DURATION: Int = 500
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
