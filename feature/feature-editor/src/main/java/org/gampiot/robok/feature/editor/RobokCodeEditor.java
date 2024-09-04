@@ -98,7 +98,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           binding.editor.setTypefaceText(Typeface.MONOSPACE);
           binding.editor.setTextSize(16);
           binding.editor.setEditorLanguage(language);
-          binding.editor.setWordwrap(false);
+          binding.editor.setWordwrap(editorConfigManager.getEditorIsUseWordWrapBool());
           binding.editor.getProps().symbolPairAutoCompletion = true;
           binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
           applyEditorTheme();
