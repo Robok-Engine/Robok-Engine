@@ -207,9 +207,11 @@ class EditorFragment() : RobokFragment() {
     }
     
     fun updateUndoRedo() {
-        if (binding.redo != null) {
-            binding.redo.setEnable(binding.editor.isCanRedo())
-            binding.undo.setEnable(binding.editor.isCanUndo())
+        binding.redo?.let {
+            it.isEnabled = binding.editor.isCanRedo()
+        }
+        binding.undo?.let {
+            it.isEnabled = binding.editor.isCanUndo()
         }
     }
 
