@@ -15,6 +15,7 @@
 	<string name="common_word_redo">Refaire</string>
 	<string name="common_word_allow">Autoriser</string>
 	<string name="common_word_deny">Annuler</string>
+	<string name="common_word_normal">Normal</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
@@ -48,6 +49,8 @@
 	<string name="settings_code_editor_theme_description">Changer le thème de l\'éditeur de code</string>
 	<string name="settings_code_editor_word_wrap_title">Word Wrap</string>
 	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
+	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
+	<string name="settings_code_editor_typeface_description">Change the editor's font and make it your own.</string>
 	<string name="settings_about_title">À-propos</string>
 	<string name="settings_about_description">Tout sur Robok Engine</string>
 	<string name="settings_libraries_title">Libraries</string>
@@ -61,6 +64,10 @@
 	<string name="text_diagnostic">Diagnostique</string>
 	<string name="text_logs">Journaux</string>
 	<string name="text_error_details">Error details:</string>
+	<string name="text_bold">Bold</string>
+	<string name="text_monospace">Monospace</string>
+	<string name="text_serif">Serif</string>
+	<string name="text_sans_serif">Sans-Serif</string>
 	<!-- ene section -->
 	
 	<!-- warnings section -->

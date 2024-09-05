@@ -16,6 +16,7 @@
     <string name="common_word_redo">Refazer</string>
     <string name="common_word_allow">Permitir</string>
     <string name="common_word_deny">Negar</string>
+    <string name="common_word_normal">Normal</string>
     <!-- end section -->
     
     <!-- titles section -->
@@ -47,6 +48,8 @@
     <string name="settings_code_editor_theme_description">Mude o tema do Editor de Código.</string>
     <string name="settings_code_editor_word_wrap_title">Quebra de Linha</string>
 	<string name="settings_code_editor_word_wrap_description">Ativar quebra de linha no editor de código.</string>
+	<string name="settings_code_editor_typeface_title">Alterar fonte do editor</string>
+	<string name="settings_code_editor_typeface_description">Altere a fonte do editor e deixe-a com a sua cara.</string>
     <string name="settings_about_title">Sobre</string>
 	<string name="settings_about_description">Tudo sobre a Robok Engine</string>
 	<string name="settings_libraries_title">Bibliotecas</string>
@@ -60,6 +63,10 @@
     <string name="text_diagnostic">Diagnóstico</string>
     <string name="text_logs">Registros</string>
     <string name="text_error_details">Detalhes do erro:</string>
+    <string name="text_bold">Negrito</string>
+	<string name="text_monospace">Mono-Espaçado</string>
+	<string name="text_serif">Serif</string>
+	<string name="text_sans_serif">Sans-Serif</string>
     <!-- ene section -->
     
     <!-- warnings section -->
