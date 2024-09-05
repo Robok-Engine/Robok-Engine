@@ -18,8 +18,8 @@ jobs:
           # Extract version name from github inputs
           version_name="${{ github.event.inputs.version }}"
 
-          # Get existing version code from build.gradle
-          version_code=$(grep "versionCode" app/build.gradle.kts | awk '{print $3}' | tr -d '\n')
+          # Get existing version code from build.gradle.kts
+          version_code=$(grep "versionCode = " app/build.gradle.kts | awk '{print $3}' | tr -d '\n')
 
           # Increment existing version code by 1
           version_code=$((version_code + 1))
@@ -28,11 +28,11 @@ jobs:
           echo "VERSION_NAME=$version_name" >> $GITHUB_ENV
           echo "VERSION_CODE=$version_code" >> $GITHUB_ENV
 
-      - name: Update app/build.gradle.kts updated version name and version code
+      - name: Update app/build.gradle.kts with new app_version and version code
         run: |
-          echo "Updating version code to ${{ env.VERSION_CODE }} and version name to ${{ env.VERSION_NAME }}"
-          sed -i "s/versionCode = [0-9]\+/versionCode = ${{ env.VERSION_CODE }}/g" app/build.gradle.kts
-          sed -i "s/versionName = \"[^\"]*\"/versionName = \"${{ env.VERSION_NAME }}\"/g" app/build.gradle.kts 
+          echo "Updating app_version to ${{ env.VERSION_NAME }} and versionCode to ${{ env.VERSION_CODE }}"
+          sed -i "s/app_version = \"[^\"]*\"/app_version = \"${{ env.VERSION_NAME }}\"/g" app/build.gradle.kts
+          sed -i "s/versionCode = [0-9]\+/versionCode = ${{ env.VERSION_CODE }}/g" app/build.gradle.kts 
 
       - name: Open pull request
         uses: peter-evans/create-pull-request@v7
