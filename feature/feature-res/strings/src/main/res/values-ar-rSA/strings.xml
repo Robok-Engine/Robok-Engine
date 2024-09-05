@@ -49,7 +49,7 @@
     <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
 	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
 	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
-	<string name="settings_code_editor_typeface_description">Change the editor's font and make it your own.</string>
+	<string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
     <string name="settings_about_title">حول التطبيق</string>
     <string name="settings_about_description">All about Robok Engine</string>
     <string name="settings_libraries_title">Libraries</string>
