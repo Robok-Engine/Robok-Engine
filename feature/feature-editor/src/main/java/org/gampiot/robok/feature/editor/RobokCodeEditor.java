@@ -94,14 +94,14 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           language = new JavaLanguage(this, diagnostics);
           language.setEditorListener(editorListener);
           language.setDiagnosticListener(diagnosticListener);
-          binding.editor.setText(BASE_MESSAGE);
-          binding.editor.setTypefaceText(Typeface.MONOSPACE);
-          binding.editor.setTextSize(16);
-          binding.editor.setEditorLanguage(language);
-          binding.editor.setWordwrap(editorConfigManager.getEditorIsUseWordWrapBool());
-          binding.editor.getProps().symbolPairAutoCompletion = true;
-          binding.editor.getComponent(EditorAutoCompletion.class).setEnabled(true);
-          applyEditorTheme();
+          getSoraCodeEditor().setText(BASE_MESSAGE);
+          getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
+          getSoraCodeEditor().setTextSize(16);
+          getSoraCodeEditor().setEditorLanguage(language);
+          getSoraCodeEditor().setWordwrap(editorConfigManager.isUseWordWrap());
+          getSoraCodeEditor().getProps().symbolPairAutoCompletion = true;
+          getSoraCodeEditor().getComponent(EditorAutoCompletion.class).setEnabled(true);
+          getSoraCodeEditor().setColorScheme(AppearanceManager.getTheme(this, editorConfigManager.getEditorThemePreference()));
      }
      
      /*
@@ -114,54 +114,6 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                new String[]{"->", "{", "}", "(", ")", ",", "|", "=", "#", "!", "&", "/", "%", "`", "_", ";", ".", "×", "<", ">", "\"", "?", "+", "-", "*", "/", "<-"},
                new String[]{"\t", "{}", "}", "(", ")", ",", ".", ";", "|", "\"", "?", "+", "-", "*", "/"}
           );
-     }
-     
-     /*
-     * Method to set the editor theme.
-     * see: https://github.com/robok-inc/Robok-Engine/tree/dev/feature/feature-editor/src/main/java/org/gampiot/robok/feature/editor/ThemeManager.kt
-     */
-     private void applyEditorTheme() {
-          binding.editor.setColorScheme(selectTheme(editorConfigManager.getEditorThemeInt()));
-     }
-
-     /*
-     * Method to choose editor theme.
-     * @param themeIndex number of theme 0...6 
-     */
-     private EditorColorScheme selectTheme(int themeIndex) {
-          EditorColorScheme scheme;
-          try {
-               switch (themeIndex) {
-                    case 0:
-                         scheme = new SchemeRobok(binding.editor.getContext());
-                         break;
-                    case 1:
-                         scheme = new SchemeRobokTH(binding.editor.getContext());
-                         break;
-                    case 2:
-                         scheme = new SchemeGitHub();
-                         break;
-                    case 3:
-                         scheme = new SchemeEclipse();
-                         break;
-                    case 4:
-                         scheme = new SchemeDarcula();
-                         break;
-                    case 5:
-                         scheme = new SchemeVS2019();
-                         break;
-                    case 6:
-                         scheme = new SchemeNotepadXX();
-                         break;
-                    default:
-                         scheme = new SchemeRobok(binding.editor.getContext());
-                         break;
-               }
-          } catch (Exception e) {
-               Log.e(TAG, "fail on select theme: " + themeIndex, e);
-               scheme = new SchemeRobok(binding.editor.getContext());
-          }
-          return scheme;
      }
     
      /* 
@@ -187,7 +139,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                    )
                );
           diagnostics.addDiagnostic(diagnosticRegion);
-          binding.editor.setDiagnostics(diagnostics);
+          getSoraCodeEditor().setDiagnostics(diagnostics);
      }
      
      /*
@@ -227,21 +179,21 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      * @return Returns a CharSequence like every textview & etc.
      */
      public CharSequence getText() {
-          return binding.editor.getText();
+          return getSoraCodeEditor().getText();
      }
     
      /*
      * Method to redo the text editor.
      */
      public void redo() {
-          binding.editor.redo();
+          getSoraCodeEditor().redo();
      }   
      
      /*
      * Method to undo the text editor.
      */
      public void undo () {
-          binding.editor.undo();
+          getSoraCodeEditor().undo();
      }
      
      /*
@@ -284,6 +236,63 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      @Override 
      public void onEditorTextChange () { }
     
+     /*
+     * AppearanceManager class
+     * subclass to manage Code Editor Appearance.
+     */
+     public static final class AppearanceManager {
+          
+          
+          /*
+          * Method to choose editor font typeface.
+          * @param typefaceIndex number of theme 0...4
+          * @return Return a TypeFace to use on editor
+          */
+          public static final Typeface getTypeface(int typefaceIndex) {
+               switch (typefaceIndex) {
+                    case 0:
+                        return Typeface.DEFAULT;
+                    case 1:
+                        return Typeface.DEFAULT_BOLD;
+                    case 2:
+                        return Typeface.MONOSPACE;
+                    case 3:
+                        return Typeface.SANS_SERIF;
+                    case 4:
+                        return Typeface.SERIF;
+                    default:
+                        return Typeface.DEFAULT;
+               }
+          }
+          
+          /*
+          * Method to choose editor theme.
+          * @param themeIndex number of theme 0...6
+          * @return Return a EditorColorScheme instance
+          */
+          public static final EditorColorScheme getTheme(RobokCodeEditor rcd, int themeIndex) {
+               var ctx = rcd.getSoraCodeEditor().getContext();
+               switch (themeIndex) {
+                    case 0:
+                        return new SchemeRobok(ctx);
+                    case 1:
+                        return new SchemeRobokTH(ctx);
+                    case 2:
+                        return new SchemeGitHub();
+                    case 3:
+                        return new SchemeEclipse();
+                    case 4:
+                        return new SchemeDarcula();
+                    case 5:
+                        return new SchemeVS2019();
+                    case 6:
+                        return new SchemeNotepadXX();
+                    default:
+                        return new SchemeRobok(ctx);
+               }
+          }
+     }
+     
      private static final String BASE_MESSAGE = "package com.my.newproject;\n\n" +
                 "public class Main {\n\n" +
                 "    // Variables\n\n" +
@@ -321,5 +330,4 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                 "    }\n\n" +
                 "    // and more...\n" +
                 "}";
-    
 }

@@ -1,5 +1,6 @@
 package org.gampiot.robok.feature.settings.screens.editor
 
+import android.content.Context
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -7,6 +8,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.compose.ui.platform.LocalContext
 
 import org.koin.androidx.compose.koinViewModel
 
@@ -24,29 +26,32 @@ fun SettingsCodeEditorScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0) // Assume 0 as the initial value
+    val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
+    val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
     
-    val editorThemes = listOf(
-        0, // Robok
-        1, // Robok TH
-        2, // GitHub
-        3, // Eclipse
-        4, // Darcula
-        5, // Visual Studio Code 19
-        6  // Notepad XX
-    )
-
+    val context = LocalContext.current
+    
+    val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
     val editorThemeLabels = listOf(
         "Robok",
-        "Robok TH",
-        "GitHub",
-        "Eclipse",
-        "Darcula",
-        "Visual Studio Code 19",
+        "Robok TH", 
+        "GitHub", 
+        "Eclipse", 
+        "Darcula", 
+        "Visual Studio Code 19", 
         "Notepad XX"
-    )
-
+    ) // strings/labels
+    
+    val editorTypefaces = listOf(0, 1, 2, 3, 4) // ints/positions
+    val editorTypefacesLabels = listOf(
+       context.getString(Strings.common_word_normal),
+       context.getString(Strings.text_bold),
+       context.getString(Strings.text_monospace),
+       context.getString(Strings.text_sans_serif),
+       context.getString(Strings.text_serif)
+    ) // strings/labels
+       
     ApplicationScreen(
         modifier = Modifier.fillMaxSize(),
         verticalArrangement = Arrangement.spacedBy(8.dp),
@@ -73,6 +78,19 @@ fun SettingsCodeEditorScreen(
                     },
                     onPrefChange = { newTheme ->
                         appPrefsViewModel.changeEditorTheme(newTheme)
+                    }
+                )
+                PreferenceItemChoice(
+                    label = stringResource(id = Strings.settings_code_editor_typeface_title),
+                    title = stringResource(id = Strings.settings_code_editor_typeface_description),
+                    pref = editorTypeface,
+                    options = editorTypefaces,
+                    excludedOptions = emptyList(),
+                    labelFactory = { index ->
+                        editorTypefacesLabels.getOrElse(index) { "Unknown" }
+                    },
+                    onPrefChange = { newTypeface ->
+                        appPrefsViewModel.changeEditorTypeface(newTypeface)
                     }
                 )
                 Title(title = stringResource(id = Strings.settings_formatting_title))

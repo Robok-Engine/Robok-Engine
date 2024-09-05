@@ -10,6 +10,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.map
 
 private val editorThemePreference = intPreferencesKey("editor_theme")
+private val editorTypefacePreference = intPreferencesKey("editor_typeface")
 private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
 
 class AppPreferencesRepository(
@@ -19,6 +20,10 @@ class AppPreferencesRepository(
           .map {
               it[editorThemePreference] ?: 0
           }
+     val editorTypeface = dataStore.data
+          .map {
+              it[editorTypefacePreference] ?: 0
+          }
      val editorIsUseWordWrap = dataStore.data
           .map {
               it[editorIsUseWordWrapPreference] ?: false
@@ -27,6 +32,12 @@ class AppPreferencesRepository(
      suspend fun changeEditorTheme(value: Int) {
          dataStore.edit { preferences ->
              preferences[editorThemePreference] = value
+         }
+     }
+     
+     suspend fun changeEditorTypeface(value: Int) {
+         dataStore.edit { preferences ->
+             preferences[editorTypefacePreference] = value
          }
      }
      

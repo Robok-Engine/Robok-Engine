@@ -16,6 +16,7 @@
     <string name="common_word_redo">إعادة</string>
     <string name="common_word_allow">السماح</string>
     <string name="common_word_deny">رفض</string>
+    <string name="common_word_normal">Normal</string>
     <!-- end section -->
     
     <!-- titles section -->
@@ -47,6 +48,8 @@
     <string name="settings_code_editor_theme_description">إختر سمة محرر الكود</string>
     <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
 	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
+	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
+	<string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
     <string name="settings_about_title">حول التطبيق</string>
     <string name="settings_about_description">All about Robok Engine</string>
     <string name="settings_libraries_title">Libraries</string>
@@ -60,6 +63,10 @@
     <string name="text_diagnostic">التشخيص</string>
     <string name="text_logs">السجل</string>
     <string name="text_error_details">Error details:</string>
+    <string name="text_bold">Bold</string>
+	<string name="text_monospace">Monospace</string>
+	<string name="text_serif">Serif</string>
+	<string name="text_sans_serif">Sans-Serif</string>
     <!-- ene section -->
     
     <!-- warnings section -->

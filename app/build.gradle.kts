@@ -11,7 +11,7 @@ plugins {
 
 android {
     namespace = "org.gampiot.robok"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "org.gampiot.robok"
