@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.preferences.vegabobo
+package org.gampiot.robok.feature.component.preferences
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
