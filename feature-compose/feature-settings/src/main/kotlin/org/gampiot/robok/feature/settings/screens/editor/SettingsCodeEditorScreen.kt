@@ -46,7 +46,7 @@ fun SettingsCodeEditorScreen(
        context.getString(Strings.common_word_normal),
        context.getString(Strings.text_bold),
        context.getString(Strings.text_monospace),
-       context.getString(Strings.text_sans_serif)
+       context.getString(Strings.text_sans_serif),
        context.getString(Strings.text_serif)
     ) // strings/labels
        
