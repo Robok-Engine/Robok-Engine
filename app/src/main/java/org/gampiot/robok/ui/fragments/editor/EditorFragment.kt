@@ -184,6 +184,7 @@ class EditorFragment() : RobokFragment() {
 
         val editorListener = object : EditorListener {
             override fun onEditorTextChange() {
+                updateUndoRedo()
                 binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
                 
