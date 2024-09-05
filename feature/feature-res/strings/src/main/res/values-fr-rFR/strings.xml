@@ -17,7 +17,7 @@
 	<string name="common_word_allow">Autoriser</string>
 	<string name="common_word_deny">Annuler</string>
 	<string name="common_word_normal">Normal</string>
-	<string name="common_word_retry">Retry</string>
+	<string name="common_word_retry">Réessayer</string>
 	<!-- end section -->
 	
 	<!-- titles section -->
@@ -50,23 +50,23 @@
 	<string name="settings_code_editor_theme_title">Thème de l\'éditeur de code</string>
 	<string name="settings_code_editor_theme_description">Changer le thème de l\'éditeur de code</string>
 	<string name="settings_code_editor_word_wrap_title">Word Wrap</string>
-	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
-	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
-	<string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
-	<string name="settings_about_title">À-propos</string>
+	<string name="settings_code_editor_word_wrap_description">Activer le WordWrap dans l\'éditeur de code .</string>
+	<string name="settings_code_editor_typeface_title">Le Font du editeur</string>
+	<string name="settings_code_editor_typeface_description">Changer le font de l'éditeur comme vous voulez</string>
+	<string name="settings_about_title">Paramètres</string>
 	<string name="settings_about_description">Tout sur Robok Engine</string>
-	<string name="settings_libraries_title">Libraries</string>
-	<string name="settings_libraries_description">All the libraries we use in the application.</string>
-	<string name="settings_formatting_title">Formatting</string>
-	<string name="settings_appearance_title">Appearance</string>
-	<string name="settings_general_title">General</string>
+	<string name="settings_libraries_title">Logicel Tiers</string>
+	<string name="settings_libraries_description">Les bibliothèques que nous avons utilisées</string>
+	<string name="settings_formatting_title">Format</string>
+	<string name="settings_appearance_title">Apparance</string>
+	<string name="settings_general_title">Géneral</string>
 	<!-- end section -->
 	
 	<!-- texts section -->
 	<string name="text_diagnostic">Diagnostique</string>
 	<string name="text_logs">Journaux</string>
-	<string name="text_error_details">Error details:</string>
-	<string name="text_bold">Bold</string>
+	<string name="text_error_details">Détails du erreur:</string>
+	<string name="text_bold">Gras</string>
 	<string name="text_monospace">Monospace</string>
 	<string name="text_serif">Serif</string>
 	<string name="text_sans_serif">Sans-Serif</string>
@@ -83,8 +83,8 @@
 	<!-- errors section -->
 	<string name="error_storage_perm_title">Storage permission error</string>
 	<string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
-	<string name="error_invalid_name">Invalid name</string>
-	<string name="error_load_fail">Error loading.</string>
+	<string name="error_invalid_name">Nom invalide</string>
+	<string name="error_load_fail">Erreur de chargements</string>
 	<!-- end section -->
 	
 	<!-- terminal section -->
@@ -92,7 +92,7 @@
 	<string name="terminal_install_package">Installer le Paquet</string>
 	<string name="terminal_install_package_hint">Écrire le nom du paquet </string>
 	<string name="terminal_update_packages">Mettre à jour les paquets</string>
-	<string name="terminal_warning_update_packages">Voulez-vous mettre à jour les packages?</string>
+	<string name="terminal_warning_update_packages">Voulez-vous mettre à jour les paquets?</string>
 	<!-- end section -->
 	
 	<!-- templates section -->
