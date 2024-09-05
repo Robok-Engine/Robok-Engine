@@ -52,7 +52,7 @@
 	<string name="settings_code_editor_word_wrap_title">Word Wrap</string>
 	<string name="settings_code_editor_word_wrap_description">Activer le WordWrap dans l\'éditeur de code .</string>
 	<string name="settings_code_editor_typeface_title">Le Font du editeur</string>
-	<string name="settings_code_editor_typeface_description">Changer le font de l'éditeur comme vous voulez</string>
+	<string name="settings_code_editor_typeface_description">Changer le font de l\'éditeur comme vous voulez</string>
 	<string name="settings_about_title">Paramètres</string>
 	<string name="settings_about_description">Tout sur Robok Engine</string>
 	<string name="settings_libraries_title">Logicel Tiers</string>
