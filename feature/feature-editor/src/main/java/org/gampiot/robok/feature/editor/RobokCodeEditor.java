@@ -195,7 +195,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      public void undo () {
           getSoraCodeEditor().undo();
      }
-     
+    
      /*
      * Method to get if can redo
      */

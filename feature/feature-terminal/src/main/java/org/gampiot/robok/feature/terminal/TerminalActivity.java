@@ -51,18 +51,25 @@ public class TerminalActivity extends RobokActivity implements TerminalSessionCl
           if (getIntent().hasExtra("path")) {
               cwd = getIntent().getStringExtra("path");
           } else {
-              cwd = Environment.getExternalStorageDirectory().getAbsolutePath();
+              cwd = getFilesDir().getAbsolutePath();
           }
           binding.terminalView.setTextSize(28);
-          String[] env = {};
-          String[] argsList = {};
-          session = new TerminalSession(
-                APP_HOME_DATA_DIR,
-                cwd,
-                env,
-                argsList,
-                TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE,
-          this);
+          String shell = "/system/bin/sh";
+          String[] env =
+          new String[] {
+            "HOME=" + getFilesDir().getAbsolutePath(),
+            "PUBLIC_HOME="
+             + (getExternalFilesDir(null) != null
+             ? getExternalFilesDir(null).getAbsolutePath() : getFilesDir().getAbsolutePath()),
+            "SHELL=" + shell,
+            "COLORTERM=truecolor",
+            "TERM=xterm-256color"
+        };
+    String[] argsList = new String[] {""};
+
+    session =
+        new TerminalSession(
+            shell, cwd, env, argsList, TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE, this);
           binding.terminalView.attachSession(session);
           binding.terminalView.setTerminalViewClient(this);
           configureFabs();
