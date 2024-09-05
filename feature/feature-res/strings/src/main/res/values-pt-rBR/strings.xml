@@ -17,6 +17,7 @@
     <string name="common_word_allow">Permitir</string>
     <string name="common_word_deny">Negar</string>
     <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Tente Novamente</string>
     <!-- end section -->
     
     <!-- titles section -->
@@ -81,6 +82,7 @@
     <string name="error_storage_perm_title">Erro na permissão de armazenamento</string>
     <string name="error_storage_perm_message">Você não aceitou a permissão de armazenamento, ela é necessária para que a Robok funcione.</string>
     <string name="error_invalid_name">Invalid name</string>
+    <string name="error_load_fail">Falha no carregamento.</string>
     <!-- end section -->
     
     <!-- terminal section -->

@@ -4,6 +4,7 @@ plugins {
     id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.compose")
     id("com.mikepenz.aboutlibraries.plugin")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -78,6 +79,11 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
     implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
     
+    implementation("io.coil-kt:coil-compose:2.7.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    implementation("androidx.paging:paging-compose:3.2.1")
     implementation(project(":feature:feature-res:strings"))
 }
 

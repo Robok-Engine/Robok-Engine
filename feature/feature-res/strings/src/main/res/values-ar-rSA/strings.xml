@@ -17,6 +17,7 @@
     <string name="common_word_allow">السماح</string>
     <string name="common_word_deny">رفض</string>
     <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Retry</string>
     <!-- end section -->
     
     <!-- titles section -->
@@ -81,6 +82,7 @@
     <string name="error_storage_perm_title">خطا في السماح بالتخزين</string>
     <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل روبوك</string>
     <string name="error_invalid_name">إسم غير صالح</string>
+    <string name="error_load_fail">Error loading.</string>
     <!-- end section -->
     
     <!-- terminal section -->
