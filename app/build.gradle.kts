@@ -9,6 +9,8 @@ plugins {
     id("org.jetbrains.kotlin.plugin.compose")
 }
 
+val app_version = "0.0.1"
+
 android {
     namespace = "org.gampiot.robok"
     compileSdk = 35
@@ -18,7 +20,7 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "0.0.1"
+        versionName = app_version
         
         vectorDrawables {
             useSupportLibrary = true
@@ -36,6 +38,7 @@ android {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
             resValue("string", "app_name", "Robok")
+            resValue("string", "app_version", app_version)
             resValue("string", "GIT_COMMIT_HASH", getGitHash())
             resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
             resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
@@ -44,6 +47,7 @@ android {
             applicationIdSuffix = ".debug"
             versionNameSuffix = getShortGitHash()
             resValue("string", "app_name", "Robok Debug")
+            resValue("string", "app_version", app_version)
             resValue("string", "GIT_COMMIT_HASH", getGitHash())
             resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
             resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
