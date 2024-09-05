@@ -17,6 +17,7 @@
     <string name="common_word_allow">Permitir</string>
     <string name="common_word_deny">Negar</string>
     <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Retry</string>
     <!-- end section -->
     
     <!-- titles section -->

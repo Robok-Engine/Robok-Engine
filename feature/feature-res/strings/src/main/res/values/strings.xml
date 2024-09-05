@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- common words section -->
 	<string name="common_word_back">Back</string>
@@ -17,6 +18,7 @@
 	<string name="common_word_allow">Allow</string>
 	<string name="common_word_deny">Deny</string>
 	<string name="common_word_normal">Normal</string>
+	<string name="common_word_retry">Retry</string>
 	<!-- end section -->
 	
 	<!-- links section -->
