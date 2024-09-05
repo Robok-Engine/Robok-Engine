@@ -83,7 +83,7 @@ dependencies {
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
-    implementation("androidx.paging:paging-compose:3.2.1")
+    implementation("androidx.paging:paging-compose:3.3.2")
     implementation(project(":feature:feature-res:strings"))
 }
 
