@@ -77,11 +77,11 @@ dependencies {
     implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
     implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
     implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
- 
+    
     implementation("io.coil-kt:coil-compose:2.7.0")
     
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
-    
+    implementation("androidx.paging:paging-compose:3.2.1")
     implementation(project(":feature:feature-res:strings"))
 }
 
