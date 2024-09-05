@@ -91,6 +91,7 @@
 	<string name="error_storage_perm_title">Storage permission error</string>
 	<string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
 	<string name="error_invalid_name">Invalid name</string>
+	<string name="error_load_fail">Error loading.</string>
 	<!-- end section -->
 	
 	<!-- terminal section -->
