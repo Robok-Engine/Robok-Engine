@@ -80,6 +80,8 @@ dependencies {
  
     implementation("io.coil-kt:coil-compose:2.7.0")
     
+    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.5.0")
+    
     implementation(project(":feature:feature-res:strings"))
 }
 
