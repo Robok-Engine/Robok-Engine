@@ -7,7 +7,7 @@ group = "org.gampiot.robok.feature.terminal"
 
 android {
     namespace = "org.gampiot.robok.feature.terminal"
-    compileSdk = 34
+    compileSdk = 35
     
     defaultConfig {
         minSdk = 26
