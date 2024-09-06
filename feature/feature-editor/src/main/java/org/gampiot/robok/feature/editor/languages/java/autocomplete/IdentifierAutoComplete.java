@@ -184,11 +184,8 @@ public class IdentifierAutoComplete {
         
          List<Class<?>> dest = new ArrayList<>();
          
-         var rdkClassesManager = new RDKClasses();
-         HashMap<String, String> rdkClasses = runBlocking {
-             return@runBlocking rdkClassesManager.getClasses();
-         };
          filterJavaClasses(className, dest, javaClasses.getClasses());
+         HashMap<String, String> rdkClasses = RDKClassesHelper.getClasses();
          filterJavaClasses(className, dest, rdkClasses);
          for (var word : dest) {
               //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))

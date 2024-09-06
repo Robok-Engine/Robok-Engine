@@ -13,6 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
+import kotlinx.coroutines.runBlocking
 
 import org.gampiot.robok.feature.editor.languages.java.store.models.ClassItem
 
@@ -24,7 +25,7 @@ class RDKClasses {
         private const val RDK_VERSION = "RDK-1"
         private const val URL = "https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/$RDK_VERSION/classes.json"
     }
-
+    
     private val client = OkHttpClient()
 
     private suspend fun fetchClasses(): List<ClassItem> = withContext(Dispatchers.IO) {
@@ -52,5 +53,12 @@ class RDKClasses {
             classMap[clazz.className] = clazz.classPackageName
         }
         return classMap
+    }
+}
+
+object RDKClassesHelper {
+    @JvmStatic
+    fun getClasses(): HashMap<String, String> = runBlocking {
+        RDKClasses().getClasses()
     }
 }
