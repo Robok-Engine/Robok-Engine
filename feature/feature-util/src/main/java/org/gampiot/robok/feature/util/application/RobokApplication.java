@@ -60,10 +60,9 @@ public class RobokApplication extends KoinApplication {
          DynamicColors.applyToActivitiesIfAvailable(instance);
     }
 
-    public String getStackTrace(Throwable th) {
+    public String getStackTrace(Throwable cause) {
          final Writer result = new StringWriter();
          final PrintWriter printWriter = new PrintWriter(result);
-         Throwable cause = th;
          while (cause != null) {
               cause.printStackTrace(printWriter);
               cause = cause.getCause();
