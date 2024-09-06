@@ -17,6 +17,8 @@ import java.io.Writer;
 
 import org.gampiot.robok.feature.util.activities.DebugActivity;
 
+// TO-DO: Refactor with Kotlin
+
 public class RobokApp extends Application {
 
     public static RobokApp instance;

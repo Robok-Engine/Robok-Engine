@@ -7,7 +7,7 @@ import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 
-import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 
 class EditorConfigManager : KoinComponent {
 

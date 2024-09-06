@@ -9,8 +9,8 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-import org.gampiot.robok.feature.settings.viewmodels.AppPreferencesViewModel
-import org.gampiot.robok.feature.settings.repositories.AppPreferencesRepository
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
+import org.gampiot.robok.feature.settings.compose.repositories.AppPreferencesRepository
 
 const val APP_PREFERENCES = "app_preferences"
 

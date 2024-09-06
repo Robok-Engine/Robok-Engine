@@ -27,9 +27,9 @@ import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
 import org.gampiot.robok.ui.theme.RobokTheme
-import org.gampiot.robok.feature.settings.screens.SettingsScreen
-import org.gampiot.robok.feature.settings.screens.editor.SettingsCodeEditorScreen
-import org.gampiot.robok.feature.settings.screens.libraries.LibrariesScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 
 class SettingsActivity : ComponentActivity() {
 
