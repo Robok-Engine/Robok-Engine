@@ -183,15 +183,8 @@ public class IdentifierAutoComplete {
          List<Class<?>> dest = new ArrayList<>();
          
          var rdkClassesManager = new RDKClasses();
-         HashMap<String, String> rdkClasses;
-         rdkClassesManager.getClasses(classMap -> {
-             if (classMap.isEmpty()) {
-                 rdkClasses = new HashMap<>();
-             } else {
-                 rdkClasses = classMap;
-             }
-         });
-         
+         HashMap<String, String> rdkClasses = rdkClassesManager.getClasses();
+        
          filterJavaClasses(className, dest, javaClasses.getClasses());
          filterJavaClasses(className, dest, rdkClasses);
          for (var word : dest) {

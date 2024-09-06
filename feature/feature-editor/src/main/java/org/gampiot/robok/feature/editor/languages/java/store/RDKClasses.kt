@@ -2,15 +2,13 @@ package org.gampiot.robok.feature.editor.languages.java.store
 
 import okhttp3.OkHttpClient
 import okhttp3.Request
-
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-
 import org.gampiot.robok.feature.editor.languages.java.store.models.ClassItem
-
 import java.util.HashMap
 
 class RDKClasses {
@@ -21,9 +19,9 @@ class RDKClasses {
     }
 
     private val client = OkHttpClient()
-
-    fun fetchClasses(callback: (List<ClassItem>) -> Unit) {
-        CoroutineScope(Dispatchers.IO).launch {
+    
+    private fun fetchClasses(): List<ClassItem> = runBlocking {
+        val response = CoroutineScope(Dispatchers.IO).launch {
             val request = Request.Builder()
                 .url(URL)
                 .build()
@@ -32,26 +30,21 @@ class RDKClasses {
                     if (response.isSuccessful) {
                         val jsonString = response.body?.string()
                         jsonString?.let {
-                            val classes = Json.decodeFromString<List<ClassItem>>(it)
-                            callback(classes)
-                        } ?: callback(emptyList())
-                    } else {
-                        callback(emptyList())
+                            return@launch Json.decodeFromString<List<ClassItem>>(it)
+                        }
                     }
                 }
-            } catch (e: Exception) {
-                callback(emptyList())
-            }
-        }
+            } catch (e: Exception) { }
+        }.join()  
+        emptyList()
     }
 
-    fun getClasses(callback: (HashMap<String, String>) -> Unit) {
-        fetchClasses { classes ->
-            val classMap = HashMap<String, String>()
-            classes.forEach { clazz ->
-                classMap[clazz.className] = clazz.classPackageName
-            }
-            callback(classMap)
+    fun getClasses(): HashMap<String, String> {
+        val classes = fetchClasses()
+        val classMap = HashMap<String, String>()
+        classes.forEach { clazz ->
+            classMap[clazz.className] = clazz.classPackageName
         }
+        return classMap
     }
 }
