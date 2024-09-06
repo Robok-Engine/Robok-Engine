@@ -55,8 +55,7 @@ import io.github.rosemoe.sora.util.MutableInt;
 
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
-
-import org.gampiot.robok.feature.editor.languages.java.JavaClasses;
+import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
@@ -97,16 +96,13 @@ public class IdentifierAutoComplete {
     List<CompletionItem> completionItemList = null;
     
     //Java Classes
-    public JavaClasses javaClasses;
+    public final static JavaClasses javaClasses = new JavaClasses();
     
-    public IdentifierAutoComplete() {
-        
-    }
+    public IdentifierAutoComplete() { }
 
     public IdentifierAutoComplete(String[] keywords) {
         this();
         setKeywords(keywords, true);
-        javaClasses = new JavaClasses();
     }
 
     private static String asString(CharSequence str) {
@@ -145,71 +141,53 @@ public class IdentifierAutoComplete {
     public void requireAutoComplete(
             @NonNull ContentReference reference, String line, @NonNull CharPosition position,
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
-        this.methodName = currentMethod;
-        
-        checkCodeType(line, new CodeTypeListener(){
-
-							@Override
-							public void onClassReceiver(String className)
-							{
-								//showMessage("Classe: " + className);
-                                completionItemList = createCompletionClassesItemList(prefix, userIdentifiers);
-							}
-
-							@Override
-							public void onIdentifierReceiver(String identifierName)
-							{
-								//showMessage("Identificador ou variável: " + identifierName);
-                                completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
-							}
-
-							@Override
-							public void onVariableIdentifier(String variableName, String fieldOrMethodName)
-							{
-								//showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
-							}
-
-							@Override
-							public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName)
-							{
-								//showMessage("Método estático ou campo estático:" + staticFieldOrMethodName + " de " + className);
-							}
-							
-						
-					});
-
+         
+         this.methodName = currentMethod;
+         checkCodeType(line, new CodeTypeListener(){
+              @Override
+              public void onClassReceiver(String className) {
+                   //showMessage("Classe: " + className);
+                   completionItemList = createCompletionClassesItemList(prefix, userIdentifiers);
+              }
+              @Override
+              public void onIdentifierReceiver(String identifierName) {
+                   //showMessage("Identificador ou variável: " + identifierName);
+                   completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
+              }
+              @Override
+              public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
+                   //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
+              }
+              @Override
+              public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
+                  //showMessage("Método estático ou campo estático:" + staticFieldOrMethodName + " de " + className);
+              }
+         });
         var comparator = Comparators.getCompletionItemComparator(reference, position, completionItemList);
-
         publisher.addItems(completionItemList);
-
         publisher.setComparator(comparator);
-        
-
     }
     
     public List<CompletionItem> createCompletionClassesItemList(
-            @NonNull String className, @Nullable Identifiers userIdentifiers
+         @NonNull String className,
+         @Nullable Identifiers userIdentifiers
     ) {
-        final var keywordMap = this.keywordMap;
-        int prefixLength = className.length();
-        if (prefixLength == 0) {
-            return Collections.emptyList();
-        }
-        var result = new ArrayList<CompletionItem>();
+         final var keywordMap = this.keywordMap;
+         int prefixLength = className.length();
+         if (prefixLength == 0) {
+              return Collections.emptyList();
+         }
+         var result = new ArrayList<CompletionItem>();
         
-        List<Class<?>> dest = new ArrayList<>();
-            
-            filterJavaClasses(className, dest, javaClasses.getJavaClasses());
-            for (var word : dest) {
-                
-                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
-                    result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
-                            .kind(CompletionItemKind.Class));
-            }
-        
-        return result;
-        
-        }
+         List<Class<?>> dest = new ArrayList<>();
+         filterJavaClasses(className, dest, javaClasses.getClasses());
+         for (var word : dest) {
+              //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
+              result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
+                   .kind(CompletionItemKind.Class));
+         }
+         return result;        
+    }
 
     public List<CompletionItem> createCompletionIdentifiersAndKeywordsItemList(
             @NonNull String prefix, @Nullable Identifiers userIdentifiers
@@ -384,28 +362,26 @@ public class IdentifierAutoComplete {
     
     
     public void filterJavaClasses(@NonNull String prefix, List<Class<?>> dest, HashMap<String, String> classes){
-       
-        for (String s : classes.keySet()) {
-
-			var fuzzyScore = Filters.fuzzyScoreGracefulAggressive(prefix,
-																  prefix.toLowerCase(Locale.ROOT),
-																  0, s, s.toLowerCase(Locale.ROOT), 0, FuzzyScoreOptions.getDefault());
-            
-			var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
-
-			if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s)))
-			{
-                
-                try {
-                   // Class<?> clazz = Class.forName(classes.get(s));
-                  //  dest.add(clazz);
-                } catch (ClassNotFoundException e) {
+         for (String s : classes.keySet()) {
+             var fuzzyScore 
+                 = Filters.fuzzyScoreGracefulAggressive(prefix,
+                     prefix.toLowerCase(Locale.ROOT),
+                     0, 
+                     s, 
+                     s.toLowerCase(Locale.ROOT), 
+                     0,
+                     FuzzyScoreOptions.getDefault()
+                 );
+             var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
+             if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))){
+                 try {
+                     Class<?> clazz = Class.forName(classes.get(s));
+                     dest.add(clazz);
+                 } catch (ClassNotFoundException e) {
                         e.printStackTrace();
-                }
-                
-			}
-
-		}
+                 }                
+			 }
+	     }
     }
         
     /**
