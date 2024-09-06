@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 
-import org.gampiot.robok.feature.editor.languages.java.store.models.Class
+import org.gampiot.robok.feature.editor.languages.java.store.models.ClassItem
 
 import java.util.HashMap
 
@@ -22,7 +22,7 @@ class RDKClasses {
 
     private val client = OkHttpClient()
 
-    fun fetchClasses(callback: (List<Class>) -> Unit) {
+    fun fetchClasses(callback: (List<ClassItem>) -> Unit) {
         CoroutineScope(Dispatchers.IO).launch {
             val request = Request.Builder()
                 .url(URL)
@@ -32,7 +32,7 @@ class RDKClasses {
                     if (response.isSuccessful) {
                         val jsonString = response.body?.string()
                         jsonString?.let {
-                            val classes = Json.decodeFromString<List<Class>>(it)
+                            val classes = Json.decodeFromString<List<ClassItem>>(it)
                             callback(classes)
                         } ?: callback(emptyList())
                     } else {
