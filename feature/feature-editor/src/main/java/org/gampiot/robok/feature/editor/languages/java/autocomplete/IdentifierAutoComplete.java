@@ -153,7 +153,7 @@ public class IdentifierAutoComplete {
 							public void onClassReceiver(String className)
 							{
 								//showMessage("Classe: " + className);
-                                completionItemList = createCompletionClassesItemList(className, userIdentifiers);
+                                completionItemList = createCompletionClassesItemList(prefix, userIdentifiers);
 							}
 
 							@Override
@@ -203,7 +203,7 @@ public class IdentifierAutoComplete {
             for (var word : dest) {
                 
                 //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
-                    result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getName())
+                    result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
                             .kind(CompletionItemKind.Class));
             }
         
