@@ -56,12 +56,10 @@ import io.github.rosemoe.sora.util.MutableInt;
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
-import org.gampiot.robok.feature.editor.languages.java.store.RDKClasses;
+import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
 
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
-
-import kotlinx.coroutines.runBlocking;
 
 /**
  * Identifier auto-completion.
