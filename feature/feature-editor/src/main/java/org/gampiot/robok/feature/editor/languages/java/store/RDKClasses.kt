@@ -55,17 +55,3 @@ class RDKClasses {
         }
     }
 }
-
-
-/* usage
-   rdkClasses.getClasses(classMap -> {
-        if (classMap.isEmpty()) {
-            System.out.println("No classes found or an error occurred");
-        } else {
-            System.out.println("Fetched classes as map:");
-            for (String name : classMap.keySet()) {
-                  System.out.println("Class Name: " + name + ", Description: " + classMap.get(name));
-            }
-       }
-    });
-*/
