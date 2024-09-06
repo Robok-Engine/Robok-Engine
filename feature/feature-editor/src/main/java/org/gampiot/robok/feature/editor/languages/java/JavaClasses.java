@@ -7,6 +7,8 @@
 
 package org.gampiot.robok.feature.editor.languages.java;
 
+import java.util.HashMap;
+
 public class JavaClasses {
     
     public HashMap<String, String> classes;

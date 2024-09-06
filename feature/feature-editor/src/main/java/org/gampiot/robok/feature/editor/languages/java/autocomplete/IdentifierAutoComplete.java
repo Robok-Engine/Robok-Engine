@@ -137,7 +137,7 @@ public class IdentifierAutoComplete {
         
         List<CompletionItem> completionItemList = null;
         
-        checkCodeType(code, new CodeTypeListener(){
+        checkCodeType(line, new CodeTypeListener(){
 
 							@Override
 							public void onClassReceiver(String className)
