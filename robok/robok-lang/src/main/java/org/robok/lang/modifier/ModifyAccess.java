@@ -22,8 +22,8 @@ public class ModifyAccess {
 	 public ModifyAccess(){ }
 
 	 public ModifyAcessObject codeIsModifyAcess(String code){
-		  public boolean isModifyAcess = false;
-		  public String modifyAcessType = "";
+		  boolean isModifyAcess = false;
+		  String modifyAcessType = "";
 		  
 		  for(int i = 0; i < modifyAcess.length; i++){
 		        if(code.equals(modifyAcess[i])){
