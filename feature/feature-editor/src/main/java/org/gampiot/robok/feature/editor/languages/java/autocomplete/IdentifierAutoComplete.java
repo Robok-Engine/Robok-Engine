@@ -199,7 +199,7 @@ public class IdentifierAutoComplete {
         
         List<Class<?>> dest = new ArrayList<>();
             
-            filterJavaClasses(className, dest, javaClasses);
+            filterJavaClasses(className, dest, javaClasses.getJavaClasses());
             for (var word : dest) {
                 
                 //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
