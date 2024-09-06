@@ -56,6 +56,10 @@ import io.github.rosemoe.sora.util.MutableInt;
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
 
+import org.gampiot.robok.feature.editor.languages.java.JavaClasses;
+
+import java.lang.Class;
+import java.lang.ClassNotFoundException;
 
 /**
  * Identifier auto-completion.
@@ -92,12 +96,17 @@ public class IdentifierAutoComplete {
     //ItemList
     List<CompletionItem> completionItemList = null;
     
+    //Java Classes
+    JavaClasses javaClasses;
+    
     public IdentifierAutoComplete() {
+        
     }
 
     public IdentifierAutoComplete(String[] keywords) {
         this();
         setKeywords(keywords, true);
+        javaClasses = new JavaClasses();
     }
 
     private static String asString(CharSequence str) {
@@ -144,13 +153,14 @@ public class IdentifierAutoComplete {
 							public void onClassReceiver(String className)
 							{
 								//showMessage("Classe: " + className);
+                                completionItemList = createCompletionClassesItemList(className, userIdentifiers);
 							}
 
 							@Override
 							public void onIdentifierReceiver(String identifierName)
 							{
 								//showMessage("Identificador ou variável: " + identifierName);
-                                completionItemList = createCompletionItemList(prefix, userIdentifiers);
+                                completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
 							}
 
 							@Override
@@ -177,9 +187,28 @@ public class IdentifierAutoComplete {
 
     }
     
+    public List<CompletionItem> createCompletionClassesItemList(
+            @NonNull String className, @Nullable Identifiers userIdentifiers
+    ) {
+        final var keywordMap = this.keywordMap;
+        int prefixLength = className.length();
+        if (prefixLength == 0) {
+            return Collections.emptyList();
+        }
+        
+        List<Class<?>> dest = new ArrayList<>();
+            
+            filterJavaClasses(className, dest, classes);
+            for (var word : dest) {
+                
+                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
+                    result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getName())
+                            .kind(CompletionItemKind.Class));
+            }
+        
+        }
 
-
-    public List<CompletionItem> createCompletionItemList(
+    public List<CompletionItem> createCompletionIdentifiersAndKeywordsItemList(
             @NonNull String prefix, @Nullable Identifiers userIdentifiers
     ) {
         int prefixLength = prefix.length();
@@ -349,6 +378,32 @@ public class IdentifierAutoComplete {
                     
                 }
             }
+    
+    
+    public void filterJavaClasses(@NonNull String prefix, List<Class<?>> dest, HashMap<String, String> classes){
+       
+        for (String s : classes.keySet()) {
+
+			var fuzzyScore = Filters.fuzzyScoreGracefulAggressive(prefix,
+																  prefix.toLowerCase(Locale.ROOT),
+																  0, s, s.toLowerCase(Locale.ROOT), 0, FuzzyScoreOptions.getDefault());
+            
+			var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
+
+			if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s)))
+			{
+                
+                try {
+                    Class<?> clazz = Class.forName(classes.get(s));
+                    dest.add(clazz);
+                } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                }
+                
+			}
+
+		}
+    }
         
     /**
      * Interface for saving identifiers
