@@ -61,6 +61,8 @@ import org.gampiot.robok.feature.editor.languages.java.store.RDKClasses;
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
 
+import kotlinx.coroutines.runBlocking;
+
 /**
  * Identifier auto-completion.
  * <p>
@@ -183,8 +185,9 @@ public class IdentifierAutoComplete {
          List<Class<?>> dest = new ArrayList<>();
          
          var rdkClassesManager = new RDKClasses();
-         HashMap<String, String> rdkClasses = rdkClassesManager.getClasses();
-        
+         HashMap<String, String> rdkClasses = runBlocking {
+             return@runBlocking rdkClassesManager.getClasses();
+         };
          filterJavaClasses(className, dest, javaClasses.getClasses());
          filterJavaClasses(className, dest, rdkClasses);
          for (var word : dest) {
