@@ -397,8 +397,8 @@ public class IdentifierAutoComplete {
 			{
                 
                 try {
-                    Class<?> clazz = Class.forName(classes.get(s));
-                    dest.add(clazz);
+                   // Class<?> clazz = Class.forName(classes.get(s));
+                  //  dest.add(clazz);
                 } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                 }
