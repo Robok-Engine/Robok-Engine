@@ -135,8 +135,37 @@ public class IdentifierAutoComplete {
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
         this.methodName = currentMethod;
         
+        List<CompletionItem> completionItemList = null;
         
-        var completionItemList = createCompletionItemList(prefix, userIdentifiers);
+        checkCodeType(code, new CodeTypeListener(){
+
+							@Override
+							public void onClassReceiver(String className)
+							{
+								//showMessage("Classe: " + className);
+							}
+
+							@Override
+							public void onIdentifierReceiver(String identifierName)
+							{
+								//showMessage("Identificador ou variável: " + identifierName);
+                                completionItemList = createCompletionItemList(prefix, userIdentifiers);
+							}
+
+							@Override
+							public void onVariableIdentifier(String variableName, String fieldOrMethodName)
+							{
+								//showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
+							}
+
+							@Override
+							public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName)
+							{
+								//showMessage("Método estático ou campo estático:" + staticFieldOrMethodName + " de " + className);
+							}
+							
+						
+					});
 
         var comparator = Comparators.getCompletionItemComparator(reference, position, completionItemList);
 
@@ -356,6 +385,74 @@ public class IdentifierAutoComplete {
         // Callback when a static identifier is identified
         void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName);
     }
+    
+    /**
+     * method check Code Type
+     *
+     * @author ThDev-only
+     */
+    private void checkCodeType(String code, CodeTypeListener listener) {
+		if (code.isEmpty()) {
+			return;
+		}
+
+		// Use regex to split the text based on anything that is not a letter or a dot
+		String[] words = code.split("[^a-zA-Z.]");
+
+		// Get the last relevant word
+		String lastWord = "";
+		for (int i = words.length - 1; i >= 0; i--) {
+			if (!words[i].isEmpty()) {
+				lastWord = words[i];
+				break;
+			}
+		}
+
+		// Initialize the variable to store the name of the identifier or class
+		String name = "";
+
+		// Check if the last character is a dot
+		if (code.endsWith(".")) {
+			name = lastWord.replace(".", "");
+			if (Character.isUpperCase(lastWord.charAt(0))) {
+				listener.onStaticIdentifierReceiver(name, ".");
+			} else {
+				listener.onVariableIdentifier(name, ".");
+			}
+			return;
+		}
+
+		// Continue with the logic to identify the type of input
+		if (lastWord.contains(".")) {
+			String[] parts = lastWord.split("\\.");
+			if (parts.length > 1) {
+				String prefix = parts[0];
+				String suffix = parts[1];
+
+				name = prefix;
+
+				if (Character.isUpperCase(prefix.charAt(0))) {
+					listener.onStaticIdentifierReceiver(name, suffix);
+				} else {
+					listener.onVariableIdentifier(name, suffix);
+				}
+			} else {
+				name = lastWord;
+				if (Character.isUpperCase(lastWord.charAt(0))) {
+					listener.onClassReceiver(name);
+				} else {
+					listener.onIdentifierReceiver(name);
+				}
+			}
+		} else {
+			name = lastWord;
+			if (Character.isUpperCase(lastWord.charAt(0))) {
+				listener.onClassReceiver(name);
+			} else {
+				listener.onIdentifierReceiver(name);
+			}
+		}
+	}
 
     /**
      * This object is used only once. In other words, the object is generated every time the
