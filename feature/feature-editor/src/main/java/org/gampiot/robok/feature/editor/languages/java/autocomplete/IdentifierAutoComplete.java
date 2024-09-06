@@ -89,6 +89,9 @@ public class IdentifierAutoComplete {
     private HashMap<String, Method> methods;
     private String methodName;
     
+    //ItemList
+    List<CompletionItem> completionItemList = null;
+    
     public IdentifierAutoComplete() {
     }
 
@@ -134,8 +137,6 @@ public class IdentifierAutoComplete {
             @NonNull ContentReference reference, String line, @NonNull CharPosition position,
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
         this.methodName = currentMethod;
-        
-        List<CompletionItem> completionItemList = null;
         
         checkCodeType(line, new CodeTypeListener(){
 
