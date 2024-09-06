@@ -207,6 +207,8 @@ public class IdentifierAutoComplete {
                             .kind(CompletionItemKind.Class));
             }
         
+        return result;
+        
         }
 
     public List<CompletionItem> createCompletionIdentifiersAndKeywordsItemList(
