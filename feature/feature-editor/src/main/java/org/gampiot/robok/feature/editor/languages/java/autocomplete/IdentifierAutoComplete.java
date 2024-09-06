@@ -97,7 +97,7 @@ public class IdentifierAutoComplete {
     List<CompletionItem> completionItemList = null;
     
     //Java Classes
-    JavaClasses javaClasses;
+    public JavaClasses javaClasses;
     
     public IdentifierAutoComplete() {
         
@@ -195,10 +195,11 @@ public class IdentifierAutoComplete {
         if (prefixLength == 0) {
             return Collections.emptyList();
         }
+        var result = new ArrayList<CompletionItem>();
         
         List<Class<?>> dest = new ArrayList<>();
             
-            filterJavaClasses(className, dest, classes);
+            filterJavaClasses(className, dest, javaClasses);
             for (var word : dest) {
                 
                 //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
@@ -321,13 +322,13 @@ public class IdentifierAutoComplete {
      *
      * @param prefix The prefix to make completions for.
      */
-    @Deprecated
+   /* @Deprecated
     public void requireAutoComplete(
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers) {
         publisher.setComparator(COMPARATOR);
         publisher.setUpdateThreshold(0);
         publisher.addItems(createCompletionItemList(prefix, userIdentifiers));
-    }
+    }*/
 
     public void filterIdentifiersVariables(@NonNull String prefix, @NonNull List<Variable> dest, String methodName, HashMap<String, Variable> variables) {
             
