@@ -23,7 +23,7 @@ import org.gampiot.robok.feature.util.activities.DebugActivity;
 
 public class RobokApplication extends KoinApplication {
 
-    public static RobokApp instance;
+    public static RobokApplication instance;
     public static Context robokContext;
     public static FragmentManager fragmentManager;
     
@@ -32,9 +32,9 @@ public class RobokApplication extends KoinApplication {
     
     public static final String ERROR_TAG = "error";
         
-    public RobokApp() { }
+    public RobokApplication() { }
 
-    public RobokApp(FragmentManager fragmentManager) {
+    public RobokApplication(FragmentManager fragmentManager) {
          this.fragmentManager = fragmentManager;
     }
     
