@@ -4,7 +4,7 @@ import robok.aapt2.util.Decompress;
 import robok.aapt2.compiler.exception.CompilerException;
 import robok.aapt2.compiler.exception.AAPT2CompileException;
 
-import org.gampiot.robok.feature.util.application.RobokApp;
+import org.gampiot.robok.feature.util.application.RobokApplication;
 
 import java.io.IOException;
 import java.io.File;
@@ -51,14 +51,14 @@ public abstract class Compiler {
 
     public File getAndroidJarFile() {
         File check =
-                new File(RobokApp.robokContext.getFilesDir() + "/temp/android.jar");
+                new File(RobokApplication.robokContext.getFilesDir() + "/temp/android.jar");
 
         if (check.exists()) {
             return check;
         }
 
         Decompress.unzipFromAssets(
-                RobokApp.robokContext,
+                RobokApplication.robokContext,
                 "android.jar.zip",
                 check.getParentFile().getAbsolutePath());
 
@@ -68,7 +68,7 @@ public abstract class Compiler {
     public File getLambdaFactoryFile() {
         File check =
                 new File(
-                        RobokApp.robokContext.getFilesDir()
+                        RobokApplication.robokContext.getFilesDir()
                                 + "/temp/core-lambda-stubs.jar");
 
         if (check.exists()) {
@@ -76,7 +76,7 @@ public abstract class Compiler {
         }
 
         Decompress.unzipFromAssets(
-                RobokApp.robokContext,
+                RobokApplication.robokContext,
                 "core-lambda-stubs.zip",
                 check.getParentFile().getAbsolutePath());
 

@@ -14,7 +14,7 @@ import robok.aapt2.BinaryExecutor;
 import robok.aapt2.model.Project;
 import robok.aapt2.model.Library;
 
-import org.gampiot.robok.feature.util.application.RobokApp;
+import org.gampiot.robok.feature.util.application.RobokApplication;
 
 public class AAPT2Compiler extends Compiler {
 	
@@ -33,7 +33,7 @@ public class AAPT2Compiler extends Compiler {
     
 	public AAPT2Compiler(Project project) {
 	    mProject = project;
-	    mFilesDir = RobokApp.robokContext.getFilesDir();
+	    mFilesDir = RobokApplication.robokContext.getFilesDir();
         setTag(TAG);
 	}
 	
@@ -224,14 +224,14 @@ public class AAPT2Compiler extends Compiler {
 	
 	private File getAAPT2File() throws CompilerException, IOException {
 		/*
-		    File check = new File(RobokApp.robokContext.getFilesDir() + "/temp/aapt2");
+		    File check = new File(RobokApplication.robokContext.getFilesDir() + "/temp/aapt2");
 	     	if (check.exists()) {
 	     	     return check;
 		    }
 		    check.getParentFile().mkdirs();
 	    */
-		File nativeLibrary = new File(RobokApp.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
-		mProject.getLogger().d("getApplicationInfo().nativeLibraryDir", RobokApp.robokContext.getApplicationInfo().nativeLibraryDir);
+		File nativeLibrary = new File(RobokApplication.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
+		mProject.getLogger().d("getApplicationInfo().nativeLibraryDir", RobokApplication.robokContext.getApplicationInfo().nativeLibraryDir);
 		if (!nativeLibrary.exists()) {
 		//	throw new CompilerException("AAPT2 binary not found");
             mProject.getLogger().e(TAG, "AAPT2 binary not found");

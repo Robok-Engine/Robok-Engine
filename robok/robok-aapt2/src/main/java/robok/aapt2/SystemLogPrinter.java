@@ -6,13 +6,13 @@ import java.io.OutputStream;
 import robok.aapt2.logger.Logger;
 import robok.aapt2.util.FileUtil;
 
-import org.gampiot.robok.feature.util.application.RobokApp;
+import org.gampiot.robok.feature.util.application.RobokApplication;
 
 public class SystemLogPrinter {
 
     public static void start(Logger logger) {
         //reset
-        FileUtil.writeFile(RobokApp.robokContext.getExternalFilesDir(null) + "/logs.txt", "");
+        FileUtil.writeFile(RobokApplication.robokContext.getExternalFilesDir(null) + "/logs.txt", "");
 
         PrintStream ps = new PrintStream(new OutputStream() {
             private String cache;
