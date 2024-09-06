@@ -1,6 +1,7 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
@@ -49,6 +50,10 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
+    
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     
     implementation("io.insert-koin:koin-android:3.5.6")
     
