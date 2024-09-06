@@ -78,7 +78,7 @@ import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.gampiot.robok.feature.editor.languages.java.models.*;
 
-import robok.diagnostic.logic.*;
+import org.robok.diagnostic.logic.*;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;

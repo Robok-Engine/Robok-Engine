@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "robok.diagnostic"
+    namespace = "org.robok.diagnostic"
     compileSdk = 35
     
     defaultConfig {

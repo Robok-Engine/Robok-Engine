@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import androidx.annotation.AttrRes
 import androidx.annotation.StyleRes
 import com.google.android.material.appbar.AppBarLayout
+
 import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutCenteredTitleToolbarBinding
 

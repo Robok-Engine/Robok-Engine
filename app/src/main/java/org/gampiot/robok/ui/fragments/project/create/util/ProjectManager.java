@@ -8,10 +8,10 @@ import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogi
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
 
-import robok.aapt2.compiler.CompilerTask;
-import robok.aapt2.model.Project;
-import robok.aapt2.model.Library;
-import robok.aapt2.logger.Logger;
+import org.robok.aapt2.compiler.CompilerTask;
+import org.robok.aapt2.model.Project;
+import org.robok.aapt2.model.Library;
+import org.robok.aapt2.logger.Logger;
 
 import java.io.BufferedInputStream;
 import java.io.File;

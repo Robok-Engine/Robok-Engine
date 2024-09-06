@@ -32,7 +32,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStreams;
 
-import robok.diagnostic.logic.*;
+import org.robok.diagnostic.logic.*;
 
 import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;

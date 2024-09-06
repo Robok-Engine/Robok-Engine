@@ -26,9 +26,9 @@ import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 
-import robok.compiler.logic.LogicCompiler
-import robok.compiler.logic.LogicCompilerListener
-import robok.diagnostic.logic.DiagnosticListener
+import org.robok.compiler.logic.LogicCompiler
+import org.robok.compiler.logic.LogicCompilerListener
+import org.robok.diagnostic.logic.DiagnosticListener
 
 class EditorFragment() : RobokFragment() {
 
