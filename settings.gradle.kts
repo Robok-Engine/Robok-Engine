@@ -39,5 +39,3 @@ include(":feature-compose:feature-settings")
 include(":easy-ui:components")
 include(":easy-ui:components-compose")
 include(":easy-ui:filepicker")
-
-include(":sdk")
