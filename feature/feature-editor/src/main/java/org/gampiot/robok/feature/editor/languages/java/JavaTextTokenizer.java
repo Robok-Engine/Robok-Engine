@@ -284,7 +284,7 @@ public class JavaTextTokenizer {
     }
 
     protected void scanStringLiteral() {
-        throwIfNeeded();
+      //  throwIfNeeded();
         char ch;
         while (offset + length < bufferLen && (ch = charAt(offset + length)) != '\"') {
             if (ch == '\\') {
