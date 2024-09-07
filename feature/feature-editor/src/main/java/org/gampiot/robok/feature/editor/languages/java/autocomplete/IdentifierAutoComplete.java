@@ -301,7 +301,8 @@ public class IdentifierAutoComplete {
          }
          var result = new ArrayList<CompletionItem>();
         
-        Variable vari = variables.get(variableName);
+        //works only with global variables
+        Variable vari = variables.get("global:" + variableName);
         
         Class<?> clazz = null;
         
