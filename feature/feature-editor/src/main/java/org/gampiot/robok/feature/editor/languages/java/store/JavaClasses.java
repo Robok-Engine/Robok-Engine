@@ -33,10 +33,6 @@ public final class JavaClasses {
           classes.put("Arrays", "java.util.Arrays"); // Arrays class for utility methods for working with arrays
           classes.put("Date", "java.util.Date"); // Date class for working with dates (legacy class, use java.time package for new code)
           classes.put("Calendar", "java.util.Calendar"); // Calendar class for working with date and time
-          classes.put("Toast", "android.widget.Toast"); // Toast class for displaying temporary messages in Android
-          classes.put("Bundle", "android.os.Bundle"); // Bundle class for passing data between Android components
-          classes.put("Context", "android.content.Context"); // Context class for Android application context access
-          classes.put("View", "android.view.View"); // View class for Android UI elements
           return classes;
      }
 }
