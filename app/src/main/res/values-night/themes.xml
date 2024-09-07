@@ -19,6 +19,11 @@
         <item name="android:windowSplashScreenBackground">@drawable/splash_bg</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
         <item name="android:windowSplashScreenAnimationDuration">1500</item>
+        
+        <!-- Constant Colors -->
+        <item name="rbkColorGreen">@color/rbk_theme_green</item>
+        <item name="rbkColorRed">@color/rbk_theme_red</item>
+        <item name="colorIcon">@color/md_theme_onSurface</item>
     </style>
 	
     <style name="Theme.Robok" parent="Base.Theme.Robok">
@@ -68,7 +73,5 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
-        <item name="rbkColorGreen">@color/rbk_theme_green</item>
-        <item name="rbkColorRed">@color/rbk_theme_red</item>
     </style>
 </resources>
