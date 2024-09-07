@@ -14,6 +14,7 @@ import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentEditorDiagnosticBinding;
 import org.gampiot.robok.feature.util.base.RobokFragment;
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem;
+import org.gampiot.robok.ui.fragments.editor.diagnostic.adapters.DiagnosticsAdapter;
 
 import java.util.List;
 import java.util.ArrayList;
