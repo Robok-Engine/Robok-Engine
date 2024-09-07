@@ -302,7 +302,8 @@ public class IdentifierAutoComplete {
          var result = new ArrayList<CompletionItem>();
         
         //works only with global variables
-        Variable vari = variables.get("global:" + variableName);
+        Variable vari = variables.get(variableName);
+       // if(vari == null) variables.get("method")
         
         Class<?> clazz = null;
         
@@ -381,10 +382,11 @@ public class IdentifierAutoComplete {
             
                 
                     for (String ip : variables.keySet()){
-                        String[] parts = ip.split(":");
+                        //String[] parts = ip.split(":");
+                        var vari = variables.get(ip);
                         
-                       if(parts[0].equals(methodName) || parts[0].equals("global")){
-                            String s = parts[1];
+                       if(vari.getCreatedIn().equals(methodName) || vari.getCreatedIn().equals("global")){
+                            String s = ip;
             
                         var fuzzyScore = Filters.fuzzyScoreGracefulAggressive(prefix,
                                 prefix.toLowerCase(Locale.ROOT),
@@ -393,7 +395,7 @@ public class IdentifierAutoComplete {
                         var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
 
                         if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))) {
-                            var vari = variables.get(ip);
+                            
                         //    vari.setType(vari.getType());
                             dest.add(vari);
                         }

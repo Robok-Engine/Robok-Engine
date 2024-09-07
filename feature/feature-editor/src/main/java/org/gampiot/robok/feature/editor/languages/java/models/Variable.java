@@ -9,20 +9,30 @@ import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 */
 public class Variable {
 
+     private String createdIn;
      private String importPackage;
      private String type;
      private String name;
      private ModifierAccess acessModifier;
      private String value;
 
-     public Variable(ModifierAccess acessModifier, String importPackage, String type, String name, String value) {
+     public Variable(String createdIn, ModifierAccess acessModifier, String importPackage, String type, String name, String value) {
+          this.createdIn = createdIn;
           this.acessModifier = acessModifier;
           this.importPackage = importPackage;
           this.type = type;
           this.name = name;
           this.value = value;
      }
-     
+    
+     public String getCreatedIn() {
+          return this.createdIn;
+     }
+
+     public void setCreatedIn(String name) {
+          this.name = name;
+     }
+    
      public String getCode() {
           return this.name;
      }

@@ -478,7 +478,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
                     }
                     type = enclosingMethod + " : " + type;
                     // Adding variable information to the variable map, including the enclosing method
-                    variablesMap.put(enclosingMethod + ":" + variableName, new Variable(accessModifier, importPackage, type, variableName, initialValue));
+                    variablesMap.put(variableName, new Variable(enclosingMethod, accessModifier, importPackage, type, variableName, initialValue));
               }
          }
          
@@ -506,7 +506,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
                        initialValue = varCtx.variableInitializer().getText();
                   }
                   type = "global" + " : " + type;
-                  variablesMap.put("global" + ":" + variableName, new Variable(accessModifier, importPackage, type, variableName, initialValue));
+                  variablesMap.put(variableName, new Variable("global", accessModifier, importPackage, type, variableName, initialValue));
                   //log += "\n" + "global" + ":" + variableName;
              }
         }
