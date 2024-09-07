@@ -129,7 +129,7 @@ dependencies {
     implementation(project(":easy-ui:components"))
     implementation(project(":easy-ui:filepicker"))
     
-    implementation(project(:robok-sdk:sdk))
+    implementation(project(":robok-sdk:sdk"))
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation(platform("$editorGroupId:bom:0.23.4"))

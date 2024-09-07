@@ -78,5 +78,5 @@ dependencies {
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
     
-    implementation(project(:robok-sdk:sdk))
+    implementation(project(":robok-sdk:sdk"))
 }
