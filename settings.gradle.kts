@@ -40,4 +40,4 @@ include(":easy-ui:components")
 include(":easy-ui:components-compose")
 include(":easy-ui:filepicker")
 
-include(":robok-sdk:sdk")
+include(":sdk")
