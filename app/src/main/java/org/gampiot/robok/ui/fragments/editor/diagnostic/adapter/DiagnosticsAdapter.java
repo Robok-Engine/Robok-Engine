@@ -10,6 +10,7 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.LayoutDiagnosticItemBinding;
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem;
 
