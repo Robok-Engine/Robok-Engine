@@ -348,8 +348,15 @@ public class IdentifierAutoComplete {
                 result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
                     .kind(CompletionItemKind.Class));
             }*/
+            }else{
+                result.add(new SimpleCompletionItem("class é null", "null", prefixLength, "")
+                    .kind(CompletionItemKind.Class));
             }
+        }else{
+            result.add(new SimpleCompletionItem("Vari é null", "null", prefixLength, "")
+                    .kind(CompletionItemKind.Class));
         }
+        
         
          
          return result;        
