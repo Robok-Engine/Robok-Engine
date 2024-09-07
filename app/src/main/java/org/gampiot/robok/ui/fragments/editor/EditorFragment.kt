@@ -195,7 +195,7 @@ class EditorFragment() : RobokFragment() {
 
         binding.codeEditor.setDiagnosticListener(diagnosticListener)
         binding.codeEditor.setEditorListener(editorListener)
-
+        binding.codeEditor.reload()
         binding.undo.setOnClickListener {
             binding.codeEditor.undo()
             updateUndoRedo()

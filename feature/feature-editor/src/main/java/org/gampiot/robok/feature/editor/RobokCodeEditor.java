@@ -92,8 +92,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
           //Diagnostics
           diagnostics = new DiagnosticsContainer();
           language = new JavaLanguage(this, diagnostics);
-          language.setEditorListener(editorListener);
-          language.setDiagnosticListener(diagnosticListener);
+          reload();
           getSoraCodeEditor().setText(BASE_MESSAGE);
           getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
           getSoraCodeEditor().setTextSize(16);
@@ -140,6 +139,14 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
                );
           diagnostics.addDiagnostic(diagnosticRegion);
           getSoraCodeEditor().setDiagnostics(diagnostics);
+     }
+     
+     /*
+     * Method to reload Language config
+     */
+     public void reload() {
+          language.setEditorListener(editorListener);
+          language.setDiagnosticListener(diagnosticListener);
      }
      
      /*
