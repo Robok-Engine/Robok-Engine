@@ -51,9 +51,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     
-    val kotlinCoroutinesVersion = "1.9.0-RC.2"
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0-RC.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     
     implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
