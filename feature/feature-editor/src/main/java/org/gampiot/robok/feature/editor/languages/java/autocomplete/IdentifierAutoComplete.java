@@ -141,7 +141,7 @@ public class IdentifierAutoComplete {
             @NonNull ContentReference reference, String line, @NonNull CharPosition position,
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
          
-        if(prefix.contains("\"")){
+        if(line.contains("\"")){
             completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
         }else{
             this.methodName = currentMethod;
