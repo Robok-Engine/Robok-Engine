@@ -39,14 +39,16 @@ class RDKClasses {
             client.newCall(request).execute().use { response ->
                 if (response.isSuccessful) {
                     val jsonString = response.body?.string()
-                    Log.d(TAG, jsonString)
+                    Log.d(TAG, "JSON Received: $jsonString")
                     jsonString?.let {
                         return@withContext Json.decodeFromString<List<ClassItem>>(it)
                     }
+                } else {
+                    Log.e(TAG, "Error: ${response.message}")
                 }
             }
         } catch (e: Exception) {
-           Log.e(TAG, "Error:" e)
+            Log.e(TAG, "Error:", e)
         }
         emptyList()
     }
