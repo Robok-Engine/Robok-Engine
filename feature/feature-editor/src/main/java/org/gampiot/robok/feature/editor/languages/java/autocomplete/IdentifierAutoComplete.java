@@ -158,7 +158,7 @@ public class IdentifierAutoComplete {
                  @Override
                  public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
                       //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
-                     completionItemList = createCompletionIdentifiersFromVariableItemList(variableName, fieldOrMethodName, userIdentifiers)
+                     completionItemList = createCompletionIdentifiersFromVariableItemList(variableName, fieldOrMethodName, userIdentifiers);
                  }
                  @Override
                  public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
