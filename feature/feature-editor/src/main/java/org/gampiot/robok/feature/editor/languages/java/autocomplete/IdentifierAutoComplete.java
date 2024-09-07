@@ -63,7 +63,6 @@ import java.lang.Class;
 import java.lang.ClassNotFoundException;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Method;
 
 /**
  * Identifier auto-completion.
@@ -330,9 +329,9 @@ public class IdentifierAutoComplete {
             }
             
             // Obter todos os métodos públicos
-            Method[] publicMethods = clazz.getMethods();
+            java.lang.reflect.Method[] publicMethods = clazz.getMethods();
                 
-                for (Method method : publicMethods) {
+                for (java.lang.reflect.Method method : publicMethods) {
                  identifiers.put(method.getName(), method.getReturnType());
                     
                     if(prefix.equalsIgnoreCase(".")){
