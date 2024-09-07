@@ -56,6 +56,7 @@ import io.github.rosemoe.sora.util.MutableInt;
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
+import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
 
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
@@ -180,7 +181,10 @@ public class IdentifierAutoComplete {
          var result = new ArrayList<CompletionItem>();
         
          List<Class<?>> dest = new ArrayList<>();
+         
          filterJavaClasses(className, dest, javaClasses.getClasses());
+         HashMap<String, String> rdkClasses = RDKClassesHelper.getClasses();
+         filterJavaClasses(className, dest, rdkClasses);
          for (var word : dest) {
               //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
               result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
