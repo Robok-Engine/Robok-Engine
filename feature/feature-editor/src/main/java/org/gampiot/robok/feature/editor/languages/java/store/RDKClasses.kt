@@ -1,5 +1,12 @@
 package org.gampiot.robok.feature.editor.languages.java.store
 
+/*
+* Class to get Classes from https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/$RDK_VERSION/classes.json
+* And add in HashMap to use on Auto Complete
+* @author Aquiles Trindade
+*/
+
+
 import android.util.Log
 
 import kotlinx.coroutines.*
