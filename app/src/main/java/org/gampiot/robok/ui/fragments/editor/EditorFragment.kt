@@ -44,7 +44,7 @@ class EditorFragment() : RobokFragment() {
         }
     }
     
-    var diagnosticsList: List<DiagnosticItem> = emptyList()
+    var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
 
     val diagnosticStandTime : Long = 800
 
