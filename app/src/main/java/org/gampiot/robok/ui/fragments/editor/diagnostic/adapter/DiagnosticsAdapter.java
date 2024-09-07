@@ -33,9 +33,9 @@ public class DiagnosticsAdapter extends RecyclerView.Adapter<DiagnosticsAdapter.
      @Override
 	 public void onBindViewHolder (ViewHolder holder, int position) {
 	      DiagnosticItem item = listData.get(position);
-	      holder.views.name.setText(item.name);
-	      holder.views.description.setText(item.description);
-	      holder.views.icon.setImageResource(handleTypes(item.type));
+	      holder.views.name.setText(item.getName());
+	      holder.views.description.setText(item.getDescription());
+	      holder.views.icon.setImageResource(handleTypes(item.getType()));
 	      context = holder.context;
 	 }
 	 
