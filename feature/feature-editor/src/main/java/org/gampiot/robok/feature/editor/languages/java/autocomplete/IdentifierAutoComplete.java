@@ -158,6 +158,7 @@ public class IdentifierAutoComplete {
                  @Override
                  public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
                       //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
+                     completionItemList = createCompletionIdentifiersFromVariableItemList(variableName, fieldOrMethodName, userIdentifiers)
                  }
                  @Override
                  public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
@@ -294,7 +295,7 @@ public class IdentifierAutoComplete {
          @Nullable Identifiers userIdentifiers
     ) {
          final var keywordMap = this.keywordMap;
-         int prefixLength = className.length();
+         int prefixLength = variableName.length();
          if (prefixLength == 0) {
               return Collections.emptyList();
          }
@@ -332,10 +333,10 @@ public class IdentifierAutoComplete {
             java.lang.reflect.Method[] publicMethods = clazz.getMethods();
                 
                 for (java.lang.reflect.Method method : publicMethods) {
-                 identifiers.put(method.getName(), method.getReturnType());
+                 identifiers.put(method.getName(), method.getReturnType().getSimpleName());
                     
                     if(prefix.equalsIgnoreCase(".")){
-                        result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
+                        result.add(new SimpleCompletionItem(method.getName(), method.getReturnType().getName(), prefixLength, method.getName())
                     .kind(CompletionItemKind.Class));
                     }
             }
