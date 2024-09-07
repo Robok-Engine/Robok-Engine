@@ -12,7 +12,7 @@ import java.util.HashMap;
 public final class JavaClasses {
         
      public static final HashMap<String, String> getClasses(){
-          var classes = new HashMap<>();
+          HashMap<String, String> classes = new HashMap<>();
           classes.put("String", "java.lang.String"); // String class for handling strings
           classes.put("Integer", "java.lang.Integer"); // Integer class for handling integers
           classes.put("Float", "java.lang.Float"); // Float class for handling floating point numbers
