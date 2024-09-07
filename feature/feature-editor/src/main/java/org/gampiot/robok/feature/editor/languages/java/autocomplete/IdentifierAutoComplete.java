@@ -96,9 +96,6 @@ public class IdentifierAutoComplete {
     //ItemList
     List<CompletionItem> completionItemList = null;
     
-    //Java Classes
-    public final static JavaClasses javaClasses = new JavaClasses();
-    
     public IdentifierAutoComplete() { }
 
     public IdentifierAutoComplete(String[] keywords) {
@@ -182,9 +179,8 @@ public class IdentifierAutoComplete {
         
          List<Class<?>> dest = new ArrayList<>();
          
-         filterJavaClasses(className, dest, javaClasses.getClasses());
-         HashMap<String, String> rdkClasses = RDKClassesHelper.getClasses();
-         filterJavaClasses(className, dest, rdkClasses);
+         filterJavaClasses(className, dest, JavaClasses.getClasses());
+         filterJavaClasses(className, dest, RDKClassesHelper.getClasses());
          for (var word : dest) {
               //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
               result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
