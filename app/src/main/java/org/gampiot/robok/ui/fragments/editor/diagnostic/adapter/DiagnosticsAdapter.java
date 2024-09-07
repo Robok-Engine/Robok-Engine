@@ -2,7 +2,8 @@ package org.gampiot.robok.ui.fragments.editor.diagnostic.adapters;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ViewGroup;
+import android.view.ViewGroup;
+import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import androidx.annotation.NonNull;
@@ -33,7 +34,7 @@ public class DiagnosticsAdapter extends RecyclerView.Adapter<DiagnosticsAdapter.
 	      DiagnosticItem item = listData.get(position);
 	      holder.views.name.setText(item.name);
 	      holder.views.description.setText(item.description);
-	      holder.views.type.setText(handleTypes(item.type));
+	      holder.views.icon.setImageResource(handleTypes(item.type));
 	      context = holder.context;
 	 }
 	 
@@ -42,14 +43,15 @@ public class DiagnosticsAdapter extends RecyclerView.Adapter<DiagnosticsAdapter.
 	      return listData.size();
 	 }
 	 
-	 public String handleTyples(int t) {
+	 @IdRes
+	 public int handleTypes(int t) {
 	      switch (t) {
 	          case 0:
-	             return "Warning";
+	             return R.drawable.ic_warning_24;
 	          case 1:
-	             return "Error";
+	             return R.drawable.ic_error_24;
 	          default: 
-	             return "Warning";
+	             return R.drawable.ic_warning_24;
 	      }
 	 }
 	 
