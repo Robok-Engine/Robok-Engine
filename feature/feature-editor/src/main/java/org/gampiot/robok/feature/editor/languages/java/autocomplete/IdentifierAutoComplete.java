@@ -335,10 +335,23 @@ public class IdentifierAutoComplete {
             java.lang.reflect.Method[] publicMethods = clazz.getMethods();
                 
                 for (java.lang.reflect.Method method : publicMethods) {
+                    
                  identifiers.put(method.getName(), method.getReturnType().getSimpleName());
                     
                     if(prefix.equalsIgnoreCase(".")){
-                        result.add(new SimpleCompletionItem(method.getName(), method.getReturnType().getName(), prefixLength, method.getName())
+                        
+                        String parameters = "(";
+                        for (int i = 0; i < method.getParameters().length; i++) {
+                                String argName = "arg" + i;
+                                if (i > 0) {
+                                    parameters += ", ";
+                                }
+                            parameters += method.getParameters()[i].getType().getSimpleName() + " " + argName;
+                            }
+                        
+                        parameters += ")";
+                        
+                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, method.getName())
                     .kind(CompletionItemKind.Class));
                     }
             }
