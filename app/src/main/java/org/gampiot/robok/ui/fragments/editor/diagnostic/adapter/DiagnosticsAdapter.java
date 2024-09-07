@@ -1,6 +1,6 @@
 package org.gampiot.robok.ui.fragments.editor.diagnostic.adapters;
 
-import android.content.Context!
+import android.content.Context;
 import android.view.View;
 import android.widget.ViewGroup;
 import android.widget.FrameLayout;
