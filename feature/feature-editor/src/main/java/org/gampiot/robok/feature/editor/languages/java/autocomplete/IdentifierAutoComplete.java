@@ -62,6 +62,9 @@ import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+
 /**
  * Identifier auto-completion.
  * <p>
@@ -282,24 +285,74 @@ public class IdentifierAutoComplete {
             }
         }
         
-        /*    
-        for(String title : variables.keySet()){
-                
-                
-                if(title.startsWith(prefix)){
-                    
-                
-            
-            Variable vari = variables.get(title);
-            String[] parts = title.split(":");
-            
-            
-        result.add(new SimpleCompletionItem(parts[1], vari.getType(), prefixLength, parts[1])
-                            .kind(CompletionItemKind.Variable));
-                    }
-        }
-        }*/
         return result;
+    }
+    
+    
+    public List<CompletionItem> createCompletionIdentifiersFromVariableItemList(
+         @NonNull String variableName,
+         @NonNull String prefix,
+         @Nullable Identifiers userIdentifiers
+    ) {
+         final var keywordMap = this.keywordMap;
+         int prefixLength = className.length();
+         if (prefixLength == 0) {
+              return Collections.emptyList();
+         }
+         var result = new ArrayList<CompletionItem>();
+        
+        Variable vari = variables.get(variableName);
+        
+        Class<?> clazz = null;
+        
+        if(vari != null){
+            try {
+                clazz = Class.forName(vari.getImportPackage());
+                
+            }catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                 }     
+        
+            if(clazz != null){
+                
+                HashMap<String, String> identifiers = new HashMap<>();
+                
+                // Obter todos os campos públicos (variáveis)
+            Field[] publicFields = clazz.getFields();
+                
+                for (Field field : publicFields) {
+                 identifiers.put(field.getName(), field.getType().getSimpleName());
+                    
+                    if(prefix.equalsIgnoreCase(".")){
+                        result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
+                    .kind(CompletionItemKind.Class));
+                    }
+            }
+            
+            // Obter todos os métodos públicos
+            Method[] publicMethods = clazz.getMethods();
+                
+                for (Method method : publicMethods) {
+                 identifiers.put(method.getName(), method.getReturnType());
+                    
+                    if(prefix.equalsIgnoreCase(".")){
+                        result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
+                    .kind(CompletionItemKind.Class));
+                    }
+            }
+                
+                
+                
+                /*for (var word : dest) {
+                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
+                result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
+                    .kind(CompletionItemKind.Class));
+            }*/
+            }
+        }
+        
+         
+         return result;        
     }
 
     /**

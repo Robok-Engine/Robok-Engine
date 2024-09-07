@@ -9,13 +9,15 @@ import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 */
 public class Variable {
 
+     private String importPackage;
      private String type;
      private String name;
      private ModifierAccess acessModifier;
      private String value;
 
-     public Variable(ModifierAccess acessModifier, String type, String name, String value) {
+     public Variable(ModifierAccess acessModifier, String importPackage, String type, String name, String value) {
           this.acessModifier = acessModifier;
+          this.importPackage = importPackage;
           this.type = type;
           this.name = name;
           this.value = value;
@@ -29,6 +31,14 @@ public class Variable {
           this.name = name;
      }
 
+     public String getImportPackage() {
+          return this.importPackage;
+     }
+
+     public void setImportPackage(String importPackage) {
+          this.importPackage = importPackage;
+     }
+    
      public String getType() {
           return this.type;
      }
