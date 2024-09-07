@@ -33,7 +33,7 @@ public class DiagnosticsAdapter extends RecyclerView.Adapter<DiagnosticsAdapter.
 	      DiagnosticItem item = listData.get(position);
 	      holder.views.name.setText(item.name);
 	      holder.views.description.setText(item.description);
-	      holder.views.type.setText(handleTypes(item.type);
+	      holder.views.type.setText(handleTypes(item.type));
 	      context = holder.context;
 	 }
 	 
