@@ -25,6 +25,7 @@ import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
+import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
 
 import org.robok.compiler.logic.LogicCompiler
 import org.robok.compiler.logic.LogicCompilerListener
@@ -42,6 +43,8 @@ class EditorFragment() : RobokFragment() {
             binding.diagnosticStatusImage.visibility = View.VISIBLE
         }
     }
+    
+    var diagnosticsList: List<DiagnosticItem> = emptyList()
 
     val diagnosticStandTime : Long = 800
 
@@ -102,7 +105,7 @@ class EditorFragment() : RobokFragment() {
                             openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment())
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment())
+                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
                         }
                     }
                 }
@@ -178,6 +181,13 @@ class EditorFragment() : RobokFragment() {
 
             override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
                 binding.codeEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
+                diagnosticsList.add(
+                   DiagnosticItem(
+                       "Error",
+                       msg,
+                       1
+                   )
+                )
                 onDiagnosticStatusReceive(true)
             }
         }
