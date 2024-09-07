@@ -141,9 +141,6 @@ public class IdentifierAutoComplete {
             @NonNull ContentReference reference, String line, @NonNull CharPosition position,
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
          
-        if(line.contains("\"")){
-            completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
-        }else{
             this.methodName = currentMethod;
             checkCodeType(line, new CodeTypeListener(){
                  @Override
@@ -166,7 +163,6 @@ public class IdentifierAutoComplete {
                  }
             });
             
-             }
         var comparator = Comparators.getCompletionItemComparator(reference, position, completionItemList);
         publisher.addItems(completionItemList);
         publisher.setComparator(comparator);
