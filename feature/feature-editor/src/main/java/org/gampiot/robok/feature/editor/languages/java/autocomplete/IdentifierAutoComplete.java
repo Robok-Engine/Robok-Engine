@@ -351,7 +351,7 @@ public class IdentifierAutoComplete {
                         
                         parameters += ")";
                         
-                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, variableName + "." + method.getName())
+                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, (variableName.substring(1))+ "." + method.getName())
                     .kind(CompletionItemKind.Class));
                     }
             }
