@@ -141,27 +141,32 @@ public class IdentifierAutoComplete {
             @NonNull ContentReference reference, String line, @NonNull CharPosition position,
             @NonNull String prefix, @NonNull CompletionPublisher publisher, @Nullable Identifiers userIdentifiers, String currentMethod) {
          
-         this.methodName = currentMethod;
-         checkCodeType(line, new CodeTypeListener(){
-              @Override
-              public void onClassReceiver(String className) {
-                   //showMessage("Classe: " + className);
-                   completionItemList = createCompletionClassesItemList(prefix, userIdentifiers);
-              }
-              @Override
-              public void onIdentifierReceiver(String identifierName) {
-                   //showMessage("Identificador ou variável: " + identifierName);
-                   completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
-              }
-              @Override
-              public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
-                   //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
-              }
-              @Override
-              public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
-                  //showMessage("Método estático ou campo estático:" + staticFieldOrMethodName + " de " + className);
-              }
-         });
+        if(prefix.contains("\"")){
+            completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
+        }else{
+            this.methodName = currentMethod;
+            checkCodeType(line, new CodeTypeListener(){
+                 @Override
+                 public void onClassReceiver(String className) {
+                      //showMessage("Classe: " + className);
+                      completionItemList = createCompletionClassesItemList(prefix, userIdentifiers);
+                 }
+                 @Override
+                 public void onIdentifierReceiver(String identifierName) {
+                      //showMessage("Identificador ou variável: " + identifierName);
+                      completionItemList = createCompletionIdentifiersAndKeywordsItemList(prefix, userIdentifiers);
+                 }
+                 @Override
+                 public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
+                      //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
+                 }
+                 @Override
+                 public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
+                     //showMessage("Método estático ou campo estático:" + staticFieldOrMethodName + " de " + className);
+                 }
+            });
+            
+             }
         var comparator = Comparators.getCompletionItemComparator(reference, position, completionItemList);
         publisher.addItems(completionItemList);
         publisher.setComparator(comparator);
