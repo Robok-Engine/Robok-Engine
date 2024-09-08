@@ -62,6 +62,8 @@ import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
 
+import java.lang.reflect.Field;
+
 /**
  * Identifier auto-completion.
  * <p>
@@ -156,6 +158,7 @@ public class IdentifierAutoComplete {
                  @Override
                  public void onVariableIdentifier(String variableName, String fieldOrMethodName) {
                       //showMessage("Método ou campo " + fieldOrMethodName + "de " + variableName);
+                     completionItemList = createCompletionIdentifiersFromVariableItemList(variableName, fieldOrMethodName, userIdentifiers);
                  }
                  @Override
                  public void onStaticIdentifierReceiver(String className, String staticFieldOrMethodName) {
@@ -282,24 +285,96 @@ public class IdentifierAutoComplete {
             }
         }
         
-        /*    
-        for(String title : variables.keySet()){
-                
-                
-                if(title.startsWith(prefix)){
-                    
-                
-            
-            Variable vari = variables.get(title);
-            String[] parts = title.split(":");
-            
-            
-        result.add(new SimpleCompletionItem(parts[1], vari.getType(), prefixLength, parts[1])
-                            .kind(CompletionItemKind.Variable));
-                    }
-        }
-        }*/
         return result;
+    }
+    
+    
+    public List<CompletionItem> createCompletionIdentifiersFromVariableItemList(
+         @NonNull String variableName,
+         @NonNull String prefix,
+         @Nullable Identifiers userIdentifiers
+    ) {
+         final var keywordMap = this.keywordMap;
+         int prefixLength = variableName.length();
+         if (prefixLength == 0) {
+              return Collections.emptyList();
+         }
+         var result = new ArrayList<CompletionItem>();
+        
+        //works only with global variables
+        Variable vari = variables.get(variableName);
+       // if(vari == null) variables.get("method")
+        
+        Class<?> clazz = null;
+        
+        if(vari != null){
+            try {
+                clazz = Class.forName(vari.getImportPackage());
+                
+            }catch (ClassNotFoundException e) {
+                e.printStackTrace();
+                 }     
+        
+            if(clazz != null){
+                
+                HashMap<String, String> identifiers = new HashMap<>();
+                
+                // Obter todos os campos públicos (variáveis)
+            Field[] publicFields = clazz.getFields();
+                
+                for (Field field : publicFields) {
+                 identifiers.put(field.getName(), field.getType().getSimpleName());
+                    
+                    if(prefix.equalsIgnoreCase(".")){
+                        result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
+                    .kind(CompletionItemKind.Class));
+                    }
+            }
+            
+            // Obter todos os métodos públicos
+            java.lang.reflect.Method[] publicMethods = clazz.getMethods();
+                
+                for (java.lang.reflect.Method method : publicMethods) {
+                    
+                 identifiers.put(method.getName(), method.getReturnType().getSimpleName());
+                    
+                    if(prefix.equalsIgnoreCase(".")){
+                        
+                        String parameters = "(";
+                        for (int i = 0; i < method.getParameters().length; i++) {
+                                String argName = "arg" + i;
+                                if (i > 0) {
+                                    parameters += ", ";
+                                }
+                            parameters += method.getParameters()[i].getType().getSimpleName() + " " + argName;
+                            }
+                        
+                        parameters += ")";
+                        
+                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, (variableName.substring(1))+ "." + method.getName() + parameters)
+                    .kind(CompletionItemKind.Class));
+                    }
+            }
+                
+                
+                
+                /*for (var word : dest) {
+                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
+                result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
+                    .kind(CompletionItemKind.Class));
+            }*/
+            }else{
+                result.add(new SimpleCompletionItem("class é null", "null", prefixLength, "")
+                    .kind(CompletionItemKind.Class));
+            }
+        }else{
+            result.add(new SimpleCompletionItem("Vari é null", "null", prefixLength, "")
+                    .kind(CompletionItemKind.Class));
+        }
+        
+        
+         
+         return result;        
     }
 
     /**
@@ -320,10 +395,11 @@ public class IdentifierAutoComplete {
             
                 
                     for (String ip : variables.keySet()){
-                        String[] parts = ip.split(":");
+                        //String[] parts = ip.split(":");
+                        var vari = variables.get(ip);
                         
-                       if(parts[0].equals(methodName) || parts[0].equals("global")){
-                            String s = parts[1];
+                       if(vari.getCreatedIn().equals(methodName) || vari.getCreatedIn().equals("global")){
+                            String s = ip;
             
                         var fuzzyScore = Filters.fuzzyScoreGracefulAggressive(prefix,
                                 prefix.toLowerCase(Locale.ROOT),
@@ -332,7 +408,7 @@ public class IdentifierAutoComplete {
                         var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
 
                         if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))) {
-                            var vari = variables.get(ip);
+                            
                         //    vari.setType(vari.getType());
                             dest.add(vari);
                         }

@@ -313,7 +313,7 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
                 case STRING:
                     classNamePrevious = false;
                     span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.LITERAL, true));
-                    break;
+                     break;
                 case INT:
                 case LONG:
                 case BOOLEAN:

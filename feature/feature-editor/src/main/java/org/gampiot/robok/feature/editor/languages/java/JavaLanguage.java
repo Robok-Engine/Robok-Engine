@@ -77,6 +77,7 @@ import org.gampiot.robok.feature.editor.EditorListener;
 import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.gampiot.robok.feature.editor.languages.java.models.*;
+import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 
 import org.robok.diagnostic.logic.*;
 
@@ -443,6 +444,15 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
          @Override
          public void enterLocalVariableDeclaration(Java8Parser.LocalVariableDeclarationContext ctx) {
               String type = ctx.unannType().getText();
+              String importPackage = "com.test.Test";
+              importPackage = JavaClasses.getClasses().get(type);
+              
+              if(importPackage != null){
+                  //this variable uses the JavaClass type
+              }else{
+                  //this variable uses other... (RDKClasses)
+              }
+            
               ModifierAccess accessModifier = null;
               String initialValue = null;
               String enclosingMethod = null; // Adds the variable to store the enclosing method or block
@@ -468,13 +478,22 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
                     }
                     type = enclosingMethod + " : " + type;
                     // Adding variable information to the variable map, including the enclosing method
-                    variablesMap.put(enclosingMethod + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
+                    variablesMap.put(variableName, new Variable(enclosingMethod, accessModifier, importPackage, type, variableName, initialValue));
               }
          }
          
         @Override
         public void enterFieldDeclaration(Java8Parser.FieldDeclarationContext ctx) {
              String type = ctx.unannType().getText();
+             String importPackage = "com.test.Test";
+             importPackage = JavaClasses.getClasses().get(type);
+              
+              if(importPackage != null){
+                  //this variable uses the JavaClass type
+              }else{
+                  //this variable uses other... (RDKClasses)
+              }
+            
              ModifierAccess accessModifier = null;
              String initialValue = null;
              if (ctx.fieldModifier() != null && !ctx.fieldModifier().isEmpty()) {
@@ -487,7 +506,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
                        initialValue = varCtx.variableInitializer().getText();
                   }
                   type = "global" + " : " + type;
-                  variablesMap.put("global" + ":" + variableName, new Variable(accessModifier, type, variableName, initialValue));
+                  variablesMap.put(variableName, new Variable("global", accessModifier, importPackage, type, variableName, initialValue));
                   //log += "\n" + "global" + ":" + variableName;
              }
         }
