@@ -38,7 +38,11 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         if (!getStoragePermStatus(this)) {
-            requestReadWritePermissionsDialog()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                 requestAllFilesAccessPermissionDialog()
+            } else {
+                requestReadWritePermissionsDialog()
+            }
         }
     }
 
