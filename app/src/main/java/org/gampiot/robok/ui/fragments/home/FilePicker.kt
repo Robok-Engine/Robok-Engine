@@ -30,7 +30,11 @@ class FilePicker(
             if (getStoragePermStatus(context as Activity)) {
                 showDialogW()
             } else {
-                requestReadWritePermissionsDialog()
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+                    requestAllFilesAccessPermissionDialog()
+                } else {
+                    requestReadWritePermissionsDialog()
+                }
             }
         }
     }
