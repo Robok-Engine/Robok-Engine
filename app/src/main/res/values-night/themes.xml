@@ -23,7 +23,6 @@
         <!-- Constant Colors -->
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
-        <item name="colorIcon">@color/md_theme_onSurface</item>
     </style>
 	
     <style name="Theme.Robok" parent="Base.Theme.Robok">
@@ -73,5 +72,6 @@
         <item name="colorSurfaceContainer">@color/md_theme_surfaceContainer</item>
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
+        <item name="colorIcon">?colorControlNormal</item>
     </style>
 </resources>
