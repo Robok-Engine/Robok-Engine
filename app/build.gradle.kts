@@ -1,12 +1,10 @@
-import java.io.ByteArrayOutputStream
-
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
-    kotlin("plugin.serialization") version "2.0.20"
-    id("com.mikepenz.aboutlibraries.plugin")
+    alias(libs.plugins.agp.app)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.aboutlibraries)
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.compose")
+    id("kotlinx-serialization")
+    kotlin("plugin.serialization") version "2.0.20"
 }
 
 val app_version = "0.0.1"
@@ -85,31 +83,23 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    val materialVersion = "1.13.0-alpha05"
-    val appcompatVersion = "1.7.0"
-    val kotlinCoroutinesVersion = "1.9.0-RC.2"
-    val glideVersion = "4.16.0"
-    val aboutLibrariesVersion = "11.2.3"
-    val koinVersion = "3.5.6"
-
-    implementation("androidx.appcompat:appcompat:$appcompatVersion")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.3")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
-    implementation("androidx.core:core-splashscreen:1.2.0-alpha02")
-    implementation("androidx.preference:preference:1.2.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.appcompat)
+    implementation(libs.coreKtx)
+    implementation(libs.fragmentKtx)
+    implementation(libs.lifecycleRuntimeKtx)
+    implementation(libs.lifecycleViewModelKtx)
+    implementation(libs.lifecycleLiveDataKtx)
+    implementation(libs.coreSplashscreen)
+    implementation(libs.preference)
+    implementation(libs.datastorePreferences)
     
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:$kotlinCoroutinesVersion")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    implementation(libs.kotlinCoroutinesCore)
+    implementation(libs.kotlinCoroutinesAndroid)
+    implementation(libs.kotlinxSerializationJson)
     
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
-    implementation("com.squareup.okhttp3:okhttp")
+    implementation(libs.okhttp)
     
-    implementation("com.google.android.material:material:$materialVersion")
+    implementation(libs.material)
 
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
@@ -129,33 +119,29 @@ dependencies {
     implementation(project(":easy-ui:components"))
     implementation(project(":easy-ui:filepicker"))
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
+    implementation(libs.soraEditor)
     
-    implementation("com.mikepenz:aboutlibraries:11.2.3")
-    implementation("com.github.bumptech.glide:glide:$glideVersion")
+    implementation(libs.aboutlibraries)
+    implementation(libs.glide)
 
-    coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
+    coreLibraryDesugaring(libs.desugar)
     
-    implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    implementation(libs.aboutlibrariesCore)
+    implementation(libs.koin)
+    implementation(libs.koinCompose)
     
-    implementation(platform("androidx.compose:compose-bom:2024.09.00"))
+    implementation(platform(libs.compose))
     debugImplementation("androidx.compose.ui:ui-tooling")
     implementation("androidx.compose.material3:material3")
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.ui:ui")
     implementation("androidx.compose.ui:ui-graphics")
     implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.activity:activity-compose:1.9.2")
+    implementation(libs.activityCompose)
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.5")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.navigation:navigation-compose:2.8.0")
-    implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
-    implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
+    implementation(libs.navigationCompose)
+    implementation(libs.materialMotionCompose)
+    implementation(libs.aboutlibrariesCompose)
 }
 
 fun execAndGetOutput(vararg command: String): String {
