@@ -356,7 +356,7 @@ public class IdentifierAutoComplete {
                         
                         parameters += ")";
                         
-                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, (variableName.substring(1))+ "." + method.getName() + parameters)
+                        result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, method.getName() + parameters)
                     .kind(CompletionItemKind.Method));
                     }
             }
@@ -398,18 +398,12 @@ public class IdentifierAutoComplete {
                         
                         parameters += ")";
 
-                int testPrefix = 1;
-                testPrefix = prefixLength;
-                        
-                if(prefixLength > 1){
-                    testPrefix = 2;
-                }
 				result.add(
 					new SimpleCompletionItem(
 						method.getName() + parameters,
 						"method " + method.getReturnType().getSimpleName(),
 						prefixLength,
-						/*(variableName.substring(testPrefix)) + "." + */method.getName() + parameters)
+						method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
             
 		}
