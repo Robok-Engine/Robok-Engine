@@ -296,7 +296,7 @@ public class IdentifierAutoComplete {
          @Nullable Identifiers userIdentifiers
     ) {
          final var keywordMap = this.keywordMap;
-         int prefixLength = variableName.length();
+         int prefixLength = prefix.length();
          if (prefixLength == 0) {
               return Collections.emptyList();
          }
@@ -409,7 +409,7 @@ public class IdentifierAutoComplete {
 						method.getName() + parameters,
 						"method " + method.getReturnType().getSimpleName(),
 						prefixLength,
-						(variableName.substring(testPrefix)) + "." + method.getName() + parameters)
+						/*(variableName.substring(testPrefix)) + "." + */method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
             
 		}
