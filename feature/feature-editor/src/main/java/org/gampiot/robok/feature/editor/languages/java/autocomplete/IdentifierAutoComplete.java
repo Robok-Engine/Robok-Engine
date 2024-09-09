@@ -317,13 +317,13 @@ public class IdentifierAutoComplete {
         
             if(clazz != null){
                 
-                HashMap<String, String> identifiers = new HashMap<>();
+                HashMap<String, Class<?>> identifiers = new HashMap<>();
                 
                 // Obter todos os campos públicos (variáveis)
             Field[] publicFields = clazz.getFields();
                 
                 for (Field field : publicFields) {
-                 identifiers.put(field.getName(), field.getType().getSimpleName());
+                 identifiers.put(field.getName(), field.getClass());
                     
                     if(prefix.equalsIgnoreCase(".")){
                         result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
@@ -336,7 +336,7 @@ public class IdentifierAutoComplete {
                 
                 for (java.lang.reflect.Method method : publicMethods) {
                     
-                 identifiers.put(method.getName(), method.getReturnType().getSimpleName());
+                 identifiers.put(method.getName(), method.getClass());
                     
                     if(prefix.equalsIgnoreCase(".")){
                         
@@ -357,12 +357,57 @@ public class IdentifierAutoComplete {
             }
                 
                 
+                List<Class<?>> dest = new ArrayList<>();
                 
-                /*for (var word : dest) {
-                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
-                result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
-                    .kind(CompletionItemKind.Class));
-            }*/
+                identifiersFromVariableItemList(prefix, dest, identifiers);
+
+        List<Class<?>> dest = new ArrayList<>();
+
+        // Preenche a lista 'dest' com classes baseadas no prefixo
+        identifiersFromVariableItemList(prefix, dest, identifiers);
+
+       for (Class<?> clazz : dest) {
+		// Verificar se a classe é Field
+		if (clazz.equals(Field.class))
+		{
+            Field[] fields = clazz.getDeclaredFields(); // Obtém os campos da classe
+            for (Field field : fields)
+			{
+				result.add(
+					new SimpleCompletionItem(
+						field.getName(), field.getType().getName(), prefixLength, field.getName())
+					.kind(CompletionItemKind.Field));
+            }
+		}
+
+		// Verificar se a classe é Method
+		if (clazz.equals(java.lang.reflect.Method.class))
+		{
+            Method[] methods = clazz.getDeclaredMethods(); // Obtém os métodos da classe
+            for (Method method : methods)
+			{
+				// Exemplo de como você pode calcular os parâmetros do método
+				String parameters = "(";
+				for (int i = 0; i < method.getParameterTypes().length; i++)
+				{
+					if (i > 0)
+					{
+						parameters += ", ";
+					}
+					parameters += method.getParameterTypes()[i].getSimpleName() + " arg" + i;
+				}
+				parameters += ")";
+
+				result.add(
+					new SimpleCompletionItem(
+						method.getName() + parameters,
+						"method " + method.getReturnType().getSimpleName(),
+						prefixLength,
+						method.getName() + parameters)
+					.kind(CompletionItemKind.Method));
+            }
+		}
+	}
             }else{
                 result.add(new SimpleCompletionItem("class é null", "null", prefixLength, "")
                     .kind(CompletionItemKind.Class));
@@ -462,6 +507,27 @@ public class IdentifierAutoComplete {
                  } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                  }                
+			 }
+	     }
+    }
+    
+    public void identifiersFromVariableItemList(@NonNull String prefix, List<Class<?>> dest, HashMap<String, Class<?>> classes){
+        
+        for (String s : classes.keySet()) {
+             var fuzzyScore 
+                 = Filters.fuzzyScoreGracefulAggressive(prefix,
+                     prefix.toLowerCase(Locale.ROOT),
+                     0, 
+                     s, 
+                     s.toLowerCase(Locale.ROOT), 
+                     0,
+                     FuzzyScoreOptions.getDefault()
+                 );
+             var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
+             if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))){
+                Class<?> clazz = classes.get(s);
+                dest.add(clazz);
+                          
 			 }
 	     }
     }
