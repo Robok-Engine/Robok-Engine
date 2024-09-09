@@ -41,40 +41,33 @@ fun PreferenceChoice(
     onPrefChange: (Int) -> Unit,
 ) {
     val choiceLabel = labelFactory(pref)
-    val (opened, setOpened) = remember { 
-        mutableStateOf(false) 
-    }
+    val (opened, setOpened) = remember { mutableStateOf(false) }
 
     Preference(
-        modifier = 
-           Modifier.clickable(enabled = !disabled) { setOpened(true) },
-        text = { 
-           Text(text = label)
-        }
-    ) {
+        modifier = Modifier.clickable(enabled = !disabled) { setOpened(true) },
+        text = { Text(text = label) }
+    )
+
+    if (opened) {
         RobokChoiceDialog(
             visible = opened,
-            title = {
-               Text(title) 
-            },
+            title = { Text(title) },
             default = pref,
             options = options,
             labelFactory = labelFactory,
             excludedOptions = excludedOptions,
-            onRequestClose = {
-                setOpened(false)
-            },
+            onRequestClose = { setOpened(false) },
             onChoice = {
                 setOpened(false)
                 onPrefChange(it)
             }
         )
-        FilledTonalButton(
-            onClick = { 
-                setOpened(true)
-            },
-            enabled = !disabled) {
-                Text(choiceLabel)
-            }
+    }
+
+    FilledTonalButton(
+        onClick = { setOpened(true) },
+        enabled = !disabled
+    ) {
+        Text(choiceLabel)
     }
 }
