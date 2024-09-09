@@ -19,7 +19,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 250,
-    "role": "Developer"
+    "role": "Main Developer"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 138,
-    "role": "Developer"
+    "role": "Main Developer"
   },
   {
     "login": "renovate[bot]",
@@ -107,7 +107,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 13,
-    "role": "Contributor"
+    "role": "French and Arabic language, home screen redesign with cards "
   },
   {
     "login": "github-actions[bot]",
