@@ -24,11 +24,11 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import app.lawnchair.ui.preferences.LocalIsExpandedScreen
 
 /**
  * Represents the layout of all Preference screens.
@@ -119,3 +119,6 @@ fun PreferenceLayoutLazyColumn(
         )
     }
 }
+
+
+val LocalIsExpandedScreen = compositionLocalOf { false }
