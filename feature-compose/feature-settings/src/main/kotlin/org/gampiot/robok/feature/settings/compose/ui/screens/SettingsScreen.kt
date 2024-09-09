@@ -31,11 +31,11 @@ fun SettingsScreen(
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_general_title)) {
-             generalPrefs()
+             generalPrefs(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
-             aboutPrefs()
+             aboutPrefs(navController)
         }
     }
 }
