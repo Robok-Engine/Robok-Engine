@@ -39,48 +39,45 @@ import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.entity.Library
 
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.component.compose.ApplicationScreen
-import org.gampiot.robok.feature.component.compose.appbars.TopBar
-import org.gampiot.robok.feature.component.compose.Title
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayoutLazyColumn
-import org.gampiot.robok.feature.component.compose.item.DynamicListItem
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LibrariesScreen(
     navController: NavController
 ) {
-    val context = LocalContext.current
-    val uriHandler = LocalUriHandler.current
+    val context = LocalContext.current    
+    PreferenceLayout(
+        label = stringResource(id = Strings.settings_libraries_title),
+        backArrowVisible = true
+    ) {
+       PreferenceGroup {
+           librariesScreen(context)
+       }
+    }
+}
 
+@Composable
+fun librariesScreen(context: Context) {
+    val uriHandler = LocalUriHandler.current
     val libs = remember { mutableStateOf<Libs?>(null) }
     libs.value = Libs.Builder().withContext(context).build()
     val libraries = libs.value!!.libraries
     
-    val appBarState = rememberTopAppBarState()
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(appBarState)
-
-    PreferenceLayoutLazyColumn(
-        label = stringResource(id = Strings.settings_libraries_title),
-        backArrowVisible = true,
-        state = rememberLazyListState(),
-        content = {
-            libraries.forEach { library ->
-                item {
-                    LibraryItem(
-                        library = library,
-                        onClick = {
-                            library.website?.let {
-                                if (it.isNotEmpty()) {
-                                    uriHandler.openUri(it)
-                                }
-                            }
-                        }
-                    )
-                }
-            }
-        }
-    )
+    libraries.forEach { library ->
+       item {
+          LibraryItem(
+             library = library,
+             onClick = {
+                 library.website?.let {
+                     if (it.isNotEmpty()) {
+                         uriHandler.openUri(it)
+                     }
+                 }
+             }
+          )
+       }
+    }
 }
 
 @Composable
