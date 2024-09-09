@@ -101,7 +101,7 @@ fun LibraryItem(
                 maxLines = 1,
             )
         },
-        modifier = modifier
+        modifier = Modifier
             .clickable {
                 onClick()
             }
