@@ -85,30 +85,24 @@ fun LibraryItem(
     library: Library,
     onClick: () -> Unit
 ) {
-    ElevatedCard(
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(onClick = onClick)
+    Row(
+       modifier = Modifier
+           .fillMaxWidth()
+           .padding(16.dp),
+       verticalAlignment = Alignment.CenterVertically
     ) {
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+        Text(
+            text = library.name,
+            style = MaterialTheme.typography.titleLarge
+        )
+        Spacer(modifier = Modifier.weight(1f))
+        Badge(
+            containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
+            contentColor = LibraryDefaults.libraryColors().badgeContentColor
         ) {
-            Text(
-                text = library.name,
-                style = MaterialTheme.typography.titleLarge
-            )
-            Spacer(modifier = Modifier.weight(1f))
-            Badge(
-                containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
-                contentColor = LibraryDefaults.libraryColors().badgeContentColor
-            ) {
-                library.artifactVersion?.let { 
+             library.artifactVersion?.let { 
                     Text(text = it) 
-                }
-            }
+             }
         }
     }
 }
