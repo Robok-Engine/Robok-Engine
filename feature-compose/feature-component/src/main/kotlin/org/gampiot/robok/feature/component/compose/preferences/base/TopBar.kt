@@ -29,7 +29,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
 
-import org.gampiot.robok.feature.component.icons.ClickableIcon
+import org.gampiot.robok.feature.component.compose.icons.ClickableIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
