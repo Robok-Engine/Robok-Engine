@@ -93,7 +93,7 @@ fun formattingPrefs(
           checked = editorIsUseWordWrap,
           onCheckedChange = { newValue ->
               appPrefsViewModel.enableEditorWordWrap(newValue)
-          }
+          },
           label = stringResource(id = Strings.settings_code_editor_word_wrap_title),
           description = stringResource(id = Strings.settings_code_editor_word_wrap_description)
      )
