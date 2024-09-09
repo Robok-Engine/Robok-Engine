@@ -41,6 +41,7 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.compose.ApplicationScreen
 import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayoutLazyColumn
 import org.gampiot.robok.feature.component.compose.item.DynamicListItem
 
 @OptIn(ExperimentalMaterial3Api::class)
