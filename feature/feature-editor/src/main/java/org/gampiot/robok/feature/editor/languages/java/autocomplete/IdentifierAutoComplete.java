@@ -377,7 +377,7 @@ public class IdentifierAutoComplete {
 				result.add(
 					new SimpleCompletionItem(
 						field.getName(), field.getType().getName(), prefixLength, field.getName())
-					.kind(CompletionItemKind.Field));
+					.kind(CompletionItemKind.Variable));
             
 		}
 
@@ -403,7 +403,7 @@ public class IdentifierAutoComplete {
 						method.getName() + parameters,
 						"method " + method.getReturnType().getSimpleName(),
 						prefixLength,
-						method.getName() + parameters)
+						(variableName.substring(1))+ "." + method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
             
 		}
