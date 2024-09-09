@@ -32,6 +32,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+import androidx.compose.ui.text.style.TextOverflow
 
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.util.withContext
@@ -42,6 +43,7 @@ import com.mikepenz.aboutlibraries.entity.Library
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
