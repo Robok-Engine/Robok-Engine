@@ -55,6 +55,7 @@ import io.github.rosemoe.sora.util.MutableInt;
 
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
+import org.gampiot.robok.feature.editor.languages.java.models.MethodOrField;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.AndroidClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
@@ -317,17 +318,19 @@ public class IdentifierAutoComplete {
         
             if(clazz != null){
                 
-                HashMap<String, String> identifiers = new HashMap<>();
+                HashMap<String, MethodOrField> identifiers = new HashMap<>();
                 
                 // Obter todos os campos públicos (variáveis)
             Field[] publicFields = clazz.getFields();
                 
                 for (Field field : publicFields) {
-                 identifiers.put(field.getName(), field.getType().getSimpleName());
+                    MethodOrField isField = new MethodOrField("field", field);
+                    
+                 identifiers.put(field.getName(), isField);
                     
                     if(prefix.equalsIgnoreCase(".")){
                         result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
-                    .kind(CompletionItemKind.Class));
+                    .kind(CompletionItemKind.Variable));
                     }
             }
             
@@ -336,7 +339,9 @@ public class IdentifierAutoComplete {
                 
                 for (java.lang.reflect.Method method : publicMethods) {
                     
-                 identifiers.put(method.getName(), method.getReturnType().getSimpleName());
+                    MethodOrField isMethod = new MethodOrField("method", method);
+                    
+                 identifiers.put(method.getName(), isMethod);
                     
                     if(prefix.equalsIgnoreCase(".")){
                         
@@ -352,17 +357,57 @@ public class IdentifierAutoComplete {
                         parameters += ")";
                         
                         result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, (variableName.substring(1))+ "." + method.getName() + parameters)
-                    .kind(CompletionItemKind.Class));
+                    .kind(CompletionItemKind.Method));
                     }
             }
                 
                 
+                List<MethodOrField> dest = new ArrayList<>();
                 
-                /*for (var word : dest) {
-                //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
-                result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
-                    .kind(CompletionItemKind.Class));
-            }*/
+                identifiersFromVariableItemList(prefix, dest, identifiers);
+
+
+       for (MethodOrField is : dest) {
+		// Verificar se a classe é Field
+		if (is.result.equalsIgnoreCase("field"))
+		{
+                        
+          Field field = is.getField();
+            
+				result.add(
+					new SimpleCompletionItem(
+						field.getName(), field.getType().getName(), prefixLength, field.getName())
+					.kind(CompletionItemKind.Variable));
+            
+		}
+
+		// Verificar se a classe é Method
+		if (is.result.equalsIgnoreCase("method"))
+		{
+             
+            java.lang.reflect.Method method = is.getMethod();
+            
+			String parameters = "(";
+                        for (int i = 0; i < method.getParameters().length; i++) {
+                                String argName = "arg" + i;
+                                if (i > 0) {
+                                    parameters += ", ";
+                                }
+                            parameters += method.getParameters()[i].getType().getSimpleName() + " " + argName;
+                            }
+                        
+                        parameters += ")";
+
+				result.add(
+					new SimpleCompletionItem(
+						method.getName() + parameters,
+						"method " + method.getReturnType().getSimpleName(),
+						prefixLength,
+						/*(variableName.substring(prefixLength))+ "." + */method.getName() + parameters)
+					.kind(CompletionItemKind.Method));
+            
+		}
+	}
             }else{
                 result.add(new SimpleCompletionItem("class é null", "null", prefixLength, "")
                     .kind(CompletionItemKind.Class));
@@ -462,6 +507,27 @@ public class IdentifierAutoComplete {
                  } catch (ClassNotFoundException e) {
                         e.printStackTrace();
                  }                
+			 }
+	     }
+    }
+    
+    public void identifiersFromVariableItemList(@NonNull String prefix, List<MethodOrField> dest, HashMap<String, MethodOrField> classes){
+        
+        for (String s : classes.keySet()) {
+             var fuzzyScore 
+                 = Filters.fuzzyScoreGracefulAggressive(prefix,
+                     prefix.toLowerCase(Locale.ROOT),
+                     0, 
+                     s, 
+                     s.toLowerCase(Locale.ROOT), 
+                     0,
+                     FuzzyScoreOptions.getDefault()
+                 );
+             var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
+             if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))){
+                MethodOrField clazz = classes.get(s);
+                dest.add(clazz);
+                          
 			 }
 	     }
     }
