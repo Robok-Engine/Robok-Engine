@@ -105,24 +105,32 @@ fun LibraryItem(
 fun LibraryItemTitle(
    title: String?
 ) {
-   title.let? {
+   title?.let {
        Text(
            text = it,
            maxLines = 1,
            overflow = TextOverflow.Ellipsis
        )
-   }
+   } ?: Text(
+       text = "No Title Available",
+       maxLines = 1,
+       overflow = TextOverflow.Ellipsis
+   )
 }
 
 @Composable
 fun LibraryItemDesc(
    desc: String?
 ) {
-   desc.let? {
+   desc?.let {
        Text(
            text = it,
            maxLines = 1,
            overflow = TextOverflow.Ellipsis
        )
-   }
+   } ?: Text(
+       text = "No Description Available",
+       maxLines = 1,
+       overflow = TextOverflow.Ellipsis
+   )
 }
