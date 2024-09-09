@@ -1,6 +1,7 @@
 package org.gampiot.robok.feature.settings.compose.screens.ui.libraries
 
 import android.os.Bundle
+import android.content.Context
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -39,6 +40,7 @@ import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.entity.Library
 
 import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,18 +67,16 @@ fun librariesScreen(context: Context) {
     val libraries = libs.value!!.libraries
     
     libraries.forEach { library ->
-       item {
-          LibraryItem(
-             library = library,
-             onClick = {
-                 library.website?.let {
-                     if (it.isNotEmpty()) {
-                         uriHandler.openUri(it)
-                     }
+       LibraryItem(
+          library = library,
+          onClick = {
+             library.website?.let {
+                 if (it.isNotEmpty()) {
+                     uriHandler.openUri(it)
                  }
              }
-          )
-       }
+          }
+       )
     }
 }
 
