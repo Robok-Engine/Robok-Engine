@@ -330,7 +330,7 @@ public class IdentifierAutoComplete {
                     
                     if(prefix.equalsIgnoreCase(".")){
                         result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
-                    .kind(CompletionItemKind.Class));
+                    .kind(CompletionItemKind.Variable));
                     }
             }
             
@@ -357,7 +357,7 @@ public class IdentifierAutoComplete {
                         parameters += ")";
                         
                         result.add(new SimpleCompletionItem(method.getName() + parameters, "method " + method.getReturnType().getName(), prefixLength, (variableName.substring(1))+ "." + method.getName() + parameters)
-                    .kind(CompletionItemKind.Class));
+                    .kind(CompletionItemKind.Method));
                     }
             }
                 
