@@ -32,8 +32,70 @@ fun SettingsCodeEditorScreen(
     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
 
     val context = LocalContext.current
-    
-    val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
+
+    PreferenceLayoutLazyColumn(
+        label = stringResource(id = Strings.settings_code_editor_title),
+        backArrowVisible = true,
+    ) {
+        PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
+            appearancePrefs()
+        }
+        PreferenceGroup(heading = stringResource(id = Strings.settings_formatting_title)) {
+            formattingPrefs()
+        }
+    }
+}
+
+@Composable
+fun apperancePrefs(
+    editorTheme: Int,
+    editorTypeface: Int
+) {
+     PreferenceChoice(
+          label = stringResource(id = Strings.settings_code_editor_theme_title),
+          title = stringResource(id = Strings.settings_code_editor_theme_description),
+          pref = editorTheme,
+          options = editorThemes,
+          excludedOptions = emptyList(),
+          labelFactory = { index ->
+              editorThemeLabels.getOrElse(index) { "Unknown" }
+          },
+          onPrefChange = { newTheme ->
+              appPrefsViewModel.changeEditorTheme(newTheme)
+          }
+     )
+     
+     PreferenceChoice(
+          label = stringResource(id = Strings.settings_code_editor_typeface_title),
+          title = stringResource(id = Strings.settings_code_editor_typeface_description),
+          pref = editorTypeface,
+          options = editorTypefaces,
+          excludedOptions = emptyList(),
+          labelFactory = { index ->
+              editorTypefacesLabels.getOrElse(index) { "Unknown" }
+          },
+          onPrefChange = { newTypeface ->
+              appPrefsViewModel.changeEditorTypeface(newTypeface)
+          }
+     )     
+}
+
+@Composable 
+fun formattingPrefs(
+    editorIsUseWordWrap: Boolean
+) {
+     PreferenceSwitch(
+          checked = editorIsUseWordWrap,
+          onCheckedChange = { newValue ->
+              appPrefsViewModel.enableEditorWordWrap(newValue)
+          }
+          label = stringResource(id = Strings.settings_code_editor_word_wrap_title),
+          description = stringResource(id = Strings.settings_code_editor_word_wrap_description)
+     )
+}
+
+
+val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
     val editorThemeLabels = listOf(
         "Robok",
         "Robok TH", 
@@ -52,65 +114,3 @@ fun SettingsCodeEditorScreen(
        context.getString(Strings.text_sans_serif),
        context.getString(Strings.text_serif)
     ) // strings/labels
-
-    PreferenceLayoutLazyColumn(
-        label = stringResource(id = Strings.settings_code_editor_title),
-        backArrowVisible = true,
-        content = {
-            item {
-                Title(title = stringResource(id = Strings.settings_appearance_title))
-            }
-
-            item {
-                PreferenceChoice(
-                    label = stringResource(id = Strings.settings_code_editor_theme_title),
-                    title = stringResource(id = Strings.settings_code_editor_theme_description),
-                    pref = editorTheme,
-                    options = editorThemes,
-                    excludedOptions = emptyList(),
-                    labelFactory = { index ->
-                        editorThemeLabels.getOrElse(index) { "Unknown" }
-                    },
-                    onPrefChange = { newTheme ->
-                        appPrefsViewModel.changeEditorTheme(newTheme)
-                    }
-                )
-            }
-
-            item {
-                PreferenceChoice(
-                    label = stringResource(id = Strings.settings_code_editor_typeface_title),
-                    title = stringResource(id = Strings.settings_code_editor_typeface_description),
-                    pref = editorTypeface,
-                    options = editorTypefaces,
-                    excludedOptions = emptyList(),
-                    labelFactory = { index ->
-                        editorTypefacesLabels.getOrElse(index) { "Unknown" }
-                    },
-                    onPrefChange = { newTypeface ->
-                        appPrefsViewModel.changeEditorTypeface(newTypeface)
-                    }
-                )
-            }
-
-            item {
-                Title(title = stringResource(id = Strings.settings_formatting_title))
-            }
-
-            item {
-                Preference(
-                    text = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_title)) },
-                    secondaryText = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_description)) },
-                    trailing = {
-                        Switch(
-                            checked = editorIsUseWordWrap,
-                            onCheckedChange = { newValue ->
-                                appPrefsViewModel.enableEditorWordWrap(newValue)
-                            }
-                        )
-                    }
-                )
-            }
-        }
-    )
-}
