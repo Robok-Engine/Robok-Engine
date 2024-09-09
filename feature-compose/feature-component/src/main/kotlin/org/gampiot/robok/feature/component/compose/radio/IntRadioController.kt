@@ -26,7 +26,7 @@ fun IntRadioController(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 8.dp)
+                        .padding(vertical = 1.dp)
                         .clickable {
                             selectedChoice = option
                             onChoiceSelected(option)
