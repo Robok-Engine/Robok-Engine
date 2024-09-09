@@ -186,3 +186,4 @@
 -dontwarn sun.security.util.ObjectIdentifier
 -dontwarn sun.security.x509.AlgorithmId
 -dontwarn sun.security.x509.X500Name
+-dontwarn org.gampiot.robok.feature.component.compose.edge.StretchEdgeEffect
