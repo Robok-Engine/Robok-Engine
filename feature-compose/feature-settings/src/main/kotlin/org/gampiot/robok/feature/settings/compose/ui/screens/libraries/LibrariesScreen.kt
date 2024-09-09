@@ -103,15 +103,15 @@ fun LibraryItem(
                 text = library.name,
                 style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.weight(1f))            
+            Spacer(modifier = Modifier.weight(1f))
             Badge(
                 containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
                 contentColor = LibraryDefaults.libraryColors().badgeContentColor
-           ) {  
-                library.artifactVersion.let? {
-                     Text(text = library.artifactVersion)
+            ) {
+                library.artifactVersion?.let { 
+                    Text(text = it) 
                 }
-           }
+            }
         }
     }
 }
