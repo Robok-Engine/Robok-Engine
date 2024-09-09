@@ -55,6 +55,7 @@ import io.github.rosemoe.sora.util.MutableInt;
 
 import org.gampiot.robok.feature.editor.languages.java.models.Method;
 import org.gampiot.robok.feature.editor.languages.java.models.Variable;
+import org.gampiot.robok.feature.editor.languages.java.models.MethodOrField;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.AndroidClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
@@ -317,13 +318,15 @@ public class IdentifierAutoComplete {
         
             if(clazz != null){
                 
-                HashMap<String, Class<?>> identifiers = new HashMap<>();
+                HashMap<String, MethodOrField> identifiers = new HashMap<>();
                 
                 // Obter todos os campos públicos (variáveis)
             Field[] publicFields = clazz.getFields();
                 
                 for (Field field : publicFields) {
-                 identifiers.put(field.getName(), field.getClass());
+                    MethodOrField isField = new MethodOrField("field", field);
+                    
+                 identifiers.put(field.getName(), isField);
                     
                     if(prefix.equalsIgnoreCase(".")){
                         result.add(new SimpleCompletionItem(field.getName(), field.getType().getName(), prefixLength, field.getName())
@@ -336,7 +339,9 @@ public class IdentifierAutoComplete {
                 
                 for (java.lang.reflect.Method method : publicMethods) {
                     
-                 identifiers.put(method.getName(), method.getClass());
+                    MethodOrField isMethod = new MethodOrField("method", method);
+                    
+                 identifiers.put(method.getName(), isMethod);
                     
                     if(prefix.equalsIgnoreCase(".")){
                         
@@ -357,17 +362,17 @@ public class IdentifierAutoComplete {
             }
                 
                 
-                List<Class<?>> dest = new ArrayList<>();
+                List<MethodOrField> dest = new ArrayList<>();
                 
                 identifiersFromVariableItemList(prefix, dest, identifiers);
 
 
-       for (Class<?> clazz : dest) {
+       for (MethodOrField clazz : dest) {
 		// Verificar se a classe é Field
-		if (clazz instanceof Field)
+		if (clazz.result.equalsIgnoreCase("field"))
 		{
                         
-          Field field = (Field) clazz;
+          Field field = clazz.getField();
             
 				result.add(
 					new SimpleCompletionItem(
@@ -377,10 +382,10 @@ public class IdentifierAutoComplete {
 		}
 
 		// Verificar se a classe é Method
-		if (clazz instanceof java.lang.reflect.Method.class)
+		if (clazz.result.equalsIgnoreCase("method"))
 		{
              
-            java.lang.reflect.Method method = (java.lang.reflect.Method) clazz;   
+            java.lang.reflect.Method method = clazz.getMethod();
             
 			String parameters = "(";
                         for (int i = 0; i < method.getParameters().length; i++) {
@@ -506,7 +511,7 @@ public class IdentifierAutoComplete {
 	     }
     }
     
-    public void identifiersFromVariableItemList(@NonNull String prefix, List<Class<?>> dest, HashMap<String, Class<?>> classes){
+    public void identifiersFromVariableItemList(@NonNull String prefix, List<MethodOrField> dest, HashMap<String, MethodOrField> classes){
         
         for (String s : classes.keySet()) {
              var fuzzyScore 
@@ -520,7 +525,7 @@ public class IdentifierAutoComplete {
                  );
              var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
              if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))){
-                Class<?> clazz = classes.get(s);
+                MethodOrField clazz = classes.get(s);
                 dest.add(clazz);
                           
 			 }
