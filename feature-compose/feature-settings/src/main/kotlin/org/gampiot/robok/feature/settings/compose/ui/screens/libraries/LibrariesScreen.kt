@@ -95,9 +95,6 @@ fun LibraryItem(
         title = {
             LibraryItemTitle(library.name)
         },
-        description = {
-            LibraryItemDesc(library.description)
-        }
     )
 }
 
@@ -109,28 +106,9 @@ fun LibraryItemTitle(
        Text(
            text = it,
            maxLines = 1,
-           overflow = TextOverflow.Ellipsis
        )
    } ?: Text(
        text = "No Title Available",
        maxLines = 1,
-       overflow = TextOverflow.Ellipsis
-   )
-}
-
-@Composable
-fun LibraryItemDesc(
-   desc: String?
-) {
-   desc?.let {
-       Text(
-           text = it,
-           maxLines = 1,
-           overflow = TextOverflow.Ellipsis
-       )
-   } ?: Text(
-       text = "No Description Available",
-       maxLines = 1,
-       overflow = TextOverflow.Ellipsis
    )
 }
