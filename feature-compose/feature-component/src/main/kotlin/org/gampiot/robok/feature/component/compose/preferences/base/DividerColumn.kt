@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

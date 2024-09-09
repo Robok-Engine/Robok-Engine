@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.HorizontalDivider

@@ -15,8 +15,8 @@ import org.koin.androidx.compose.koinViewModel
 import org.gampiot.robok.feature.component.compose.ApplicationScreen
 import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
-import org.gampiot.robok.feature.component.compose.preferences.PreferenceItem
-import org.gampiot.robok.feature.component.compose.preferences.bunny.PreferenceItemChoice
+import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
+import org.gampiot.robok.feature.component.compose.preferences.choice.PreferenceChoice
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
@@ -67,7 +67,7 @@ fun SettingsCodeEditorScreen(
         content = {
             Column(modifier = Modifier) {
                 Title(title = stringResource(id = Strings.settings_appearance_title))
-                PreferenceItemChoice(
+                PreferenceChoice(
                     label = stringResource(id = Strings.settings_code_editor_theme_title),
                     title = stringResource(id = Strings.settings_code_editor_theme_description),
                     pref = editorTheme,
@@ -80,7 +80,7 @@ fun SettingsCodeEditorScreen(
                         appPrefsViewModel.changeEditorTheme(newTheme)
                     }
                 )
-                PreferenceItemChoice(
+                PreferenceChoice(
                     label = stringResource(id = Strings.settings_code_editor_typeface_title),
                     title = stringResource(id = Strings.settings_code_editor_typeface_description),
                     pref = editorTypeface,
@@ -94,7 +94,7 @@ fun SettingsCodeEditorScreen(
                     }
                 )
                 Title(title = stringResource(id = Strings.settings_formatting_title))
-                PreferenceItem (
+                Preference (
                      title = stringResource(id = Strings.settings_code_editor_word_wrap_title),
                      description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
                      showToggle = true,

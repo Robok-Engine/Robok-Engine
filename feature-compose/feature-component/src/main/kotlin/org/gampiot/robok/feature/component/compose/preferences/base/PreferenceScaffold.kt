@@ -15,7 +15,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope

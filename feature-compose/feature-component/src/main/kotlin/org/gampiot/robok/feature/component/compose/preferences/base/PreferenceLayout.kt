@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement

@@ -13,7 +13,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.gampiot.robok.feature.component.compose.ApplicationScreen
 import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
-import org.gampiot.robok.feature.component.compose.preferences.PreferenceItem
+import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
@@ -36,7 +36,7 @@ fun SettingsScreen(
         content = {
             Column(modifier = Modifier) {
                 Title(title = stringResource(id = Strings.settings_general_title))
-                PreferenceItem(
+                Preference(
                     title = stringResource(id = Strings.settings_code_editor_title),
                     description = stringResource(id = Strings.settings_code_editor_description),
                     onClick = {
@@ -44,7 +44,7 @@ fun SettingsScreen(
                     }
                 )
                 Title(title = stringResource(id = Strings.settings_about_title))
-                PreferenceItem(
+                Preference(
                     title = stringResource(id = Strings.settings_libraries_title),
                     description = stringResource(id = Strings.settings_libraries_description),
                     onClick = {

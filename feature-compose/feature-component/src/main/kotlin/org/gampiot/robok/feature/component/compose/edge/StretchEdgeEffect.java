@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.test;
+package org.gampiot.robok.feature.component.compose.edge;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -23,8 +23,6 @@ import android.graphics.RenderNode;
 import android.view.animation.AnimationUtils;
 
 import androidx.annotation.IntDef;
-
-import com.android.launcher3.util.EdgeEffectCompat;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;

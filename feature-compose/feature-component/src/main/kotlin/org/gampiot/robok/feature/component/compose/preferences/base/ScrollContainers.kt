@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.ScrollState
@@ -19,6 +19,8 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+
+import org.gampiot.robok.feature.component.compose.utils.addIf
 
 import kotlinx.coroutines.awaitCancellation
 
@@ -80,11 +82,3 @@ fun PreferenceLazyColumn(
         )
     }
 }
-
-
-inline fun Modifier.addIf(condition: Boolean, crossinline factory: Modifier.() -> Modifier): Modifier =
-    if (condition) factory() else this
-
-inline fun <T> Modifier.addIfNotNull(value: T?, crossinline factory: Modifier.(T) -> Modifier): Modifier =
-    if (value != null) factory(value) else this
-    

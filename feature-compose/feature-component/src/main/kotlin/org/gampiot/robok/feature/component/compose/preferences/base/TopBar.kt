@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.RowScope
@@ -28,6 +28,8 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+
+import org.gampiot.robom.feature.component.icons.ClickableIcon
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

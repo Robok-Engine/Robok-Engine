@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.icons
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.material3.Icon

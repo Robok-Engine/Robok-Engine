@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.test
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 import android.content.Context
 import androidx.compose.foundation.layout.Box
@@ -16,6 +16,8 @@ import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Velocity
+
+import org.gampiot.robok.feature.component.compose.edge.*
 
 /**
  * Creates a custom overscroll effect based off the Android 12 "stretch" animation.
