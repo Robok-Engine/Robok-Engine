@@ -28,6 +28,8 @@
 -keep class com.android.sdklib.** { *; }
 -keep class sun.security.** { *; }
 
+-keep class org.gampiot.robok.feature.component.compose.edges.StretchEdgeEffect { *; }
+
 -dontwarn com.android.SdkConstants
 -dontwarn com.android.dvlib.DeviceSchema
 -dontwarn com.android.io.FolderWrapper
@@ -184,3 +186,4 @@
 -dontwarn sun.security.util.ObjectIdentifier
 -dontwarn sun.security.x509.AlgorithmId
 -dontwarn sun.security.x509.X500Name
+-dontwarn org.gampiot.robok.feature.component.compose.edge.StretchEdgeEffect
