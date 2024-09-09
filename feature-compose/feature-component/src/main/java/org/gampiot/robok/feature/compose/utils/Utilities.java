@@ -16,11 +16,11 @@
 
 package org.gampiot.robok.feature.component.compose.utils;
 
-import android.os.Build;
+import static android.os.Build.VERSION_CODES;
 import androidx.annotation.ChecksSdkIntAtLeast;
 
 public final class Utilities {
 
-    @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.TIRAMISU, codename = "T")
-    public static final boolean ATLEAST_T = Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU;
+    @ChecksSdkIntAtLeast(api = VERSION_CODES.S)
+    public static final boolean ATLEAST_S = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 }
