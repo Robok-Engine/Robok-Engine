@@ -17,7 +17,8 @@ import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.choice.PreferenceChoice
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayoutLazyColumn
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
@@ -33,7 +34,7 @@ fun SettingsCodeEditorScreen(
 
     val context = LocalContext.current
 
-    PreferenceLayoutLazyColumn(
+    PreferenceLayout(
         label = stringResource(id = Strings.settings_code_editor_title),
         backArrowVisible = true,
     ) {
