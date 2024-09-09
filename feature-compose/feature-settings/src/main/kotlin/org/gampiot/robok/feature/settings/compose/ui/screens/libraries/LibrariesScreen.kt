@@ -103,17 +103,15 @@ fun LibraryItem(
                 text = library.name,
                 style = MaterialTheme.typography.titleLarge
             )
-            Spacer(modifier = Modifier.weight(1f))
-            if (library.artifactVersion != null) {
-                Badge(
-                    containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
-                    contentColor = LibraryDefaults.libraryColors().badgeContentColor
-                ) {  
-                    library.artifactVersion.let? {
-                        Text(text = library.artifactVersion)
-                    }
+            Spacer(modifier = Modifier.weight(1f))            
+            Badge(
+                containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
+                contentColor = LibraryDefaults.libraryColors().badgeContentColor
+           ) {  
+                library.artifactVersion.let? {
+                     Text(text = library.artifactVersion)
                 }
-            }
+           }
         }
     }
 }
