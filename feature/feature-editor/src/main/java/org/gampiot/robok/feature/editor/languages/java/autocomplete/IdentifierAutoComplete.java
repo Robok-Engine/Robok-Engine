@@ -361,42 +361,37 @@ public class IdentifierAutoComplete {
                 
                 identifiersFromVariableItemList(prefix, dest, identifiers);
 
-        List<Class<?>> dest = new ArrayList<>();
-
-        // Preenche a lista 'dest' com classes baseadas no prefixo
-        identifiersFromVariableItemList(prefix, dest, identifiers);
 
        for (Class<?> clazz : dest) {
 		// Verificar se a classe é Field
-		if (clazz.equals(Field.class))
+		if (clazz instanceof Field)
 		{
-            Field[] fields = clazz.getDeclaredFields(); // Obtém os campos da classe
-            for (Field field : fields)
-			{
+                        
+          Field field = (Field) clazz;
+            
 				result.add(
 					new SimpleCompletionItem(
 						field.getName(), field.getType().getName(), prefixLength, field.getName())
 					.kind(CompletionItemKind.Field));
-            }
+            
 		}
 
 		// Verificar se a classe é Method
-		if (clazz.equals(java.lang.reflect.Method.class))
+		if (clazz instanceof java.lang.reflect.Method.class)
 		{
-            Method[] methods = clazz.getDeclaredMethods(); // Obtém os métodos da classe
-            for (Method method : methods)
-			{
-				// Exemplo de como você pode calcular os parâmetros do método
-				String parameters = "(";
-				for (int i = 0; i < method.getParameterTypes().length; i++)
-				{
-					if (i > 0)
-					{
-						parameters += ", ";
-					}
-					parameters += method.getParameterTypes()[i].getSimpleName() + " arg" + i;
-				}
-				parameters += ")";
+             
+            java.lang.reflect.Method method = (java.lang.reflect.Method) clazz;   
+            
+			String parameters = "(";
+                        for (int i = 0; i < method.getParameters().length; i++) {
+                                String argName = "arg" + i;
+                                if (i > 0) {
+                                    parameters += ", ";
+                                }
+                            parameters += method.getParameters()[i].getType().getSimpleName() + " " + argName;
+                            }
+                        
+                        parameters += ")";
 
 				result.add(
 					new SimpleCompletionItem(
@@ -405,7 +400,7 @@ public class IdentifierAutoComplete {
 						prefixLength,
 						method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
-            }
+            
 		}
 	}
             }else{
