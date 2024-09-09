@@ -38,10 +38,15 @@ fun SettingsCodeEditorScreen(
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
-            appearancePrefs()
+            appearancePrefs(
+               editorTheme = editorTheme, 
+               editorTypeface = editorTypeface
+            )
         }
         PreferenceGroup(heading = stringResource(id = Strings.settings_formatting_title)) {
-            formattingPrefs()
+            formattingPrefs(
+               editorIsUseWordWrap = editorIsUseWordWrap
+            )
         }
     }
 }
