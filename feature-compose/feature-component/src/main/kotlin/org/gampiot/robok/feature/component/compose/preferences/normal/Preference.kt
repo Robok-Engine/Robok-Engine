@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.bunny
+package org.gampiot.robok.feature.component.compose.preferences.normal
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -30,7 +30,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
-import org.gampiot.robok.feature.component.compose.preferences.test.PreferenceTemplate
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 
 @Composable
 fun Preference(

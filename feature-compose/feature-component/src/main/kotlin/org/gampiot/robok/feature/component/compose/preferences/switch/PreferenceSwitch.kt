@@ -38,7 +38,7 @@ import org.gampiot.robok.feature.component.compose.preferences.test.PreferenceTe
  * A Preference that provides a two-state toggleable option.
  */
 @Composable
-fun SwitchPreference(
+fun PreferenceSwitch(
     checked: Boolean,
     onCheckedChange: (Boolean) -> Unit,
     label: String,
