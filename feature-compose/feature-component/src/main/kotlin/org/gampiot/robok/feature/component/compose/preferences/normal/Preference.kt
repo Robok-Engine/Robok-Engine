@@ -1,3 +1,5 @@
+package org.gampiot.robok.feature.component.compose.preferences.normal
+
 /*
  * Copyright 2024, Robok.
  *
@@ -13,8 +15,6 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package org.gampiot.robok.feature.component.compose.preferences.normal
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
