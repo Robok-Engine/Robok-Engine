@@ -19,7 +19,7 @@ import android.content.Context;
 import android.view.View;
 import android.widget.EdgeEffect;
 
-import org.gampiot.robok.feature.component.compose.utils.Utilities
+import org.gampiot.robok.feature.component.compose.utils.Utilities;
 
 /**
  * Extension of {@link EdgeEffect} to allow backwards compatibility
