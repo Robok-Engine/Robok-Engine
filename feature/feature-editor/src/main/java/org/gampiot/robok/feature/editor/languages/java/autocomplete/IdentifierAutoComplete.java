@@ -403,7 +403,7 @@ public class IdentifierAutoComplete {
 						method.getName() + parameters,
 						"method " + method.getReturnType().getSimpleName(),
 						prefixLength,
-						variableName + "." + */method.getName() + parameters)
+						variableName + "." + method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
             
 		}
