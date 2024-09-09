@@ -85,24 +85,23 @@ fun LibraryItem(
     library: Library,
     onClick: () -> Unit
 ) {
-    Row(
-       modifier = Modifier
-           .fillMaxWidth()
-           .padding(16.dp),
-       verticalAlignment = Alignment.CenterVertically
-    ) {
-        Text(
-            text = library.name,
-            style = MaterialTheme.typography.titleLarge
-        )
-        Spacer(modifier = Modifier.weight(1f))
-        Badge(
-            containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
-            contentColor = LibraryDefaults.libraryColors().badgeContentColor
-        ) {
-             library.artifactVersion?.let { 
-                    Text(text = it) 
-             }
-        }
-    }
+    PreferenceTemplate(
+        title = {
+            Text(
+                text = library.name,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+            )
+        },
+        description = {
+            Text(
+                text = library.description,
+                maxLines = 1,
+            )
+        },
+        modifier = modifier
+            .clickable {
+                onClick()
+            }
+    )
 }
