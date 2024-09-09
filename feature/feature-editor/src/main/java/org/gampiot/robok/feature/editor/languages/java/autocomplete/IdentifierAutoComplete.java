@@ -367,12 +367,12 @@ public class IdentifierAutoComplete {
                 identifiersFromVariableItemList(prefix, dest, identifiers);
 
 
-       for (MethodOrField clazz : dest) {
+       for (MethodOrField is : dest) {
 		// Verificar se a classe é Field
-		if (clazz.result.equalsIgnoreCase("field"))
+		if (is.result.equalsIgnoreCase("field"))
 		{
                         
-          Field field = clazz.getField();
+          Field field = is.getField();
             
 				result.add(
 					new SimpleCompletionItem(
@@ -382,10 +382,10 @@ public class IdentifierAutoComplete {
 		}
 
 		// Verificar se a classe é Method
-		if (clazz.result.equalsIgnoreCase("method"))
+		if (is.result.equalsIgnoreCase("method"))
 		{
              
-            java.lang.reflect.Method method = clazz.getMethod();
+            java.lang.reflect.Method method = is.getMethod();
             
 			String parameters = "(";
                         for (int i = 0; i < method.getParameters().length; i++) {
