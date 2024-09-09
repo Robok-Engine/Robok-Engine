@@ -27,8 +27,6 @@ fun SettingsCodeEditorScreen(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
-    val context = LocalContext.current
-
     PreferenceLayout(
         label = stringResource(id = Strings.settings_code_editor_title),
         backArrowVisible = true,
@@ -46,6 +44,26 @@ fun SettingsCodeEditorScreen(
 fun appearancePrefs(
     appPrefsViewModel: AppPreferencesViewModel
 ) {
+     val context = LocalContext.current
+     val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
+     val editorThemeLabels = listOf(
+         "Robok",
+         "Robok TH", 
+         "GitHub", 
+         "Eclipse", 
+         "Darcula", 
+         "Visual Studio Code 19", 
+         "Notepad XX"
+     ) // strings/labels
+    
+     val editorTypefaces = listOf(0, 1, 2, 3, 4) // ints/positions
+     val editorTypefacesLabels = listOf(
+        context.getString(Strings.common_word_normal),
+        context.getString(Strings.text_bold),
+        context.getString(Strings.text_monospace),
+        context.getString(Strings.text_sans_serif),
+        context.getString(Strings.text_serif)
+     ) // strings/labels
      val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
      val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
      
@@ -92,24 +110,3 @@ fun formattingPrefs(
           description = stringResource(id = Strings.settings_code_editor_word_wrap_description)
      )
 }
-
-
-val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
-    val editorThemeLabels = listOf(
-        "Robok",
-        "Robok TH", 
-        "GitHub", 
-        "Eclipse", 
-        "Darcula", 
-        "Visual Studio Code 19", 
-        "Notepad XX"
-    ) // strings/labels
-    
-    val editorTypefaces = listOf(0, 1, 2, 3, 4) // ints/positions
-    val editorTypefacesLabels = listOf(
-       context.getString(Strings.common_word_normal),
-       context.getString(Strings.text_bold),
-       context.getString(Strings.text_monospace),
-       context.getString(Strings.text_sans_serif),
-       context.getString(Strings.text_serif)
-    ) // strings/labels
