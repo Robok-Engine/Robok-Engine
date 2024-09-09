@@ -398,12 +398,18 @@ public class IdentifierAutoComplete {
                         
                         parameters += ")";
 
+                int testPrefix = 1;
+                testPrefix = prefixLength;
+                        
+                if(prefixLength > 1){
+                    testPrefix = 2;
+                }
 				result.add(
 					new SimpleCompletionItem(
 						method.getName() + parameters,
 						"method " + method.getReturnType().getSimpleName(),
 						prefixLength,
-						(variableName.substring((prefixLength + 2))) + "." + method.getName() + parameters)
+						(variableName.substring(testPrefix)) + "." + method.getName() + parameters)
 					.kind(CompletionItemKind.Method));
             
 		}
