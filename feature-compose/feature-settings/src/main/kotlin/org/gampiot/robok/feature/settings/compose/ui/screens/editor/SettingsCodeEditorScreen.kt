@@ -56,7 +56,6 @@ fun SettingsCodeEditorScreen(
     PreferenceLayoutLazyColumn(
         label = stringResource(id = Strings.settings_code_editor_title),
         backArrowVisible = true,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
         content = {
             item {
                 Title(title = stringResource(id = Strings.settings_appearance_title))

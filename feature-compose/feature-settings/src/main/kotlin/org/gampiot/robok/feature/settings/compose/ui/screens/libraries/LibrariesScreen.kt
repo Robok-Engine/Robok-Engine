@@ -62,7 +62,6 @@ fun LibrariesScreen(
     PreferenceLayoutLazyColumn(
         label = stringResource(id = Strings.settings_libraries_title),
         backArrowVisible = true,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
         state = rememberLazyListState(),
         content = {
             libraries.forEach { library ->
@@ -88,7 +87,7 @@ fun LibraryItem(
     library: Library,
     onClick: () -> Unit
 ) {
-    Card(
+    ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
             .clickable(onClick = onClick),
@@ -107,7 +106,7 @@ fun LibraryItem(
             Spacer(modifier = Modifier.weight(1f))
             if (library.badge != null) {
                 Badge(
-                    backgroundColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
+                    containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
                     contentColor = LibraryDefaults.libraryColors().badgeContentColor
                 ) {
                     Text(text = library.badge)
@@ -116,3 +115,9 @@ fun LibraryItem(
         }
     }
 }
+
+data class Library(
+    val name: String,
+    val website: String?,
+    val badge: String?
+)

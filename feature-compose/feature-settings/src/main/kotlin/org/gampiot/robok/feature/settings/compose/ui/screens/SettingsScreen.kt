@@ -28,7 +28,6 @@ fun SettingsScreen(
     PreferenceLayoutLazyColumn(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
-        verticalArrangement = Arrangement.spacedBy(8.dp),
         content = {
             item {
                 Title(title = stringResource(id = Strings.settings_general_title))
