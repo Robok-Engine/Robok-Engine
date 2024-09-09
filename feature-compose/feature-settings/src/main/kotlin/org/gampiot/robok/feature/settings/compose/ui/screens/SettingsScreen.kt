@@ -64,4 +64,11 @@ fun aboutPrefs(
            navController.navigate("settings/libraries")
        }
    )
+   Preference(
+       text = { Text(stringResource(id = Strings.settings_about_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
+       onClick = {
+           navController.navigate("settings/about")
+       }
+   )
 }
