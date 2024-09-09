@@ -46,7 +46,7 @@ fun SettingsCodeEditorScreen(
 
 @Composable
 fun appearancePrefs(
-    appPrefsViewModel: koinViewModel
+    appPrefsViewModel: AppPreferencesViewModel
 ) {
      val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
      val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
@@ -82,7 +82,7 @@ fun appearancePrefs(
 
 @Composable 
 fun formattingPrefs(
-    appPrefsViewModel: koinViewModel
+    appPrefsViewModel: AppPreferencesViewModel
 ) {
      val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
      PreferenceSwitch(
