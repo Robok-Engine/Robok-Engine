@@ -93,7 +93,7 @@ fun LibraryItem(
             .clickable(onClick = onClick)
             .padding(8.dp),
         title = {
-            LibraryItemTitle(library.title)
+            LibraryItemTitle(library.name)
         },
         description = {
             LibraryItemDesc(library.description)
@@ -103,22 +103,26 @@ fun LibraryItem(
 
 @Composable
 fun LibraryItemTitle(
-   title: String
+   title: String?
 ) {
-   Text(
-       text = title,
-       maxLines = 1,
-       overflow = TextOverflow.Ellipsis
-   )
+   title.let? {
+       Text(
+           text = it,
+           maxLines = 1,
+           overflow = TextOverflow.Ellipsis
+       )
+   }
 }
 
 @Composable
 fun LibraryItemDesc(
-   desc: String
+   desc: String?
 ) {
-   Text(
-       text = desc,
-       maxLines = 1,
-       overflow = TextOverflow.Ellipsis
-   )
+   desc.let? {
+       Text(
+           text = it,
+           maxLines = 1,
+           overflow = TextOverflow.Ellipsis
+       )
+   }
 }
