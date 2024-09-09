@@ -12,11 +12,9 @@ import androidx.compose.ui.platform.LocalContext
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.gampiot.robok.feature.component.compose.ApplicationScreen
-import org.gampiot.robok.feature.component.compose.appbars.TopBar
-import org.gampiot.robok.feature.component.compose.Title
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.choice.PreferenceChoice
+import org.gampiot.robok.feature.component.compose.preferences.switch.PreferenceSwitch
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
