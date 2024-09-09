@@ -36,6 +36,7 @@ import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.util.withContext
 import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
+import com.mikepenz.aboutlibraries.entity.Library
 
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.component.compose.ApplicationScreen
@@ -109,15 +110,9 @@ fun LibraryItem(
                     containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
                     contentColor = LibraryDefaults.libraryColors().badgeContentColor
                 ) {
-                    Text(text = library.badge)
+                    Text(text = library.artifactVersion)
                 }
             }
         }
     }
 }
-
-data class Library(
-    val name: String,
-    val website: String?,
-    val badge: String?
-)
