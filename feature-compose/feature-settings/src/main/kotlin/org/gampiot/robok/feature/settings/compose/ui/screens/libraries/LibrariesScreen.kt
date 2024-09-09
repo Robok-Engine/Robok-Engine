@@ -88,22 +88,22 @@ fun LibraryItem(
     onClick: () -> Unit
 ) {
     PreferenceTemplate(
+        modifier = Modifier
+            .clickable(onClick = onClick)
+            .padding(8.dp),
         title = {
             Text(
                 text = library.name,
                 maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
+                overflow = TextOverflow.Ellipsis
             )
         },
         description = {
             Text(
                 text = library.description,
                 maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
-        },
-        modifier = Modifier
-            .clickable {
-                onClick()
-            }
+        }
     )
 }
