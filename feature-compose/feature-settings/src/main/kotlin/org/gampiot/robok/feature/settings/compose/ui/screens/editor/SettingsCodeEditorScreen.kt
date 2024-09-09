@@ -29,7 +29,7 @@ fun SettingsCodeEditorScreen(
     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
-    
+
     val context = LocalContext.current
     
     val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) //ints/positions
@@ -51,22 +51,17 @@ fun SettingsCodeEditorScreen(
        context.getString(Strings.text_sans_serif),
        context.getString(Strings.text_serif)
     ) // strings/labels
-       
-    ApplicationScreen(
-        modifier = Modifier.fillMaxSize(),
+
+    PreferenceLayoutLazyColumn(
+        label = stringResource(id = Strings.settings_code_editor_title),
+        backArrowVisible = true,
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        topBar = {
-            TopBar(
-                barTitle = stringResource(id = Strings.settings_code_editor_title),
-                scrollBehavior = it,
-                onClickBackButton = {
-                    navController.popBackStack()
-                }
-            )
-        },
         content = {
-            Column(modifier = Modifier) {
+            item {
                 Title(title = stringResource(id = Strings.settings_appearance_title))
+            }
+
+            item {
                 PreferenceChoice(
                     label = stringResource(id = Strings.settings_code_editor_theme_title),
                     title = stringResource(id = Strings.settings_code_editor_theme_description),
@@ -80,6 +75,9 @@ fun SettingsCodeEditorScreen(
                         appPrefsViewModel.changeEditorTheme(newTheme)
                     }
                 )
+            }
+
+            item {
                 PreferenceChoice(
                     label = stringResource(id = Strings.settings_code_editor_typeface_title),
                     title = stringResource(id = Strings.settings_code_editor_typeface_description),
@@ -93,15 +91,24 @@ fun SettingsCodeEditorScreen(
                         appPrefsViewModel.changeEditorTypeface(newTypeface)
                     }
                 )
+            }
+
+            item {
                 Title(title = stringResource(id = Strings.settings_formatting_title))
-                Preference (
-                     title = stringResource(id = Strings.settings_code_editor_word_wrap_title),
-                     description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
-                     showToggle = true,
-                     isChecked = editorIsUseWordWrap,
-                     onClick = {
-                          appPrefsViewModel.enableEditorWordWrap(!it)
-                     }
+            }
+
+            item {
+                Preference(
+                    text = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_title)) },
+                    secondaryText = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_description)) },
+                    trailing = {
+                        Switch(
+                            checked = editorIsUseWordWrap,
+                            onCheckedChange = { newValue ->
+                                appPrefsViewModel.enableEditorWordWrap(newValue)
+                            }
+                        )
+                    }
                 )
             }
         }

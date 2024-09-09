@@ -24,29 +24,33 @@ fun SettingsScreen(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
-    ApplicationScreen(
-        modifier = Modifier.fillMaxSize(),
+    PreferenceLayoutLazyColumn(
+        label = stringResource(id = Strings.common_word_settings),
+        backArrowVisible = true,
         verticalArrangement = Arrangement.spacedBy(8.dp),
-        topBar = {
-            TopBar(
-                barTitle = stringResource(id = Strings.common_word_settings),
-                scrollBehavior = it
-            )
-        },
         content = {
-            Column(modifier = Modifier) {
+            item {
                 Title(title = stringResource(id = Strings.settings_general_title))
+            }
+            
+            item {
                 Preference(
-                    title = stringResource(id = Strings.settings_code_editor_title),
-                    description = stringResource(id = Strings.settings_code_editor_description),
+                    text = { Text(stringResource(id = Strings.settings_code_editor_title)) },
+                    secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
                     onClick = {
                         navController.navigate("settings/codeeditor")
                     }
                 )
+            }
+
+            item {
                 Title(title = stringResource(id = Strings.settings_about_title))
+            }
+            
+            item {
                 Preference(
-                    title = stringResource(id = Strings.settings_libraries_title),
-                    description = stringResource(id = Strings.settings_libraries_description),
+                    text = { Text(stringResource(id = Strings.settings_libraries_title)) },
+                    secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
                     onClick = {
                         navController.navigate("settings/libraries")
                     }

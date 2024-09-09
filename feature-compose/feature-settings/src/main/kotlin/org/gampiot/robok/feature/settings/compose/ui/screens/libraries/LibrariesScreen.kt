@@ -50,58 +50,68 @@ fun LibrariesScreen(
 ) {
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
-    
+
     val libs = remember { mutableStateOf<Libs?>(null) }
     libs.value = Libs.Builder().withContext(context).build()
     val libraries = libs.value!!.libraries
     
     val appBarState = rememberTopAppBarState()
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(appBarState)
-    
-    val defaultModifier = Modifier.fillMaxWidth()
-    
-    ApplicationScreen(
-        enableDefaultScrollBehavior = false,
-        columnContent = false,
-        modifier = Modifier
-            .nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            TopBar(
-                barTitle = stringResource(id = Strings.settings_libraries_title),
-                scrollBehavior = scrollBehavior,
-                onClickBackButton = {
-                    navController.popBackStack()
-                }
-            )
-        },
+
+    PreferenceLayoutLazyColumn(
+        label = stringResource(id = Strings.settings_libraries_title),
+        backArrowVisible = true,
+        verticalArrangement = Arrangement.spacedBy(8.dp),
+        state = rememberLazyListState(),
         content = {
-            Column(
-                modifier = Modifier
-                    .fillMaxSize()
-            ) {
-                LibrariesContainer(
-                    modifier = Modifier
-                         .fillMaxSize()
-                         .windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Horizontal)),
-                    colors = LibraryDefaults.libraryColors(
-                          backgroundColor = MaterialTheme.colorScheme.background,
-                          contentColor = MaterialTheme.colorScheme.onBackground,
-                          badgeBackgroundColor = MaterialTheme.colorScheme.secondaryContainer,
-                          badgeContentColor = MaterialTheme.colorScheme.onSecondaryContainer,
-                    ),
-                    padding = LibraryDefaults.libraryPadding(
-                          namePadding = PaddingValues(bottom = 4.dp),
-                          badgeContentPadding = PaddingValues(4.dp),
-                    ),
-                    onLibraryClick = { library ->
-                          library.website?.let {
-                               if (it.isNotEmpty()) {
-                                     uriHandler.openUri(it)
-                               }
-                          }
-                    },
-                )
+            libraries.forEach { library ->
+                item {
+                    LibraryItem(
+                        library = library,
+                        onClick = {
+                            library.website?.let {
+                                if (it.isNotEmpty()) {
+                                    uriHandler.openUri(it)
+                                }
+                            }
+                        }
+                    )
+                }
             }
         }
     )
+}
+
+@Composable
+fun LibraryItem(
+    library: Library,
+    onClick: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(onClick = onClick),
+        elevation = CardDefaults.elevation(defaultElevation = 4.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            verticalAlignment = Alignment.CenterVertically
+        ) {
+            Text(
+                text = library.name,
+                style = MaterialTheme.typography.titleLarge
+            )
+            Spacer(modifier = Modifier.weight(1f))
+            if (library.badge != null) {
+                Badge(
+                    backgroundColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
+                    contentColor = LibraryDefaults.libraryColors().badgeContentColor
+                ) {
+                    Text(text = library.badge)
+                }
+            }
+        }
+    }
 }
