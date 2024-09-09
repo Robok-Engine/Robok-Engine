@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.gampiot.robok.feature.component.compose.edge;
+package org.gampiot.robok.feature.component.compose.edges;
 
 import android.content.Context;
 import android.view.View;

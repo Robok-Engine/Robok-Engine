@@ -28,6 +28,8 @@
 -keep class com.android.sdklib.** { *; }
 -keep class sun.security.** { *; }
 
+-keep class org.gampiot.robok.feature.component.compose.edges.StretchEdgeEffect { *; }
+
 -dontwarn com.android.SdkConstants
 -dontwarn com.android.dvlib.DeviceSchema
 -dontwarn com.android.io.FolderWrapper

@@ -17,7 +17,7 @@ import androidx.compose.ui.layout.onSizeChanged
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.Velocity
 
-import org.gampiot.robok.feature.component.compose.edge.*
+import org.gampiot.robok.feature.component.compose.edges.*
 
 /**
  * Creates a custom overscroll effect based off the Android 12 "stretch" animation.

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.edge;
+package org.gampiot.robok.feature.component.compose.edges;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
