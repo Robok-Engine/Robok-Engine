@@ -1,4 +1,4 @@
-package app.lawnchair.ui.preferences.components.layout
+package org.gampiot.robok.feature.component.compose.preferences.test
 
 import androidx.compose.foundation.MutatePriority
 import androidx.compose.foundation.ScrollState
