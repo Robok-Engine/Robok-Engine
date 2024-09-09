@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 251
+    "contributions": 250
   },
   {
     "login": "ThDev-only",
@@ -39,7 +39,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 130
+    "contributions": 138
   },
   {
     "login": "renovate[bot]",
