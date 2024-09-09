@@ -15,6 +15,7 @@ import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
@@ -40,7 +41,9 @@ fun SettingsScreen(
 }
 
 @Composable
-fun generalPrefs() {
+fun generalPrefs(
+    navController: NavController
+) {
    Preference(
        text = { Text(stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
@@ -51,7 +54,9 @@ fun generalPrefs() {
 }
 
 @Composable
-fun aboutPrefs() {
+fun aboutPrefs(
+    navController: NavController
+) {
    Preference(
        text = { Text(stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
