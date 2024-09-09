@@ -14,7 +14,7 @@ import org.gampiot.robok.feature.component.compose.ApplicationScreen
 import org.gampiot.robok.feature.component.compose.appbars.TopBar
 import org.gampiot.robok.feature.component.compose.Title
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayoutLazyColumn
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
@@ -25,37 +25,38 @@ fun SettingsScreen(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
-    PreferenceLayoutLazyColumn(
+    PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
-        content = {
-            item {
-                Title(title = stringResource(id = Strings.settings_general_title))
-            }
-            
-            item {
-                Preference(
-                    text = { Text(stringResource(id = Strings.settings_code_editor_title)) },
-                    secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
-                    onClick = {
-                        navController.navigate("settings/codeeditor")
-                    }
-                )
-            }
-
-            item {
-                Title(title = stringResource(id = Strings.settings_about_title))
-            }
-            
-            item {
-                Preference(
-                    text = { Text(stringResource(id = Strings.settings_libraries_title)) },
-                    secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
-                    onClick = {
-                        navController.navigate("settings/libraries")
-                    }
-                )
-            }
+    ) {
+        PreferenceGroup(heading = stringResource(id = Strings.settings_general_title)) {
+             generalPrefs()
         }
-    )
+        
+        PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
+             aboutPrefs()
+        }
+    }
+}
+
+@Composable
+fun generalPrefs() {
+   Preference(
+       text = { Text(stringResource(id = Strings.settings_code_editor_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
+       onClick = {
+           navController.navigate("settings/codeeditor")
+       }
+   )
+}
+
+@Composable
+fun aboutPrefs() {
+   Preference(
+       text = { Text(stringResource(id = Strings.settings_libraries_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
+       onClick = {
+           navController.navigate("settings/libraries")
+       }
+   )
 }
