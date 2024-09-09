@@ -91,8 +91,7 @@ fun LibraryItem(
     ElevatedCard(
         modifier = Modifier
             .fillMaxWidth()
-            .clickable(onClick = onClick),
-        elevation = CardDefaults.elevation(defaultElevation = 4.dp)
+            .clickable(onClick = onClick)
     ) {
         Row(
             modifier = Modifier
@@ -105,12 +104,14 @@ fun LibraryItem(
                 style = MaterialTheme.typography.titleLarge
             )
             Spacer(modifier = Modifier.weight(1f))
-            if (library.badge != null) {
+            if (library.artifactVersion != null) {
                 Badge(
                     containerColor = LibraryDefaults.libraryColors().badgeBackgroundColor,
                     contentColor = LibraryDefaults.libraryColors().badgeContentColor
-                ) {
-                    Text(text = library.artifactVersion)
+                ) {  
+                    library.artifactVersion.let? {
+                        Text(text = library.artifactVersion)
+                    }
                 }
             }
         }
