@@ -28,10 +28,7 @@ fun SettingsCodeEditorScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
-    val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
-    val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
-
+    
     val context = LocalContext.current
 
     PreferenceLayout(
@@ -39,24 +36,21 @@ fun SettingsCodeEditorScreen(
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
-            appearancePrefs(
-               editorTheme = editorTheme, 
-               editorTypeface = editorTypeface
-            )
+            appearancePrefs(appPrefsViewModel)
         }
         PreferenceGroup(heading = stringResource(id = Strings.settings_formatting_title)) {
-            formattingPrefs(
-               editorIsUseWordWrap = editorIsUseWordWrap
-            )
+            formattingPrefs(appPrefsViewModel)
         }
     }
 }
 
 @Composable
-fun apperancePrefs(
-    editorTheme: Int,
-    editorTypeface: Int
+fun appearancePrefs(
+    appPrefsViewModel: koinViewModel
 ) {
+     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
+     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
+     
      PreferenceChoice(
           label = stringResource(id = Strings.settings_code_editor_theme_title),
           title = stringResource(id = Strings.settings_code_editor_theme_description),
@@ -88,8 +82,9 @@ fun apperancePrefs(
 
 @Composable 
 fun formattingPrefs(
-    editorIsUseWordWrap: Boolean
+    appPrefsViewModel: koinViewModel
 ) {
+     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
      PreferenceSwitch(
           checked = editorIsUseWordWrap,
           onCheckedChange = { newValue ->
