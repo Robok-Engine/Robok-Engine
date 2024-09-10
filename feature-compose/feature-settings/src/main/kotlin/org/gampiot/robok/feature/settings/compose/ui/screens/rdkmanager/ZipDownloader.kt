@@ -1,6 +1,8 @@
 package org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager
 
 import android.content.Context
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -11,7 +13,7 @@ import java.util.zip.ZipInputStream
 
 class ZipDownloader(private val context: Context) {
 
-    fun downloadAndExtractZip(zipUrl: String, outputDirName: String) {
+    suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String) = withContext(Dispatchers.IO) {
         val url = URL(zipUrl)
         val connection = url.openConnection() as HttpURLConnection
 
@@ -51,7 +53,6 @@ class ZipDownloader(private val context: Context) {
                 zipEntry = zipInputStream.nextEntry
             }
         }
-
         zipFile.delete()
     }
 }

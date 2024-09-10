@@ -11,12 +11,14 @@ import org.koin.dsl.module
 
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.settings.compose.repositories.AppPreferencesRepository
+import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKViewModel
 
 const val APP_PREFERENCES = "app_preferences"
 
 val appModule = module {
     singleOf(::AppPreferencesRepository)
     viewModelOf(::AppPreferencesViewModel)
+    viewModelOf(::ConfigureRDKViewModel)
 }
 
 val appPreferencesModule = module { 
