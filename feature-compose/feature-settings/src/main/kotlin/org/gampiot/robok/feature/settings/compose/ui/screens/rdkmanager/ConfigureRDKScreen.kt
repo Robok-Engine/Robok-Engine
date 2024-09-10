@@ -13,6 +13,7 @@ import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
 import org.gampiot.robok.feature.settings.compose.viewmodels.ConfigureRDKViewModel
+import org.gampiot.robok.feature.settings.compose.viewmodels.DownloadState
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.component.compose.textfields.DynamicSelectTextField
@@ -32,6 +33,8 @@ fun ConfigureRDKScreen(
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
     val outputDirName = "robok-sdk"
     
+    val downloadState by viewModel.downloadState.collectAsState()
+
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
@@ -57,6 +60,11 @@ fun ConfigureRDKScreen(
             ) {
                 Text(text = stringResource(id = Strings.common_word_save))
             }
+        }
+        when (downloadState) {
+            is DownloadState.Loading -> CircularProgressIndicator()
+            is DownloadState.Success -> Text((downloadState as DownloadState.Success).message)
+            is DownloadState.Error -> Text((downloadState as DownloadState.Error).error)
         }
     }
 }

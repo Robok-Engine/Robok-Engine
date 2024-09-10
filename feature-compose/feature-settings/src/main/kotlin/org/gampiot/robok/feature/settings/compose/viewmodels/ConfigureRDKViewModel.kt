@@ -14,8 +14,8 @@ import org.gampiot.robok.feature.settings.compose.utils.ZipDownloader
 class ConfigureRDKViewModel(private val context: Context) : ViewModel() {
 
     private val zipDownloader = ZipDownloader(context)
-
-private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.NotStarted)
+    
+    private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.NotStarted)
     val downloadState: StateFlow<DownloadState> = _downloadState
 
     fun startDownload(zipUrl: String, outputDirName: String) {
