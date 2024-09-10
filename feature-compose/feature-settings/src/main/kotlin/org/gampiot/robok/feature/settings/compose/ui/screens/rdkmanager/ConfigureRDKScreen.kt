@@ -23,17 +23,18 @@ fun ConfigureRDKScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    
     val rdkVersions = listOf(
-      "RDK-1",
-      "RDK-2" /* fictitious */
+      "RDK-1"
     )
     
     val context = LocalContext.current
-    
-    var textFieldLabel by remember {
-        mutableStateOf(context.getString(Strings.settings_configure_rdk_select_rdk_label))
+    var version by remember {
+        mutableStateOf("RDK-1")
     }
+    
+    val zipDownloader = ZipDownloader(context)
+    val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
+    val outputDirName = "robok-sdk"
     
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
@@ -46,11 +47,11 @@ fun ConfigureRDKScreen(
                       horizontal = 18.dp,
                       vertical = 8.dp
                    ),
-                selectedValue = "RDK-01",
+                selectedValue = "RDK-1",
                 options = rdkVersions,
-                label = textFieldLabel,
+                label = stringResource(id = Strings.settings_configure_rdk_version),
                 onValueChangedEvent = { 
-                    textFieldLabel = it
+                    version = it
                 }
             )
             Button(
@@ -60,7 +61,9 @@ fun ConfigureRDKScreen(
                       vertical = 8.dp
                    )
                    .fillMaxWidth(),
-                onClick = { /* nothing happed yet */ }
+                onClick = {
+                    zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
+                }
             ) {
                 Text(text = stringResource(id = Strings.common_word_save))
             }
