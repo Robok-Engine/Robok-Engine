@@ -25,6 +25,14 @@ import coil.compose.SubcomposeAsyncImage
 
 import kotlinx.serialization.Serializable
 
+val contributors = listOf (
+     Contributor(
+        login = "trindadedev",
+        role = "Main Developer",
+        avatar_url = "https://github.com/trindadedev13.png"
+     )
+)
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
@@ -36,13 +44,29 @@ fun AboutScreen(
         label = stringResource(id = Strings.settings_about_title),
         backArrowVisible = true,
     ) {
-        val contributors = listOf (
-            Contributor(
-               login = "trindadedev",
-               role = "Main Developer",
-               avatar_url = "https://github.com/trindadedev13.png"
+        Column(
+            modifier = Modifier.padding(top = 8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally,
+        ) {
+            Image(
+                painter = painterResource(id = R.drawable.ic_launcher),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(72.dp)
+                    .clip(CircleShape),
             )
-        )
+            Spacer(modifier = Modifier.height(12.dp))
+            Text(
+                text = stringResource(id = R.string.app_name),
+                style = MaterialTheme.typography.titleLarge,
+            )
+            Text(
+                text = BuildConfig.VERSION_DISPLAY_NAME,
+                style = MaterialTheme.typography.bodyLarge,
+                color = MaterialTheme.colorScheme.onSurfaceVariant
+            )
+            Spacer(modifier = Modifier.requiredHeight(16.dp))
+        }
         PreferenceGroup(heading = stringResource(id = Strings.text_contributors)) {
              contributors.forEach {
                 ContributorRow(
