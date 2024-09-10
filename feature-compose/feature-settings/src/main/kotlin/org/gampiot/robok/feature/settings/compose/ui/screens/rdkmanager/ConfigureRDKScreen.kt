@@ -41,6 +41,8 @@ fun ConfigureRDKScreen(
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
             DynamicSelectTextField(
+                modifier = Modifier
+                   .padding(8.dp),
                 selectedValue = "RDK-01",
                 options = rdkVersions,
                 label = textFieldLabel,
@@ -48,11 +50,11 @@ fun ConfigureRDKScreen(
                     textFieldLabel = it
                 }
             )
-        }
-        Button(
-           onClick = { /* nothing happed yet */ }
-        ) {
-           Text(text = stringResource(id = Strings.common_word_save))
+            Button(
+                onClick = { /* nothing happed yet */ }
+            ) {
+                Text(text = stringResource(id = Strings.common_word_save))
+            }
         }
     }
 }
