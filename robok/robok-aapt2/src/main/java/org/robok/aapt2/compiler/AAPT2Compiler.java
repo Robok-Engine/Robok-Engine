@@ -41,7 +41,6 @@ public class AAPT2Compiler extends Compiler {
     public void prepare() {
 		//mProject.getLogger().d(TAG, "Preparing");
 		onProgressUpdate("Preparing AAPT2...");
-		System.loadLibrary("aapt2"); 
 		
 		mLibraries = new ArrayList<>();
         mLibraries.addAll(mProject.getLibraries());
