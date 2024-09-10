@@ -12,6 +12,7 @@ import androidx.navigation.NavController
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
 import androidx.annotation.IdRes
@@ -119,10 +120,17 @@ fun ContributorRow(
    dataInfo: Contributor
 ) {
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
         title = { Text(text = dataInfo.login) },
         description = { Text(text = dataInfo.role) },
+        modifier = Modifier
+           .clickable(
+              onClick = {
+                  uriHandler.openUri(dataInfo.html_url)
+              }
+           ),
         startWidget = {
             SubcomposeAsyncImage(
                 model = dataInfo.avatar_url,
@@ -147,8 +155,15 @@ fun LinkRow(
    dataInfo: Link
 ) {
     val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
+        modifier = Modifier
+           .clickable(
+              onClick = {
+                  uriHandler.openUri(dataInfo.url)
+              }
+           ),
         title = { Text(text = dataInfo.name) },
         description = { Text(text = dataInfo.description) },
         startWidget = {
