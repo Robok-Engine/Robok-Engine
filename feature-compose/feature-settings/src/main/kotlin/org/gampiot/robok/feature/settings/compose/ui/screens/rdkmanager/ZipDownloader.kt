@@ -1,8 +1,11 @@
 package org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager
 
+import android.widget.Toast
 import android.content.Context
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+
 import java.io.File
 import java.io.FileOutputStream
 import java.io.InputStream
@@ -37,6 +40,7 @@ class ZipDownloader(private val context: Context) {
     }
 
     private fun extractZipFile(zipFile: File, outputDir: File) {
+        /* LOG */Toast.makeText(context, "extrating...", 4000).show()
         ZipInputStream(zipFile.inputStream()).use { zipInputStream ->
             var zipEntry: ZipEntry? = zipInputStream.nextEntry
 
@@ -48,11 +52,13 @@ class ZipDownloader(private val context: Context) {
                     newFile.parentFile.mkdirs()
                     FileOutputStream(newFile).use { fileOutputStream ->
                         zipInputStream.copyTo(fileOutputStream)
+                        /* LOG */Toast.makeText(context, "copy to outputstreem...", 4000).show()
                     }
                 }
                 zipEntry = zipInputStream.nextEntry
             }
         }
         zipFile.delete()
+        /* LOG */Toast.makeText(context, "deleted...", 4000).show()
     }
 }
