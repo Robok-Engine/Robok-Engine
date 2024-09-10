@@ -46,7 +46,6 @@ fun AboutScreen(
     version: String
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    val context = LocalContext.current
     
     val links = listOf(
          Link(
@@ -63,7 +62,7 @@ fun AboutScreen(
          )
          Link(
              name = stringResource(id = Strings.item_whatsapp_title),
-             description = stringResource(id = Strings.item_whatsapp_escription),
+             description = stringResource(id = Strings.item_whatsapp_description),
              imageResId = R.drawable.ic_whatsapp_24,
              url = stringResource(id = Strings.link_whatsapp)
          )
