@@ -41,7 +41,7 @@ import kotlinx.serialization.json.Json
 import kotlinx.serialization.decodeFromString
 
 
-val contributors = listOf(
+var contributors = listOf(
      Contributor(
         login = "trindadedev",
         role = "Main Developer",
