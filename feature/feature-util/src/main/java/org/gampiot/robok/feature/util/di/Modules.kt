@@ -18,13 +18,13 @@ const val APP_PREFERENCES = "app_preferences"
 val appModule = module {
     singleOf(::AppPreferencesRepository)
     viewModelOf(::AppPreferencesViewModel)
-    viewModelOf(::ConfigureRDKViewModel)
+    viewModel { (context: Context) -> ConfigureRDKViewModel(context) }
 }
 
-val appPreferencesModule = module { 
+val appPreferencesModule = module {
     single {
         PreferenceDataStoreFactory.create {
-             androidContext().preferencesDataStoreFile(APP_PREFERENCES)
+            androidContext().preferencesDataStoreFile(APP_PREFERENCES)
         }
     }
 }

@@ -8,7 +8,8 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
-import org.koin.androidx.compose.koinViewModel
+import org.koin.androidx.compose.getViewModel
+import org.koin.core.parameter.parametersOf
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.res.Strings
@@ -19,7 +20,7 @@ fun ConfigureRDKScreen(
     navController: NavController
 ) {
     val context = LocalContext.current
-    val viewModel: ConfigureRDKViewModel = koinViewModel { ConfigureRDKViewModel(context) }
+    val viewModel: ConfigureRDKViewModel = getViewModel { parametersOf(context) }
     
     val rdkVersions = listOf("RDK-1")
     var version by remember { mutableStateOf("RDK-1") }
@@ -55,8 +56,6 @@ fun ConfigureRDKScreen(
         }
     }
 }
-
-
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
