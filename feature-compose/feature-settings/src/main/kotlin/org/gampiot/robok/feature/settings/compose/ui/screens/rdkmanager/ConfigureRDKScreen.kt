@@ -62,6 +62,7 @@ fun ConfigureRDKScreen(
             }
         }
         when (downloadState) {
+            is DownloadState.NotStarted -> Text("Download não iniciado")
             is DownloadState.Loading -> CircularProgressIndicator()
             is DownloadState.Success -> Text((downloadState as DownloadState.Success).message)
             is DownloadState.Error -> Text((downloadState as DownloadState.Error).error)
