@@ -17,12 +17,12 @@ import androidx.compose.ui.Alignment
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.gampiot.robok.feature.settings.R
+import org.gampiot.robok.feature.settings.compose.R
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
-import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
 
 import coil.compose.SubcomposeAsyncImage
