@@ -223,14 +223,6 @@
                     android:textSize="12sp"
                     app:icon="@drawable/ic_code_24"
                     android:layout_marginBottom="7dp" />
-
-                <Button
-                    style="@style/Widget.Material3.Button.TextButton.Icon"
-                    android:id="@+id/open_about"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/settings_about_title"
-                    app:icon="@drawable/ic_info_24" />
             </LinearLayout>
         </LinearLayout>
     </FrameLayout>

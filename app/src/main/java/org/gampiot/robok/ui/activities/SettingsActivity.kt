@@ -26,10 +26,12 @@ import androidx.navigation.compose.rememberNavController
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
+import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
 
 class SettingsActivity : ComponentActivity() {
 
@@ -80,12 +82,19 @@ class SettingsActivity : ComponentActivity() {
                            SettingsScreen(navController)
                       }
                       
+                      composable("settings/codeeditor") {
+                           SettingsCodeEditorScreen(navController)
+                      }
+                      
                       composable("settings/libraries") {
                            LibrariesScreen(navController)
                       }
                       
-                      composable("settings/codeeditor") {
-                           SettingsCodeEditorScreen(navController)
+                      composable("settings/about") {
+                           AboutScreen(
+                               navController = navController,
+                               version = BuildConfig.VERSION_NAME
+                           )
                       }
                  }
             }
