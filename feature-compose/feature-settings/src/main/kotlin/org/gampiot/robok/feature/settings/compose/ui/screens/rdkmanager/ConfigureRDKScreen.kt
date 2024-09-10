@@ -23,11 +23,25 @@ fun ConfigureRDKScreen(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
+    val rdkVersions = listOf(
+      "RDK-1",
+      "RDK-2" /* fictitious */
+    )
+    
+    var textFieldLabel by remember { mutableStateOf(stringResource(id = Strings.settings_configure_rdk_select_rdk_label)) }
+    
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
     ) {
-        
+        DynamicSelectTextField(
+            selectedValue = "RDK-01",
+            options = rdkVersions,
+            label = textFieldLabel,
+            onValueChangedEvent = { 
+                textFieldLabel = it
+            }
+        )
     }
 }
 

@@ -59,6 +59,7 @@
 	<string name="settings_libraries_description">Les bibliothèques que nous avons utilisées</string>
 	<string name="settings_configure_rdk_title">Configure RDK</string>
 	<string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
+	<string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
 	<string name="settings_build_title">Build</string>
 	<string name="settings_formatting_title">Format</string>
 	<string name="settings_appearance_title">Apparance</string>
