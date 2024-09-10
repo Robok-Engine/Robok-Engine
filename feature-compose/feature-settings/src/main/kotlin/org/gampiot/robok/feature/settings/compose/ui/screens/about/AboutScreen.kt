@@ -50,10 +50,10 @@ fun AboutScreen(
     
     val links = listOf(
          Link(
-             name = context.getString(Strings.item_github_title)
-             description = context.getString(Strings.item_github_description)
-             image = R.drawable.ic_github_24
-             url = stringResource(id = Strings.)
+             name = stringResource(id = Strings.item_github_title),
+             description = stringResource(id = Strings.item_github_description),
+             image = R.drawable.ic_github_24,
+             url = stringResource(id = Strings.link_github)
          )
     )
     
