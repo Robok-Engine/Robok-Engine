@@ -59,7 +59,7 @@ fun AboutScreen(
     val context = LocalContext.current
     val uriHandler = LocalUriHandler.current
 
-    val contributorsState = remember { mutableStateOf<List<Contributor>>(emptyList()) }
+    val contributorsState = remember { mutableStateOf<List<Contributor>>(contributors) }
     val scope = rememberCoroutineScope()
 
     LaunchedEffect(Unit) {
