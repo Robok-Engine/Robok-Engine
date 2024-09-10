@@ -40,7 +40,7 @@ Want to contribute to contribute to Robok? Follow this steps:
 2. Don't make long commits.
 3. Don't make unnecessary commits.
 4. Use tags to indicate what the commit does (example: feat: Use datagui v2 in project)
-5. See more on: [More Contribution Info](https://github.com/robok-inc/robok_engine/tree/dev/docs/CONTRIBUTION.md)
+5. See more on: [More Contribution Info](https://github.com/robok-inc/robok-engine/tree/dev/docs/CONTRIBUTION.md)
 
 ## TO-DO
  - [X] AAPT2 Compiler
