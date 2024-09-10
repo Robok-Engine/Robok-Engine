@@ -8,6 +8,7 @@
 
 ## Features
 - Material Design 3 UI : The Engine is fully developed following Google Material Design 3 guidelines.
+- Jetpack Compose : I, [trindadedev13](https:/github.com/trindadedev13), have the idea of using as much compose as possible, so we can say that Robok uses Jetpack Compose.
 - Open Source : The Engine is completely open source, which means you can see how it works, and even contribute.
 - Build APK : After making your game, you can generate an APK and send it to your friends, or even publish it on the playstore.
 - Robok SDK : Various tools that facilitate the development of your games.
@@ -39,6 +40,7 @@ Want to contribute to contribute to Robok? Follow this steps:
 2. Don't make long commits.
 3. Don't make unnecessary commits.
 4. Use tags to indicate what the commit does (example: feat: Use datagui v2 in project)
+5. See more on: [More Contribution Info](https://github.com/robok-inc/robok_engine/docs/CONTRIBUTION.md)
 
 ## TO-DO
  - [X] AAPT2 Compiler
