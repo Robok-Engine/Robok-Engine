@@ -60,7 +60,7 @@
 	<string name="settings_configure_rdk_description">Configurações do Robok-SDK, como versão e muito mais.</string>
 	<string name="settings_configure_rdk_select_rdk_label">Selecione a versão do RDK</string>
 	<string name="settings_configure_rdk_version">Definir versão do RDK</string>
-	<string name="settings_build_title">Compilation</string>
+	<string name="settings_build_title">Compilação</string>
 	<string name="settings_formatting_title">Formatação</string>
 	<string name="settings_appearance_title">Aparência</string>
 	<string name="settings_general_title">Geral</string>
