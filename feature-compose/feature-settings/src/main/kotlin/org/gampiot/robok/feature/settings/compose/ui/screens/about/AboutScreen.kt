@@ -64,7 +64,7 @@ fun AboutScreen(
 
     LaunchedEffect(Unit) {
         scope.launch {
-            val contributors = fetchContributors()
+            contributors = fetchContributors()
             contributorsState.value = contributors
         }
     }
@@ -119,9 +119,11 @@ fun AboutScreen(
             )
             Spacer(modifier = Modifier.requiredHeight(16.dp))
         }
-        PreferenceGroup(heading = stringResource(id = Strings.text_contributors)) {
-            contributorsState.value.forEach {
-                ContributorRow(dataInfo = it)
+        if (contributors.isNotEmpty()) {
+            PreferenceGroup(heading = stringResource(id = Strings.text_contributors)) {
+                 contributorsState.value.forEach {
+                      ContributorRow(dataInfo = it)
+                 }
             }
         }
         PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
