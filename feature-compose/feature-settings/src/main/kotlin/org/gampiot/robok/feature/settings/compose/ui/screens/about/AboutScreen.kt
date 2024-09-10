@@ -147,7 +147,11 @@ suspend fun fetchContributors(): List<Contributor> {
                 if (response.isSuccessful) {
                     val jsonString = response.body?.string()
                     jsonString?.let {
-                        Json.decodeFromString<List<Contributor>>(it)
+                        val contributors = Json.decodeFromString<List<Contributor>>(it)
+                        
+                        contributors.filter { contributor ->
+                            contributor.type != "Bot" && contributor.role != "Bot"
+                        }
                     } ?: emptyList()
                 } else {
                     emptyList()
