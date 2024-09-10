@@ -19,7 +19,7 @@ import java.util.zip.ZipInputStream
 
 class ZipDownloader(private val context: Context) {
 
-    suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String) = withContext(Dispatchers.IO) {
+    suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String): Boolean = withContext(Dispatchers.IO) {
         val url = URL(zipUrl)
         val connection = url.openConnection() as HttpURLConnection
 
@@ -37,13 +37,16 @@ class ZipDownloader(private val context: Context) {
 
                 extractZipFile(zipFile, outputDir)
             }
+            true 
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
         } finally {
             connection.disconnect()
         }
     }
 
     private fun extractZipFile(zipFile: File, outputDir: File) {
-        /* LOG */ basicToast("extrating...")
         ZipInputStream(zipFile.inputStream()).use { zipInputStream ->
             var zipEntry: ZipEntry? = zipInputStream.nextEntry
 
@@ -55,25 +58,11 @@ class ZipDownloader(private val context: Context) {
                     newFile.parentFile.mkdirs()
                     FileOutputStream(newFile).use { fileOutputStream ->
                         zipInputStream.copyTo(fileOutputStream)
-                        /* LOG */ basicToast("copy to outputstreem...")
                     }
                 }
                 zipEntry = zipInputStream.nextEntry
             }
         }
         zipFile.delete()
-        /* LOG */ basicToast("deleting")
-    }
-    
-    fun basicToast (value: String) {
-         if (context is Activity) {
-              context.runOnUiThread {
-                   Toast.makeText(context, value, Toast.LENGTH_LONG).show()
-              }
-         } else {
-              Handler(Looper.getMainLooper()).post {
-                    Toast.makeText(context, value, Toast.LENGTH_LONG).show()
-              }
-         }
     }
 }
