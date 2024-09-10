@@ -19,6 +19,7 @@
 	<string name="common_word_deny">Deny</string>
 	<string name="common_word_normal">Normal</string>
 	<string name="common_word_retry">Retry</string>
+	<string name="common_word_save">Save</string>
 	<!-- end section -->
 	
 	<!-- links section -->
@@ -68,6 +69,7 @@
 	<string name="settings_configure_rdk_title">Configure RDK</string>
 	<string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
 	<string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
+	<string name="settings_configure_rdk_version">Define RDK Version</string>
 	<string name="settings_build_title">Build</string>
 	<string name="settings_formatting_title">Formatting</string>
 	<string name="settings_appearance_title">Appearance</string>
