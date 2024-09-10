@@ -55,6 +55,18 @@ fun AboutScreen(
              imageResId = R.drawable.ic_github_24,
              url = stringResource(id = Strings.link_github)
          )
+         Link(
+             name = stringResource(id = Strings.item_telegram_title),
+             description = stringResource(id = Strings.item_telegram_description),
+             imageResId = R.drawable.ic_send_24,
+             url = stringResource(id = Strings.link_telegram)
+         )
+         Link(
+             name = stringResource(id = Strings.item_whatsapp_title),
+             description = stringResource(id = Strings.item_whatsapp_escription),
+             imageResId = R.drawable.ic_whatsapp_24,
+             url = stringResource(id = Strings.link_whatsapp)
+         )
     )
     
     PreferenceLayout(
