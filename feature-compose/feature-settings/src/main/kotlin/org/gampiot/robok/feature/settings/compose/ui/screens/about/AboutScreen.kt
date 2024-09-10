@@ -14,6 +14,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
+import androidx.annotation.IdRes
 
 import org.koin.androidx.compose.koinViewModel
 
@@ -30,7 +31,7 @@ import coil.compose.SubcomposeAsyncImage
 
 import kotlinx.serialization.Serializable
 
-val contributors = listOf (
+val contributors = listOf(
      Contributor(
         login = "trindadedev",
         role = "Main Developer",
@@ -45,6 +46,16 @@ fun AboutScreen(
     version: String
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+    val context = LocalContext.current
+    
+    val links = listOf(
+         Link(
+             name = context.getString(Strings.item_github_title)
+             description = context.getString(Strings.item_github_description)
+             image = R.drawable.ic_github_24
+             url = stringResource(id = Strings.)
+         )
+    )
     
     PreferenceLayout(
         label = stringResource(id = Strings.settings_about_title),
@@ -80,7 +91,14 @@ fun AboutScreen(
                 ContributorRow(
                     dataInfo = it
                 )
-            }
+             }
+        }
+        PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
+             links.forEach {
+                LinkRow(
+                    dataInfo = it
+                )
+             }
         }
     }
 }
@@ -109,7 +127,29 @@ fun ContributorRow(
                     )
                 },
             )
-        },
+        }
+    )
+}
+
+@Composable
+fun LinkRow(
+   dataInfo: Link
+) {
+    val context = LocalContext.current
+
+    PreferenceTemplate(
+        title = { Text(text = dataInfo.name) },
+        description = { Text(text = dataInfo.description) },
+        startWidget = {
+            Image(
+                painter = painterResource(id = dataInfo.imageResId),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(32.dp)
+                    .clip(CircleShape)
+                    background(MaterialTheme.colorScheme.surfaceContainer),
+            )
+        }
     )
 }
 
@@ -135,4 +175,12 @@ data class Contributor(
     val site_admin: Boolean = false,
     val contributions: Int = 0,
     val role: String = "Developer"
+)
+
+
+data class Link(
+    val name: String,
+    val description: String,
+    @IdRes val imageResId: Int,
+    val url: String
 )
