@@ -58,6 +58,10 @@ public class RobokApplication extends KoinApplication {
          });
          
          DynamicColors.applyToActivitiesIfAvailable(instance);
+         
+         static {
+             System.loadLibrary("libaapt2");
+            }
     }
 
     public String getStackTrace(Throwable cause) {
