@@ -32,6 +32,13 @@ import org.gampiot.robok.feature.res.Strings
 import coil.compose.SubcomposeAsyncImage
 
 import kotlinx.serialization.Serializable
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.decodeFromString
+
 
 val contributors = listOf(
      Contributor(
@@ -48,28 +55,40 @@ fun AboutScreen(
     version: String
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    
+    val context = LocalContext.current
+    val uriHandler = LocalUriHandler.current
+
+    val contributorsState = remember { mutableStateOf<List<Contributor>>(emptyList()) }
+    val scope = rememberCoroutineScope()
+
+    LaunchedEffect(Unit) {
+        scope.launch {
+            val contributors = fetchContributors()
+            contributorsState.value = contributors
+        }
+    }
+
     val links = listOf(
-         Link(
-             name = stringResource(id = Strings.item_github_title),
-             description = stringResource(id = Strings.item_github_description),
-             imageResId = R.drawable.ic_github_24,
-             url = stringResource(id = Strings.link_github)
-         ),
-         Link(
-             name = stringResource(id = Strings.item_telegram_title),
-             description = stringResource(id = Strings.item_telegram_description),
-             imageResId = R.drawable.ic_send_24,
-             url = stringResource(id = Strings.link_telegram)
-         ),
-         Link(
-             name = stringResource(id = Strings.item_whatsapp_title),
-             description = stringResource(id = Strings.item_whatsapp_description),
-             imageResId = R.drawable.ic_whatsapp_24,
-             url = stringResource(id = Strings.link_whatsapp)
-         )
+        Link(
+            name = stringResource(id = Strings.item_github_title),
+            description = stringResource(id = Strings.item_github_description),
+            imageResId = R.drawable.ic_github_24,
+            url = stringResource(id = Strings.link_github)
+        ),
+        Link(
+            name = stringResource(id = Strings.item_telegram_title),
+            description = stringResource(id = Strings.item_telegram_description),
+            imageResId = R.drawable.ic_send_24,
+            url = stringResource(id = Strings.link_telegram)
+        ),
+        Link(
+            name = stringResource(id = Strings.item_whatsapp_title),
+            description = stringResource(id = Strings.item_whatsapp_description),
+            imageResId = R.drawable.ic_whatsapp_24,
+            url = stringResource(id = Strings.link_whatsapp)
+        )
     )
-    
+
     PreferenceLayout(
         label = stringResource(id = Strings.settings_about_title),
         modifier = Modifier,
@@ -100,18 +119,39 @@ fun AboutScreen(
             Spacer(modifier = Modifier.requiredHeight(16.dp))
         }
         PreferenceGroup(heading = stringResource(id = Strings.text_contributors)) {
-             contributors.forEach {
-                ContributorRow(
-                    dataInfo = it
-                )
-             }
+            contributorsState.value.forEach {
+                ContributorRow(dataInfo = it)
+            }
         }
         PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
-             links.forEach {
-                LinkRow(
-                    dataInfo = it
-                )
-             }
+            links.forEach {
+                LinkRow(dataInfo = it)
+            }
+        }
+    }
+}
+
+val client = OkHttpClient()
+
+suspend fun fetchContributors(): List<Contributor> {
+    val request = Request.Builder()
+        .url("https://raw.githubusercontent.com/robok-inc/Robok-Engine/host/.github/contributors/contributors_github.json")
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        try {
+            client.newCall(request).execute().use { response ->
+                if (response.isSuccessful) {
+                    val jsonString = response.body?.string()
+                    jsonString?.let {
+                        Json.decodeFromString<List<Contributor>>(it)
+                    } ?: emptyList()
+                } else {
+                    emptyList()
+                }
+            }
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 }
