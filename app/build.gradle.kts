@@ -28,9 +28,10 @@ android {
     }
     
     sourceSets {
-        val main by getting {
+        getByName("main") {
             jniLibs.srcDirs("src/main/jniLibs")
         }
+    }
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
