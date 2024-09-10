@@ -42,7 +42,7 @@ public class RobokApplication extends KoinApplication {
          Configuration configuration = robokContext.getResources().getConfiguration();
          return configuration.orientation;
     }
-
+            
     @Override
     public void onCreate() {
          super.onCreate();
@@ -59,9 +59,7 @@ public class RobokApplication extends KoinApplication {
          
          DynamicColors.applyToActivitiesIfAvailable(instance);
          
-         static {
-             System.loadLibrary("libaapt2");
-            }
+        
     }
 
     public String getStackTrace(Throwable cause) {
