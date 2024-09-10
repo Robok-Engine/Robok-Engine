@@ -7,6 +7,7 @@ import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.navigation.*
+import androidx.compose.ui.platform.*
 
 import org.koin.androidx.compose.koinViewModel
 
@@ -28,7 +29,11 @@ fun ConfigureRDKScreen(
       "RDK-2" /* fictitious */
     )
     
-    var textFieldLabel by remember { mutableStateOf(stringResource(id = Strings.settings_configure_rdk_select_rdk_label)) }
+    val context = LocalContext.current
+    
+    var textFieldLabel by remember {
+        mutableStateOf(context.getString(Strings.settings_configure_rdk_select_rdk_label))
+    }
     
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
