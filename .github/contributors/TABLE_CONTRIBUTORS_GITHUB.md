@@ -1,8 +1,8 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 250 | Developer |
-| ThDev-only | 138 | Developer |
+| trindadedev13 | 264 | Main Developer |
+| ThDev-only | 146 | Main Developer |
 | renovate[bot] | 90 | Bot |
 | gampiot-bot | 31 | Bot |
-| skinvent | 13 | Contributor |
+| skinvent | 13 | French and Arabic language, home screen redesign with cards  |
 | github-actions[bot] | 10 | Bot |
