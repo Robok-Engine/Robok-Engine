@@ -19,6 +19,7 @@ import org.koin.androidx.compose.koinViewModel
 
 import org.gampiot.robok.feature.settings.compose.R
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
+import org.gampiot.robok.feature.component.compose.preferences.base.LocalIsExpandedScreen
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
@@ -46,8 +47,10 @@ fun AboutScreen(
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
     PreferenceLayout(
-        label = stringResource(id = Strings.settings_about_title),
-        backArrowVisible = true,
+        label = stringResource(id = R.string.settings_about_title),
+        modifier = Modifier,
+        backArrowVisible = !LocalIsExpandedScreen.current,
+        horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Column(
             modifier = Modifier.padding(top = 8.dp),
