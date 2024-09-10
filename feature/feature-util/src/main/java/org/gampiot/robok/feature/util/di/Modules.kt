@@ -1,11 +1,11 @@
 package org.gampiot.robok.feature.util.di
 
-import androidx.lifecycle.viewModel
 import android.content.Context
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
 
 import org.koin.androidx.viewmodel.dsl.viewModelOf
+import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.core.module.dsl.singleOf
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
