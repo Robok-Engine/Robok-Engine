@@ -60,7 +60,7 @@ fun buildPrefs(
 ) {
    Preference(
        text = { Text(stringResource(id = Strings.settings_configure_rdk_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_descripion)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
            navController.navigate("settings/configure_rdk")
        }
