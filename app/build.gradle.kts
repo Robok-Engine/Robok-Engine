@@ -57,7 +57,7 @@ android {
         }
         getByName("debug") {
             applicationIdSuffix = ".debug"
-            versionNameSuffix = getShortGitHash()
+            versionNameSuffix = "@${getShortGitHash()}"
             resValue("string", "app_name", "Robok Debug")
             resValue("string", "app_version", app_version)
             resValue("string", "GIT_COMMIT_HASH", getGitHash())
