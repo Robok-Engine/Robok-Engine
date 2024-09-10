@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager
+package org.gampiot.robok.feature.settings.compose.viewmodels
 
 import android.content.Context
 
@@ -6,6 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 
 import kotlinx.coroutines.launch
+
+import org.gampiot.robok.feature.settings.compose.utils.ZipDownloader
 
 class ConfigureRDKViewModel(private val context: Context) : ViewModel() {
 

@@ -8,8 +8,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
+
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
+
+import org.gampiot.robok.feature.settings.compose.viewmodels.ConfigureRDKViewModel
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.res.Strings
