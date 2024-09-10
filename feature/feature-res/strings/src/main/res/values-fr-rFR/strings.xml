@@ -18,6 +18,7 @@
 	<string name="common_word_deny">Annuler</string>
 	<string name="common_word_normal">Normal</string>
 	<string name="common_word_retry">Réessayer</string>
+	<string name="common_word_save">Save</string>
 	<!--  end section  -->
 	
 	<!-- titles section -->
@@ -57,6 +58,11 @@
 	<string name="settings_about_description">Tout sur Robok Engine</string>
 	<string name="settings_libraries_title">Logicel Tiers</string>
 	<string name="settings_libraries_description">Les bibliothèques que nous avons utilisées</string>
+	<string name="settings_configure_rdk_title">Configure RDK</string>
+	<string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
+	<string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
+	<string name="settings_configure_rdk_version">Define RDK Version</string>
+	<string name="settings_build_title">Build</string>
 	<string name="settings_formatting_title">Format</string>
 	<string name="settings_appearance_title">Apparance</string>
 	<string name="settings_general_title">Géneral</string>

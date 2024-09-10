@@ -32,6 +32,7 @@ import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
 
 class SettingsActivity : ComponentActivity() {
 
@@ -88,6 +89,10 @@ class SettingsActivity : ComponentActivity() {
                       
                       composable("settings/libraries") {
                            LibrariesScreen(navController)
+                      }
+                      
+                      composable("settings/configure_rdk") {
+                           ConfigureRDKScreen(navController)
                       }
                       
                       composable("settings/about") {
