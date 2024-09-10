@@ -8,7 +8,7 @@
 
 ## Features
 - Material Design 3 UI : The Engine is fully developed following Google Material Design 3 guidelines.
-- Jetpack Compose : I, [trindadedev13](https:/github.com/trindadedev13), have the idea of using as much compose as possible, so we can say that Robok uses Jetpack Compose.
+- Jetpack Compose : I, [trindadedev13](trindadedev13), have the idea of using as much compose as possible, so we can say that Robok uses Jetpack Compose.
 - Open Source : The Engine is completely open source, which means you can see how it works, and even contribute.
 - Build APK : After making your game, you can generate an APK and send it to your friends, or even publish it on the playstore.
 - Robok SDK : Various tools that facilitate the development of your games.
