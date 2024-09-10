@@ -31,6 +31,10 @@ fun SettingsScreen(
              generalPrefs(navController)
         }
         
+        PreferenceGroup(heading = stringResource(id = Strings.settings_build_title)) {
+             buildPrefs(navController)
+        }
+        
         PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
              aboutPrefs(navController)
         }
@@ -46,6 +50,19 @@ fun generalPrefs(
        secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
            navController.navigate("settings/codeeditor")
+       }
+   )
+}
+
+@Composable
+fun buildPrefs(
+    navController: NavController
+) {
+   Preference(
+       text = { Text(stringResource(id = Strings.settings_configure_rdk_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_descripion)) },
+       onClick = {
+           navController.navigate("settings/configure_rdk")
        }
    )
 }
