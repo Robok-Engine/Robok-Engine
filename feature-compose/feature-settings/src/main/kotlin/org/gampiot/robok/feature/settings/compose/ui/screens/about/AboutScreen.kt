@@ -52,7 +52,7 @@ fun AboutScreen(
          Link(
              name = stringResource(id = Strings.item_github_title),
              description = stringResource(id = Strings.item_github_description),
-             image = R.drawable.ic_github_24,
+             imageResId = R.drawable.ic_github_24,
              url = stringResource(id = Strings.link_github)
          )
     )
@@ -147,7 +147,7 @@ fun LinkRow(
                 modifier = Modifier
                     .size(32.dp)
                     .clip(CircleShape)
-                    background(MaterialTheme.colorScheme.surfaceContainer),
+                    .background(MaterialTheme.colorScheme.surfaceContainer),
             )
         }
     )
