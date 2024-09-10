@@ -104,11 +104,9 @@ fun LibraryItemTitle(
 ) {
    title?.let {
        Text(
-           text = it,
-           maxLines = 1,
+           text = it
        )
    } ?: Text(
-       text = "No Title Available",
-       maxLines = 1,
+       text = "No Title Available"
    )
 }
