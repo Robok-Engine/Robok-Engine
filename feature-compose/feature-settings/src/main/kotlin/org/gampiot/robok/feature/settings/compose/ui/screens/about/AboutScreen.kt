@@ -47,7 +47,7 @@ fun AboutScreen(
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
     PreferenceLayout(
-        label = stringResource(id = R.string.settings_about_title),
+        label = stringResource(id = Strings.settings_about_title),
         modifier = Modifier,
         backArrowVisible = !LocalIsExpandedScreen.current,
         horizontalAlignment = Alignment.CenterHorizontally,
