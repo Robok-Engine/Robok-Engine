@@ -1,7 +1,10 @@
 package org.gampiot.robok.feature.settings.compose.utils
 
-import android.widget.Toast
+import android.app.Activity
 import android.content.Context
+import android.widget.Toast
+import android.os.Handler
+import android.os.Looper
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -63,9 +66,14 @@ class ZipDownloader(private val context: Context) {
     }
     
     fun basicToast (value: String) {
-         context.runOnUiThread {
-              Toast.makeText(context, value, 4000).show()
+         if (context is Activity) {
+              context.runOnUiThread {
+                   Toast.makeText(context, value, Toast.LENGTH_LONG).show()
+              }
+         } else {
+              Handler(Looper.getMainLooper()).post {
+                    Toast.makeText(context, value, Toast.LENGTH_LONG).show()
+              }
          }
     }
-    
 }
