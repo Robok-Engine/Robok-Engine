@@ -4,6 +4,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.foundation.background
+import androidx.compose.foundation.Image
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
@@ -11,9 +12,12 @@ import androidx.navigation.NavController
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.Alignment
 
 import org.koin.androidx.compose.koinViewModel
 
+import org.gampiot.robok.feature.settings.R
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
@@ -36,7 +40,8 @@ val contributors = listOf (
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AboutScreen(
-    navController: NavController
+    navController: NavController,
+    version: String
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
@@ -57,11 +62,11 @@ fun AboutScreen(
             )
             Spacer(modifier = Modifier.height(12.dp))
             Text(
-                text = stringResource(id = R.string.app_name),
+                text = "Robok",
                 style = MaterialTheme.typography.titleLarge,
             )
             Text(
-                text = BuildConfig.VERSION_DISPLAY_NAME,
+                text = version,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
             )

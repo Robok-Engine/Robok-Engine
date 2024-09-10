@@ -26,6 +26,7 @@ import androidx.navigation.compose.rememberNavController
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
+import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
@@ -90,7 +91,10 @@ class SettingsActivity : ComponentActivity() {
                       }
                       
                       composable("settings/about") {
-                           AboutScreen(navController)
+                           AboutScreen(
+                               navController = navController,
+                               version = BuildConfig.VERSION_NAME
+                           )
                       }
                  }
             }
