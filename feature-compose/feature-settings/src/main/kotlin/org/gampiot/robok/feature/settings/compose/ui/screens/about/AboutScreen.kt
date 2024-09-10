@@ -9,11 +9,13 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.draw.clip
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.platform.LocalContext
 
 import org.koin.androidx.compose.koinViewModel
 
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.feature.res.Strings
@@ -97,7 +99,7 @@ data class Contributor(
     val events_url: String = "events_url",
     val received_events_url: String = "received_events_url",
     val type: String = "User",
-    val site_admin: Boolean = 0,
+    val site_admin: Boolean = false,
     val contributions: Int = 0,
     val role: String = "Developer"
 )

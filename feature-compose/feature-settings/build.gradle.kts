@@ -61,6 +61,7 @@ dependencies {
     //kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    implementation("io.coil-kt:coil-compose:2.7.0")
     
     //compose
     implementation(platform("androidx.compose:compose-bom:2024.09.00"))
