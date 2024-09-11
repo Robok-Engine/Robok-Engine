@@ -1,8 +1,7 @@
 package org.gampiot.robok.feature.editor.languages.java.store;
 
 /*
-* JavaClasses
-* Class used to store robok classes
+* Class used to store Robok SDK classes.
 * Only those necessary for development with Robok.
 * @author ThDev-Only
 */
@@ -13,13 +12,13 @@ import java.net.URLClassLoader;
 import java.util.HashMap;
 import org.gampiot.robok.feature.util.application.RobokApplication;
 
-public class RdkFileMapper {
+public class RDKFileMapper {
     
     private HashMap<String, String> robokClass;
     private String rdkAtual = "RDK-1";
     File rdkDirectory;
     
-    public RdkFileMapper(){
+    public RDKFileMapper(){
         robokClass = new HashMap<>();
         rdkDirectory = new File(RobokApplication.robokContext.getFilesDir(), rdkAtual + "/rdk/");
         
