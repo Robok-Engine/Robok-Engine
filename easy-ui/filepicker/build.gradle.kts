@@ -48,8 +48,8 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "dev.trindadedev.easyui.components"
-            artifactId = "components"
+            groupId = "dev.trindadedev.easyui.filepicker"
+            artifactId = "filepicker"
             version = "0.0.1"
 
             from(components.findByName("release"))
