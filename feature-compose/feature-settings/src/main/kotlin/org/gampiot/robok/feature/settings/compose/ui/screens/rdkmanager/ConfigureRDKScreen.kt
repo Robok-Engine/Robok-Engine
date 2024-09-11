@@ -31,7 +31,6 @@ fun ConfigureRDKScreen(
     var version by remember { mutableStateOf("RDK-1") }
     
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
-    val outputDirName = "robok-sdk"
     
     val downloadState by viewModel.downloadState.collectAsState()
 
@@ -55,7 +54,7 @@ fun ConfigureRDKScreen(
                    .padding(horizontal = 18.dp, vertical = 8.dp)
                    .fillMaxWidth(),
                 onClick = {
-                    viewModel.startDownload(zipUrl, outputDirName)
+                    viewModel.startDownload(zipUrl, version)
                 }
             ) {
                 Text(text = stringResource(id = Strings.common_word_save))
