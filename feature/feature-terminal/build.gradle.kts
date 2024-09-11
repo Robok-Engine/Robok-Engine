@@ -59,5 +59,5 @@ dependencies {
     implementation(project(":feature:feature-component"))
     
     // Easy - UI
-    implementation(project(":easy-ui:components"))
+    implementation(project(":easy-components"))
 }

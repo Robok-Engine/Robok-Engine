@@ -138,8 +138,8 @@ dependencies {
     implementation(project(":feature-compose:feature-component"))
     implementation(project(":feature-compose:feature-settings"))
     
-    implementation(project(":easy-ui:components"))
-    implementation(project(":easy-ui:filepicker"))
+    implementation(project(":easy-components"))
+    implementation(project(":easy-filepicker"))
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation(platform("$editorGroupId:bom:0.23.4"))

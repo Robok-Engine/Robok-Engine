@@ -36,6 +36,5 @@ include(":feature:feature-editor")
 include(":feature-compose:feature-component")
 include(":feature-compose:feature-settings")
 
-include(":easy-ui:components")
-include(":easy-ui:components-compose")
-include(":easy-ui:filepicker")
+include(":easy-components")
+include(":easy-filepicker")

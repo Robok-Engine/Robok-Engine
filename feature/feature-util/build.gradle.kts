@@ -55,7 +55,7 @@ dependencies {
     implementation("io.insert-koin:koin-android:$koinVersion")
     
     // Easy - UI
-    implementation(project(":easy-ui:components"))
+    implementation(project(":easy-components"))
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature:feature-component"))

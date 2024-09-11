@@ -59,7 +59,7 @@ dependencies {
     implementation("org.antlr:antlr4-runtime:$antlrVersion")
     
     // Easy - UI
-    implementation(project(":easy-ui:components"))
+    implementation(project(":easy-components"))
     
     implementation(project(":feature:feature-res:strings"))
     
