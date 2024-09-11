@@ -47,7 +47,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "dev.trindadedev.easyui.filepicker"
+            groupId = "com.github.robok-inc"
             artifactId = "filepicker"
 
             from(components.findByName("release"))
