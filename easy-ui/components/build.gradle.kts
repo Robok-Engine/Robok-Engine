@@ -45,7 +45,6 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "dev.trindadedev.easyui.components"
             artifactId = "components"
-            version = "0.0.1"
 
             from(components.findByName("release"))
 
