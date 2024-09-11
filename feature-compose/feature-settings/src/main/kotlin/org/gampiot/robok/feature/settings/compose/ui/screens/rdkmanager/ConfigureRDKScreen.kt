@@ -51,15 +51,14 @@ fun ConfigureRDKScreen(
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
     
     val downloadState by viewModel.downloadState.collectAsState()
-    
+    val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
             DynamicSelectTextField(
-                modifier = Modifier
-                   .padding(horizontal = 18.dp, vertical = 8.dp),
+                modifier = modifir,
                 selectedValue = version,
                 options = rdkVersions,
                 label = stringResource(id = Strings.settings_configure_rdk_version),
@@ -68,8 +67,7 @@ fun ConfigureRDKScreen(
                 }
             )
             Button(
-                modifier = Modifier
-                   .padding(horizontal = 18.dp, vertical = 8.dp)
+                modifier = modifir
                    .fillMaxWidth(),
                 onClick = {
                     viewModel.startDownload(zipUrl, version)
@@ -77,12 +75,12 @@ fun ConfigureRDKScreen(
             ) {
                 Text(text = stringResource(id = Strings.common_word_save))
             }
-        }
-        when (downloadState) {
-            is DownloadState.NotStarted -> Text("Download não iniciado")
-            is DownloadState.Loading -> CircularProgressIndicator()
-            is DownloadState.Success -> Text((downloadState as DownloadState.Success).message)
-            is DownloadState.Error -> Text((downloadState as DownloadState.Error).error)
+            when (downloadState) {
+                 is DownloadState.NotStarted -> Text(modifier = modifir, text = "Download não iniciado")
+                 is DownloadState.Loading -> CircularProgressIndicator(modifier = modifir)
+                 is DownloadState.Success -> Text(modifier = modifir, text = (downloadState as DownloadState.Success).message)
+                 is DownloadState.Error -> Text(modifier = modifir, text = (downloadState as DownloadState.Error).error)
+            }
         }
     }
 }
