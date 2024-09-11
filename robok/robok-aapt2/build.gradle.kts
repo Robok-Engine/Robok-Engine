@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("maven-publish")
 }
 
 android {
@@ -59,18 +58,4 @@ dependencies {
     implementation("com.google.code.gson:gson:2.11.0")
     
     implementation(project(":feature:feature-util"))
-}
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.robok-inc"
-            artifactId = "robok-aapt2"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
 }
