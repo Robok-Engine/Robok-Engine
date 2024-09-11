@@ -1,4 +1,3 @@
-
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
@@ -50,7 +49,6 @@ publishing {
         create<MavenPublication>("mavenJava") {
             groupId = "dev.trindadedev.easyui.filepicker"
             artifactId = "filepicker"
-            version = "0.0.1"
 
             from(components.findByName("release"))
 
