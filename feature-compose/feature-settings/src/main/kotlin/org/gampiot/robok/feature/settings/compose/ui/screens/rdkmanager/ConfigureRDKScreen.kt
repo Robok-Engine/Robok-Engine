@@ -39,6 +39,7 @@ fun ConfigureRDKScreen(
     
     var rdkVersions = listOf("RDK-1")
     val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
+    val scope = rememberCoroutineScope()
     LaunchedEffect(Unit) {
         scope.launch {
             rdkVersions = fetchVersions()
@@ -50,7 +51,7 @@ fun ConfigureRDKScreen(
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
     
     val downloadState by viewModel.downloadState.collectAsState()
-
+    
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
