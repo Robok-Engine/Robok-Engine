@@ -51,7 +51,7 @@ fun ConfigureRDKScreen(
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
     
     val downloadState by viewModel.downloadState.collectAsState()
-    val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
+    val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
     PreferenceLayout(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
