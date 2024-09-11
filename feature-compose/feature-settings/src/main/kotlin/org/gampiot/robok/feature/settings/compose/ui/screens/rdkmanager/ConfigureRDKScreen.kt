@@ -37,7 +37,7 @@ fun ConfigureRDKScreen(
     val context = LocalContext.current
     val viewModel: ConfigureRDKViewModel = getViewModel { parametersOf(context) }
     
-    val rdkVersions = listOf("RDK-1")
+    var rdkVersions = listOf("RDK-1")
     val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
     LaunchedEffect(Unit) {
         scope.launch {
