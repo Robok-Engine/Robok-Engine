@@ -15,7 +15,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Robok-IDE"
+rootProject.name = "Robok-Engine"
 
 include(":app")
 
