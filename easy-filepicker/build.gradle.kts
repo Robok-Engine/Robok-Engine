@@ -48,7 +48,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "com.github.robok-inc"
-            artifactId = "filepicker"
+            artifactId = "easy-filepicker"
 
             from(components.findByName("release"))
 

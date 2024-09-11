@@ -44,7 +44,7 @@ publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "com.github.robok-inc"
-            artifactId = "components"
+            artifactId = "easy-components"
 
             from(components.findByName("release"))
 
