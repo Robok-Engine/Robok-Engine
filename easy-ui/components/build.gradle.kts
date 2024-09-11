@@ -43,7 +43,7 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "dev.trindadedev.easyui.components"
+            groupId = "com.github.robok-inc"
             artifactId = "components"
 
             from(components.findByName("release"))
