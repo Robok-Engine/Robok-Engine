@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("maven-publish")
 }
 
 android {
@@ -42,18 +41,4 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach 
 dependencies {
     implementation(project(":robok:robok-util"))
     implementation(project(":robok:robok-lang"))
-}
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.robok-inc"
-            artifactId = "robok-compiler"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
 }
