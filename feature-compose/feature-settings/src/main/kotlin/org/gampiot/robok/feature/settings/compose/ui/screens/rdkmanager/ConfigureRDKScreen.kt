@@ -12,6 +12,15 @@ import androidx.compose.ui.platform.LocalContext
 import org.koin.androidx.compose.getViewModel
 import org.koin.core.parameter.parametersOf
 
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import kotlinx.serialization.Serializable
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.json.Json
+
+import okhttp3.OkHttpClient
+import okhttp3.Request
+
 import org.gampiot.robok.feature.settings.compose.viewmodels.ConfigureRDKViewModel
 import org.gampiot.robok.feature.settings.compose.viewmodels.DownloadState
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
@@ -28,6 +37,13 @@ fun ConfigureRDKScreen(
     val viewModel: ConfigureRDKViewModel = getViewModel { parametersOf(context) }
     
     val rdkVersions = listOf("RDK-1")
+    val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
+    LaunchedEffect(Unit) {
+        scope.launch {
+            rdkVersions = fetchVersions()
+            rdkVersionsState.value = rdkVersions
+        }
+    }
     var version by remember { mutableStateOf("RDK-1") }
     
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
@@ -65,6 +81,35 @@ fun ConfigureRDKScreen(
             is DownloadState.Loading -> CircularProgressIndicator()
             is DownloadState.Success -> Text((downloadState as DownloadState.Success).message)
             is DownloadState.Error -> Text((downloadState as DownloadState.Error).error)
+        }
+    }
+}
+
+@Serializable
+data class VersionInfo(val version: String)
+
+val client = OkHttpClient()
+
+suspend fun fetchVersions(): List<String> {
+    val request = Request.Builder()
+        .url("https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/versions.json")
+        .build()
+
+    return withContext(Dispatchers.IO) {
+        try {
+            client.newCall(request).execute().use { response ->
+                if (response.isSuccessful) {
+                    val jsonString = response.body?.string()
+                    jsonString?.let {
+                        val versions = Json.decodeFromString<List<VersionInfo>>(it)
+                        versions.map { versionInfo -> versionInfo.version }
+                    } ?: emptyList()
+                } else {
+                    emptyList()
+                }
+            }
+        } catch (e: Exception) {
+            emptyList()
         }
     }
 }
