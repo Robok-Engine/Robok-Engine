@@ -1,7 +1,6 @@
 plugins {
     id("com.android.library")
     id("kotlin-android")
-    id("maven-publish")
 }
 
 android {
@@ -48,18 +47,4 @@ dependencies {
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
     
-}
-
-publishing {
-    publications {
-        register<MavenPublication>("release") {
-            groupId = "com.github.robok-inc"
-            artifactId = "robok-diagnostic"
-            version = "1.0.0"
-
-            afterEvaluate {
-                from(components["release"])
-            }
-        }
-    }
 }
