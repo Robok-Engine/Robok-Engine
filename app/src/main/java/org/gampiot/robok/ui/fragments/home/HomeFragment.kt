@@ -15,6 +15,8 @@ import androidx.annotation.IdRes
 
 import com.google.android.material.transition.MaterialSharedAxis
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+
 
 import org.gampiot.robok.R
 import org.gampiot.robok.BuildConfig
@@ -31,7 +33,7 @@ import org.gampiot.robok.ui.activities.SettingsActivity
 import dev.trindadedev.easyui.filepicker.model.DialogConfigs
 import dev.trindadedev.easyui.filepicker.model.DialogProperties
 
-class HomeFragment () : RobokFragment() {
+class HomeFragment : RobokFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
@@ -90,9 +92,15 @@ class HomeFragment () : RobokFragment() {
         val documentId = DocumentsContract.getTreeDocumentId(uri)
         val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
         val path = getPathFromUri(folderUri)
-        Log.d("Home", "camindo do dir: $path")
-        openFragment(EditorFragment(path ?: ""))
+        
+        if (path != null) {
+            Snackbar.make(binding.root, "Caminho do diretório: $path", Snackbar.LENGTH_LONG).show()
+            openFragment(EditorFragment(path))
+        } else {
+            Snackbar.make(binding.root, "Erro: Caminho não encontrado para a URI", Snackbar.LENGTH_LONG).show()
+        }
     }
+    
     private fun getPathFromUri(uri: Uri): String? {
         val documentId = DocumentsContract.getDocumentId(uri)
         val split = documentId.split(":")
