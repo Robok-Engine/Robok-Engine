@@ -27,8 +27,8 @@ import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
 
-import org.robok.compile.logic.LogicCompiler
-import org.robok.compile.logic.LogicCompilerListener
+import org.robok.compiler.logic.LogicCompiler
+import org.robok.compiler.logic.LogicCompilerListener
 import org.robok.diagnostic.logic.DiagnosticListener
 
 class EditorFragment(
