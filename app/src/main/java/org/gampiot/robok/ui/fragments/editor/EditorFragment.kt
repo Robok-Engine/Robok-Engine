@@ -27,11 +27,13 @@ import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
 
-import org.robok.compiler.logic.LogicCompiler
-import org.robok.compiler.logic.LogicCompilerListener
+import org.robok.compile.logic.LogicCompiler
+import org.robok.compile.logic.LogicCompilerListener
 import org.robok.diagnostic.logic.DiagnosticListener
 
-class EditorFragment() : RobokFragment() {
+class EditorFragment(
+   private val projectPath: String
+) : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
@@ -47,6 +49,9 @@ class EditorFragment() : RobokFragment() {
     var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
 
     val diagnosticStandTime : Long = 800
+    
+    var oldCompiler: LogicCompiler = null
+    var terminal: RobokTerminal = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,10 +63,21 @@ class EditorFragment() : RobokFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
-        val terminal = RobokTerminal(requireContext())
-        val compilerListener = object : LogicCompilerListener {
+        terminal = RobokTerminal(requireContext())
+        configureScreen()
+    }
+    
+    fun configureScreen() {
+        configureTabLayout()
+        configureToolbar()
+        configureDrawer()
+        configureEditor()
+        configureFileTree()
+        configureCompiler()
+    }
+    
+    fun configureCompiler() {
+        val oldCompilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
                 terminal.addLog(log)
             }
@@ -78,22 +94,20 @@ class EditorFragment() : RobokFragment() {
                     .show()
             }
         }
-        val compiler = LogicCompiler(requireContext(), compilerListener)
-
+        oldCompiler = LogicCompiler(requireContext(), oldCompilerListener)
+        configureButtons(oldCompiler)
+    }
+    
+    fun configureButtons (oldCompiler: LogicCompiler) {
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
             terminal.show()
-            compiler.compile(code)
+            oldCompiler.compile(code)
         }
 
         binding.seeLogs.setOnClickListener {
             terminal.show()
         }
-
-        configureTabLayout()
-        configureToolbar()
-        configureDrawer()
-        configureEditor()
     }
 
     fun configureTabLayout() {
@@ -217,6 +231,11 @@ class EditorFragment() : RobokFragment() {
         handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
     }
     
+    fun configureFileTree() {
+        val fileObject = file(projectPath)
+        binding.fileTree.loadFiles(fileObject)
+    }
+    
     fun updateUndoRedo() {
         binding.redo?.let {
             it.isEnabled = binding.codeEditor.isCanRedo()
@@ -229,18 +248,5 @@ class EditorFragment() : RobokFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        const val PROJECT_PATH = "arg_path"
-
-        @JvmStatic
-        fun newInstance(path: String): EditorFragment {
-            return EditorFragment().apply {
-                arguments = Bundle().apply {
-                    putString(PROJECT_PATH, path)
-                }
-            }
-        }
     }
 }
