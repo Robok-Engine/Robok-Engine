@@ -22,6 +22,7 @@ import org.gampiot.robok.feature.editor.EditorListener
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
@@ -50,8 +51,8 @@ class EditorFragment(
 
     val diagnosticStandTime : Long = 800
     
-    var oldCompiler: LogicCompiler = null
-    var terminal: RobokTerminal = null
+    var oldCompiler: LogicCompiler
+    var terminal: RobokTerminal
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
