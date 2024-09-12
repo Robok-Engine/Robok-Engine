@@ -26,6 +26,8 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
+import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
+import org.gampiot.robok.feature.treeview.v2.model.Node
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
@@ -240,6 +242,13 @@ class EditorFragment(
     fun configureFileTree() {
         val fileObject = file(File(projectPath))
         binding.fileTree.loadFiles(fileObject)
+        binding.fileTree.setOnFileClickListener(object : FileClickListener {
+            override fun onClick(node: Node<FileObject>) {
+                if (node.value.isDirectory()) {
+                    return
+                }
+            }
+        })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(requireContext()))
     }
     
