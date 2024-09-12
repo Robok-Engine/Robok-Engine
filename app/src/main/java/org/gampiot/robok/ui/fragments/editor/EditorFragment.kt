@@ -19,7 +19,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal!!.RobokTerminal
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.treeview.v2.provider.file
