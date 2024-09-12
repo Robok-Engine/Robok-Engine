@@ -18,20 +18,22 @@ import com.google.android.material.tabs.TabLayout
 
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
-import org.gampiot.robok.R
+import org.gampiot.robok.app.Ids
+import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.databinding.FragmentEditorBinding
-import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.ui.fragments.build.output.OutputFragment
+import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
+import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
+import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
 import org.gampiot.robok.feature.treeview.v2.model.Node
-import org.gampiot.robok.ui.fragments.build.output.OutputFragment
-import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
-import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.feature.treeview.v2.interfaces.FileClickListener
+import org.gampiot.robok.feature.editor.EditorListener
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
+import org.gampiot.robok.feature.res.Strings
 
 import org.robok.compiler.logic.LogicCompiler
 import org.robok.compiler.logic.LogicCompilerListener
@@ -48,7 +50,7 @@ class EditorFragment(
     val handler = Handler(Looper.getMainLooper())
     val diagnosticTimeoutRunnable = object : Runnable {
         override fun run() {
-            binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
+            binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
             binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
             binding.diagnosticStatusImage.visibility = View.VISIBLE
         }
@@ -124,10 +126,10 @@ class EditorFragment(
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment())
+                            openFragment(Ids.drawer_editor_right_fragment_container, LogsFragment())
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
+                            openFragment(Ids.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
                         }
                     }
                 }
@@ -165,11 +167,11 @@ class EditorFragment(
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 val drawerWidth = drawerView.width
                 when (drawerView.id) {
-                    R.id.navigation_view_left -> {
+                    Ids.navigation_view_left -> {
                         leftDrawerOffset = drawerWidth * slideOffset
                         binding.content.translationX = leftDrawerOffset
                     }
-                    R.id.navigation_view_right -> {
+                    Ids.navigation_view_right -> {
                         rightDrawerOffset = drawerWidth * slideOffset
                         binding.content.translationX = -rightDrawerOffset
                     }
@@ -193,9 +195,9 @@ class EditorFragment(
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
                 
                 if (isError) {
-                    binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_error_24)
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
                 } else {
-                    binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
                 }
                 binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
                 binding.diagnosticStatusImage.visibility = View.VISIBLE
