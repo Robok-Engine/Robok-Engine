@@ -6,7 +6,9 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.graphics.drawable.Drawable
 
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
@@ -237,6 +239,22 @@ class EditorFragment(
     fun configureFileTree() {
         val fileObject = file(File(projectPath))
         binding.fileTree.loadFiles(fileObject)
+        binding.fileTree.setIconProvider(object : FileIconProvider {
+              override fun getIcon(node: Node<FileObject>): Drawable? {
+                    val fileObject = node.value
+                    return if (fileObject.isDirectory()) {
+                              ContextCompat.getDrawable(context, R.drawable.ic_folder_24)
+                          } else {
+                              ContextCompat.getDrawable(context, R.drawable.ic_file_24)
+                          }
+              }
+              override fun getChevronRight(): Drawable? {
+                    return ContextCompat.getDrawable(context, R.drawable.ic_chevron_24)
+              }
+              override fun getExpandMore(): Drawable? {
+                   return ContextCompat.getDrawable(context, R.drawable.ic_expand_24)  
+              }
+        })
     }
     
     fun updateUndoRedo() {
