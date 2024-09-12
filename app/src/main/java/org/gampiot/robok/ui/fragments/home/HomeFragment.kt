@@ -19,9 +19,9 @@ import org.gampiot.robok.feature.util.getDefaultPathFile
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
-import org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
+import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.activities.SettingsActivity
 
 import dev.trindadedev.easyui.filepicker.model.DialogConfigs
@@ -73,8 +73,8 @@ class HomeFragment () : RobokFragment() {
                   if (files != null && files.isNotEmpty()) {
                         val fileNames = files.joinToString("\n") { file ->
                              file.substringAfterLast('/')
-                             onFolderSelect(file)
                         }
+                        onFolderSelect(fileNames)
                   }
              }
         }
