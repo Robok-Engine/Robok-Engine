@@ -62,7 +62,7 @@ class HomeFragment () : RobokFragment() {
         }
         
         binding.openProject.setOnClickListener {
-            openFolderPicker
+            openFolderPicker()
         }
         binding.openSettings.setOnClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
