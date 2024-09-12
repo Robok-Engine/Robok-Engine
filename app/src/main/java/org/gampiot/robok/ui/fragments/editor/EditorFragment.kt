@@ -19,7 +19,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal.RobokTerminal
+import org.gampiot.robok.feature.component.terminal!!.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.treeview.v2.provider.file
@@ -51,8 +51,8 @@ class EditorFragment(
 
     val diagnosticStandTime : Long = 800
     
-    var oldCompiler: LogicCompiler
-    var terminal: RobokTerminal
+    var oldCompiler: LogicCompiler? = null
+    var terminal: RobokTerminal? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -80,7 +80,7 @@ class EditorFragment(
     fun configureCompiler() {
         val oldCompilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
-                terminal.addLog(log)
+                terminal!!.addLog(log)
             }
 
             override fun onCompiled(output: String) {
@@ -90,7 +90,7 @@ class EditorFragment(
                 Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(Strings.go_to_outputs) {
                         openFragment(outputFragment)
-                        terminal.dismiss()
+                        terminal!!.dismiss()
                     }
                     .show()
             }
@@ -102,12 +102,12 @@ class EditorFragment(
     fun configureButtons (oldCompiler: LogicCompiler) {
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
-            terminal.show()
-            oldCompiler.compile(code)
+            terminal!!.show()
+            oldCompiler!!.compile(code)
         }
 
         binding.seeLogs.setOnClickListener {
-            terminal.show()
+            terminal!!.show()
         }
     }
 
