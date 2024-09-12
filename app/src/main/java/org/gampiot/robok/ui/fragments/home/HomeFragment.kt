@@ -5,7 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import android.provider.DocumentsContract
 
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
 import androidx.annotation.IdRes 
 
@@ -31,7 +35,16 @@ class HomeFragment () : RobokFragment() {
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
+    
+    private val folderPickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == RESULT_OK) {
+            val uri: Uri? = result.data?.data
+            uri?.let {
+                processFolder(it)
+            }
+        }
+    }
+    
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -48,9 +61,8 @@ class HomeFragment () : RobokFragment() {
         }
         
         binding.openProject.setOnClickListener {
-            selectFolder()
+            openFolderPicker
         }
-        
         binding.openSettings.setOnClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
@@ -58,34 +70,37 @@ class HomeFragment () : RobokFragment() {
         binding.openTerminal.setOnClickListener {
             startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
+        
         binding.openEditor.setOnClickListener {
             openFragment(EditorFragment("/sdcard/"))
         }
     }
     
-    private fun selectFolder() {
-        val properties = DialogProperties().apply {
-             root = getDefaultPathFile()
-             selection_mode = DialogConfigs.SINGLE_MODE
-             selection_type = DialogConfigs.DIR_SELECT
-        }
-        
-        val filePickerDialog = FilePicker(requireContext(), properties).apply {
-             setTitle(getString(Strings.title_select_folder))
-             setDialogSelectionListener { files ->
-                  if (files != null && files.isNotEmpty()) {
-                        val fileNames = files.joinToString("\n") { file ->
-                             file.substringAfterLast('/')
-                        }
-                        onFolderSelect(fileNames)
-                  }
-             }
-        }
-        filePickerDialog.show()
+    private fun openFolderPicker() {
+        val intent = Intent(Intent.ACTION_OPEN_DOCUMENT_TREE)
+        folderPickerLauncher.launch(intent)
     }
     
-    private fun onFolderSelect(path: String) {
-        openFragment(EditorFragment(path))
+    private fun processFolder(uri: Uri) {
+        requireActivity().contentResolver.takePersistableUriPermission(
+            uri,
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+        )
+        val documentId = DocumentsContract.getTreeDocumentId(uri)
+        val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
+        val path = getPathFromUri(folderUri)
+        Log.d("Home", "camindo do dir: $path")
+        openFragment(EditorFragment(path ?: ""))
+    }
+    private fun getPathFromUri(uri: Uri): String? {
+        val documentId = DocumentsContract.getDocumentId(uri)
+        val split = documentId.split(":")
+        val type = split[0]
+        val relativePath = split[1]
+        if ("primary".equals(type, true)) {
+           return "/storage/emulated/0/$relativePath"
+        }
+        return null
     }
 
     override fun onDestroyView() {
