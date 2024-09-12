@@ -146,8 +146,13 @@
             <FrameLayout
                 android:id="@+id/drawer_editor_left_fragment_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
+                android:layout_height="match_parent" >
+                
+                <org.gampiot.robok.feature.treeview.v2.widget.FileTree
+                     android:id="@+id/file_tree"
+                     android:layout_width="match_parent"
+                     android:layout_height="match_parent" />
+            </FrameLayout>
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>

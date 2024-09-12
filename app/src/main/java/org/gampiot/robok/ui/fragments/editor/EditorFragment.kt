@@ -6,7 +6,9 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.graphics.drawable.Drawable
 
+import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
@@ -16,29 +18,39 @@ import com.google.android.material.tabs.TabLayout
 
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
-import org.gampiot.robok.R
+import org.gampiot.robok.app.Ids
+import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.databinding.FragmentEditorBinding
-import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.feature.treeview.v2.provider.file
+import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
+import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
+import org.gampiot.robok.feature.treeview.v2.model.Node
+import org.gampiot.robok.feature.treeview.v2.interfaces.FileClickListener
+import org.gampiot.robok.feature.editor.EditorListener
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
+import org.gampiot.robok.feature.res.Strings
 
 import org.robok.compiler.logic.LogicCompiler
 import org.robok.compiler.logic.LogicCompilerListener
 import org.robok.diagnostic.logic.DiagnosticListener
 
-class EditorFragment() : RobokFragment() {
+import java.io.File
+
+class EditorFragment(
+   private val projectPath: String
+) : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
     val handler = Handler(Looper.getMainLooper())
     val diagnosticTimeoutRunnable = object : Runnable {
         override fun run() {
-            binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
+            binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
             binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
             binding.diagnosticStatusImage.visibility = View.VISIBLE
         }
@@ -47,6 +59,9 @@ class EditorFragment() : RobokFragment() {
     var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
 
     val diagnosticStandTime : Long = 800
+    
+    var oldCompiler: LogicCompiler? = null
+    var terminal: RobokTerminal? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,12 +73,23 @@ class EditorFragment() : RobokFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        
-        val path = arguments?.getString(PROJECT_PATH) ?: "/sdcard/Robok/Projects/Default/"
-        val terminal = RobokTerminal(requireContext())
-        val compilerListener = object : LogicCompilerListener {
+        terminal = RobokTerminal(requireContext())
+        configureScreen()
+    }
+    
+    fun configureScreen() {
+        configureTabLayout()
+        configureToolbar()
+        configureDrawer()
+        configureEditor()
+        configureFileTree()
+        configureCompiler()
+    }
+    
+    fun configureCompiler() {
+        val oldCompilerListener = object : LogicCompilerListener {
             override fun onCompiling(log: String) {
-                terminal.addLog(log)
+                terminal!!.addLog(log)
             }
 
             override fun onCompiled(output: String) {
@@ -73,27 +99,25 @@ class EditorFragment() : RobokFragment() {
                 Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
                     .setAction(Strings.go_to_outputs) {
                         openFragment(outputFragment)
-                        terminal.dismiss()
+                        terminal!!.dismiss()
                     }
                     .show()
             }
         }
-        val compiler = LogicCompiler(requireContext(), compilerListener)
-
+        oldCompiler = LogicCompiler(requireContext(), oldCompilerListener)
+        configureButtons(oldCompiler)
+    }
+    
+    fun configureButtons (oldCompiler: LogicCompiler?) {
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
-            terminal.show()
-            compiler.compile(code)
+            terminal!!.show()
+            oldCompiler!!.compile(code)
         }
 
         binding.seeLogs.setOnClickListener {
-            terminal.show()
+            terminal!!.show()
         }
-
-        configureTabLayout()
-        configureToolbar()
-        configureDrawer()
-        configureEditor()
     }
 
     fun configureTabLayout() {
@@ -102,10 +126,10 @@ class EditorFragment() : RobokFragment() {
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, LogsFragment())
+                            openFragment(Ids.drawer_editor_right_fragment_container, LogsFragment())
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(R.id.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
+                            openFragment(Ids.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
                         }
                     }
                 }
@@ -143,11 +167,11 @@ class EditorFragment() : RobokFragment() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {
                 val drawerWidth = drawerView.width
                 when (drawerView.id) {
-                    R.id.navigation_view_left -> {
+                    Ids.navigation_view_left -> {
                         leftDrawerOffset = drawerWidth * slideOffset
                         binding.content.translationX = leftDrawerOffset
                     }
-                    R.id.navigation_view_right -> {
+                    Ids.navigation_view_right -> {
                         rightDrawerOffset = drawerWidth * slideOffset
                         binding.content.translationX = -rightDrawerOffset
                     }
@@ -171,9 +195,9 @@ class EditorFragment() : RobokFragment() {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
                 
                 if (isError) {
-                    binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_error_24)
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
                 } else {
-                    binding.diagnosticStatusImage.setBackgroundResource(R.drawable.ic_success_24)
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
                 }
                 binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
                 binding.diagnosticStatusImage.visibility = View.VISIBLE
@@ -217,6 +241,19 @@ class EditorFragment() : RobokFragment() {
         handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
     }
     
+    fun configureFileTree() {
+        val fileObject = file(File(projectPath))
+        binding.fileTree.loadFiles(fileObject)
+        binding.fileTree.setOnFileClickListener(object : FileClickListener {
+            override fun onClick(node: Node<FileObject>) {
+                if (node.value.isDirectory()) {
+                    return
+                }
+            }
+        })
+        binding.fileTree.setIconProvider(DefaultFileIconProvider(requireContext()))
+    }
+    
     fun updateUndoRedo() {
         binding.redo?.let {
             it.isEnabled = binding.codeEditor.isCanRedo()
@@ -229,18 +266,5 @@ class EditorFragment() : RobokFragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        const val PROJECT_PATH = "arg_path"
-
-        @JvmStatic
-        fun newInstance(path: String): EditorFragment {
-            return EditorFragment().apply {
-                arguments = Bundle().apply {
-                    putString(PROJECT_PATH, path)
-                }
-            }
-        }
     }
 }

@@ -19,7 +19,6 @@ import org.gampiot.robok.feature.util.getDefaultPathFile
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
-import org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
@@ -59,10 +58,6 @@ class HomeFragment () : RobokFragment() {
         binding.openTerminal.setOnClickListener {
             startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
-        
-        binding.openEditor.setOnClickListener {
-            openFragment(EditorFragment())
-        }
      }
     
     private fun selectFolder() {
@@ -78,19 +73,16 @@ class HomeFragment () : RobokFragment() {
                   if (files != null && files.isNotEmpty()) {
                         val fileNames = files.joinToString("\n") { file ->
                              file.substringAfterLast('/')
-                             
                         }
+                        onFolderSelect(fileNames)
                   }
              }
         }
         filePickerDialog.show()
     }
     
-    private fun onFolderSelect() {
-        /* example to open the editor:
-        * val fragment = EditorFragment.newInstance(path)
-        * openFragment(fragment)
-        */
+    private fun onFolderSelect(path: String) {
+        openFragment(EditorFragment(path))
     }
 
     override fun onDestroyView() {
