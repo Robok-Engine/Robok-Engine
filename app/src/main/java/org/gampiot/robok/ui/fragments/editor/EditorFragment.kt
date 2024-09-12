@@ -32,6 +32,8 @@ import org.robok.compiler.logic.LogicCompiler
 import org.robok.compiler.logic.LogicCompilerListener
 import org.robok.diagnostic.logic.DiagnosticListener
 
+import java.io.File
+
 class EditorFragment(
    private val projectPath: String
 ) : RobokFragment() {
@@ -99,7 +101,7 @@ class EditorFragment(
         configureButtons(oldCompiler)
     }
     
-    fun configureButtons (oldCompiler: LogicCompiler) {
+    fun configureButtons (oldCompiler: LogicCompiler?) {
         binding.runButton.setOnClickListener {
             val code = binding.codeEditor.text.toString()
             terminal!!.show()
@@ -233,7 +235,7 @@ class EditorFragment(
     }
     
     fun configureFileTree() {
-        val fileObject = file(projectPath)
+        val fileObject = file(File(projectPath))
         binding.fileTree.loadFiles(fileObject)
     }
     
