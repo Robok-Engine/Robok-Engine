@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 300 | Main Developer |
+| trindadedev13 | 314 | Main Developer |
 | ThDev-only | 151 | Main Developer |
 | renovate[bot] | 91 | Bot |
 | gampiot-bot | 31 | Bot |
