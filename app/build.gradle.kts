@@ -147,7 +147,7 @@ dependencies {
     
     implementation("com.mikepenz:aboutlibraries:11.2.3")
     implementation("com.github.bumptech.glide:glide:$glideVersion")
-    
+
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
     
     implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
