@@ -58,7 +58,10 @@ class HomeFragment () : RobokFragment() {
         binding.openTerminal.setOnClickListener {
             startActivity(Intent(requireContext(), TerminalActivity::class.java))
         }
-     }
+        binding.openEditor.setOnClickListener {
+            openFragment(EditorFragment("/sdcard/"))
+        }
+    }
     
     private fun selectFolder() {
         val properties = DialogProperties().apply {
