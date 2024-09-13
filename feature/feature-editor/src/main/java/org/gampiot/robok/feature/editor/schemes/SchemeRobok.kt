@@ -29,6 +29,7 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
         setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors
         setColor(EditorColorScheme.FUNCTION_NAME, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set function name colors
         setColor(EditorColorScheme.IDENTIFIER_NAME, ContextCompat.getColor(context, org.gampiot.robok.feature.editor.R.color.scheme_robok_identifier_name));
+        setColor(EditorColorScheme.TEXT_NORMAL, ContextCompat.getColor(context, org.gampiot.robok.feature.editor.R.color.scheme_robok_text_normal));
     }
 
     private fun getAttrColor(@AttrRes resId: Int): Int {

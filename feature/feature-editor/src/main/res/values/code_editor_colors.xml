@@ -38,4 +38,5 @@
     <color name="scheme_robok_line_number">#8B4513</color>
     <color name="scheme_robok_line_number_current">#FF4500</color>
     <color name="scheme_robok_line_divider">#DCDCDC</color>
+    <color name="scheme_robok_text_normal">#B0C4DE</color>
 </resources>

@@ -37,4 +37,5 @@
     <color name="scheme_robok_line_number">#A0522D</color>
     <color name="scheme_robok_line_number_current">#FF6347</color>
     <color name="scheme_robok_line_divider">#696969</color>
+    <color name="scheme_robok_text_normal">#B0C4DE</color>
 </resources>

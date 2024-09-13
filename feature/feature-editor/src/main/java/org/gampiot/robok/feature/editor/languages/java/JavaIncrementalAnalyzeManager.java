@@ -382,7 +382,7 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
                 case IMPORT:
                 case CLASS_NAME:
                 classNamePrevious = true;
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.LITERAL));
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.IDENTIFIER_NAME));
                 break;
                 case INSTANCEOF:
                 case INTERFACE:
@@ -404,7 +404,7 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
                     span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.COMMENT, 0, false, true, false, true));
                     break;
                 case IDENTIFIER: {
-                    int type = EditorColorScheme.IDENTIFIER_NAME;
+                    int type = EditorColorScheme.TEXT_NORMAL;
                     if (classNamePrevious) {
                         type = EditorColorScheme.IDENTIFIER_VAR;
                         classNamePrevious = false;
