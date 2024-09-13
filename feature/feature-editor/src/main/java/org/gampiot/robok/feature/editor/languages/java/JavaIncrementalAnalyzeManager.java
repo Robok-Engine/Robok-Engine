@@ -343,22 +343,38 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
                 break;
                 case RETURN:
                 case STATIC:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case SUPER:
                 case SWITCH:
                 case ELSE:
                 case VOLATILE:
                 case SYNCHRONIZED:
                 case STRICTFP:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case GOTO:
                 case CONTINUE:
                 case BREAK:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case TRANSIENT:
                 case TRY:
                 case CATCH:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case FINALLY:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case WHILE:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case CASE:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case DEFAULT:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case CONST:
                 case ENUM:
                 case EXTENDS:
