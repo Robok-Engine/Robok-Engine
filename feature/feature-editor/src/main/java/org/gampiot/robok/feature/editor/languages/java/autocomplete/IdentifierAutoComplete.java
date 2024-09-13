@@ -59,6 +59,7 @@ import org.gampiot.robok.feature.editor.languages.java.models.MethodOrField;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.AndroidClasses;
 import org.gampiot.robok.feature.editor.languages.java.store.RDKClassesHelper;
+import org.gampiot.robok.feature.editor.languages.java.store.RDKFileMapper;
 
 import java.lang.Class;
 import java.lang.ClassNotFoundException;
@@ -100,11 +101,18 @@ public class IdentifierAutoComplete {
     //ItemList
     List<CompletionItem> completionItemList = null;
     
-    public IdentifierAutoComplete() { }
+    //RDK File Mapper
+    private RDKFileMapper rdkClasses;
+    
+    public IdentifierAutoComplete() {
+        rdkClasses = new RDKFileMapper();
+        rdkClasses.load();
+     }
 
     public IdentifierAutoComplete(String[] keywords) {
         this();
         setKeywords(keywords, true);
+        
     }
 
     private static String asString(CharSequence str) {

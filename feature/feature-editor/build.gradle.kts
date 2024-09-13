@@ -72,6 +72,7 @@ dependencies {
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature-compose:feature-settings"))
+    implementation(project(":feature:feature-util"))
     
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
