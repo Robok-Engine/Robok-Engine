@@ -339,6 +339,8 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
                 case PRIVATE:
                 case PROTECTED:
                 case PACKAGE:
+                    span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
+                break;
                 case RETURN:
                 case STATIC:
                 case SUPER:
