@@ -28,7 +28,7 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
         setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
         setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors
         setColor(EditorColorScheme.FUNCTION_NAME, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set function name colors
-        setColor(EditorColorScheme.IDENTIFIER_NAME, 0xFFFFFFFF.toInt());
+        setColor(EditorColorScheme.IDENTIFIER_NAME, ContextCompat.getColor(org.gampiot.robok.feature.editor.R.color.scheme_robok_identifier_name));
     }
 
     private fun getAttrColor(@AttrRes resId: Int): Int {
