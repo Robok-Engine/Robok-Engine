@@ -127,4 +127,5 @@ public enum Tokens {
      TRUE,
      FALSE,
      NULL,
+     CLASS_NAME,
 }

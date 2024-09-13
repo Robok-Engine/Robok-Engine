@@ -254,8 +254,24 @@ public class JavaTextTokenizer {
             length++;
         }
     }
-
+    
     protected Tokens scanIdentifier(char ch) {
+    TrieTree.Node<Tokens> n = keywords.root.map.get(ch);
+    boolean isClassName = Character.isUpperCase(ch); // Verifica se o primeiro caractere é maiúsculo
+    while (offset + length < bufferLen && isIdentifierPart(ch = charAt(offset + length))) {
+        length++;
+        n = n == null ? null : n.map.get(ch);
+    }
+
+    if (n != null && n.token != null) {
+        return n.token; // Retorna o token se for uma palavra-chave conhecida
+    }
+    
+    // Se o primeiro caractere era maiúsculo, define como CLASS_NAME
+    return isClassName ? Tokens.CLASS_NAME : Tokens.IDENTIFIER;
+}
+
+    protected Tokens scanIdentifier2(char ch) {
         TrieTree.Node<Tokens> n = keywords.root.map.get(ch);
         while (offset + length < bufferLen && isIdentifierPart(ch = charAt(offset + length))) {
             length++;
