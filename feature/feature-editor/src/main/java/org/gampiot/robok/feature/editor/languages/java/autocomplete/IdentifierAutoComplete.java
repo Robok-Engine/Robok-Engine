@@ -198,7 +198,7 @@ public class IdentifierAutoComplete {
          /* add Android Classes in AutoCompletion*/
          filterJavaClasses(className, dest, AndroidClasses.getClasses());
          /* add RDK Classes in AutoCompletion */
-         filterJavaClasses(className, dest, RDKClassesHelper.getClasses());
+         filterJavaClasses(className, dest, rdkClasses.getClasses());
          for (var word : dest) {
               //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
               result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
