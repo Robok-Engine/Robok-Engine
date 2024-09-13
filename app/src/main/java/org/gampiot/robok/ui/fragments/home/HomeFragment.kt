@@ -30,9 +30,6 @@ import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.activities.SettingsActivity
 
-import dev.trindadedev.easyui.filepicker.model.DialogConfigs
-import dev.trindadedev.easyui.filepicker.model.DialogProperties
-
 class HomeFragment : RobokFragment() {
 
     private var _binding: FragmentHomeBinding? = null
