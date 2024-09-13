@@ -159,7 +159,7 @@
                                 <ImageView
                                     android:layout_width="@dimen/home_card_icon_width"
                                     android:layout_height="@dimen/home_card_icon_height"
-                                    android:src="@drawable/ic_settings_anim"
+                                    android:src="@drawable/ic_settings_24"
                                     android:scaleType="fitCenter" />
 
                                 <TextView
