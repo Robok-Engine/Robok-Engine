@@ -40,11 +40,9 @@ class HomeFragment : RobokFragment() {
     private val RESULT_OK = 9999
     
     private val folderPickerLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        if (result.resultCode == RESULT_OK) {
-            val uri: Uri? = result.data?.data
-            uri?.let {
-                processFolder(it)
-            }
+        val uri: Uri? = result.data?.data
+        uri?.let {
+            processFolder(it)
         }
     }
     
