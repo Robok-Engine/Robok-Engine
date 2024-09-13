@@ -4,7 +4,7 @@
     <color name="scheme_robok_attribute_name">#9370DB</color>
     <color name="scheme_robok_html_tag">#FF6347</color>
     <color name="scheme_robok_annotation">#BA55D3</color>
-    <color name="scheme_robok_identifier_name">#87CEEB</color>
+    <color name="scheme_robok_identifier_name">#00BFFF</color>
     <color name="scheme_robok_identifier_var">#228B22</color>
     <color name="scheme_robok_literal">#FFD700</color>
     <color name="scheme_robok_operator">#FF4500</color>
