@@ -292,165 +292,7 @@ public class JavaIncrementalAnalyzeManager extends AsyncIncrementalAnalyzeManage
 
 
     @Override
-public List<Span> generateSpansForLine(LineTokenizeResult<State, HighlightToken> lineResult) {
-    var spans = new ArrayList<Span>();
-    var tokens = lineResult.tokens;
-    Tokens previous = Tokens.UNKNOWN;
-    boolean classNamePrevious = false;
-    for (int i = 0; i < tokens.size(); i++) {
-        var tokenRecord = tokens.get(i);
-        var token = tokenRecord.token;
-        int offset = tokenRecord.offset;
-        Span span;
-        switch (token) {
-            case WHITESPACE:
-            case NEWLINE:
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.TEXT_NORMAL));
-                break;
-            case CHARACTER_LITERAL:
-            case FLOATING_POINT_LITERAL:
-            case INTEGER_LITERAL:
-            case STRING:
-                classNamePrevious = false;
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.LITERAL, true));
-                break;
-            case INT:
-            case LONG:
-            case BOOLEAN:
-            case BYTE:
-            case CHAR:
-            case FLOAT:
-            case DOUBLE:
-            case SHORT:
-            case VOID:
-            case VAR:
-                classNamePrevious = true;
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
-                break;
-            case ABSTRACT:
-            case ASSERT:
-            case CLASS:
-            case DO:
-            case FINAL:
-            case FOR:
-            case IF:
-            case NEW:
-            case PUBLIC:
-            case PRIVATE:
-            case PROTECTED:
-            case PACKAGE:
-            case RETURN:
-            case STATIC:
-            case SUPER:
-            case SWITCH:
-            case ELSE:
-            case VOLATILE:
-            case SYNCHRONIZED:
-            case STRICTFP:
-            case GOTO:
-            case CONTINUE:
-            case BREAK:
-            case TRANSIENT:
-            case TRY:
-            case CATCH:
-            case FINALLY:
-            case WHILE:
-            case CASE:
-            case DEFAULT:
-            case CONST:
-            case ENUM:
-            case EXTENDS:
-            case IMPLEMENTS:
-            case IMPORT:
-            case INSTANCEOF:
-            case INTERFACE:
-            case NATIVE:
-            case THIS:
-            case THROW:
-            case THROWS:
-            case TRUE:
-            case FALSE:
-            case NULL:
-            case SEALED:
-            case PERMITS:
-                classNamePrevious = false;
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.KEYWORD, 0, true, false, false));
-                break;
-            case LINE_COMMENT:
-            case LONG_COMMENT_COMPLETE:
-            case LONG_COMMENT_INCOMPLETE:
-                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.COMMENT, 0, false, true, false, true));
-                break;
-            case IDENTIFIER: {
-                int type = EditorColorScheme.IDENTIFIER_NAME;
-                if (classNamePrevious) {
-                    type = EditorColorScheme.IDENTIFIER_VAR;
-                    classNamePrevious = false;
-                } else {
-                    if (previous == Tokens.AT) {
-                        type = EditorColorScheme.ANNOTATION;
-                    } else {
-                        // Peek next token
-                        int j = i + 1;
-                        var next = Tokens.UNKNOWN;
-                        label:
-                        while (j < tokens.size()) {
-                            next = tokens.get(j).token;
-                            switch (next) {
-                                case WHITESPACE:
-                                case NEWLINE:
-                                case LONG_COMMENT_INCOMPLETE:
-                                case LONG_COMMENT_COMPLETE:
-                                case LINE_COMMENT:
-                                    break;
-                                default:
-                                    break label;
-                            }
-                            j++;
-                        }
-                        if (next == Tokens.LPAREN) {
-                            type = EditorColorScheme.FUNCTION_NAME;
-                        } else {
-                            classNamePrevious = true;
-                        }
-                    }
-                }
-                if (type == EditorColorScheme.IDENTIFIER_NAME) {
-                    // Apply CLASS color for class names
-                    span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.LITERAL));
-                } else {
-                    span = SpanFactory.obtain(offset, TextStyle.makeStyle(type));
-                }
-                break;
-            }
-            default:
-                if (token == Tokens.LBRACK || (token == Tokens.RBRACK && previous == Tokens.LBRACK)) {
-                    span = SpanFactory.obtain(offset, EditorColorScheme.OPERATOR);
-                    break;
-                }
-                classNamePrevious = false;
-                span = SpanFactory.obtain(offset, EditorColorScheme.OPERATOR);
-        }
-        switch (token) {
-            case LINE_COMMENT:
-            case LONG_COMMENT_COMPLETE:
-            case LONG_COMMENT_INCOMPLETE:
-            case WHITESPACE:
-            case NEWLINE:
-                break;
-            default:
-                previous = token;
-        }
-        if (tokenRecord.url != null) {
-            span.setSpanExt(SpanExtAttrs.EXT_INTERACTION_INFO, new SpanClickableUrl(tokenRecord.url));
-            span.setUnderlineColor(new EditorColor(span.getForegroundColorId()));
-        }
-        spans.add(span);
-    }
-    return spans;
-}
-    
-    public List<Span> generateSpansForLinee(LineTokenizeResult<State, HighlightToken> lineResult) {
+    public List<Span> generateSpansForLine(LineTokenizeResult<State, HighlightToken> lineResult) {
         var spans = new ArrayList<Span>();
         var tokens = lineResult.tokens;
         Tokens previous = Tokens.UNKNOWN;
@@ -520,6 +362,9 @@ public List<Span> generateSpansForLine(LineTokenizeResult<State, HighlightToken>
                 case EXTENDS:
                 case IMPLEMENTS:
                 case IMPORT:
+                case CLASS_NAME:
+                span = SpanFactory.obtain(offset, TextStyle.makeStyle(EditorColorScheme.LITERAL));
+                break;
                 case INSTANCEOF:
                 case INTERFACE:
                 case NATIVE:
