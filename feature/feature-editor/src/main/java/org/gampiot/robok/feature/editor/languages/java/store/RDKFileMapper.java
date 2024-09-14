@@ -40,7 +40,7 @@ public class RDKFileMapper {
         if (rdkFolder.exists() && rdkFolder.isDirectory()) {
             mapClassesRecursively(rdkFolder, "", robokClass);
         }else{
-            robokClass.put("ErrorRdkNaoExiste", "com.error.rdk.ErrorRdkNaoExiste")
+            robokClass.put("ErrorRdkNaoExiste", "com.error.rdk.ErrorRdkNaoExiste");
         }
 
         return robokClass;
