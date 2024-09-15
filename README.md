@@ -45,11 +45,11 @@ Want to contribute to contribute to Robok? Follow this steps:
 ## TO-DO
  - [X] AAPT2 Compiler
  - [X] Code diagnostic
- - [X] Sora Editor 
+ - [X] Code Editor 
  - [X] Project Creation
+ - [X] File Tree
  - [ ] 3D Modeling
  - [ ] Classes for simplify development
- - [ ] File Tree
 
 ## License
 
