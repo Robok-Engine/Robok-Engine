@@ -198,7 +198,7 @@ public class IdentifierAutoComplete {
          /* add Android Classes in AutoCompletion*/
          filterJavaClasses(className, dest, AndroidClasses.getClasses());
          /* add RDK Classes in AutoCompletion */
-         filterJavaClasses(className, dest, rdkClasses.getClasses());
+         filterRobokClasses(className, dest, rdkClasses.getClasses());
          for (var word : dest) {
               //if (keywordMap == null || !keywordMap.containsKey(clazz.getSimpleName()))
               result.add(new SimpleCompletionItem(word.getSimpleName(), word.getName(), prefixLength, word.getSimpleName())
@@ -513,6 +513,29 @@ public class IdentifierAutoComplete {
                      Class<?> clazz = Class.forName(classes.get(s));
                      dest.add(clazz);
                  } catch (ClassNotFoundException e) {
+                        e.printStackTrace();
+                 }                
+			 }
+	     }
+    }
+    
+    public void filterRobokClasses(@NonNull String prefix, List<Class<?>> dest, HashMap<String, String> classes){
+         for (String s : classes.keySet()) {
+             var fuzzyScore 
+                 = Filters.fuzzyScoreGracefulAggressive(prefix,
+                     prefix.toLowerCase(Locale.ROOT),
+                     0, 
+                     s, 
+                     s.toLowerCase(Locale.ROOT), 
+                     0,
+                     FuzzyScoreOptions.getDefault()
+                 );
+             var score = fuzzyScore == null ? -100 : fuzzyScore.getScore();
+             if ((TextUtils.startsWith(s, prefix, true) || score >= -20)  && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false)) || (prefix.equalsIgnoreCase(s))){
+                 try {
+                     Class<?> clazz = rdkClasses.getClassLoader().loadClass(classes.get(s));
+                     dest.add(clazz);
+                 } catch (Exception e) {
                         e.printStackTrace();
                  }                
 			 }

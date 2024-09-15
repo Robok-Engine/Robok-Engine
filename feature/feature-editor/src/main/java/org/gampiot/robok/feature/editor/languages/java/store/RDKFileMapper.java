@@ -66,7 +66,7 @@ public class RDKFileMapper {
     }
 
     //Method to create URLClassLoader from base directory
-    public URLClassLoader getClassLoader(String rdkDirectory) throws Exception {
+    public URLClassLoader getClassLoader() throws Exception {
         File file = new File(rdkDirectory);
 
         // Converts the base directory to a URL
