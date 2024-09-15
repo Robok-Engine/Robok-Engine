@@ -40,7 +40,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 166,
+    "contributions": 170,
     "role": "Main Developer"
   },
   {
@@ -84,7 +84,7 @@
     "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 31,
+    "contributions": 32,
     "role": "Bot"
   },
   {
