@@ -4,7 +4,6 @@ plugins {
     id("com.android.application")
     id("kotlin-android")
     kotlin("plugin.serialization") version "2.0.20"
-    id("com.mikepenz.aboutlibraries.plugin")
     id("kotlin-kapt")
     id("org.jetbrains.kotlin.plugin.compose")
 }
@@ -143,7 +142,6 @@ dependencies {
     implementation(platform("$editorGroupId:bom:0.23.4"))
     implementation("$editorGroupId:editor")
     
-    implementation("com.mikepenz:aboutlibraries:11.2.3")
     implementation("com.github.bumptech.glide:glide:$glideVersion")
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
