@@ -101,7 +101,6 @@ dependencies {
     val appcompatVersion = "1.7.0"
     val kotlinCoroutinesVersion = "1.9.0"
     val glideVersion = "4.16.0"
-    val aboutLibrariesVersion = "11.2.3"
     val koinVersion = "3.5.6"
 
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
@@ -139,7 +138,6 @@ dependencies {
     implementation(project(":feature-compose:feature-settings"))
     
     implementation(project(":easy-components"))
-    implementation(project(":easy-filepicker"))
     
     val editorGroupId = "io.github.Rosemoe.sora-editor"
     implementation(platform("$editorGroupId:bom:0.23.4"))
@@ -166,8 +164,6 @@ dependencies {
     debugImplementation("androidx.compose.ui:ui-test-manifest")
     implementation("androidx.navigation:navigation-compose:2.8.0")
     implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
-    implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
 }
 
 fun execAndGetOutput(vararg command: String): String {
