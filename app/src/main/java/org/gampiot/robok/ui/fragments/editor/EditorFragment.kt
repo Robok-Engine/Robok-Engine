@@ -249,6 +249,11 @@ class EditorFragment(
                 if (node.value.isDirectory()) {
                     return
                 }
+                val fileName = node.value.getName()
+                
+                if (fileName.endsWith(".obj")) {
+                    //Open 3D modeling
+                }
             }
         })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(requireContext()))
