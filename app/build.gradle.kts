@@ -146,7 +146,6 @@ dependencies {
 
     coreLibraryDesugaring("com.android.tools:desugar_jdk_libs:2.1.2")
     
-    implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     
