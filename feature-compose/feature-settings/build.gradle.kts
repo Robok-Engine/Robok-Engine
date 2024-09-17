@@ -51,7 +51,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
     
-    implementation("com.google.android.material:material:1.13.0-alpha05")
+    implementation("com.google.android.material:material:1.13.0-alpha06")
     
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
     

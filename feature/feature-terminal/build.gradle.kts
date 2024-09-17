@@ -48,7 +48,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     
-    implementation("com.google.android.material:material:1.13.0-alpha05")
+    implementation("com.google.android.material:material:1.13.0-alpha06")
     implementation("com.google.code.gson:gson:2.11.0")
     
     implementation("com.termux.termux-app:terminal-view:0.118.1")
