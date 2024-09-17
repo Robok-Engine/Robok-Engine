@@ -96,7 +96,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    val materialVersion = "1.13.0-alpha05"
+    val materialVersion = "1.13.0-alpha06"
     val appcompatVersion = "1.7.0"
     val kotlinCoroutinesVersion = "1.9.0"
     val glideVersion = "4.16.0"
