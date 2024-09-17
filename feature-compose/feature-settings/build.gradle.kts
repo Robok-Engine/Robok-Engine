@@ -57,7 +57,7 @@ dependencies {
     
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     
-    val koinVersion = "3.5.6"
+    val koinVersion = "4.0.0"
     implementation("io.insert-koin:koin-android:$koinVersion")
     implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
     

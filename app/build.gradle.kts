@@ -100,7 +100,7 @@ dependencies {
     val appcompatVersion = "1.7.0"
     val kotlinCoroutinesVersion = "1.9.0"
     val glideVersion = "4.16.0"
-    val koinVersion = "3.5.6"
+    val koinVersion = "4.0.0"
 
     implementation("androidx.appcompat:appcompat:$appcompatVersion")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.5")
