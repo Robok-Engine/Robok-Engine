@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 343,
+    "contributions": 348,
     "role": "Main Developer"
   },
   {
@@ -62,7 +62,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 107,
+    "contributions": 108,
     "role": "Bot"
   },
   {
@@ -130,5 +130,26 @@
     "site_admin": false,
     "contributions": 10,
     "role": "Bot"
+  },
+  {
+    "login": "Paxsenix0",
+    "id": 126800641,
+    "node_id": "U_kgDOB47TAQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/126800641?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Paxsenix0",
+    "html_url": "https://github.com/Paxsenix0",
+    "followers_url": "https://api.github.com/users/Paxsenix0/followers",
+    "following_url": "https://api.github.com/users/Paxsenix0/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Paxsenix0/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Paxsenix0/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Paxsenix0/subscriptions",
+    "organizations_url": "https://api.github.com/users/Paxsenix0/orgs",
+    "repos_url": "https://api.github.com/users/Paxsenix0/repos",
+    "events_url": "https://api.github.com/users/Paxsenix0/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Paxsenix0/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 2
   }
 ]
