@@ -8,7 +8,7 @@
     <string name="common_word_logs">Registro</string>
     <string name="common_word_output">Saída</string>
     <string name="common_word_end">Fim</string>
-    <string name="common_word_confirm" >Confirmar</string>
+    <string name="common_word_confirm">Confirmar</string>
     <string name="common_word_settings">Configurações</string>
     <string name="common_word_cancel">CANCELAR</string>
     <string name="common_word_next">Próximo</string>
@@ -49,21 +49,21 @@
     <string name="settings_code_editor_theme_title">Tema do Editor de Código</string>
     <string name="settings_code_editor_theme_description">Mude o tema do Editor de Código.</string>
     <string name="settings_code_editor_word_wrap_title">Quebra de Linha</string>
-	<string name="settings_code_editor_word_wrap_description">Ativar quebra de linha no editor de código.</string>
-	<string name="settings_code_editor_typeface_title">Alterar fonte do editor</string>
-	<string name="settings_code_editor_typeface_description">Altere a fonte do editor e deixe-a com a sua cara.</string>
+    <string name="settings_code_editor_word_wrap_description">Ativar quebra de linha no editor de código.</string>
+    <string name="settings_code_editor_typeface_title">Alterar fonte do editor</string>
+    <string name="settings_code_editor_typeface_description">Altere a fonte do editor e deixe-a com a sua cara.</string>
     <string name="settings_about_title">Sobre</string>
-	<string name="settings_about_description">Tudo sobre a Robok Engine</string>
-	<string name="settings_libraries_title">Bibliotecas</string>
-	<string name="settings_libraries_description">Todas as bibliotecas que usamos no aplicativo.</string>
-	<string name="settings_configure_rdk_title">Configurar RDK</string>
-	<string name="settings_configure_rdk_description">Configurações do Robok-SDK, como versão e muito mais.</string>
-	<string name="settings_configure_rdk_select_rdk_label">Selecione a versão do RDK</string>
-	<string name="settings_configure_rdk_version">Definir versão do RDK</string>
-	<string name="settings_build_title">Compilação</string>
-	<string name="settings_formatting_title">Formatação</string>
-	<string name="settings_appearance_title">Aparência</string>
-	<string name="settings_general_title">Geral</string>
+    <string name="settings_about_description">Tudo sobre a Robok Engine</string>
+    <string name="settings_libraries_title">Bibliotecas</string>
+    <string name="settings_libraries_description">Todas as bibliotecas que usamos no aplicativo.</string>
+    <string name="settings_configure_rdk_title">Configurar RDK</string>
+    <string name="settings_configure_rdk_description">Configurações do Robok-SDK, como versão e muito mais.</string>
+    <string name="settings_configure_rdk_select_rdk_label">Selecione a versão do RDK</string>
+    <string name="settings_configure_rdk_version">Definir versão do RDK</string>
+    <string name="settings_build_title">Compilação</string>
+    <string name="settings_formatting_title">Formatação</string>
+    <string name="settings_appearance_title">Aparência</string>
+    <string name="settings_general_title">Geral</string>
     <!-- end section -->
     
     <!-- texts section -->
@@ -71,9 +71,9 @@
     <string name="text_logs">Registros</string>
     <string name="text_error_details">Detalhes do erro:</string>
     <string name="text_bold">Negrito</string>
-	<string name="text_monospace">Mono-Espaçado</string>
-	<string name="text_serif">Serif</string>
-	<string name="text_sans_serif">Sans-Serif</string>
+    <string name="text_monospace">Mono-Espaçado</string>
+    <string name="text_serif">Serif</string>
+    <string name="text_sans_serif">Sans-Serif</string>
     <!-- ene section -->
     
     <!-- warnings section -->
@@ -81,7 +81,7 @@
     <string name="warning_storage_perm_message">Robok precisa de permissão de armazenamento para criar projetos, abrir projetos e muito mais</string>
     <string name="warning_all_files_perm_message">no Android 11+, para que o Robok funcione corretamente, ele precisa de permissão para acessar todos os arquivos.</string>
     <string name="warning_project_created_title">Project Created Successfully!</string>
-	<string name="warning_project_created_message">Your project has been created successfully!</string>
+    <string name="warning_project_created_message">Your project has been created successfully!</string>
     <!-- end section -->
     
     <!-- errors section -->
@@ -112,4 +112,8 @@
     <string name="item_libraries_title">Softwares de terceiros</string>
     <string name="item_libraries_description">As bibliotecas que usamos</string>
     <!--end section-->
+<string name="title_templates">Templates</string>
+    <string name="template_name_empty_game">Jogo vazio</string>
+    <string name="item_whatsapp_description">Ou grupo do whatsapp.</string>
+    <string name="item_whatsapp_title">WhatsApp</string>
 </resources>
