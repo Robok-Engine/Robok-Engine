@@ -248,7 +248,7 @@ data class Contributor(
     val type: String = "User",
     val site_admin: Boolean = false,
     val contributions: Int = 0,
-    val role: String = "Developer"
+    val role: String = "Contributor"
 )
 
 
