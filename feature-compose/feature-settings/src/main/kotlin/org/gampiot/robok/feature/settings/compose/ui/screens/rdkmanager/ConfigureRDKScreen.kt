@@ -9,7 +9,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
 
-import org.koin.androidx.compose.getViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 
 import kotlinx.coroutines.Dispatchers
@@ -35,7 +35,7 @@ fun ConfigureRDKScreen(
     navController: NavController
 ) {
     val context = LocalContext.current
-    val viewModel: ConfigureRDKViewModel = getViewModel { parametersOf(context) }
+    val viewModel: ConfigureRDKViewModel = koinViewModel { parametersOf(context) }
     
     var rdkVersions = listOf("RDK-1")
     val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
