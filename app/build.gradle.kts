@@ -107,7 +107,7 @@ dependencies {
     implementation("androidx.core:core-ktx:1.13.1")
     implementation("androidx.fragment:fragment-ktx:1.8.3")
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.8.5")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.5")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.6")
     implementation("androidx.core:core-splashscreen:1.2.0-alpha02")
     implementation("androidx.preference:preference:1.2.1")
     implementation("androidx.datastore:datastore-preferences:1.1.1")
