@@ -60,7 +60,7 @@ If you would like to get involved in translating Robok-Engine, head over to [Web
 
 ## License
 
-This project was licensed under the GPL-3.0 License [LISCENSE](LISCENSE).
+This project was licensed under the GPL-3.0 License [LICENSE](LICENSE).
 
 ---
 
