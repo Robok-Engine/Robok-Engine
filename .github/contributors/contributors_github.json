@@ -151,6 +151,6 @@
     "type": "User",
     "site_admin": false,
     "contributions": 2,
-    "role", "Translation"
+    "role": "Translation"
   }
 ]
