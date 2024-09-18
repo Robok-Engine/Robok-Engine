@@ -1,2 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="common_word_code">Kode</string>
+    <string name="common_word_settings">Pengaturan</string>
+    <string name="common_word_cancel">BATAL</string>
+    <string name="common_word_next">Selanjutnya</string>
+    <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Coba lagi</string>
+    <string name="common_word_save">Simpan</string>
+    <string name="title_create_project">Buat proyek</string>
+    <string name="title_open_editor">Buka editor</string>
+    <string name="title_debug_title">Terjadi kesalahan</string>
+    <string name="title_select_theme">Pilih tema</string>
+    <string name="title_select_folder">Pilih folder</string>
+    <string name="title_templates">Templat</string>
+    <string name="message_compiled">Kodemu telah dikompilasi!</string>
+    <string name="hint_project_name">Nama proyek</string>
+    <string name="hint_package_name">Nama paket</string>
+    <string name="common_word_back">Kembali</string>
+    <string name="common_word_result">Hasil</string>
+    <string name="title_open_project">Buka proyek</string>
+</resources>
