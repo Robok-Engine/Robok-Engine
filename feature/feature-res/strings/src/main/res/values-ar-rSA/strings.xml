@@ -8,7 +8,7 @@
     <string name="common_word_logs">السجل</string>
     <string name="common_word_output">الناتج</string>
     <string name="common_word_end">النهاية</string>
-    <string name="common_word_confirm" >Confirm</string>
+    <string name="common_word_confirm">Confirm</string>
     <string name="common_word_settings">الإعدادت</string>
     <string name="common_word_cancel">إلغاء</string>
     <string name="common_word_next">التالي</string>
@@ -49,9 +49,9 @@
     <string name="settings_code_editor_theme_title">سمة محرر الكود</string>
     <string name="settings_code_editor_theme_description">إختر سمة محرر الكود</string>
     <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
-	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
-	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
-	<string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
+    <string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
+    <string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
+    <string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
     <string name="settings_about_title">حول التطبيق</string>
     <string name="settings_about_description">All about Robok Engine</string>
     <string name="settings_libraries_title">Libraries</string>
@@ -63,7 +63,7 @@
     <string name="settings_build_title">Build</string>
     <string name="settings_formatting_title">Formatting</string>
     <string name="settings_appearance_title">Appearance</string>
-	<string name="settings_general_title">General</string>
+    <string name="settings_general_title">General</string>
     <!-- end section -->
     
     <!-- texts section -->
@@ -71,9 +71,9 @@
     <string name="text_logs">السجل</string>
     <string name="text_error_details">Error details:</string>
     <string name="text_bold">Bold</string>
-	<string name="text_monospace">Monospace</string>
-	<string name="text_serif">Serif</string>
-	<string name="text_sans_serif">Sans-Serif</string>
+    <string name="text_monospace">Monospace</string>
+    <string name="text_serif">Serif</string>
+    <string name="text_sans_serif">Sans-Serif</string>
     <!-- ene section -->
     
     <!-- warnings section -->
@@ -81,7 +81,7 @@
     <string name="warning_storage_perm_message">يحتاج روبوك إلى السماح بالتخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
     <string name="warning_all_files_perm_message">in Android 11 +, for Robok to work properly, it needs permission to access all files.</string>
     <string name="warning_project_created_title">Project Created Successfully!</string>
-	<string name="warning_project_created_message">Your project has been created successfully!</string>
+    <string name="warning_project_created_message">Your project has been created successfully!</string>
     <!-- end section -->
     
     <!-- errors section -->
@@ -112,4 +112,5 @@
     <string name="item_libraries_title">المكتبات</string>
     <string name="item_libraries_description">المكتبات المستعملة في التطبيق</string>
     <!--end section-->
+<string name="title_templates">قوالب</string>
 </resources>
