@@ -42,6 +42,13 @@ Want to contribute to contribute to Robok? Follow this steps:
 4. Use tags to indicate what the commit does (example: feat: Use datagui v2 in project)
 5. See more on: [More Contribution Info](https://github.com/robok-inc/robok-engine/tree/dev/docs/CONTRIBUTION.md)
 
+## Participate in translation
+
+If you would like to get involved in translating Dhizuku, head over to [Weblate](https://hosted.weblate.org/engage/dhizuku/)
+
+[![status](https://hosted.weblate.org/widgets/robok-engine/-/multi-auto.svg)](https://hosted.weblate.org/engage/robok-engine/)
+
+
 ## TO-DO
  - [X] AAPT2 Compiler
  - [X] Code diagnostic
