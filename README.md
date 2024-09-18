@@ -44,7 +44,7 @@ Want to contribute to contribute to Robok? Follow this steps:
 
 ## Participate in translation
 
-If you would like to get involved in translating Dhizuku, head over to [Weblate](https://hosted.weblate.org/engage/dhizuku/)
+If you would like to get involved in translating Robok-Engine, head over to [Weblate](https://hosted.weblate.org/engage/robok-engine/)
 
 [![status](https://hosted.weblate.org/widgets/robok-engine/-/multi-auto.svg)](https://hosted.weblate.org/engage/robok-engine/)
 
