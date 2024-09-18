@@ -24,6 +24,7 @@ include(":robok:robok-diagnostic")
 include(":robok:robok-lang")
 include(":robok:robok-util")
 include(":robok:robok-aapt2")
+include(":robok:robok-model3d")
 
 include(":feature:feature-component")
 include(":feature:feature-res:strings")
