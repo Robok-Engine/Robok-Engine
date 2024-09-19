@@ -86,7 +86,12 @@ class HomeFragment : RobokFragment() {
         
         if (path != null) {
             Snackbar.make(binding.root, "Caminho do diretório: $path", Snackbar.LENGTH_LONG).show()
-            openFragment(EditorFragment(projectPath = path))
+            openFragment(
+                 EditorFragment(
+                      projectManager = ProjectManager(requireContext()), 
+                      projectPath = path
+                 )
+             )
         } else {
             Snackbar.make(binding.root, "Erro: Caminho não encontrado para a URI", Snackbar.LENGTH_LONG).show()
         }
