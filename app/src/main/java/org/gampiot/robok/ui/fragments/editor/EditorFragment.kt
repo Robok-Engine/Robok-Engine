@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
+import android.content.Intent
 
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -36,6 +37,7 @@ import org.gampiot.robok.feature.editor.EditorListener
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
 
+import org.robok.model3d.launcher.AndroidLauncher
 import org.robok.diagnostic.logic.DiagnosticListener
 
 import java.io.File
@@ -222,6 +224,7 @@ class EditorFragment(
                 
                 if (fileName.endsWith(".obj")) {
                     //Open 3D modeling
+                    startActivity(Intent(requireContext(), AndroidLauncher::class.java))
                 }
             }
         })
