@@ -99,7 +99,11 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
                   .setTitle(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_title))
                   .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
                   .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.title_open_project), (d, i) -> {
-                        openFragment(new EditorFragment(projectManager.projectDir));
+                        openFragment(new EditorFragment(
+                                projectManager.projectDir,
+                                projectManager
+                            )
+                        );
                   })
                   .setNegativeButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (dd, ii) -> {
                         dd.dismiss();
