@@ -41,8 +41,8 @@ import org.robok.diagnostic.logic.DiagnosticListener
 import java.io.File
 
 class EditorFragment(
-   private val projectManager: ProjectManager = ProjectManager()
-   private val projectPath: String,
+   private val projectManager: ProjectManager = ProjectManager(),
+   private val projectPath: String
 ) : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
