@@ -25,6 +25,7 @@ import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.feature.util.base.RobokFragment
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
@@ -35,15 +36,14 @@ import org.gampiot.robok.feature.editor.EditorListener
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
 
-import org.robok.compiler.logic.LogicCompiler
-import org.robok.compiler.logic.LogicCompilerListener
 import org.robok.diagnostic.logic.DiagnosticListener
 
 import java.io.File
 
 class EditorFragment(
-   private val projectPath: String
-) : RobokFragment() {
+   private val projectPath: String,
+   private val projectManager: ProjectManager
+) : RobokFragment(), ProjectManager.Listener {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
@@ -59,10 +59,7 @@ class EditorFragment(
     var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
 
     val diagnosticStandTime : Long = 800
-    
-    var oldCompiler: LogicCompiler? = null
-    var terminal: RobokTerminal? = null
-
+   
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -73,7 +70,6 @@ class EditorFragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        terminal = RobokTerminal(requireContext())
         configureScreen()
     }
     
@@ -83,40 +79,12 @@ class EditorFragment(
         configureDrawer()
         configureEditor()
         configureFileTree()
-        configureCompiler()
+        configureButtons()
     }
-    
-    fun configureCompiler() {
-        val oldCompilerListener = object : LogicCompilerListener {
-            override fun onCompiling(log: String) {
-                terminal!!.addLog(log)
-            }
-
-            override fun onCompiled(output: String) {
-                val outputFragment = OutputFragment()
-                outputFragment.addOutput(requireContext(), layoutInflater, view as ViewGroup, output)
-
-                Snackbar.make(binding.root, Strings.message_compiled, Snackbar.LENGTH_LONG)
-                    .setAction(Strings.go_to_outputs) {
-                        openFragment(outputFragment)
-                        terminal!!.dismiss()
-                    }
-                    .show()
-            }
-        }
-        oldCompiler = LogicCompiler(requireContext(), oldCompilerListener)
-        configureButtons(oldCompiler)
-    }
-    
-    fun configureButtons (oldCompiler: LogicCompiler?) {
+  
+    fun configureButtons () {
         binding.runButton.setOnClickListener {
-            val code = binding.codeEditor.text.toString()
-            terminal!!.show()
-            oldCompiler!!.compile(code)
-        }
-
-        binding.seeLogs.setOnClickListener {
-            terminal!!.show()
+            projectManager.build()
         }
     }
 
