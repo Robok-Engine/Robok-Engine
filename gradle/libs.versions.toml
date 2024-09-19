@@ -1,4 +1,6 @@
 [versions]
+agp = "8.6.1"
+kotlin = "2.0.20"
 material = "1.13.0-alpha06"
 appcompat = "1.7.0"
 coroutines = "1.9.0"
@@ -16,6 +18,15 @@ composeBom = "2024.09.02"
 activityCompose = "1.9.2"
 navigationCompose = "2.8.1"
 materialMotion = "2.0.1"
+aboutLibraries = "11.2.3"
+
+[plugins]
+agp-lib = { id = "com.android.library", version.ref = "agp" }
+agp-app = { id = "com.android.application", version.ref = "agp" }
+kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+about-libraries-plugin = {id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
 
 [libraries]
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }

@@ -1,11 +1,11 @@
 import java.io.ByteArrayOutputStream
 
 plugins {
-    id("com.android.application")
-    id("kotlin-android")
+    alias(libs.plugins.agp.app)
+    alias(libs.plugins.kotlin)
     kotlin("plugin.serialization") version "2.0.20"
     id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.compose")
+    alias(libs.plugins.compose.compiler)
 }
 
 val app_version = "0.0.1"
