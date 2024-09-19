@@ -24,7 +24,7 @@ import org.gampiot.robok.feature.util.Helper;
 
 import java.io.File;
 
-public class CreateProjectFragment extends RobokFragment implements ProjectManager.Listener {
+public class CreateProjectFragment extends RobokFragment implements ProjectManager.CreationListener {
 
     private FragmentCreateProjectBinding binding;
     
