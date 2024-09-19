@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 370
+    "contributions": 404
   },
   {
     "login": "ThDev-only",
@@ -60,7 +60,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 108
+    "contributions": 112
   },
   {
     "login": "gampiot-bot",
@@ -145,5 +145,47 @@
     "type": "User",
     "site_admin": false,
     "contributions": 2
+  },
+  {
+    "login": "Xori71",
+    "id": 101265862,
+    "node_id": "U_kgDOBgkxxg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/101265862?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Xori71",
+    "html_url": "https://github.com/Xori71",
+    "followers_url": "https://api.github.com/users/Xori71/followers",
+    "following_url": "https://api.github.com/users/Xori71/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Xori71/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Xori71/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Xori71/subscriptions",
+    "organizations_url": "https://api.github.com/users/Xori71/orgs",
+    "repos_url": "https://api.github.com/users/Xori71/repos",
+    "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Xori71/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "Kefir2105",
+    "id": 103105829,
+    "node_id": "U_kgDOBiVFJQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/103105829?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Kefir2105",
+    "html_url": "https://github.com/Kefir2105",
+    "followers_url": "https://api.github.com/users/Kefir2105/followers",
+    "following_url": "https://api.github.com/users/Kefir2105/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Kefir2105/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Kefir2105/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Kefir2105/subscriptions",
+    "organizations_url": "https://api.github.com/users/Kefir2105/orgs",
+    "repos_url": "https://api.github.com/users/Kefir2105/repos",
+    "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1
   }
 ]
