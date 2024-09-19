@@ -113,4 +113,7 @@
     <string name="item_libraries_description">المكتبات المستعملة في التطبيق</string>
     <!--end section-->
 <string name="title_templates">قوالب</string>
+    <string name="template_name_empty_game">لعبة فارغة</string>
+    <string name="item_whatsapp_title">واتساب</string>
+    <string name="item_whatsapp_description">او مجموعة الواتس اب .</string>
 </resources>
