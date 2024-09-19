@@ -96,6 +96,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
+    // Dependências externas referenciando o Version Catalog
     implementation(libs.appcompat)
     implementation(libs.lifecycleRuntimeKtx)
     implementation(libs.coreKtx)
@@ -103,22 +104,43 @@ dependencies {
     implementation(libs.splashscreen)
     implementation(libs.preference)
     implementation(libs.datastorePreferences)
-    
+
     implementation(libs.coroutinesCore)
     implementation(libs.coroutinesAndroid)
     implementation(libs.serializationJson)
-    
+
     implementation(platform(libs.okhttpBom))
     implementation("com.squareup.okhttp3:okhttp")
-    
+
     implementation(libs.glide)
     
+    implementation(libs.material)  // Adicionando a dependência do Material Design
+
     coreLibraryDesugaring(libs.desugarJdkLibs)
-    
+
     implementation(platform(libs.composeBom))
     implementation(libs.activityCompose)
     implementation(libs.navigationCompose)
     implementation(libs.materialMotionComposeCore)
+
+    // Dependências de projetos internos
+    implementation(project(":robok:robok-compiler"))
+    implementation(project(":robok:robok-diagnostic"))
+    implementation(project(":robok:robok-aapt2"))
+    implementation(project(":robok:robok-model3d"))
+
+    implementation(project(":feature:feature-component"))
+    implementation(project(":feature:feature-util"))
+    implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature:feature-terminal"))
+    implementation(project(":feature:feature-template"))
+    implementation(project(":feature:feature-treeview"))
+    implementation(project(":feature:feature-editor"))
+
+    implementation(project(":feature-compose:feature-component"))
+    implementation(project(":feature-compose:feature-settings"))
+
+    implementation(project(":easy-components"))
 }
 
 fun execAndGetOutput(vararg command: String): String {

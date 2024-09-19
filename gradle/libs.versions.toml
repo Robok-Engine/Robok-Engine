@@ -18,6 +18,7 @@ navigationCompose = "2.8.1"
 materialMotion = "2.0.1"
 
 [libraries]
+material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
 lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
 coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
