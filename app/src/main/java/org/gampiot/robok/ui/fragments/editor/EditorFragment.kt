@@ -43,7 +43,7 @@ import java.io.File
 class EditorFragment(
    private val projectPath: String,
    private val projectManager: ProjectManager
-) : RobokFragment(), ProjectManager.Listener {
+) : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
     val binding get() = _binding!!
