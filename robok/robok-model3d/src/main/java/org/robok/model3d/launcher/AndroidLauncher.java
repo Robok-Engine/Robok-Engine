@@ -50,39 +50,31 @@ public class AndroidLauncher extends AndroidApplication {
         
       //  My3dGame.game.setListObjects(sceneObjects);
        binding.criarCubo.setOnClickListener(v ->{
-            model3dView.setCommand("createCube");
-                
+            model3dView.setCommand("createCube");                
         });
         
         binding.criarTriangulo.setOnClickListener(v ->{
             model3dView.setCommand("createTriangle");
-                
         });
         
         binding.criarEsfera.setOnClickListener(v ->{
             model3dView.setCommand("createSphere");
-                
         });
         
         binding.criarCilindro.setOnClickListener(v ->{
             model3dView.setCommand("createCylinder");
-                
         });
         
         binding.criarCone.setOnClickListener(v ->{
             model3dView.setCommand("createCone");
-                
         });
         
         binding.criarPlano.setOnClickListener(v ->{
             model3dView.setCommand("createPlane");
-                
         });
         
         binding.linearLibGdx.addView(libgdxView);
-        
         setContentView(binding.getRoot());
-        
         hideSystemUI();
     }
     
