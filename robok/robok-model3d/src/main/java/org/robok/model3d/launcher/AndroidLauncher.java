@@ -29,7 +29,7 @@ import java.util.List;
 
 public class AndroidLauncher extends AndroidApplication {
     
-    ActivityMainBinding binding;
+    Activity3dModelBinding binding;
     
     @Override
     protected void onDestroy() {
@@ -42,7 +42,7 @@ public class AndroidLauncher extends AndroidApplication {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = Activity3dModelBinding.inflate(getLayoutInflater());
         
         AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
         View libgdxView = initializeForView(new Model3DView(), config);
