@@ -53,7 +53,7 @@ dependencies {
     
     implementation("com.google.android.material:material:1.13.0-alpha06")
     
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     

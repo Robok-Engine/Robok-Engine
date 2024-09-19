@@ -80,7 +80,7 @@ dependencies {
     implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
     
     implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
     
     implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
     implementation("androidx.paging:paging-compose:3.3.2")
