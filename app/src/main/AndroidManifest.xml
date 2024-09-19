@@ -50,6 +50,12 @@
         <activity
             android:name="org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity" 
             android:exported="true" />
+
+        <activity
+            android:name="org.robok.model3d.launcher.AndroidLauncher"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:screenOrientation="landscape"
+            android:exported="true">
             
     </application>
 
