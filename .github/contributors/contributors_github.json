@@ -107,8 +107,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 13,
-    "role": "Translation & Redesign Home Screen"
-  },
+    "role": "Bot"
   {
     "login": "github-actions[bot]",
     "id": 41898282,
