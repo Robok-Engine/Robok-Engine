@@ -16,7 +16,6 @@
         <item name="android:forceDarkAllowed">false</item>
         
         <!-- SplashScreen -->
-        <item name="android:windowSplashScreenBackground">?colorSurface</item>
         <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
         <item name="android:windowSplashScreenAnimationDuration">1500</item>
         
