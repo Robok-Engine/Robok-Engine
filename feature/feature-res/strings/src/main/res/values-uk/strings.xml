@@ -1,2 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="common_word_code">Код</string>
+    <string name="common_word_logs">Журнали</string>
+    <string name="common_word_output">Вивід</string>
+    <string name="common_word_end">Закінчити</string>
+    <string name="common_word_confirm">Підтвердити</string>
+    <string name="common_word_cancel">СКАСУВАТИ</string>
+    <string name="common_word_undo">Скасувати</string>
+    <string name="common_word_redo">Повторити</string>
+    <string name="common_word_allow">Дозволити</string>
+    <string name="common_word_deny">Відхилити</string>
+    <string name="common_word_normal">Нормальний</string>
+    <string name="common_word_retry">Повторити спробу</string>
+    <string name="title_open_editor">Відкрити редактор</string>
+    <string name="title_debug_title">Виникла помилка</string>
+    <string name="title_select_theme">Вибрати тему</string>
+    <string name="title_templates">Шаблони</string>
+    <string name="message_compiled">Ваш код скомпільовано!</string>
+    <string name="go_to_outputs">Перейти до результатів</string>
+    <string name="hint_package_name">Назва пакета</string>
+    <string name="common_word_back">Назад</string>
+    <string name="common_word_run">Запустити</string>
+    <string name="common_word_result">Результат</string>
+    <string name="common_word_settings">Налаштування</string>
+    <string name="common_word_save">Зберегти</string>
+    <string name="common_word_next">Далі</string>
+    <string name="title_create_project">Створити проєкт</string>
+    <string name="title_open_project">Відкрити проєкт</string>
+    <string name="title_select_folder">Вибрати теку</string>
+    <string name="hint_project_name">Назва проєкта</string>
+</resources>
