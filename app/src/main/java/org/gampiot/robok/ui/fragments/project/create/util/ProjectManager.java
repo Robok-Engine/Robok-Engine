@@ -25,6 +25,7 @@ public class ProjectManager {
 
     public Listener listener;
     public Context context;
+    public String projectDir;
     
     public ProjectManager () {}
     
@@ -36,7 +37,7 @@ public class ProjectManager {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
             File outputDir = new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + projectName);
-
+            projectDir = outputDir.getAbsolutePath();
             if (!outputDir.exists()) {
                 outputDir.mkdirs();
             }
