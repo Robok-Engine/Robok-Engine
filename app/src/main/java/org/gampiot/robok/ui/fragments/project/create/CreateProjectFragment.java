@@ -1,6 +1,7 @@
 package org.gampiot.robok.ui.fragments.project.create;
 
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
     }
     
     public void create () {
+         projectManager.setProjectPath(new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + binding.projectName.getText().toString()));
          projectManager.create(
                binding.projectName.getText().toString(),
                binding.projectPackageName.getText().toString(),
@@ -100,8 +102,8 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
                   .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
                   .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.title_open_project), (d, i) -> {
                         openFragment(new EditorFragment(
-                                projectManager.projectDir,
-                                projectManager
+                                projectManager,
+                                projectManager.getProjectPath()
                             )
                         );
                   })

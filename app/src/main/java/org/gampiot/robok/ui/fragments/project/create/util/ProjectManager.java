@@ -23,23 +23,34 @@ import java.util.zip.ZipInputStream;
 
 public class ProjectManager {
 
-    public Listener listener;
-    public Context context;
-    public String projectDir;
+    private CreationListener creationListener;
+    private Context context;
+    private File outputPath;
     
     public ProjectManager () {}
     
     public ProjectManager (Context context) {
          this.context = context;
     }
+    
+    public void setProjectPath(File value) {
+         outputPath = value;
+    }
+    
+    public File getProjectPath() {
+         return outputPath;
+    }
+    
+    public String getProjectPath() {
+         return outputPath.getAbsolutePath();
+    }
 
     public void create(String projectName, String packageName, ProjectTemplate template) {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
-            File outputDir = new File(Environment.getExternalStorageDirectory(), "Robok/.projects/" + projectName);
-            projectDir = outputDir.getAbsolutePath();
-            if (!outputDir.exists()) {
-                outputDir.mkdirs();
+            
+            if (!outputPath.exists()) {
+                outputPath.mkdirs();
             }
 
             ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(zipFileInputStream));
@@ -52,7 +63,7 @@ public class ProjectManager {
                             .replace(template.name, projectName)
                             .replace("game/logic/$pkgName", "game/logic/" + packageName.replace('.', '/'));
                     
-                    File outputFile = new File(outputDir, outputFileName);
+                    File outputFile = new File(outputPath, outputFileName);
 
                     if (!outputFile.getParentFile().exists()) {
                         outputFile.getParentFile().mkdirs();
@@ -71,15 +82,15 @@ public class ProjectManager {
 
             zipInputStream.close();
             
-            createJavaClass(outputDir, projectName, packageName);
+            createJavaClass(projectName, packageName);
 
         } catch (IOException e) {
             e.printStackTrace();
-            listener.onProjectCreateError();
+            creationListener.onProjectCreateError();
         }
     }
 
-    private void createJavaClass(File outputDir, String projectName, String packageName) {
+    private void createJavaClass(String projectName, String packageName) {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
             template.setCodeClassName("MainScreen");
@@ -87,7 +98,7 @@ public class ProjectManager {
             template.configure();
             
             String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
-            File javaFile = new File(outputDir, classFilePath);
+            File javaFile = new File(outputPath, classFilePath);
 
             if (!javaFile.getParentFile().exists()) {
                 javaFile.getParentFile().mkdirs();
@@ -96,11 +107,11 @@ public class ProjectManager {
             FileOutputStream fos = new FileOutputStream(javaFile);
             fos.write(template.getCodeClassContent().getBytes());
             fos.close();
-            listener.onProjectCreate();
+            creationListener.onProjectCreate();
 
         } catch (IOException e) {
             e.printStackTrace();
-            listener.onProjectCreateError();
+            creationListener.onProjectCreateError();
         }
     }
     
@@ -122,11 +133,11 @@ public class ProjectManager {
          terminal.show();
     }
     
-    public void setListener (Listener listener) {
-         this.listener = listener;
+    public void setListener (CreationListener creationListener) {
+         this.creationListener = creationListener;
     }
     
-    public interface Listener {
+    public interface CreationListener {
          public void onProjectCreate();
          public void onProjectCreateError();
     }
