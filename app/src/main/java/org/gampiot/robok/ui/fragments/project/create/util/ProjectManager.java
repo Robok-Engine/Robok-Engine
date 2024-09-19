@@ -41,10 +41,6 @@ public class ProjectManager {
          return outputPath;
     }
     
-    public String getProjectPath() {
-         return outputPath.getAbsolutePath();
-    }
-
     public void create(String projectName, String packageName, ProjectTemplate template) {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
