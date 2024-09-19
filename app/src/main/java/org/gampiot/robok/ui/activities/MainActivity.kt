@@ -14,9 +14,9 @@ import org.gampiot.robok.feature.util.base.RobokActivity
 class MainActivity() : RobokActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        installSplashScreen()
         
         if (savedInstanceState == null) {
             openFragment(HomeFragment())
