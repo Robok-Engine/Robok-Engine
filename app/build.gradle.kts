@@ -118,6 +118,7 @@ dependencies {
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
     implementation(libs.activity.compose)
     implementation(libs.navigation.compose)
     implementation(libs.material.motion.compose.core)
