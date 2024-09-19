@@ -15,6 +15,7 @@ import com.google.android.material.transition.MaterialSharedAxis;
 
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding;
+import org.gampiot.robok.ui.fragments.editor.EditorFragment;
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate;
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager;
 import org.gampiot.robok.feature.util.base.RobokFragment;
@@ -97,11 +98,11 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
              new MaterialAlertDialogBuilder(requireContext())
                   .setTitle(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_title))
                   .setMessage(getString(org.gampiot.robok.feature.res.R.string.warning_project_created_message))
-                  .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (d, i) -> {
-                        d.dismiss();
+                  .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.title_open_project), (d, i) -> {
+                        openFragment(new EditorFragment(projectManager.projectDir));
                   })
-                  .setNegativeButton("Build", (dd, ii) -> {
-                       projectManager.build();
+                  .setNegativeButton(getString(org.gampiot.robok.feature.res.R.string.common_word_ok), (dd, ii) -> {
+                        dd.dismiss();
                   })
                   .create();
          dialog.show();         
