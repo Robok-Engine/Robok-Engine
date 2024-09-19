@@ -6,19 +6,20 @@ appcompat = "1.7.0"
 coroutines = "1.9.0"
 glide = "4.16.0"
 lifecycle = "2.8.6"
-coreKtx = "1.13.1"
-fragmentKtx = "1.8.3"
+core-ktx = "1.13.1"
+fragment-ktx = "1.8.3"
 splashscreen = "1.2.0-alpha02"
 preference = "1.2.1"
 datastore = "1.1.1"
-serializationJson = "1.7.3"
-okhttpBom = "4.12.0"
+serialization-jdon = "1.7.3"
+okhttp-bom = "4.12.0"
 desugar = "2.1.2"
-composeBom = "2024.09.02"
-activityCompose = "1.9.2"
-navigationCompose = "2.8.1"
-materialMotion = "2.0.1"
-aboutLibraries = "11.2.3"
+compose-bom = "2024.09.02"
+activity-compose = "1.9.2"
+navigation-compose = "2.8.1"
+material-motion = "2.0.1"
+about-libraries = "11.2.3"
+sora-editor = "0.23.4"
 
 [plugins]
 agp-lib = { id = "com.android.library", version.ref = "agp" }
@@ -26,24 +27,35 @@ agp-app = { id = "com.android.application", version.ref = "agp" }
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
-about-libraries-plugin = {id = "com.mikepenz.aboutlibraries.plugin", version.ref = "aboutLibraries" }
+about-libraries-plugin = {id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 
 [libraries]
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
-lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
-coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
-fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+lifecycle-runtime-ktx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+core-ktx = { module = "androidx.core:core-ktx", version.ref = "core-ktx" }
+fragment-ktx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragment-ktx" }
 splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
 preference = { module = "androidx.preference:preference", version.ref = "preference" }
-datastorePreferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
-coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
-coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
-serializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
+datastore-oreferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+
+compose-bom = { module = "androidx.compose:compose-bom", version.ref = "compose-bom" }
+activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+navigation-compose = { module = "androidx.navigation:navigation-compose", version.ref = "navigation-compose" }
+material-motion-compose-core = { module = "io.github.fornewid:material-motion-compose-core", version.ref = "material-motion" }
+
+coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutines-android = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization-json" }
+
 glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
-okhttpBom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttpBom" }
-desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
-composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
-activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
-navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
-materialMotionComposeCore = { module = "io.github.fornewid:material-motion-compose-core", version.ref = "materialMotion" }
+
+okhttp-bom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttp-bom" }
+
+desugar-jdk-libs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
+
+sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor" version.ref = "sora-editor" }
+sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp" version.ref = "sora-editor" }
+sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java" version.ref = "sora-editor" }
+sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate" version.ref = "sora-editor" }

@@ -96,34 +96,35 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    // Dependências externas referenciando o Version Catalog
     implementation(libs.appcompat)
-    implementation(libs.lifecycleRuntimeKtx)
-    implementation(libs.coreKtx)
-    implementation(libs.fragmentKtx)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.core.ktx)
+    implementation(libs.fragment.ktx)
     implementation(libs.splashscreen)
     implementation(libs.preference)
-    implementation(libs.datastorePreferences)
+    implementation(libs.datastore.preferences)
 
-    implementation(libs.coroutinesCore)
-    implementation(libs.coroutinesAndroid)
-    implementation(libs.serializationJson)
+    implementation(libs.coroutines.core)
+    implementation(libs.coroutines.android)
+    implementation(libs.serialization.json)
 
-    implementation(platform(libs.okhttpBom))
+    implementation(platform(libs.okhttp.bom))
     implementation("com.squareup.okhttp3:okhttp")
 
     implementation(libs.glide)
     
-    implementation(libs.material)  // Adicionando a dependência do Material Design
+    implementation(libs.material)
 
-    coreLibraryDesugaring(libs.desugarJdkLibs)
+    coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-    implementation(platform(libs.composeBom))
-    implementation(libs.activityCompose)
-    implementation(libs.navigationCompose)
-    implementation(libs.materialMotionComposeCore)
-
-    // Dependências de projetos internos
+    implementation(platform(libs.compose.bom))
+    implementation(libs.activity.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.material.motion.compose.core)
+    
+    implementation(libs.sora.editor)
+    
+    // projects
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
     implementation(project(":robok:robok-aapt2"))
