@@ -172,7 +172,8 @@
     "received_events_url": "https://api.github.com/users/Xori71/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Translation"
   },
   {
     "login": "Kefir2105",
@@ -193,6 +194,7 @@
     "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Translation"
   }
 ]
