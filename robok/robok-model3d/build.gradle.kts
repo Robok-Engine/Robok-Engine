@@ -49,7 +49,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.7.0")
     
     implementation("com.badlogicgames.gdx:gdx:1.9.14")
-    implementation("com.badlogicgames.gdx:gdx-backend-android:1.9.14")
+    implementation("com.badlogicgames.gdx:gdx-backend-android:1.12.1")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi-v7a")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86")
