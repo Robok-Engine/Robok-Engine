@@ -27,6 +27,7 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
 import org.gampiot.robok.ui.activities.SettingsActivity
 
