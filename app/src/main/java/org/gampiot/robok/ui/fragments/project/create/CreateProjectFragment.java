@@ -103,7 +103,7 @@ public class CreateProjectFragment extends RobokFragment implements ProjectManag
                   .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.title_open_project), (d, i) -> {
                         openFragment(new EditorFragment(
                                 projectManager,
-                                projectManager.getProjectPath()
+                                projectManager.getProjectPath().getAbsolutePath()
                             )
                         );
                   })
