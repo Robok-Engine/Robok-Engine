@@ -1,0 +1,37 @@
+[versions]
+material = "1.13.0-alpha06"
+appcompat = "1.7.0"
+coroutines = "1.9.0"
+glide = "4.16.0"
+lifecycle = "2.8.6"
+coreKtx = "1.13.1"
+fragmentKtx = "1.8.3"
+splashscreen = "1.2.0-alpha02"
+preference = "1.2.1"
+datastore = "1.1.1"
+serializationJson = "1.7.3"
+okhttpBom = "4.12.0"
+desugar = "2.1.2"
+composeBom = "2024.09.02"
+activityCompose = "1.9.2"
+navigationCompose = "2.8.1"
+materialMotion = "2.0.1"
+
+[libraries]
+appcompat = { module = "androidx.appcompat:appcompat", version.ref = "appcompat" }
+lifecycleRuntimeKtx = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "lifecycle" }
+coreKtx = { module = "androidx.core:core-ktx", version.ref = "coreKtx" }
+fragmentKtx = { module = "androidx.fragment:fragment-ktx", version.ref = "fragmentKtx" }
+splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "splashscreen" }
+preference = { module = "androidx.preference:preference", version.ref = "preference" }
+datastorePreferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastore" }
+coroutinesCore = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android", version.ref = "coroutines" }
+serializationJson = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serializationJson" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide" }
+okhttpBom = { module = "com.squareup.okhttp3:okhttp-bom", version.ref = "okhttpBom" }
+desugarJdkLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugar" }
+composeBom = { module = "androidx.compose:compose-bom", version.ref = "composeBom" }
+activityCompose = { module = "androidx.activity:activity-compose", version.ref = "activityCompose" }
+navigationCompose = { module = "androidx.navigation:navigation-compose", version.ref = "navigationCompose" }
+materialMotionComposeCore = { module = "io.github.fornewid:material-motion-compose-core", version.ref = "materialMotion" }
