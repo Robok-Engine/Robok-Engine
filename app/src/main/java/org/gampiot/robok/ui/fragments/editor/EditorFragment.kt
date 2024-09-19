@@ -42,7 +42,7 @@ import java.io.File
 
 class EditorFragment(
    private val projectPath: String,
-   private val projectManager: ProjectManager
+   private val projectManager: ProjectManager = ProjectManager()
 ) : RobokFragment() {
 
     var _binding: FragmentEditorBinding? = null
