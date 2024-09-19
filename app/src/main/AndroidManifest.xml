@@ -55,7 +55,7 @@
             android:name="org.robok.model3d.launcher.AndroidLauncher"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
-            android:exported="true">
+            android:exported="true" />
             
     </application>
 
