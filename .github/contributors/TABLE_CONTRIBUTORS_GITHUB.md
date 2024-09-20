@@ -7,5 +7,5 @@
 | skinvent | 13 | Bot |
 | github-actions[bot] | 10 | Bot |
 | Paxsenix0 | 2 | Translation |
-| Xori71 | 1 | N/A |
-| Kefir2105 | 1 | N/A |
+| Xori71 | 1 | Translation |
+| Kefir2105 | 3 | Translation |
