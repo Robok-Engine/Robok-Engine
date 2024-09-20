@@ -29,7 +29,6 @@ import org.gampiot.robok.ui.fragments.project.template.ProjectTemplatesFragment
 import org.gampiot.robok.ui.fragments.project.create.CreateProjectFragment
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.ui.fragments.editor.EditorFragment
-import org.gampiot.robok.ui.activities.SettingsActivity
 
 class HomeFragment : RobokFragment() {
 
@@ -62,9 +61,12 @@ class HomeFragment : RobokFragment() {
         binding.openProject.setOnClickListener {
             openFolderPicker()
         }
+        
+        /*
         binding.openSettings.setOnClickListener {
             startActivity(Intent(requireContext(), SettingsActivity::class.java))
         }
+        */
         
         binding.openTerminal.setOnClickListener {
             startActivity(Intent(requireContext(), TerminalActivity::class.java))
