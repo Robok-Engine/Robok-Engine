@@ -36,6 +36,11 @@
         </activity>
         
         <activity
+            android:name="org.gampiot.robok.ui.activities.editor.EditorActivity"
+            android:exported="true"
+            android:windowSoftInputMode="adjustResize"/>
+        
+        <activity
             android:name="org.gampiot.robok.feature.util.activities.DebugActivity"
             android:exported="true" />
             

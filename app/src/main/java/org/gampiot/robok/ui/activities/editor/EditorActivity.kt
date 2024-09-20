@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.fragments.editor
+package org.gampiot.robok.ui.activites.editor
 
 import android.os.Bundle
 import android.os.Handler
@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
 import android.content.Intent
+import android.net.Uri
+import android.provider.DocumentsContract
 
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -23,11 +25,11 @@ import org.gampiot.robok.app.Ids
 import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.databinding.FragmentEditorBinding
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
-import org.gampiot.robok.ui.fragments.editor.logs.LogsFragment
-import org.gampiot.robok.ui.fragments.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robok.ui.fragments.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.ui.activites.editor.logs.LogsFragment
+import org.gampiot.robok.ui.activites.editor.diagnostic.DiagnosticFragment
+import org.gampiot.robok.ui.activites.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
-import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.feature.util.base.RobokActivity
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
@@ -42,41 +44,34 @@ import org.robok.diagnostic.logic.DiagnosticListener
 
 import java.io.File
 
-class EditorFragment(
-   private val projectManager: ProjectManager = ProjectManager(),
-   private val projectPath: String
-) : RobokFragment() {
+class EditorActivity(
+    private val projectManager: ProjectManager = ProjectManager(),
+    private val projectURI: Uri
+) : RobokActivity() {
 
-    var _binding: FragmentEditorBinding? = null
-    val binding get() = _binding!!
-    val handler = Handler(Looper.getMainLooper())
-    val diagnosticTimeoutRunnable = object : Runnable {
+    private var _binding: ActivityEditorBinding? = null
+    private val binding get() = _binding!!
+    private val handler = Handler(Looper.getMainLooper())
+    private val diagnosticTimeoutRunnable = object : Runnable {
         override fun run() {
             binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
             binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
             binding.diagnosticStatusImage.visibility = View.VISIBLE
         }
     }
-    
-    var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
 
-    val diagnosticStandTime : Long = 800
-   
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentEditorBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
+    private val diagnosticStandTime: Long = 800
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        _binding = ActivityEditorBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         configureScreen()
     }
-    
-    fun configureScreen() {
-        projectManager.setProjectPath(File(projectPath))
+
+    private fun configureScreen() {
+        projectManager.setProjectPath(File(processUri(projectURI)))
         configureTabLayout()
         configureToolbar()
         configureDrawer()
@@ -84,23 +79,27 @@ class EditorFragment(
         configureFileTree()
         configureButtons()
     }
-  
-    fun configureButtons () {
+
+    private fun configureButtons() {
         binding.runButton.setOnClickListener {
             projectManager.build()
         }
     }
 
-    fun configureTabLayout() {
+    private fun configureTabLayout() {
         binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabSelected(tab: TabLayout.Tab?) {
                 tab?.let {
                     when (it.text) {
                         getString(Strings.text_logs) -> {
-                            openFragment(Ids.drawer_editor_right_fragment_container, LogsFragment())
+                            supportFragmentManager.beginTransaction()
+                                .replace(Ids.drawer_editor_right_fragment_container, LogsFragment())
+                                .commit()
                         }
                         getString(Strings.text_diagnostic) -> {
-                            openFragment(Ids.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
+                            supportFragmentManager.beginTransaction()
+                                .replace(Ids.drawer_editor_right_fragment_container, DiagnosticFragment(diagnosticsList))
+                                .commit()
                         }
                     }
                 }
@@ -111,26 +110,26 @@ class EditorFragment(
         })
     }
 
-    fun configureToolbar() {
+    private fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
-              if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                    binding.drawerLayout.closeDrawer(GravityCompat.START)
-              } else {
-                    binding.drawerLayout.openDrawer(GravityCompat.START)
-              }
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+                binding.drawerLayout.closeDrawer(GravityCompat.START)
+            } else {
+                binding.drawerLayout.openDrawer(GravityCompat.START)
+            }
         }
         binding.diagnosticStatusImage.setOnClickListener {
-              if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                    binding.drawerLayout.closeDrawer(GravityCompat.END)
-              } else {
-                    binding.drawerLayout.openDrawer(GravityCompat.END)
-              }
-              binding.tabLayout.getTabAt(1)?.select()
+            if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                binding.drawerLayout.closeDrawer(GravityCompat.END)
+            } else {
+                binding.drawerLayout.openDrawer(GravityCompat.END)
+            }
+            binding.tabLayout.getTabAt(1)?.select()
         }
     }
 
-    fun configureDrawer() {
+    private fun configureDrawer() {
         binding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             var leftDrawerOffset = 0f
             var rightDrawerOffset = 0f
@@ -160,11 +159,11 @@ class EditorFragment(
         })
     }
 
-    fun configureEditor() {
+    private fun configureEditor() {
         val diagnosticListener = object : DiagnosticListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
-                
+
                 if (isError) {
                     binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
                 } else {
@@ -177,11 +176,11 @@ class EditorFragment(
             override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
                 binding.codeEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
                 diagnosticsList.add(
-                   DiagnosticItem(
-                       "Error",
-                       msg,
-                       1
-                   )
+                    DiagnosticItem(
+                        "Error",
+                        msg,
+                        1
+                    )
                 )
                 onDiagnosticStatusReceive(true)
             }
@@ -192,7 +191,7 @@ class EditorFragment(
                 updateUndoRedo()
                 binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
-                
+
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
                 handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
             }
@@ -211,9 +210,9 @@ class EditorFragment(
         }
         handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
     }
-    
-    fun configureFileTree() {
-        val fileObject = file(File(projectPath))
+
+    private fun configureFileTree() {
+        val fileObject = file(File(processUri(projectURI)))
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
@@ -221,17 +220,40 @@ class EditorFragment(
                     return
                 }
                 val fileName = node.value.getName()
-                
+
                 if (fileName.endsWith(".obj")) {
-                    //Open 3D modeling
-                    startActivity(Intent(requireContext(), AndroidLauncher::class.java))
+                    // Open 3D modeling
+                    startActivity(Intent(this@EditorActivity, AndroidLauncher::class.java))
                 }
             }
         })
-        binding.fileTree.setIconProvider(DefaultFileIconProvider(requireContext()))
+        binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
     }
     
-    fun updateUndoRedo() {
+    private fun processUri(uri: Uri) String {
+        contentResolver.takePersistableUriPermission(
+            uri,
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+        )
+        val documentId = DocumentsContract.getTreeDocumentId(uri)
+        val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
+        val path = getPathFromUri(folderUri)
+        
+        if (path == null) return
+    }
+    
+    private fun getPathFromUri(uri: Uri): String? {
+        val documentId = DocumentsContract.getDocumentId(uri)
+        val split = documentId.split(":")
+        val type = split[0]
+        val relativePath = split[1]
+        if ("primary".equals(type, true)) {
+           return "/storage/emulated/0/$relativePath"
+        }
+        return null
+    }
+
+    private fun updateUndoRedo() {
         binding.redo?.let {
             it.isEnabled = binding.codeEditor.isCanRedo()
         }
@@ -240,8 +262,8 @@ class EditorFragment(
         }
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         _binding = null
     }
 }
