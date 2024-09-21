@@ -22,8 +22,10 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
+import androidx.compose.material3.Typography
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -50,7 +52,8 @@ fun TopBar(
                 Text(
                     text = label,
                     maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
+                    style = Typography.headlineLarge,
+                    overflow = TextOverflow.Ellipsis
                 )
             },
             actions = actions,
