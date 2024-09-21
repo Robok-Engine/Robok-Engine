@@ -63,8 +63,8 @@ okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref 
 
 gson = { group = "com.google.code.gson", name = "gson", version = "2.11.0" }
 
-altlr = { group = "org.antlr", name = "antlr4", version.ref = "antlr" }
-antlr-runtime = { group = "org.antlr", name = "antlr4-runtime", version.ref = "antlr" }
+antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }
+antlr-runtime = { group = "org.antlr", name = "antlr4-runtime", version = "4.13.2" }
 
 libgdx = { group = "com.badlogicgames.gdx", name = "gdx", version.ref = "libgdx" }
 libgdx-backend-android = { group = "com.badlogicgames.gdx", name = "gdx-backend-android", version.ref = "libgdx" }
