@@ -30,7 +30,7 @@ class FileWrapper(val file: File) : FileObject {
             return emptyList()
         }
 
-        return list.map { f -> file(f) }
+        return list.map { f -> FileWrapper(f) }
     }
 
     fun getNativeFile():File{
@@ -50,7 +50,7 @@ class FileWrapper(val file: File) : FileObject {
     }
 
     override fun getParentFile(): FileObject? {
-        return file.parentFile?.let { file(it) }
+        return file.parentFile?.let { FileWrapper(it) }
     }
 
     override fun getAbsolutePath(): String {
