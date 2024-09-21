@@ -1,43 +1,31 @@
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    id("kotlin-parcelize")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
     id("maven-publish")
 }
 
 android {
     namespace = "dev.trindadedev.easyui.components"
-    compileSdk = 35
-
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     }
 
     kotlinOptions {
-        jvmTarget = "17"
+        jvmTarget = libs.versions.android.jvm.get()
     }
 }
 
 dependencies {
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.13.0-alpha06")
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation(libs.appcompat)
+    implementation(libs.material)
 }
 
 publishing {

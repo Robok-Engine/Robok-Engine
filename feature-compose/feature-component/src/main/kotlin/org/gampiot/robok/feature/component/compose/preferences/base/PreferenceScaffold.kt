@@ -1,6 +1,7 @@
+package org.gampiot.robok.feature.component.compose.preferences.base
 
 /*
- * Copyright 2022, Lawnchair
+ * Copyright 2021, Lawnchair.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,8 +16,6 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.base
-
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -25,6 +24,8 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
+
+import org.gampiot.robok.feature.component.compose.appbars.TopBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

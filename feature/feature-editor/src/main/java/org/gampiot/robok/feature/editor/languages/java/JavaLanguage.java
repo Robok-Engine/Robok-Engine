@@ -74,12 +74,11 @@ import java.util.regex.Pattern;
 
 import org.gampiot.robok.feature.editor.RobokCodeEditor;
 import org.gampiot.robok.feature.editor.EditorListener;
-import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.gampiot.robok.feature.editor.languages.java.models.*;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
 
-import org.robok.diagnostic.logic.*;
+import org.robok.antlr.logic.*;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -93,7 +92,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
  *
  * @author Rosemoe
  */
-public class JavaLanguage implements Language, EditorListener, DiagnosticListener {
+public class JavaLanguage implements Language, EditorListener, AntlrListener {
 
      private final static String TAG = "JavaLanguage";
      private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
@@ -155,7 +154,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
           editorListener = value;
      }
      
-     public void setDiagnosticListener(DiagnosticListener value) { 
+     public void setAntlrListener(AntlrListener value) { 
           diagnostics.diagnosticListener = value;
      }
      
@@ -532,7 +531,7 @@ public class JavaLanguage implements Language, EditorListener, DiagnosticListene
   
     public class Diagnostics {
         
-        public DiagnosticListener diagnosticListener;
+        public AntlrListener diagnosticListener;
         public DiagnosticsContainer diagnostics;
         public boolean onSuccess = true;
         

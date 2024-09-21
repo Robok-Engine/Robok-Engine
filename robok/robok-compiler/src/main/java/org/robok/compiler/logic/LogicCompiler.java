@@ -1,8 +1,26 @@
 package org.robok.compiler.logic;
 
 /*
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
+/*
 * Old LogicCompiler 
 * Class to compile the code manually and show result 
+* @author Thiarley Rocha (ThDev-Only)
 */
 
 import android.content.Context;
@@ -341,7 +359,7 @@ public class LogicCompiler {
             String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
             
             // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
-            String type = matcher.group(2).equalsIgnoreCase("var") ? VariableObject.setVariableTypeFromValue(matcher.group(4)) : matcher.group(2);
+            String type = matcher.group(2).equalsIgnoreCase("var") ? VariableObject.Companion.setVariableTypeFromValue(matcher.group(4)) : matcher.group(2);
             String name = matcher.group(3);
             String value = matcher.group(4);
             

@@ -1,5 +1,22 @@
 package org.gampiot.robok.feature.settings.compose.screens.ui.about
 
+/*
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -16,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.FontWeight
 import androidx.annotation.IdRes
 
 import org.koin.androidx.compose.koinViewModel
@@ -27,6 +45,7 @@ import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.feature.component.compose.text.RobokText
 import org.gampiot.robok.feature.res.Strings
 
 import coil.compose.SubcomposeAsyncImage
@@ -108,11 +127,12 @@ fun AboutScreen(
                     .clip(CircleShape),
             )
             Spacer(modifier = Modifier.height(12.dp))
-            Text(
+            RobokText(
                 text = "Robok",
+                fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.titleLarge,
             )
-            Text(
+            RobokText(
                 text = version,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -171,8 +191,8 @@ fun ContributorRow(
     val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
-        title = { Text(text = dataInfo.login) },
-        description = { Text(text = dataInfo.role) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.login) },
+        description = { RobokText(text = dataInfo.role) },
         modifier = Modifier
            .clickable(
               onClick = {
@@ -212,8 +232,8 @@ fun LinkRow(
                   uriHandler.openUri(dataInfo.url)
               }
            ),
-        title = { Text(text = dataInfo.name) },
-        description = { Text(text = dataInfo.description) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.name) },
+        description = { RobokText(text = dataInfo.description) },
         startWidget = {
             Image(
                 painter = painterResource(id = dataInfo.imageResId),

@@ -16,13 +16,15 @@
         <item name="android:fontFamily">@font/nunito_regular</item>
         <item name="android:forceDarkAllowed">false</item>
         
-        <!-- SplashScreen -->
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
-        <item name="android:windowSplashScreenAnimationDuration">1500</item>
-        
         <!-- Constant Colors -->
         <item name="rbkColorGreen">@color/rbk_theme_green</item>
         <item name="rbkColorRed">@color/rbk_theme_red</item>
+        <item name="colorSplashBg">@color/color_splash_bg</item>
+        
+        <!-- SplashScreen -->
+        <item name="android:windowSplashScreenBackground">?colorSplashBg</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen_robok</item>
+        <item name="android:windowSplashScreenAnimationDuration">1500</item>
     </style>
     
     <style name="CollapsingToolbarLarge" parent="Widget.Material3.CollapsingToolbar.Large">

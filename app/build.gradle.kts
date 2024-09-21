@@ -3,21 +3,21 @@ import java.io.ByteArrayOutputStream
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
     id("kotlin-kapt")
-    alias(libs.plugins.compose.compiler)
 }
 
 val app_version = "0.0.1"
 
 android {
     namespace = "org.gampiot.robok"
-    compileSdk = 35
-
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    
     defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         applicationId = "org.gampiot.robok"
-        minSdk = 26
-        targetSdk = 34
         versionCode = 1
         versionName = app_version
         
@@ -39,9 +39,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
         isCoreLibraryDesugaringEnabled = true
+    }
+    
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
 
     buildTypes {
@@ -69,12 +73,6 @@ android {
         buildConfig = true
         viewBinding = true
         compose = true
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
     }
 
     androidResources {
@@ -127,7 +125,7 @@ dependencies {
     
     // projects
     implementation(project(":robok:robok-compiler"))
-    implementation(project(":robok:robok-diagnostic"))
+    implementation(project(":robok:robok-antlr"))
     implementation(project(":robok:robok-aapt2"))
     implementation(project(":robok:robok-model3d"))
 

@@ -20,7 +20,7 @@ rootProject.name = "Robok-Engine"
 include(":app")
 
 include(":robok:robok-compiler")
-include(":robok:robok-diagnostic")
+include(":robok:robok-antlr")
 include(":robok:robok-lang")
 include(":robok:robok-util")
 include(":robok:robok-aapt2")
@@ -38,4 +38,3 @@ include(":feature-compose:feature-component")
 include(":feature-compose:feature-settings")
 
 include(":easy-components")
-include(":easy-filepicker")

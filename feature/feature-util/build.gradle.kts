@@ -1,25 +1,15 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
 }
 
 android {
     namespace = "org.gampiot.robok.feature.util"
-    compileSdk = 35
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
-
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
     }
     
     buildFeatures {
@@ -27,34 +17,23 @@ android {
     }
        
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "17"
 }
 
 dependencies {
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.13.0-alpha06")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.fragment:fragment-ktx:1.8.3")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("androidx.preference:preference:1.2.1")
+    implementation(libs.material)
+    implementation(libs.appcompat)
+    implementation(libs.core.ktx)
+    implementation(libs.fragment.ktx)
+    implementation(libs.datastore.preferences)
+    implementation(libs.koin.android)
     
-   val koinVersion = "4.0.0"
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    
-    // Easy - UI
     implementation(project(":easy-components"))
     
     implementation(project(":feature:feature-res:strings"))

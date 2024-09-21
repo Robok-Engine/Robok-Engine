@@ -1,19 +1,20 @@
 package org.gampiot.robok.feature.component.compose.preferences.switch
 
 /*
- * Copyright 2021, Lawnchair
+ *  This file is part of Robok © 2024.
  *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
  *
- *     http://www.apache.org/licenses/LICENSE-2.0
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
  *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
 import androidx.compose.foundation.background
@@ -32,11 +33,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
+import org.gampiot.robok.feature.component.compose.text.RobokText
 
 /**
  * A Preference that provides a two-state toggleable option.
+ * @author Aquiles Trindade (trindadedev).
  */
 @Composable
 fun PreferenceSwitch(
@@ -66,8 +70,8 @@ fun PreferenceSwitch(
             .fillMaxHeight()
             .padding(vertical = 16.dp)
             .padding(start = 16.dp),
-        title = { Text(text = label) },
-        description = { description?.let { Text(text = it) } },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = label) },
+        description = { description?.let { RobokText(text = it) } },
         endWidget = {
             if (onClick != null) {
                 Spacer(

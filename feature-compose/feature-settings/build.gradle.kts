@@ -1,18 +1,17 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.about.libraries.plugin)
+    alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.mikepenz.aboutlibraries.plugin")
 }
 
 android {
     namespace = "org.gampiot.robok.feature.settings.compose"
-    compileSdk = 35
-
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     
@@ -20,73 +19,49 @@ android {
         compose = true
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
     
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
     }
-
-    kotlinOptions {
-        jvmTarget = "18"
-    }
 }
 
 dependencies {
-
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.appcompat)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.core.ktx)
+    implementation(libs.datastore.preferences)
+    implementation(libs.material)
+     
+    implementation(platform(libs.okhttp.bom))
+    implementation("com.squareup.okhttp3:okhttp")
     
-    implementation("com.google.android.material:material:1.13.0-alpha06")
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
     
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
+    implementation(libs.material.compose)
+    implementation(libs.ui.compose)
+    implementation(libs.ui.graphics.compose)
+    implementation(libs.activity.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.viewmodel.compose)
     
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation(libs.about.libraries.core)
+    implementation(libs.about.libraries.compose)
+    implementation(libs.about.libraries.compose.m3)
     
-    val koinVersion = "4.0.0"
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
-    
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    
-    // compose
-    implementation(platform("androidx.compose:compose-bom:2024.09.02"))
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.activity:activity-compose:1.9.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.navigation:navigation-compose:2.8.1")
-    
-    implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
-    
-    val aboutLibrariesVersion = "11.2.3"
-    implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
+    implementation(libs.coil.compose)
+    implementation(libs.serialization.json)
     
     implementation(project(":feature:feature-res:strings"))
     implementation(project(":feature-compose:feature-component"))
-}
-
-kapt {
-  correctErrorTypes = true
 }
