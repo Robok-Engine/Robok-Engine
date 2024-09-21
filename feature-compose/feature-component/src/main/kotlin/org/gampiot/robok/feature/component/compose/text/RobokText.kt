@@ -10,6 +10,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.TextUnit
 
 import org.gampiot.robok.feature.component.compose.R
 
@@ -26,7 +28,10 @@ val nunitoTextStyle = TextStyle(
 fun RobokText(
     text: String,
     modifier: Modifier = Modifier,
-    style: TextStyle = nunitoTextStyle
+    style: TextStyle = nunitoTextStyle,
+    maxLines: Int = Int.MAX_VALUE,
+    overflow: TextOverflow = TextOverflow.Clip,
+    fontSize: TextUnit = TextUnit.Unspecified
 ) {
     Text(text = text, style = style, modifier = modifier)
 }
