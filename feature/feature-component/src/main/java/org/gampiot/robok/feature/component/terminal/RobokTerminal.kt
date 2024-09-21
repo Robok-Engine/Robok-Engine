@@ -11,6 +11,11 @@ import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutBottomsheetTerminalBinding
 import org.gampiot.robok.feature.component.log.Log
 
+/*
+* A Basic BottomSheet for Logs.
+* @author Aquiles Trindade (trindadedev).
+*/
+
 open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
     val binding: LayoutBottomsheetTerminalBinding =

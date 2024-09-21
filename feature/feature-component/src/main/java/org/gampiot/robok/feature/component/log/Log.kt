@@ -7,6 +7,11 @@ import androidx.appcompat.widget.AppCompatTextView
 
 import org.gampiot.robok.feature.component.R
 
+/*
+* A Basic TextView to use like Log.i(..)
+* @author Aquiles Trindade (trindadedev).
+*/
+
 class Log : AppCompatTextView {
 
     constructor(context: Context) : super(context) {

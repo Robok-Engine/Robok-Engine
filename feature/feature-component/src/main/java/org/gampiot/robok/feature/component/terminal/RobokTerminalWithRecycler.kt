@@ -13,6 +13,11 @@ import org.gampiot.robok.feature.component.R
 import org.gampiot.robok.feature.component.databinding.LayoutBottomsheetTerminalWithRecyclerBinding
 import org.gampiot.robok.feature.component.log.Log
 
+/*
+* A Basic BottomSheet for Logs, with RecyclerView.
+* @author Aquiles Trindade (trindadedev).
+*/
+
 open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(context) {
 
     val binding: LayoutBottomsheetTerminalWithRecyclerBinding =

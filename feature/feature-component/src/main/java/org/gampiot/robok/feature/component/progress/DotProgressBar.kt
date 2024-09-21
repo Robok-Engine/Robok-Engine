@@ -13,6 +13,11 @@ import android.widget.LinearLayout
 
 import org.gampiot.robok.feature.component.R
 
+/*
+* A basic progress bar with points.
+* @author Sourabh  Gupta.
+*/
+
 class DotProgressBar : FrameLayout {
 
     private var margin: Int = 0
