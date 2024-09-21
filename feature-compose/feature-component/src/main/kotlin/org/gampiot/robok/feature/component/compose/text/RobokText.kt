@@ -17,8 +17,7 @@ val NunitoFontFamily = FontFamily(
 )
 
 val nunitoTextStyle = TextStyle(
-    fontFamily = customFontFamily,
-    fontSize = 16.sp 
+    fontFamily = NunitoFontFamily
 )
 
 @Composable
