@@ -72,7 +72,7 @@ class EditorActivity : RobokActivity() {
          if (extras != null) {
               val projectManagerWrapper = extras.getParcelable<ProjectManagerWrapper>("projectManager")
               projectPath = extras.getString("projectPath")
-              projectManager = ProjectManager(applicationContext).apply {
+              projectManager = ProjectManager(this@EditorActivity).apply {
                      setProjectPath(File(projectManagerWrapper?.projectPath))
                }
          }
