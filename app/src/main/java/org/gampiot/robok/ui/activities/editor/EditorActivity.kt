@@ -225,9 +225,9 @@ class EditorActivity : RobokActivity() {
 
     private fun configureFileTree() {
         val fileObject = if (projectPath != null) {
-            File(projectPath)
+            file(File(projectPath))
         } else {
-            File(processUri(projectURI))
+            file(File(processUri(projectURI)))
         }
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
