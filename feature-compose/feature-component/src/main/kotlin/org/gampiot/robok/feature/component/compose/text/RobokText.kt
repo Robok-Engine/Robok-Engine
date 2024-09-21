@@ -50,16 +50,18 @@ fun RobokText(
     maxLines: Int = Int.MAX_VALUE,
     overflow: TextOverflow = TextOverflow.Clip,
     fontSize: TextUnit = TextUnit.Unspecified,
-    color: Color = Color.Unspecified
+    color: Color = Color.Unspecified,
+    fontWeight: FontWeight? = null,
 ) {
     Text(
         text = text, 
-        style = style,
         modifier = modifier,
+        style = style,
         maxLines = maxLines,
         overflow = overflow,
         fontSize = fontSize,
-        color = color
+        color = color,
+        fontWeight = fontWeight
     )
 }
 
