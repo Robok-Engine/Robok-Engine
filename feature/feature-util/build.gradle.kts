@@ -26,17 +26,13 @@ android {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "17"
-}
-
 dependencies {
     implementation(libs.material)
-    implementation(libs.material)
+    implementation(libs.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
     implementation(libs.datastore.preferences")
-    implementation(libs.koin-android)
+    implementation(libs.koin.android)
     
     implementation(project(":easy-components"))
     
