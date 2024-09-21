@@ -44,7 +44,7 @@
                android:orientation="vertical"
                android:padding="8dp">
 
-               <org.gampiot.robok.feature.component.textfield.NormalTextField
+               <dev.trindadedev.easyui.components.textfields.TInput
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
@@ -52,7 +52,7 @@
                    app:text="New App"
                    app:hint="@string/hint_project_name" />
 
-               <org.gampiot.robok.feature.component.textfield.NormalTextField
+               <dev.trindadedev.easyui.components.textfields.TInput
                    android:layout_width="match_parent"
                    android:layout_height="wrap_content"
                    android:layout_margin="8dp"
