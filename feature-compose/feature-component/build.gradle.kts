@@ -1,9 +1,8 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
-    id("kotlin-kapt")
-    id("org.jetbrains.kotlin.plugin.compose")
-    id("com.mikepenz.aboutlibraries.plugin")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
+    alias(libs.plugins.about.libraries.plugin)
+    alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -46,47 +45,33 @@ android {
 
 dependencies {
 
-    val aboutLibrariesVersion = "11.2.3"
-    val koinVersion = "4.0.0"
-    
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("com.google.android.material:material:1.13.0-alpha06")
+    implementation(libs.appcompat)
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.core.ktx)
+    implementation(libs.datastore.preferences)
+    implementation(libs.material)
      
-    implementation("com.squareup.okhttp3:okhttp:4.12.0")
-    implementation("com.mikepenz:aboutlibraries-core:$aboutLibrariesVersion")
+    implementation(libs.okhttp.bom)
+    implementation("com.squareup.okhttp3:okhttp")
     
-    //implementation("com.google.dagger:hilt-android:2.44")
-    //kapt("com.google.dagger:hilt-android-compiler:2.44")
-    implementation("io.insert-koin:koin-android:$koinVersion")
-    implementation("io.insert-koin:koin-androidx-compose:$koinVersion")
+    implementation(libs.koin-android)
+    implementation(libs.koin-androidx-compose)
     
-    //compose
-    implementation(platform("androidx.compose:compose-bom:2024.09.02"))
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.material3:material3")
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.ui:ui")
-    implementation("androidx.compose.ui:ui-graphics")
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    implementation("androidx.activity:activity-compose:1.9.2")
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.6")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.navigation:navigation-compose:2.8.1")
-    implementation("io.github.fornewid:material-motion-compose-core:2.0.1")
-    implementation("com.mikepenz:aboutlibraries-compose:$aboutLibrariesVersion")
-    implementation("com.mikepenz:aboutlibraries-compose-m3:$aboutLibrariesVersion")
+    implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
+    implementation(libs.material.compose)
+    implementation(libs.ui.compose)
+    implementation(libs.ui.graphics.compose)
+    implementation(libs.activity.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.viewmodel.compose)
     
-    implementation("io.coil-kt:coil-compose:2.7.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation(libs.about.libraries.core)
+    implementation(libs.about.libraries.compose)
+    implementation(libs.about.libraries.compose.m3)
     
-    implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.6.1")
-    implementation("androidx.paging:paging-compose:3.3.2")
+    implementation(libs.coil.compose)
+    implementation(libs.serialization.json)
+    
     implementation(project(":feature:feature-res:strings"))
-}
-
-kapt {
-  correctErrorTypes = true
 }

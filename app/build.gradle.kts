@@ -3,9 +3,9 @@ import java.io.ByteArrayOutputStream
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
     kotlin("plugin.serialization") version "2.0.20"
     id("kotlin-kapt")
-    alias(libs.plugins.compose.compiler)
 }
 
 val app_version = "0.0.1"
