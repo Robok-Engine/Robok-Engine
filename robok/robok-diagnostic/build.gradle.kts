@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
 }
 
 android {
@@ -33,11 +33,7 @@ android {
 }
 
 dependencies {
-    val antlrVersion = "4.13.2"
-    
-    implementation("androidx.appcompat:appcompat:1.7.0")
-
-    //Antlr complete and runtime for diagnostics and compilers
-    implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
-    implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
+    implementation(libs.appcompat)
+    implementation(libs.antlr) // Dependency on ANTLR for code generation
+    implementation(libs.antlr.runtime) // ANTLR runtime dependency
 }
