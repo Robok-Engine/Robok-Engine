@@ -45,10 +45,11 @@ import org.robok.diagnostic.logic.DiagnosticListener
 
 import java.io.File
 
-class EditorActivity(
-    private val projectManager: ProjectManager = ProjectManager(),
-    private val projectURI: Uri
-) : RobokActivity() {
+class EditorActivity : RobokActivity() {
+
+    private lateinit var projectManager: ProjectManager
+    private lateinit var projectURI: Uri
+    private var projectPath: String? = null
 
     private var _binding: ActivityEditorBinding? = null
     private val binding get() = _binding!!
@@ -65,14 +66,23 @@ class EditorActivity(
     private val diagnosticStandTime: Long = 800
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        _binding = ActivityEditorBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        configureScreen()
+         super.onCreate(savedInstanceState)
+         _binding = ActivityEditorBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+         
+         val extras = intent.extras
+         if (extras != null) {
+              val projectManagerWrapper = extras.getParcelable<ProjectManagerWrapper>("projectManager")
+              projectURI = extras.getParcelable("projectURI") ?: Uri.parse("")
+              projectPath = extras.getString("projectPath")
+              projectManager = ProjectManager(applicationContext).apply {
+                     setProjectPath(File(projectManagerWrapper?.projectPath))
+               }
+         }
+         configureScreen()
     }
 
     private fun configureScreen() {
-        projectManager.setProjectPath(File(processUri(projectURI)))
         configureTabLayout()
         configureToolbar()
         configureDrawer()
@@ -213,7 +223,11 @@ class EditorActivity(
     }
 
     private fun configureFileTree() {
-        val fileObject = file(File(processUri(projectURI)))
+        val fileObject = if (projectPath != null) {
+            File(projectPath)
+        } else {
+            File(processUri(projectURI))
+        }
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
@@ -230,7 +244,7 @@ class EditorActivity(
         })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
     }
-    
+
     private fun processUri(uri: Uri): String {
         contentResolver.takePersistableUriPermission(
             uri,
@@ -239,17 +253,17 @@ class EditorActivity(
         val documentId = DocumentsContract.getTreeDocumentId(uri)
         val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
         val path = getPathFromUri(folderUri)
-        
+
         return path ?: "${getDefaultPath()}/Robok"
     }
-    
+
     private fun getPathFromUri(uri: Uri): String? {
         val documentId = DocumentsContract.getDocumentId(uri)
         val split = documentId.split(":")
         val type = split[0]
         val relativePath = split[1]
         if ("primary".equals(type, true)) {
-           return "/storage/emulated/0/$relativePath"
+            return "/storage/emulated/0/$relativePath"
         }
         return null
     }
