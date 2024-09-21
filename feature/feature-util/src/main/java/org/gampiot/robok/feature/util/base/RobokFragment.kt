@@ -21,7 +21,6 @@ import android.os.Bundle
 import android.view.View
 
 import androidx.fragment.app.Fragment
-import androidx.preference.PreferenceFragmentCompat
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.IdRes
 
