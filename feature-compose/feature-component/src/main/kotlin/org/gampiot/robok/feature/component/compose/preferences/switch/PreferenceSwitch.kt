@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.text.RobokText
@@ -69,7 +70,7 @@ fun PreferenceSwitch(
             .fillMaxHeight()
             .padding(vertical = 16.dp)
             .padding(start = 16.dp),
-        title = { RobokText(text = label) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = label) },
         description = { description?.let { RobokText(text = it) } },
         endWidget = {
             if (onClick != null) {

@@ -33,6 +33,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.text.font.FontWeight
 import androidx.annotation.IdRes
 
 import org.koin.androidx.compose.koinViewModel
@@ -128,6 +129,7 @@ fun AboutScreen(
             Spacer(modifier = Modifier.height(12.dp))
             RobokText(
                 text = "Robok",
+                fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.titleLarge,
             )
             RobokText(
@@ -230,7 +232,7 @@ fun LinkRow(
                   uriHandler.openUri(dataInfo.url)
               }
            ),
-        title = { RobokText(text = dataInfo.name) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.name) },
         description = { RobokText(text = dataInfo.description) },
         startWidget = {
             Image(

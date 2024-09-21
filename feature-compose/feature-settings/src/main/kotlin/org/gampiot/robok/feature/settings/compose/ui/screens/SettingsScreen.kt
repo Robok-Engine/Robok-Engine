@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
+import androidx.compose.ui.text.font.FontWeight
 
 import org.koin.androidx.compose.koinViewModel
 
@@ -64,8 +65,8 @@ fun generalPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(stringResource(id = Strings.settings_code_editor_title)) },
-       secondaryText = { RobokText(stringResource(id = Strings.settings_code_editor_description)) },
+       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
+       secondaryText = { RobokText(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
            navController.navigate("settings/codeeditor")
        }
@@ -77,7 +78,7 @@ fun buildPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(stringResource(id = Strings.settings_configure_rdk_title)) },
+       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { RobokText(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
            navController.navigate("settings/configure_rdk")
@@ -90,14 +91,14 @@ fun aboutPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(stringResource(id = Strings.settings_libraries_title)) },
+       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { RobokText(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
            navController.navigate("settings/libraries")
        }
    )
    Preference(
-       text = { RobokText(stringResource(id = Strings.settings_about_title)) },
+       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { RobokText(stringResource(id = Strings.settings_about_description)) },
        onClick = {
            navController.navigate("settings/about")

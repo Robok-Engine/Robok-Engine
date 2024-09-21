@@ -34,6 +34,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.text.font.FontWeight
 
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.dialog.RobokChoiceDialog
@@ -71,7 +72,7 @@ fun PreferenceChoice(
             .fillMaxHeight()
             .padding(vertical = 16.dp)
             .padding(start = 16.dp),
-        title = { RobokText(text = label) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = label) },
         endWidget = {
             if (!disabled) {
                 FilledTonalButton(
@@ -92,7 +93,7 @@ fun PreferenceChoice(
     if (opened) {
         RobokChoiceDialog(
             visible = opened,
-            title = { RobokText(title) },
+            title = { RobokText(fontWeight = FontWeight.Bold, text = title) },
             default = pref,
             options = options,
             labelFactory = labelFactory,
