@@ -31,9 +31,3 @@ android {
         jvmTarget = libs.versions.android.jvm.get()
     }
 }
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "18"
-}
-
-dependencies { }

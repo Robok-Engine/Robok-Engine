@@ -32,10 +32,6 @@ android {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "18"
-}
-
 dependencies {
     val antlrVersion = "4.13.2"
     
@@ -44,5 +40,4 @@ dependencies {
     //Antlr complete and runtime for diagnostics and compilers
     implementation("org.antlr:antlr4:$antlrVersion") // Dependency on ANTLR for code generation
     implementation("org.antlr:antlr4-runtime:$antlrVersion") // ANTLR runtime dependency
-    
 }

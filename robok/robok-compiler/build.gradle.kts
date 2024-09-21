@@ -32,10 +32,6 @@ android {
     }
 }
 
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "18"
-}
-
 dependencies {
     implementation(project(":robok:robok-util"))
     implementation(project(":robok:robok-lang"))
