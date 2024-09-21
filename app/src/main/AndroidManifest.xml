@@ -22,7 +22,7 @@
         android:supportsRtl="false"
 	android:enableOnBackInvokedCallback="true"
         android:name="org.gampiot.robok.feature.util.application.RobokApplication"
-        android:theme="@style/Theme.Robok"
+        android:theme="@style/Theme.Robok.Splash"
         android:requestLegacyExternalStorage="true">
         <activity
             android:name="org.gampiot.robok.ui.activities.MainActivity"
