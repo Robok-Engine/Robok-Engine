@@ -30,7 +30,6 @@ import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.ui.activities.editor.EditorActivity
-import org.gampiot.robok.ui.fragments.project.create.util.ProjectManagerWrapper
 import org.gampiot.robok.feature.util.getDefaultPath
 
 @Composable
