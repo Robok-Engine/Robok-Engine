@@ -44,7 +44,6 @@ android {
 }
 
 dependencies {
-
     implementation(libs.appcompat)
     implementation(libs.lifecycle.runtime.ktx)
     implementation(libs.core.ktx)
@@ -54,8 +53,8 @@ dependencies {
     implementation(libs.okhttp.bom)
     implementation("com.squareup.okhttp3:okhttp")
     
-    implementation(libs.koin-android)
-    implementation(libs.koin-androidx-compose)
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx-compose)
     
     implementation(platform(libs.compose.bom))
     implementation(libs.material3.compose)
