@@ -69,11 +69,8 @@ class EditorActivity : RobokActivity() {
          val extras = intent.extras
          if (extras != null) {
               projectPath = extras.getString("projectPath")
-              projectManager = ProjectManager(this@EditorActivity).apply {
-                     projectPath?.let {
-                          setProjectPath(File(it))
-                     }
-              }
+              projectManager = ProjectManager(this@EditorActivity)
+              projectManager.setProjectPath(projectPath!!)
          }
          configureScreen()
     }
