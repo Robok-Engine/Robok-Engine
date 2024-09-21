@@ -70,7 +70,7 @@ class EditorActivity : RobokActivity() {
          if (extras != null) {
               projectPath = extras.getString("projectPath")
               projectManager = ProjectManager(this@EditorActivity)
-              proiectPath?.let {
+              projectPath?.let {
                     projectManager.setProjectPath(File(it))
               }
          }
