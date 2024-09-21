@@ -5,6 +5,7 @@ import android.os.Environment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.content.Intent
 
 import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.NonNull
@@ -79,7 +80,7 @@ class CreateProjectFragment(
             zipFileName = "empty_game"
             javaSupport = true
             kotlinSupport = false
-            image = R.drawable.ic_empty_game
+            imageResId = R.drawable.ic_empty_game
         }
     }
 
