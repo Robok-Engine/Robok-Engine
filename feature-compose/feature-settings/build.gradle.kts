@@ -19,16 +19,6 @@ android {
         compose = true
     }
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
         targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
@@ -54,7 +44,7 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp")
     
     implementation(libs.koin.android)
-    implementation(libs.koin.androidx-compose)
+    implementation(libs.koin.androidx.compose)
     
     implementation(platform(libs.compose.bom))
     implementation(libs.material3.compose)
