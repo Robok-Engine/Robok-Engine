@@ -18,7 +18,6 @@ package org.gampiot.robok.feature.editor.languages.java.models
  */ 
 
 import org.robok.diagnostic.logic.Java8Parser.MethodModifierContext
-import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess
 
 data class Method(
     var modifiers: List<MethodModifierContext>,

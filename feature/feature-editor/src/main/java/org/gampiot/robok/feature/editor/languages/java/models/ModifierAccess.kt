@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.editor.languages.java.object
+package org.gampiot.robok.feature.editor.languages.java.models
 
 /*
  *  This file is part of Robok © 2024.

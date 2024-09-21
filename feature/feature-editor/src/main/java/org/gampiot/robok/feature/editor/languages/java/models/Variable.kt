@@ -17,7 +17,6 @@ package org.gampiot.robok.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess
 
 /*
  * Data class to store variable information.
