@@ -39,9 +39,13 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
         isCoreLibraryDesugaringEnabled = true
+    }
+    
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
 
     buildTypes {
@@ -69,12 +73,6 @@ android {
         buildConfig = true
         viewBinding = true
         compose = true
-    }
-
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
     }
 
     androidResources {

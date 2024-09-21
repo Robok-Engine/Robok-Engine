@@ -31,16 +31,16 @@ android {
     }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_18
-        targetCompatibility = JavaVersion.VERSION_18
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+    }
+
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
     
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.15"
-    }
-
-    kotlinOptions {
-        jvmTarget = "18"
     }
 }
 

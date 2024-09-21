@@ -29,14 +29,13 @@ android {
         targetCompatibility = JavaVersion.VERSION_17
     }
     
-    buildFeatures {
-        viewBinding = true
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     }
 
-    kotlin {
-        compilerOptions {
-            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
-        }
+    kotlinOptions {
+        jvmTarget = libs.versions.android.jvm.get()
     }
 }
 
