@@ -28,7 +28,6 @@ class CreateProjectFragment(
 ) : RobokFragment(), ProjectManager.CreationListener {
 
     private var binding: FragmentCreateProjectBinding? = null
-    private lateinit var template: ProjectTemplate
     private lateinit var projectManager: ProjectManager
 
     @Nullable
