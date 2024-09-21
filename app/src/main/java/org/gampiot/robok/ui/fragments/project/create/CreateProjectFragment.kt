@@ -92,8 +92,8 @@ class CreateProjectFragment(
                  val bundle = Bundle().apply {
                      putParcelable("projectManager", ProjectManagerWrapper(projectManager.getProjectPath().absolutePath))
                      putString("projectURI", projectManager.getProjectPath().toURI().toString())
-                        putString("projectPath", projectManager.getProjectPath().absolutePath)
-                     }
+                     putString("projectPath", projectManager.getProjectPath().absolutePath)
+                 }
               
                  val intent = Intent(requireContext(), EditorActivity::class.java).apply {
                       putExtras(bundle)

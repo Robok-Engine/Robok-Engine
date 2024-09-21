@@ -43,7 +43,7 @@ fun HomeScreen(
         selectedFolderUri = uri
         val bundle = Bundle().apply {
              putParcelable("projectManager", null)
-             putString("projectURI", uri)
+             putString("projectURI", uri.toString())
         }
         val intent = Intent(actContext, EditorActivity::class.java).apply {
               putExtras(bundle)
