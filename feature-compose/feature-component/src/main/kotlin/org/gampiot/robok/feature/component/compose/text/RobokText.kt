@@ -9,6 +9,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.unit.sp
 
+import org.gampiot.robok.feature.component.compose.R
+
 val NunitoFontFamily = FontFamily(
     Font(R.font.nunito_regular, FontWeight.Normal, FontStyle.Normal),
     Font(R.font.nunito_bold, FontWeight.Bold, FontStyle.Normal),
