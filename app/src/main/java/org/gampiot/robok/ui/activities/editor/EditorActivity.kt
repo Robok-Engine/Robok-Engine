@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
-import android.provider.DocumentsContract
 
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -49,8 +48,7 @@ import java.io.File
 class EditorActivity : RobokActivity() {
 
     private lateinit var projectManager: ProjectManager
-    private lateinit var projectURI: Uri
-    private var projectPath: String? = null
+    private var projectPath: String
 
     private var _binding: ActivityEditorBinding? = null
     private val binding get() = _binding!!
@@ -74,7 +72,6 @@ class EditorActivity : RobokActivity() {
          val extras = intent.extras
          if (extras != null) {
               val projectManagerWrapper = extras.getParcelable<ProjectManagerWrapper>("projectManager")
-              projectURI = extras.getParcelable("projectURI") ?: Uri.parse("")
               projectPath = extras.getString("projectPath")
               projectManager = ProjectManager(applicationContext).apply {
                      setProjectPath(File(projectManagerWrapper?.projectPath))
@@ -224,11 +221,7 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun configureFileTree() {
-        val fileObject = if (projectPath != null) {
-            file(File(projectPath))
-        } else {
-            file(File(processUri(projectURI)))
-        }
+        val fileObject = file(File(projectPath))
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
@@ -244,29 +237,6 @@ class EditorActivity : RobokActivity() {
             }
         })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
-    }
-
-    private fun processUri(uri: Uri): String {
-        contentResolver.takePersistableUriPermission(
-            uri,
-            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
-        )
-        val documentId = DocumentsContract.getTreeDocumentId(uri)
-        val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
-        val path = getPathFromUri(folderUri)
-
-        return path ?: "${getDefaultPath()}/Robok"
-    }
-
-    private fun getPathFromUri(uri: Uri): String? {
-        val documentId = DocumentsContract.getDocumentId(uri)
-        val split = documentId.split(":")
-        val type = split[0]
-        val relativePath = split[1]
-        if ("primary".equals(type, true)) {
-            return "/storage/emulated/0/$relativePath"
-        }
-        return null
     }
 
     private fun updateUndoRedo() {

@@ -91,7 +91,6 @@ class CreateProjectFragment(
              .setPositiveButton(getString(org.gampiot.robok.feature.res.R.string.title_open_project)) { _, _ ->
                  val bundle = Bundle().apply {
                      putParcelable("projectManager", ProjectManagerWrapper(projectManager.getProjectPath().absolutePath))
-                     putString("projectURI", projectManager.getProjectPath().toURI().toString())
                      putString("projectPath", projectManager.getProjectPath().absolutePath)
                  }
               

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.provider.DocumentsContract
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.ActivityResultLauncher
@@ -43,7 +44,7 @@ fun HomeScreen(
         selectedFolderUri = uri
         val bundle = Bundle().apply {
              putParcelable("projectManager", null)
-             putString("projectURI", uri.toString())
+             putString("projectPath", processUri(uri))
         }
         val intent = Intent(actContext, EditorActivity::class.java).apply {
               putExtras(bundle)
@@ -111,16 +112,38 @@ fun HomeScreen(
     }
 }
 
-fun onCreateProjectClicked() {
+private fun onCreateProjectClicked() {
     TODO("trindadedev is lazy and not implemented yet")
 }
 
-fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Uri?>) {
+private fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Uri?>) {
     folderPickerLauncher.launch(null)
 }
 
-fun onTerminalClicked(actContext: Context) {
+private fun onTerminalClicked(actContext: Context) {
     actContext.startActivity(Intent(actContext, TerminalActivity::class.java))
+}
+
+private fun processUri(uri: Uri): String {
+    contentResolver.takePersistableUriPermission(
+            uri,
+            Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
+    ) 
+    val documentId = DocumentsContract.getTreeDocumentId(uri)
+    val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
+    val path = getPathFromUri(folderUri)
+    return path ?: "${getDefaultPath()}/Robok"
+}
+
+private fun getPathFromUri(uri: Uri): String? {
+    val documentId = DocumentsContract.getDocumentId(uri)
+    val split = documentId.split(":")
+    val type = split[0]
+    val relativePath = split[1]
+    if ("primary".equals(type, true)) {
+         return "/storage/emulated/0/$relativePath"
+    }
+    return null
 }
 
 @Composable
