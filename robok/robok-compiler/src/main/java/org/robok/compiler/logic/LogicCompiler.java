@@ -359,7 +359,7 @@ public class LogicCompiler {
             String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
             
             // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
-            String type = matcher.group(2).equalsIgnoreCase("var") ? VariableObject.setVariableTypeFromValue(matcher.group(4)) : matcher.group(2);
+            String type = matcher.group(2).equalsIgnoreCase("var") ? VariableObject.Companion.setVariableTypeFromValue(matcher.group(4)) : matcher.group(2);
             String name = matcher.group(3);
             String value = matcher.group(4);
             
