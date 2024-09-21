@@ -9,10 +9,10 @@ plugins {
 
 android {
     namespace = "org.gampiot.robok.feature.component.compose"
-    compileSdk = 35
-
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.android.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     

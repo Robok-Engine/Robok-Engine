@@ -12,12 +12,12 @@ val app_version = "0.0.1"
 
 android {
     namespace = "org.gampiot.robok"
-    compileSdk = 35
-
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    
     defaultConfig {
+        minSdk = libs.versions.android.minSdk.get().toInt()
+        targetSdk = libs.versions.android.targetSdk.get().toInt()
         applicationId = "org.gampiot.robok"
-        minSdk = 26
-        targetSdk = 34
         versionCode = 1
         versionName = app_version
         

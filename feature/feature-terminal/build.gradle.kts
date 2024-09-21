@@ -7,10 +7,10 @@ group = "org.gampiot.robok.feature.terminal"
 
 android {
     namespace = "org.gampiot.robok.feature.terminal"
-    compileSdk = 35
+    compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {
-        minSdk = 26
+        minSdk = libs.versions.android.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
