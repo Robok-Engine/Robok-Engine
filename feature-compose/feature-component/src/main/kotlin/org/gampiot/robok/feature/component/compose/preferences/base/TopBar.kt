@@ -27,6 +27,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Typography
 import androidx.compose.material3.TopAppBarScrollBehavior
+import androidx.compose.material3.tokens.TopAppBarSmallTokens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
@@ -54,7 +55,7 @@ fun TopBar(
                 RobokText(
                     text = label,
                     maxLines = 1,
-                    fontSize = 24.sp,
+                    style = TopAppBarSmallTokens.HeadlineFont.value
                     overflow = TextOverflow.Ellipsis
                 )
             },
