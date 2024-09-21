@@ -191,7 +191,7 @@ fun ContributorRow(
     val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
-        title = { RobokText(text = dataInfo.login) },
+        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.login) },
         description = { RobokText(text = dataInfo.role) },
         modifier = Modifier
            .clickable(

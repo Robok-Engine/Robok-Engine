@@ -93,6 +93,7 @@ fun HomeScreen(
             RobokText(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
+                fontSize = 18.sp,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -177,7 +178,7 @@ fun HomeCardItem(
             .clickable(onClick = onClick)
             .height(100.dp),
         shape = RoundedCornerShape(17.dp),
-        elevation = CardDefaults.cardElevation(4.dp)
+        elevation = CardDefaults.cardElevation(0.dp)
     ) {
         Column(
             modifier = Modifier
