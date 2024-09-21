@@ -54,8 +54,7 @@ fun TopBar(
             title = {
                 RobokText(
                     text = label,
-                    maxLines = 1,
-                    style = TopAppBarSmallTokens.HeadlineFont.value
+                    maxLines = 1
                     overflow = TextOverflow.Ellipsis
                 )
             },
@@ -76,6 +75,7 @@ fun TopBar(
             title = {
                 RobokText(
                     text = label,
+                    fontSize = 24.sp
                 )
             },
             actions = actions,
