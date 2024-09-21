@@ -332,7 +332,7 @@ public class IdentifierAutoComplete {
             Field[] publicFields = clazz.getFields();
                 
                 for (Field field : publicFields) {
-                    MethodOrField isField = new MethodOrField("field", field);
+                    MethodOrField isField = new MethodOrField("field", field, null);
                     
                  identifiers.put(field.getName(), isField);
                     
@@ -347,7 +347,7 @@ public class IdentifierAutoComplete {
                 
                 for (java.lang.reflect.Method method : publicMethods) {
                     
-                    MethodOrField isMethod = new MethodOrField("method", method);
+                    MethodOrField isMethod = new MethodOrField("method", null, method);
                     
                  identifiers.put(method.getName(), isMethod);
                     
