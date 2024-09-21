@@ -13,6 +13,8 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.vector.ImageVector
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
@@ -24,7 +26,7 @@ fun TopBar(
     onClickBackButton: (() -> Unit)? = null,
 ) {
     LargeTopAppBar(
-        title = { Text(text = barTitle) },
+        title = { RobokText(text = barTitle) },
         navigationIcon = {
             if (onClickBackButton != null) {
                 IconButton(onClickBackButton) {

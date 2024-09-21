@@ -37,6 +37,7 @@ import androidx.compose.ui.unit.dp
 
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.dialog.RobokChoiceDialog
+import org.gampiot.robok.feature.component.compose.text.RobokText
 
 /**
  * A Preference that allows the user to choose an option from a list of options.
@@ -69,7 +70,7 @@ fun PreferenceChoice(
             .fillMaxHeight()
             .padding(vertical = 16.dp)
             .padding(start = 16.dp),
-        title = { Text(text = label) },
+        title = { RobokText(text = label) },
         endWidget = {
             if (!disabled) {
                 FilledTonalButton(
@@ -79,7 +80,7 @@ fun PreferenceChoice(
                     onClick = { setOpened(true) },
                     enabled = !disabled
                 ) {
-                    Text(choiceLabel)
+                    RobokText(choiceLabel)
                 }
             }
         },
@@ -90,7 +91,7 @@ fun PreferenceChoice(
     if (opened) {
         RobokChoiceDialog(
             visible = opened,
-            title = { Text(title) },
+            title = { RobokText(title) },
             default = pref,
             options = options,
             labelFactory = labelFactory,

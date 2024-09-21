@@ -14,6 +14,7 @@ import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewM
 import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.feature.component.compose.text.RobokText
 import org.gampiot.robok.feature.res.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,8 +47,8 @@ fun generalPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { Text(stringResource(id = Strings.settings_code_editor_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_code_editor_description)) },
+       text = { RobokText(stringResource(id = Strings.settings_code_editor_title)) },
+       secondaryText = { RobokText(stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
            navController.navigate("settings/codeeditor")
        }
@@ -59,8 +60,8 @@ fun buildPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { Text(stringResource(id = Strings.settings_configure_rdk_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
+       text = { RobokText(stringResource(id = Strings.settings_configure_rdk_title)) },
+       secondaryText = { RobokText(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
            navController.navigate("settings/configure_rdk")
        }
@@ -72,15 +73,15 @@ fun aboutPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { Text(stringResource(id = Strings.settings_libraries_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
+       text = { RobokText(stringResource(id = Strings.settings_libraries_title)) },
+       secondaryText = { RobokText(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
            navController.navigate("settings/libraries")
        }
    )
    Preference(
-       text = { Text(stringResource(id = Strings.settings_about_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
+       text = { RobokText(stringResource(id = Strings.settings_about_title)) },
+       secondaryText = { RobokText(stringResource(id = Strings.settings_about_description)) },
        onClick = {
            navController.navigate("settings/about")
        }

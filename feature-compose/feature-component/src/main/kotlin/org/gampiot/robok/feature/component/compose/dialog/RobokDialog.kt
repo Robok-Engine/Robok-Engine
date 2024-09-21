@@ -19,6 +19,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.graphics.vector.ImageVector
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobokDialog(
@@ -34,10 +36,10 @@ fun RobokDialog(
             Icon(icon, contentDescription = iconDescription)
         },
         title = {
-            Text(text = dialogTitle)
+            RobokText(text = dialogTitle)
         },
         text = {
-            Text(text = dialogText)
+            RobokText(text = dialogText)
         },
         onDismissRequest = {
             onDismissRequest()
@@ -48,7 +50,7 @@ fun RobokDialog(
                     onConfirmation()
                 }
             ) {
-                Text("Confirm")
+                RobokText("Confirm")
             }
         },
         dismissButton = {
@@ -57,7 +59,7 @@ fun RobokDialog(
                     onDismissRequest()
                 }
             ) {
-                Text("Dismiss")
+                RobokText("Dismiss")
             }
         }
     )

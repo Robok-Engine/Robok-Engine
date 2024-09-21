@@ -11,6 +11,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @Composable
 fun SimpleCard(
     modifier: Modifier = Modifier,
@@ -34,7 +36,7 @@ fun SimpleCard(
     ) {
         val scroll = rememberScrollState(0)
         if (text.isNotEmpty()) {
-            Text(
+            RobokText(
                 text = text,
                 textAlign = if (justifyText) TextAlign.Justify else TextAlign.Start,
                 modifier = if (textScrollable) Modifier.verticalScroll(scroll) else Modifier,

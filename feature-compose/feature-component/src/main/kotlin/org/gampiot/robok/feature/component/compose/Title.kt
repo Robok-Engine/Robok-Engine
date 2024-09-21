@@ -11,9 +11,11 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @Composable
 fun Title(title: String, modifier: Modifier = Modifier) {
-    Text(
+    RobokText(
         text = title,
         fontSize = 14.sp,
         fontWeight = FontWeight.Medium,

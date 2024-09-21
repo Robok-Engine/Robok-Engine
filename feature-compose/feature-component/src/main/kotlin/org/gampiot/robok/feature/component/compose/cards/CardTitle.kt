@@ -10,10 +10,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.sp
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @Composable
 fun CardTitle(modifier: Modifier = Modifier, cardTitle: String) {
     val scroll = rememberScrollState(0)
-    Text(
+    RobokText(
         modifier = modifier.horizontalScroll(scroll),
         text = cardTitle,
         fontSize = 20.sp,

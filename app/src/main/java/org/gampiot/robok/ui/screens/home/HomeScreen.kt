@@ -32,6 +32,7 @@ import org.gampiot.robok.ui.theme.Typography
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.util.getDefaultPath
+import org.gampiot.robok.feature.component.compose.text.RobokText
 
 @Composable
 fun HomeScreen(
@@ -71,7 +72,7 @@ fun HomeScreen(
                 contentDescription = null,
                 modifier = Modifier.size(70.dp).padding(8.dp)
             )
-            Text(
+            RobokText(
                 text = "Robok",
                 style = Typography.headlineLarge,
                 modifier = Modifier.padding(8.dp)
@@ -172,7 +173,7 @@ fun HomeCardItem(
                 contentDescription = null,
                 modifier = Modifier.size(25.dp)
             )
-            Text(
+            RobokText(
                 text = title,
                 modifier = Modifier.padding(top = 8.dp),
                 style = Typography.bodyMedium

@@ -27,6 +27,7 @@ import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.feature.component.compose.text.RobokText
 import org.gampiot.robok.feature.res.Strings
 
 import coil.compose.SubcomposeAsyncImage
@@ -108,11 +109,11 @@ fun AboutScreen(
                     .clip(CircleShape),
             )
             Spacer(modifier = Modifier.height(12.dp))
-            Text(
+            RobokText(
                 text = "Robok",
                 style = MaterialTheme.typography.titleLarge,
             )
-            Text(
+            RobokText(
                 text = version,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -171,8 +172,8 @@ fun ContributorRow(
     val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
-        title = { Text(text = dataInfo.login) },
-        description = { Text(text = dataInfo.role) },
+        title = { RobokText(text = dataInfo.login) },
+        description = { RobokText(text = dataInfo.role) },
         modifier = Modifier
            .clickable(
               onClick = {
@@ -212,8 +213,8 @@ fun LinkRow(
                   uriHandler.openUri(dataInfo.url)
               }
            ),
-        title = { Text(text = dataInfo.name) },
-        description = { Text(text = dataInfo.description) },
+        title = { RobokText(text = dataInfo.name) },
+        description = { RobokText(text = dataInfo.description) },
         startWidget = {
             Image(
                 painter = painterResource(id = dataInfo.imageResId),

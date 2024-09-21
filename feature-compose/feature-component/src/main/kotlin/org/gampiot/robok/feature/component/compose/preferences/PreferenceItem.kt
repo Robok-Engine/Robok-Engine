@@ -19,6 +19,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
+import org.gampiot.robok.feature.component.compose.text.RobokText
+
 @Composable
 fun PreferenceItem(
     title: String,
@@ -53,14 +55,14 @@ fun PreferenceItem(
                 modifier = Modifier
                     .align(Alignment.CenterVertically),
             ) {
-                Text(
+                RobokText(
                     text = title,
                     fontSize = 20.sp,
                     style = MaterialTheme.typography.headlineMedium,
                 )
                 if (description.isNotEmpty()) {
                     Spacer(Modifier.height(2.dp))
-                    Text(
+                    RobokText(
                         text = description,
                         style = MaterialTheme.typography.bodyMedium,
                         modifier = Modifier.alpha(0.60F),

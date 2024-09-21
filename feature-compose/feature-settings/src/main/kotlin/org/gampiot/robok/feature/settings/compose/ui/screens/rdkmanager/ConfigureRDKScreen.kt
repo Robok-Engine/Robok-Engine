@@ -27,6 +27,7 @@ import org.gampiot.robok.feature.settings.compose.viewmodels.DownloadState
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.component.compose.textfields.DynamicSelectTextField
+import org.gampiot.robok.feature.component.compose.text.RobokText
 import org.gampiot.robok.feature.res.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -73,13 +74,13 @@ fun ConfigureRDKScreen(
                     viewModel.startDownload(zipUrl, version)
                 }
             ) {
-                Text(text = stringResource(id = Strings.common_word_save))
+                RobokText(text = stringResource(id = Strings.common_word_save))
             }
             when (downloadState) {
-                 is DownloadState.NotStarted -> Text(modifier = modifir, text = "Download não iniciado")
+                 is DownloadState.NotStarted -> RobokText(modifier = modifir, text = "Download não iniciado")
                  is DownloadState.Loading -> CircularProgressIndicator(modifier = modifir)
-                 is DownloadState.Success -> Text(modifier = modifir, text = (downloadState as DownloadState.Success).message)
-                 is DownloadState.Error -> Text(modifier = modifir, text = (downloadState as DownloadState.Error).error)
+                 is DownloadState.Success -> RobokText(modifier = modifir, text = (downloadState as DownloadState.Success).message)
+                 is DownloadState.Error -> RobokText(modifier = modifir, text = (downloadState as DownloadState.Error).error)
             }
         }
     }
