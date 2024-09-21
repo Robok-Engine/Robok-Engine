@@ -114,14 +114,4 @@ class VariableObject(
             return "String"
         }
     }
-
-    // Getter methods to check modifier values
-    fun isStatic() = isStatic
-    fun isNative() = isNative
-    fun isFinal() = isFinal
-    fun isSynchronized() = isSynchronized
-    fun isVolatile() = isVolatile
-    fun isTransient() = isTransient
-    fun isAbstract() = isAbstract
-    fun isStrictfp() = isStrictfp
 }
