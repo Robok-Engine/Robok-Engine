@@ -93,7 +93,7 @@ fun HomeScreen(
             RobokText(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
-                fontSize = 18.sp,
+                fontSize = 24.sp,
                 modifier = Modifier.padding(8.dp)
             )
         }
