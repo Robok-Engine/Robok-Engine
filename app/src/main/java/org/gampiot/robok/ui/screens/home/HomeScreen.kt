@@ -1,5 +1,6 @@
 package org.gampiot.robok.ui.screens.home
 
+import android.os.Bundle
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
@@ -27,6 +28,7 @@ import org.gampiot.robok.R
 import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
+import org.gampiot.robok.ui.activities.editor.EditorActivity
 
 @Composable
 fun HomeScreen(
@@ -39,6 +41,14 @@ fun HomeScreen(
         contract = ActivityResultContracts.OpenDocumentTree()
     ) { uri: Uri? ->
         selectedFolderUri = uri
+        val bundle = Bundle().apply {
+             putParcelable("projectManager", null)
+             putString("projectURI", uri)
+        }
+        val intent = Intent(actContext, EditorActivity::class.java).apply {
+              putExtras(bundle)
+        }
+        actContext.startActivity(intent)
     }
 
     Column(
