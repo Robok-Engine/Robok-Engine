@@ -35,12 +35,4 @@ class MethodOrField {
         this.result = result
         this.method = method
     }
-
-    fun getField(): Field? {
-        return this.field
-    }
-
-    fun getMethod(): Method? {
-        return this.method
-    }
 }
