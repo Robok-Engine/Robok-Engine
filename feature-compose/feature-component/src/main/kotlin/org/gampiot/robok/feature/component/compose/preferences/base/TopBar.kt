@@ -1,7 +1,7 @@
 package org.gampiot.robok.feature.component.compose.preferences.base
 
 /*
- * Copyright 2021, Lawnchair
+ * Copyright 2021, Lawnchair.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -27,7 +27,6 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Typography
 import androidx.compose.material3.TopAppBarScrollBehavior
-import androidx.compose.material3.tokens.TopAppBarSmallTokens
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
