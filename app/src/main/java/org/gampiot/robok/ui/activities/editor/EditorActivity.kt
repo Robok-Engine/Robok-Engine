@@ -23,7 +23,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
 import org.gampiot.robok.app.Ids
 import org.gampiot.robok.app.Drawables
-import org.gampiot.robok.databinding.FragmentEditorBinding
+import org.gampiot.robok.databinding.ActivityEditorBinding
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.activites.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activites.editor.diagnostic.DiagnosticFragment
