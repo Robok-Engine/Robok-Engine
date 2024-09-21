@@ -25,6 +25,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 
+import org.gampiot.robok.feature.component.compose.appbars.TopBar
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun PreferenceScaffold(

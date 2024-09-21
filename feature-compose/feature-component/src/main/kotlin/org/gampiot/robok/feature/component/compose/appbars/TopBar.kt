@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.component.compose.preferences.base
+package org.gampiot.robok.feature.component.compose.appbars
 
 /*
  * Copyright 2021, Lawnchair.
@@ -74,7 +74,7 @@ fun TopBar(
             title = {
                 RobokText(
                     text = label,
-                    fontSize = 24.sp
+                    fontSize = 30.sp
                 )
             },
             actions = actions,
