@@ -31,7 +31,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
-    implementation(libs.datastore.preferences")
+    implementation(libs.datastore.preferences)
     implementation(libs.koin.android)
     
     implementation(project(":easy-components"))
