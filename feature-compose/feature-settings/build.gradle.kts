@@ -40,7 +40,7 @@ dependencies {
     implementation(libs.datastore.preferences)
     implementation(libs.material)
      
-    implementation(libs.okhttp.bom)
+    implementation(platform(libs.okhttp.bom))
     implementation("com.squareup.okhttp3:okhttp")
     
     implementation(libs.koin.android)
