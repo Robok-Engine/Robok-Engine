@@ -126,7 +126,7 @@ dependencies {
     // projects
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-diagnostic"))
-    implementation(project(":robok:robok-aapt2"))
+    implementation(project(":robok:robok-antlr"))
     implementation(project(":robok:robok-model3d"))
 
     implementation(project(":feature:feature-component"))

@@ -1,4 +1,4 @@
-package org.robok.diagnostic.logic;
+package org.robok.antlr.logic;
 
 import android.util.Log;
 import org.antlr.v4.runtime.*;
@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.*;
 
 public class Java8ErrorListener extends BaseErrorListener {
     
-    DiagnosticListener d;
+    AntlrListener d;
     
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
@@ -61,11 +61,8 @@ public class Java8ErrorListener extends BaseErrorListener {
         }
         
     }
-
     
-    
-    
-    public void getError(DiagnosticListener d){
+    public void getError(AntlrListener d){
         this.d = d;
     }
 }

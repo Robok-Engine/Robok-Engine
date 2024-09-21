@@ -63,4 +63,5 @@ dependencies {
     implementation(libs.serialization.json)
     
     implementation(project(":feature:feature-res:strings"))
+    implementation(project(":feature-compose:feature-component"))
 }

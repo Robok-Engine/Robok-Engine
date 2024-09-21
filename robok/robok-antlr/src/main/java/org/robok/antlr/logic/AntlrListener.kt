@@ -1,4 +1,4 @@
-package org.robok.diagnostic.logic
+package org.robok.antlr.logic
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,7 +17,7 @@ package org.robok.diagnostic.logic
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-interface DiagnosticListener {
+interface AntlrListener {
     fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String)
     fun onDiagnosticStatusReceive(isError: Boolean)
 }

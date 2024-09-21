@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.robok.diagnostic"
+    namespace = "org.robok.antlr.logic"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

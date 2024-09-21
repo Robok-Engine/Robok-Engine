@@ -17,7 +17,7 @@ package org.gampiot.robok.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import org.robok.diagnostic.logic.Java8Parser.MethodModifierContext
+import org.robok.antlr.logic.Java8Parser.MethodModifierContext
 
 data class Method(
     var modifiers: List<MethodModifierContext>,

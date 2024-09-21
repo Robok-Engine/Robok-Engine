@@ -55,7 +55,7 @@ import org.gampiot.robok.feature.treeview.model.Node
 import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
 
 import org.robok.model3d.launcher.AndroidLauncher
-import org.robok.diagnostic.logic.DiagnosticListener
+import org.robok.antlr.logic.AntlrListener
 
 import java.io.File
 
@@ -183,7 +183,7 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun configureEditor() {
-        val diagnosticListener = object : DiagnosticListener {
+        val antlrListener = object : AntlrListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
 
@@ -220,7 +220,7 @@ class EditorActivity : RobokActivity() {
             }
         }
 
-        binding.codeEditor.setDiagnosticListener(diagnosticListener)
+        binding.codeEditor.setAntlrListener(antlrListener)
         binding.codeEditor.setEditorListener(editorListener)
         binding.codeEditor.reload()
         binding.undo.setOnClickListener {

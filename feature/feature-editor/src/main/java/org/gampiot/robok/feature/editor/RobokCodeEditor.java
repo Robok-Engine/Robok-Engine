@@ -49,7 +49,7 @@ import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.CharStreams;
 
-import org.robok.diagnostic.logic.*;
+import org.robok.antlr.logic.*;
 
 import org.gampiot.robok.feature.editor.R;
 import org.gampiot.robok.feature.editor.databinding.LayoutCodeEditorBinding;
@@ -59,13 +59,13 @@ import org.gampiot.robok.feature.editor.languages.java.*;
 
 import java.lang.CharSequence;
 
-public class RobokCodeEditor extends LinearLayout implements DiagnosticListener, EditorListener  {
+public class RobokCodeEditor extends LinearLayout implements AntlrListener, EditorListener  {
 
      public DiagnosticsContainer diagnostics; // popup/box of Diagnostic
     
      public Context context; // Global context
     
-     public DiagnosticListener diagnosticListener; // DiagnosticListener used.
+     public AntlrListener antlrListener; // AntlrListener used.
      public EditorListener editorListener; // EditorListener used.
      
      public final RobokSymbolInput DEFAULT_SYMBOL_VIEW; // Default symbol view used.
@@ -92,7 +92,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      public RobokCodeEditor(Context context, @Nullable AttributeSet attrs) {
           super(context, attrs);
           this.context = context;
-          this.diagnosticListener = this;
+          this.antlrListener = this;
           this.editorListener = this;
           binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
           diagnostics = new DiagnosticsContainer();
@@ -163,7 +163,7 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      */
      public void reload() {
           language.setEditorListener(editorListener);
-          language.setDiagnosticListener(diagnosticListener);
+          language.setAntlrListener(antlrListener);
      }
      
      /*
@@ -175,11 +175,11 @@ public class RobokCodeEditor extends LinearLayout implements DiagnosticListener,
      }
      
      /*
-     * Method to set the DiagnosticListener
-     * @param diagnosticListener New listener instance (DiagnosticListener interface)
+     * Method to set the AntlrListener
+     * @param antlrListener New listener instance (AntlrListener interface)
      */
-     public void setDiagnosticListener (DiagnosticListener diagnosticListener) {
-          this.diagnosticListener = diagnosticListener;
+     public void setAntlrListener (AntlrListener antlrListener) {
+          this.antlrListener = antlrListener;
      }
      
      /*

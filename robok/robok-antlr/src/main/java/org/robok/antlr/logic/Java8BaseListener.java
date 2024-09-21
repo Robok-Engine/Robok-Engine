@@ -1,5 +1,5 @@
 // Generated from Java8.g4 by ANTLR 4.13.2
-package org.robok.diagnostic.logic;
+package org.robok.antlr.logic;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
