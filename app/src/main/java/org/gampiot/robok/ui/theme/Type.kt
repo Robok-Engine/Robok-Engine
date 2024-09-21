@@ -32,18 +32,4 @@ val NunitoFontFamily = FontFamily(
     Font(R.font.nunito_bold, FontWeight.Bold, FontStyle.Normal),
 )
 
-val Typography = Typography(
-    bodyMedium = TextStyle(
-        fontFamily = NunitoFontFamily,
-        fontSize = 14.sp
-    ),
-    bodyLarge = TextStyle(
-        fontFamily = NunitoFontFamily,
-        fontSize = 16.sp
-    ),
-    headlineLarge = TextStyle(
-        fontFamily = NunitoFontFamily,
-        fontWeight = FontWeight.Bold,
-        fontSize = 24.sp
-    ),
-)
+val Typography = Typography()
