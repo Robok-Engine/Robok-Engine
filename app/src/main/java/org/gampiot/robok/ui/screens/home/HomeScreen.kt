@@ -30,6 +30,7 @@ import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.ui.activities.editor.EditorActivity
+import org.gampiot.robok.ui.fragments.project.create.util.ProjectManagerWrapper
 import org.gampiot.robok.feature.util.getDefaultPath
 
 @Composable
@@ -44,7 +45,6 @@ fun HomeScreen(
     ) { uri: Uri? ->
         selectedFolderUri = uri
         val bundle = Bundle().apply {
-             putParcelable("projectManager", ProjectManagerWrapper(processUri(uri!!)))
              putString("projectPath", processUri(actContext, uri!!))
         }
         val intent = Intent(actContext, EditorActivity::class.java).apply {

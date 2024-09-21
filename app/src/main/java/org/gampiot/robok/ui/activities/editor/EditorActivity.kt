@@ -73,7 +73,7 @@ class EditorActivity : RobokActivity() {
               val projectManagerWrapper = extras.getParcelable<ProjectManagerWrapper>("projectManager")
               projectPath = extras.getString("projectPath")
               projectManager = ProjectManager(this@EditorActivity).apply {
-                     setProjectPath(File(projectManagerWrapper?.projectPath))
+                     setProjectPath(File(projectPath))
               }
          }
          configureScreen()
