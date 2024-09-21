@@ -1,6 +1,6 @@
 plugins {
-    id("com.android.library")
-    id("kotlin-android")
+    alias(libs.plugins.agp.lib)
+    alias(libs.plugins.kotlin)
     kotlin("plugin.serialization") version "2.0.20"
 }
 
@@ -25,10 +25,6 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.android.jvm.get()
     }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
-    kotlinOptions.jvmTarget = "17"
 }
 
 dependencies {
