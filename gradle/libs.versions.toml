@@ -59,6 +59,8 @@ glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "gl
 
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp-bom" }
 
+gson = { group = "com.google.code.gson", name = "gson", version = "2.11.0" }
+
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
 
 sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor", version.ref = "sora-editor" }
