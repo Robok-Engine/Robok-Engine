@@ -1,3 +1,5 @@
+package org.gampiot.robok.feature.component.compose.preferences.base
+
 /*
  * Copyright 2021, Lawnchair
  *
@@ -14,8 +16,6 @@
  * limitations under the License.
  */
 
-package org.gampiot.robok.feature.component.compose.preferences.base
-
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
@@ -30,6 +30,7 @@ import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.sp
 
 import org.gampiot.robok.feature.component.compose.icons.ClickableIcon
 import org.gampiot.robok.feature.component.compose.text.RobokText
@@ -53,7 +54,7 @@ fun TopBar(
                 RobokText(
                     text = label,
                     maxLines = 1,
-                    fontSize = 24.dp,
+                    fontSize = 24.sp,,
                     overflow = TextOverflow.Ellipsis
                 )
             },

@@ -1,5 +1,22 @@
 package org.gampiot.robok.ui.activities.editor
 
+/*
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ */ 
+
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -31,11 +48,11 @@ import org.gampiot.robok.feature.util.base.RobokActivity
 import org.gampiot.robok.feature.editor.EditorListener
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
 import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.treeview.v2.provider.file
-import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
-import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
-import org.gampiot.robok.feature.treeview.v2.model.Node
-import org.gampiot.robok.feature.treeview.v2.interfaces.FileClickListener
+import org.gampiot.robok.feature.treeview.provider.FileWrapper
+import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
+import org.gampiot.robok.feature.treeview.interfaces.FileObject
+import org.gampiot.robok.feature.treeview.model.Node
+import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
 
 import org.robok.model3d.launcher.AndroidLauncher
 import org.robok.diagnostic.logic.DiagnosticListener
@@ -218,7 +235,7 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun configureFileTree() {
-        val fileObject = file(File(projectPath))
+        val fileObject = FileWrapper(File(projectPath))
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
