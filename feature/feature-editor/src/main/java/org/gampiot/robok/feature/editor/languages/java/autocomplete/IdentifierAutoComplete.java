@@ -267,8 +267,8 @@ public class IdentifierAutoComplete {
             filterIdentifiersVariables(prefix, dest, methodName, variables);
             for (var word : dest) {
                 
-                if (keywordMap == null || !keywordMap.containsKey(word.getCode()))
-                    result.add(new SimpleCompletionItem(word.getCode(), word.getType(), prefixLength, word.getCode())
+                if (keywordMap == null || !keywordMap.containsKey(word.getName()))
+                    result.add(new SimpleCompletionItem(word.getName(), word.getType(), prefixLength, word.getName())
                             .kind(CompletionItemKind.Variable));
             }
         }
@@ -376,21 +376,15 @@ public class IdentifierAutoComplete {
 
 
        for (MethodOrField is : dest) {
-		// Verificar se a classe é Field
-		if (is.result.equalsIgnoreCase("field"))
-		{
-                        
-          Field field = is.getField();
-            
-				result.add(
-					new SimpleCompletionItem(
-						field.getName(), field.getType().getName(), prefixLength, field.getName())
-					.kind(CompletionItemKind.Variable));
-            
-		}
+              if (is.getResult().equalsIgnoreCase("field")) {
+                     Field field = is.getField();
+                     result.add(new SimpleCompletionItem(
+                           field.getName(), field.getType().getName(), prefixLength, field.getName())
+                                .kind(CompletionItemKind.Variable));
+              }
 
 		// Verificar se a classe é Method
-		if (is.result.equalsIgnoreCase("method"))
+		if (is.getResult().equalsIgnoreCase("method"))
 		{
              
             java.lang.reflect.Method method = is.getMethod();

@@ -20,19 +20,8 @@ package org.gampiot.robok.feature.editor.languages.java.models
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 
-class MethodOrField {
-
-    var result: String
-    var field: Field? = null
+data class MethodOrField(
+    var result: String,
+    var field: Field? = null,
     var method: Method? = null
-
-    constructor(result: String, field: Field) {
-        this.result = result
-        this.field = field
-    }
-
-    constructor(result: String, method: Method) {
-        this.result = result
-        this.method = method
-    }
-}
+)

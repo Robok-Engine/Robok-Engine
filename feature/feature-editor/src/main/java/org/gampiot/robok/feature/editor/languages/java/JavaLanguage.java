@@ -74,7 +74,6 @@ import java.util.regex.Pattern;
 
 import org.gampiot.robok.feature.editor.RobokCodeEditor;
 import org.gampiot.robok.feature.editor.EditorListener;
-import org.gampiot.robok.feature.editor.languages.java.object.ModifierAccess;
 import org.gampiot.robok.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.gampiot.robok.feature.editor.languages.java.models.*;
 import org.gampiot.robok.feature.editor.languages.java.store.JavaClasses;
