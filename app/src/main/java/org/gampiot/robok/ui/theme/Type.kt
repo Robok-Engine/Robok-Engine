@@ -16,6 +16,10 @@ val NunitoFontFamily = FontFamily(
 )
 
 val Typography = Typography(
+    bodyMedium = TextStyle(
+        fontFamily = NunitoFontFamily,
+        fontSize = 14.sp
+    ),
     bodyLarge = TextStyle(
         fontFamily = NunitoFontFamily,
         fontSize = 16.sp

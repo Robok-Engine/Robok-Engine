@@ -27,9 +27,10 @@ import androidx.navigation.NavController
 
 import org.gampiot.robok.R
 import org.gampiot.robok.app.Drawables
+import org.gampiot.robok.ui.activities.editor.EditorActivity
+import org.gampiot.robok.ui.theme.Typography
 import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
-import org.gampiot.robok.ui.activities.editor.EditorActivity
 import org.gampiot.robok.feature.util.getDefaultPath
 
 @Composable
@@ -72,7 +73,7 @@ fun HomeScreen(
             )
             Text(
                 text = "Robok",
-                fontSize = 25.sp,
+                style = Typography.headlineLarge,
                 modifier = Modifier.padding(8.dp)
             )
         }
@@ -174,7 +175,7 @@ fun HomeCardItem(
             Text(
                 text = title,
                 modifier = Modifier.padding(top = 8.dp),
-                fontSize = 14.sp
+                style = Typography.bodyMedium
             )
         }
     }
