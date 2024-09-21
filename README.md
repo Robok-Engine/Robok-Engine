@@ -55,7 +55,7 @@ If you would like to get involved in translating Robok-Engine, head over to [Web
  - [X] Code Editor 
  - [X] Project Creation
  - [X] File Tree
- - [ ] 3D Modeling
+ - [X] 3D Modeling
  - [ ] Classes for simplify development
 
 ## License
