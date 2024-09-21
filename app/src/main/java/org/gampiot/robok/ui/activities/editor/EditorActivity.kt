@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
 import android.content.Intent
-import android.net.Uri
 
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
@@ -29,14 +28,14 @@ import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.feature.util.base.RobokActivity
+import org.gampiot.robok.feature.editor.EditorListener
+import org.gampiot.robok.feature.component.terminal.RobokTerminal
+import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
 import org.gampiot.robok.feature.treeview.v2.model.Node
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileClickListener
-import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import org.gampiot.robok.feature.res.Strings
 
 import org.robok.model3d.launcher.AndroidLauncher
 import org.robok.diagnostic.logic.DiagnosticListener
@@ -71,7 +70,9 @@ class EditorActivity : RobokActivity() {
          if (extras != null) {
               projectPath = extras.getString("projectPath")
               projectManager = ProjectManager(this@EditorActivity).apply {
-                     setProjectPath(File(projectPath))
+                     projectPath?.let {
+                          setProjectPath(File(projectPath))
+                     }
               }
          }
          configureScreen()
