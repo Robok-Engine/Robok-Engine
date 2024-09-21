@@ -141,7 +141,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
                 
-                <org.gampiot.robok.feature.treeview.v2.widget.FileTree
+                <org.gampiot.robok.feature.treeview.widget.FileTree
                      android:id="@+id/file_tree"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent" />
