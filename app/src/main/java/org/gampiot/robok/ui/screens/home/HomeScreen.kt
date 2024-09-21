@@ -44,7 +44,7 @@ fun HomeScreen(
     ) { uri: Uri? ->
         selectedFolderUri = uri
         val bundle = Bundle().apply {
-             putParcelable("projectManager", null)
+             putParcelable("projectManager", ProjectManagerWrapper(processUri(uri!!)))
              putString("projectPath", processUri(actContext, uri!!))
         }
         val intent = Intent(actContext, EditorActivity::class.java).apply {
