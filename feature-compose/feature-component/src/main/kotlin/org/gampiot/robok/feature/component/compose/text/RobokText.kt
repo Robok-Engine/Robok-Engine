@@ -52,6 +52,14 @@ fun RobokText(
     fontSize: TextUnit = TextUnit.Unspecified,
     color: Color = Color.Unspecified
 ) {
-    Text(text = text, style = style, modifier = modifier)
+    Text(
+        text = text, 
+        style = style,
+        modifier = modifier,
+        maxLines = maxLines,
+        overflow = overflow,
+        fontSize = fontSize,
+        color = color
+    )
 }
 
