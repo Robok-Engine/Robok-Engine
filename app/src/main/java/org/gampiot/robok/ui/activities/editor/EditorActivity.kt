@@ -30,6 +30,7 @@ import org.gampiot.robok.ui.activites.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activites.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.feature.util.base.RobokActivity
+import org.gampiot.robok.feature.util.getDefaultPath
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
@@ -230,7 +231,7 @@ class EditorActivity(
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
     }
     
-    private fun processUri(uri: Uri) String {
+    private fun processUri(uri: Uri): String {
         contentResolver.takePersistableUriPermission(
             uri,
             Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION
@@ -239,7 +240,7 @@ class EditorActivity(
         val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
         val path = getPathFromUri(folderUri)
         
-        if (path == null) return
+        return path ?: "${getDefaultPath()}/Robok"
     }
     
     private fun getPathFromUri(uri: Uri): String? {
