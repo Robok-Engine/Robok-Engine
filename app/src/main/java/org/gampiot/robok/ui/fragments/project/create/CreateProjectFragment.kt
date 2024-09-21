@@ -24,7 +24,7 @@ import java.io.File
 
 class CreateProjectFragment(
     private val template: ProjectTemplate
-} : RobokFragment(), ProjectManager.CreationListener {
+) : RobokFragment(), ProjectManager.CreationListener {
 
     private var binding: FragmentCreateProjectBinding? = null
     private lateinit var template: ProjectTemplate
