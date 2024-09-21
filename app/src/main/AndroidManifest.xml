@@ -20,7 +20,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
-	android:enableOnBackInvokedCallback="true"
+        android:enableOnBackInvokedCallback="true"
         android:name="org.gampiot.robok.feature.util.application.RobokApplication"
         android:theme="@style/Theme.Robok.Splash"
         android:requestLegacyExternalStorage="true">
@@ -34,27 +34,27 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
+         <!-- please always add the theme parameters-->
         <activity
             android:name="org.gampiot.robok.ui.activities.SettingsActivity"
+            android:theme="@style/Theme.Robok"
             android:exported="true" />
             
         <activity
             android:name="org.gampiot.robok.feature.util.activities.DebugActivity"
+            android:theme="@style/Theme.Robok"
             android:exported="true" />
             
         <activity
-            android:name="org.gampiot.robok.feature.terminal.TerminalActivity" 
-            android:exported="true" />
-            
-        <activity
-            android:name="org.gampiot.robok.feature.treeview.file.example.FileTreeViewActivity" 
+            android:name="org.gampiot.robok.feature.terminal.TerminalActivity"
+            android:theme="@style/Theme.Robok"
             android:exported="true" />
 
         <activity
             android:name="org.robok.model3d.launcher.AndroidLauncher"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
+            android:theme="@style/Theme.Robok"
             android:exported="true" />
             
     </application>
