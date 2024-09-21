@@ -31,7 +31,8 @@ fun RobokText(
     style: TextStyle = nunitoTextStyle,
     maxLines: Int = Int.MAX_VALUE,
     overflow: TextOverflow = TextOverflow.Clip,
-    fontSize: TextUnit = TextUnit.Unspecified
+    fontSize: TextUnit = TextUnit.Unspecified,
+    color: Color = Color.Unspecified
 ) {
     Text(text = text, style = style, modifier = modifier)
 }
