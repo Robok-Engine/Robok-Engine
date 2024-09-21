@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.activites.editor.diagnostic.adapters;
+package org.gampiot.robok.ui.activities.editor.diagnostic.adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.LayoutDiagnosticItemBinding;
-import org.gampiot.robok.ui.activites.editor.diagnostic.models.DiagnosticItem;
+import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem;
 
 import java.util.List;
 

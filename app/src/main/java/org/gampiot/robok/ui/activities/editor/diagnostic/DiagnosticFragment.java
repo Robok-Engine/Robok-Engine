@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.activites.editor.diagnostic;
+package org.gampiot.robok.ui.activities.editor.diagnostic;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -13,8 +13,8 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentEditorDiagnosticBinding;
 import org.gampiot.robok.feature.util.base.RobokFragment;
-import org.gampiot.robok.ui.activites.editor.diagnostic.models.DiagnosticItem;
-import org.gampiot.robok.ui.activites.editor.diagnostic.adapters.DiagnosticsAdapter;
+import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem;
+import org.gampiot.robok.ui.activities.editor.diagnostic.adapters.DiagnosticsAdapter;
 
 import java.util.List;
 import java.util.ArrayList;

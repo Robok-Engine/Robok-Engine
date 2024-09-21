@@ -15,7 +15,7 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentCreateProjectBinding
-import org.gampiot.robok.ui.activites.editor.EditorActivity
+import org.gampiot.robok.ui.activities.editor.EditorActivity
 import org.gampiot.robok.ui.fragments.project.template.model.ProjectTemplate
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManagerWrapper

@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.activites.editor.logs
+package org.gampiot.robok.ui.activities.editor.logs
 
 import android.os.Bundle
 import android.content.Context

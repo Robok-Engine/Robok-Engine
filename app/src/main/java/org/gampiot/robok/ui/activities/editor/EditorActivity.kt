@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.activites.editor
+package org.gampiot.robok.ui.activities.editor
 
 import android.os.Bundle
 import android.os.Handler
@@ -25,9 +25,9 @@ import org.gampiot.robok.app.Ids
 import org.gampiot.robok.app.Drawables
 import org.gampiot.robok.databinding.ActivityEditorBinding
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
-import org.gampiot.robok.ui.activites.editor.logs.LogsFragment
-import org.gampiot.robok.ui.activites.editor.diagnostic.DiagnosticFragment
-import org.gampiot.robok.ui.activites.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
+import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
+import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManagerWrapper
 import org.gampiot.robok.feature.util.base.RobokActivity

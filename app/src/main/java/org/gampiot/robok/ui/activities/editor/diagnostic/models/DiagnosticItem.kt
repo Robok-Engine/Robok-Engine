@@ -1,4 +1,4 @@
-package org.gampiot.robok.ui.activites.editor.diagnostic.models
+package org.gampiot.robok.ui.activities.editor.diagnostic.models
 
 data class DiagnosticItem(
     val name: String,
