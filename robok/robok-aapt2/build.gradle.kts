@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation(fileTree("libs") { include("*.jar") })
     
-    implementation(libs.materual)
+    implementation(libs.material)
     implementation(libs.appcompat)
     
     implementation(libs.gson)
