@@ -30,7 +30,6 @@ import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
 import org.gampiot.robok.ui.fragments.project.create.util.ProjectManagerWrapper
 import org.gampiot.robok.feature.util.base.RobokActivity
-import org.gampiot.robok.feature.util.getDefaultPath
 import org.gampiot.robok.feature.treeview.v2.provider.file
 import org.gampiot.robok.feature.treeview.v2.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.v2.interfaces.FileObject
@@ -48,7 +47,7 @@ import java.io.File
 class EditorActivity : RobokActivity() {
 
     private lateinit var projectManager: ProjectManager
-    private var projectPath: String
+    private var projectPath: String? = null
 
     private var _binding: ActivityEditorBinding? = null
     private val binding get() = _binding!!
