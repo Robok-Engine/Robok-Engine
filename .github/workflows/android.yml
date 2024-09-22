@@ -10,6 +10,7 @@ on:
       - feature/**
       - feature-compose/**
       - robok/**
+      - gradle/**
       - build.gradle.kts
       - gradle.properties
       - gradlew
@@ -23,6 +24,7 @@ on:
       - feature/**
       - feature-compose/**
       - robok/**
+      - gradle/**
       - build.gradle.kts
       - gradle.properties
       - gradlew
