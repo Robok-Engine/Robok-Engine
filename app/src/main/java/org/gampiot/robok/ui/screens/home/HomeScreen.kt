@@ -42,8 +42,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
-import androidx.compose.ui.unit.IntOffset
-import androidx.compose.ui.draw.rotate
 
 import org.gampiot.robok.R
 import org.gampiot.robok.app.Drawables
@@ -53,15 +51,11 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.util.getDefaultPath
 import org.gampiot.robok.feature.component.compose.text.RobokText
-import org.gampiot.robok.feature.component.compose.parallax.ParallaxEffect
-
-import kotlin.math.*
 
 @Composable
 fun HomeScreen(
     navController: NavController,
-    actContext: Context,
-    parallaxEffect: ParallaxEffect
+    actContext: Context
 ) {
     var selectedFolderUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -78,75 +72,62 @@ fun HomeScreen(
         actContext.startActivity(intent)
     }
 
-    val offsetX by parallaxEffect.offsetX
-    val offsetY by parallaxEffect.offsetY
-    val angle by parallaxEffect.angle
-
-    Box(
+    Column(
         modifier = Modifier
-            .fillMaxSize()
-            .offset { IntOffset(offsetX.roundToInt(), offsetY.roundToInt()) }
-            .rotate(angle)
+            .fillMaxWidth()
+            .fillMaxHeight(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .fillMaxHeight(),
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center
+                .padding(8.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(8.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Image(
-                    painter = painterResource(id = Drawables.ic_robok),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .size(70.dp)
-                        .padding(8.dp)
-                )
-                RobokText(
-                    text = "Robok",
-                    fontWeight = FontWeight.Bold,
-                    fontSize = 24.sp,
-                    modifier = Modifier.padding(8.dp)
-                )
-            }
+            Image(
+                painter = painterResource(id = Drawables.ic_robok),
+                contentDescription = null,
+                modifier = Modifier.size(70.dp).padding(8.dp)
+            )
+            RobokText(
+                text = "Robok",
+                fontWeight = FontWeight.Bold,
+                fontSize = 24.sp,
+                modifier = Modifier.padding(8.dp)
+            )
+        }
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                contentPadding = PaddingValues(8.dp),
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(top = 8.dp)
-            ) {
-                items(4) { index ->
-                    HomeCardItem(
-                        icon = when (index) {
-                            0 -> Drawables.ic_add_24
-                            1 -> Drawables.ic_folder_open_24
-                            2 -> Drawables.ic_settings_24
-                            else -> Drawables.ic_info_24
-                        },
-                        title = when (index) {
-                            0 -> stringResource(id = Strings.title_create_project)
-                            1 -> stringResource(id = Strings.title_open_project)
-                            2 -> stringResource(id = Strings.common_word_settings)
-                            else -> stringResource(id = Strings.title_terminal)
-                        },
-                        onClick = {
-                            when (index) {
-                                0 -> onCreateProjectClicked()
-                                1 -> onOpenProjectClicked(folderPickerLauncher)
-                                2 -> navController.navigate("settings")
-                                else -> onTerminalClicked(actContext)
-                            }
+        LazyVerticalGrid(
+            columns = GridCells.Fixed(2),
+            contentPadding = PaddingValues(8.dp),
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 8.dp)
+        ) {
+            items(4) { index ->
+                HomeCardItem(
+                    icon = when (index) {
+                        0 -> Drawables.ic_add_24
+                        1 -> Drawables.ic_folder_open_24
+                        2 -> Drawables.ic_settings_24
+                        else -> Drawables.ic_info_24
+                    },
+                    title = when (index) {
+                        0 -> stringResource(id = Strings.title_create_project)
+                        1 -> stringResource(id = Strings.title_open_project)
+                        2 -> stringResource(id = Strings.common_word_settings)
+                        else -> stringResource(id = Strings.title_terminal)
+                    },
+                    onClick = { 
+                        when (index) {
+                            0 -> onCreateProjectClicked()
+                            1 -> onOpenProjectClicked(folderPickerLauncher)
+                            2 -> navController.navigate("settings")
+                            else -> onTerminalClicked(actContext)
                         }
-                    )
-                }
+                    }
+                )
             }
         }
     }

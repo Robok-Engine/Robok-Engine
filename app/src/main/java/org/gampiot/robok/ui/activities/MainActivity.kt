@@ -38,7 +38,6 @@ import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCode
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
-import org.gampiot.robok.feature.component.compose.parallax.ParallaxEffect
 
 class MainActivity : ComponentActivity() {
 
@@ -47,14 +46,10 @@ class MainActivity : ComponentActivity() {
         const val MSAX_DURATION: Int = 700
     }
 
-    private lateinit var parallaxEffect: ParallaxEffect
-
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        parallaxEffect = ParallaxEffect(this)
-
         setContent {
             RobokTheme {
                 val navController = rememberNavController()
@@ -66,7 +61,7 @@ class MainActivity : ComponentActivity() {
                     popEnterTransition = { materialSharedAxisXIn(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
                     popExitTransition = { materialSharedAxisXOut(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION)  }
                 ) {
-                    composable("home") { HomeScreen(navController, this@MainActivity, parallaxEffect) }
+                    composable("home") { HomeScreen(navController, this@MainActivity) }
                     composable("settings") { SettingsScreen(navController) }
                     composable("settings/codeeditor") { SettingsCodeEditorScreen(navController) }
                     composable("settings/libraries") { LibrariesScreen(navController) }
@@ -75,15 +70,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-
-    override fun onResume() {
-        super.onResume()
-        parallaxEffect.setEnabled(true)
-    }
-
-    override fun onPause() {
-        super.onPause()
-        parallaxEffect.setEnabled(false)
     }
 }
