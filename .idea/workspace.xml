@@ -57,7 +57,7 @@
     ]
   }
 }]]></component>
-  <component name="RunManager" selected="Android App.TerminalActivity">
+  <component name="RunManager" selected="Android App.app">
     <configuration name="TerminalActivity" type="AndroidRunConfigurationType" factoryName="Android App" temporary="true">
       <module name="Robok-Engine.feature.feature-terminal.main" />
       <option name="DEPLOY" value="true" />
