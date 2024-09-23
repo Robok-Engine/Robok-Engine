@@ -23,26 +23,28 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 
-import com.google.android.material.loadingindicator.LoadingIndicator
+/* import com.google.android.material.loadingindicator.LoadingIndicator */
 
 import org.gampiot.robok.feature.component.databinding.LayoutLoadingDialogBinding
 
 /*
 * A Basic Dialog with MDC Loading Indicator.
 * @author Aquiles Trindade (trindadedev).
+* Note: This class is disabled until a 1.13.0 release of MDC.
+* Because LoadingIndicator not exists in MDC 1.12 and i not want to use alpha (1.13.0-alpha06 or higher have LoadingIndicator)
 */
 
 class LoadingDialog(context: Context) : Dialog(context) {
 
     private lateinit var binding: LayoutLoadingDialogBinding
     private val c: Context = context
-    private lateinit var loadingIndicator: LoadingIndicator 
+    /* private lateinit var loadingIndicator: LoadingIndicator */
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = LayoutLoadingDialogBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        loadingIndicator = binding.loadingIndicator
+        /* loadingIndicator = binding.loadingIndicator */
         window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
     }
 }
