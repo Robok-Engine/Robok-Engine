@@ -216,6 +216,7 @@
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Improvements and fixes in the Terminal"
   }
 ]
