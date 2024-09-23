@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.editor.languages.java.models
+package org.gampiot.robok.feature.editor.languages.java.object;
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,13 +17,19 @@ package org.gampiot.robok.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-enum class ModifierAccess(private val s: String) {
-    DEFAULT("default"),
-    PUBLIC("public"),
-    PROTECTED("protected"),
-    PRIVATE("private");
-
-    override fun toString(): String {
-        return s
-    }
+public enum ModifierAccess {
+     DEFAULT("default"),
+     PUBLIC("public"),
+     PROTECTED("protected"),
+     PRIVATE("private");
+    
+     private String s;
+     
+     ModifierAccess(String s){
+          this.s = s;
+     }
+    
+     public String toString(){
+        return this.s;
+     }
 }

@@ -23,10 +23,6 @@ package org.gampiot.robok.feature.editor.languages.java.store
 * @author Aquiles Trindade
 */
 
-/* 
-* Bad class because these shitty classes need to be in the compiled project, therefore, shit.
-*/
-
 
 import android.util.Log
 

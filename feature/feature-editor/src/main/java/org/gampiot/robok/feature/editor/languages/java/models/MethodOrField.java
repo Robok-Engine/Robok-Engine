@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.editor.languages.java.models
+package org.gampiot.robok.feature.editor.languages.java.models;
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,17 +17,31 @@ package org.gampiot.robok.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 
-/*
- * Data class to store variable information.
- * because the identifier storage system did not store the types, access reasons and not.
- * @author ThDev-only
- */
-data class Variable(
-    var createdIn: String,
-    var acessModifier: ModifierAccess,
-    var importPackage: String,
-    var type: String,
-    var name: String,
-    var value: String
-)
+public class MethodOrField {
+    
+    public String result;
+    public Field field;
+    public Method method;
+    
+    public MethodOrField(String result, Field field){
+        this.result = result;
+        this.field = field;
+    }
+    
+    public MethodOrField(String result, Method method){
+        this.result = result;
+        this.method = method;
+    }
+    
+    public Field getField(){
+        return this.field;
+    }
+    
+    public Method getMethod(){
+        return this.method;
+    }
+}
+

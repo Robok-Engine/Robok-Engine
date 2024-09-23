@@ -18,7 +18,7 @@ package org.gampiot.robok.feature.editor.languages.java.store;
  */ 
 
 /*
-* JavaClasses
+* RobokClasses
 * Class used to store robok classes
 * Only those necessary for development with Robok.
 * @author ThDev-Only
@@ -28,7 +28,6 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
-
 import org.gampiot.robok.feature.util.application.RobokApplication;
 
 public class RDKFileMapper {
