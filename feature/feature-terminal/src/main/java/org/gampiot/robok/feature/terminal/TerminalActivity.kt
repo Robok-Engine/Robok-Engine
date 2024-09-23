@@ -63,10 +63,9 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     binding!!.terminalView.setTextSize(28)
-    binding!!.terminalView.requestFocus()
     session = createSession()
-    binding!!.terminalView.setTerminalViewClient(this)
     binding!!.terminalView.attachSession(session)
+    binding!!.terminalView.setTerminalViewClient(this)
     configureFabs()
   }
 
@@ -195,7 +194,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
   }
 
   override fun shouldEnforceCharBasedInput(): Boolean {
-    return false
+    return true
   }
 
   override fun shouldUseCtrlSpaceWorkaround(): Boolean {
@@ -203,7 +202,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
   }
 
   override fun isTerminalViewSelected(): Boolean {
-    return false
+    return true
   }
 
   override fun copyModeChanged(copyMode: Boolean) {}
@@ -216,12 +215,14 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
     return false
   }
+
+
   override fun onKeyUp(keyCode: Int, e: KeyEvent?): Boolean {
     return false
   }
 
   override fun onLongPress(event: MotionEvent): Boolean {
-    return true
+    return false
   }
 
   override fun readControlKey(): Boolean {
