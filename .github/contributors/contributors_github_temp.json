@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 417
+    "contributions": 429
   },
   {
     "login": "ThDev-only",
@@ -60,7 +60,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 112
+    "contributions": 113
   },
   {
     "login": "gampiot-bot",
@@ -184,6 +184,27 @@
     "repos_url": "https://api.github.com/users/Xori71/repos",
     "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Xori71/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1
+  },
+  {
+    "login": "RohitKushvaha01",
+    "id": 99863818,
+    "node_id": "U_kgDOBfPNCg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/99863818?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/RohitKushvaha01",
+    "html_url": "https://github.com/RohitKushvaha01",
+    "followers_url": "https://api.github.com/users/RohitKushvaha01/followers",
+    "following_url": "https://api.github.com/users/RohitKushvaha01/following{/other_user}",
+    "gists_url": "https://api.github.com/users/RohitKushvaha01/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/RohitKushvaha01/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/RohitKushvaha01/subscriptions",
+    "organizations_url": "https://api.github.com/users/RohitKushvaha01/orgs",
+    "repos_url": "https://api.github.com/users/RohitKushvaha01/repos",
+    "events_url": "https://api.github.com/users/RohitKushvaha01/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
     "type": "User",
     "site_admin": false,
     "contributions": 1
