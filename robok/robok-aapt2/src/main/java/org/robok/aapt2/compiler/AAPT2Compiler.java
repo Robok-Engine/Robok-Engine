@@ -20,7 +20,6 @@ public class AAPT2Compiler extends Compiler {
 	private static final String TAG = "AAPT2";
 	
 	private Project mProject;
-	private final File mFilesDir;
 	private List<Library> mLibraries;
     
     private File binDir;
@@ -41,12 +40,6 @@ public class AAPT2Compiler extends Compiler {
 		//mProject.getLogger().d(TAG, "Preparing");
 		onProgressUpdate("Preparing AAPT2...");
         
-        try{
-            copyAAPT2ToFilesDir();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-		
 		mLibraries = new ArrayList<>();
         mLibraries.addAll(mProject.getLibraries());
 		
@@ -228,39 +221,6 @@ public class AAPT2Compiler extends Compiler {
         
     }
     
-    private void copyAAPT2ToFilesDir() throws IOException {
-    File destination = new File(RobokApplication.robokContext.getFilesDir(), "libaapt2.so");
-    if (!destination.exists()) {
-        try (InputStream in = RobokApplication.robokContext.getAssets().open("libaapt2.so");
-             OutputStream out = new FileOutputStream(destination)) {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = in.read(buffer)) > 0) {
-                out.write(buffer, 0, length);
-            }
-        }
-    }
-}
-	
-    
-    private File getAAPT2Filee() {
-        File nativeLibrary = null;
-        
-        try{
-            nativeLibrary = new File(RobokApplication.robokContext.getFilesDir(), "libaapt2.so");
-
-        if (!nativeLibrary.exists()) {
-            mProject.getLogger().e(TAG, "AAPT2 binary not found");
-            setIsCompilationSuccessful(false);
-        }
-
-        mProject.getLogger().e(TAG, "AAPT2 binary found in " + nativeLibrary.getAbsolutePath());
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        
-        return nativeLibrary;
-}
     
 	private File getAAPT2File() throws CompilerException, IOException {
 		/*File check = new File(RobokApplication.robokContext.getFilesDir() + "/temp/aapt2");
