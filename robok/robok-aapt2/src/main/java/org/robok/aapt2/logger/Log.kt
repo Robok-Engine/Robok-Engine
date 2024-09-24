@@ -18,6 +18,6 @@ package org.robok.aapt2.logger
  */
 
 data class Log(
-   tag: CharSequence,
-   message: CharSequence
+   val tag: CharSequence,
+   val message: CharSequence
 )
