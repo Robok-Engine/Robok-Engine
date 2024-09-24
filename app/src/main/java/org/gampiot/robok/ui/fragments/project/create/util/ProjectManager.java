@@ -29,6 +29,7 @@ import org.robok.aapt2.compiler.CompilerTask;
 import org.robok.aapt2.model.Project;
 import org.robok.aapt2.model.Library;
 import org.robok.aapt2.logger.Logger;
+import org.robok.aapt2.SystemLogPrinter;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -132,6 +133,7 @@ public class ProjectManager {
          var terminal = new RobokTerminalWithRecycler(context);
          var logger = new Logger();
          logger.attach(terminal.getRecyclerView());
+         SystemLogPrinter.start(logger);
          Project project = new Project();
          project.setLibraries(Library.fromFile(new File("")));
          project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
