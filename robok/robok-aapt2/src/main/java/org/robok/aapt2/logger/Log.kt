@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.incremental.file;
+package org.robok.aapt2.logger
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,19 +17,7 @@ package org.robok.aapt2.compiler.incremental.file;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.io.File;
-
-public class JavaFile extends File {
-
-    public JavaFile(String pathname) {
-        super(pathname);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof JavaFile) {
-            return ((JavaFile) obj).getName().equals(this.getName());
-        }
-        return false;
-    }
-}
+data class Log(
+   tag: CharSequence,
+   message: CharSequence
+)
