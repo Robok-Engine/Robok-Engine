@@ -20,7 +20,6 @@ public class AAPT2Compiler extends Compiler {
 	private static final String TAG = "AAPT2";
 	
 	private Project mProject;
-	private final File mFilesDir;
 	private List<Library> mLibraries;
     
     private File binDir;
@@ -32,7 +31,6 @@ public class AAPT2Compiler extends Compiler {
     
 	public AAPT2Compiler(Project project) {
 	    mProject = project;
-	    mFilesDir = RobokApplication.robokContext.getFilesDir();
         setTag(TAG);
 	}
 	
@@ -40,12 +38,6 @@ public class AAPT2Compiler extends Compiler {
     public void prepare() {
 		//mProject.getLogger().d(TAG, "Preparing");
 		onProgressUpdate("Preparing AAPT2...");
-        
-        try{
-            copyAAPT2ToFilesDir();
-        }catch(IOException e){
-            e.printStackTrace();
-        }
 		
 		mLibraries = new ArrayList<>();
         mLibraries.addAll(mProject.getLibraries());
