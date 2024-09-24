@@ -48,7 +48,6 @@ public class AAPT2Compiler extends Compiler {
     
 	 public AAPT2Compiler(Project project) {
 	      projectModel = project;
-	      mFilesDir = RobokApplication.robokContext.getFilesDir();
           setTag(TAG);
      }
      
