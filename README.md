@@ -4,6 +4,8 @@
 <div align="center">
     <h1>Robok Engine</h1>
     <p>A new generation Engine to facilitate the development of Java games.</p>
+    <img src="https://m3-markdown-badges.vercel.app/issues/1/1/robok-inc/Robok-Engine">
+    <img src="https://m3-markdown-badges.vercel.app/stars/1/1/robok-inc/Robok-Engine">
 </div>
 
 ## Features
