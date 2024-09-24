@@ -33,24 +33,24 @@ import org.robok.aapt2.model.Library;
 import org.gampiot.robok.feature.util.application.RobokApplication;
 
 public class AAPT2Compiler extends Compiler {
-	
-	 private static final String TAG = "AAPT2";
-	
-	 private Project projectModel;
-	 private List<Library> librariesList;
-    
+
+     private static final String TAG = "AAPT2";
+
+     private Project projectModel;
+     private List<Library> librariesList;
+
      private File binPath;
      private File genPath;
      private File outputPath;
      private File resPath;
 
      private BinaryExecutor binaryExecutor;
-    
-	 public AAPT2Compiler(Project project) {
-	      projectModel = project;
+
+     public AAPT2Compiler(Project project) {
+          projectModel = project;
           setTag(TAG);
      }
-     
+
      @Override
      public void prepare() {
           onProgressUpdate("Preparing AAPT2...");
@@ -79,7 +79,7 @@ public class AAPT2Compiler extends Compiler {
 		  FileUtil.makeDir(binPath.getPath());
 		  FileUtil.makeDir(genPath.getPath());
      }
-    
+
      @Override
      public void run() throws CompilerException, IOException {
           ArrayList<String> args = new ArrayList<>();
@@ -171,8 +171,7 @@ public class AAPT2Compiler extends Compiler {
                setIsCompilationSuccessful(false);
           }
      }
-    
-    
+
      private void compileLibraries() throws CompilerException, IOException {
           ArrayList<String> args = new ArrayList<>();
           for (Library library : librariesList) {
@@ -196,14 +195,14 @@ public class AAPT2Compiler extends Compiler {
                }
           }
      }
-    
+
      private File createNewFile(File parent, String name) throws IOException {
           File createdFile = new File(parent, name);
           parent.mkdirs();
           createdFile.createNewFile();
           return createdFile;
      }
-     
+
      private File getAAPT2File() throws CompilerException, IOException {
           File nativeLibrary = new File(RobokApplication.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
           
