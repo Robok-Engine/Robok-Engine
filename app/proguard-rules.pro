@@ -29,6 +29,8 @@
 -keep class sun.security.** { *; }
 
 -keep class org.gampiot.robok.feature.component.compose.edges.StretchEdgeEffect { *; }
+-keep class org.gampiot.robok.feature.modeling.** { *; }
+-keep class com.badlogic.gdx.** { *; }
 
 -dontwarn com.android.SdkConstants
 -dontwarn com.android.dvlib.DeviceSchema
