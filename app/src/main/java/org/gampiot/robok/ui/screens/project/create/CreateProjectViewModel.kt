@@ -65,11 +65,16 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
         pPath = projectPath
         viewModelScope.launch {
             state = state.copy(isLoading = true, errorMessage = null)
+            val projectCreationListener = object : ProjectManager.CreationListener {
+                override fun onProjectCreate() { 
+                     onSucess()
+                     state = state.copy(isLoading = false)
+                }
+                override fun onProjectCreateError() { /* This almost never happens, so I prefer to ignore it for now.*/ }
+            }
+            projectManager.setListener(projectCreationListener)
             projectManager.setProjectPath(projectPath)
             projectManager.create(state.projectName, state.packageName, template)
-
-            state = state.copy(isLoading = false)
-            onSuccess()
         }
     }
 }
