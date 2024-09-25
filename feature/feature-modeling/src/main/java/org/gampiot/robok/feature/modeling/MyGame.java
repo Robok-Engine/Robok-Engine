@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.incremental.file;
+package org.gampiot.robok.feature.modeling;
 
 /*
  *  This file is part of Robok © 2024.
@@ -15,21 +15,13 @@ package org.robok.aapt2.compiler.incremental.file;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */
+ */ 
 
-import java.io.File;
+import com.badlogic.gdx.Game;
 
-public class JavaFile extends File {
-
-    public JavaFile(String pathname) {
-        super(pathname);
-    }
-
+public class MyGame extends Game {
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof JavaFile) {
-            return ((JavaFile) obj).getName().equals(this.getName());
-        }
-        return false;
+    public void create() {
+        // Inicialize seu jogo aqui
     }
 }
