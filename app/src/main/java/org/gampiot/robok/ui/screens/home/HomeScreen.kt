@@ -123,7 +123,7 @@ fun HomeScreen(
                     },
                     onClick = { 
                         when (index) {
-                            0 -> onCreateProjectClicked()
+                            0 -> navController.navigate("project/create")
                             1 -> onOpenProjectClicked(folderPickerLauncher)
                             2 -> navController.navigate("settings")
                             else -> onTerminalClicked(actContext)
@@ -133,10 +133,6 @@ fun HomeScreen(
             }
         }
     }
-}
-
-private fun onCreateProjectClicked() {
-    TODO("trindadedev is lazy and not implemented yet")
 }
 
 private fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Uri?>) {

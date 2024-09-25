@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
+import androidx.lifecycle.lifecycleScope
 
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayout
@@ -43,7 +44,7 @@ import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
-import org.gampiot.robok.ui.fragments.project.create.util.ProjectManager
+import org.gampiot.robok.manage.project.ProjectManager
 import org.gampiot.robok.feature.util.base.RobokActivity
 import org.gampiot.robok.feature.editor.EditorListener
 import org.gampiot.robok.feature.component.terminal.RobokTerminal
@@ -58,6 +59,8 @@ import org.gampiot.robok.feature.modeling.launcher.AndroidLauncher
 import org.robok.antlr.logic.AntlrListener
 
 import java.io.File
+
+import kotlinx.coroutines.*
 
 class EditorActivity : RobokActivity() {
 
@@ -105,7 +108,9 @@ class EditorActivity : RobokActivity() {
 
     private fun configureButtons() {
         binding.runButton.setOnClickListener {
-            projectManager.build()
+            lifecycleScope.launch {
+                projectManager.build()
+            }
         }
     }
 
@@ -235,7 +240,7 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun configureFileTree() {
-        val fileObject = FileWrapper(File(projectPath))
+        val fileObject = FileWrapper(File(projectPath!!))
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
