@@ -25,11 +25,11 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.font.FontStyle
 
-import org.gampiot.robok.R
+import org.gampiot.robok.Fonts
 
 val NunitoFontFamily = FontFamily(
-    Font(R.font.nunito_regular, FontWeight.Normal, FontStyle.Normal),
-    Font(R.font.nunito_bold, FontWeight.Bold, FontStyle.Normal),
+    Font(Fonts.nunito_regular, FontWeight.Normal, FontStyle.Normal),
+    Font(Fonts.nunito_bold, FontWeight.Bold, FontStyle.Normal),
 )
 
 val Typography = Typography()

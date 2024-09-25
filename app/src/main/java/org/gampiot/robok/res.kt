@@ -1,4 +1,4 @@
-package org.gampiot.robok.app
+package org.gampiot.robok
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,3 +19,8 @@ package org.gampiot.robok.app
 
 typealias Drawables = org.gampiot.robok.R.drawable
 typealias Ids = org.gampiot.robok.R.id
+typealias Fonts = org.gampiot.robok.R.font
+typealias Styles = org.gampiot.robok.R.style
+typealias Colors = org.gampiot.robok.R.color
+typealias Layouts = org.gampiot.robok.R.layout
+typealias Mipmaps = org.gampiot.robok.R.mipmap

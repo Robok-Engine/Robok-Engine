@@ -44,7 +44,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 
 import org.gampiot.robok.R
-import org.gampiot.robok.app.Drawables
+import org.gampiot.robok.Drawables
 import org.gampiot.robok.ui.activities.editor.EditorActivity
 import org.gampiot.robok.ui.theme.Typography
 import org.gampiot.robok.feature.res.Strings

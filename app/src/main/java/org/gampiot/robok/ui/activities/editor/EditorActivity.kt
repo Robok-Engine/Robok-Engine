@@ -37,8 +37,8 @@ import com.google.android.material.tabs.TabLayout
 
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
-import org.gampiot.robok.app.Ids
-import org.gampiot.robok.app.Drawables
+import org.gampiot.robok.Ids
+import org.gampiot.robok.Drawables
 import org.gampiot.robok.databinding.ActivityEditorBinding
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
