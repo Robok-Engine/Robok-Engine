@@ -61,7 +61,7 @@ public class ProjectManager {
     
     public void create(String projectName, String packageName, ProjectTemplate template) {
         try {
-            InputStream zipFileInputStream = context.getAssets().open(template.zipFileName);
+            InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
             
             if (!outputPath.exists()) {
                 outputPath.mkdirs();
@@ -74,7 +74,7 @@ public class ProjectManager {
                 if (!zipEntry.isDirectory()) {
                     String entryName = zipEntry.getName();
                     String outputFileName = entryName
-                            .replace(template.name, projectName)
+                            .replace(template.getName(), projectName)
                             .replace("game/logic/$pkgName", "game/logic/" + packageName.replace('.', '/'));
                     
                     File outputFile = new File(outputPath, outputFileName);
