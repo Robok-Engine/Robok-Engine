@@ -1,10 +1,13 @@
 package org.gampiot.robok.feature.util
 
-/**@author : @RohitKushvaha*/
+/*
+  Class to help with path management.
+  @author : @RohitKushvaha
+*/
 import android.content.Context
 import android.net.Uri
 import android.os.Environment
-import android.provider.DocumentsContract
+import android.provider.DocumentsContractClass to help with path management.
 
 object PathUtils {
   @JvmStatic
@@ -12,8 +15,6 @@ object PathUtils {
     val path = internalConvertUriToPath(context, uri)
     return path.replace("/document", "/storage").replace(":", "/")
   }
-
-
 
   private fun internalConvertUriToPath(context: Context, uri: Uri?): String {
     uri?.let {
