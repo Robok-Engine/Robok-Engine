@@ -84,6 +84,7 @@
 	<string name="text_monospace">Monospace</string>
 	<string name="text_serif">Serif</string>
 	<string name="text_sans_serif">Sans-Serif</string>
+	<string name="text_basic_info">Basic information</string>
 	<!-- end section -->
 	
 	<!-- warnings section -->

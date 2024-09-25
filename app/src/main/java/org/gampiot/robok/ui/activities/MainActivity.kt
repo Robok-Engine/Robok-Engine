@@ -32,7 +32,11 @@ import soup.compose.material.motion.animation.materialSharedAxisXOut
 
 import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.ui.theme.RobokTheme
+import org.gampiot.robok.models.project.ProjectTemplate
+import org.gampiot.robok.app.Drawables
+import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.ui.screens.home.HomeScreen
+import org.gampiot.robok.ui.screens.project.create.CreateProjectScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
@@ -50,6 +54,14 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
+        val defaultTemplate = ProjectTemplate(
+               name = getString(Strings.template_name_empty_game),
+               packageName = "com.robok.empty",
+               zipFileName = "empty_game",
+               javaSupport = true,
+               kotlinSupport = false,
+               imageResId = Drawables.ic_empty_game
+        )
         setContent {
             RobokTheme {
                 val navController = rememberNavController()
@@ -61,12 +73,13 @@ class MainActivity : ComponentActivity() {
                     popEnterTransition = { materialSharedAxisXIn(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
                     popExitTransition = { materialSharedAxisXOut(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION)  }
                 ) {
-                    composable("home") { HomeScreen(navController, this@MainActivity) }
-                    composable("settings") { SettingsScreen(navController) }
-                    composable("settings/codeeditor") { SettingsCodeEditorScreen(navController) }
-                    composable("settings/libraries") { LibrariesScreen(navController) }
-                    composable("settings/configure_rdk") { ConfigureRDKScreen(navController) }
-                    composable("settings/about") { AboutScreen(navController, version = BuildConfig.VERSION_NAME) }
+                    composable("home") { HomeScreen(navController = navController, actContext = this@MainActivity) }
+                    composable("settings") { SettingsScreen(navController = navController) }
+                    composable("settings/codeeditor") { SettingsCodeEditorScreen(navController = navController) }
+                    composable("settings/libraries") { LibrariesScreen(navController = navController) }
+                    composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
+                    composable("settings/about") { AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME) }
+                    composable("project/create") { CreateProjectScreen(navController = navController, projectTemplate = defaultTemplate) }
                 }
             }
         }
