@@ -108,9 +108,7 @@ class EditorActivity : RobokActivity() {
 
     private fun configureButtons() {
         binding.runButton.setOnClickListener {
-            lifecycleScope.launch {
-                projectManager.build()
-            }
+            projectManager.build()
         }
     }
 
