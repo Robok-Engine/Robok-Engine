@@ -42,7 +42,7 @@ import org.robok.aapt2.compiler.Compiler;
 import org.robok.aapt2.compiler.CompilerResult;
 import org.robok.aapt2.compiler.incremental.IncrementalECJCompiler;
 import org.robok.aapt2.compiler.incremental.IncrementalD8Compiler;
-
+import org.robok.aapt2.apksigner.*;
 public class CompilerTask {
 
     private final WeakReference<Context> mContext;
@@ -96,10 +96,10 @@ public class CompilerTask {
                 }
             }
             //project.getLogger().d("APK Signer", "Signing Apk");
-			//String path_ = project.getOutputFile() + "/bin/gen.apk";
-            
+			String path_ = project.getOutputFile() + "/bin/gen.apk";
+            signFile(new java.io.File(path_));
             //assinarApk(mContext.get(), new java.io.File(path_));
-			 //signFile(new java.io.File(path_));
+			 
             
             long time = System.currentTimeMillis() - startTime;
             if(compilationSteps.size() == 3){
@@ -231,19 +231,7 @@ public class CompilerTask {
         mExecutor.shutdown();
     }
     
-    /*private void signedFile(final File file){
-		try {
-			String outFile =file.getAbsolutePath();
-			FileUtil.makeDir(FileUtil.getExternalStorageDir().concat("/APK Signer/"));
-			out = FileUtil.getExternalStorageDir().concat("/APK Signer/".concat(Uri.parse(outFile).getLastPathSegment().replace(".apk", "").concat("-signed.apk")));
-			apksigner.Main.sign(file,out);
-			SketchwareUtil.showMessage(getApplicationContext(), "Success - ".concat(out));
-		} catch (Exception e) {
-			SketchwareUtil.showMessage(getApplicationContext(), e.toString());
-		}
-	}*/
-    
-    /*private void signFile(final File file){
+    private void signFile(final File file){
 		class sign_apk_file extends AsyncTask<Void, Void, Void> { 
 			@Override
 			protected Void doInBackground(Void... arg0) {
@@ -251,12 +239,12 @@ public class CompilerTask {
 					String outFile =file.getAbsolutePath();
 					String out = project.getOutputFile() + "/bin/generated.apk";
 					// SIGN APK FILE
-					apksigner.Main.sign(file,out, "testkey");
+					Main.sign(file,out, "testkey");
 				} catch (Exception e) {
 					long time = System.currentTimeMillis() - startTime;
 					project.getLogger().d("APK Signer", "Sign error");
 				}
-				return null;
+				return null; 
 			}
 			
 			protected void onPreExecute() {
@@ -280,5 +268,5 @@ public class CompilerTask {
 			}
 		}
 		new sign_apk_file().execute();
-	}*/
+	}
 }
