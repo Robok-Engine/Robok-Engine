@@ -1,4 +1,4 @@
-package org.gampiot.robok.manage.project
+package org.gampiot.robok.manage.project;
 
 /*
  *  This file is part of Robok © 2024.
