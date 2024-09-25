@@ -51,6 +51,8 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.feature.util.getDefaultPath
 import org.gampiot.robok.feature.component.compose.text.RobokText
+import org.gampiot.robok.feature.util.PathUtils
+import java.io.File
 
 @Composable
 fun HomeScreen(
@@ -152,19 +154,11 @@ private fun processUri(ac: Context, uri: Uri): String {
     ) 
     val documentId = DocumentsContract.getTreeDocumentId(uri)
     val folderUri = DocumentsContract.buildDocumentUriUsingTree(uri, documentId)
-    val path = getPathFromUri(folderUri)
-    return path ?: "${getDefaultPath()}/Robok"
-}
-
-private fun getPathFromUri(uri: Uri): String? {
-    val documentId = DocumentsContract.getDocumentId(uri)
-    val split = documentId.split(":")
-    val type = split[0]
-    val relativePath = split[1]
-    if ("primary".equals(type, true)) {
-         return "/storage/emulated/0/$relativePath"
+    val path = PathUtils.convertUriToPath(ac,folderUri)
+    if (File(path).exists().not()){
+        return "${getDefaultPath()}/Robok"
     }
-    return null
+    return path
 }
 
 @Composable
