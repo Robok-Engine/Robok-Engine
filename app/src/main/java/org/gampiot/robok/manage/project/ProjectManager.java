@@ -40,6 +40,7 @@ import org.robok.aapt2.SystemLogPrinter;
 public class ProjectManager {
 
     private CreationListener creationListener;
+    public static final String TAG = "ProjectManager";
     private Context context;
     private File outputPath;
 
@@ -58,6 +59,10 @@ public class ProjectManager {
     }
 
     public void create(String projectName, String packageName, ProjectTemplate template) {
+        Log.e(TAG, "ProjectName" + projectName);
+        Log.e(TAG, "PackageName" + packageName);
+        Log.e(TAG, "ProjectTemplate" + template);
+        
         if (outputPath == null) {
             throw new IllegalStateException("outputPath não foi inicializado.");
         }
