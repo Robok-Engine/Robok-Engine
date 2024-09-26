@@ -170,7 +170,7 @@ fun showVeryBasicDialog(
                 isShowDialog.value = false
             },
             dialogTitle = title,
-            dialogText = error,
+            dialogText = message,
             iconDescription = "Icon"
         )
     }
