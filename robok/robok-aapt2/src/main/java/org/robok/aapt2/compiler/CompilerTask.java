@@ -54,7 +54,6 @@ public class CompilerTask {
     private final Handler mHandler;
     private final ExecutorService mExecutor;
     private final List<Boolean> compilationSteps;
-    CompilerResult compilerResult = null;
 
     private TextView progress;
     private long startTime;
@@ -87,6 +86,7 @@ public class CompilerTask {
     }
 
     protected CompilerResult doInBackground(Project project) {
+        CompilerResult compilerResult;
 
         try {
             this.project = project;
@@ -107,21 +107,16 @@ public class CompilerTask {
             project.getLogger().d("APK Signer", "Signing Apk");
             File genApk = new File(project.getOutputFile() + "/bin/gen.apk");
             
-            signFile(genApk, new FileSignCallback(){
-                @Override
-                public void onFileSigned(File signedFile) {
-                        
-                    long time = System.currentTimeMillis() - startTime;
-                    if (compilationSteps.size() == 3) {
-                        project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
-                        compilerResult = new CompilerResult("Success", false, signedFile);
-                    } else {
-                        project.getLogger().d("APK Builder", "Build failed, took " + time + "ms");
-                        compilerResult = new CompilerResult("Failed", true, null);
-                   }    
-                }
-                
-            });
+            File signApk = signFile(genApk);
+
+            long time = System.currentTimeMillis() - startTime;
+            if (compilationSteps.size() == 3) {
+                project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
+                compilerResult = new CompilerResult("Success", false, signApk);
+            } else {
+                project.getLogger().d("APK Builder", "Build failed, took " + time + "ms");
+                compilerResult = new CompilerResult("Failed", true, null);
+            }
 
         } catch (Exception e) {
             return new CompilerResult(android.util.Log.getStackTraceString(e), true, null);
@@ -207,42 +202,26 @@ public class CompilerTask {
         mExecutor.shutdown();
     }
 
-    public interface FileSignCallback {
-        void onFileSigned(File signedFile);
+    private File signFile(File file) {
+    File signedFile = null;
+
+    try {
+        String outFile = file.getAbsolutePath();
+        String out = project.getOutputFile() + "/bin/generated.apk";
+        Main.sign(file, out, "testkey"); // Sign apk file
+        signedFile = new File(out);
+    } catch (Exception e) {
+        project.getLogger().d("APK Signer", "Sign error");
     }
-    
-    private void signFile(final File file, final FileSignCallback callback) {
-    new AsyncTask<Void, Void, File>() {
-        @Override
-        protected File doInBackground(Void... arg0) {
-            File signedFile = null;
-            try {
-                String outFile = file.getAbsolutePath();
-                String out = project.getOutputFile() + "/bin/generated.apk";
-                Main.sign(file, out, "testkey");
-                signedFile = new File(out);
-            } catch (Exception e) {
-                project.getLogger().d("APK Signer", "Sign error");
-            }
-            return signedFile; 
-        }
+        
+    try {
+        FileUtil.deleteFile(project.getOutputFile() + "/bin/gen.apk");
+    } catch (Exception e) {
+        //Handle exception
+        e.printStackTrace();
+    }
 
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onPostExecute(File signedFile) {
-            try {
-                FileUtil.deleteFile(project.getOutputFile() + "/bin/gen.apk");
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-                
-            if (callback != null) {
-                callback.onFileSigned(signedFile);
-            }
-        }
-    }.execute();
+    return signedFile;
+}
 }
 }
