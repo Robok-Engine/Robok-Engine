@@ -115,7 +115,7 @@ private fun Screen(
     
     //Spacer(modifier = Modifier.weight(1f))
     
-    val showDialog by remember { mutableStateOf(false)
+    val showDialog by remember { mutableStateOf(false) }
     
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
