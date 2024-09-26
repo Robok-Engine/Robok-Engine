@@ -170,7 +170,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     private fun sendTextInPink(text: String) {
         val pinkText = "\u001B[35m$text\u001B[0m"
-        session?.write(pinkText.toByteArray(Charsets.UTF_8))
+        session?.write(pinkText)
     }
 
     override fun onDestroy() {
