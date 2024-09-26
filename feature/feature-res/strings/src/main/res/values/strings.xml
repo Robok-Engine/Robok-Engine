@@ -54,6 +54,10 @@
 	<!-- end section -->
 	
 	<!-- settings section -->
+	<string name="settings_app_title">App Settings</string>
+	<string name="settings_app_description">Some application related settings.</string>
+	<string name="settings_app_use_monet_title">Dynamic colors</string>
+	<string name="settings_app_use_monet_description">Use device theme in app.</string>
 	<string name="settings_code_editor_title">Code Editor Settings</string>
 	<string name="settings_code_editor_description">Some code editor settings.</string>
 	<string name="settings_code_editor_theme_title">Code Editor Theme</string>

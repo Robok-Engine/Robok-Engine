@@ -26,6 +26,7 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.map
 
+private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
 private val editorThemePreference = intPreferencesKey("editor_theme")
 private val editorTypefacePreference = intPreferencesKey("editor_typeface")
 private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
@@ -33,6 +34,10 @@ private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_w
 class AppPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) {
+     val appIsUseMonet = dataStore.data
+          .map {
+              it[appIsUseMonetPreference] ?: false
+          }
      val editorTheme = dataStore.data
           .map {
               it[editorThemePreference] ?: 0
@@ -45,7 +50,13 @@ class AppPreferencesRepository(
           .map {
               it[editorIsUseWordWrapPreference] ?: false
           }
-        
+          
+     suspend fun enableMonet(value: Boolean) {
+         dataStore.edit { preferences ->
+             preferences[appIsUseMonetPreference] = value
+         }
+     }
+     
      suspend fun changeEditorTheme(value: Int) {
          dataStore.edit { preferences ->
              preferences[editorThemePreference] = value

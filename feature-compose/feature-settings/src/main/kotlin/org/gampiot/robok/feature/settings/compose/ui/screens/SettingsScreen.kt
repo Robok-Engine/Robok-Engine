@@ -65,6 +65,13 @@ fun generalPrefs(
     navController: NavController
 ) {
    Preference(
+       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
+       secondaryText = { RobokText(text = stringResource(id = Strings.settings_app_description)) },
+       onClick = {
+           navController.navigate("settings/app")
+       }
+   )
+   Preference(
        text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { RobokText(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
