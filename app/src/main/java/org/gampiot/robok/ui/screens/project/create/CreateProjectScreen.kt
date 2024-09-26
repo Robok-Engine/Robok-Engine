@@ -115,7 +115,7 @@ private fun Screen(
     
     //Spacer(modifier = Modifier.weight(1f))
     
-    var showDialog by remember { mutableStateOf(false) }
+    var showDialog = remember { mutableStateOf(false) }
     var error by remember { mutableStateOf("") }
     
     Row(
