@@ -105,20 +105,21 @@ public class CompilerTask {
             }
 
             project.getLogger().d("APK Signer", "Signing Apk");
-            String genApkDir = project.getOutputFile() + "/bin/gen.apk";
-            signFile(new File(genApkDir));
+            File genApk = new File(project.getOutputFile() + "/bin/gen.apk");
+            
+            signFile(genApk);
 
             long time = System.currentTimeMillis() - startTime;
             if (compilationSteps.size() == 3) {
                 project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
-                compilerResult = new CompilerResult("Success", false, genApkDir);
+                compilerResult = new CompilerResult("Success", false, genApk);
             } else {
                 project.getLogger().d("APK Builder", "Build failed, took " + time + "ms");
                 compilerResult = new CompilerResult("Failed", true, null);
             }
 
         } catch (Exception e) {
-            return new CompilerResult(android.util.Log.getStackTraceString(e), true);
+            return new CompilerResult(android.util.Log.getStackTraceString(e), true, null);
         }
 
         return compilerResult;
