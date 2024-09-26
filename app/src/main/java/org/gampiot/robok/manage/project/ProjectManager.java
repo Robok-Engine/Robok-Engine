@@ -21,8 +21,8 @@ import android.content.Context;
 import android.os.Environment;
 
 import org.gampiot.robok.models.project.ProjectTemplate;
-import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
-import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
+import org.gampiot.robok.template.code.java.JavaClassTemplate;
+import org.gampiot.robok.template.code.android.game.logic.GameScreenLogicTemplate;
 import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
 
 import org.robok.aapt2.compiler.CompilerTask;
@@ -34,6 +34,7 @@ import org.robok.aapt2.SystemLogPrinter;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.FileNotFoundExeception
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
@@ -98,7 +99,7 @@ public class ProjectManager {
             
             createJavaClass(projectName, packageName);
 
-        } catch (IOException e) {
+        } catch (FileNotFoundExeception e) {
             e.printStackTrace();
             creationListener.onProjectCreateError(e.toString() + " Method: create, line: 103");
         }
@@ -123,7 +124,7 @@ public class ProjectManager {
             fos.close();
             creationListener.onProjectCreate();
 
-        } catch (IOException e) {
+        } catch (FileNotFoundExeception e) {
             e.printStackTrace();
             creationListener.onProjectCreateError(e.toString() + " Method: create, line: 128");
         }
