@@ -95,10 +95,9 @@ public class CompilerTask {
                     }
                 }
             }
-            //project.getLogger().d("APK Signer", "Signing Apk");
+            project.getLogger().d("APK Signer", "Signing Apk");
 			String path_ = project.getOutputFile() + "/bin/gen.apk";
             signFile(new java.io.File(path_));
-            //assinarApk(mContext.get(), new java.io.File(path_));
 			 
             
             long time = System.currentTimeMillis() - startTime;
@@ -207,9 +206,7 @@ public class CompilerTask {
         mHandler.post(() -> {
             if (updates.length > 0) {
                 String update = updates[0];
-                project.getLogger().w(Tag, update);
-                // Atualize sua UI com o progresso aqui
-                // progress.setText(update);
+                project.getLogger().d(Tag, update);
             }
         });
     }
