@@ -130,6 +130,7 @@ class EditorActivity : RobokActivity() {
 
                     if (intent.resolveActivity(context.packageManager) != null) {
                         context.startActivity(intent)
+                        Toast.makeText(context, "caiu no startActivity.", Toast.LENGTH_SHORT).show()
                     } else {
                         Toast.makeText(context, "Nenhum instalador de APK encontrado.", Toast.LENGTH_SHORT).show()
                     }
