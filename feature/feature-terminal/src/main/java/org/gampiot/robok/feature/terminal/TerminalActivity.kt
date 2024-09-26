@@ -168,10 +168,9 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     fun installPackage(packageName: String?) { TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") }
 
-    private fun sendTextInPink(message: String) {
-        val pinkColorCode = "\u001B[35m" 
-        val resetCode = "\u001B[0m" 
-        session?.write((pinkColorCode + message + resetCode).toByteArray())
+    private fun sendTextInPink(text: String) {
+        val pinkText = "\u001B[35m$text\u001B[0m"
+        session?.write(pinkText.toByteArray(Charsets.UTF_8))
     }
 
     override fun onDestroy() {
