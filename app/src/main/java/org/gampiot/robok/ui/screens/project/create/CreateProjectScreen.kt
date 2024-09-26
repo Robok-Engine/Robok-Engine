@@ -151,16 +151,16 @@ private fun Screen(
 
 @Composable
 fun showErrorDialog(
-   showDialog: Boolean,
-   error: String
+    showDialog: MutableState<Boolean>,
+    error: String
 ) {
-    if (showDialog) {
+    if (showDialog.value) {
         RobokDialog(
             onDismissRequest = {
-                showDialog = false
+                showDialog.value = false
             },
             onConfirmation = {
-                showDialog = false
+                showDialog.value = false
             },
             dialogTitle = "Something unexpected happened",
             dialogText = error,
