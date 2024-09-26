@@ -56,7 +56,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
         state = state.copy(errorMessage = message!!)
     }
     
-    fun createProject(template: ProjectTemplate, projectPath: File, onSuccess: () -> Unit) {
+    fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
         if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
             state = state.copy(errorMessage = "Project name and package name cannot be empty.")
             return
@@ -70,7 +70,9 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
                      onSuccess()
                      state = state.copy(isLoading = false)
                 }
-                override fun onProjectCreateError() { /* This almost never happens, so I prefer to ignore it for now.*/ }
+                override fun onProjectCreateError(error: String) {
+                     onError(error)
+                }
             }
             projectManager.setListener(projectCreationListener)
             projectManager.setProjectPath(projectPath)

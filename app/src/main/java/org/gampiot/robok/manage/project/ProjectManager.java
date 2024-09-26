@@ -100,7 +100,7 @@ public class ProjectManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError();
+            creationListener.onProjectCreateError(e.toString());
         }
     }
 
@@ -125,7 +125,7 @@ public class ProjectManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError();
+            creationListener.onProjectCreateError(e.toString());
         }
     }
     
@@ -154,6 +154,6 @@ public class ProjectManager {
     
     public interface CreationListener {
          public void onProjectCreate();
-         public void onProjectCreateError();
+         public void onProjectCreateError(String error);
     }
 }

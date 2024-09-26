@@ -97,8 +97,7 @@ private fun Screen(
     template: ProjectTemplate,
     navController: NavController,
     context: android.content.Context,
-    modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
-    projectPath: File = File(Environment.getExternalStorageDirectory(), "Robok/.projects/${state.projectName}")
+    modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 ) {
     
     OutlinedTextField(
@@ -129,9 +128,15 @@ private fun Screen(
         Button(
             modifier = Modifier.weight(1f),
             onClick = {
-                viewModel.createProject(template, projectPath) {
-                    showProjectCreatedDialog(context, viewModel.pPath)
-                }
+                viewModel.setProjectPath(File(Environment.getExternalStorageDirectory(), "Robok/.projects/${state.projectName}"))
+                viewModel.createProject(template,
+                   onSuccess = {
+                        showProjectCreatedDialog(context, viewModel.pPath)
+                   },
+                   onError = { error ->
+                        Toast.makeText(context, error, 4000).show()
+                   }
+                )
             }
         ) {
            RobokText(text = stringResource(id = Strings.title_create_project))
