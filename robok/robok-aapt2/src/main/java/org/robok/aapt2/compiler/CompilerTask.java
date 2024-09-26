@@ -224,4 +224,3 @@ public class CompilerTask {
     return signedFile;
 }
 }
-}
