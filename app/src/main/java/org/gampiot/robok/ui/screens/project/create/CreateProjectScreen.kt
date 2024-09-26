@@ -103,13 +103,13 @@ private fun Screen(
     OutlinedTextField(
         value = state.projectName,
         onValueChange = { viewModel.updateProjectName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_project_name)) },
+        label = { RobokText(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     OutlinedTextField(
         value = state.packageName,
         onValueChange = { viewModel.updatePackageName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_package_name)) },
+        label = { RobokText(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     
