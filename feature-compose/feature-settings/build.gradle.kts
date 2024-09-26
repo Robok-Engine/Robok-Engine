@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.about.libraries.plugin)
-    alias(libs.plugins.compose.compiler)
+    /* remove that because is the only for kotlin 2.0 + alias(libs.plugins.compose.compiler) */
     kotlin("plugin.serialization") version "2.0.20"
 }
 
