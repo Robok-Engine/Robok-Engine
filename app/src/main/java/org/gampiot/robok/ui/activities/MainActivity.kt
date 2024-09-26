@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
         val defaultTemplate = ProjectTemplate(
                name = getString(Strings.template_name_empty_game),
                packageName = "com.robok.empty",
-               zipFileName = "empty_game",
+               zipFileName = "empty_game.zip",
                javaSupport = true,
                kotlinSupport = false,
                imageResId = Drawables.ic_empty_game
