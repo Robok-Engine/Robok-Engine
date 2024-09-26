@@ -137,7 +137,7 @@ private fun Screen(
                         showProjectCreatedDialog(context, viewModel.getProjectPath())
                    },
                    onError = {  e ->
-                        showDialog = true
+                        showDialog.value = true
                         error = e
                    }
                 )
