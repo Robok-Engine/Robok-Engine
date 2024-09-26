@@ -15,7 +15,7 @@
 ## ✨ Features
 
 - **Material Design 3 UI**: Fully developed following Google’s Material Design 3 guidelines for a modern and clean interface.
-- **Jetpack Compose Integration**: Inspired by [trindadedev13](https://github.com/trindadedev13), Robok integrates Jetpack Compose for a declarative UI development experience.
+- **Jetpack Compose**: Robok uses the Jetpack Compose ToolKit for the UI, so this means that the app follows all the Android guidelines.
 - **Open Source**: Robok is completely open source. Explore the code, contribute, and see how the engine works from the inside.
 - **APK Build**: Easily generate APKs for your game projects to share or publish directly on the Google Play Store.
 - **Robok SDK**: Includes a suite of tools to streamline your game development.
