@@ -67,7 +67,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
             state = state.copy(isLoading = true, errorMessage = null)
             val projectCreationListener = object : ProjectManager.CreationListener {
                 override fun onProjectCreate() { 
-                     onSucess()
+                     onSuccess()
                      state = state.copy(isLoading = false)
                 }
                 override fun onProjectCreateError() { /* This almost never happens, so I prefer to ignore it for now.*/ }
