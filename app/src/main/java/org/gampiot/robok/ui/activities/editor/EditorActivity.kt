@@ -26,6 +26,7 @@ import android.view.ViewGroup
 import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
 
 import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
@@ -113,7 +114,7 @@ class EditorActivity : RobokActivity() {
         binding.runButton.setOnClickListener {
             projectManager.build(object : CompilerTask.onCompileResult{
                 override fun onSuccess(signApk: File){
-                    val context = this
+                    val context = this@EditorActivity
                     
                     val apkUri: Uri = FileProvider.getUriForFile(
                     context,
