@@ -100,7 +100,7 @@ public class ProjectManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError(e.toString());
+            creationListener.onProjectCreateError(e.toString() + " Method: create, line: 103");
         }
     }
 
@@ -125,7 +125,7 @@ public class ProjectManager {
 
         } catch (IOException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError(e.toString());
+            creationListener.onProjectCreateError(e.toString() + " Method: create, line: 128");
         }
     }
     
