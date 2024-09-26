@@ -97,7 +97,7 @@ fun HomeScreen(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
-                color = MaterialTheme.colors.onSurface,
+                color = MaterialTheme.colorSheme.onSurface,
                 modifier = Modifier.padding(8.dp)
             )
         }
