@@ -116,6 +116,7 @@ private fun Screen(
     //Spacer(modifier = Modifier.weight(1f))
     
     var showDialog by remember { mutableStateOf(false) }
+    var error by remember { mutableStateOf("") }
     
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -135,8 +136,9 @@ private fun Screen(
                    onSuccess = {
                         showProjectCreatedDialog(context, viewModel.getProjectPath())
                    },
-                   onError = { error ->
+                   onError = {  e
                         showDialog = true
+                        error = e
                    }
                 )
             }
