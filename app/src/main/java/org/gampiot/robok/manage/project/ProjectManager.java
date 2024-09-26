@@ -63,7 +63,7 @@ public class ProjectManager {
     public void create(String projectName, String packageName, ProjectTemplate template) {
         Log.e(TAG, "ProjectName" + projectName);
         Log.e(TAG, "PackageName" + packageName);
-        Log.e(TAG, template);
+        Log.e(TAG, template.toString());
         
         if (outputPath == null) {
             throw new IllegalStateException("outputPath não foi inicializado.");
