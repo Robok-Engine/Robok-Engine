@@ -76,8 +76,7 @@ fun CreateProjectScreen(
                viewModel = viewModel,
                template = projectTemplate,
                navController = navController,
-               context = context,
-               projectPath = projectPath
+               context = context
             )
         }
     }
