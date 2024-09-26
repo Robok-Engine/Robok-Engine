@@ -108,6 +108,7 @@ class EditorActivity : RobokActivity() {
         configureEditor()
         configureFileTree()
         configureButtons()
+        updateUndoRedo()
     }
 
     private fun configureButtons() {
