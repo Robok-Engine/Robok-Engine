@@ -41,6 +41,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 
 import org.gampiot.robok.R
@@ -96,6 +97,7 @@ fun HomeScreen(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
+                color = Color.White,
                 modifier = Modifier.padding(8.dp)
             )
         }
