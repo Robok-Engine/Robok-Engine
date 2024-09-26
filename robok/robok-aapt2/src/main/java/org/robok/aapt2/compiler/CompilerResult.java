@@ -17,14 +17,18 @@ package org.robok.aapt2.compiler;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import java.io.File;
+
 public class CompilerResult {
 	
 	private boolean isError;
 	private String message;
+    private File genApk;
 	
-	public CompilerResult(String message, boolean error) {
+	public CompilerResult(String message, boolean error, File genApk) {
 		this.isError = error;
 		this.message = message;
+        this.genApk = genApk;
 	}
 	
 	public String getMessage() {
@@ -34,4 +38,8 @@ public class CompilerResult {
 	public boolean isError() {
 		return isError;
 	}
+    
+    public File getGenApk(){
+        return genApk;
+    }
 }

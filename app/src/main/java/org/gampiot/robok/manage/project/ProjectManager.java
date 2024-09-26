@@ -168,7 +168,18 @@ public class ProjectManager {
             project.setMinSdk(21);
             project.setTargetSdk(28);
 
-            CompilerTask task = new CompilerTask(context);
+            CompilerTask task = new CompilerTask(context, new CompilerTask.onCompileResult(){
+                @Override
+                public void onSuccess(File file) {
+                    
+                }
+                
+               @Override
+               public void onFailed(String msg) {
+                   
+               }
+               
+            });
             task.execute(project);
 
             terminal.show();
