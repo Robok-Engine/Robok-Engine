@@ -14,23 +14,10 @@ package org.gampiot.robok.manage.project;
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
 import android.content.Context;
-import android.os.Environment;
-
-import org.gampiot.robok.models.project.ProjectTemplate;
-import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
-import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
-import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
-
-import org.robok.aapt2.compiler.CompilerTask;
-import org.robok.aapt2.model.Project;
-import org.robok.aapt2.model.Library;
-import org.robok.aapt2.logger.Logger;
-import org.robok.aapt2.SystemLogPrinter;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -40,78 +27,95 @@ import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
+import org.gampiot.robok.models.project.ProjectTemplate;
+import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
+import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
+
+import org.robok.aapt2.compiler.CompilerTask;
+import org.robok.aapt2.model.Project;
+import org.robok.aapt2.model.Library;
+import org.robok.aapt2.logger.Logger;
+import org.robok.aapt2.SystemLogPrinter;
+
 public class ProjectManager {
 
     private CreationListener creationListener;
     private Context context;
     private File outputPath;
-    
-    public ProjectManager () {}
-    
-    public ProjectManager (Context context) {
-         this.context = context;
+
+    public ProjectManager() {}
+
+    public ProjectManager(Context context) {
+        this.context = context;
     }
-    
+
     public void setProjectPath(File value) {
-         outputPath = value;
+        outputPath = value;
     }
-    
+
     public File getProjectPath() {
-         return outputPath;
+        return outputPath;
     }
-    
-    public void create(String projectName, String packageName, ProjectTemplate template) throws FileNotFoundException {
-        try {
-            InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
-            
+
+    public void create(String projectName, String packageName, ProjectTemplate template) {
+        if (outputPath == null) {
+            throw new IllegalStateException("outputPath não foi inicializado.");
+        }
+
+        try (InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
+             ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(zipFileInputStream))) {
+
             if (!outputPath.exists()) {
                 outputPath.mkdirs();
             }
 
-            ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(zipFileInputStream));
             ZipEntry zipEntry;
-
             while ((zipEntry = zipInputStream.getNextEntry()) != null) {
                 if (!zipEntry.isDirectory()) {
                     String entryName = zipEntry.getName();
                     String outputFileName = entryName
                             .replace(template.getName(), projectName)
                             .replace("game/logic/$pkgName", "game/logic/" + packageName.replace('.', '/'));
-                    
+
                     File outputFile = new File(outputPath, outputFileName);
 
                     if (!outputFile.getParentFile().exists()) {
                         outputFile.getParentFile().mkdirs();
                     }
 
-                    FileOutputStream fos = new FileOutputStream(outputFile);
-                    byte[] buffer = new byte[1024];
-                    int length;
-                    while ((length = zipInputStream.read(buffer)) > 0) {
-                        fos.write(buffer, 0, length);
+                    try (FileOutputStream fos = new FileOutputStream(outputFile)) {
+                        byte[] buffer = new byte[1024];
+                        int length;
+                        while ((length = zipInputStream.read(buffer)) > 0) {
+                            fos.write(buffer, 0, length);
+                        }
                     }
-                    fos.close();
                 }
                 zipInputStream.closeEntry();
             }
 
-            zipInputStream.close();
-            
             createJavaClass(projectName, packageName);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError(e.toString() + " Method: create, line: 103");
+            notifyCreationError(e, "create");
+        } catch (IOException e) {
+            e.printStackTrace();
+            notifyCreationError(e, "create");
         }
     }
 
-    private void createJavaClass(String projectName, String packageName) throws FileNotFoundException {
+    private void createJavaClass(String projectName, String packageName) {
+        if (outputPath == null) {
+            throw new IllegalStateException("outputPath is not initialized.");
+        }
+
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
             template.setCodeClassName("MainScreen");
             template.setCodeClassPackageName(packageName);
             template.configure();
-            
+
             String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
             File javaFile = new File(outputPath, classFilePath);
 
@@ -119,42 +123,67 @@ public class ProjectManager {
                 javaFile.getParentFile().mkdirs();
             }
 
-            FileOutputStream fos = new FileOutputStream(javaFile);
-            fos.write(template.getCodeClassContent().getBytes());
-            fos.close();
-            creationListener.onProjectCreate();
+            try (FileOutputStream fos = new FileOutputStream(javaFile)) {
+                fos.write(template.getCodeClassContent().getBytes());
+            }
+
+            if (creationListener != null) {
+                creationListener.onProjectCreate();
+            }
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            creationListener.onProjectCreateError(e.toString() + " Method: create, line: 128");
+            notifyCreationError(e, "createJavaClass");
+        } catch (IOException e) {
+            e.printStackTrace();
+            notifyCreationError(e, "createJavaClass");
         }
     }
-    
-    public void build () {
-         var terminal = new RobokTerminalWithRecycler(context);
-         var logger = new Logger();
-         logger.attach(terminal.getRecyclerView());
-         SystemLogPrinter.start(logger);
-         Project project = new Project();
-         project.setLibraries(Library.fromFile(new File("")));
-         project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
-         project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
-         project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
-         project.setManifestFile(new File(getProjectPath().getAbsolutePath() + "/game/AndroidManifest.xml"));
-         project.setLogger(logger);
-         project.setMinSdk(21);
-         project.setTargetSdk(28);
-         CompilerTask task = new CompilerTask(context);
-         task.execute(project);
-         terminal.show();
+
+    public void build() {
+        if (outputPath == null) {
+            throw new IllegalStateException("outputPath não foi inicializado.");
+        }
+
+        try {
+            RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(context);
+            Logger logger = new Logger();
+            logger.attach(terminal.getRecyclerView());
+            SystemLogPrinter.start(logger);
+
+            Project project = new Project();
+            project.setLibraries(Library.fromFile(new File(""))); // Aqui deve ser especificado o caminho correto para as bibliotecas
+            project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
+            project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
+            project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
+            project.setManifestFile(new File(getProjectPath().getAbsolutePath() + "/game/AndroidManifest.xml"));
+            project.setLogger(logger);
+            project.setMinSdk(21);
+            project.setTargetSdk(28);
+
+            CompilerTask task = new CompilerTask(context);
+            task.execute(project);
+
+            terminal.show();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            notifyCreationError(e, "build");
+        }
     }
-    
-    public void setListener (CreationListener creationListener) {
-         this.creationListener = creationListener;
+
+    public void setListener(CreationListener creationListener) {
+        this.creationListener = creationListener;
     }
-    
+
+    private void notifyCreationError(Exception e, String methodName) {
+        if (creationListener != null) {
+            creationListener.onProjectCreateError(e.toString() + " Method: " + methodName);
+        }
+    }
+
     public interface CreationListener {
-         public void onProjectCreate();
-         public void onProjectCreateError(String error);
+        void onProjectCreate();
+        void onProjectCreateError(String error);
     }
 }
