@@ -21,8 +21,8 @@ import android.content.Context;
 import android.os.Environment;
 
 import org.gampiot.robok.models.project.ProjectTemplate;
-import org.gampiot.robok.template.code.java.JavaClassTemplate;
-import org.gampiot.robok.template.code.android.game.logic.GameScreenLogicTemplate;
+import org.gampiot.robok.feature.template.code.java.JavaClassTemplate;
+import org.gampiot.robok.feature.template.code.android.game.logic.GameScreenLogicTemplate;
 import org.gampiot.robok.feature.component.terminal.RobokTerminalWithRecycler;
 
 import org.robok.aapt2.compiler.CompilerTask;
