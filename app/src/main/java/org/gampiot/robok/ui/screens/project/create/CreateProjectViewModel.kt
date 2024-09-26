@@ -51,7 +51,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
     }
     
     fun updateErrorMessage(message: String?) {
-        state = state.copy(errorMessage = message!!)
+        state = state.copy(errorMessage = message ?: "Null Message")
     }
     
     fun setProjectPath(file: File) {
