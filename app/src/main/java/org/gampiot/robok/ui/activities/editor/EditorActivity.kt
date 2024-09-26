@@ -25,7 +25,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.Drawable
 import android.content.Intent
+import android.net.Uri
 
+import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
@@ -57,6 +59,7 @@ import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
 import org.gampiot.robok.feature.modeling.launcher.AndroidLauncher
 
 import org.robok.antlr.logic.AntlrListener
+import org.robok.aapt2.compiler.CompilerTask
 
 import java.io.File
 
@@ -110,7 +113,24 @@ class EditorActivity : RobokActivity() {
         binding.runButton.setOnClickListener {
             projectManager.build(object : CompilerTask.onCompileResult{
                 override fun onSuccess(signApk: File){
+                    val context = this
                     
+                    val apkUri: Uri = FileProvider.getUriForFile(
+                    context,
+                    "${context.packageName}.provider",
+                    signApk
+                    )
+                    val intent = Intent(Intent.ACTION_VIEW).apply {
+                        setDataAndType(apkUri, "application/vnd.android.package-archive")
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                    }
+
+                    if (intent.resolveActivity(context.packageManager) != null) {
+                        context.startActivity(intent)
+                    } else {
+                        Toast.makeText(context, "Nenhum instalador de APK encontrado.", Toast.LENGTH_SHORT).show()
+                    }
                 }
                 
                 override fun onFailed(msg: String){

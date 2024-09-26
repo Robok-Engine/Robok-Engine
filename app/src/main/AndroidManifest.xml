@@ -13,6 +13,7 @@
     <uses-permission android:name="android.permission.BIND_EXTERNAL_STORAGE_SERVICE" />
     <uses-permission android:name="android.permission.BIND_DIRECTORY_SEARCH" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
 
     <application
         android:allowBackup="true"
