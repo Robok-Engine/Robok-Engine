@@ -51,7 +51,7 @@ public class Logger {
 	
 	public void d(String tag, String message) {
 		mRecyclerView.post(() -> {
-		    data.add(new Log("["+tag+"]", message));
+		    data.add(new Log(""/*["+tag+"]*/, message));
 	    	adapter.notifyItemInserted(data.size());
 			scroll();
                 
@@ -59,7 +59,7 @@ public class Logger {
 	}
 	
 	public void e(String tagg,  String message) {
-        String tag = "[" + tagg + "]";
+        String tag = ""; //"[" + tagg + "]";
 		mRecyclerView.post(() -> {
 		    Spannable messageSpan = new SpannableString(message);
 		    messageSpan.setSpan(new ForegroundColorSpan(0xffff0000), 0, message.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
@@ -74,7 +74,7 @@ public class Logger {
 	}
 	
 	public void w(String tagg,  String message) {
-        String tag = "[" + tagg + "]";
+        String tag = ""; //"[" + tagg + "]";
         
 		mRecyclerView.post(() -> {
 		    Spannable messageSpan = new SpannableString(message);
