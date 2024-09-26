@@ -130,7 +130,7 @@ private fun Screen(
                 viewModel.setProjectPath(File(Environment.getExternalStorageDirectory(), "Robok/.projects/${state.projectName}"))
                 viewModel.createProject(template,
                    onSuccess = {
-                        showProjectCreatedDialog(context, viewModel.pPath)
+                        showProjectCreatedDialog(context, viewModel.getProjectPath())
                    },
                    onError = { error ->
                         Toast.makeText(context, error, 4000).show()

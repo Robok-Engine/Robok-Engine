@@ -42,8 +42,6 @@ data class CreateProjectState(
 class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
     var state by mutableStateOf(CreateProjectState())
     
-    var pPath: File = File("")
-
     fun updateProjectName(name: String) {
         state = state.copy(projectName = name)
     }
@@ -56,13 +54,18 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
         state = state.copy(errorMessage = message!!)
     }
     
+    fun setProjectPath(file: File) {
+        projectManager.setProjectPath(file)
+    }
+    
+    fun getProjectPath(): File = projectManager.getProjectPath()
+    
     fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
         if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
             state = state.copy(errorMessage = "Project name and package name cannot be empty.")
             return
         }
         
-        pPath = projectPath
         viewModelScope.launch {
             state = state.copy(isLoading = true, errorMessage = null)
             val projectCreationListener = object : ProjectManager.CreationListener {
@@ -75,7 +78,6 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
                 }
             }
             projectManager.setListener(projectCreationListener)
-            projectManager.setProjectPath(projectPath)
             projectManager.create(state.projectName, state.packageName, template)
         }
     }
