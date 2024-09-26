@@ -113,8 +113,6 @@ private fun Screen(
         modifier = modifier.fillMaxWidth()
     )
     
-    //Spacer(modifier = Modifier.weight(1f))
-    
     var showDialog = remember { mutableStateOf(false) }
     var error by remember { mutableStateOf("") }
     
