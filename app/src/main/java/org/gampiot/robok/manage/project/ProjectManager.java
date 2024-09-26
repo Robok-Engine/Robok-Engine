@@ -18,6 +18,8 @@ package org.gampiot.robok.manage.project;
  */ 
 
 import android.content.Context;
+import android.util.Log;
+
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -61,7 +63,7 @@ public class ProjectManager {
     public void create(String projectName, String packageName, ProjectTemplate template) {
         Log.e(TAG, "ProjectName" + projectName);
         Log.e(TAG, "PackageName" + packageName);
-        Log.e(TAG, "ProjectTemplate" + template);
+        Log.e(TAG, template);
         
         if (outputPath == null) {
             throw new IllegalStateException("outputPath não foi inicializado.");
