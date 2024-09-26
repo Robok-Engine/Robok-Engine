@@ -23,12 +23,12 @@ public class CompilerResult {
 	
 	private boolean isError;
 	private String message;
-    private File genApk;
+    private File signApk;
 	
-	public CompilerResult(String message, boolean error, File genApk) {
+	public CompilerResult(String message, boolean error, File signApk) {
 		this.isError = error;
 		this.message = message;
-        this.genApk = genApk;
+        this.signApk = signApk;
 	}
 	
 	public String getMessage() {
@@ -39,7 +39,7 @@ public class CompilerResult {
 		return isError;
 	}
     
-    public File getGenApk(){
-        return genApk;
+    public File getSignApk(){
+        return signApk;
     }
 }

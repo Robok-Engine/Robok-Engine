@@ -107,16 +107,21 @@ public class CompilerTask {
             project.getLogger().d("APK Signer", "Signing Apk");
             File genApk = new File(project.getOutputFile() + "/bin/gen.apk");
             
-            signFile(genApk);
-
-            long time = System.currentTimeMillis() - startTime;
-            if (compilationSteps.size() == 3) {
-                project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
-                compilerResult = new CompilerResult("Success", false, genApk);
-            } else {
-                project.getLogger().d("APK Builder", "Build failed, took " + time + "ms");
-                compilerResult = new CompilerResult("Failed", true, null);
-            }
+            signFile(genApk, new FileSignCallback(){
+                @Override
+                public void onFileSigned(File signedFile) {
+                        
+                    long time = System.currentTimeMillis() - startTime;
+                    if (compilationSteps.size() == 3) {
+                        project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
+                        compilerResult = new CompilerResult("Success", false, signedFile);
+                    } else {
+                        project.getLogger().d("APK Builder", "Build failed, took " + time + "ms");
+                        compilerResult = new CompilerResult("Failed", true, null);
+                   }    
+                }
+                
+            });
 
         } catch (Exception e) {
             return new CompilerResult(android.util.Log.getStackTraceString(e), true, null);
@@ -194,7 +199,7 @@ public class CompilerTask {
         if (result.isError()) {
             onResult.onFailed(result.getMessage());
         } else {
-            onResult.onSuccess(new File(result.getMessage()));
+            onResult.onSuccess(result.getSignApk());
         }
     }
 
@@ -202,38 +207,42 @@ public class CompilerTask {
         mExecutor.shutdown();
     }
 
-    private void signFile(final File file) {
-        
-        
-        new AsyncTask<Void, Void, Void>() {
-            @Override
-            protected Void doInBackground(Void... arg0) {
-                try {
-                    String outFile = file.getAbsolutePath();
-                    String out = project.getOutputFile() + "/bin/generated.apk";
-                    Main.sign(file, out, "testkey"); // Sign apk file
-                    file = new File(out);
-                } catch (Exception e) {
-                    project.getLogger().d("APK Signer", "Sign error");
-                }
-                return null;
-            }
-
-            @Override
-            protected void onPreExecute() {
-                // Pre-signing operations
-            }
-
-            @Override
-            protected void onPostExecute(Void result) {
-
-                try {
-                    FileUtil.deleteFile(project.getOutputFile() + "/bin/gen.apk");
-                } catch (Exception e) {
-                    // Handle exception
-                }
-            }
-        }.execute();
-        
+    public interface FileSignCallback {
+        void onFileSigned(File signedFile);
     }
+    
+    private void signFile(final File file, final FileSignCallback callback) {
+    new AsyncTask<Void, Void, File>() {
+        @Override
+        protected File doInBackground(Void... arg0) {
+            File signedFile = null;
+            try {
+                String outFile = file.getAbsolutePath();
+                String out = project.getOutputFile() + "/bin/generated.apk";
+                Main.sign(file, out, "testkey");
+                signedFile = new File(out);
+            } catch (Exception e) {
+                project.getLogger().d("APK Signer", "Sign error");
+            }
+            return signedFile; 
+        }
+
+        @Override
+        protected void onPreExecute() {
+        }
+
+        @Override
+        protected void onPostExecute(File signedFile) {
+            try {
+                FileUtil.deleteFile(project.getOutputFile() + "/bin/gen.apk");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+                
+            if (callback != null) {
+                callback.onFileSigned(signedFile);
+            }
+        }
+    }.execute();
+}
 }
