@@ -44,12 +44,14 @@ fun RobokDialog(
     onConfirmation: () -> Unit,
     dialogTitle: String,
     dialogText: String,
-    icon: ImageVector,
+    icon: ImageVector? = null,
     iconDescription: String = "Icon"
 ) {
     AlertDialog(
         icon = {
-            Icon(icon, contentDescription = iconDescription)
+            icon?.let {
+                Icon(it, contentDescription = iconDescription)
+            }
         },
         title = {
             RobokText(text = dialogTitle)

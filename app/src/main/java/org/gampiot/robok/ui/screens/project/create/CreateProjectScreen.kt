@@ -47,6 +47,7 @@ import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.manage.project.ProjectManager
 import org.gampiot.robok.ui.activities.editor.EditorActivity
 import org.gampiot.robok.feature.component.compose.text.RobokText
+import org.gampiot.robok.feature.component.compose.dialog.RobokDialog
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
 
@@ -114,6 +115,8 @@ private fun Screen(
     
     //Spacer(modifier = Modifier.weight(1f))
     
+    val showDialog by remember { mutableStateOf(false)
+    
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
         modifier = modifier.fillMaxWidth()
@@ -133,13 +136,34 @@ private fun Screen(
                         showProjectCreatedDialog(context, viewModel.getProjectPath())
                    },
                    onError = { error ->
-                        Toast.makeText(context, error, 4000).show()
+                        showDialog = true
+                        showErrorDialog(showDialog = showDialog, error = error)
                    }
                 )
             }
         ) {
            RobokText(text = stringResource(id = Strings.title_create_project))
         }
+    }
+}
+
+@Composable
+fun showErrorDialog(
+   showDialog: Boolean,
+   error: String
+) {
+    if (showDialog) {
+        RobokDialog(
+            onDismissRequest = {
+                showDialog = false
+            },
+            onConfirmation = {
+                showDialog = false
+            },
+            dialogTitle = "Something unexpected happened",
+            dialogText = error,
+            iconDescription = "Error Icon"
+        )
     }
 }
 
