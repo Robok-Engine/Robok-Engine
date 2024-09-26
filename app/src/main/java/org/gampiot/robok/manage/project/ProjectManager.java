@@ -60,7 +60,7 @@ public class ProjectManager {
          return outputPath;
     }
     
-    public void create(String projectName, String packageName, ProjectTemplate template) {
+    public void create(String projectName, String packageName, ProjectTemplate template) throws FileNotFoundException {
         try {
             InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
             
@@ -105,7 +105,7 @@ public class ProjectManager {
         }
     }
 
-    private void createJavaClass(String projectName, String packageName) {
+    private void createJavaClass(String projectName, String packageName) throws FileNotFoundException {
         try {
             GameScreenLogicTemplate template = new GameScreenLogicTemplate();
             template.setCodeClassName("MainScreen");
