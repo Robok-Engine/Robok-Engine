@@ -116,4 +116,5 @@
     <string name="template_name_empty_game">Jogo vazio</string>
     <string name="item_whatsapp_description">Ou grupo do whatsapp.</string>
     <string name="item_whatsapp_title">WhatsApp</string>
+    <string name="text_basic_info">Informações básicas</string>
 </resources>
