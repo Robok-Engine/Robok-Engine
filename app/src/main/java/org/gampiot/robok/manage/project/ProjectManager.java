@@ -34,7 +34,7 @@ import org.robok.aapt2.SystemLogPrinter;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.FileNotFoundExeception;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
@@ -99,7 +99,7 @@ public class ProjectManager {
             
             createJavaClass(projectName, packageName);
 
-        } catch (FileNotFoundExeception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             creationListener.onProjectCreateError(e.toString() + " Method: create, line: 103");
         }
@@ -124,7 +124,7 @@ public class ProjectManager {
             fos.close();
             creationListener.onProjectCreate();
 
-        } catch (FileNotFoundExeception e) {
+        } catch (FileNotFoundException e) {
             e.printStackTrace();
             creationListener.onProjectCreateError(e.toString() + " Method: create, line: 128");
         }
