@@ -113,8 +113,9 @@ private fun Screen(
         modifier = modifier.fillMaxWidth()
     )
     
-    var showDialog = remember { mutableStateOf(false) }
-    var error by remember { mutableStateOf("") }
+    var isShowDialog = remember { mutableStateOf(false) }
+    var title by remember { mutableStateOf("") }
+    var message by remember { mutableStateOf("") }
     
     Row(
         horizontalArrangement = Arrangement.spacedBy(16.dp),
@@ -132,59 +133,45 @@ private fun Screen(
                 viewModel.setProjectPath(File(Environment.getExternalStorageDirectory(), "Robok/.projects/${state.projectName}"))
                 viewModel.createProject(template,
                    onSuccess = {
-                        showProjectCreatedDialog(context, viewModel.getProjectPath())
+                        val bundle = android.os.Bundle().apply {
+                             putString("projectPath", viewModel.getProjectPath().absolutePath)
+                        }
+                        val intent = Intent(context, EditorActivity::class.java).apply {
+                             putExtras(bundle)
+                        }
+                        context.startActivity(intent)
                    },
-                   onError = {  e ->
-                        showDialog.value = true
-                        error = e
+                   onError = {  error ->
+                        isShowDialog.value = true
+                        title = "Un error ocurred"
+                        message = error
                    }
                 )
             }
         ) {
            RobokText(text = stringResource(id = Strings.title_create_project))
         }
-        showErrorDialog(showDialog = showDialog, error = error)
+        showVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
     }
 }
 
 @Composable
-fun showErrorDialog(
-    showDialog: MutableState<Boolean>,
-    error: String
+fun showVeryBasicDialog(
+    title: String,
+    message: String,
+    isShowDialog: MutableState<Boolean>
 ) {
-    if (showDialog.value) {
+    if (isShowDialog.value) {
         RobokDialog(
             onDismissRequest = {
-                showDialog.value = false
+                isShowDialog.value = false
             },
             onConfirmation = {
-                showDialog.value = false
+                isShowDialog.value = false
             },
-            dialogTitle = "Something unexpected happened",
+            dialogTitle = title,
             dialogText = error,
-            iconDescription = "Error Icon"
+            iconDescription = "Icon"
         )
     }
-}
-
-private fun showProjectCreatedDialog(context: android.content.Context, projectPath: File) {
-    val dialog = MaterialAlertDialogBuilder(context)
-        .setTitle(context.getString(Strings.warning_project_created_title))
-        .setMessage(context.getString(Strings.warning_project_created_message))
-        .setPositiveButton(context.getString(Strings.title_open_project)) { _, _ ->
-            val bundle = android.os.Bundle().apply {
-                putString("projectPath", projectPath.absolutePath)
-            }
-
-            val intent = Intent(context, EditorActivity::class.java).apply {
-                putExtras(bundle)
-            }
-            context.startActivity(intent)
-        }
-        .setNegativeButton(context.getString(Strings.common_word_ok)) { dialog, _ ->
-            dialog.dismiss()
-        }
-        .create()
-
-    dialog.show()
 }
