@@ -54,6 +54,7 @@ public class CompilerTask {
     private final Handler mHandler;
     private final ExecutorService mExecutor;
     private final List<Boolean> compilationSteps;
+    CompilerResult compilerResult = null;
 
     private TextView progress;
     private long startTime;
@@ -86,7 +87,6 @@ public class CompilerTask {
     }
 
     protected CompilerResult doInBackground(Project project) {
-        CompilerResult compilerResult;
 
         try {
             this.project = project;
