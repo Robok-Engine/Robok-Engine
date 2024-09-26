@@ -108,7 +108,15 @@ class EditorActivity : RobokActivity() {
 
     private fun configureButtons() {
         binding.runButton.setOnClickListener {
-            projectManager.build()
+            projectManager.build(object : CompilerTask.onCompileResult{
+                override fun onSuccess(signApk: File){
+                    
+                }
+                
+                override fun onFailed(msg: String){
+                    
+                }
+            })
         }
     }
 

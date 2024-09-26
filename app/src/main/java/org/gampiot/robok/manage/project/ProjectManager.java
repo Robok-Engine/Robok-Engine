@@ -147,7 +147,7 @@ public class ProjectManager {
         }
     }
 
-    public void build() {
+    public void build(CompilerTask.onCompileResult result) {
         if (outputPath == null) {
             throw new IllegalStateException("outputPath não foi inicializado.");
         }
@@ -157,7 +157,8 @@ public class ProjectManager {
             Logger logger = new Logger();
             logger.attach(terminal.getRecyclerView());
             SystemLogPrinter.start(logger);
-
+            
+            
             Project project = new Project();
             project.setLibraries(Library.fromFile(new File(""))); // Aqui deve ser especificado o caminho correto para as bibliotecas
             project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
@@ -168,18 +169,7 @@ public class ProjectManager {
             project.setMinSdk(21);
             project.setTargetSdk(28);
 
-            CompilerTask task = new CompilerTask(context, new CompilerTask.onCompileResult(){
-                @Override
-                public void onSuccess(File file) {
-                    
-                }
-                
-               @Override
-               public void onFailed(String msg) {
-                   
-               }
-               
-            });
+            CompilerTask task = new CompilerTask(context, result);
             task.execute(project);
 
             terminal.show();
