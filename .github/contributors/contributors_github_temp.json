@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 438
+    "contributions": 470
   },
   {
     "login": "ThDev-only",
@@ -39,7 +39,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 176
+    "contributions": 183
   },
   {
     "login": "renovate[bot]",
@@ -168,27 +168,6 @@
     "contributions": 2
   },
   {
-    "login": "Xori71",
-    "id": 101265862,
-    "node_id": "U_kgDOBgkxxg",
-    "avatar_url": "https://avatars.githubusercontent.com/u/101265862?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/Xori71",
-    "html_url": "https://github.com/Xori71",
-    "followers_url": "https://api.github.com/users/Xori71/followers",
-    "following_url": "https://api.github.com/users/Xori71/following{/other_user}",
-    "gists_url": "https://api.github.com/users/Xori71/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/Xori71/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/Xori71/subscriptions",
-    "organizations_url": "https://api.github.com/users/Xori71/orgs",
-    "repos_url": "https://api.github.com/users/Xori71/repos",
-    "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/Xori71/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 1
-  },
-  {
     "login": "RohitKushvaha01",
     "id": 99863818,
     "node_id": "U_kgDOBfPNCg",
@@ -205,6 +184,27 @@
     "repos_url": "https://api.github.com/users/RohitKushvaha01/repos",
     "events_url": "https://api.github.com/users/RohitKushvaha01/events{/privacy}",
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 2
+  },
+  {
+    "login": "Xori71",
+    "id": 101265862,
+    "node_id": "U_kgDOBgkxxg",
+    "avatar_url": "https://avatars.githubusercontent.com/u/101265862?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Xori71",
+    "html_url": "https://github.com/Xori71",
+    "followers_url": "https://api.github.com/users/Xori71/followers",
+    "following_url": "https://api.github.com/users/Xori71/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Xori71/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Xori71/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Xori71/subscriptions",
+    "organizations_url": "https://api.github.com/users/Xori71/orgs",
+    "repos_url": "https://api.github.com/users/Xori71/repos",
+    "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Xori71/received_events",
     "type": "User",
     "site_admin": false,
     "contributions": 1
