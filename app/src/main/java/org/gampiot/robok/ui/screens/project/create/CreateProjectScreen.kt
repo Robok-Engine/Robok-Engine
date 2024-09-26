@@ -137,13 +137,13 @@ private fun Screen(
                    },
                    onError = { error ->
                         showDialog = true
-                        showErrorDialog(showDialog = showDialog, error = error)
                    }
                 )
             }
         ) {
            RobokText(text = stringResource(id = Strings.title_create_project))
         }
+        showErrorDialog(showDialog = showDialog, error = error)
     }
 }
 
