@@ -159,7 +159,7 @@ public class ProjectManager {
             SystemLogPrinter.start(logger);
             
             Project project = new Project();
-            project.setLibraries(Library.fromFile(new File(getProjectPath().getAbsolutePath() + "/files/")));
+            project.setLibraries(Library.fromFile(new File(getProjectPath().getAbsolutePath() + "/libs/")));
             project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
             project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
             project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
