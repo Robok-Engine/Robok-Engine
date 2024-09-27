@@ -17,7 +17,9 @@ package org.gampiot.robok.feature.settings.compose.screens.ui.app
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Build
 import android.content.Context
+
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -42,7 +44,6 @@ fun SettingsAppScreen(
     navController: NavController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    
     PreferenceLayout(
         label = stringResource(id = Strings.settings_app_title),
         backArrowVisible = true,
@@ -64,6 +65,7 @@ fun appearancePrefs(
               appPrefsViewModel.enableMonet(newValue)
           },
           label = stringResource(id = Strings.settings_app_use_monet_title),
-          description = stringResource(id = Strings.settings_app_use_monet_description)
+          description = stringResource(id = Strings.settings_app_use_monet_description),
+          enabled = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false
      )
 }

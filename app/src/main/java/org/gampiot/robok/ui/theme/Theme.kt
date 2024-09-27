@@ -34,6 +34,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
+import org.koin.androidx.compose.koinViewModel
+
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
+
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
     onPrimary = md_theme_light_onPrimary,
@@ -98,12 +102,13 @@ private val DarkColorScheme = darkColorScheme(
     scrim = md_theme_dark_scrim,
 )
 
+val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+
 @Composable
 fun RobokTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     highContrastDarkTheme: Boolean = false,
-    // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = appPrefsViewModel.appIsUseMonet,
     content: @Composable () -> Unit,
 ) {
     val colorScheme = when {

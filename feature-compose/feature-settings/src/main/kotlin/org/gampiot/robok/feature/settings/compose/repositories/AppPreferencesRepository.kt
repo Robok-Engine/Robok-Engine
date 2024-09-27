@@ -17,6 +17,8 @@ package org.gampiot.robok.feature.settings.compose.repositories
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Build
+
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.intPreferencesKey
@@ -36,7 +38,7 @@ class AppPreferencesRepository(
 ) {
      val appIsUseMonet = dataStore.data
           .map {
-              it[appIsUseMonetPreference] ?: false
+              it[appIsUseMonetPreference] ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false
           }
      val editorTheme = dataStore.data
           .map {
