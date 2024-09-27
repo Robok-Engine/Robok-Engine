@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- सामान्य शब्द अनुभाग -->
+    <!-- common words section -->
     <string name="common_word_back">वापस</string>
     <string name="common_word_result">परिणाम</string>
     <string name="common_word_run">चलाएँ</string>
@@ -19,9 +19,9 @@
     <string name="common_word_normal">सामान्य</string>
     <string name="common_word_retry">पुनः प्रयास करें</string>
     <string name="common_word_save">सहेजें</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- शीर्षक अनुभाग -->
+    <!-- titles section -->
     <string name="title_create_project">प्रोजेक्ट बनाएं</string>
     <string name="title_open_project">प्रोजेक्ट खोलें</string>
     <string name="title_terminal" translatable="false" >टर्मिनल</string>
@@ -30,22 +30,22 @@
     <string name="title_select_theme">थीम चुनें</string>
     <string name="title_select_folder">फ़ोल्डर चुनें</string>
     <string name="title_templates">टेम्पलेट्स</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- संदेश अनुभाग -->
+    <!-- messages section -->
     <string name="message_compiled">आपका कोड संकलित हो गया है!</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- जाओ अनुभाग -->
+    <!-- go to section -->
     <string name="go_to_outputs">आउटपुट पर जाएं</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- संकेत अनुभाग -->
+    <!-- hints section -->
     <string name="hint_project_name">प्रोजेक्ट का नाम</string>
     <string name="hint_package_name">पैकेज का नाम</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- सेटिंग्स अनुभाग -->
+    <!-- settings section -->
     <string name="settings_app_title">ऐप सेटिंग्स</string>
     <string name="settings_app_description">ऐप से संबंधित कुछ सेटिंग्स।</string>
     <string name="settings_app_use_monet_title">डायनामिक रंग</string>
@@ -70,9 +70,9 @@
     <string name="settings_formatting_title">फॉर्मेटिंग</string>
     <string name="settings_appearance_title">दिखावट</string>
     <string name="settings_general_title">सामान्य</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- टेक्स्ट्स अनुभाग -->
+    <!-- texts section -->
     <string name="text_diagnostic">डायग्नोस्टिक</string>
     <string name="text_logs">लॉग्स</string>
     <string name="text_error_details">त्रुटि विवरण:</string>
@@ -81,36 +81,36 @@
     <string name="text_serif">सेरिफ़</string>
     <string name="text_sans_serif">सैन्स-सेरिफ़</string>
     <string name="text_basic_info">बुनियादी जानकारी</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- चेतावनी अनुभाग -->
+    <!-- warnings section -->
     <string name="warning_storage_perm_title">स्टोरेज अनुमति</string>
     <string name="warning_storage_perm_message">प्रोजेक्ट बनाने, खोलने और अधिक के लिए Robok को स्टोरेज की अनुमति चाहिए</string>
     <string name="warning_all_files_perm_message">Android 11 + में, Robok को ठीक से काम करने के लिए सभी फाइलों तक पहुँच की अनुमति चाहिए।</string>
     <string name="warning_project_created_title">प्रोजेक्ट सफलतापूर्वक बनाया गया!</string>
     <string name="warning_project_created_message">आपका प्रोजेक्ट सफलतापूर्वक बनाया गया है!</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- त्रुटि अनुभाग -->
+    <!-- errors section -->
     <string name="error_storage_perm_title">स्टोरेज अनुमति त्रुटि</string>
     <string name="error_storage_perm_message">आपने स्टोरेज अनुमति स्वीकार नहीं की है, यह Robok के लिए आवश्यक है।</string>
     <string name="error_invalid_name">अमान्य नाम</string>
     <string name="error_load_fail">लोड करने में त्रुटि।</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- टर्मिनल अनुभाग -->
+    <!-- terminal section -->
     <string name="terminal_options">विकल्प</string>
     <string name="terminal_install_package">पैकेज इंस्टॉल करें</string>
     <string name="terminal_install_package_hint">पैकेज नाम लिखें</string>
     <string name="terminal_update_packages">पैकेज अपडेट करें</string>
     <string name="terminal_warning_update_packages">क्या आप पैकेज अपडेट करना चाहते हैं?</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- टेम्पलेट्स अनुभाग -->
+    <!-- templates section -->
     <string name="template_name_empty_game">खाली गेम</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 
-    <!-- के बारे में अनुभाग -->
+    <!-- about section -->
     <string name="slogan">जावा से गेम तक चुटकी में</string>
     <string name="text_seeus">हमें देखें</string>
     <string name="item_telegram_title">टेलीग्राम</string>
@@ -124,5 +124,5 @@
     <string name="item_contribute_description">जानें कि आप हमारे साथ कैसे योगदान कर सकते हैं</string>
     <string name="item_libraries_title">थर्ड-पार्टी सॉफ़्टवेयर</string>
     <string name="item_libraries_description">जो लाइब्रेरीज़ हमने उपयोग कीं</string>
-    <!-- अंत अनुभाग -->
+    <!-- end section -->
 </resources>
