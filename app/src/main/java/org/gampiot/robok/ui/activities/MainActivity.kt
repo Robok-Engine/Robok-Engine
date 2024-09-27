@@ -38,6 +38,7 @@ import org.gampiot.robok.feature.res.Strings
 import org.gampiot.robok.ui.screens.home.HomeScreen
 import org.gampiot.robok.ui.screens.project.create.CreateProjectScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
+import org.gampiot.robok.feature.settings.compose.screens.ui.app.SettingsAppScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
@@ -75,6 +76,7 @@ class MainActivity : ComponentActivity() {
                 ) {
                     composable("home") { HomeScreen(navController = navController, actContext = this@MainActivity) }
                     composable("settings") { SettingsScreen(navController = navController) }
+                    composable("settings/app") { SettingsAppScreen(navController = navController) }
                     composable("settings/codeeditor") { SettingsCodeEditorScreen(navController = navController) }
                     composable("settings/libraries") { LibrariesScreen(navController = navController) }
                     composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
