@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- सामान्य शब्द अनुभाग -->
+    <string name="common_word_back">वापस</string>
+    <string name="common_word_result">परिणाम</string>
+    <string name="common_word_run">चलाएँ</string>
+    <string name="common_word_code">कोड</string>
+    <string name="common_word_logs">लॉग्स</string>
+    <string name="common_word_output">आउटपुट</string>
+    <string name="common_word_end">समाप्त</string>
+    <string name="common_word_settings">सेटिंग्स</string>
+    <string name="common_word_confirm">पुष्टि करें</string>
+    <string name="common_word_cancel">रद्द करें</string>
+    <string name="common_word_next">अगला</string>
+    <string name="common_word_undo">पूर्ववत करें</string>
+    <string name="common_word_redo">पुनः करें</string>
+    <string name="common_word_allow">अनुमति दें</string>
+    <string name="common_word_deny">अस्वीकार करें</string>
+    <string name="common_word_normal">सामान्य</string>
+    <string name="common_word_retry">पुनः प्रयास करें</string>
+    <string name="common_word_save">सहेजें</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- शीर्षक अनुभाग -->
+    <string name="title_create_project">प्रोजेक्ट बनाएं</string>
+    <string name="title_open_project">प्रोजेक्ट खोलें</string>
+    <string name="title_terminal" translatable="false" >टर्मिनल</string>
+    <string name="title_open_editor">एडिटर खोलें</string>
+    <string name="title_debug_title">एक त्रुटि हुई</string>
+    <string name="title_select_theme">थीम चुनें</string>
+    <string name="title_select_folder">फ़ोल्डर चुनें</string>
+    <string name="title_templates">टेम्पलेट्स</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- संदेश अनुभाग -->
+    <string name="message_compiled">आपका कोड संकलित हो गया है!</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- जाओ अनुभाग -->
+    <string name="go_to_outputs">आउटपुट पर जाएं</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- संकेत अनुभाग -->
+    <string name="hint_project_name">प्रोजेक्ट का नाम</string>
+    <string name="hint_package_name">पैकेज का नाम</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- सेटिंग्स अनुभाग -->
+    <string name="settings_app_title">ऐप सेटिंग्स</string>
+    <string name="settings_app_description">ऐप से संबंधित कुछ सेटिंग्स।</string>
+    <string name="settings_app_use_monet_title">डायनामिक रंग</string>
+    <string name="settings_app_use_monet_description">ऐप में डिवाइस थीम का उपयोग करें।</string>
+    <string name="settings_code_editor_title">कोड एडिटर सेटिंग्स</string>
+    <string name="settings_code_editor_description">कोड एडिटर से संबंधित कुछ सेटिंग्स।</string>
+    <string name="settings_code_editor_theme_title">कोड एडिटर थीम</string>
+    <string name="settings_code_editor_theme_description">कोड एडिटर थीम बदलें।</string>
+    <string name="settings_code_editor_word_wrap_title">शब्द लपेटें</string>
+    <string name="settings_code_editor_word_wrap_description">कोड एडिटर में पंक्ति लपेट सक्षम करें।</string>
+    <string name="settings_code_editor_typeface_title">एडिटर फ़ॉन्ट प्रकार बदलें</string>
+    <string name="settings_code_editor_typeface_description">एडिटर फ़ॉन्ट बदलें और इसे अपनी पसंद के अनुसार बनाएं।</string>
+    <string name="settings_about_title">के बारे में</string>
+    <string name="settings_about_description">Robok Engine के बारे में सब कुछ</string>
+    <string name="settings_libraries_title">लाइब्रेरीज़</string>
+    <string name="settings_libraries_description">एप्लिकेशन में उपयोग की गई सभी लाइब्रेरीज़।</string>
+    <string name="settings_configure_rdk_title">RDK कॉन्फ़िगर करें</string>
+    <string name="settings_configure_rdk_description">Robok-SDK सेटिंग्स जैसे संस्करण और अधिक।</string>
+    <string name="settings_configure_rdk_select_rdk_label">RDK संस्करण चुनें</string>
+    <string name="settings_configure_rdk_version">RDK संस्करण परिभाषित करें</string>
+    <string name="settings_build_title">बिल्ड</string>
+    <string name="settings_formatting_title">फॉर्मेटिंग</string>
+    <string name="settings_appearance_title">दिखावट</string>
+    <string name="settings_general_title">सामान्य</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- टेक्स्ट्स अनुभाग -->
+    <string name="text_diagnostic">डायग्नोस्टिक</string>
+    <string name="text_logs">लॉग्स</string>
+    <string name="text_error_details">त्रुटि विवरण:</string>
+    <string name="text_bold">बोल्ड</string>
+    <string name="text_monospace">मोनोस्पेस</string>
+    <string name="text_serif">सेरिफ़</string>
+    <string name="text_sans_serif">सैन्स-सेरिफ़</string>
+    <string name="text_basic_info">बुनियादी जानकारी</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- चेतावनी अनुभाग -->
+    <string name="warning_storage_perm_title">स्टोरेज अनुमति</string>
+    <string name="warning_storage_perm_message">प्रोजेक्ट बनाने, खोलने और अधिक के लिए Robok को स्टोरेज की अनुमति चाहिए</string>
+    <string name="warning_all_files_perm_message">Android 11 + में, Robok को ठीक से काम करने के लिए सभी फाइलों तक पहुँच की अनुमति चाहिए।</string>
+    <string name="warning_project_created_title">प्रोजेक्ट सफलतापूर्वक बनाया गया!</string>
+    <string name="warning_project_created_message">आपका प्रोजेक्ट सफलतापूर्वक बनाया गया है!</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- त्रुटि अनुभाग -->
+    <string name="error_storage_perm_title">स्टोरेज अनुमति त्रुटि</string>
+    <string name="error_storage_perm_message">आपने स्टोरेज अनुमति स्वीकार नहीं की है, यह Robok के लिए आवश्यक है।</string>
+    <string name="error_invalid_name">अमान्य नाम</string>
+    <string name="error_load_fail">लोड करने में त्रुटि।</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- टर्मिनल अनुभाग -->
+    <string name="terminal_options">विकल्प</string>
+    <string name="terminal_install_package">पैकेज इंस्टॉल करें</string>
+    <string name="terminal_install_package_hint">पैकेज नाम लिखें</string>
+    <string name="terminal_update_packages">पैकेज अपडेट करें</string>
+    <string name="terminal_warning_update_packages">क्या आप पैकेज अपडेट करना चाहते हैं?</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- टेम्पलेट्स अनुभाग -->
+    <string name="template_name_empty_game">खाली गेम</string>
+    <!-- अंत अनुभाग -->
+
+    <!-- के बारे में अनुभाग -->
+    <string name="slogan">जावा से गेम तक चुटकी में</string>
+    <string name="text_seeus">हमें देखें</string>
+    <string name="item_telegram_title">टेलीग्राम</string>
+    <string name="item_telegram_description">हमारा टेलीग्राम समुदाय</string>
+    <string name="item_whatsapp_title">व्हाट्सएप</string>
+    <string name="item_whatsapp_description">हमारा व्हाट्सएप समूह</string>
+    <string name="item_github_title">गिटहब</string>
+    <string name="item_github_description">गिटहब रिपॉजिटरी</string>
+    <string name="text_contributors">योगदानकर्ता</string>
+    <string name="item_contribute_title">योगदान करें</string>
+    <string name="item_contribute_description">जानें कि आप हमारे साथ कैसे योगदान कर सकते हैं</string>
+    <string name="item_libraries_title">थर्ड-पार्टी सॉफ़्टवेयर</string>
+    <string name="item_libraries_description">जो लाइब्रेरीज़ हमने उपयोग कीं</string>
+    <!-- अंत अनुभाग -->
+</resources>
