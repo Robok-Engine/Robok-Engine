@@ -131,7 +131,7 @@ class EditorActivity : RobokActivity() {
                     if (intent.resolveActivity(context.packageManager) != null) {
                         context.startActivity(intent)
                     } else {
-                        Toast.makeText(context, getString(Strings.warning_project_installer_not_found,) Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(Strings.warning_project_installer_not_found), Toast.LENGTH_SHORT).show()
                     }
                 }
                 
