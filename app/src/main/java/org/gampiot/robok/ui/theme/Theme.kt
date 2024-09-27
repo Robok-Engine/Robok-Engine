@@ -108,9 +108,12 @@ val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 fun RobokTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     highContrastDarkTheme: Boolean = false,
-    dynamicColor: Boolean = appPrefsViewModel.appIsUseMonet,
     content: @Composable () -> Unit,
 ) {
+    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+
+    val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = false)
+
     val colorScheme = when {
         dynamicColor && supportsDynamicTheming() -> {
             val context = LocalContext.current
@@ -125,6 +128,7 @@ fun RobokTheme(
         darkTheme -> DarkColorScheme
         else -> LightColorScheme
     }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
