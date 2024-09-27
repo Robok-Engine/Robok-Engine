@@ -84,4 +84,5 @@
     <string name="item_github_title">GitHub</string>
     <string name="item_telegram_description">Наша спільнота в Telegram</string>
     <string name="item_libraries_title">Стороннє програмне забезпечення</string>
+    <string name="text_basic_info">Базова інформація</string>
 </resources>

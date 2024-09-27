@@ -27,9 +27,17 @@ import org.gampiot.robok.feature.settings.compose.repositories.AppPreferencesRep
 class AppPreferencesViewModel(
     private val repo: AppPreferencesRepository
 ) : ViewModel() {
+
+     val appIsUseMonet = repo.appIsUseMonet
      val editorTheme = repo.editorTheme
      val editorTypeface = repo.editorTypeface
      val editorIsUseWordWrap = repo.editorIsUseWordWrap
+     
+     fun enableMonet (value: Boolean) {
+         viewModelScope.launch {
+              repo.enableMonet(value)
+         }
+     }
      
      fun changeEditorTheme (value: Int) {
          viewModelScope.launch {
