@@ -110,7 +110,7 @@ class EditorActivity : RobokActivity() {
         configureButtons()
         updateUndoRedo()
     }
-
+    
     private fun configureButtons() {
         binding.runButton.setOnClickListener {
             projectManager.build(object : CompilerTask.onCompileResult{
@@ -131,7 +131,7 @@ class EditorActivity : RobokActivity() {
                     if (intent.resolveActivity(context.packageManager) != null) {
                         context.startActivity(intent)
                     } else {
-                        Toast.makeText(context, "Nenhum instalador de APK encontrado.", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(context, getString(Strings.warning_project_installer_not_found,) Toast.LENGTH_SHORT).show()
                     }
                 }
                 
