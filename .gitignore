@@ -6,4 +6,5 @@
 *log
 .idea/
 .gradle/
+.kotlin/
 local.properties
