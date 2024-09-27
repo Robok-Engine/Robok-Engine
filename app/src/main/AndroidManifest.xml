@@ -12,6 +12,7 @@
 	    tools:ignore="ScopedStorage" />
     <uses-permission android:name="android.permission.BIND_EXTERNAL_STORAGE_SERVICE" />
     <uses-permission android:name="android.permission.BIND_DIRECTORY_SEARCH" />
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
