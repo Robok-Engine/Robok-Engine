@@ -66,13 +66,15 @@ fun HomeScreen(
         contract = ActivityResultContracts.OpenDocumentTree()
     ) { uri: Uri? ->
         selectedFolderUri = uri
-        val bundle = Bundle().apply {
-             putString("projectPath", processUri(actContext, uri!!))
+        if (uri != null) {
+            val bundle = Bundle().apply {
+                putString("projectPath", processUri(actContext, uri!!))
+            }
+            val intent = Intent(actContext, EditorActivity::class.java).apply {
+                putExtras(bundle)
+            }
+            actContext.startActivity(intent)
         }
-        val intent = Intent(actContext, EditorActivity::class.java).apply {
-              putExtras(bundle)
-        }
-        actContext.startActivity(intent)
     }
 
     Column(
