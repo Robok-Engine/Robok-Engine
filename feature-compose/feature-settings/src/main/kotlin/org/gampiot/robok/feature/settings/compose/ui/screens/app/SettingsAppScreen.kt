@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.settings.compose.screens.ui.editor
+package org.gampiot.robok.feature.settings.compose.screens.ui.app
 
 /*
  *  This file is part of Robok © 2024.

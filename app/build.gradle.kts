@@ -75,9 +75,11 @@ android {
         compose = true
     }
 
+    /* disabled because not work in old versions 
     androidResources {
         generateLocaleConfig = true
     }
+    */
 
     signingConfigs {
         getByName("debug") {
