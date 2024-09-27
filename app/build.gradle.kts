@@ -107,6 +107,9 @@ dependencies {
     implementation(libs.coroutines.core)
     implementation(libs.coroutines.android)
     implementation(libs.serialization.json)
+    
+    implementation(libs.koin.android)
+    implementation(libs.koin.androidx.compose)
 
     implementation(platform(libs.okhttp.bom))
     implementation("com.squareup.okhttp3:okhttp")
