@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 470,
+    "contributions": 502,
     "role": "Main Developer"
   },
   {
@@ -40,7 +40,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 183,
+    "contributions": 197,
     "role": "Main Developer"
   },
   {
@@ -218,5 +218,26 @@
     "site_admin": false,
     "contributions": 2,
     "role": "Improvements and fixes in the Terminal"
+  },
+  {
+    "login": "teixeira0x",
+    "id": 134708771,
+    "node_id": "U_kgDOCAd-Iw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/134708771?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/teixeira0x",
+    "html_url": "https://github.com/teixeira0x",
+    "followers_url": "https://api.github.com/users/teixeira0x/followers",
+    "following_url": "https://api.github.com/users/teixeira0x/following{/other_user}",
+    "gists_url": "https://api.github.com/users/teixeira0x/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/teixeira0x/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/teixeira0x/subscriptions",
+    "organizations_url": "https://api.github.com/users/teixeira0x/orgs",
+    "repos_url": "https://api.github.com/users/teixeira0x/repos",
+    "events_url": "https://api.github.com/users/teixeira0x/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 2
   }
 ]
