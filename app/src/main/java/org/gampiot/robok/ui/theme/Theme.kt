@@ -27,6 +27,9 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
@@ -101,8 +104,6 @@ private val DarkColorScheme = darkColorScheme(
     outlineVariant = md_theme_dark_outlineVariant,
     scrim = md_theme_dark_scrim,
 )
-
-val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
 @Composable
 fun RobokTheme(
