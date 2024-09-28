@@ -17,12 +17,7 @@ package org.gampiot.robok.feature.modeling.launcher
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import android.os.Build
 import android.os.Bundle
-import android.view.View
-import android.view.WindowInsets
-import android.view.WindowInsetsController
-
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -34,7 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 
-import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 
 import org.gampiot.robok.feature.modeling.view.Model3DView
@@ -53,7 +47,6 @@ class ModelingActivity : AndroidApplication() {
 
 @Composable
 fun Model3DViewScreen() {
-    val model3DView = Model3DView.clazz
     val config = AndroidApplicationConfiguration()
 
     Column(
@@ -61,14 +54,15 @@ fun Model3DViewScreen() {
             .fillMaxSize()
             .padding(16.dp)
     ) {
+        // Botões para comandos
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { model3DView.command = "createCube" }) {
+            Button(onClick = { /* Comando para criar cubo */ }) {
                 Text("Criar Cubo")
             }
-            Button(onClick = { model3DView.command = "createTriangle" }) {
+            Button(onClick = { /* Comando para criar triângulo */ }) {
                 Text("Criar Triângulo")
             }
-            Button(onClick = { model3DView.command = "createSphere" }) {
+            Button(onClick = { /* Comando para criar esfera */ }) {
                 Text("Criar Esfera")
             }
         }
@@ -76,24 +70,24 @@ fun Model3DViewScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { model3DView.command = "createCylinder" }) {
+            Button(onClick = { /* Comando para criar cilindro */ }) {
                 Text("Criar Cilindro")
             }
-            Button(onClick = { model3DView.command = "createCone" }) {
+            Button(onClick = { /* Comando para criar cone */ }) {
                 Text("Criar Cone")
             }
-            Button(onClick = { model3DView.command = "createPlane" }) {
+            Button(onClick = { /* Comando para criar plano */ }) {
                 Text("Criar Plano")
             }
         }
 
         Spacer(modifier = Modifier.height(16.dp))
+
         AndroidView(
             factory = { context ->
-                 val model3DView = Model3DView()
-                 val gdxV = initializeForView(model3DView, config) 
-                 gdxV 
-             },
+                val model3DView = Model3DView(context)
+                initializeForView(model3DView, config) as View
+            },
             modifier = Modifier.fillMaxSize()
         )
     }
