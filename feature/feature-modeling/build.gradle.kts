@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -14,6 +15,7 @@ android {
 
     buildFeatures {
          viewBinding = true
+         compose = true
     }
    
     compileOptions {
@@ -31,6 +33,11 @@ dependencies {
     
     implementation(libs.appcompat)
     implementation(libs.material)
+    
+    implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
+    implementation(libs.material.compose)
+    implementation(libs.ui.compose)
     
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)
