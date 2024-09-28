@@ -49,8 +49,8 @@ class AndroidLauncher : AndroidApplication() {
         binding = Activity3dModelBinding.inflate(layoutInflater)
 
         val config = AndroidApplicationConfiguration()
-        val model3DView = initializeForView(Model3DView(), config)
-        val gdxView = Model3DView.clazz
+        val gdxView = initializeForView(Model3DView(), config)
+        val model3DView = Model3DView.clazz
         
         binding.createCubo.setOnClickListener { model3DView.command = "createCube" }
         binding.createTriangulo.setOnClickListener { model3DView.command = "createTriangle" }
