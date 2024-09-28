@@ -15,10 +15,12 @@ package org.gampiot.robok.feature.modeling
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import com.badlogic.gdx.Game
 
 class MyGame: Game() {
-    override fun create() { super.create() }
+    override fun create() {
+        // Initialize your game here
+    }
 }
