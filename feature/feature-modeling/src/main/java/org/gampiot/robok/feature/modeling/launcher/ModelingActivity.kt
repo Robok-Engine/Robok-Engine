@@ -85,8 +85,8 @@ fun Model3DViewScreen() {
 
         AndroidView(
             factory = { context ->
-                val model3DView = Model3DView(context)
-                initializeForView(model3DView, config) as View
+                val model3DView = Model3DView()
+                initializeForView(model3DView, config)
             },
             modifier = Modifier.fillMaxSize()
         )
