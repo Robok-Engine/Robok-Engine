@@ -40,7 +40,7 @@ import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 
 import org.gampiot.robok.feature.modeling.view.Model3DView
 
-class ModelingActivity : ComponentActivity() {
+class ModelingActivity : AndroidApplication() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -89,10 +89,9 @@ fun Model3DViewScreen() {
         }
 
         Spacer(modifier = Modifier.height(16.dp))
-        val a = AndroidApplication()
         AndroidView(
             factory = { context ->
-                a.initializeForView(Model3DView(), config)
+                initializeForView(Model3DView(), config)
             },
             modifier = Modifier.fillMaxSize()
         )
