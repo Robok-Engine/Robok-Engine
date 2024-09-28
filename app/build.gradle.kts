@@ -140,7 +140,7 @@ dependencies {
     implementation(project(":feature:feature-editor"))
     implementation(project(":feature:feature-modeling"))
     
-    implementation(project(":core:core-template"))
+    implementation(project(":core:core-templates"))
     implementation(project(":core:core-components"))
     implementation(project(":core:core-utils"))
 
