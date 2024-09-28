@@ -1,12 +1,10 @@
 <resources>
-    <style name="Base.Theme.Robok" parent="Theme.Material3.DynamicColors.Light">
+    <style name="Base.Theme.Robok" parent="Theme.Material3.Light">
         <!-- Bars -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
 
         <!-- Components -->
