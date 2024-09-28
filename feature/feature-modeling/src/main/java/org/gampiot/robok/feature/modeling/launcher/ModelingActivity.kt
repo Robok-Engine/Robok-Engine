@@ -23,6 +23,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -41,21 +42,10 @@ class ModelingActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        hideSystemUI()
+        enableEdgeToEdge()
 
         setContent {
             Model3DViewScreen()
-        }
-    }
-
-    private fun hideSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            window.insetsController?.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-            window.insetsController?.setSystemBarsBehavior(WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE)
-        } else {
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
         }
     }
 }
