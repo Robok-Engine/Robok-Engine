@@ -43,52 +43,45 @@ class ModelingActivity : AndroidApplication() {
             Model3DViewScreen()
         }
     }
-}
-
-@Composable
-fun Model3DViewScreen() {
-    val config = AndroidApplicationConfiguration()
-
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp)
-    ) {
-        // Botões para comandos
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { /* Comando para criar cubo */ }) {
-                Text("Criar Cubo")
+    @Composable
+    fun Model3DViewScreen() {
+         val config = AndroidApplicationConfiguration()
+         Column(
+             modifier = Modifier
+                .fillMaxSize()
+                .padding(16.dp)
+         ) {
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                Button(onClick = { /* Comando para criar cubo */ }) {
+                     Text("Criar Cubo")
+                }
+                Button(onClick = { /* Comando para criar triângulo */ }) {
+                     Text("Criar Triângulo")
+                }
+                Button(onClick = { /* Comando para criar esfera */ }) {
+                    Text("Criar Esfera")
+                }
             }
-            Button(onClick = { /* Comando para criar triângulo */ }) {
-                Text("Criar Triângulo")
+            Spacer(modifier = Modifier.height(16.dp))
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                Button(onClick = { /* Comando para criar cilindro */ }) {
+                    Text("Criar Cilindro")
+                }
+                Button(onClick = { /* Comando para criar cone */ }) {
+                    Text("Criar Cone")
+                }
+                Button(onClick = { /* Comando para criar plano */ }) {
+                    Text("Criar Plano")
+                }
             }
-            Button(onClick = { /* Comando para criar esfera */ }) {
-                Text("Criar Esfera")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
-            Button(onClick = { /* Comando para criar cilindro */ }) {
-                Text("Criar Cilindro")
-            }
-            Button(onClick = { /* Comando para criar cone */ }) {
-                Text("Criar Cone")
-            }
-            Button(onClick = { /* Comando para criar plano */ }) {
-                Text("Criar Plano")
-            }
-        }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-        AndroidView(
-            factory = { context ->
-                val model3DView = Model3DView()
-                initializeForView(model3DView, config)
-            },
-            modifier = Modifier.fillMaxSize()
-        )
+            Spacer(modifier = Modifier.height(16.dp))
+            AndroidView(
+                factory = { context ->
+                    val model3DView = Model3DView()
+                    initializeForView(model3DView, config)
+                },
+                modifier = Modifier.fillMaxSize()
+            )
+         }
     }
 }
