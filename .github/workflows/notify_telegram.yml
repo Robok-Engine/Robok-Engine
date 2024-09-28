@@ -13,6 +13,8 @@ on:
       - images/**
       - robok/**
       - .gitignore
+      - core/**
+      - core-compose/**
       - LICENSE
       - README.md
       - build.gradle.kts
@@ -29,6 +31,8 @@ on:
       - feature-compose/**
       - feature/**
       - gradle/**
+      - core/**
+      - core-compose/**
       - images/**
       - robok/**
       - .gitignore

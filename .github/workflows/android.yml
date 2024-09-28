@@ -8,8 +8,9 @@ on:
       - app/**
       - easy-ui/**
       - feature/**
-      - core/**
       - feature-compose/**
+      - core/**
+      - core-compose/**
       - robok/**
       - gradle/**
       - build.gradle.kts
@@ -23,8 +24,9 @@ on:
       - app/**
       - easy-ui/**
       - feature/**
-      - core/**
       - feature-compose/**
+      - core/**
+      - core-compose/**
       - robok/**
       - gradle/**
       - build.gradle.kts
