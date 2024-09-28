@@ -65,7 +65,7 @@ class RobokApplication : Application() {
     * Function that configures the application theme, dynamic colors, etc.
     */
     fun configureTheme(appPrefsViewModel: AppPreferencesViewModel) {
-        val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = false)
+        val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false)
         if (!dynamicColor) return
         DynamicColors.applyToActivitiesIfAvailable(instance)
     }

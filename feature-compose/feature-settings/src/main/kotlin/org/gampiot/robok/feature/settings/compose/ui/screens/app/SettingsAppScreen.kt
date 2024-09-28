@@ -58,7 +58,7 @@ fun SettingsAppScreen(
 fun appearancePrefs(
     appPrefsViewModel: AppPreferencesViewModel
 ) {
-     val appIsUseMonet by appPrefsViewModel.appIsUseMonet.collectAsState(initial = false)
+     val appIsUseMonet by appPrefsViewModel.appIsUseMonet.collectAsState(initial = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false)
      PreferenceSwitch(
           checked = appIsUseMonet,
           onCheckedChange = { newValue ->
