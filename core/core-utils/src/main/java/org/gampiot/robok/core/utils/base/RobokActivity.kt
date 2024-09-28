@@ -141,6 +141,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
                     requestReadWritePermissionsDialog()
                 }
                 .show()
+            }
         }
     }
 }
