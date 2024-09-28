@@ -19,6 +19,6 @@ package org.gampiot.robok.feature.modeling
 
 import com.badlogic.gdx.Game
 
-class MyGame: Game {
-    override fun create() { /* init game here */ }
+class MyGame: Game() {
+    override fun create() { super.create() }
 }
