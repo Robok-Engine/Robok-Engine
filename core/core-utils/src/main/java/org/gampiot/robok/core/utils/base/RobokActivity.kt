@@ -132,7 +132,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     override fun onReceive(status: Boolean) {
         if (status) {
-            if (Build.VERSION.SDK_INT >= 9
+            if (Build.VERSION.SDK_INT >= 9) {
               MaterialAlertDialogBuilder(this)
                 .setTitle(getString(Strings.error_storage_perm_title))
                 .setMessage(getString(Strings.error_storage_perm_message))
