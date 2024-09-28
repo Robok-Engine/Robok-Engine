@@ -107,7 +107,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 13,
-    "role": "Bot"
+    "role": "Translation and app icon"
   },
   {
     "login": "github-actions[bot]",
@@ -238,6 +238,7 @@
     "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 3
+    "contributions": 3,
+    "role": "Some fixes"
   }
 ]
