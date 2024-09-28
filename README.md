@@ -1,12 +1,12 @@
 <div align="center">
-  <img src="https://github.com/robok-inc.png" alt="RobokEngine Logo" width="120" height="120"/>
+  <img src="https://github.com/Robok-Engine.png" alt="RobokEngine Logo" width="120" height="120"/>
   <h1>🚀 Robok Engine</h1>
   <p>A cutting-edge engine for simplifying Java game development.</p>
-  <a href="https://github.com/robok-inc/Robok-Engine/issues">
-    <img src="https://m3-markdown-badges.vercel.app/issues/1/2/robok-inc/Robok-Engine" alt="Issues">
+  <a href="https://github.com/Robok-Engine/Robok-Engine/issues">
+    <img src="https://m3-markdown-badges.vercel.app/issues/1/2/Robok-Engine/Robok-Engine" alt="Issues">
   </a>
   <a href="https://github.com/robok-/Robok-Engine/stargazers">
-    <img src="https://m3-markdown-badges.vercel.app/stars/1/2/robok-inc/Robok-Engine" alt="Stars">
+    <img src="https://m3-markdown-badges.vercel.app/stars/1/2/Robok-Engine/Robok-Engine" alt="Stars">
   </a>
 </div>
 
@@ -31,7 +31,7 @@
 
 ## 🔧 Installation Steps
 
-1. Download the latest release from the [releases page](#).
+1. Download the latest release from the [releases page](https://github.com/Robok-Engine/Robok-Engine/releases).
 2. Install the downloaded application.
 3. Open Robok, and you're ready to start building your games!
 
@@ -55,7 +55,7 @@ If you'd like to contribute to Robok, follow these simple guidelines:
 - Avoid long or unnecessary commits.
 - Use tags to describe commit actions (e.g., `feat: Use datagui v2 in project`).
 
-For more details, visit the [Contribution Guide](https://github.com/robok-inc/robok-engine/tree/dev/docs/CONTRIBUTION.md).
+For more details, visit the [Contribution Guide](https://github.com/Robok-Engine/Robok-Engine/tree/dev/docs/CONTRIBUTION.md).
 
 ---
 
