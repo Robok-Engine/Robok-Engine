@@ -117,4 +117,9 @@
     <string name="item_whatsapp_description">Ou grupo do whatsapp.</string>
     <string name="item_whatsapp_title">WhatsApp</string>
     <string name="text_basic_info">Informações básicas</string>
+    <string name="settings_app_description">Algumas configurações relacionadas ao aplicativo.</string>
+    <string name="settings_app_use_monet_description">Use o tema do dispositivo no aplicativo.</string>
+    <string name="settings_app_title">Configuração do App</string>
+    <string name="settings_app_use_monet_title">Cores dinâmicas</string>
+    <string name="warning_project_installer_not_found">Nenhum instalador de pacote encontrado.</string>
 </resources>
