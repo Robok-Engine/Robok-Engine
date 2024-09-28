@@ -84,18 +84,6 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         )
     }
 
-    open fun openFragment(fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace(R.id.fragment_container, fragment)
-        }
-    }
-
-    open fun openFragment(@IdRes fragmentLayoutResId: Int, fragment: Fragment) {
-        supportFragmentManager.commit {
-            replace(fragmentLayoutResId, fragment)
-        }
-    }
-
     private fun requestReadWritePermissionsDialog() {
         if (isFinishing || isDestroyed) {
             return
@@ -118,7 +106,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         if (isFinishing || isDestroyed) {
             return
         }
-        permissionDialog = PermissionDialog.Builder(this)
+        permissionDialog = PermissionDiag.Builder(this)
             .setIconResId(R.drawable.ic_folder_24)
             .setText(getString(Strings.warning_all_files_perm_message))
             .setAllowClickListener {
