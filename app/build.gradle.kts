@@ -144,7 +144,7 @@ dependencies {
     implementation(project(":core:core-components"))
     implementation(project(":core:core-utils"))
 
-    implementation(project(":core-compose:core-component"))
+    implementation(project(":core-compose:core-components"))
     
     implementation(project(":feature-compose:feature-settings"))
 
