@@ -45,7 +45,7 @@ import com.badlogic.gdx.utils.*;
  * configuration for the GLSurfaceView.
  * 
  * @author mzechner */
-public class AndroidApplication extends Activity implements AndroidApplicationBase {
+public class AndroidApplication extends ComponentActivity implements AndroidApplicationBase {
 
 	protected AndroidGraphics graphics;
 	protected AndroidInput input;
