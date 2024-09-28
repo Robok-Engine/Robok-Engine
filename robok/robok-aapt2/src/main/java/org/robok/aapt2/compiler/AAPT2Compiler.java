@@ -30,7 +30,7 @@ import org.robok.aapt2.BinaryExecutor;
 import org.robok.aapt2.model.Project;
 import org.robok.aapt2.model.Library;
 
-import org.gampiot.robok.feature.util.application.RobokApplication;
+import org.gampiot.robok.core.utils.application.RobokApplication;
 
 public class AAPT2Compiler extends Compiler {
 

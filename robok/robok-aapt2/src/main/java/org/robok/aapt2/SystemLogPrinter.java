@@ -23,7 +23,7 @@ import java.io.OutputStream;
 import org.robok.aapt2.logger.Logger;
 import org.robok.aapt2.util.FileUtil;
 
-import org.gampiot.robok.feature.util.application.RobokApplication;
+import org.gampiot.robok.core.utils.application.RobokApplication;
 
 public class SystemLogPrinter {
 

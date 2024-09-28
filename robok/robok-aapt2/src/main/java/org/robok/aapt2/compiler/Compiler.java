@@ -21,7 +21,7 @@ import org.robok.aapt2.util.Decompress;
 import org.robok.aapt2.compiler.exception.CompilerException;
 import org.robok.aapt2.compiler.exception.AAPT2CompileException;
 
-import org.gampiot.robok.feature.util.application.RobokApplication;
+import org.gampiot.robok.core.utils.application.RobokApplication;
 
 import java.io.IOException;
 import java.io.File;
