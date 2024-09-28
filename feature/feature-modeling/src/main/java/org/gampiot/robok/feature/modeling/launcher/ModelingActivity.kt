@@ -34,7 +34,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 
-
 import com.badlogic.gdx.backends.android.AndroidApplication
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration
 
@@ -91,8 +90,10 @@ fun Model3DViewScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         AndroidView(
             factory = { context ->
-                initializeForView(Model3DView(), config)
-            },
+                 val model3DView = Model3DView(context)
+                 initializeForView(model3DView, config) 
+                 model3DView 
+             },
             modifier = Modifier.fillMaxSize()
         )
     }
