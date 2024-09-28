@@ -38,5 +38,7 @@ android {
 }
 
 dependencies {
+    implementation(libs.material)
+    implementation(libs.appcompat)
     implementation(libs.libgdx)
 }
