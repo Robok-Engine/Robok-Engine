@@ -29,6 +29,9 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 
+import org.koin.androidx.compose.koinViewModel
+
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.core.utils.activities.DebugActivity
 import org.gampiot.robok.core.utils.di.appModule
 import org.gampiot.robok.core.utils.di.appPreferencesModule
@@ -37,23 +40,39 @@ import java.io.PrintWriter
 import java.io.StringWriter
 import java.io.Writer
 
+/*
+* A Class for basic application management.
+*/
 class RobokApplication : Application() {
-
+    
     companion object {
-        lateinit var instance: RobokApplication
-        lateinit var robokContext: Context
-        const val ERROR_TAG = "error"
+        lateinit var instance: RobokApplication /* Instance of this class  */
+        lateinit var robokContext: Context /* A Context of this class */
+        const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
     }
-
+    
     override fun onCreate() {
         super.onCreate()
         instance = this
         robokContext = applicationContext
         configureKoin()
         configureCrashHandler()
+        val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+        configureTheme(appPrefsViewModel)
+    }
+    
+    /*
+    * Function that configures the application theme, dynamic colors, etc.
+    */
+    fun configureTheme(appPrefsViewModel: AppPreferencesViewModel) {
+        val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = false)
+        if (!dynamicColor) return
         DynamicColors.applyToActivitiesIfAvailable(instance)
     }
     
+    /*
+    * Function that configures the error manager.
+    */
     fun configureCrashHandler() {
          Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             val intent = Intent(applicationContext, DebugActivity::class.java).apply {
@@ -66,6 +85,9 @@ class RobokApplication : Application() {
         }
     }
     
+    /*
+    * Function that configures Koin for Dependency Injection.
+    */
     fun configureKoin() {
         startKoin {
             androidLogger()
@@ -76,7 +98,10 @@ class RobokApplication : Application() {
             )
         }
     }
-
+    
+    /* 
+    * Function to get the stack trace.
+    */
     fun getStackTrace(cause: Throwable?): String {
         val result: Writer = StringWriter()
         PrintWriter(result).use { printWriter ->
