@@ -98,11 +98,13 @@ fun Model3DViewScreen() {
 
         Spacer(modifier = Modifier.height(16.dp))
 
+       /*
         AndroidView(
             factory = { context ->
-                //initializeForView(Model3DView(), config)
+                initializeForView(Model3DView(), config)
             },
             modifier = Modifier.fillMaxSize()
         )
+       */
     }
 }
