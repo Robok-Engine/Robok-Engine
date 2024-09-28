@@ -53,9 +53,20 @@
                         android:contentDescription="@string/common_word_redo"
                         android:src="@drawable/ic_redo_24"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/relative_layout_diagnostics"
+                        app:layout_constraintEnd_toStartOf="@id/run_button"
                         app:layout_constraintTop_toTopOf="parent" />
-                    
+
+                    <ImageView
+                        android:id="@+id/run_button"
+                        android:layout_width="@dimen/toolbar_icon_width"
+                        android:layout_height="@dimen/toolbar_icon_height"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_run_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/relative_layout_diagnostics"
+                        app:layout_constraintTop_toTopOf="parent"/>
+
                     <RelativeLayout
                         android:id="@+id/relative_layout_diagnostics"
                         android:layout_width="wrap_content"
@@ -100,25 +111,8 @@
             android:gravity="top|start"
             android:hint="@string/common_word_code"
             android:padding="8dp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_marginBottom="20dp"
-            android:layout_marginEnd="20dp"
-            android:orientation="vertical">
-
-            <Button
-                android:id="@+id/run_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:text="@string/common_word_run" />
-
-        </LinearLayout>
-
+            
+            
     </RelativeLayout>
 
     <com.google.android.material.navigation.NavigationView
