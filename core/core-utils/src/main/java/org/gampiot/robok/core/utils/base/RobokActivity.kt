@@ -106,7 +106,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         if (isFinishing || isDestroyed) {
             return
         }
-        permissionDialog = PermissionDiag.Builder(this)
+        permissionDialog = PermissionDialog.Builder(this)
             .setIconResId(R.drawable.ic_folder_24)
             .setText(getString(Strings.warning_all_files_perm_message))
             .setAllowClickListener {
