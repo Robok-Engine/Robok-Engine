@@ -21,14 +21,23 @@ import android.app.Application
 import android.content.Context
 import android.content.Intent
 import android.os.Process
+import android.os.Build
 import android.util.Log
+
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.Flow
 
 import com.google.android.material.color.DynamicColors
 
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-
 import org.koin.androidx.compose.koinViewModel
 
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
