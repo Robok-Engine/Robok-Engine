@@ -8,6 +8,7 @@ on:
       - app/**
       - easy-ui/**
       - feature/**
+      - core/**
       - feature-compose/**
       - robok/**
       - gradle/**
@@ -22,6 +23,7 @@ on:
       - app/**
       - easy-ui/**
       - feature/**
+      - core/**
       - feature-compose/**
       - robok/**
       - gradle/**
