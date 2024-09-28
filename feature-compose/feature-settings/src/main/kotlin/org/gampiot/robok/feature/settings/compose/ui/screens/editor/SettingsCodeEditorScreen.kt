@@ -30,13 +30,13 @@ import androidx.compose.ui.text.font.FontWeight
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.gampiot.robok.feature.component.compose.preferences.normal.Preference
-import org.gampiot.robok.feature.component.compose.preferences.choice.PreferenceChoice
-import org.gampiot.robok.feature.component.compose.preferences.switch.PreferenceSwitch
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.core.components.compose.preferences.normal.Preference
+import org.gampiot.robok.core.components.compose.preferences.choice.PreferenceChoice
+import org.gampiot.robok.core.components.compose.preferences.switch.PreferenceSwitch
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

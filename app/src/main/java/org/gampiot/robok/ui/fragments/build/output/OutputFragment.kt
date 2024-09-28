@@ -27,8 +27,8 @@ import androidx.annotation.IdRes
 
 import org.gampiot.robok.R
 import org.gampiot.robok.databinding.FragmentOutputBinding
-import org.gampiot.robok.feature.component.log.Log
-import org.gampiot.robok.feature.util.base.RobokFragment
+import org.gampiot.robok.core.components.log.Log
+import org.gampiot.robok.core.utils.base.RobokFragment
 
 class OutputFragment () : RobokFragment() {
 

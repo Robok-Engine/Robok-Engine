@@ -66,7 +66,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <org.gampiot.robok.feature.component.progress.DotProgressBar
+                        <org.gampiot.robok.core.components.progress.DotProgressBar
                             android:id="@+id/diagnostic_status_dot_progress"
                             android:layout_width="@dimen/toolbar_icon_width"
                             android:layout_height="@dimen/toolbar_icon_height"

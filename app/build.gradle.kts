@@ -133,16 +133,19 @@ dependencies {
     implementation(project(":robok:robok-antlr"))
     implementation(project(":robok:robok-aapt2"))
     
-    implementation(project(":feature:feature-component"))
-    implementation(project(":feature:feature-util"))
-    implementation(project(":feature:feature-res:strings"))
+    implementation(project(":app-strings"))
+    
     implementation(project(":feature:feature-terminal"))
-    implementation(project(":feature:feature-template"))
     implementation(project(":feature:feature-treeview"))
     implementation(project(":feature:feature-editor"))
     implementation(project(":feature:feature-modeling"))
+    
+    implementation(project(":core:core-template"))
+    implementation(project(":core:core-components"))
+    implementation(project(":core:core-utils"))
 
-    implementation(project(":feature-compose:feature-component"))
+    implementation(project(":core-compose:core-component"))
+    
     implementation(project(":feature-compose:feature-settings"))
 
     implementation(project(":easy-components"))

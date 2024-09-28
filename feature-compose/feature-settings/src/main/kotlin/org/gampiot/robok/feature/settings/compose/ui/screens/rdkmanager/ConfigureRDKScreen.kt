@@ -42,11 +42,11 @@ import okhttp3.Request
 
 import org.gampiot.robok.feature.settings.compose.viewmodels.ConfigureRDKViewModel
 import org.gampiot.robok.feature.settings.compose.viewmodels.DownloadState
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
-import org.gampiot.robok.feature.component.compose.textfields.DynamicSelectTextField
-import org.gampiot.robok.feature.component.compose.text.RobokText
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.core.components.compose.textfields.DynamicSelectTextField
+import org.gampiot.robok.core.components.compose.text.RobokText
+import org.gampiot.robok.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

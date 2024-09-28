@@ -29,7 +29,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 
 import org.gampiot.robok.R;
 import org.gampiot.robok.databinding.FragmentEditorDiagnosticBinding;
-import org.gampiot.robok.feature.util.base.RobokFragment;
+import org.gampiot.robok.core.utils.base.RobokFragment;
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem;
 import org.gampiot.robok.ui.activities.editor.diagnostic.adapters.DiagnosticsAdapter;
 

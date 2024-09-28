@@ -28,7 +28,8 @@ import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
-import org.gampiot.robok.feature.util.application.RobokApplication;
+
+import org.gampiot.robok.core.utils.application.RobokApplication;
 
 public class RDKFileMapper {
     

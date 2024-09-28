@@ -22,7 +22,7 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:enableOnBackInvokedCallback="true"
-        android:name="org.gampiot.robok.feature.util.application.RobokApplication"
+        android:name="org.gampiot.robok.core.utils.application.RobokApplication"
         android:theme="@style/Theme.Robok"
         android:requestLegacyExternalStorage="true">
         <activity
@@ -42,7 +42,7 @@
             android:windowSoftInputMode="adjustResize"/>
         
         <activity
-            android:name="org.gampiot.robok.feature.util.activities.DebugActivity"
+            android:name="org.gampiot.robok.core.utils.activities.DebugActivity"
             android:exported="true" />
             
         <activity

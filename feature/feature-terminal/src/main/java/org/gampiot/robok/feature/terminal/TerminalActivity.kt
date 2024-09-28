@@ -25,18 +25,23 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
+
 import androidx.annotation.MainThread
 import androidx.appcompat.app.AlertDialog
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
+
 import org.gampiot.robok.feature.res.R
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding
 import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInputBinding
-import org.gampiot.robok.feature.util.KeyboardUtil
-import org.gampiot.robok.feature.util.base.RobokActivity
+import org.gampiot.robok.core.utils.KeyboardUtil
+import org.gampiot.robok.core.utils.base.RobokActivity
+
 import java.io.File
 
 class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {

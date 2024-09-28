@@ -42,14 +42,14 @@ import kotlinx.coroutines.launch
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.manage.project.ProjectManager
 import org.gampiot.robok.ui.activities.editor.EditorActivity
-import org.gampiot.robok.feature.component.compose.text.RobokText
-import org.gampiot.robok.feature.component.compose.dialog.RobokDialog
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.core.components.compose.text.RobokText
+import org.gampiot.robok.core.components.compose.dialog.RobokDialog
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
 
 import java.io.File
 

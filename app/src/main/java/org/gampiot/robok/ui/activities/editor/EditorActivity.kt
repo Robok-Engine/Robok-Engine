@@ -42,16 +42,16 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 
 import org.gampiot.robok.Ids
 import org.gampiot.robok.Drawables
+import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.databinding.ActivityEditorBinding
 import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.gampiot.robok.manage.project.ProjectManager
-import org.gampiot.robok.feature.util.base.RobokActivity
+import org.gampiot.robok.core.utils.base.RobokActivity
 import org.gampiot.robok.feature.editor.EditorListener
-import org.gampiot.robok.feature.component.terminal.RobokTerminal
-import org.gampiot.robok.feature.res.Strings
+import org.gampiot.robok.core.components.terminal.RobokTerminal
 import org.gampiot.robok.feature.treeview.provider.FileWrapper
 import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.interfaces.FileObject

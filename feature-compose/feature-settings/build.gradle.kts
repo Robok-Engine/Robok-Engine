@@ -62,6 +62,6 @@ dependencies {
     implementation(libs.coil.compose)
     implementation(libs.serialization.json)
     
-    implementation(project(":feature:feature-res:strings"))
-    implementation(project(":feature-compose:feature-component"))
+    implementation(project(":app-strings"))
+    implementation(project(":core-compose:core-component"))
 }

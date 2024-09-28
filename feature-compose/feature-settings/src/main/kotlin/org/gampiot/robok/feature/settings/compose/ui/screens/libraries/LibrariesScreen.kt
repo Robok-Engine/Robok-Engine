@@ -57,11 +57,11 @@ import com.mikepenz.aboutlibraries.ui.compose.LibrariesContainer
 import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.entity.Library
 
-import org.gampiot.robok.feature.res.Strings
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceGroup
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceLayout
-import org.gampiot.robok.feature.component.compose.preferences.base.PreferenceTemplate
-import org.gampiot.robok.feature.component.compose.text.RobokText
+import org.gampiot.robok.strings.Strings
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceTemplate
+import org.gampiot.robok.core.components.compose.text.RobokText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

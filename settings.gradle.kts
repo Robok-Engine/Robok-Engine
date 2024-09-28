@@ -25,16 +25,19 @@ include(":robok:robok-lang")
 include(":robok:robok-util")
 include(":robok:robok-aapt2")
 
-include(":feature:feature-component")
-include(":feature:feature-res:strings")
-include(":feature:feature-util")
-include(":feature:feature-template")
+include(":app-strings")
+
 include(":feature:feature-terminal")
 include(":feature:feature-treeview")
 include(":feature:feature-editor")
 include(":feature:feature-modeling")
 
-include(":feature-compose:feature-component")
 include(":feature-compose:feature-settings")
+
+include(":core-compose:core-components")
+
+include(":core:core-components")
+include(":core:core-utils")
+include(":core:core-templates")
 
 include(":easy-components")
