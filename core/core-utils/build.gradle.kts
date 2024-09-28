@@ -32,8 +32,14 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
     implementation(libs.datastore.preferences)
+    
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
+    
+    implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
+    implementation(libs.material.compose)
+    implementation(libs.ui.compose)
     
     implementation(project(":easy-components"))
     
