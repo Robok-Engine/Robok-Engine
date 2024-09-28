@@ -40,5 +40,5 @@ dependencies {
     
     implementation(libs.gson)
     
-    implementation(project(":core:core-util"))
+    implementation(project(":core:core-utils"))
 }
