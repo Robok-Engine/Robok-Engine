@@ -15,42 +15,42 @@
         android:layout_alignParentBottom="true">
 
         <Button
-            android:id="@+id/criar_cubo"
+            android:id="@+id/create_cubo"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
             android:text="Create Cube" />
 
         <Button
-            android:id="@+id/criar_triangulo"
+            android:id="@+id/create_triangulo"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
             android:text="Create Capsule" />
 
         <Button
-            android:id="@+id/criar_esfera"
+            android:id="@+id/create_esfera"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
             android:text="Create Sphere" />
 
         <Button
-            android:id="@+id/criar_cilindro"
+            android:id="@+id/create_cilindro"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
             android:text="Create Cylinder" />
 
         <Button
-            android:id="@+id/criar_cone"
+            android:id="@+id/create_cone"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
             android:text="Create Cone" />
 
         <Button
-            android:id="@+id/criar_plano"
+            android:id="@+id/create_plano"
             android:layout_height="wrap_content"
             android:layout_width="wrap_content"
             style="Widget.Material3.Button"
