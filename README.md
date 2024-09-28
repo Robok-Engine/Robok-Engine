@@ -5,7 +5,7 @@
   <a href="https://github.com/robok-inc/Robok-Engine/issues">
     <img src="https://m3-markdown-badges.vercel.app/issues/1/2/robok-inc/Robok-Engine" alt="Issues">
   </a>
-  <a href="https://github.com/robok-inc/Robok-Engine/stargazers">
+  <a href="https://github.com/robok-/Robok-Engine/stargazers">
     <img src="https://m3-markdown-badges.vercel.app/stars/1/2/robok-inc/Robok-Engine" alt="Stars">
   </a>
 </div>
