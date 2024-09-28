@@ -41,3 +41,5 @@ include(":core:core-utils")
 include(":core:core-templates")
 
 include(":easy-components")
+
+include(":gdx-backend-android")
