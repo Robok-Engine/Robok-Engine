@@ -107,7 +107,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 13,
-    "role": "Translation and app icon"
+    "role": "Translation, SplashScreen and App icon"
   },
   {
     "login": "github-actions[bot]",
