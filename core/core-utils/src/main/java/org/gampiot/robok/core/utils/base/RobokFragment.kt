@@ -46,14 +46,6 @@ open class RobokFragment() : Fragment() {
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
     }
     
-    fun openFragment(fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(R.id.fragment_container, fragment)
-            addToBackStack(null)
-            commit()
-        }
-    }
-    
     fun openFragment(@IdRes idRes: Int, fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(idRes, fragment)
