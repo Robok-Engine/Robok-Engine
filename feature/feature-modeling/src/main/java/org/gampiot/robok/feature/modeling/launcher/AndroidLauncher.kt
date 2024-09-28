@@ -49,16 +49,17 @@ class AndroidLauncher : AndroidApplication() {
         binding = Activity3dModelBinding.inflate(layoutInflater)
 
         val config = AndroidApplicationConfiguration()
-        val GDXView = initializeForView(Model3DView(), config)
+        val model3DView = initializeForView(Model3DView(), config)
+        val gdxView = Model3DView.clazz
         
-        binding.createCubo.setOnClickListener { GDXView.command = "createCube" }
-        binding.createTriangulo.setOnClickListener { GDXView.command = "createTriangle" }
-        binding.createEsfera.setOnClickListener { GDXView.command = "createSphere" }
-        binding.createCilindro.setOnClickListener { GDXView.command = "createCylinder" }
-        binding.createCone.setOnClickListener { GDXView.command = "createCone" }
-        binding.createPlano.setOnClickListener { GDXView.command = "createPlane" }
+        binding.createCubo.setOnClickListener { model3DView.command = "createCube" }
+        binding.createTriangulo.setOnClickListener { model3DView.command = "createTriangle" }
+        binding.createEsfera.setOnClickListener { model3DView.command = "createSphere" }
+        binding.createCilindro.setOnClickListener { model3DView.command = "createCylinder" }
+        binding.createCone.setOnClickListener { model3DView.command = "createCone" }
+        binding.createPlano.setOnClickListener { model3DView.command = "createPlane" }
 
-        binding.linearLibGdx.addView(GDXView)
+        binding.linearLibGdx.addView(gdxView)
         setContentView(binding.root)
         hideSystemUI()
     }
