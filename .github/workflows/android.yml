@@ -11,6 +11,7 @@ on:
       - feature-compose/**
       - core/**
       - core-compose/**
+      - app-strings/**
       - robok/**
       - gradle/**
       - build.gradle.kts
@@ -27,6 +28,7 @@ on:
       - feature-compose/**
       - core/**
       - core-compose/**
+      - app-strings/**
       - robok/**
       - gradle/**
       - build.gradle.kts
