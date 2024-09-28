@@ -44,7 +44,6 @@ import org.gampiot.robok.Ids
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.databinding.ActivityEditorBinding
-import org.gampiot.robok.ui.fragments.build.output.OutputFragment
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
