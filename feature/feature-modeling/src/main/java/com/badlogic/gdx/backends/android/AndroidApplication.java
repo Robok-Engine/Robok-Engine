@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package org.gampiot.robok.feature.modeling.launcher;
+package com.badlogic.gdx.backends.android;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
@@ -34,7 +34,6 @@ import android.widget.FrameLayout;
 import androidx.activity.ComponentActivity;
 
 import com.badlogic.gdx.*;
-import com.badlogic.gdx.backends.android.*;
 import com.badlogic.gdx.backends.android.keyboardheight.AndroidXKeyboardHeightProvider;
 import com.badlogic.gdx.backends.android.keyboardheight.KeyboardHeightProvider;
 import com.badlogic.gdx.backends.android.keyboardheight.StandardKeyboardHeightProvider;
