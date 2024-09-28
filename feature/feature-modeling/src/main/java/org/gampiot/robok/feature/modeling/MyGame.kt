@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.modeling;
+package org.gampiot.robok.feature.modeling
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,11 +17,8 @@ package org.gampiot.robok.feature.modeling;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Game
 
-public class MyGame extends Game {
-    @Override
-    public void create() {
-        // Inicialize seu jogo aqui
-    }
+class MyGame: Game {
+    override fun create() { /* init game here */ }
 }
