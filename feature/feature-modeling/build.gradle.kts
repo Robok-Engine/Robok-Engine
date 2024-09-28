@@ -38,6 +38,10 @@ dependencies {
     implementation(libs.material3.compose)
     implementation(libs.material.compose)
     implementation(libs.ui.compose)
+    implementation(libs.ui.graphics.compose)
+    implementation(libs.activity.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.viewmodel.compose)
     
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)

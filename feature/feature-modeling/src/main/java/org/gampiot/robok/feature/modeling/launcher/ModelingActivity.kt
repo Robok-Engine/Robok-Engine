@@ -100,7 +100,7 @@ fun Model3DViewScreen() {
 
         AndroidView(
             factory = { context ->
-                initializeForView(Model3DView(), config)
+                //initializeForView(Model3DView(), config)
             },
             modifier = Modifier.fillMaxSize()
         )
