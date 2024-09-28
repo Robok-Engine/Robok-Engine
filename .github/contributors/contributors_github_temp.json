@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 502
+    "contributions": 515
   },
   {
     "login": "ThDev-only",
@@ -39,7 +39,7 @@
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 197
+    "contributions": 198
   },
   {
     "login": "renovate[bot]",
@@ -147,27 +147,6 @@
     "contributions": 3
   },
   {
-    "login": "Paxsenix0",
-    "id": 126800641,
-    "node_id": "U_kgDOB47TAQ",
-    "avatar_url": "https://avatars.githubusercontent.com/u/126800641?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/Paxsenix0",
-    "html_url": "https://github.com/Paxsenix0",
-    "followers_url": "https://api.github.com/users/Paxsenix0/followers",
-    "following_url": "https://api.github.com/users/Paxsenix0/following{/other_user}",
-    "gists_url": "https://api.github.com/users/Paxsenix0/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/Paxsenix0/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/Paxsenix0/subscriptions",
-    "organizations_url": "https://api.github.com/users/Paxsenix0/orgs",
-    "repos_url": "https://api.github.com/users/Paxsenix0/repos",
-    "events_url": "https://api.github.com/users/Paxsenix0/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/Paxsenix0/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 2
-  },
-  {
     "login": "teixeira0x",
     "id": 134708771,
     "node_id": "U_kgDOCAd-Iw",
@@ -186,7 +165,7 @@
     "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 2
+    "contributions": 3
   },
   {
     "login": "RohitKushvaha01",
@@ -205,6 +184,27 @@
     "repos_url": "https://api.github.com/users/RohitKushvaha01/repos",
     "events_url": "https://api.github.com/users/RohitKushvaha01/events{/privacy}",
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 3
+  },
+  {
+    "login": "Paxsenix0",
+    "id": 126800641,
+    "node_id": "U_kgDOB47TAQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/126800641?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Paxsenix0",
+    "html_url": "https://github.com/Paxsenix0",
+    "followers_url": "https://api.github.com/users/Paxsenix0/followers",
+    "following_url": "https://api.github.com/users/Paxsenix0/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Paxsenix0/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Paxsenix0/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Paxsenix0/subscriptions",
+    "organizations_url": "https://api.github.com/users/Paxsenix0/orgs",
+    "repos_url": "https://api.github.com/users/Paxsenix0/repos",
+    "events_url": "https://api.github.com/users/Paxsenix0/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Paxsenix0/received_events",
     "type": "User",
     "site_admin": false,
     "contributions": 2
