@@ -90,9 +90,9 @@ fun Model3DViewScreen() {
         Spacer(modifier = Modifier.height(16.dp))
         AndroidView(
             factory = { context ->
-                 val model3DView = Model3DView(context)
-                 initializeForView(model3DView, config) 
-                 model3DView 
+                 val model3DView = Model3DView()
+                 val gdxV = initializeForView(model3DView, config) 
+                 gdxV 
              },
             modifier = Modifier.fillMaxSize()
         )
