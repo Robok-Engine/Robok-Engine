@@ -56,7 +56,7 @@ import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.interfaces.FileObject
 import org.gampiot.robok.feature.treeview.model.Node
 import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
-import org.gampiot.robok.feature.modeling.launcher.AndroidLauncher
+import org.gampiot.robok.feature.modeling.launcher.ModelingActivity
 
 import org.robok.antlr.logic.AntlrListener
 import org.robok.aapt2.compiler.CompilerTask
@@ -278,7 +278,7 @@ class EditorActivity : RobokActivity() {
 
                 if (fileName.endsWith(".obj")) {
                     // Open 3D modeling
-                    startActivity(Intent(this@EditorActivity, AndroidLauncher::class.java))
+                    startActivity(Intent(this@EditorActivity, ModelingActivity::class.java))
                 }
             }
         })
