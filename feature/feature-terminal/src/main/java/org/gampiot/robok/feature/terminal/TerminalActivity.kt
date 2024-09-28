@@ -36,7 +36,7 @@ import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
 
-import org.gampiot.robok.feature.res.R
+import org.gampiot.robok.strings.R
 import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding
 import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInputBinding
 import org.gampiot.robok.core.utils.KeyboardUtil
