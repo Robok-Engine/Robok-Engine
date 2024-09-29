@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
+    id("maven-publish")
 }
 
 android {
