@@ -73,7 +73,7 @@ class RobokApplication : Application() {
         appPrefsViewModel = getKoin().get()
         GlobalScope.launch(Dispatchers.Main) {
         appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
-                if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if(dynamicColor) {
                      DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
                 }
             }
