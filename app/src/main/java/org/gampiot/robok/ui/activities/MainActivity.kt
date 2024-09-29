@@ -36,6 +36,7 @@ import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.ui.screens.home.HomeScreen
+import org.gampiot.robok.core.utils.base.RobokActivity
 import org.gampiot.robok.ui.screens.project.create.CreateProjectScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.app.SettingsAppScreen
@@ -44,7 +45,7 @@ import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.Libraries
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
 
-class MainActivity : ComponentActivity() {
+class MainActivity : RobokActivity() {
 
     companion object {
         const val MSAX_SLIDE_DISTANCE: Int = 100
