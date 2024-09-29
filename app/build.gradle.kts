@@ -126,6 +126,9 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.material.motion.compose.core)
     
+    implementation(libs.libgdx)
+    implementation(libs.libgdx.backend.android)
+    
     implementation(libs.sora.editor)
     
     // projects
