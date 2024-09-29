@@ -41,4 +41,10 @@ dependencies {
     implementation(libs.material)
     implementation(libs.appcompat)
     implementation(libs.libgdx)
+    implementation(project(":gdx-backend-android"))
+    implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi")
+    implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi-v7a")
+    implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86")
+    implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86_64")
+
 }
