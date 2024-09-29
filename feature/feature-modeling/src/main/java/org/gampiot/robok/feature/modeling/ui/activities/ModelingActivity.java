@@ -48,7 +48,7 @@ public class ModelingActivity extends AppCompatActivity implements AndroidFragme
           setContentView(binding.getRoot());
         
           libGDXFragment = new LibGDXFragment();
-          FrgamentManager fragmentManager = getSupportFragmentManager();
+          FragmentManager fragmentManager = getSupportFragmentManager();
           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
           fragmentTransaction.replace(binding.frameLibGdx.getId(), libGDXFragment);
           fragmentTransaction.commit();
