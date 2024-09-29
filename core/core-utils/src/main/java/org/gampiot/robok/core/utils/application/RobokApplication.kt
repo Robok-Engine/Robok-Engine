@@ -30,9 +30,8 @@ import com.google.android.material.color.DynamicColors
 
 import kotlinx.coroutines.flow.collect
 
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
+import org.koin.android.ext.koin.*
+import org.koin.core.context.*
 
 import org.gampiot.robok.core.utils.activities.DebugActivity
 import org.gampiot.robok.core.utils.di.appModule
