@@ -2,58 +2,12 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:id="@+id/layout_parent">
 
-    <LinearLayout
-        android:id="@+id/linear_lib_gdx"
+    <FrameLayout
+        android:id="@+id/frame_lib_gdx"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content" />
 
-    <LinearLayout
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_alignParentBottom="true">
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_cubo"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Cube" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_triangulo"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Capsule" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_esfera"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Sphere" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_cilindro"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Cylinder" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_cone"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Cone" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/create_plano"
-            android:layout_height="wrap_content"
-            android:layout_width="wrap_content"
-            style="Widget.Material3.Button"
-            android:text="Create Plane" />
-    </LinearLayout>
 </RelativeLayout>
