@@ -26,7 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 
-import org.gampiot.robok.core.components.compose.preferences.baseorg.gampiot.robok.core.components.compose.preferences.base.ExpandAndShrink
+import org.gampiot.robok.core.components.compose.preferences.base.ExpandAndShrink
 
 import kotlinx.coroutines.launch
 
