@@ -23,9 +23,10 @@ import androidx.compose.ui.platform.ComposeView
 
 import org.gampiot.robok.feature.modeling.ui.screens.ModelingScreen
 
-object ModelingActivityHelper {
-    @JvmStatic
-    fun createComposeView(context: Context): ComposeView {
+class ModelingActivityHelper(
+   private val context: Context 
+) {
+    fun createComposeView(): ComposeView {
         return ComposeView(context).apply {
             setContent {
                  ModelingScreen()
