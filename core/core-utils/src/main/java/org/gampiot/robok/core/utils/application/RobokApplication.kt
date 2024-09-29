@@ -29,6 +29,9 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.material.color.DynamicColors
 
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 import org.koin.android.ext.koin.*
 import org.koin.core.context.*
@@ -68,10 +71,10 @@ class RobokApplication : Application() {
 
     private fun configureTheme() {
         appPrefsViewModel = getKoin().get()
-        lifecycleScope.launchWhenStarted {
-            appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
+        GlobalScope.launch(Dispatchers.Main) {
+        appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
                 if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-                    DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
+                     DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
                 }
             }
         }
