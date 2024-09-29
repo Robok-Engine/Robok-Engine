@@ -17,46 +17,53 @@ package org.gampiot.robok.feature.modeling.ui.screens
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.*
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 
 @Composable
 fun ModelingScreen() {
-    val drawerState = rememberDrawerState(initialValue = DrawerValue.Closed)
+    var isWindowOpen by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
-    ModalNavigationDrawer(
-        drawerState = drawerState,
-        drawerContent = {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
+            
+        }
+
+        Button(
+            onClick = { 
+                isWindowOpen = true
+            },
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(16.dp)
+        ) {
+            Text("open window")
+        }
+
+        if (isWindowOpen) {
             Box(
                 modifier = Modifier
-                    .fillMaxSize()
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text(text = "probaly buttons")
-            }
-        }
-    ) {
-        Box(modifier = Modifier.fillMaxSize()) {
-            Column(
-                modifier = Modifier.fillMaxSize()
-            ) { }
-
-            Button(
-                onClick = { 
-                    scope.launch { drawerState.open() }
-                },
-                modifier = Modifier
+                    .size(200.dp, 200.dp)
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
+                    .background(Color.LightGray),
+                contentAlignment = Alignment.Center
             ) {
-                Text("open probla")
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(text = "This is a small window")
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(onClick = { isWindowOpen = false }) {
+                        Text("Close")
+                    }
+                }
             }
         }
     }
