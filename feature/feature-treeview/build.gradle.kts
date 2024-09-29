@@ -26,3 +26,15 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "feature-treeview"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

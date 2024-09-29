@@ -43,3 +43,15 @@ dependencies {
     
     implementation(project(":core:core-utils"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "feature-modeling"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

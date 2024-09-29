@@ -31,30 +31,11 @@ dependencies {
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
-            groupId = "com.github.robok-inc"
+            groupId = "com.github.robok-engine"
             artifactId = "easy-components"
             version  = "0.0.1"
             
             from(components.findByName("release"))
-
-            pom {
-                name.set("Easy UI Components")
-                description.set("Some XML components to help you with development.")
-                url.set("https://github.com/trindadev13/easy-ui")
-                licenses {
-                    license {
-                        name.set("GPL 3.0 License")
-                        url.set("https://www.gnu.org/licenses/gpl-3.0.pt-br.html")
-                    }
-                }
-                developers {
-                    developer {
-                        id.set("trindadedev13")
-                        name.set("Aquiles Trindade")
-                        email.set("devsuay@example.com")
-                    }
-                }
-            }
         }
     }
 }

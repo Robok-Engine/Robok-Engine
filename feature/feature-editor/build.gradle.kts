@@ -61,3 +61,15 @@ dependencies {
     implementation(project(":robok:robok-compiler"))
     implementation(project(":robok:robok-antlr"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "feature-editor"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

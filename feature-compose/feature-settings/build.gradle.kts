@@ -65,3 +65,15 @@ dependencies {
     implementation(project(":app-strings"))
     implementation(project(":core-compose:core-components"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "feature-settings"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

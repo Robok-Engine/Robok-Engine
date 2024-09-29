@@ -42,3 +42,15 @@ dependencies {
     implementation(project(":core:core-components"))
     implementation(project(":easy-components"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "feature-terminal"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

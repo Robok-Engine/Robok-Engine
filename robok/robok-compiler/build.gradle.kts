@@ -26,3 +26,15 @@ dependencies {
     implementation(project(":robok:robok-util"))
     implementation(project(":robok:robok-lang"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "robok-compiler"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

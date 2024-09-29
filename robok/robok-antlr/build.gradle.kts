@@ -27,3 +27,15 @@ dependencies {
     implementation(libs.antlr) // Dependency on ANTLR for code generation
     implementation(libs.antlr.runtime) // ANTLR runtime dependency
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "robok-antlr"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}

@@ -42,3 +42,15 @@ dependencies {
     
     implementation(project(":core:core-utils"))
 }
+
+publishing {
+    publications {
+        create<MavenPublication>("mavenJava") {
+            groupId = "com.github.robok-engine"
+            artifactId = "robok-aapt2"
+            version  = "0.0.1"
+            
+            from(components.findByName("release"))
+        }
+    }
+}
