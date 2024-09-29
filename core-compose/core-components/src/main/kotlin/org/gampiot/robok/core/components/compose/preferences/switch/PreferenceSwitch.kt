@@ -93,8 +93,6 @@ fun PreferenceSwitch(
                 enabled = enabled,
                 interactionSource = interactionSource,
                 colors = SwitchDefaults.colors().copy(
-                    checkedThumbColor = MaterialTheme.colorScheme.onBackground,
-                    checkedTrackColor = MaterialTheme.colorScheme.onBackground.copy(alpha = 0.5f),
                     uncheckedThumbColor = MaterialTheme.colorScheme.background,
                     uncheckedTrackColor = MaterialTheme.colorScheme.onBackground.copy(
                         alpha = 0.5f
