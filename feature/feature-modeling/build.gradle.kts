@@ -44,7 +44,7 @@ dependencies {
     implementation(libs.viewmodel.compose)
     
     implementation(libs.libgdx)
-    implementation(libs.libgdx.backend.android)
+    implementation(project(":gdx-backend-android"))
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi-v7a")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86")
