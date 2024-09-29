@@ -19,9 +19,14 @@ public class AsynchronousAndroidAudio extends DefaultAndroidAudio {
 
 	public AsynchronousAndroidAudio (Context context, AndroidApplicationConfiguration config) {
 		super(context, config);
-		handlerThread = new HandlerThread("libGDX Sound Management");
-		handlerThread.start();
-		handler = new Handler(handlerThread.getLooper());
+		if (!config.disableAudio) {
+			handlerThread = new HandlerThread("libGDX Sound Management");
+			handlerThread.start();
+			handler = new Handler(handlerThread.getLooper());
+		} else {
+			handler = null;
+			handlerThread = null;
+		}
 	}
 
 	@Override

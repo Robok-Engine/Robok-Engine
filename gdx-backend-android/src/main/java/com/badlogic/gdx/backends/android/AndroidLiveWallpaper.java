@@ -347,10 +347,7 @@ public class AndroidLiveWallpaper implements AndroidApplicationBase {
 
 	@Override
 	public AndroidAudio createAudio (Context context, AndroidApplicationConfiguration config) {
-		if (!config.disableAudio)
-			return new DefaultAndroidAudio(context, config);
-		else
-			return new DisabledAndroidAudio();
+		return new DefaultAndroidAudio(context, config);
 	}
 
 	@Override

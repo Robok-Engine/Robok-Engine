@@ -494,7 +494,11 @@ public class AndroidGraphics extends AbstractGraphics implements Renderer {
 			}
 
 			for (int i = 0; i < app.getExecutedRunnables().size; i++) {
-				app.getExecutedRunnables().get(i).run();
+				try {
+					app.getExecutedRunnables().get(i).run();
+				} catch (Throwable t) {
+					t.printStackTrace();
+				}
 			}
 			app.getInput().processEvents();
 			frameId++;
@@ -719,9 +723,14 @@ public class AndroidGraphics extends AbstractGraphics implements Renderer {
 		Display display;
 		DisplayMetrics metrics = new DisplayMetrics();
 
-		DisplayManager displayManager = (DisplayManager)app.getContext().getSystemService(Context.DISPLAY_SERVICE);
-		display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
-		display.getRealMetrics(metrics); // Deprecated but no direct equivalent
+		if (Build.VERSION.SDK_INT >= 17) {
+			DisplayManager displayManager = (DisplayManager)app.getContext().getSystemService(Context.DISPLAY_SERVICE);
+			display = displayManager.getDisplay(Display.DEFAULT_DISPLAY);
+			display.getRealMetrics(metrics); // Deprecated but no direct equivalent
+		} else {
+			display = app.getWindowManager().getDefaultDisplay();
+			display.getMetrics(metrics); // Excludes system UI!
+		}
 
 		int width = metrics.widthPixels;
 		int height = metrics.heightPixels;
