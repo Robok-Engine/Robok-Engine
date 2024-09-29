@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
 import androidx.compose.material3.Text
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.ripple
@@ -34,6 +35,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.graphics.Color
 
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.core.components.compose.text.RobokText
@@ -90,6 +92,13 @@ fun PreferenceSwitch(
                 onCheckedChange = onCheckedChange,
                 enabled = enabled,
                 interactionSource = interactionSource,
+                colors = SwitchDefaults.colors().copy(
+                    uncheckedThumbColor = MaterialTheme.colorScheme.background,
+                    uncheckedTrackColor = MaterialTheme.colorScheme.onBackground.copy(
+                        alpha = 0.5f
+                    ),
+                    uncheckedBorderColor = Color.Transparent,
+                    )
             )
         },
         enabled = enabled,
