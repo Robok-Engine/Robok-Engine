@@ -1,10 +1,10 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 529 | Main Developer |
+| trindadedev13 | 561 | Main Developer |
 | ThDev-only | 199 | Main Developer |
 | renovate[bot] | 114 | Bot |
 | gampiot-bot | 35 | Bot |
-| skinvent | 13 | Translation, SplashScreen and App icon |
+| skinvent | 15 | Translation, SplashScreen and App icon |
 | github-actions[bot] | 10 | Bot |
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
