@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.modeling.ui.screens
+package org.gampiot.robok.ui.screens.modeling
 
 /*
  *  This file is part of Robok © 2024.
@@ -32,7 +32,7 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun ModelingScreen() {
-    var isWindowOpen by remember { mutableStateOf(false) }
+    var isOptionsOpen by remember { mutableStateOf(false) }
     val scope = rememberCoroutineScope()
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -42,7 +42,7 @@ fun ModelingScreen() {
 
         Button(
             onClick = { 
-                isWindowOpen = true
+                isOptionsOpen = true
             },
             modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -51,19 +51,20 @@ fun ModelingScreen() {
             Text("open window")
         }
 
-        ExpandAndShrink(isWindowOpen){
+        ExpandAndShrink(
+            visible = isOptionsOpen,
+            modifier = Modifier
+                .size(200.dp, 200.dp)
+                .align(Alignment.TopEnd)
+                .padding(16.dp)
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh),
+        ){
             Box(
-                modifier = Modifier
-                    .size(200.dp, 200.dp)
-                    .align(Alignment.TopEnd)
-                    .padding(16.dp)
-                    .background(MaterialTheme.colorScheme.surfaceContainerHigh),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Text(text = "This is a small window")
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { isWindowOpen = false }) {
+                    Button(onClick = { isOptionsOpen = false }) {
                         Text("Close")
                     }
                 }

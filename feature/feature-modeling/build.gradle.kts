@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.compose.compiler)
     id("maven-publish")
 }
 
@@ -34,13 +33,6 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.material)
     
-    implementation(platform(libs.compose.bom))
-    implementation(libs.material3.compose)
-    implementation(libs.material.compose)
-    implementation(libs.ui.compose)
-    implementation(libs.ui.graphics.compose)
-    implementation(libs.activity.compose)
-    
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-armeabi")
@@ -51,7 +43,6 @@ dependencies {
     implementation(libs.gson)
     
     implementation(project(":core:core-utils"))
-    implementation(project(":core-compose:core-components"))
 }
 
 publishing {

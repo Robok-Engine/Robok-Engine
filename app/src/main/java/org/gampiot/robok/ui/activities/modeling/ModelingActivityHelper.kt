@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.modeling.ui.activities
+package org.gampiot.robok.ui.activities.modeling
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,7 +21,8 @@ import android.content.Context
 
 import androidx.compose.ui.platform.ComposeView
 
-import org.gampiot.robok.feature.modeling.ui.screens.ModelingScreen
+import org.gampiot.robok.ui.theme.RobokTheme
+import org.gampiot.robok.ui.screens.modeling.ModelingScreen
 
 class ModelingActivityHelper(
    private val context: Context 
@@ -29,7 +30,9 @@ class ModelingActivityHelper(
     fun createComposeView(): ComposeView {
         return ComposeView(context).apply {
             setContent {
-                 ModelingScreen()
+                 RobokTheme {
+                     ModelingScreen()
+                 }
             }
         }
     }

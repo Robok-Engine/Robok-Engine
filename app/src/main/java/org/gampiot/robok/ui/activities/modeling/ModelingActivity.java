@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.modeling.ui.activities;
+package org.gampiot.robok.ui.activities.modeling;
 
 /*
  *  This file is part of Robok © 2024.

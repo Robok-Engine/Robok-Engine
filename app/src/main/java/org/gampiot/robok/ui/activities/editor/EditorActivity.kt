@@ -44,6 +44,7 @@ import org.gampiot.robok.Ids
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.databinding.ActivityEditorBinding
+import org.gampiot.robok.ui.activities.modeling.ModelingActivity
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
@@ -56,7 +57,6 @@ import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.interfaces.FileObject
 import org.gampiot.robok.feature.treeview.model.Node
 import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
-import org.gampiot.robok.feature.modeling.ui.activities.ModelingActivity
 
 import org.robok.antlr.logic.AntlrListener
 import org.robok.aapt2.compiler.CompilerTask
