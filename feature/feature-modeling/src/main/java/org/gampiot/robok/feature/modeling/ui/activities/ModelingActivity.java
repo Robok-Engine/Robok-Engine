@@ -48,7 +48,8 @@ public class ModelingLauncher extends AppCompatActivity implements AndroidFragme
           setContentView(binding.getRoot());
         
           libGDXFragment = new LibGDXFragment();
-          FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+          FrgamentManager fragmentManager = getSupportFragmentManager();
+          FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
           fragmentTransaction.replace(binding.frameLibGdx.getId(), libGDXFragment);
           fragmentTransaction.commit();
 
