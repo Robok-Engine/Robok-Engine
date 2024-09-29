@@ -32,6 +32,7 @@ import kotlinx.coroutines.flow.collect
 
 import org.koin.android.ext.koin.*
 import org.koin.core.context.*
+import org.koin.core.component.*
 
 import org.gampiot.robok.core.utils.activities.DebugActivity
 import org.gampiot.robok.core.utils.di.appModule
