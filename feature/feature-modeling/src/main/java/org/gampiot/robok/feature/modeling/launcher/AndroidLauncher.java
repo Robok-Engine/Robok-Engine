@@ -25,8 +25,8 @@ import android.os.Build;
 import android.view.View;
 import android.view.WindowInsets;
 import android.view.WindowInsetsController;
-import org.gampiot.robok.feature.modeling.databinding.Activity3dModelBinding
-import org.gampiot.robok.feature.modeling.view.Model3DView
+import org.gampiot.robok.feature.modeling.databinding.Activity3dModelBinding;
+import org.gampiot.robok.feature.modeling.view.Model3DView;
 import org.gampiot.robok.feature.modeling.fragment.LibGDXFragment;
 
 
