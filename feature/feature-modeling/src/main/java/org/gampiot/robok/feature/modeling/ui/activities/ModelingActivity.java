@@ -35,7 +35,7 @@ import org.gampiot.robok.feature.modeling.fragment.LibGDXFragment;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
-public class ModelingLauncher extends AppCompatActivity implements AndroidFragmentApplication.Callbacks {
+public class ModelingActivity extends AppCompatActivity implements AndroidFragmentApplication.Callbacks {
     
      private Activity3dModelBinding binding;
      private LibGDXFragment libGDXFragment;
