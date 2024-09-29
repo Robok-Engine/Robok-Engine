@@ -51,6 +51,7 @@ dependencies {
     implementation(libs.gson)
     
     implementation(project(":core:core-utils"))
+    implementation(project(":core-compose:core-components"))
 }
 
 publishing {
