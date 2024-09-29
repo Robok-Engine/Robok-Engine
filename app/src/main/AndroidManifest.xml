@@ -50,7 +50,7 @@
             android:exported="true" />
 
         <activity
-            android:name="org.gampiot.robok.feature.modeling.ui.activities.ModelingActivity"
+            android:name="org.gampiot.robok.ui.activities.modeling.ModelingActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             android:exported="true" />
