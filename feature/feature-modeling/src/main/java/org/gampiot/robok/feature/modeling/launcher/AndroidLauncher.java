@@ -34,7 +34,7 @@ import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
 public class AndroidLauncher extends AppCompatActivity implements AndroidFragmentApplication.Callbacks {
     
-    private ActivityMainBinding binding;
+    private Activity3dModelBinding binding;
     private LibGDXFragment libGDXFragment;
     private Model3DView model3dView;
     
@@ -49,7 +49,7 @@ public class AndroidLauncher extends AppCompatActivity implements AndroidFragmen
         super.onCreate(savedInstanceState);
         
         // Inflar o layout usando View Binding
-        //binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = Activity3dModelBinding.inflate(getLayoutInflater());
         //setContentView(binding.getRoot());
         
         // Adicionar o Fragmento LibGDX
@@ -128,126 +128,11 @@ public class AndroidLauncher extends AppCompatActivity implements AndroidFragmen
         }
     }
 
-    /**
-     * Implementação do método exit() da interface AndroidFragmentApplication.Callbacks
-     */
+    /*
+    * Implementação do método exit() da interface AndroidFragmentApplication.Callbacks
+    */
     @Override
     public void exit() {
         finish();
     }
 }
-
-/*
-em compose, de acordo com o chatGpt
-
-// AndroidLauncher.kt
-package com.example.libgdxtest.launcher
-
-import android.os.Build
-import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.annotation.RequiresApi
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.viewinterop.AndroidView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.commit
-import com.example.libgdxtest.fragment.LibGDXFragment
-import com.example.libgdxtest.view.Model3DView
-import com.example.libgdxtest.ui.theme.LibGdxTestTheme
-import com.badlogic.gdx.backends.android.AndroidFragmentApplication
-
-class AndroidLauncher : ComponentActivity(), AndroidFragmentApplication.Callbacks {
-
-    private lateinit var libGDXFragment: LibGDXFragment
-    private var model3dView: Model3DView? = null
-
-    override fun onDestroy() {
-        super.onDestroy()
-        // Limpeza se necessário
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        // Inicializar o Fragmento LibGDX
-        libGDXFragment = LibGDXFragment()
-        supportFragmentManager.commit {
-            replace(android.R.id.content, libGDXFragment, "LibGDXFragment")
-        }
-
-        setContent {
-            LibGdxTestTheme {
-                Surface(color = MaterialTheme.colors.background) {
-                    LibGDXScreen(libGDXFragment = libGDXFragment, onCommand = { command ->
-                        model3dView?.setCommand(command)
-                    })
-                }
-            }
-        }
-    }
-
-    override fun exit() {
-        finish()
-    }
-}
-
-@Composable
-fun LibGDXScreen(libGDXFragment: LibGDXFragment, onCommand: (String) -> Unit) {
-    val fragmentManager = (LocalContext.current as ComponentActivity).supportFragmentManager
-    val libGdxView = remember { mutableStateOf<View?>(null) }
-
-    LaunchedEffect(libGDXFragment) {
-        // Assegurar que o fragmento está adicionado
-        if (fragmentManager.findFragmentByTag("LibGDXFragment") == null) {
-            fragmentManager.commit {
-                replace(android.R.id.content, libGDXFragment, "LibGDXFragment")
-            }
-        }
-        // Obter a view do fragmento
-        libGdxView.value = libGDXFragment.view
-    }
-
-    Column(modifier = Modifier.fillMaxSize()) {
-        // Seção de Botões
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly
-        ) {
-            Button(onClick = { onCommand("createCube") }) {
-                Text("Cubo")
-            }
-            Button(onClick = { onCommand("createTriangle") }) {
-                Text("Triângulo")
-            }
-            Button(onClick = { onCommand("createSphere") }) {
-                Text("Esfera")
-            }
-            Button(onClick = { onCommand("createCylinder") }) {
-                Text("Cilindro")
-            }
-            Button(onClick = { onCommand("createCone") }) {
-                Text("Cone")
-            }
-            Button(onClick = { onCommand("createPlane") }) {
-                Text("Plano")
-            }
-        }
-
-        // Contêiner para o Fragmento LibGDX
-        Box(modifier = Modifier.weight(1f)) {
-            AndroidView(factory = { context ->
-                libGDXFragment.view ?: View(context).apply {
-                    // Aqui você pode configurar a view se necessário
-                }
-            }, modifier = Modifier.fillMaxSize())
-        }
-    }
-}
-
-*/
