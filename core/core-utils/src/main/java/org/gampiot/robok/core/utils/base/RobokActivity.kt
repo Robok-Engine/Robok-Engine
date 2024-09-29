@@ -38,12 +38,15 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 
+import com.google.android.material.color.DynamicColors
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import dev.trindadedev.easyui.components.dialogs.PermissionDialog
 
+import org.koin.androidx.compose.koinViewModel
 
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 import org.gampiot.robok.core.utils.R
 import org.gampiot.robok.core.utils.requestReadWritePermissions
 import org.gampiot.robok.core.utils.requestAllFilesAccessPermission
@@ -70,6 +73,16 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
                 requestReadWritePermissionsDialog()
             }
         }
+    }
+
+    /*
+    * Function that configures the application theme, dynamic colors, etc.
+    */
+    @Composable
+    fun configureTheme(appPrefsViewModel: AppPreferencesViewModel) {
+        val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false)
+        if (!dynamicColor) return
+        DynamicColors.applyToActivitiesIfAvailable(RobokApplication.instance)
     }
 
     private fun requestReadWritePermissionsDialog() {
