@@ -56,7 +56,7 @@ public class ModelingActivity extends AppCompatActivity implements AndroidFragme
           fragmentManager.executePendingTransactions();
           model3dView = libGDXFragment.getModel3DView().clazz;
         
-          ComposeView composeUI = ModelingActivityHelper.createComposeView(ModelingActivity.this);
+          ComposeView composeUI = ModelingActivityHelper.createComposeView(this);
 
           binding.layoutParent.addView(composeUI);
           hideSystemUI();
