@@ -65,6 +65,7 @@ class MainActivity : RobokActivity() {
                imageResId = Drawables.ic_empty_game
         )
         setContent {
+            configureTheme()
             RobokTheme {
                 val navController = rememberNavController()
                 NavHost(
