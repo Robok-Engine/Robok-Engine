@@ -17,10 +17,27 @@ package org.gampiot.robok.feature.modeling.ui.screens
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import androidx.compose.material.Text
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun ModelingScreen() {
-    Text(text = "nothing!")
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier.fillMaxSize()
+        ) { /* probaly screen*/ }
+        
+        Button(
+            onClick = { /* TO-DO: Expande that */ },
+            modifier = Modifier
+                .align(Alignment.TopEnd)
+                .padding(16.dp)
+        ) {
+            Text("Botão")
+        }
+    }
 }
