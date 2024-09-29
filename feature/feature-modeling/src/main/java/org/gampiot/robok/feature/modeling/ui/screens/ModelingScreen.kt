@@ -25,6 +25,9 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
+
+import org.gampiot.robok.core.components.compose.preferences.baseorg.gampiot.robok.core.components.compose.preferences.base.ExpandAndShrink
+
 import kotlinx.coroutines.launch
 
 @Composable
@@ -48,13 +51,13 @@ fun ModelingScreen() {
             Text("open window")
         }
 
-        if (isWindowOpen) {
+        ExpandAndShrink(isWindowOpen){
             Box(
                 modifier = Modifier
                     .size(200.dp, 200.dp)
                     .align(Alignment.TopEnd)
                     .padding(16.dp)
-                    .background(Color.LightGray),
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh),
                 contentAlignment = Alignment.Center
             ) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
