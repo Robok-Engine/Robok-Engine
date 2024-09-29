@@ -100,6 +100,7 @@ fun PreferenceSwitch(
                         alpha = 0.5f
                     ),
                     uncheckedBorderColor = Color.Transparent,
+                    )
             )
         },
         enabled = enabled,
