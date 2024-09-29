@@ -24,13 +24,24 @@ import android.os.Process
 import android.os.Build
 import android.util.Log
 
-import org.koin.android.ext.koin.androidContext
-import org.koin.android.ext.koin.androidLogger
-import org.koin.core.context.startKoin
+import androidx.lifecycle.lifecycleScope
+
+import com.google.android.material.color.DynamicColors
+
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
+import org.koin.android.ext.koin.*
+import org.koin.core.context.*
+import org.koin.android.ext.android.getKoin
+import org.koin.core.component.*
 
 import org.gampiot.robok.core.utils.activities.DebugActivity
 import org.gampiot.robok.core.utils.di.appModule
 import org.gampiot.robok.core.utils.di.appPreferencesModule
+import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 
 import java.io.PrintWriter
 import java.io.StringWriter
@@ -46,20 +57,34 @@ class RobokApplication : Application() {
         lateinit var robokContext: Context /* A Context of this class */
         const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
     }
-    
+
+    private lateinit var appPrefsViewModel: AppPreferencesViewModel
+
     override fun onCreate() {
         super.onCreate()
         instance = this
         robokContext = applicationContext
         configureKoin()
         configureCrashHandler()
+        configureTheme() 
     }
-    
+
+    private fun configureTheme() {
+        appPrefsViewModel = getKoin().get()
+        GlobalScope.launch(Dispatchers.Main) {
+        appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
+                if (dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                     DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
+                }
+            }
+        }
+    }
+
     /*
     * Function that configures the error manager.
     */
     fun configureCrashHandler() {
-         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             val intent = Intent(applicationContext, DebugActivity::class.java).apply {
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                 putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
@@ -77,10 +102,7 @@ class RobokApplication : Application() {
         startKoin {
             androidLogger()
             androidContext(this@RobokApplication)
-            modules(
-                appModule,
-                appPreferencesModule
-            )
+            modules(appModule, appPreferencesModule)
         }
     }
     

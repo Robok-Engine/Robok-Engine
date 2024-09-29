@@ -30,8 +30,6 @@ import androidx.navigation.compose.rememberNavController
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
-import org.koin.androidx.compose.koinViewModel
-
 import org.gampiot.robok.BuildConfig
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.strings.Strings
@@ -46,7 +44,6 @@ import org.gampiot.robok.feature.settings.compose.screens.ui.editor.SettingsCode
 import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
-import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel
 
 class MainActivity : RobokActivity() {
 
@@ -68,8 +65,6 @@ class MainActivity : RobokActivity() {
                imageResId = Drawables.ic_empty_game
         )
         setContent {
-            val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-            configureTheme(appPrefsViewModel)
             RobokTheme {
                 val navController = rememberNavController()
                 NavHost(
