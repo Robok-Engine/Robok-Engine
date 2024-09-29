@@ -68,8 +68,6 @@ class MainActivity : RobokActivity() {
                imageResId = Drawables.ic_empty_game
         )
         setContent {
-            val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-            configureTheme(appPrefsViewModel)
             RobokTheme {
                 val navController = rememberNavController()
                 NavHost(
