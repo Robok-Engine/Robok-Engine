@@ -21,7 +21,7 @@ import android.content.Context
 
 import androidx.compose.ui.platform.ComposeView
 
-import org.gampiot.robok.feature.modeling.ui.ModelingScreen
+import org.gampiot.robok.feature.modeling.ui.screens.ModelingScreen
 
 object ModelingActivityHelper {
     fun createComposeView(context: Context): ComposeView {
