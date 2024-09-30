@@ -99,7 +99,7 @@ jobs:
             
       - name: Rename debug apk file 
         run: |
-          mv app-debug.apk robok-engine-debug(${{ env.BRANCH_NAME }}@${{ env.COMMIT_HASH }}).apk
+          mv app-debug.apk robok-engine-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -108,7 +108,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-engine-debug(${{ env.BRANCH_NAME }}@${{ env.COMMIT_HASH }}).apk
+          APK_TO_SEND: robok-engine-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
@@ -196,10 +196,11 @@ jobs:
         run: |
             echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
             echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
+            echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
             
       - name: Rename release apk file 
         run: |
-          mv app-release-unsigned-signed.apk robok-engine-release(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
+          mv app-release-unsigned-signed.apk robok-engine-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -208,7 +209,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-engine-release(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
+          APK_TO_SEND: robok-engine-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
