@@ -98,7 +98,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
-         projectPath = intent?.extras?.getString("projectPath"))
+         projectPath = intent?.extras?.getString("projectPath")
                             ?: throw IllegalArgumentException("You cannot open this activity without project path.")
          projectManager = ProjectManager(this@EditorActivity)
          projectManager.setProjectPath(File(projectPath))
@@ -311,7 +311,8 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
                 
                 when (fileExtension) {
                     "obj" -> startActivity(Intent(this@EditorActivity, AndroidLauncher::class.java)) // Open 3D modeling
-                    "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath()) // Open file in editor
+                    "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
+                    else -> {}
                 }
             }
         })
