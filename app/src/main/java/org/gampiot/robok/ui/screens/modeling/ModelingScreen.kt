@@ -28,7 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-
+import androidx.compose.ui.unit.IntOffset
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.core.components.compose.preferences.base.ExpandAndShrink
 
@@ -46,7 +46,7 @@ fun ModelingScreen() {
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
-                .size(50.dp) 
+                .size(50.dp)
                 .clickable {
                     isOptionsOpen = !isOptionsOpen
                 }
@@ -57,15 +57,13 @@ fun ModelingScreen() {
             modifier = Modifier
                 .size(200.dp, 200.dp)
                 .align(Alignment.TopEnd)
+                .offset { IntOffset(0, 66) }
                 .padding(16.dp)
                 .background(MaterialTheme.colorScheme.surfaceContainerHigh),
         ) {
             Box(contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Spacer(modifier = Modifier.height(8.dp))
-                    Button(onClick = { isOptionsOpen = false }) {
-                        Text("Close")
-                    }
                 }
             }
         }
