@@ -59,6 +59,8 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     private File file; // Editor file
 
+    private boolean isModified;
+
     /*
      * Default constructor.
      */
