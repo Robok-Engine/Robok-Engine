@@ -17,6 +17,7 @@ package org.gampiot.robok.ui.screens.modeling
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -24,32 +25,31 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
+import org.gampiot.robok.Drawables
 import org.gampiot.robok.core.components.compose.preferences.base.ExpandAndShrink
-
-import kotlinx.coroutines.launch
 
 @Composable
 fun ModelingScreen() {
     var isOptionsOpen by remember { mutableStateOf(false) }
-    val scope = rememberCoroutineScope()
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
-            
         }
 
-        Button(
-            onClick = { 
-                isOptionsOpen = true
-            },
+        Image(
+            painter = painterResource(id = Drawables.ic_robok),
+            contentDescription = "open3DOptions",
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
-        ) {
-            Text("open window")
-        }
+                .size(50.dp) 
+                .clickable {
+                    isOptionsOpen = !isOptionsOpen
+                }
+        )
 
         ExpandAndShrink(
             visible = isOptionsOpen,
@@ -58,10 +58,8 @@ fun ModelingScreen() {
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
                 .background(MaterialTheme.colorScheme.surfaceContainerHigh),
-        ){
-            Box(
-                contentAlignment = Alignment.Center
-            ) {
+        ) {
+            Box(contentAlignment = Alignment.Center) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Spacer(modifier = Modifier.height(8.dp))
                     Button(onClick = { isOptionsOpen = false }) {
