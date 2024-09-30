@@ -67,7 +67,7 @@ jobs:
         with:
           name: engine-debug
           compression-level: 0
-          path: app/build/outputs/apk/debug/app-debug.apk
+          path: app/build/outputs/apk/debug/
   
   send-debug-to-telegram:
     name: Send Debug APK to Telegram
@@ -98,7 +98,7 @@ jobs:
             
       - name: Rename debug apk file 
         run: |
-          mv app/build/outputs/apk/debug/app-debug.apk robok-engine-debug(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
+          mv app-debug.apk robok-engine-debug(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
           ls 
           
       - name: Send APK to Telegram
@@ -198,7 +198,7 @@ jobs:
             
       - name: Rename release apk file 
         run: |
-          mv app/build/outputs/apk/release/app-release-unsigned-signed.apk robok-engine-release(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
+          mv app-release-unsigned-signed.apk robok-engine-release(${{ env.BRANCH_NAME }}@${{ env.COMMIT_MESSAGE }}).apk
           ls 
           
       - name: Send APK to Telegram
