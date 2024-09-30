@@ -107,6 +107,12 @@
 	<string name="error_load_fail">Error loading.</string>
 	<!-- end section -->
 	
+    <!-- editor section -->
+    <string name="editor_close">Close This</string>
+    <string name="editor_close_others">Close Others</string>
+    <string name="editor_close_all">Close All</string>
+    <!-- end section -->
+
 	<!-- terminal section -->
 	<string name="terminal_options">Options</string>
 	<string name="terminal_install_package">Install Package</string>
