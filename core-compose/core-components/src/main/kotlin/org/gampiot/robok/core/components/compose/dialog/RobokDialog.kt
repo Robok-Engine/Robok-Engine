@@ -45,7 +45,9 @@ fun RobokDialog(
     dialogTitle: String,
     dialogText: String,
     icon: ImageVector? = null,
-    iconDescription: String = "Icon"
+    iconDescription: String = "Icon",
+    confirmButtonText: String = "Confirm",
+    dismissButtonText: String = "Dismiss"
 ) {
     AlertDialog(
         icon = {
@@ -54,7 +56,7 @@ fun RobokDialog(
             }
         },
         title = {
-            RobokText(text = dialogTitle)
+            RobokText(text = dialogTitle, fontSize = 24.sp)
         },
         text = {
             RobokText(text = dialogText)
@@ -68,7 +70,7 @@ fun RobokDialog(
                     onConfirmation()
                 }
             ) {
-                RobokText("Confirm")
+                RobokText(confirmButtonText)
             }
         },
         dismissButton = {
@@ -77,7 +79,7 @@ fun RobokDialog(
                     onDismissRequest()
                 }
             ) {
-                RobokText("Dismiss")
+                RobokText(dismissButtonText)
             }
         }
     )
