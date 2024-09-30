@@ -38,8 +38,9 @@ fun RobokChoiceDialog(
     onChoice: (Int) -> Unit
 ) {
     if (visible) {
-        AlertDialog(
+        RobokDialog(
             onDismissRequest = { onRequestClose() },
+            onConfirmation = { onRequestClose() }, 
             title = title,
             text = {
                 Column(
@@ -58,9 +59,10 @@ fun RobokChoiceDialog(
                 }
             },
             confirmButton = {
-                TextButton(onClick = { onRequestClose() }) {
-                    RobokText("Close")
-                }
+                RobokText("Close")
+            },
+            dismissButton = {
+                RobokText("Cancel")
             }
         )
     }

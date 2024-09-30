@@ -42,24 +42,24 @@ import org.gampiot.robok.core.components.compose.text.RobokText
 fun RobokDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
-    dialogTitle: String,
-    dialogText: String,
-    icon: ImageVector? = null,
-    iconDescription: String = "Icon",
-    confirmButtonText: String = "Confirm",
-    dismissButtonText: String = "Dismiss"
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
+    confirmButton: @Composable () -> Unit,
+    dismissButton: @Composable () -> Unit,
+    icon: @Composable (() -> Unit)? = null,
+    iconDescription: String = "Icon"
 ) {
     AlertDialog(
         icon = {
             icon?.let {
-                Icon(it, contentDescription = iconDescription)
+                it()
             }
         },
         title = {
-            RobokText(text = dialogTitle, fontSize = 24.sp)
+            title()
         },
         text = {
-            RobokText(text = dialogText)
+            text()
         },
         onDismissRequest = {
             onDismissRequest()
@@ -70,7 +70,7 @@ fun RobokDialog(
                     onConfirmation()
                 }
             ) {
-                RobokText(confirmButtonText)
+                confirmButton()
             }
         },
         dismissButton = {
@@ -79,7 +79,7 @@ fun RobokDialog(
                     onDismissRequest()
                 }
             ) {
-                RobokText(dismissButtonText)
+                dismissButton()
             }
         }
     )

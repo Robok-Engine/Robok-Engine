@@ -33,6 +33,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 
@@ -93,7 +94,7 @@ fun PreferenceChoice(
     if (opened) {
         RobokChoiceDialog(
             visible = opened,
-            title = { RobokText(fontWeight = FontWeight.Bold, text = title) },
+            title = { RobokText(fontWeight = FontWeight.Bold, text = title, fontSize = 24.sp) },
             default = pref,
             options = options,
             labelFactory = labelFactory,

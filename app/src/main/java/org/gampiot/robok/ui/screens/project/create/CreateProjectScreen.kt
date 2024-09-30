@@ -169,9 +169,21 @@ fun showVeryBasicDialog(
             onConfirmation = {
                 isShowDialog.value = false
             },
-            dialogTitle = title,
-            dialogText = message,
-            iconDescription = "Icon"
+            title = {
+                RobokText(text = title, fontSize = 24.sp)
+            },
+            text = {
+                RobokText(text = message)
+            },
+            confirmButton = {
+                RobokText(text = "OK")
+            },
+            dismissButton = {
+                RobokText(text = "Cancel")
+            },
+            icon = {
+                Icon(Icons.Outlined.Settings, contentDescription = "Icon")
+            }
         )
     }
 }
