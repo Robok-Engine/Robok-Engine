@@ -74,7 +74,7 @@ fun RobokDialog(
             }
         },
         dismissButton = {
-            OutlineButton(
+            OutlinedButton(
                 onClick = {
                     onDismissRequest()
                 }
