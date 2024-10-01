@@ -58,13 +58,13 @@ class EditorViewModel : ViewModel() {
     }
 
     fun addFile(file: File) {
-      val files = files.value ?: mutableListOf()
+      val files = _files.value!!
       files.add(file)
       _files.value = files
     }
 
     fun removeFile(index: Int) {
-      val files = files.value ?: mutableListOf()
+      val files = _files.value!!
       files.removeAt(index)
       _files.value = files
     }
