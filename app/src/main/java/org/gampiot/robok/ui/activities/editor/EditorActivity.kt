@@ -320,15 +320,12 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     }
 
     private fun updateUndoRedo() {
-        binding.redo?.let {
-            it.isEnabled = getCurrentEditor()?.let {
-                    it.isCanRedo() 
-            }
-        }
-        binding.undo?.let {
-            it.isEnabled = getCurrentEditor()?.let {
-                    it.isCanUndo() 
-            }
+        getCurrentEditor()?.let { editor ->
+            binding.redo?.isEnabled = editor.isCanRedo()
+            binding.undo?.isEnabled = editor.isCanUndo()
+        } ?: run {
+            binding.redo?.isEnabled = false
+            binding.undo?.isEnabled = false
         }
     }
     
@@ -384,8 +381,8 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     }
 
     fun getCurrentEditor(): RobokCodeEditor? {
-        return if (editorViewModel.editorState.index >= 0) {
-            getEditorAtIndex(editorViewModel.editorState.index)
+        return if (editorViewModel.editorState.currentIndex >= 0) {
+            getEditorAtIndex(editorViewModel.editorState.currentIndex)
         } else null
     }
 
