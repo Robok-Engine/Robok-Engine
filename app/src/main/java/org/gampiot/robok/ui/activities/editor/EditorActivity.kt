@@ -321,16 +321,19 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
 
     private fun updateUndoRedo() {
         binding.redo?.let {
-            it.isEnabled = binding.codeEditor.isCanRedo()
+            it.isEnabled = getCurrentEditor()?.let {
+                    .isCanRedo() 
         }
         binding.undo?.let {
-            it.isEnabled = binding.codeEditor.isCanUndo()
+            it.isEnabled = getCurrentEditor()?.let {
+                    .isCanUndo() 
+                 }
         }
     }
     
     private fun observeViewModel() {
         editorViewModel.editorState.observe(this) { state ->
-            val index = state.index
+            val index = state.currentIndex
             binding.apply {
                 val tab = tabs.getTabAt(index)
                 if (tab != null && !tab.isSelected) {
@@ -380,8 +383,8 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     }
 
     fun getCurrentEditor(): RobokCodeEditor? {
-        return if (editorViewModel.state.index >= 0) {
-            getEditorAtIndex(editorViewModel.state.index)
+        return if (editorViewModel.editorState.index >= 0) {
+            getEditorAtIndex(editorViewModel.editorState.index)
         } else null
     }
 

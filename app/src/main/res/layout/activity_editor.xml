@@ -103,7 +103,7 @@
 
         </com.google.android.material.appbar.AppBarLayout>
 
-         <com.google.android.material.tabs.TabLayout
+        <com.google.android.material.tabs.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -114,16 +114,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_below="@id/tabs" />
-
-       <!-- <org.gampiot.robok.feature.editor.RobokCodeEditor
-            android:id="@+id/code_editor"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@id/appbar"
-            android:gravity="top|start"
-            android:hint="@string/common_word_code"
-            android:padding="8dp" />-->
-            
             
     </RelativeLayout>
 
