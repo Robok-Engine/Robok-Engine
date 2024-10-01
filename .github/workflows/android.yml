@@ -96,10 +96,14 @@ jobs:
             echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
             echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+            version_code=$(grep "versionCode = " app/build.gradle.kts | awk '{print $3}' | tr -d '\n')
+            app_version=$(grep 'val app_version' app/build.gradle.kts | awk -F'"' '{print $2}')
+            echo "VERSION_CODE=$version_code" >> $GITHUB_ENV
+            echo "APP_VERSION=$app_version" >> $GITHUB_ENV
             
       - name: Rename debug apk file 
         run: |
-          mv app-debug.apk robok-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          mv app-debug.apk robok-debug-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -108,7 +112,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          APK_TO_SEND: robok-debug-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
@@ -197,10 +201,14 @@ jobs:
             echo "COMMIT_MESSAGE=$(git log -1 --pretty=format:'%s')" >> $GITHUB_ENV
             echo "BRANCH_NAME=$(git rev-parse --abbrev-ref HEAD)" >> $GITHUB_ENV
             echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
+            version_code=$(grep "versionCode = " app/build.gradle.kts | awk '{print $3}' | tr -d '\n')
+            app_version=$(grep 'val app_version' app/build.gradle.kts | awk -F'"' '{print $2}')
+            echo "VERSION_CODE=$version_code" >> $GITHUB_ENV
+            echo "APP_VERSION=$app_version" >> $GITHUB_ENV
             
       - name: Rename release apk file 
         run: |
-          mv app-release-unsigned-signed.apk robok-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          mv app-release-unsigned-signed.apk robok-release-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -209,7 +217,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          APK_TO_SEND: robok-release-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
