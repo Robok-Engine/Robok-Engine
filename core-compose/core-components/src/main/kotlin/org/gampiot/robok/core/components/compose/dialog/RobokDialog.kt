@@ -65,7 +65,7 @@ fun RobokDialog(
             onDismissRequest()
         },
         confirmButton = {
-            TextButton(
+            Button(
                 onClick = {
                     onConfirmation()
                 }
@@ -74,7 +74,7 @@ fun RobokDialog(
             }
         },
         dismissButton = {
-            TextButton(
+            OutlineButton(
                 onClick = {
                     onDismissRequest()
                 }
