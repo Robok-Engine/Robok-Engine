@@ -11,7 +11,7 @@ class EditorViewModel : ViewModel() {
 
     private val _editorState = MutableLiveData<EditorState>(EditorState(-1, null))
     private val _editorEvent = MutableLiveData<EditorEvent>()
-    private val _files = MutableLiveData<List<File>>(mutableListOf<File>())
+    private val _files = MutableLiveData<MutableList<File>>(mutableListOf<File>())
 
     val editorState: LiveData<EditorState>
         get() = _editorState
@@ -23,7 +23,7 @@ class EditorViewModel : ViewModel() {
         get() = _files
 
     val openedFiles: List<File>
-        get() = files.value ?: mutableListOf()
+        get() = files.value ?: listOf()
 
     val fileCount: Int
         get() = files.value?.size ?: 0
@@ -47,7 +47,7 @@ class EditorViewModel : ViewModel() {
     }
 
     fun closeAll() {
-        _editorEvent.value = EditorEvent.CloseOthers()
+        _editorEvent.value = EditorEvent.CloseAll()
     }
 
     fun setCurrentFile(index: Int) {
@@ -58,13 +58,13 @@ class EditorViewModel : ViewModel() {
     }
 
     fun addFile(file: File) {
-      val files = this.openedFiles
+      val files = files.value ?: mutableListOf()
       files.add(file)
       _files.value = files
     }
 
     fun removeFile(index: Int) {
-      val files = this.openedFiles
+      val files = files.value ?: mutableListOf()
       files.removeAt(index)
       _files.value = files
     }
@@ -72,8 +72,8 @@ class EditorViewModel : ViewModel() {
     sealed interface EditorEvent {
         data class OpenFile(val file: File): EditorEvent
         data class CloseFile(val index: Int): EditorEvent
-        data object CloseOthers : EditorEvent
-        data object CloseAll : EditorEvent
+        object CloseOthers : EditorEvent
+        object CloseAll : EditorEvent
     }
 
     data class EditorState(

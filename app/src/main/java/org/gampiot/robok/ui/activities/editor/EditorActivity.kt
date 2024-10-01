@@ -34,6 +34,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.util.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
 import androidx.lifecycle.lifecycleScope
