@@ -26,13 +26,13 @@ class EditorViewModel : ViewModel() {
         get() = files.value ?: mutableListOf()
 
     val fileCount: Int
-        get() = files.value ?: 0
+        get() = files.value?.size ?: 0
 
     val currentFileIndex: Int
-        get() = editorState.value?.index ?: -1
+        get() = editorState.value?.currentIndex ?: -1
 
     val currentFile: File?
-        get() = editorState.value?.file ?: null
+        get() = editorState.value?.currentFile ?: null
 
     fun openFile(file: File) {
         _editorEvent.value = EditorEvent.OpenFile(file)
@@ -51,17 +51,20 @@ class EditorViewModel : ViewModel() {
     }
 
     fun setCurrentFile(index: Int) {
-      _editorState.value = _editorState.value.copy(index = index, file = openedFiles[index])
+        _editorState.value = _editorState.value!!.copy(
+            currentIndex = index,
+            currentFile = openedFiles[index],
+        )
     }
 
     fun addFile(file: File) {
-      val files = _files.value
+      val files = this.openedFiles
       files.add(file)
       _files.value = files
     }
 
     fun removeFile(index: Int) {
-      val files = _files.value
+      val files = this.openedFiles
       files.removeAt(index)
       _files.value = files
     }
@@ -69,8 +72,8 @@ class EditorViewModel : ViewModel() {
     sealed interface EditorEvent {
         data class OpenFile(val file: File): EditorEvent
         data class CloseFile(val index: Int): EditorEvent
-        data object CloseOthers : EditorAction
-        data object CloseAll : EditorAction
+        data object CloseOthers : EditorEvent
+        data object CloseAll : EditorEvent
     }
 
     data class EditorState(

@@ -381,12 +381,12 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     }
 
     fun getCurrentEditor(): RobokCodeEditor? {
-        return if (editorViewModel.editorState.currentIndex >= 0) {
-            getEditorAtIndex(editorViewModel.editorState.currentIndex)
+        return if (editorViewModel.currentFileIndex >= 0) {
+            getEditorAtIndex(editorViewModel.currentFileIndex)
         } else null
     }
 
-    private fun getEditorAtIndex(index: Int): RobokCodeEditor {
+    private fun getEditorAtIndex(index: Int): RobokCodeEditor? {
         return binding.editorContainer.getChildAt(index) as? RobokCodeEditor
     }
     
@@ -412,7 +412,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
             names
         }).whenComplete { result, error ->
             if (result == null || error != null) {
-                return@executeAsyncProvideError
+                return@whenComplete
             }
 
             runOnUiThread {
