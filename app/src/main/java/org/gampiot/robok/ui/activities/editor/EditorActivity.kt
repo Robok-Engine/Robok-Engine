@@ -322,11 +322,11 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     private fun updateUndoRedo() {
         binding.redo?.let {
             it.isEnabled = getCurrentEditor()?.let {
-                    .isCanRedo() 
+                    it.isCanRedo() 
         }
         binding.undo?.let {
             it.isEnabled = getCurrentEditor()?.let {
-                    .isCanUndo() 
+                    it.isCanUndo() 
                  }
         }
     }
