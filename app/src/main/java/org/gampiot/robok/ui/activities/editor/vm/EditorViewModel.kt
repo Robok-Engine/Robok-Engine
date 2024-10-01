@@ -19,7 +19,7 @@ class EditorViewModel : ViewModel() {
     val editorEvent: LiveData<EditorEvent>
         get() = _editorEvent
 
-    val files: LiveData<List<File>>
+    val files: LiveData<MutableList<File>>
         get() = _files
 
     val openedFiles: List<File>
@@ -43,11 +43,11 @@ class EditorViewModel : ViewModel() {
     }
 
     fun closeOthers() {
-        _editorEvent.value = EditorEvent.CloseOthers()
+        _editorEvent.value = EditorEvent.CloseOthers
     }
 
     fun closeAll() {
-        _editorEvent.value = EditorEvent.CloseAll()
+        _editorEvent.value = EditorEvent.CloseAll
     }
 
     fun setCurrentFile(index: Int) {
