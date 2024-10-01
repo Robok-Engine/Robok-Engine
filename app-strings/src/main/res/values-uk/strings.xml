@@ -58,7 +58,7 @@
     <string name="text_seeus">Завітайте до нас</string>
     <string name="item_telegram_title">Telegram</string>
     <string name="item_whatsapp_description">На група у WhatsApp.</string>
-    <string name="item_github_description">Репозиторій на Github.</string>
+    <string name="item_github_description">Репозиторій на Github</string>
     <string name="text_contributors">Вкладники</string>
     <string name="item_contribute_title">Зробити внесок</string>
     <string name="item_contribute_description">Дізнайтеся, як ви можете зробити свій внесок разом з нами</string>
@@ -85,4 +85,9 @@
     <string name="item_telegram_description">Наша спільнота в Telegram</string>
     <string name="item_libraries_title">Стороннє програмне забезпечення</string>
     <string name="text_basic_info">Базова інформація</string>
+    <string name="settings_app_title">Налаштування застосунку</string>
+    <string name="settings_app_description">Деякі налаштування, пов\'язані із застосунком.</string>
+    <string name="settings_app_use_monet_title">Динамічні кольори</string>
+    <string name="warning_project_installer_not_found">Встановлювач пакетів не знайдено.</string>
+    <string name="settings_app_use_monet_description">Використовує тему пристрою в застосунку.</string>
 </resources>
