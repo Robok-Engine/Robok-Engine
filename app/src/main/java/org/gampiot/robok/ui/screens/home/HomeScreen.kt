@@ -48,8 +48,8 @@ import org.gampiot.robok.R
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.ui.activities.editor.EditorActivity
+import org.gampiot.robok.ui.activities.terminal.TerminalActivity
 import org.gampiot.robok.ui.theme.Typography
-import org.gampiot.robok.feature.terminal.TerminalActivity
 import org.gampiot.robok.core.utils.getDefaultPath
 import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.core.utils.PathUtils

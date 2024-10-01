@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.terminal
+package org.gampiot.robok.ui.activities.terminal
 
 /*
 *  This file is part of Robok © 2024.
@@ -36,13 +36,18 @@ import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
 
-import org.gampiot.robok.strings.R
-import org.gampiot.robok.feature.terminal.databinding.ActivityTerminalBinding
-import org.gampiot.robok.feature.terminal.databinding.LayoutDialogInputBinding
+import org.gampiot.robok.strings.Strings
+import org.gampiot.robok.databinding.ActivityTerminalBinding
+import org.gampiot.robok.databinding.LayoutDialogInputBinding
+import org.gampiot.robok.exceptions.NotImplementedExeception
 import org.gampiot.robok.core.utils.KeyboardUtil
 import org.gampiot.robok.core.utils.base.RobokActivity
 
 import java.io.File
+
+/*
+* TO-DO: Refactor with Compose.
+*/
 
 class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {
     private var binding: ActivityTerminalBinding? = null
@@ -65,7 +70,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             filesDir.absolutePath
         }
 
-        binding!!.terminalView.setTextSize(28)
+        binding!!.terminalView.setTextSize(24)
         session = createSession()
         binding!!.terminalView.attachSession(session)
         binding!!.terminalView.setTerminalViewClient(this)
@@ -132,13 +137,13 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     fun showInstallPackageDialog() {
         val dialogBinding = LayoutDialogInputBinding.inflate(layoutInflater)
         val textField = dialogBinding.dialogEdittext
-        textField.hint = getString(R.string.terminal_install_package_hint)
+        textField.hint = getString(Strings.terminal_install_package_hint)
         textField.setCornerRadius(15f)
 
         val dialog = MaterialAlertDialogBuilder(this)
             .setView(dialogBinding.root)
-            .setTitle(getString(R.string.terminal_install_package))
-            .setMessage(getString(R.string.terminal_install_package_hint))
+            .setTitle(getString(Strings.terminal_install_package))
+            .setMessage(getString(Strings.terminal_install_package_hint))
             .setPositiveButton("Install", null)
             .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.dismiss() }
             .create()
@@ -148,7 +153,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             positiveButton.setOnClickListener { view: View? ->
                 val packageName = textField.text.toString().trim { it <= ' ' }
                 if (packageName.isEmpty()) {
-                    Toast.makeText(this, getString(R.string.error_invalid_name), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(Strings.error_invalid_name), Toast.LENGTH_LONG).show()
                 } else {
                     installPackage(packageName)
                 }
@@ -163,15 +168,17 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     fun showUpdatePackagesDialog() {
         val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(getString(R.string.terminal_update_packages))
-            .setMessage(getString(R.string.terminal_warning_update_packages))
+            .setTitle(getString(Strings.terminal_update_packages))
+            .setMessage(getString(Strings.terminal_warning_update_packages))
             .setPositiveButton("Update") { dialogInterface: DialogInterface?, i: Int -> }
             .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.dismiss() }
             .create()
         dialog.show()
     }
 
-    fun installPackage(packageName: String?) { TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") }
+    fun installPackage(packageName: String?) {
+        NotImplementedExeception("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") 
+    }
 
     private fun sendTextInPink(text: String) {
         val pinkText = "\u001B[35m$text\u001B[0m"

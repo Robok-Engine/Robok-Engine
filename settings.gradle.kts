@@ -27,7 +27,6 @@ include(":robok:robok-aapt2")
 
 include(":app-strings")
 
-include(":feature:feature-terminal")
 include(":feature:feature-treeview")
 include(":feature:feature-editor")
 include(":feature:feature-modeling")
