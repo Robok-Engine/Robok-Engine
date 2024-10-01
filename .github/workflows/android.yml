@@ -38,7 +38,7 @@ on:
       - settings.gradle.kts
 
 jobs:
-  engine-debug-apk:
+  robok-debug-apk:
     name: Build Engine Debug APK
     runs-on: ubuntu-latest
     steps:
@@ -65,14 +65,14 @@ jobs:
       - name: Upload debug apk
         uses: actions/upload-artifact@v4
         with:
-          name: engine-debug
+          name: robok-debug
           compression-level: 0
           path: app/build/outputs/apk/debug/
   
   send-debug-to-telegram:
     name: Send Debug APK to Telegram
     runs-on: ubuntu-latest
-    needs: engine-debug-apk
+    needs: robok-debug-apk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -85,7 +85,7 @@ jobs:
       - name: Download Debug APK
         uses: actions/download-artifact@v4
         with:
-          name: engine-debug
+          name: robok-debug
           
       - name: List all files in repo
         run: ls
@@ -99,7 +99,7 @@ jobs:
             
       - name: Rename debug apk file 
         run: |
-          mv app-debug.apk robok-engine-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          mv app-debug.apk robok-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -108,7 +108,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-engine-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          APK_TO_SEND: robok-debug-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
@@ -118,7 +118,7 @@ jobs:
         run: python .github/telegram/send_apk.py
         continue-on-error: true
 
-  engine-release-apk:
+  robok-release-apk:
     name: Build Engine Release APK
     runs-on: ubuntu-latest
     steps:
@@ -146,7 +146,7 @@ jobs:
         uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: engine-release-mapping
+          name: robok-release-mapping
           compression-level: 0
           path: app/build/outputs/mapping/release/
              
@@ -166,14 +166,14 @@ jobs:
       - name: Upload release apk
         uses: actions/upload-artifact@v4
         with:
-          name: engine-release
+          name: robok-release
           compression-level: 0
           path: ${{steps.sign_apk.outputs.signedReleaseFile}}
           
   send-release-to-telegram:
     name: Send Release APK to Telegram
     runs-on: ubuntu-latest
-    needs: engine-release-apk
+    needs: robok-release-apk
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -186,7 +186,7 @@ jobs:
       - name: Download Release APK
         uses: actions/download-artifact@v4
         with:
-          name: engine-release
+          name: robok-release
           
       - name: List all files in repo
         run: ls
@@ -200,7 +200,7 @@ jobs:
             
       - name: Rename release apk file 
         run: |
-          mv app-release-unsigned-signed.apk robok-engine-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          mv app-release-unsigned-signed.apk robok-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
           
       - name: Send APK to Telegram
@@ -209,7 +209,7 @@ jobs:
           API_HASH: ${{ secrets.TELEGRAM_APP_API_HASH }}
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          APK_TO_SEND: robok-engine-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
+          APK_TO_SEND: robok-release-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
