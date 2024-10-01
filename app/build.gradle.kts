@@ -131,8 +131,8 @@ dependencies {
     
     implementation(libs.sora.editor)
     
-    implementation("com.termux.termux-app:terminal-view:0.118.1")
-    implementation("com.termux.termux-app:terminal-emulator:0.118.1")
+    implementation(libs.termux.terminal.view)
+    implementation(libs.termux.terminal.emulator)
     
     // projects
     implementation(project(":robok:robok-compiler"))
