@@ -24,7 +24,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 @Composable
 fun IntRadioController(
@@ -43,7 +45,7 @@ fun IntRadioController(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(vertical = 1.dp)
+                        .clip(RoundedCornerShape(12.dp))
                         .clickable {
                             selectedChoice = option
                             onChoiceSelected(option)
@@ -56,10 +58,7 @@ fun IntRadioController(
                     )
                     RadioButton(
                         selected = option == selectedChoice,
-                        onClick = {
-                            selectedChoice = option
-                            onChoiceSelected(option)
-                        }
+                        onClick = null 
                     )
                 }
             }
