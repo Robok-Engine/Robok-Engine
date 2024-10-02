@@ -319,7 +319,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
                 val fileExtension = node.value.getName().substringAfterLast(".")
                 
                 when (fileExtension) {
-                    "obj" -> startActivity(Intent(this@EditorActivity, AndroidLauncher::class.java)) // Open 3D modeling
+                    "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // Open 3D modeling
                     "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
                     else -> {}
 
