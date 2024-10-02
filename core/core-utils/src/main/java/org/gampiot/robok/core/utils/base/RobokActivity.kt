@@ -46,7 +46,7 @@ import org.gampiot.robok.strings.Strings
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     private var permissionDialog: PermissionDialog? = null
-    private var isEdgeToEdge: Boolean = true
+    var isEdgeToEdge: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
