@@ -156,7 +156,7 @@ public class ProjectManager {
             RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(context);
             Logger logger = new Logger();
             logger.attach(terminal.getRecyclerView());
-            SystemLogPrinter.start(logger);
+            SystemLogPrinter.start(context, logger);
             
             Project project = new Project();
             project.setLibraries(Library.fromFile(new File(getProjectPath().getAbsolutePath() + "/libs/")));

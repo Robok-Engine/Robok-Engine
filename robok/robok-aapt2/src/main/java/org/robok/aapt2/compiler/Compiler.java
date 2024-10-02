@@ -17,16 +17,22 @@ package org.robok.aapt2.compiler;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.content.Context;
+
 import org.robok.aapt2.util.Decompress;
 import org.robok.aapt2.compiler.exception.CompilerException;
 import org.robok.aapt2.compiler.exception.AAPT2CompileException;
 
-import org.gampiot.robok.core.utils.application.RobokApplication;
-
 import java.io.IOException;
 import java.io.File;
 
-public abstract class Compiler {
+public class Compiler {
+    
+    private Context glbContext;
+    
+    public Compiler(Context context) {
+        glbContext = context;
+    }
 
     public interface OnProgressUpdateListener {
         void onProgressUpdate(String... update);
@@ -35,6 +41,7 @@ public abstract class Compiler {
     protected OnProgressUpdateListener listener;
     private String tag = "unknow";
     private boolean isCompilationSuccessful = true;
+    
 
     public void setProgressListener(OnProgressUpdateListener listener) {
         this.listener = listener;
@@ -62,20 +69,24 @@ public abstract class Compiler {
         this.isCompilationSuccessful = isCompilationSuccessful;
     }
 
-    public abstract void prepare();
+    public void prepare() {
+    
+    }
 
-    public abstract void run() throws CompilerException, IOException;
+    public void run() throws CompilerException, IOException {
+    
+    }
 
     public File getAndroidJarFile() {
         File check =
-                new File(RobokApplication.robokContext.getFilesDir() + "/temp/android.jar");
+                new File(glbContext.getFilesDir() + "/temp/android.jar");
 
         if (check.exists()) {
             return check;
         }
 
         Decompress.unzipFromAssets(
-                RobokApplication.robokContext,
+                glbContext,
                 "android.jar.zip",
                 check.getParentFile().getAbsolutePath());
 
@@ -85,7 +96,7 @@ public abstract class Compiler {
     public File getLambdaFactoryFile() {
         File check =
                 new File(
-                        RobokApplication.robokContext.getFilesDir()
+                        glbContext.getFilesDir()
                                 + "/temp/core-lambda-stubs.jar");
 
         if (check.exists()) {
@@ -93,7 +104,7 @@ public abstract class Compiler {
         }
 
         Decompress.unzipFromAssets(
-                RobokApplication.robokContext,
+                glbContext,
                 "core-lambda-stubs.zip",
                 check.getParentFile().getAbsolutePath());
 
