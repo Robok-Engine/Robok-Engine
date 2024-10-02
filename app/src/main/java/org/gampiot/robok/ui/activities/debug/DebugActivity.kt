@@ -100,7 +100,10 @@ class DebugActivity : RobokActivity() {
     }
 
     @Composable
-    fun ErrorContent(madeErrMsg: String, modifier: Modifier = Modifier) {
+    fun ErrorContent(
+        madeErrMsg: String,
+        modifier: Modifier = Modifier
+    ) {
         val verticalScrollState = rememberScrollState()
         val horizontalScrollState = rememberScrollState()
 
