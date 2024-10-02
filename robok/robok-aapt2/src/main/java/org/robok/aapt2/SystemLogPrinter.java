@@ -17,19 +17,25 @@ package org.robok.aapt2;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.content.Context;
+
 import java.io.PrintStream;
 import java.io.OutputStream;
 
 import org.robok.aapt2.logger.Logger;
 import org.robok.aapt2.util.FileUtil;
 
-import org.gampiot.robok.core.utils.application.RobokApplication;
-
 public class SystemLogPrinter {
 
+    private Context glbContext;
+
+    public SystemLogPrinter(Context context) {
+        glbContext = context;
+    }
+    
     public static void start(Logger logger) {
         //reset
-        FileUtil.writeFile(RobokApplication.robokContext.getExternalFilesDir(null) + "/logs.txt", "");
+        FileUtil.writeFile(glbContext.getExternalFilesDir(null) + "/logs.txt", "");
 
         PrintStream ps = new PrintStream(new OutputStream() {
             private String cache;
