@@ -24,6 +24,11 @@ import androidx.compose.ui.platform.ComposeView
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.ui.screens.modeling.ModelingScreen
 
+/*
+* Class to create ComposeView in 3D Modeling.
+* @author Aquiles Trindade (trindadedev).
+*/
+
 class ModelingActivityHelper(
    private val context: Context 
 ) {
