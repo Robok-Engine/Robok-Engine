@@ -64,7 +64,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     /*
      * Default constructor.
      */
-    public RobokCodeEditor(Context context, File filr) {
+    public RobokCodeEditor(Context context, File file) {
         super(context);
         this.file = file;
         this.antlrListener = this;
