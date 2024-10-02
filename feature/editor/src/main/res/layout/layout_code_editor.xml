@@ -19,7 +19,7 @@
         android:overScrollMode="never"
         android:scrollbars="none">
 
-        <org.gampiot.robok.feature.editor.symbol.RobokSymbolInput
+        <org.robok.engine.feature.editor.symbol.RobokSymbolInput
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/robok_symbol_input" />
