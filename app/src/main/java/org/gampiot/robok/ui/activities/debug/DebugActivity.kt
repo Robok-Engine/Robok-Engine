@@ -23,8 +23,8 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.text.selection.*
 import androidx.compose.material3.*
-import androidx.compose.material.icons.*
-import androidx.compose.material.icons.default.ArrowBack
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
@@ -33,6 +33,7 @@ import androidx.compose.ui.res.stringResource
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.core.utils.base.RobokActivity
 
+@OptIn(ExperimentalMaterialApi::class)
 class DebugActivity : RobokActivity() {
     private val exceptionType = listOf(
         "StringIndexOutOfBoundsException",
@@ -71,7 +72,7 @@ class DebugActivity : RobokActivity() {
                     title = { Text(text = stringResource(id = Strings.title_debug_title)) },
                     navigationIcon = {
                         IconButton(onClick = { finish() }) {
-                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                            Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back")
                         }
                     }
                 )
