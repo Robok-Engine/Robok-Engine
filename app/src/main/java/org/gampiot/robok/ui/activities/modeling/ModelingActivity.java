@@ -29,13 +29,14 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.compose.ui.platform.ComposeView;
 
+import org.gampiot.robok.core.utils.base.RobokActivity;
 import org.gampiot.robok.feature.modeling.databinding.Activity3dModelBinding;
 import org.gampiot.robok.feature.modeling.view.Model3DView;
 import org.gampiot.robok.feature.modeling.fragment.LibGDXFragment;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
-public class ModelingActivity extends AppCompatActivity implements AndroidFragmentApplication.Callbacks {
+public class ModelingActivity extends RobokActivity implements AndroidFragmentApplication.Callbacks {
     
      private Activity3dModelBinding binding;
      private LibGDXFragment libGDXFragment;
