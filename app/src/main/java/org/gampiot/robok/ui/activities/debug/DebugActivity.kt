@@ -97,7 +97,7 @@ class DebugActivity : RobokActivity() {
 
     @Composable
     fun ErrorContent(madeErrMsg: String) {
-        Box(modifier = Modifier.fillMaxSize()) {
+        Column(modifier = Modifier.fillMaxSize()) {
             LazyColumn(
                 modifier = Modifier
                     .padding(16.dp)
