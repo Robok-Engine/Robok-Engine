@@ -256,6 +256,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
 
     private fun configureEditor() {
         binding.tabs.addOnTabSelectedListener(this)
+        observeViewModel()
         /*val antlrListener = object : AntlrListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
