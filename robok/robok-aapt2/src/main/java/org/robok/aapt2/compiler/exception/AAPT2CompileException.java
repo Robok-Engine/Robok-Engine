@@ -17,7 +17,7 @@ package org.robok.aapt2.compiler.exception;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-public class AAPT2CompileException extends CompilerException {
+public class AAPT2CompileException extends Exception {
     
 	public AAPT2CompileException(String message) {
 		super(message);
