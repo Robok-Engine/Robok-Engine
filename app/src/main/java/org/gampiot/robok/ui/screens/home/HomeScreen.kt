@@ -51,7 +51,6 @@ import org.gampiot.robok.ui.activities.editor.EditorActivity
 import org.gampiot.robok.ui.activities.terminal.TerminalActivity
 import org.gampiot.robok.ui.theme.Typography
 import org.gampiot.robok.core.utils.getDefaultPath
-import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.core.utils.PathUtils
 import java.io.File
 
@@ -95,7 +94,7 @@ fun HomeScreen(
                 contentDescription = null,
                 modifier = Modifier.size(70.dp).padding(8.dp)
             )
-            RobokText(
+            Text(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
                 fontSize = 24.sp,
@@ -186,7 +185,7 @@ fun HomeCardItem(
                 contentDescription = null,
                 modifier = Modifier.size(25.dp)
             )
-            RobokText(
+            Text(
                 text = title,
                 modifier = Modifier.padding(top = 8.dp),
                 style = Typography.bodyMedium

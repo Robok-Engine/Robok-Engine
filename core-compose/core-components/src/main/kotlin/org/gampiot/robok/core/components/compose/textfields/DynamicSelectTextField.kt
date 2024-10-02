@@ -26,8 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
 
-import org.gampiot.robok.core.components.compose.text.RobokText
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DynamicSelectTextField(
@@ -48,7 +46,7 @@ fun DynamicSelectTextField(
             readOnly = true,
             value = selectedValue,
             onValueChange = {},
-            label = { RobokText(text = label) },
+            label = { Text(text = label) },
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
             },
@@ -61,7 +59,7 @@ fun DynamicSelectTextField(
         ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
             options.forEach { option: String ->
                 DropdownMenuItem(
-                    text = { RobokText(text = option) },
+                    text = { Text(text = option) },
                     onClick = {
                         expanded = false
                         onValueChangedEvent(option)

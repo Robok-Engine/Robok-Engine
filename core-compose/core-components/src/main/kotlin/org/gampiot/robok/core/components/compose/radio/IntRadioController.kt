@@ -26,8 +26,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
-import org.gampiot.robok.core.components.compose.text.RobokText
-
 @Composable
 fun IntRadioController(
     default: Int,
@@ -52,7 +50,7 @@ fun IntRadioController(
                         },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RobokText(
+                    Text(
                         text = labelFactory(option),
                         modifier = Modifier.weight(1f)
                     )

@@ -35,8 +35,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.graphics.vector.ImageVector
 
-import org.gampiot.robok.core.components.compose.text.RobokText
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobokDialog(

@@ -24,7 +24,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 import org.gampiot.robok.core.components.compose.radio.IntRadioController
-import org.gampiot.robok.core.components.compose.text.RobokText
 
 @Composable
 fun RobokChoiceDialog(
@@ -59,10 +58,10 @@ fun RobokChoiceDialog(
                 }
             },
             confirmButton = {
-                RobokText("Close")
+                Text("Close")
             },
             dismissButton = {
-                RobokText("Cancel")
+                Text("Cancel")
             }
         )
     }

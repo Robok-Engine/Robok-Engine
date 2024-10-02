@@ -33,7 +33,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.sp
 
 import org.gampiot.robok.core.components.compose.icons.ClickableIcon
-import org.gampiot.robok.core.components.compose.text.RobokText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,7 +50,7 @@ fun TopBar(
         TopAppBar(
             modifier = modifier,
             title = {
-                RobokText(
+                Text(
                     text = label,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -72,9 +71,8 @@ fun TopBar(
         LargeTopAppBar(
             modifier = modifier,
             title = {
-                RobokText(
-                    text = label,
-                    fontSize = 30.sp
+                Text(
+                    text = label
                 )
             },
             actions = actions,

@@ -29,7 +29,6 @@ import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
-import org.gampiot.robok.core.components.compose.text.RobokText
 
 @Composable
 fun ClickableIcon(

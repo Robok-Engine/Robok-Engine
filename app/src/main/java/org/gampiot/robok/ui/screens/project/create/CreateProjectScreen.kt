@@ -49,7 +49,6 @@ import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.manage.project.ProjectManager
 import org.gampiot.robok.ui.activities.editor.EditorActivity
-import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.core.components.compose.dialog.RobokDialog
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
@@ -106,13 +105,13 @@ private fun Screen(
     OutlinedTextField(
         value = state.projectName,
         onValueChange = { viewModel.updateProjectName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
+        label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     OutlinedTextField(
         value = state.packageName,
         onValueChange = { viewModel.updatePackageName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
+        label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     
@@ -128,7 +127,7 @@ private fun Screen(
             modifier = Modifier.weight(1f),
             onClick = { navController.popBackStack() }
         ) {
-            RobokText(text = stringResource(id = Strings.common_word_cancel))
+            Text(text = stringResource(id = Strings.common_word_cancel))
         }
         Button(
             modifier = Modifier.weight(1f),
@@ -152,7 +151,7 @@ private fun Screen(
                 )
             }
         ) {
-           RobokText(text = stringResource(id = Strings.title_create_project))
+           Text(text = stringResource(id = Strings.title_create_project))
         }
         showVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
     }
@@ -173,16 +172,16 @@ fun showVeryBasicDialog(
                 isShowDialog.value = false
             },
             title = {
-                RobokText(text = title, fontSize = 24.sp)
+                Text(text = title, fontSize = 24.sp)
             },
             text = {
-                RobokText(text = message)
+                Text(text = message)
             },
             confirmButton = {
-                RobokText(text = "OK")
+                Text(text = "OK")
             },
             dismissButton = {
-                RobokText(text = "Cancel")
+                Text(text = "Cancel")
             },
             icon = {
                 Icon(Icons.Outlined.Settings, contentDescription = "Icon")
