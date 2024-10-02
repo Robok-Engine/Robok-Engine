@@ -101,7 +101,7 @@ class DebugActivity : RobokActivity() {
             LazyColumn(
                 modifier = Modifier
                     .padding(16.dp)
-                    .fillMaxHeight()
+                    .fillMaxSize()
             ) {
                 items(madeErrMsg.split("\n")) { line ->
                     Text(text = line, style = MaterialTheme.typography.bodyMedium)
