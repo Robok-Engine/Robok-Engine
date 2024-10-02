@@ -69,7 +69,9 @@ public class Compiler {
         this.isCompilationSuccessful = isCompilationSuccessful;
     }
 
-    public abstract void prepare();
+    public void prepare() {
+    
+    }
 
     public void run() throws CompilerException, IOException {
     
