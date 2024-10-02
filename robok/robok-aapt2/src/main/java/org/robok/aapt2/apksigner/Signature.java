@@ -1,4 +1,3 @@
-
 package org.robok.aapt2.apksigner;
 
 /*
@@ -21,7 +20,6 @@ package org.robok.aapt2.apksigner;
 import java.security.InvalidKeyException;
 import java.security.MessageDigest;
 import java.security.PrivateKey;
-
 import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
