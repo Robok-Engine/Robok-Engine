@@ -1,8 +1,8 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 619 | Main Developer |
+| trindadedev13 | 670 | Main Developer |
 | ThDev-only | 199 | Main Developer |
-| renovate[bot] | 115 | Bot |
+| renovate[bot] | 121 | Bot |
 | gampiot-bot | 35 | Bot |
 | skinvent | 15 | Some designs |
 | github-actions[bot] | 10 | Bot |
