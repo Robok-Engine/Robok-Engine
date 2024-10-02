@@ -1,4 +1,4 @@
-package org.gampiot.robok.feature.modeling.view
+package org.gampiot.robok.feature.modeling.objects
 
 object ObjectCommand {
     const val CREATE_CUBE = "createCube"

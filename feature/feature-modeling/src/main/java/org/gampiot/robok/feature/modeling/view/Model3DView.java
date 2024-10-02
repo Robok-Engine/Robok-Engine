@@ -55,7 +55,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import org.gampiot.robok.feature.modeling.controller.CameraInputController2;
 import org.gampiot.robok.feature.modeling.objects.Plan;
 import org.gampiot.robok.feature.modeling.objects.SceneObject;
-import org.gampiot.robok.feature.modeling.objects.CreateObjects;
+import org.gampiot.robok.feature.modeling.objects.ObjectsCreator;
 
 import java.lang.reflect.Method;
 import java.nio.FloatBuffer;
@@ -283,7 +283,7 @@ public class Model3DView extends ApplicationAdapter {
 
     private void invokeObject(String objectCommand) {
         try {
-            CreateObjects createObjects = new CreateObjects(camController, SceneObject.sceneObjects);
+            ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.sceneObjects);
             Class<?> clazz = createObjects.getClass();
             Method method = clazz.getDeclaredMethod(objectCommand);
             method.invoke(createObjects);
