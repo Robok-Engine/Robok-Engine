@@ -97,11 +97,15 @@ class DebugActivity : RobokActivity() {
 
     @Composable
     fun ErrorContent(madeErrMsg: String) {
-        LazyColumn(
-            modifier = Modifier.padding(16.dp)
-        ) {
-            items(madeErrMsg.split("\n")) { line ->
-                Text(text = line, style = MaterialTheme.typography.bodyMedium)
+        Box(modifier = Modifier.fillMaxSize()) {
+            LazyColumn(
+                modifier = Modifier
+                    .padding(16.dp)
+                    .fillMaxHeight()
+            ) {
+                items(madeErrMsg.split("\n")) { line ->
+                    Text(text = line, style = MaterialTheme.typography.bodyMedium)
+                }
             }
         }
     }
