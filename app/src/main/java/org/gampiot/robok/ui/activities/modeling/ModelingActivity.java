@@ -64,39 +64,6 @@ public class ModelingActivity extends RobokActivity implements AndroidFragmentAp
           hideSystemUI();
      }
     
-     /*
-     public void setupButtonListeners() {
-          binding.criarCubo.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createCube");
-          });
-        
-          binding.criarTriangulo.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createTriangle");
-          });
-        
-          binding.criarEsfera.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createSphere");
-          });
-        
-          binding.criarCilindro.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createCylinder");
-          });
-        
-          binding.criarCone.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createCone");
-          });
-        
-          binding.criarPlano.setOnClickListener(v -> {
-              verifyIfMy3dGameIsNull();
-              model3dView.setCommand("createPlane");
-          });
-     }
-    */
      private void verifyIfMy3dGameIsNull(){
           if(model3dView == null){
               model3dView = libGDXFragment.getModel3DView().clazz;
