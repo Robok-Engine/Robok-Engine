@@ -51,7 +51,7 @@ import java.io.File
 
 class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {
 
-    private var _binding: ActivityTermunalBinding? = null
+    private var _binding: ActivityTerminalBinding? = null
     private val binding get() = _binding!!
     private var cwd: String? = null
     private var session: TerminalSession? = null
