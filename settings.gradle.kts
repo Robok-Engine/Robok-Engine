@@ -33,7 +33,7 @@ include(":feature:modeling")
 
 include(":feature-compose:settings")
 
-include(":core:components")
+include(":core-compose:components")
 
 include(":core:components")
 include(":core:utils")
