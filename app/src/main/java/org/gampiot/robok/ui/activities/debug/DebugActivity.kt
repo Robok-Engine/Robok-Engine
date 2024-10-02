@@ -35,7 +35,7 @@ import androidx.compose.ui.res.stringResource
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.core.utils.base.RobokActivity
 
-@OptIn(ExperimentalMaterialApi::class)
+@OptIn(ExperimentalMaterial3Api::class)
 class DebugActivity : RobokActivity() {
     private val exceptionType = listOf(
         "StringIndexOutOfBoundsException",
