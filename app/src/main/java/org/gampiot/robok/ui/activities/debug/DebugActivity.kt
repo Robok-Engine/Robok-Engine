@@ -71,10 +71,10 @@ class DebugActivity : RobokActivity() {
         }
 
         PreferenceLayout(
-            label = stringResource(id = Strings.title_debug_title),
+            label = stringResource(id = Strings.title_un_error_ocurred),
             backArrowVisible = true
         ) {
-            PreferenceGroup(heading = stringResource(id = Strings.debug_error_message)) {
+            PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
                 ErrorContent(madeErrMsg)
             }
         }
@@ -87,7 +87,7 @@ class DebugActivity : RobokActivity() {
                         Text(stringResource(id = Strings.common_word_end))
                     }
                 },
-                title = { Text(stringResource(id = Strings.title_debug_title)) },
+                title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
                 text = { Text(madeErrMsg) }
             )
         }

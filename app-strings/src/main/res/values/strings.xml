@@ -34,7 +34,7 @@
     <string name="title_open_project">Open project</string>
     <string name="title_terminal" translatable="false">Terminal</string>
     <string name="title_open_editor">Open editor</string>
-    <string name="title_debug_title">An error occured</string>
+    <string name="title_un_error_ocurred">An error occured</string>
     <string name="title_select_theme">Select theme</string>
     <string name="title_select_folder">Select folder</string>
     <string name="title_templates">Templates</string>
@@ -89,6 +89,7 @@
     <string name="text_serif">Serif</string>
     <string name="text_sans_serif">Sans-Serif</string>
     <string name="text_basic_info">Basic information</string>
+    <string name="text_error_info">Error info</string>
     <!-- end section -->
 	
 	<!-- warnings section -->
