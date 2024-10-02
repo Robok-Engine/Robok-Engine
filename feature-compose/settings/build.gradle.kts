@@ -64,7 +64,7 @@ dependencies {
     implementation(libs.serialization.json)
     
     implementation(project(":app-strings"))
-    implementation(project(":core-compose:core-components"))
+    implementation(project(":core-compose:components"))
 }
 
 publishing {

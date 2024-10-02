@@ -48,7 +48,7 @@ dependencies {
     implementation(project(":easy-components"))
     
     implementation(project(":app-strings"))
-    implementation(project(":feature-compose:feature-settings"))
+    implementation(project(":feature-compose:settings"))
 }
 
 publishing {

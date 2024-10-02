@@ -135,23 +135,23 @@ dependencies {
     implementation(libs.termux.terminal.emulator)
     
     // projects
-    implementation(project(":robok:robok-compiler"))
-    implementation(project(":robok:robok-antlr"))
-    implementation(project(":robok:robok-aapt2"))
+    implementation(project(":robok:compiler"))
+    implementation(project(":robok:antlr"))
+    implementation(project(":robok:aapt2"))
     
     implementation(project(":app-strings"))
     
-    implementation(project(":feature:feature-treeview"))
-    implementation(project(":feature:feature-editor"))
-    implementation(project(":feature:feature-modeling"))
+    implementation(project(":feature:treeview"))
+    implementation(project(":feature:editor"))
+    implementation(project(":feature:modeling"))
     
-    implementation(project(":core:core-templates"))
-    implementation(project(":core:core-components"))
-    implementation(project(":core:core-utils"))
+    implementation(project(":core:templates"))
+    implementation(project(":core:components"))
+    implementation(project(":core:utils"))
 
-    implementation(project(":core-compose:core-components"))
+    implementation(project(":core-compose:components"))
     
-    implementation(project(":feature-compose:feature-settings"))
+    implementation(project(":feature-compose:settings"))
 
     implementation(project(":easy-components"))
 }
