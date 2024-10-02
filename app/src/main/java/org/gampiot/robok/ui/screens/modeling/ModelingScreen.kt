@@ -37,9 +37,7 @@ fun ModelingScreen() {
     var isOptionsOpen by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) {
-         //idk
-        }
+        Column(modifier = Modifier.fillMaxSize()) { /* screen content */ }
 
         Image(
             painter = painterResource(id = Drawables.ic_robok),
@@ -58,15 +56,12 @@ fun ModelingScreen() {
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
         ) {
-            Box(
-                modifier = Modifier
-                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
-                    .fillMaxWidth()
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                Text("Conteúdo Aqui")
+            Box(modifier = Modifier.padding(16.dp)) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                }
             }
         }
     }
