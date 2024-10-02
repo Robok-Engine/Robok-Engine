@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 599
+    "contributions": 619
   },
   {
     "login": "ThDev-only",
@@ -60,7 +60,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 114
+    "contributions": 115
   },
   {
     "login": "gampiot-bot",
@@ -144,28 +144,7 @@
     "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 3
-  },
-  {
-    "login": "teixeira0x",
-    "id": 134708771,
-    "node_id": "U_kgDOCAd-Iw",
-    "avatar_url": "https://avatars.githubusercontent.com/u/134708771?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/teixeira0x",
-    "html_url": "https://github.com/teixeira0x",
-    "followers_url": "https://api.github.com/users/teixeira0x/followers",
-    "following_url": "https://api.github.com/users/teixeira0x/following{/other_user}",
-    "gists_url": "https://api.github.com/users/teixeira0x/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/teixeira0x/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/teixeira0x/subscriptions",
-    "organizations_url": "https://api.github.com/users/teixeira0x/orgs",
-    "repos_url": "https://api.github.com/users/teixeira0x/repos",
-    "events_url": "https://api.github.com/users/teixeira0x/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 3
+    "contributions": 4
   },
   {
     "login": "RohitKushvaha01",
@@ -184,6 +163,27 @@
     "repos_url": "https://api.github.com/users/RohitKushvaha01/repos",
     "events_url": "https://api.github.com/users/RohitKushvaha01/events{/privacy}",
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 4
+  },
+  {
+    "login": "teixeira0x",
+    "id": 134708771,
+    "node_id": "U_kgDOCAd-Iw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/134708771?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/teixeira0x",
+    "html_url": "https://github.com/teixeira0x",
+    "followers_url": "https://api.github.com/users/teixeira0x/followers",
+    "following_url": "https://api.github.com/users/teixeira0x/following{/other_user}",
+    "gists_url": "https://api.github.com/users/teixeira0x/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/teixeira0x/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/teixeira0x/subscriptions",
+    "organizations_url": "https://api.github.com/users/teixeira0x/orgs",
+    "repos_url": "https://api.github.com/users/teixeira0x/repos",
+    "events_url": "https://api.github.com/users/teixeira0x/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
     "site_admin": false,
     "contributions": 3
