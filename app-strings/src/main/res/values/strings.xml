@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- common words section -->
-	<string name="common_word_back">Back</string>
+    <string name="common_word_back">Back</string>
     <string name="common_word_result">Result</string>
     <string name="common_word_run">Run</string>
     <string name="common_word_code">Code</string>
@@ -21,40 +21,46 @@
     <string name="common_word_retry">Retry</string>
     <string name="common_word_save">Save</string>
     <!-- end section -->
-	
-	<!-- links section -->
-	<string name="link_github" translatable="false">https://github.com/Robok-Engine/Robok-Engine</string>
+    
+    <!-- links section -->
+    <string name="link_github" translatable="false">https://github.com/Robok-Engine/Robok-Engine</string>
     <string name="link_telegram" translatable="false">https://t.me/robokinc</string>
     <string name="link_contributors" translatable="false">https://raw.githubusercontent.com/Robok-Engine/Robok-Engine/host/.github/contributors/contributors_github.json</string>
     <string name="link_whatsapp" translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
     <!-- end section -->
-	
-	<!-- titles section -->
-	<string name="title_create_project">Create project</string>
+    
+    <!-- titles section -->
+    <string name="title_create_project">Create project</string>
     <string name="title_open_project">Open project</string>
     <string name="title_terminal" translatable="false">Terminal</string>
     <string name="title_open_editor">Open editor</string>
-    <string name="title_un_error_ocurred">An error occured</string>
+    <string name="title_un_error_ocurred">An error occurred</string> <!-- Corrigido aqui -->
     <string name="title_select_theme">Select theme</string>
     <string name="title_select_folder">Select folder</string>
     <string name="title_templates">Templates</string>
     <!-- end section -->
-	
-	<!-- messages section -->
-	<string name="message_compiled">Your code has been compiled!</string>
+    
+    <!-- messages section -->
+    <string name="message_compiled">Your code has been compiled!</string>
     <!-- end section -->
-	
-	<!-- go to section -->
-	<string name="go_to_outputs">Go to outputs</string>
+    
+    <!-- go to section -->
+    <string name="go_to_outputs">Go to outputs</string>
     <!-- end section -->
-	
-	<!-- hints section -->
-	<string name="hint_project_name">Project name</string>
+    
+    <!-- hints section -->
+    <string name="hint_project_name">Project name</string>
     <string name="hint_package_name">Package name</string>
     <!-- end section -->
-	
-	<!-- settings section -->
-	<string name="settings_app_title">App Settings</string>
+  
+    <!-- editor section -->
+    <string name="editor_close">Close This</string>
+    <string name="editor_close_others">Close Others</string>
+    <string name="editor_close_all">Close All</string>
+    <!-- end section -->
+    
+    <!-- settings section -->
+    <string name="settings_app_title">App Settings</string>
     <string name="settings_app_description">Some application related settings.</string>
     <string name="settings_app_use_monet_title">Dynamic colors</string>
     <string name="settings_app_use_monet_description">Use device theme in app.</string>
@@ -79,9 +85,9 @@
     <string name="settings_appearance_title">Appearance</string>
     <string name="settings_general_title">General</string>
     <!-- end section -->
-	
-	<!-- texts section -->
-	<string name="text_diagnostic">Diagnostic</string>
+    
+    <!-- texts section -->
+    <string name="text_diagnostic">Diagnostic</string>
     <string name="text_logs">Logs</string>
     <string name="text_error_details">Error details:</string>
     <string name="text_bold">Bold</string>
@@ -91,36 +97,36 @@
     <string name="text_basic_info">Basic information</string>
     <string name="text_error_info">Error info</string>
     <!-- end section -->
-	
-	<!-- warnings section -->
-	<string name="warning_storage_perm_title">Storage permission</string>
+    
+    <!-- warnings section -->
+    <string name="warning_storage_perm_title">Storage permission</string>
     <string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
-    <string name="warning_all_files_perm_message">in Android 11 +, for Robok to work properly, it needs permission to access all files.</string>
+    <string name="warning_all_files_perm_message">In Android 11+, for Robok to work properly, it needs permission to access all files.</string> <!-- Corrigido aqui -->
     <string name="warning_project_created_title">Project Created Successfully!</string>
     <string name="warning_project_created_message">Your project has been created successfully!</string>
     <string name="warning_project_installer_not_found">No package installer found.</string>
     <!-- end section -->
-	
-	<!-- errors section -->
-	<string name="error_storage_perm_title">Storage permission error</string>
+    
+    <!-- errors section -->
+    <string name="error_storage_perm_title">Storage permission error</string>
     <string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
     <string name="error_invalid_name">Invalid name</string>
     <string name="error_load_fail">Error loading.</string>
     <!-- end section -->
-	
-	<!-- terminal section -->
-	<string name="terminal_options">Options</string>
+    
+    <!-- terminal section -->
+    <string name="terminal_options">Options</string>
     <string name="terminal_install_package">Install Package</string>
     <string name="terminal_install_package_hint">Type Package Name</string>
     <string name="terminal_update_packages">Update Packages</string>
     <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
     <!-- end section -->
-	
-	<!-- templates section -->
-	<string name="template_name_empty_game">Empty Game</string>
+    
+    <!-- templates section -->
+    <string name="template_name_empty_game">Empty Game</string>
     <!-- end section -->
-	
-	<!-- about section -->
+    
+    <!-- about section -->
     <string name="slogan">Java to Game in a Snap</string>
     <string name="text_seeus">See us</string>
     <string name="item_telegram_title">Telegram</string>
@@ -131,8 +137,8 @@
     <string name="item_github_description">GitHub Repository</string>
     <string name="text_contributors">Contributors</string>
     <string name="item_contribute_title">Contribute</string>
-    <string name="item_contribute_description">See how You can Contribute with Us</string>
-    <string name="item_libraries_title">Third-Party Softwares</string>
-    <string name="item_libraries_description">The Libraries we used</string>
-    <!--end section-->
+    <string name="item_contribute_description">See how you can contribute with us</string> <!-- Corrigido aqui -->
+    <string name="item_libraries_title">Third-Party Software</string> <!-- Corrigido aqui -->
+    <string name="item_libraries_description">The libraries we used</string>
+    <!-- end section -->
 </resources>

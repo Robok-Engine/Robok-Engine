@@ -27,10 +27,14 @@ import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import android.util.SparseArray
 
+import androidx.activity.viewModels
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.util.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
 import androidx.lifecycle.lifecycleScope
@@ -48,9 +52,13 @@ import org.gampiot.robok.ui.activities.modeling.ModelingActivity
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
+import org.gampiot.robok.ui.activities.editor.vm.EditorViewModel
+import org.gampiot.robok.ui.activities.editor.vm.EditorViewModel.EditorEvent
 import org.gampiot.robok.manage.project.ProjectManager
+import org.gampiot.robok.core.utils.UniqueNameBuilder
 import org.gampiot.robok.core.utils.base.RobokActivity
 import org.gampiot.robok.feature.editor.EditorListener
+import org.gampiot.robok.feature.editor.RobokCodeEditor
 import org.gampiot.robok.core.components.terminal.RobokTerminal
 import org.gampiot.robok.feature.treeview.provider.FileWrapper
 import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
@@ -61,11 +69,12 @@ import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
 import org.robok.antlr.logic.AntlrListener
 import org.robok.aapt2.compiler.CompilerTask
 
+import java.util.concurrent.CompletableFuture
 import java.io.File
 
 import kotlinx.coroutines.*
 
-class EditorActivity : RobokActivity() {
+class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
 
     private lateinit var projectManager: ProjectManager
     private var projectPath: String? = null
@@ -73,23 +82,24 @@ class EditorActivity : RobokActivity() {
     private var _binding: ActivityEditorBinding? = null
     private val binding get() = _binding!!
     private val handler = Handler(Looper.getMainLooper())
-    private val diagnosticTimeoutRunnable = object : Runnable {
-        override fun run() {
-            binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
-            binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
-            binding.diagnosticStatusImage.visibility = View.VISIBLE
-        }
+    private val diagnosticTimeoutRunnable = Runnable {
+        binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
+        binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
+        binding.diagnosticStatusImage.visibility = View.VISIBLE
     }
 
     private var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
     private val diagnosticStandTime: Long = 800
+
+    private lateinit var antlrListener: AntlrListener
+    private val editorViewModel by viewModels<EditorViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
          isEdgeToEdge = false
          super.onCreate(savedInstanceState)
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)
-         handleInsetts(binding.root)
+
          
          val extras = intent.extras
          if (extras != null) {
@@ -99,8 +109,37 @@ class EditorActivity : RobokActivity() {
                     projectManager.setProjectPath(File(it))
               }
          }
+
          configureScreen()
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
+
+    override fun onTabReselected(tab: TabLayout.Tab) {
+        val pm = PopupMenu(this, tab.view)
+        pm.menu.add(0, 0, 0, Strings.editor_close)
+        pm.menu.add(0, 1, 0, Strings.editor_close_others)
+        pm.menu.add(0, 2, 0, Strings.editor_close_all)
+
+        pm.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                0 -> editorViewModel.closeFile(tab.position)
+                1 -> editorViewModel.closeOthers()
+                2 -> editorViewModel.closeAll()
+            }
+            true
+        }
+        pm.show()
+    }
+
+    override fun onTabSelected(tab: TabLayout.Tab) {
+        editorViewModel.setCurrentFile(tab.position)
+    }
+
+    override fun onTabUnselected(tab: TabLayout.Tab) {}
 
     private fun configureScreen() {
         configureTabLayout()
@@ -119,14 +158,13 @@ class EditorActivity : RobokActivity() {
                     val context = this@EditorActivity
                     
                     val apkUri: Uri = FileProvider.getUriForFile(
-                    context,
-                    "${context.packageName}.provider",
-                    signApk
+                        context,
+                        "${context.packageName}.provider",
+                        signApk
                     )
                     val intent = Intent(Intent.ACTION_VIEW).apply {
                         setDataAndType(apkUri, "application/vnd.android.package-archive")
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                        addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION)
+                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
                     }
 
                     if (intent.resolveActivity(context.packageManager) != null) {
@@ -217,7 +255,8 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun configureEditor() {
-        val antlrListener = object : AntlrListener {
+        binding.tabs.addOnTabSelectedListener(this)
+        /*val antlrListener = object : AntlrListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
 
@@ -265,7 +304,7 @@ class EditorActivity : RobokActivity() {
             binding.codeEditor.redo()
             updateUndoRedo()
         }
-        handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
+        handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)*/
     }
 
     private fun configureFileTree() {
@@ -276,11 +315,14 @@ class EditorActivity : RobokActivity() {
                 if (node.value.isDirectory()) {
                     return
                 }
-                val fileName = node.value.getName()
 
-                if (fileName.endsWith(".obj")) {
-                    // Open 3D modeling
-                    startActivity(Intent(this@EditorActivity, ModelingActivity::class.java))
+                val fileExtension = node.value.getName().substringAfterLast(".")
+                
+                when (fileExtension) {
+                    "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // Open 3D modeling
+                    "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
+                    else -> {}
+
                 }
             }
         })
@@ -288,16 +330,104 @@ class EditorActivity : RobokActivity() {
     }
 
     private fun updateUndoRedo() {
-        binding.redo?.let {
-            it.isEnabled = binding.codeEditor.isCanRedo()
-        }
-        binding.undo?.let {
-            it.isEnabled = binding.codeEditor.isCanUndo()
+        getCurrentEditor()?.let { editor ->
+            binding.redo?.isEnabled = editor.isCanRedo()
+            binding.undo?.isEnabled = editor.isCanUndo()
+        } ?: run {
+            binding.redo?.isEnabled = false
+            binding.undo?.isEnabled = false
         }
     }
+    
+    private fun observeViewModel() {
+        editorViewModel.editorState.observe(this) { state ->
+            val index = state.currentIndex
+            binding.apply {
+                val tab = tabs.getTabAt(index)
+                if (tab != null && !tab.isSelected) {
+                    tab.select()
+                }
+                binding.editorContainer.displayedChild = index
+            }
+        }
+        
+        editorViewModel.editorEvent.observe(this) { event ->
+            when (event) {
+                is EditorEvent.OpenFile -> openFile(event.file)
+                is EditorEvent.CloseFile -> closeFile(event.index)
+                is EditorEvent.CloseOthers -> closeOthers()
+                is EditorEvent.CloseAll -> closeAll()
+            }
+        }
+        
+        editorViewModel.files.observe(this) { files ->
+            
+        }
+    }
+    
+    private fun openFile(file: File) {
+        val index = editorViewModel.fileCount
+        val editor = RobokCodeEditor(this, file)
 
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
+        editorViewModel.addFile(file)
+        binding.apply {
+            editorContainer.addView(editor)
+            tabs.addTab(tabs.newTab())
+        }
+        editorViewModel.setCurrentFile(index)
+        updateTabs()
+    }
+    
+    private fun closeFile(index: Int) {}
+    
+    private fun closeOthers() {}
+    
+    private fun closeAll() {}
+    
+    private fun saveFile(index: Int) {
+        /*lifecycleScope.launch {
+            
+        }*/
+    }
+
+    fun getCurrentEditor(): RobokCodeEditor? {
+        return if (editorViewModel.currentFileIndex >= 0) {
+            getEditorAtIndex(editorViewModel.currentFileIndex)
+        } else null
+    }
+
+    private fun getEditorAtIndex(index: Int): RobokCodeEditor? {
+        return binding.editorContainer.getChildAt(index) as? RobokCodeEditor
+    }
+    
+    private fun updateTabs() {
+        CompletableFuture.supplyAsync({
+            val files = editorViewModel.openedFiles
+            val dupliCount = mutableMapOf<String, Int>()
+            val names = SparseArray<String>()
+            val nameBuilder = UniqueNameBuilder<File>("", File.separator)
+
+            files.forEach {
+                dupliCount[it.name] = (dupliCount[it.name] ?: 0) + 1
+                nameBuilder.addPath(it, it.path)
+            }
+
+            for (i in 0 until binding.tabs.tabCount) {
+                val file = files[i]
+                val count = dupliCount[file.name] ?: 0
+                val isModified = getEditorAtIndex(i)?.isModified() ?: false
+                val name = if (count > 1) nameBuilder.getShortPath(file) else file.name
+                names[i] = if (isModified) "*$name" else name
+            }
+            names
+        }).whenComplete { result, error ->
+            if (result == null || error != null) {
+                return@whenComplete
+            }
+
+            runOnUiThread {
+                result.forEach { index, name -> binding.tabs.getTabAt(index)?.text = name }
+            }
+        }
     }
 }
