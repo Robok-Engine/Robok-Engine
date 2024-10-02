@@ -56,6 +56,7 @@ fun ModelingScreen() {
             modifier = Modifier
                 .align(Alignment.TopEnd)
                 .padding(16.dp)
+                .size(width = 200.dp, height = 400.dp)
                 .background(MaterialTheme.colorScheme.surfaceContainerHigh)
         ) {
             Box(modifier = Modifier.padding(16.dp)) {
