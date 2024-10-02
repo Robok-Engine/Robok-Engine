@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 
+import org.gampior.robok.strings.Strings
 import org.gampiot.robok.core.components.compose.radio.IntRadioController
 
 @Composable
