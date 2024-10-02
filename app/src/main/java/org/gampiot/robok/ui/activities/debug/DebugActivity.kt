@@ -29,6 +29,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.res.stringResource
 
@@ -81,7 +82,7 @@ class DebugActivity : RobokActivity() {
                 )
             },
             content = { paddingValues ->
-                ErrorContent(madeErrMsg, Modifier.padding(paddingValues))
+                ErrorContent(madeErrMsg)
             }
         )
 
@@ -115,7 +116,6 @@ class DebugActivity : RobokActivity() {
                 modifier = modifier
                     .verticalScroll(verticalScrollState)
                     .horizontalScroll(horizontalScrollState)
-                    .padding(8.dp)
             )
         }
     }
