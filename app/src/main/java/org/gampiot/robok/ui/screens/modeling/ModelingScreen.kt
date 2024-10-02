@@ -57,7 +57,7 @@ fun ModelingScreen() {
             modifier = Modifier
                 .size(200.dp, 200.dp)
                 .align(Alignment.TopEnd)
-                .offset { IntOffset(0, 66) }
+                .offset { IntOffset(0, 80) }
                 .padding(16.dp)
                 .background(MaterialTheme.colorScheme.surfaceContainerHigh),
         ) {
