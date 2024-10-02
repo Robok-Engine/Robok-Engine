@@ -2,122 +2,122 @@
 <resources>
     <!-- common words section -->
 	<string name="common_word_back">Back</string>
-	<string name="common_word_result">Result</string>
-	<string name="common_word_run">Run</string>
-	<string name="common_word_code">Code</string>
-	<string name="common_word_logs">Logs</string>
-	<string name="common_word_output">Output</string>
-	<string name="common_word_end">End</string>
-	<string name="common_word_settings">Settings</string>
-	<string name="common_word_ok" translatable="false" >OK</string>
-	<string name="common_word_confirm" >Confirm</string>
-	<string name="common_word_cancel">CANCEL</string>
-	<string name="common_word_next">Next</string>
-	<string name="common_word_undo">Undo</string>
-	<string name="common_word_redo">Redo</string>
-	<string name="common_word_allow">Allow</string>
-	<string name="common_word_deny">Deny</string>
-	<string name="common_word_normal">Normal</string>
-	<string name="common_word_retry">Retry</string>
-	<string name="common_word_save">Save</string>
-	<!-- end section -->
+    <string name="common_word_result">Result</string>
+    <string name="common_word_run">Run</string>
+    <string name="common_word_code">Code</string>
+    <string name="common_word_logs">Logs</string>
+    <string name="common_word_output">Output</string>
+    <string name="common_word_end">End</string>
+    <string name="common_word_settings">Settings</string>
+    <string name="common_word_ok" translatable="false">OK</string>
+    <string name="common_word_confirm">Confirm</string>
+    <string name="common_word_cancel">Cancel</string>
+    <string name="common_word_next">Next</string>
+    <string name="common_word_undo">Undo</string>
+    <string name="common_word_redo">Redo</string>
+    <string name="common_word_allow">Allow</string>
+    <string name="common_word_deny">Deny</string>
+    <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Retry</string>
+    <string name="common_word_save">Save</string>
+    <!-- end section -->
 	
 	<!-- links section -->
 	<string name="link_github" translatable="false">https://github.com/Robok-Engine/Robok-Engine</string>
-	<string name="link_telegram" translatable="false">https://t.me/robokinc</string>
-	<string name="link_contributors" translatable="false">https://raw.githubusercontent.com/Robok-Engine/Robok-Engine/host/.github/contributors/contributors_github.json</string>
-	<string name="link_whatsapp" translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
-	<!-- end section -->
+    <string name="link_telegram" translatable="false">https://t.me/robokinc</string>
+    <string name="link_contributors" translatable="false">https://raw.githubusercontent.com/Robok-Engine/Robok-Engine/host/.github/contributors/contributors_github.json</string>
+    <string name="link_whatsapp" translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
+    <!-- end section -->
 	
 	<!-- titles section -->
 	<string name="title_create_project">Create project</string>
-	<string name="title_open_project">Open project</string>
-	<string name="title_terminal" translatable="false" >Terminal</string>
-	<string name="title_open_editor">Open editor</string>
-	<string name="title_debug_title">An error occured</string>
-	<string name="title_select_theme">Select theme</string>
-	<string name="title_select_folder">Select folder</string>
-	<string name="title_templates">Templates</string>
-	<!-- end section -->
+    <string name="title_open_project">Open project</string>
+    <string name="title_terminal" translatable="false">Terminal</string>
+    <string name="title_open_editor">Open editor</string>
+    <string name="title_debug_title">An error occured</string>
+    <string name="title_select_theme">Select theme</string>
+    <string name="title_select_folder">Select folder</string>
+    <string name="title_templates">Templates</string>
+    <!-- end section -->
 	
 	<!-- messages section -->
 	<string name="message_compiled">Your code has been compiled!</string>
-	<!-- end section -->
+    <!-- end section -->
 	
 	<!-- go to section -->
 	<string name="go_to_outputs">Go to outputs</string>
-	<!-- end section -->
+    <!-- end section -->
 	
 	<!-- hints section -->
 	<string name="hint_project_name">Project name</string>
-	<string name="hint_package_name">Package name</string>
-	<!-- end section -->
+    <string name="hint_package_name">Package name</string>
+    <!-- end section -->
 	
 	<!-- settings section -->
 	<string name="settings_app_title">App Settings</string>
-	<string name="settings_app_description">Some application related settings.</string>
-	<string name="settings_app_use_monet_title">Dynamic colors</string>
-	<string name="settings_app_use_monet_description">Use device theme in app.</string>
-	<string name="settings_code_editor_title">Code Editor Settings</string>
-	<string name="settings_code_editor_description">Some code editor settings.</string>
-	<string name="settings_code_editor_theme_title">Code Editor Theme</string>
-	<string name="settings_code_editor_theme_description">Change the code editor theme.</string>
-	<string name="settings_code_editor_word_wrap_title">Word Wrap</string>
-	<string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
-	<string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
-	<string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
-	<string name="settings_about_title">About</string>
-	<string name="settings_about_description">All about Robok Engine</string>
-	<string name="settings_libraries_title">Libraries</string>
-	<string name="settings_libraries_description">All the libraries we use in the application.</string>
-	<string name="settings_configure_rdk_title">Configure RDK</string>
-	<string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
-	<string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
-	<string name="settings_configure_rdk_version">Define RDK Version</string>
-	<string name="settings_build_title">Build</string>
-	<string name="settings_formatting_title">Formatting</string>
-	<string name="settings_appearance_title">Appearance</string>
-	<string name="settings_general_title">General</string>
-	<!-- end section -->
+    <string name="settings_app_description">Some application related settings.</string>
+    <string name="settings_app_use_monet_title">Dynamic colors</string>
+    <string name="settings_app_use_monet_description">Use device theme in app.</string>
+    <string name="settings_code_editor_title">Code Editor Settings</string>
+    <string name="settings_code_editor_description">Some code editor settings.</string>
+    <string name="settings_code_editor_theme_title">Code Editor Theme</string>
+    <string name="settings_code_editor_theme_description">Change the code editor theme.</string>
+    <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
+    <string name="settings_code_editor_word_wrap_description">Enable line wrapping in the code editor.</string>
+    <string name="settings_code_editor_typeface_title">Change Editor Font Typeface</string>
+    <string name="settings_code_editor_typeface_description">Change the editor font and make it your own.</string>
+    <string name="settings_about_title">About</string>
+    <string name="settings_about_description">All about Robok Engine</string>
+    <string name="settings_libraries_title">Libraries</string>
+    <string name="settings_libraries_description">All the libraries we use in the application.</string>
+    <string name="settings_configure_rdk_title">Configure RDK</string>
+    <string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
+    <string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
+    <string name="settings_configure_rdk_version">Define RDK Version</string>
+    <string name="settings_build_title">Build</string>
+    <string name="settings_formatting_title">Formatting</string>
+    <string name="settings_appearance_title">Appearance</string>
+    <string name="settings_general_title">General</string>
+    <!-- end section -->
 	
 	<!-- texts section -->
 	<string name="text_diagnostic">Diagnostic</string>
-	<string name="text_logs">Logs</string>
-	<string name="text_error_details">Error details:</string>
-	<string name="text_bold">Bold</string>
-	<string name="text_monospace">Monospace</string>
-	<string name="text_serif">Serif</string>
-	<string name="text_sans_serif">Sans-Serif</string>
-	<string name="text_basic_info">Basic information</string>
-	<!-- end section -->
+    <string name="text_logs">Logs</string>
+    <string name="text_error_details">Error details:</string>
+    <string name="text_bold">Bold</string>
+    <string name="text_monospace">Monospace</string>
+    <string name="text_serif">Serif</string>
+    <string name="text_sans_serif">Sans-Serif</string>
+    <string name="text_basic_info">Basic information</string>
+    <!-- end section -->
 	
 	<!-- warnings section -->
 	<string name="warning_storage_perm_title">Storage permission</string>
-	<string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
-	<string name="warning_all_files_perm_message">in Android 11 +, for Robok to work properly, it needs permission to access all files.</string>
-	<string name="warning_project_created_title">Project Created Successfully!</string>
-	<string name="warning_project_created_message">Your project has been created successfully!</string>
-	<string name="warning_project_installer_not_found">No package installer found.</string>
-	<!-- end section -->
+    <string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
+    <string name="warning_all_files_perm_message">in Android 11 +, for Robok to work properly, it needs permission to access all files.</string>
+    <string name="warning_project_created_title">Project Created Successfully!</string>
+    <string name="warning_project_created_message">Your project has been created successfully!</string>
+    <string name="warning_project_installer_not_found">No package installer found.</string>
+    <!-- end section -->
 	
 	<!-- errors section -->
 	<string name="error_storage_perm_title">Storage permission error</string>
-	<string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
-	<string name="error_invalid_name">Invalid name</string>
-	<string name="error_load_fail">Error loading.</string>
-	<!-- end section -->
+    <string name="error_storage_perm_message">You did not accept the storage permission, it is necessary for Robok to function.</string>
+    <string name="error_invalid_name">Invalid name</string>
+    <string name="error_load_fail">Error loading.</string>
+    <!-- end section -->
 	
 	<!-- terminal section -->
 	<string name="terminal_options">Options</string>
-	<string name="terminal_install_package">Install Package</string>
-	<string name="terminal_install_package_hint">Type Package Name</string>
-	<string name="terminal_update_packages">Update Packages</string>
-	<string name="terminal_warning_update_packages">Do you want to update the packages?</string>
-	<!-- end section -->
+    <string name="terminal_install_package">Install Package</string>
+    <string name="terminal_install_package_hint">Type Package Name</string>
+    <string name="terminal_update_packages">Update Packages</string>
+    <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
+    <!-- end section -->
 	
 	<!-- templates section -->
 	<string name="template_name_empty_game">Empty Game</string>
-	<!-- end section -->
+    <!-- end section -->
 	
 	<!-- about section -->
     <string name="slogan">Java to Game in a Snap</string>
