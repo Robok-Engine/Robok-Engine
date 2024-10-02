@@ -114,9 +114,7 @@ public class IdentifierAutoComplete {
     }
 
     public IdentifierAutoComplete(Context context, String[] keywords) {
-        this();
-        this.context = context;
-        initRDKClasses();
+        this(context);
         setKeywords(keywords, true);
     }
     
