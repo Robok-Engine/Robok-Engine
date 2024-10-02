@@ -19,25 +19,23 @@ package org.gampiot.robok.ui.activities.debug
 
 import android.os.Bundle
 
-import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.*
-import androidx.compose.foundation.text.selection.*
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.runtime.*
-import androidx.compose.ui.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.*
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 
-import org.gampiot.robok.strings.Strings
+import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.core.utils.base.RobokActivity
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
+import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
+import org.gampiot.robok.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 class DebugActivity : RobokActivity() {
+
     private val exceptionType = listOf(
         "StringIndexOutOfBoundsException",
         "IndexOutOfBoundsException",
@@ -57,7 +55,9 @@ class DebugActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            DebugScreen(intent.getStringExtra("error") ?: "")
+            RobokTheme {
+                DebugScreen(intent.getStringExtra("error") ?: "")
+            }
         }
     }
 
@@ -70,21 +70,14 @@ class DebugActivity : RobokActivity() {
             madeErrMsg = processErrorMessage(errorMessage)
         }
 
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { Text(text = stringResource(id = Strings.title_debug_title)) },
-                    navigationIcon = {
-                        IconButton(onClick = { finish() }) {
-                            Icon(Icons.AutoMirrored.Rounded.ArrowBack, contentDescription = "Back")
-                        }
-                    }
-                )
-            },
-            content = { paddingValues ->
+        PreferenceLayout(
+            label = stringResource(id = Strings.title_debug_title),
+            backArrowVisible = true
+        ) {
+            PreferenceGroup(heading = stringResource(id = Strings.debug_error_message)) {
                 ErrorContent(madeErrMsg)
             }
-        )
+        }
 
         if (showDialog) {
             AlertDialog(
@@ -101,23 +94,15 @@ class DebugActivity : RobokActivity() {
     }
 
     @Composable
-    fun ErrorContent(
-        madeErrMsg: String,
-        modifier: Modifier = Modifier
-    ) {
-        val verticalScrollState = rememberScrollState()
-        val horizontalScrollState = rememberScrollState()
-
-        SelectionContainer {
-            Text(
-                text = madeErrMsg,
-                fontSize = 11.sp,
-                lineHeight = 14.sp,
-                modifier = modifier
-                    .verticalScroll(verticalScrollState)
-                    .horizontalScroll(horizontalScrollState)
-            )
-        }
+    fun ErrorContent(madeErrMsg: String) {
+        Text(
+            text = madeErrMsg,
+            modifier = Modifier
+                .padding(16.dp)
+                .fillMaxWidth()
+                .verticalScroll(rememberScrollState()),
+            style = MaterialTheme.typography.bodyMedium
+        )
     }
 
     private fun processErrorMessage(errMsg: String): String {
