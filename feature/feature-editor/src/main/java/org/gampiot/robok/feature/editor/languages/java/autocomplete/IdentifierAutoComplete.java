@@ -104,15 +104,23 @@ public class IdentifierAutoComplete {
     //RDK File Mapper
     private RDKFileMapper rdkClasses;
     
-    public IdentifierAutoComplete() {
-        rdkClasses = new RDKFileMapper();
-        rdkClasses.load();
-     }
+    private Context context;
+    
+    public IdentifierAutoComplete(Context context) {
+        this.context = context;
+        initRDKClasses();
+    }
 
-    public IdentifierAutoComplete(String[] keywords) {
+    public IdentifierAutoComplete(Context context, String[] keywords) {
         this();
+        this.context = context;
+        initRDKClasses();
         setKeywords(keywords, true);
-        
+    }
+    
+    private void initRDKClasses() {
+        rdkClasses = new RDKFileMapper(context);
+        rdkClasses.load();
     }
 
     private static String asString(CharSequence str) {

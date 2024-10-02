@@ -125,7 +125,7 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
      }
      
      private void init(RobokCodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
-          identifierAutoComplete = new IdentifierAutoComplete(JavaTextTokenizer.sKeywords);
+          identifierAutoComplete = new IdentifierAutoComplete(editor.getContext(), JavaTextTokenizer.sKeywords);
           javaAnalyzeManager = new JavaIncrementalAnalyzeManager();
           variablesMap = new HashMap<>();
           methodsMap = new HashMap<>();
