@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robok.feature.treeview"
+    namespace = "org.robok.engine.feature.treeview"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

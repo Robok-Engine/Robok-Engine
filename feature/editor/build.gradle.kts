@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robok.feature.editor"
+    namespace = "org.robok.engine.feature.editor"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

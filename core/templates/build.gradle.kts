@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robok.core.templates"
+    namespace = "org.robok.engine.core.templates"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

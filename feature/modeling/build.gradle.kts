@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robok.feature.modeling"
+    namespace = "org.robok.engine.feature.modeling"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

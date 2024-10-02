@@ -8,7 +8,7 @@ plugins {
 }
 
 android {
-    namespace = "org.gampiot.robok.core.components.compose"
+    namespace = "org.robok.engine.core.components.compose"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

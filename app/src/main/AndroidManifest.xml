@@ -22,11 +22,11 @@
         android:roundIcon="@mipmap/ic_launcher"
         android:supportsRtl="false"
         android:enableOnBackInvokedCallback="true"
-        android:name="org.gampiot.robok.RobokApplication"
+        android:name="org.robok.engine.RobokApplication"
         android:theme="@style/Theme.Robok"
         android:requestLegacyExternalStorage="true">
         <activity
-            android:name="org.gampiot.robok.ui.activities.MainActivity"
+            android:name="org.robok.engine.ui.activities.MainActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize">
             
@@ -37,20 +37,20 @@
         </activity>
         
         <activity
-            android:name="org.gampiot.robok.ui.activities.editor.EditorActivity"
+            android:name="org.robok.engine.ui.activities.editor.EditorActivity"
             android:exported="true"
             android:windowSoftInputMode="adjustResize"/>
         
         <activity
-            android:name="org.gampiot.robok.ui.activities.debug.DebugActivity"
+            android:name="org.robok.engine.ui.activities.debug.DebugActivity"
             android:exported="true" />
             
         <activity
-            android:name="org.gampiot.robok.ui.activities.terminal.TerminalActivity"
+            android:name="org.robok.engine.ui.activities.terminal.TerminalActivity"
             android:exported="true" />
 
         <activity
-            android:name="org.gampiot.robok.ui.activities.modeling.ModelingActivity"
+            android:name="org.robok.engine.ui.activities.modeling.ModelingActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
             android:screenOrientation="landscape"
             android:exported="true" />

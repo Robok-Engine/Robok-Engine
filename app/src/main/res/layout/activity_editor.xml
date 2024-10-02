@@ -77,7 +77,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
-                        <org.gampiot.robok.core.components.progress.DotProgressBar
+                        <org.robok.engine.core.components.progress.DotProgressBar
                             android:id="@+id/diagnostic_status_dot_progress"
                             android:layout_width="@dimen/toolbar_icon_width"
                             android:layout_height="@dimen/toolbar_icon_height"
@@ -139,7 +139,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" >
                 
-                <org.gampiot.robok.feature.treeview.widget.FileTree
+                <org.robok.engine.feature.treeview.widget.FileTree
                      android:id="@+id/file_tree"
                      android:layout_width="match_parent"
                      android:layout_height="match_parent" />
