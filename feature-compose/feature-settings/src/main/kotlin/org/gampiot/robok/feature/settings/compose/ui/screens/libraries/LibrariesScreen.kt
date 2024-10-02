@@ -120,9 +120,11 @@ fun LibraryItemTitle(
 ) {
    title?.let {
        Text(
-           text = it
+           text = it,
+           color = MaterialTheme.colorScheme.onSurface
        )
    } ?: Text(
-       text = "No Title Available"
-   )
+          text = "No Title Available",
+          color = MaterialTheme.colorScheme.onSurface
+       )
 }
