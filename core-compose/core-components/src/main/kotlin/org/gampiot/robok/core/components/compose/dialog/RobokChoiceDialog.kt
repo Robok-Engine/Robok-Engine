@@ -22,6 +22,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
 
 import org.gampiot.robok.core.components.compose.radio.IntRadioController
 
@@ -36,32 +37,36 @@ fun RobokChoiceDialog(
     onRequestClose: () -> Unit,
     onChoice: (Int) -> Unit
 ) {
+    var tempSelectedOption by remember { mutableStateOf(default) }
+
     if (visible) {
         RobokDialog(
             onDismissRequest = { onRequestClose() },
-            onConfirmation = { onRequestClose() }, 
+            onConfirmation = {
+                onChoice(tempSelectedOption) 
+                onRequestClose()
+            },
             title = title,
             text = {
                 Column(
                     modifier = Modifier.padding(4.dp)
                 ) {
                     IntRadioController(
-                        default = default,
+                        default = tempSelectedOption,
                         options = options,
                         excludedOptions = excludedOptions,
                         labelFactory = labelFactory,
                         onChoiceSelected = { selectedOption ->
-                            onChoice(selectedOption)
-                            onRequestClose()
+                            tempSelectedOption = selectedOption
                         }
                     )
                 }
             },
             confirmButton = {
-                Text("Close")
+                Text(stringResource(id = Strings.common_word_save))
             },
             dismissButton = {
-                Text("Cancel")
+                Text(stringResource(id = Strings.common_word_cancel))
             }
         )
     }

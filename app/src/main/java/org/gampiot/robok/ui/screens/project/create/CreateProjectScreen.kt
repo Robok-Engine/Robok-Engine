@@ -178,10 +178,10 @@ fun showVeryBasicDialog(
                 Text(text = message)
             },
             confirmButton = {
-                Text(text = "OK")
+                Text(stringResource(id = Strings.common_word_ok))
             },
             dismissButton = {
-                Text(text = "Cancel")
+                Text(stringResource(id = Strings.common_word_cancel))
             },
             icon = {
                 Icon(Icons.Outlined.Settings, contentDescription = "Icon")
