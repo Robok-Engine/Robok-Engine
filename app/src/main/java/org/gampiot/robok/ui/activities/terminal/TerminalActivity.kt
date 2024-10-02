@@ -177,7 +177,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     fun installPackage(packageName: String?) {
-        throw NotImplementedExeception("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") 
+        TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") 
     }
 
     private fun sendTextInPink(text: String) {
