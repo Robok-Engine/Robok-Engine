@@ -43,7 +43,6 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import dev.trindadedev.easyui.components.dialogs.PermissionDialog
 
-
 import org.gampiot.robok.core.utils.R
 import org.gampiot.robok.core.utils.requestReadWritePermissions
 import org.gampiot.robok.core.utils.requestAllFilesAccessPermission
@@ -62,6 +61,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                  requestAllFilesAccessPermissionDialog()

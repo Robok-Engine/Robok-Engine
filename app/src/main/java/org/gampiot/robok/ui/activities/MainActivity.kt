@@ -21,7 +21,6 @@ import android.os.Bundle
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -55,7 +54,6 @@ class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         val defaultTemplate = ProjectTemplate(
                name = getString(Strings.template_name_empty_game),
                packageName = "com.robok.empty",
