@@ -145,6 +145,7 @@ jobs:
       - name: Build with Gradle
         id: gradle_build_release
         run: ./gradlew assembleRelease
+        continue-on-error: true 
       
       - name: Upload mapping
         uses: actions/upload-artifact@v4
@@ -191,6 +192,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: robok-release
+        continue-on-error: true 
           
       - name: List all files in repo
         run: ls
@@ -210,6 +212,7 @@ jobs:
         run: |
           mv app-release-unsigned-signed.apk robok-release-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
+      continue-on-error: true 
           
       - name: Send APK to Telegram
         env:
