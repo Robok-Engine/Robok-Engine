@@ -71,7 +71,9 @@ public class Compiler {
 
     public abstract void prepare();
 
-    public abstract void run() throws CompilerException, IOException;
+    public void run() throws CompilerException, IOException {
+    
+    }
 
     public File getAndroidJarFile() {
         File check =

@@ -27,13 +27,7 @@ import org.robok.aapt2.util.FileUtil;
 
 public class SystemLogPrinter {
 
-    private Context glbContext;
-
-    public SystemLogPrinter(Context context) {
-        glbContext = context;
-    }
-    
-    public static void start(Logger logger) {
+    public static void start(Context glbContext, Logger logger) {
         //reset
         FileUtil.writeFile(glbContext.getExternalFilesDir(null) + "/logs.txt", "");
 
