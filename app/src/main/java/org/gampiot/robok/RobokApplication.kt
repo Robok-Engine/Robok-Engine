@@ -1,4 +1,4 @@
-package org.gampiot.robok.core.utils.application
+package org.gampiot.robok
 
 /*
  *  This file is part of Robok © 2024.
@@ -38,7 +38,7 @@ import org.koin.core.context.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.component.*
 
-import org.gampiot.robok.core.utils.activities.DebugActivity
+import org.gampiot.robok.ui.activities.debug.DebugActivity
 import org.gampiot.robok.core.utils.di.appModule
 import org.gampiot.robok.core.utils.di.appPreferencesModule
 import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewModel

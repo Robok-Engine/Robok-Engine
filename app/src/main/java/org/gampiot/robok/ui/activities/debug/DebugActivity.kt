@@ -1,4 +1,4 @@
-package org.gampiot.robok.core.utils.activities
+package org.gampiot.robok.ui.activities.debug
 
 /*
  *  This file is part of Robok © 2024.
@@ -29,7 +29,8 @@ import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
-import org.gampiot.robok.core.utils.R
+import org.gampiot.robok.Layouts
+import org.gampiot.robok.Ids
 import org.gampiot.robok.strings.Strings
 
 import java.io.InputStream
@@ -57,11 +58,8 @@ class DebugActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_debug)
-        error = findViewById(R.id.error)
-        /* toolbar = findViewById(R.id.toolbar)
-        configureToolbarNavigationBack(toolbar)
-        */
+        setContentView(Layouts.activity_debug)
+        error = findViewById(Ids.error)
         
         val intent = intent
         var errMsg = ""
