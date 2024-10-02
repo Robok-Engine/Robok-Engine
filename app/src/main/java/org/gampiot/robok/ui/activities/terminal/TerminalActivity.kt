@@ -50,15 +50,18 @@ import java.io.File
 */
 
 class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {
-    private var binding: ActivityTerminalBinding? = null
+
+    private var _binding: ActivityTermunalBinding? = null
+    private val binding get() = _binding!!
     private var cwd: String? = null
     private var session: TerminalSession? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTerminalBinding.inflate(layoutInflater)
-        setContentView(binding!!.getRoot())
-
+        _binding = ActivityTerminalBinding.inflate(layoutInflater)
+        setContentView(binding.getRoot())
+        handleInsetts(binding.root)
+        
         cwd = if (intent.hasExtra("path")) {
             val path = intent.getStringExtra("path")
             if (File(path.toString()).exists().not()) {
@@ -70,22 +73,22 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             filesDir.absolutePath
         }
 
-        binding!!.terminalView.setTextSize(24)
+        binding.terminalView.setTextSize(24)
         session = createSession()
-        binding!!.terminalView.attachSession(session)
-        binding!!.terminalView.setTerminalViewClient(this)
+        binding.terminalView.attachSession(session)
+        binding.terminalView.setTerminalViewClient(this)
         configureFabs()
     }
 
     private fun configureFabs() {
         setOptionsVisibility(true)
-        binding!!.terminalOptionsButton.setOnClickListener { view: View? -> setOptionsVisibility(false) }
-        binding!!.closeButton.setOnClickListener { view: View? -> setOptionsVisibility(true) }
-        binding!!.installPackageButton.setOnClickListener { v: View? ->
+        binding.terminalOptionsButton.setOnClickListener { view: View? -> setOptionsVisibility(false) }
+        binding.closeButton.setOnClickListener { view: View? -> setOptionsVisibility(true) }
+        binding.installPackageButton.setOnClickListener { v: View? ->
             showInstallPackageDialog()
             setOptionsVisibility(true)
         }
-        binding!!.updatePackagesButton.setOnClickListener { v: View? ->
+        binding.updatePackagesButton.setOnClickListener { v: View? ->
             showUpdatePackagesDialog()
             setOptionsVisibility(true)
         }
@@ -123,12 +126,12 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     fun setOptionsVisibility(isHide: Boolean) {
-        binding!!.terminalOptionsLayout.animate()
+        binding.terminalOptionsLayout.animate()
             .translationY((if (isHide) 300 else 0).toFloat())
             .alpha((if (isHide) 0 else 1).toFloat())
             .setInterpolator(OvershootInterpolator())
 
-        binding!!.terminalOptionsButton.animate()
+        binding.terminalOptionsButton.animate()
             .translationY((if (isHide) 0 else 300).toFloat())
             .alpha((if (isHide) 1 else 0).toFloat())
             .setInterpolator(OvershootInterpolator())
@@ -196,7 +199,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     override fun onSingleTapUp(e: MotionEvent) {
         val kUtil = KeyboardUtil(RobokApplication.instance)
-        kUtil.showSoftInput(binding!!.terminalView)
+        kUtil.showSoftInput(binding.terminalView)
     }
 
     override fun shouldBackButtonBeMappedToEscape(): Boolean {
@@ -271,7 +274,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     override fun logStackTrace(tag: String, e: Exception) {}
 
     override fun onTextChanged(changedSession: TerminalSession) {
-        binding!!.terminalView.onScreenUpdated()
+        binding.terminalView.onScreenUpdated()
     }
 
     override fun onTitleChanged(changedSession: TerminalSession) {}

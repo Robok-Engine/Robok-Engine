@@ -88,6 +88,7 @@ class EditorActivity : RobokActivity() {
          super.onCreate(savedInstanceState)
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)
+         handleInsetts(binding.root)
          
          val extras = intent.extras
          if (extras != null) {

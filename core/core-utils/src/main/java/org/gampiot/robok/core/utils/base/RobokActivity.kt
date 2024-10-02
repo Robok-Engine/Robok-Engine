@@ -25,22 +25,14 @@ import android.content.res.Configuration
 import android.view.View
 import android.view.WindowInsets
 
-import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.commit
-import androidx.annotation.IdRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.compose.runtime.*
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
 
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
+import dev.chrisbanes.insetter.Insetter
 import dev.trindadedev.easyui.components.dialogs.PermissionDialog
 
 import org.gampiot.robok.core.utils.R
@@ -48,12 +40,8 @@ import org.gampiot.robok.core.utils.requestReadWritePermissions
 import org.gampiot.robok.core.utils.requestAllFilesAccessPermission
 import org.gampiot.robok.core.utils.getStoragePermStatus
 import org.gampiot.robok.core.utils.getBackPressedClickListener
-import org.gampiot.robok.core.utils.enableEdgeToEdgeProperly
 import org.gampiot.robok.core.utils.PermissionListener
 import org.gampiot.robok.strings.Strings
-
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.Flow
 
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
@@ -69,6 +57,12 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
                 requestReadWritePermissionsDialog()
             }
         }
+    }
+    
+    fun handleInsetts(rootView: View) {
+        Insetter.builder()
+            .padding(WindowInsetsCompat.Type.navigationBars())
+            .applyToView(rootView);
     }
 
     private fun requestReadWritePermissionsDialog() {

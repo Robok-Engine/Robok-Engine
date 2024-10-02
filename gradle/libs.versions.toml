@@ -92,3 +92,5 @@ sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor", versio
 sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp", version.ref = "sora-editor" }
 sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java", version.ref = "sora-editor" }
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
+
+insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version = "0.6.1" }
