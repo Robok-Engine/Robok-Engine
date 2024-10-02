@@ -14,41 +14,32 @@ package org.gampiot.robok.ui.activities.debug
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ *  along with Robok. If not, see <https://www.gnu.org/licenses/>.
+ */
 
-import android.app.Activity
-import android.app.AlertDialog
-import android.content.DialogInterface
-import android.content.Intent
 import android.os.Bundle
-import android.widget.TextView
+import androidx.activity.ComponentActivity
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.*
+import androidx.compose.foundation.text.selection.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.*
+import androidx.compose.ui.unit.*
 
-import androidx.appcompat.app.AppCompatActivity
-
-import com.google.android.material.appbar.MaterialToolbar
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
-import org.gampiot.robok.Layouts
-import org.gampiot.robok.Ids
 import org.gampiot.robok.strings.Strings
+import org.gampiot.robok.core.utils.base.RobokActivity
 
-import java.io.InputStream
-
-class DebugActivity : AppCompatActivity() {
-    
-    private var madeErrMsg: String = ""
-    private lateinit var error: TextView
-    private lateinit var toolbar: MaterialToolbar
-    
-    private val exceptionType = arrayOf(
+class DebugActivity : RobokActivity() {
+    private val exceptionType = listOf(
         "StringIndexOutOfBoundsException",
         "IndexOutOfBoundsException",
         "ArithmeticException",
         "NumberFormatException",
         "ActivityNotFoundException"
     )
-    private val errMessage = arrayOf(
+
+    private val errMessage = listOf(
         "Invalid string operation\n",
         "Invalid list operation\n",
         "Invalid arithmetical operation\n",
@@ -58,36 +49,71 @@ class DebugActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(Layouts.activity_debug)
-        error = findViewById(Ids.error)
-        
-        val intent = intent
-        var errMsg = ""
-        madeErrMsg = ""
-        if (intent != null) {
-            errMsg = intent.getStringExtra("error") ?: ""
-            val spilt = errMsg.split("\n")
-            try {
-                for (j in exceptionType.indices) {
-                    if (spilt[0].contains(exceptionType[j])) {
-                        madeErrMsg = errMessage[j]
-                        val addIndex = spilt[0].indexOf(exceptionType[j]) + exceptionType[j].length
-                        madeErrMsg += spilt[0].substring(addIndex, spilt[0].length)
-                        break
+        setContent {
+            DebugScreen(intent.getStringExtra("error") ?: "")
+        }
+    }
+
+    @Composable
+    fun DebugScreen(errorMessage: String) {
+        var madeErrMsg by remember { mutableStateOf("") }
+
+        LaunchedEffect(errorMessage) {
+            madeErrMsg = processErrorMessage(errorMessage)
+        }
+
+        Scaffold(
+            topBar = {
+                TopAppBar(
+                    title = { Text(text = Strings.title_debug_title) },
+                    navigationIcon = {
+                        IconButton(onClick = { finish() }) {
+                            Icon(Icons.Default.ArrowBack, contentDescription = "Back")
+                        }
                     }
+                )
+            },
+            content = { paddingValues ->
+                ErrorContent(madeErrMsg, Modifier.padding(paddingValues))
+            }
+        )
+
+        AlertDialog(
+            onDismissRequest = { finish() },
+            confirmButton = {
+                TextButton(onClick = { finish() }) {
+                    Text(Strings.common_word_end)
                 }
-                if (madeErrMsg.isEmpty()) madeErrMsg = errMsg
-            } catch (e: Exception) {
+            },
+            title = { Text(Strings.title_debug_title) },
+            text = { Text(madeErrMsg) }
+        )
+    }
+
+    @Composable
+    fun ErrorContent(madeErrMsg: String, modifier: Modifier = Modifier) {
+        val scrollState = rememberScrollState()
+
+        SelectionContainer {
+            Text(
+                text = madeErrMsg,
+                fontSize = 11.sp,
+                lineHeight = 14.sp,
+                modifier = modifier
+                    .horizontalScroll(scrollState)
+                    .padding(8.dp)
+            )
+        }
+    }
+
+    private fun processErrorMessage(errMsg: String): String {
+        val splitMessage = errMsg.split("\n")
+        for (i in exceptionType.indices) {
+            if (splitMessage[0].contains(exceptionType[i])) {
+                val additionalInfo = splitMessage[0].substringAfter(exceptionType[i])
+                return errMessage[i] + additionalInfo
             }
         }
-        error.text = madeErrMsg
-        MaterialAlertDialogBuilder(this)
-            .setTitle(Strings.title_debug_title)
-            .setMessage(madeErrMsg)
-            .setPositiveButton(Strings.common_word_end) { _, _ ->
-                finish()
-            }
-            .show()
+        return errMsg
     }
 }
-
