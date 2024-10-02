@@ -63,13 +63,18 @@ public class ModelingActivity extends RobokActivity implements AndroidFragmentAp
           binding.layoutParent.addView(composeUI);
           hideSystemUI();
      }
-    
+     
+     /*
+     * Check if the game is null to prevent errors.
+     */
      private void verifyIfMy3dGameIsNull(){
-          if(model3dView == null){
-              model3dView = libGDXFragment.getModel3DView().clazz;
-          } 
+          if(model3dView != null) return;
+          model3dView = libGDXFragment.getModel3DView().clazz;
      }
-    
+     
+     /*
+     * Hide phone ui to better experience 
+     */
      private void hideSystemUI() {
           if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
              getWindow().setDecorFitsSystemWindows(false);
@@ -91,13 +96,15 @@ public class ModelingActivity extends RobokActivity implements AndroidFragmentAp
     */
     @Override
     public void exit() {
-        finish();
+         finish();
     }
     
+    /*
+    * Set binding to null if the activity is destroyed.
+    */
     @Override
-     protected void onDestroy() {
+    protected void onDestroy() {
          binding = null;
          super.onDestroy();
-     }
-    
+    }
 }
