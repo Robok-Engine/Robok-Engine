@@ -46,10 +46,12 @@ import org.gampiot.robok.strings.Strings
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     private var permissionDialog: PermissionDialog? = null
+    private var isEdgeToEdge: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        if (isEdgeToEdge) enableEdgeToEdge()
+        
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                  requestAllFilesAccessPermissionDialog()
@@ -62,7 +64,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     fun handleInsetts(rootView: View) {
         Insetter.builder()
             .padding(WindowInsetsCompat.Type.navigationBars())
-            .applyToView(rootView);
+            .applyToView(rootView)
     }
 
     private fun requestReadWritePermissionsDialog() {

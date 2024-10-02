@@ -85,6 +85,7 @@ class EditorActivity : RobokActivity() {
     private val diagnosticStandTime: Long = 800
 
     override fun onCreate(savedInstanceState: Bundle?) {
+         isEdgeToEdge = false
          super.onCreate(savedInstanceState)
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)

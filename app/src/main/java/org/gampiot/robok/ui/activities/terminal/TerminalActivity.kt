@@ -58,6 +58,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     private var session: TerminalSession? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        isEdgeToEdge = false
         super.onCreate(savedInstanceState)
         _binding = ActivityTerminalBinding.inflate(layoutInflater)
         setContentView(binding.getRoot())
