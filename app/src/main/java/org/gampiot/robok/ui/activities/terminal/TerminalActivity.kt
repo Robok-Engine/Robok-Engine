@@ -37,6 +37,7 @@ import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
 
 import org.gampiot.robok.strings.Strings
+import org.gampiot.robok.RobokApplication
 import org.gampiot.robok.databinding.ActivityTerminalBinding
 import org.gampiot.robok.databinding.LayoutDialogInputBinding
 import org.gampiot.robok.core.utils.KeyboardUtil
@@ -194,7 +195,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     override fun onSingleTapUp(e: MotionEvent) {
-        val kUtil = KeyboardUtil()
+        val kUtil = KeyboardUtil(RobokApplication.instance)
         kUtil.showSoftInput(binding!!.terminalView)
     }
 
