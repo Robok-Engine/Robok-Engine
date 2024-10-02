@@ -53,6 +53,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     private var _binding: ActivityTerminalBinding? = null
     private val binding get() = _binding!!
+    
     private var cwd: String? = null
     private var session: TerminalSession? = null
 
@@ -190,7 +191,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     override fun onDestroy() {
         super.onDestroy()
-        binding = null
+        _binding = null
     }
 
     override fun onScale(scale: Float): Float {
