@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.*
+import androidx.compose.foundation.lazy.*
 
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.core.utils.base.RobokActivity
@@ -96,14 +97,13 @@ class DebugActivity : RobokActivity() {
 
     @Composable
     fun ErrorContent(madeErrMsg: String) {
-        Text(
-            text = madeErrMsg,
-            modifier = Modifier
-                .padding(16.dp)
-                .fillMaxWidth()
-                .verticalScroll(rememberScrollState()),
-            style = MaterialTheme.typography.bodyMedium
-        )
+        LazyColumn(
+            modifier = Modifier.padding(16.dp)
+        ) {
+            items(madeErrMsg.split("\n")) { line ->
+                Text(text = line, style = MaterialTheme.typography.bodyMedium)
+            }
+        }
     }
 
     private fun processErrorMessage(errMsg: String): String {
