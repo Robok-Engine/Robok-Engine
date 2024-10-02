@@ -212,7 +212,7 @@ jobs:
         run: |
           mv app-release-unsigned-signed.apk robok-release-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
           ls 
-      continue-on-error: true 
+        continue-on-error: true 
           
       - name: Send APK to Telegram
         env:
