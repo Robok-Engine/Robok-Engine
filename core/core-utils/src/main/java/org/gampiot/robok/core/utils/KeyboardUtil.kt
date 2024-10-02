@@ -18,6 +18,7 @@ package org.gampiot.robok.core.utils
  */ 
 
 import android.app.Activity
+import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
@@ -32,27 +33,27 @@ import android.widget.EditText
 import androidx.annotation.NonNull
 import androidx.annotation.Nullable
 
-import org.gampiot.robok.core.utils.application.RobokApplication
+class KeyboardUtil(
+   private val applicationClass: Application 
+) {
 
-open class KeyboardUtil {
-
-    open fun showSoftInput() {
-        val imm = RobokApplication.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    fun showSoftInput() {
+        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.showSoftInput(null, InputMethodManager.SHOW_IMPLICIT)
     }
 
-    open fun showSoftInput(activity: Activity?) {
+    fun showSoftInput(activity: Activity?) {
         if (activity != null && !isSoftInputVisible(activity)) {
             showSoftInput()
         }
     }
 
-    open fun showSoftInput(view: View) {
+    fun showSoftInput(view: View) {
         showSoftInput(view, 0)
     }
 
-    open fun showSoftInput(view: View, flags: Int) {
-        val imm = RobokApplication.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    fun showSoftInput(view: View, flags: Int) {
+        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.let {
             view.isFocusable = true
             view.isFocusableInTouchMode = true
@@ -67,11 +68,11 @@ open class KeyboardUtil {
         }
     }
 
-    open fun hideSoftInput(activity: Activity?) {
+    fun hideSoftInput(activity: Activity?) {
         activity?.let { hideSoftInput(it.window) }
     }
 
-    open fun hideSoftInput(window: Window?) {
+    fun hideSoftInput(window: Window?) {
         window?.let {
             var view = it.currentFocus
             if (view == null) {
@@ -87,12 +88,12 @@ open class KeyboardUtil {
         }
     }
 
-    open fun hideSoftInput(view: View) {
-        val imm = RobokApplication.instance.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    fun hideSoftInput(view: View) {
+        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
     
-    open fun isSoftInputVisible (act: Activity): Boolean {
+    fun isSoftInputVisible (act: Activity): Boolean {
         return false
     }
 }

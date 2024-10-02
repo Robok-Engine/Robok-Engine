@@ -18,6 +18,7 @@ package org.robok.aapt2.compiler;
  */
 
 import android.util.Log;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,8 +30,6 @@ import org.robok.aapt2.util.FileUtil;
 import org.robok.aapt2.BinaryExecutor;
 import org.robok.aapt2.model.Project;
 import org.robok.aapt2.model.Library;
-
-import org.gampiot.robok.core.utils.application.RobokApplication;
 
 public class AAPT2Compiler extends Compiler {
 
@@ -45,12 +44,16 @@ public class AAPT2Compiler extends Compiler {
      private File resPath;
 
      private BinaryExecutor binaryExecutor;
-
-     public AAPT2Compiler(Project project) {
+     
+     private Context glbContext;
+     
+     public AAPT2Compiler(Context context, Project project) {
+          super(context);
           projectModel = project;
+          glbContext = context;
           setTag(TAG);
      }
-
+     
      @Override
      public void prepare() {
           onProgressUpdate("Preparing AAPT2...");
@@ -204,7 +207,7 @@ public class AAPT2Compiler extends Compiler {
      }
 
      private File getAAPT2File() throws CompilerException, IOException {
-          File nativeLibrary = new File(RobokApplication.robokContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
+          File nativeLibrary = new File(glbContext.getApplicationInfo().nativeLibraryDir + "/libaapt2.so");
           
           if (!nativeLibrary.exists()) {
                projectModel.getLogger().e(TAG, "AAPT2 binary not found");

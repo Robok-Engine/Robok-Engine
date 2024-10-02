@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.exception;
+package org.gampiot.robok.ui.activities.modeling
 
 /*
  *  This file is part of Robok © 2024.
@@ -15,11 +15,30 @@ package org.robok.aapt2.compiler.exception;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */
+ */ 
 
-public class CompilerException extends Exception {
-    
-	public CompilerException(String message) {
-		super(message);
-	}
+import android.content.Context
+
+import androidx.compose.ui.platform.ComposeView
+
+import org.gampiot.robok.ui.theme.RobokTheme
+import org.gampiot.robok.ui.screens.modeling.ModelingScreen
+
+/*
+* Class to create ComposeView in 3D Modeling.
+* @author Aquiles Trindade (trindadedev).
+*/
+
+class ModelingActivityHelper(
+   private val context: Context 
+) {
+    fun createComposeView(): ComposeView {
+        return ComposeView(context).apply {
+            setContent {
+                 RobokTheme {
+                     ModelingScreen()
+                 }
+            }
+        }
+    }
 }

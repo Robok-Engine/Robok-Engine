@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.exception;
+package org.gampiot.robok.feature.modeling.objects
 
 /*
  *  This file is part of Robok © 2024.
@@ -15,11 +15,20 @@ package org.robok.aapt2.compiler.exception;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */
-
-public class CompilerException extends Exception {
-    
-	public CompilerException(String message) {
-		super(message);
-	}
+ */ 
+ 
+/*
+* Command to create object on ModelingScreen.
+* see {@link ObjectsCreator} for see that methods.
+* see {@link Model3DView} for see that methods call.
+* @author Aquiles Trindade (trindadedev).
+*/
+object ObjectCommand {
+    const val CREATE_CUBE = "createCube"
+    const val CREATE_TRIANGLE = "createTriangle"
+    const val CREATE_SPHERE = "createSphere"
+    const val CREATE_CYLINDER = "createCylinder"
+    const val CREATE_CONE = "createCone"
+    const val CREATE_PLANE = "createPlane"
+    const val CREATE_TRIANGLE_2D = "createTriangle2D"
 }

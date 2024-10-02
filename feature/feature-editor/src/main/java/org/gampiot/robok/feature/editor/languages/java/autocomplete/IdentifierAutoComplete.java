@@ -22,6 +22,8 @@ package org.gampiot.robok.feature.editor.languages.java.autocomplete;
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
+
+import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
 
@@ -104,15 +106,21 @@ public class IdentifierAutoComplete {
     //RDK File Mapper
     private RDKFileMapper rdkClasses;
     
-    public IdentifierAutoComplete() {
-        rdkClasses = new RDKFileMapper();
-        rdkClasses.load();
-     }
+    private Context context;
+    
+    public IdentifierAutoComplete(Context context) {
+        this.context = context;
+        initRDKClasses();
+    }
 
-    public IdentifierAutoComplete(String[] keywords) {
-        this();
+    public IdentifierAutoComplete(Context context, String[] keywords) {
+        this(context);
         setKeywords(keywords, true);
-        
+    }
+    
+    private void initRDKClasses() {
+        rdkClasses = new RDKFileMapper(context);
+        rdkClasses.load();
     }
 
     private static String asString(CharSequence str) {

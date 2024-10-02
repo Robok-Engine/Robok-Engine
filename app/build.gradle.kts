@@ -126,7 +126,13 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.material.motion.compose.core)
     
+    implementation(libs.libgdx)
+    implementation(libs.libgdx.backend.android)
+    
     implementation(libs.sora.editor)
+    
+    implementation(libs.termux.terminal.view)
+    implementation(libs.termux.terminal.emulator)
     
     // projects
     implementation(project(":robok:robok-compiler"))
@@ -135,7 +141,6 @@ dependencies {
     
     implementation(project(":app-strings"))
     
-    implementation(project(":feature:feature-terminal"))
     implementation(project(":feature:feature-treeview"))
     implementation(project(":feature:feature-editor"))
     implementation(project(":feature:feature-modeling"))

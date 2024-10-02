@@ -55,7 +55,7 @@ import com.badlogic.gdx.utils.ScreenUtils;
 import org.gampiot.robok.feature.modeling.controller.CameraInputController2;
 import org.gampiot.robok.feature.modeling.objects.Plan;
 import org.gampiot.robok.feature.modeling.objects.SceneObject;
-import org.gampiot.robok.feature.modeling.objects.CreateObjects;
+import org.gampiot.robok.feature.modeling.objects.ObjectsCreator;
 
 import java.lang.reflect.Method;
 import java.nio.FloatBuffer;
@@ -83,7 +83,7 @@ public class Model3DView extends ApplicationAdapter {
     private SpriteBatch spriteBatch;
     private BitmapFont font;
     private GlyphLayout layout;
-    public String command = null;
+    public String objectCommand = null;
 
     private boolean isDragging = false;
 
@@ -277,16 +277,15 @@ public class Model3DView extends ApplicationAdapter {
         }
     }
 
-    public void setCommand(String command) {
-        this.command = command;
+    public void setCommand(String objectCommand) {
+        this.objectCommand = objectCommand;
     }
 
-    private void start(String s) {
+    private void invokeObject(String objectCommand) {
         try {
-            CreateObjects createObjects = new CreateObjects(camController, SceneObject.sceneObjects);
-
+            ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.sceneObjects);
             Class<?> clazz = createObjects.getClass();
-            Method method = clazz.getDeclaredMethod(s);
+            Method method = clazz.getDeclaredMethod(objectCommand);
             method.invoke(createObjects);
             // sceneObjects = createObjects.get();
 
@@ -296,9 +295,9 @@ public class Model3DView extends ApplicationAdapter {
     }
 
     private void onTime() {
-        if (command != null) {
-            start(command);
-            command = null;
+        if (objectCommand != null) {
+            invokeObject(objectCommand);
+            objectCommand = null;
         }
     }
 

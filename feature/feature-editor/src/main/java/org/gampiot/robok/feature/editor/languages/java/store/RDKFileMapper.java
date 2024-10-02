@@ -24,31 +24,33 @@ package org.gampiot.robok.feature.editor.languages.java.store;
 * @author ThDev-Only
 */
 
+import android.content.Context;
+
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
 import java.util.HashMap;
 
-import org.gampiot.robok.core.utils.application.RobokApplication;
-
 public class RDKFileMapper {
     
-    private HashMap<String, String> robokClass;
-    private String rdkAtual = "RDK-1";
-    File rdkDirectory;
+    private Context context;
+    private HashMap<String, String> robokClasses;
+    private String atuallyRDK = "RDK-1";
+    private File rdkDirectory;
     
-    public RDKFileMapper(){
-        robokClass = new HashMap<>();
-        rdkDirectory = new File(RobokApplication.robokContext.getFilesDir(), rdkAtual + "/rdk/");
+    public RDKFileMapper(Context context){
+        this.context = context;
+        robokClasses = new HashMap<>();
+        rdkDirectory = new File(context.getFilesDir(), atuallyRDK + "/rdk/");
         
     }
     
     public void load(){
-        this.robokClass = mapRdkClasses();
+        this.robokClasses = mapRdkClasses();
     }
     
     public HashMap<String, String> getClasses() {
-        return this.robokClass;
+        return this.robokClasses;
     }
     
     // Method that returns a HashMap with the names of the classes and their formatted directories
@@ -56,16 +58,16 @@ public class RDKFileMapper {
         File rdkFolder = rdkDirectory;
 
         if (rdkFolder.exists() && rdkFolder.isDirectory()) {
-            mapClassesRecursively(rdkFolder, "", robokClass);
+            mapClassesRecursively(rdkFolder, "", robokClasses);
         }else{
-            robokClass.put("ErrorRdkNaoExiste", "com.error.rdk.ErrorRdkNaoExiste");
+            robokClasses.put("ErrorRdkNaoExiste", "com.error.rdk.ErrorRdkNaoExiste");
         }
 
-        return robokClass;
+        return robokClasses;
     }
 
     // Recursive method to map .class classes into the directory
-    private void mapClassesRecursively(File folder, String packageName, HashMap<String, String> robokClass) {
+    private void mapClassesRecursively(File folder, String packageName, HashMap<String, String> robokClasses) {
         File[] files = folder.listFiles();
         if (files == null) return;
 
@@ -73,12 +75,12 @@ public class RDKFileMapper {
             if (file.isDirectory()) {
                 // Update package name as you cycle through folders
                 String newPackageName = packageName.isEmpty() ? file.getName() : packageName + "." + file.getName();
-                mapClassesRecursively(file, newPackageName, robokClass);
+                mapClassesRecursively(file, newPackageName, robokClasses);
             } else if (file.getName().endsWith(".class")) {
                 // Remove the .class extension and map the class
                 String className = file.getName().replace(".class", "");
                 String classPath = packageName + "." + className;
-                robokClass.put(className, classPath);
+                robokClasses.put(className, classPath);
             }
         }
     }
@@ -100,18 +102,18 @@ public class RDKFileMapper {
         String rdkDirectory = "/caminho/para/sua/classe/";
 
         // Cria o HashMap mapeando os arquivos .class
-        HashMap<String, String> robokClass = 
+        HashMap<String, String> robokClasses = 
 
         // Exemplo de uso do HashMap
-        System.out.println(robokClass.get("Physics")); // Exemplo: robok.physics.Physics
+        System.out.println(robokClasses.get("Physics")); // Exemplo: robok.physics.Physics
 
         // Cria o URLClassLoader
         URLClassLoader classLoader = getClassLoader(rdkDirectory);
 
         // Carrega as classes com base no nome completo (pacote + nome da classe)
-        Class<?> class1 = classLoader.loadClass(robokClass.get("Physics"));
-        Class<?> class2 = classLoader.loadClass(robokClass.get("Graphic"));
-        Class<?> class3 = classLoader.loadClass(robokClass.get("Util"));
+        Class<?> class1 = classLoader.loadClass(robokClasses.get("Physics"));
+        Class<?> class2 = classLoader.loadClass(robokClasses.get("Graphic"));
+        Class<?> class3 = classLoader.loadClass(robokClasses.get("Util"));
 
         // Exibe os nomes das classes carregadas
         System.out.println("Classe 1: " + class1.getName());

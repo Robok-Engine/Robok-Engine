@@ -126,7 +126,7 @@ public class CompilerTask {
     }
 
     private boolean startAaptCompiler() throws Exception {
-        Compiler aapt2Compiler = new AAPT2Compiler(project);
+        Compiler aapt2Compiler = new AAPT2Compiler(mContext.get(), project);
         aapt2Compiler.setProgressListener(args -> publishProgress(aapt2Compiler.getTag(), args));
         aapt2Compiler.prepare();
         aapt2Compiler.run();
@@ -135,7 +135,7 @@ public class CompilerTask {
     }
 
     private boolean startEcjCompiler() throws Exception {
-        Compiler ecjCompiler = new IncrementalECJCompiler(project);
+        Compiler ecjCompiler = new IncrementalECJCompiler(mContext.get(), project);
         ecjCompiler.setProgressListener(args -> publishProgress(ecjCompiler.getTag(), args));
         ecjCompiler.prepare();
         ecjCompiler.run();
@@ -144,7 +144,7 @@ public class CompilerTask {
     }
 
     private boolean startD8Compiler() throws Exception {
-        Compiler d8Compiler = new IncrementalD8Compiler(project);
+        Compiler d8Compiler = new IncrementalD8Compiler(mContext.get(), project);
         d8Compiler.setProgressListener(args -> publishProgress(d8Compiler.getTag(), args));
         d8Compiler.prepare();
         d8Compiler.run();

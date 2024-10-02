@@ -61,7 +61,6 @@ import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceTemplate
-import org.gampiot.robok.core.components.compose.text.RobokText
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -120,10 +119,12 @@ fun LibraryItemTitle(
    title: String?
 ) {
    title?.let {
-       RobokText(
-           text = it
+       Text(
+           text = it,
+           color = MaterialTheme.colorScheme.onSurface
        )
-   } ?: RobokText(
-       text = "No Title Available"
-   )
+   } ?: Text(
+          text = "No Title Available",
+          color = MaterialTheme.colorScheme.onSurface
+       )
 }

@@ -21,7 +21,6 @@ import android.os.Bundle
 
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -36,6 +35,7 @@ import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.ui.theme.RobokTheme
 import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.ui.screens.home.HomeScreen
+import org.gampiot.robok.core.utils.base.RobokActivity
 import org.gampiot.robok.ui.screens.project.create.CreateProjectScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.SettingsScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.app.SettingsAppScreen
@@ -44,7 +44,7 @@ import org.gampiot.robok.feature.settings.compose.screens.ui.libraries.Libraries
 import org.gampiot.robok.feature.settings.compose.screens.ui.about.AboutScreen
 import org.gampiot.robok.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
 
-class MainActivity : ComponentActivity() {
+class MainActivity : RobokActivity() {
 
     companion object {
         const val MSAX_SLIDE_DISTANCE: Int = 100
@@ -54,7 +54,6 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         val defaultTemplate = ProjectTemplate(
                name = getString(Strings.template_name_empty_game),
                packageName = "com.robok.empty",

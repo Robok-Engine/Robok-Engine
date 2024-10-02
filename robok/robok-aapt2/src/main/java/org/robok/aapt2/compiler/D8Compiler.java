@@ -17,6 +17,8 @@ package org.robok.aapt2.compiler;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.content.Context;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -31,10 +33,13 @@ import org.robok.aapt2.compiler.exception.AAPT2CompileException;
 public class D8Compiler extends Compiler {
     
 	private static final String TAG = "D8";
+	public Context glbContext;
 	
     private Project mProject;
     
-    public D8Compiler(Project project) {
+    public D8Compiler(Context context, Project project) {
+        super(context);
+        glbContext = context;
         mProject = project;
         setTag(TAG);
     }

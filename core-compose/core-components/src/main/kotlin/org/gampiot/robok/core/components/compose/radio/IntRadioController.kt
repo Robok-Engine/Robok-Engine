@@ -24,9 +24,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
-
-import org.gampiot.robok.core.components.compose.text.RobokText
+import androidx.compose.foundation.shape.RoundedCornerShape
 
 @Composable
 fun IntRadioController(
@@ -45,6 +45,7 @@ fun IntRadioController(
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
+                        .clip(RoundedCornerShape(8.dp))
                         .padding(vertical = 1.dp)
                         .clickable {
                             selectedChoice = option
@@ -52,16 +53,13 @@ fun IntRadioController(
                         },
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    RobokText(
+                    Text(
                         text = labelFactory(option),
                         modifier = Modifier.weight(1f)
                     )
                     RadioButton(
                         selected = option == selectedChoice,
-                        onClick = {
-                            selectedChoice = option
-                            onChoiceSelected(option)
-                        }
+                        onClick = null 
                     )
                 }
             }

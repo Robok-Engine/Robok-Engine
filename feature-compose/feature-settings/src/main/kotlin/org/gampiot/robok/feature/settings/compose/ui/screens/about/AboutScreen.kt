@@ -45,7 +45,6 @@ import org.gampiot.robok.core.components.compose.preferences.normal.Preference
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceTemplate
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
-import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.strings.Strings
 
 import coil.compose.SubcomposeAsyncImage
@@ -127,12 +126,12 @@ fun AboutScreen(
                     .clip(CircleShape),
             )
             Spacer(modifier = Modifier.height(12.dp))
-            RobokText(
+            Text(
                 text = "Robok",
                 fontWeight = FontWeight.Bold,
                 style = MaterialTheme.typography.titleLarge,
             )
-            RobokText(
+            Text(
                 text = version,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant
@@ -191,8 +190,8 @@ fun ContributorRow(
     val uriHandler = LocalUriHandler.current
 
     PreferenceTemplate(
-        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.login) },
-        description = { RobokText(text = dataInfo.role) },
+        title = { Text(fontWeight = FontWeight.Bold, text = dataInfo.login) },
+        description = { Text(text = dataInfo.role) },
         modifier = Modifier
            .clickable(
               onClick = {
@@ -232,8 +231,8 @@ fun LinkRow(
                   uriHandler.openUri(dataInfo.url)
               }
            ),
-        title = { RobokText(fontWeight = FontWeight.Bold, text = dataInfo.name) },
-        description = { RobokText(text = dataInfo.description) },
+        title = { Text(fontWeight = FontWeight.Bold, text = dataInfo.name) },
+        description = { Text(text = dataInfo.description) },
         startWidget = {
             Image(
                 painter = painterResource(id = dataInfo.imageResId),

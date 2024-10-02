@@ -48,6 +48,7 @@ import org.gampiot.robok.Ids
 import org.gampiot.robok.Drawables
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.databinding.ActivityEditorBinding
+import org.gampiot.robok.ui.activities.modeling.ModelingActivity
 import org.gampiot.robok.ui.activities.editor.logs.LogsFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.gampiot.robok.ui.activities.editor.diagnostic.models.DiagnosticItem
@@ -64,7 +65,6 @@ import org.gampiot.robok.feature.treeview.provider.DefaultFileIconProvider
 import org.gampiot.robok.feature.treeview.interfaces.FileObject
 import org.gampiot.robok.feature.treeview.model.Node
 import org.gampiot.robok.feature.treeview.interfaces.FileClickListener
-import org.gampiot.robok.feature.modeling.launcher.AndroidLauncher
 
 import org.robok.antlr.logic.AntlrListener
 import org.robok.aapt2.compiler.CompilerTask
@@ -95,15 +95,21 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     private val editorViewModel by viewModels<EditorViewModel>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
+         isEdgeToEdge = false
          super.onCreate(savedInstanceState)
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
-         projectPath = intent?.extras?.getString("projectPath")
-                            ?: throw IllegalArgumentException("You cannot open this activity without project path.")
-         projectManager = ProjectManager(this@EditorActivity)
-         projectManager.setProjectPath(File(projectPath))
-         observeViewModel()
+         
+         val extras = intent.extras
+         if (extras != null) {
+              projectPath = extras.getString("projectPath")
+              projectManager = ProjectManager(this@EditorActivity)
+              projectPath?.let {
+                    projectManager.setProjectPath(File(it))
+              }
+         }
+
          configureScreen()
     }
 
@@ -308,12 +314,14 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
                 if (node.value.isDirectory()) {
                     return
                 }
+
                 val fileExtension = node.value.getName().substringAfterLast(".")
                 
                 when (fileExtension) {
                     "obj" -> startActivity(Intent(this@EditorActivity, AndroidLauncher::class.java)) // Open 3D modeling
                     "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
                     else -> {}
+
                 }
             }
         })

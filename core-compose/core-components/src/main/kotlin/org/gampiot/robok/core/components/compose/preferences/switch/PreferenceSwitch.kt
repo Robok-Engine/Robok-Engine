@@ -38,7 +38,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
 
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceTemplate
-import org.gampiot.robok.core.components.compose.text.RobokText
 
 /**
  * A Preference that provides a two-state toggleable option.
@@ -72,8 +71,8 @@ fun PreferenceSwitch(
             .fillMaxHeight()
             .padding(vertical = 16.dp)
             .padding(start = 16.dp),
-        title = { RobokText(fontWeight = FontWeight.Bold, text = label) },
-        description = { description?.let { RobokText(text = it) } },
+        title = { Text(fontWeight = FontWeight.Bold, text = label) },
+        description = { description?.let { Text(text = it) } },
         endWidget = {
             if (onClick != null) {
                 Spacer(

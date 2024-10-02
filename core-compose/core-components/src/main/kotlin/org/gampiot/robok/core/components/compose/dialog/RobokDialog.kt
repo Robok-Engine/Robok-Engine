@@ -35,49 +35,49 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.compose.ui.graphics.vector.ImageVector
 
-import org.gampiot.robok.core.components.compose.text.RobokText
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobokDialog(
     onDismissRequest: () -> Unit,
     onConfirmation: () -> Unit,
-    dialogTitle: String,
-    dialogText: String,
-    icon: ImageVector? = null,
+    title: @Composable () -> Unit,
+    text: @Composable () -> Unit,
+    confirmButton: @Composable () -> Unit,
+    dismissButton: @Composable () -> Unit,
+    icon: @Composable (() -> Unit)? = null,
     iconDescription: String = "Icon"
 ) {
     AlertDialog(
         icon = {
             icon?.let {
-                Icon(it, contentDescription = iconDescription)
+                it()
             }
         },
         title = {
-            RobokText(text = dialogTitle)
+            title()
         },
         text = {
-            RobokText(text = dialogText)
+            text()
         },
         onDismissRequest = {
             onDismissRequest()
         },
         confirmButton = {
-            TextButton(
+            Button(
                 onClick = {
                     onConfirmation()
                 }
             ) {
-                RobokText("Confirm")
+                confirmButton()
             }
         },
         dismissButton = {
-            TextButton(
+            OutlinedButton(
                 onClick = {
                     onDismissRequest()
                 }
             ) {
-                RobokText("Dismiss")
+                dismissButton()
             }
         }
     )

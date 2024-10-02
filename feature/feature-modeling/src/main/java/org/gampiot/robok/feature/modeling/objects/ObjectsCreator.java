@@ -34,14 +34,14 @@ import org.gampiot.robok.feature.modeling.controller.CameraInputController2;
 
 import java.util.List;
 
-public class CreateObjects {
+public class ObjectsCreator {
     // Lista de todos os objetos
     private List<SceneObject> sceneObjects;
     private CameraInputController2 controller;
     private ModelBuilder modelBuilder;
     private Vector3 size;
 
-    public CreateObjects(CameraInputController2 controller, List<SceneObject> sceneObjects) {
+    public ObjectsCreator(CameraInputController2 controller, List<SceneObject> sceneObjects) {
         this.controller = controller;
         this.sceneObjects = sceneObjects;
         this.modelBuilder = new ModelBuilder();

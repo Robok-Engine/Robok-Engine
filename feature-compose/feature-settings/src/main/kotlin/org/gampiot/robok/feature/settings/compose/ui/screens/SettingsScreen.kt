@@ -32,7 +32,6 @@ import org.gampiot.robok.feature.settings.compose.viewmodels.AppPreferencesViewM
 import org.gampiot.robok.core.components.compose.preferences.normal.Preference
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
-import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -65,15 +64,15 @@ fun generalPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
-       secondaryText = { RobokText(text = stringResource(id = Strings.settings_app_description)) },
+       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
+       secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
            navController.navigate("settings/app")
        }
    )
    Preference(
-       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
-       secondaryText = { RobokText(text = stringResource(id = Strings.settings_code_editor_description)) },
+       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
+       secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
            navController.navigate("settings/codeeditor")
        }
@@ -85,8 +84,8 @@ fun buildPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
-       secondaryText = { RobokText(stringResource(id = Strings.settings_configure_rdk_description)) },
+       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
            navController.navigate("settings/configure_rdk")
        }
@@ -98,15 +97,15 @@ fun aboutPrefs(
     navController: NavController
 ) {
    Preference(
-       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
-       secondaryText = { RobokText(stringResource(id = Strings.settings_libraries_description)) },
+       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
            navController.navigate("settings/libraries")
        }
    )
    Preference(
-       text = { RobokText(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
-       secondaryText = { RobokText(stringResource(id = Strings.settings_about_description)) },
+       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
+       secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
            navController.navigate("settings/about")
        }

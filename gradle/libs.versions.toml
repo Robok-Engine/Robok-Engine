@@ -7,16 +7,16 @@ coroutines = "1.9.0"
 glide = "4.16.0"
 lifecycle = "2.8.6"
 core-ktx = "1.13.1"
-fragment-ktx = "1.8.3"
+fragment-ktx = "1.8.4"
 splashscreen = "1.0.1"
 preference = "1.2.1"
 datastore = "1.1.1"
 serialization-json = "1.7.3"
 okhttp-bom = "4.12.0"
 desugar = "2.1.2"
-compose-bom = "2024.09.02"
+compose-bom = "2024.09.03"
 activity-compose = "1.9.2"
-navigation-compose = "2.8.1"
+navigation-compose = "2.8.2"
 material-motion = "2.0.1"
 about-libraries = "11.2.3"
 sora-editor = "0.23.4"
@@ -27,6 +27,7 @@ android-minSdk = "26"
 antlr = "4.13.2"
 libgdx = "1.12.1"
 koin = "4.0.0"
+termux = "0.118.1"
 
 [plugins]
 agp-lib = { id = "com.android.library", version.ref = "agp" }
@@ -48,10 +49,10 @@ preference = { group = "androidx.preference", name = "preference", version.ref =
 datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
 
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-material-compose = { group = "androidx.compose.material", name = "material", version = "1.7.2" }
+material-compose = { group = "androidx.compose.material", name = "material", version = "1.7.3" }
 material3-compose = { group = "androidx.compose.material3", name = "material3", version = "1.3.0" }
-ui-compose = { group = "androidx.compose.ui", name = "ui", version = "1.7.2" }
-ui-graphics-compose = { group = "androidx.compose.ui", name = "ui-graphics", version = "1.7.2" }
+ui-compose = { group = "androidx.compose.ui", name = "ui", version = "1.7.3" }
+ui-graphics-compose = { group = "androidx.compose.ui", name = "ui-graphics", version = "1.7.3" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
 viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version = "2.8.6" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
@@ -84,7 +85,12 @@ libgdx-backend-android = { group = "com.badlogicgames.gdx", name = "gdx-backend-
 
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
 
+termux-terminal-view = { group = "com.termux.termux-app", name = "terminal-view", version.ref = "termux" }
+termux-terminal-emulator = { group = "com.termux.termux-app", name = "terminal-emulator", version.ref = "termux" }
+
 sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor", version.ref = "sora-editor" }
 sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp", version.ref = "sora-editor" }
 sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java", version.ref = "sora-editor" }
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
+
+insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version = "0.6.1" }

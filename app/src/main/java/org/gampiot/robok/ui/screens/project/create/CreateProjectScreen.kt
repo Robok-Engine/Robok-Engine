@@ -23,11 +23,14 @@ import android.widget.Toast
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
+import androidx.compose.material.icons.*
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
@@ -46,7 +49,6 @@ import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.models.project.ProjectTemplate
 import org.gampiot.robok.manage.project.ProjectManager
 import org.gampiot.robok.ui.activities.editor.EditorActivity
-import org.gampiot.robok.core.components.compose.text.RobokText
 import org.gampiot.robok.core.components.compose.dialog.RobokDialog
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceLayout
 import org.gampiot.robok.core.components.compose.preferences.base.PreferenceGroup
@@ -103,13 +105,13 @@ private fun Screen(
     OutlinedTextField(
         value = state.projectName,
         onValueChange = { viewModel.updateProjectName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
+        label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     OutlinedTextField(
         value = state.packageName,
         onValueChange = { viewModel.updatePackageName(it) },
-        label = { RobokText(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
+        label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
         modifier = modifier.fillMaxWidth()
     )
     
@@ -125,7 +127,7 @@ private fun Screen(
             modifier = Modifier.weight(1f),
             onClick = { navController.popBackStack() }
         ) {
-            RobokText(text = stringResource(id = Strings.common_word_cancel))
+            Text(text = stringResource(id = Strings.common_word_cancel))
         }
         Button(
             modifier = Modifier.weight(1f),
@@ -149,7 +151,7 @@ private fun Screen(
                 )
             }
         ) {
-           RobokText(text = stringResource(id = Strings.title_create_project))
+           Text(text = stringResource(id = Strings.title_create_project))
         }
         showVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
     }
@@ -169,9 +171,21 @@ fun showVeryBasicDialog(
             onConfirmation = {
                 isShowDialog.value = false
             },
-            dialogTitle = title,
-            dialogText = message,
-            iconDescription = "Icon"
+            title = {
+                Text(text = title, fontSize = 24.sp)
+            },
+            text = {
+                Text(text = message)
+            },
+            confirmButton = {
+                Text(stringResource(id = Strings.common_word_ok))
+            },
+            dismissButton = {
+                Text(stringResource(id = Strings.common_word_cancel))
+            },
+            icon = {
+                Icon(Icons.Outlined.Settings, contentDescription = "Icon")
+            }
         )
     }
 }
