@@ -34,7 +34,10 @@ public class IncrementalD8Compiler extends Compiler {
 	
     private Project mProject;
     
-    public IncrementalD8Compiler(Project project) {
+    private Context glbContext;
+    
+    public IncrementalD8Compiler(Context context, Project project) {
+        glbContext = context;
         mProject = project;
         setTag(TAG);
     }

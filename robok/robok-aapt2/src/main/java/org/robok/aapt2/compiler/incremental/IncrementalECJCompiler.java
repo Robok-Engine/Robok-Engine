@@ -17,6 +17,8 @@ package org.robok.aapt2.compiler.incremental;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.content.Context;
+
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
 import java.util.ArrayList;
@@ -44,7 +46,11 @@ public class IncrementalECJCompiler extends Compiler {
 	
 	private List<File> filesToCompile;
 	
-	public IncrementalECJCompiler(Project project) {
+	private Context glbContext;
+	
+	public IncrementalECJCompiler(Context context, Project project) {
+		super(context);
+		glbContext = context;
 		mProject = project;
         setTag(TAG);
 	}

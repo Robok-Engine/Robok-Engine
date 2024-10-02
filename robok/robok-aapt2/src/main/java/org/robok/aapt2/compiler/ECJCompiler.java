@@ -16,6 +16,8 @@ package org.robok.aapt2.compiler;
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
+ 
+import android.content.Context;
 
 import org.eclipse.jdt.internal.compiler.batch.Main;
 
@@ -41,7 +43,11 @@ public class ECJCompiler extends Compiler {
 	
 	private Project mProject;
 	
-	public ECJCompiler(Project project) {
+	private Context glbContext;
+	
+	public ECJCompiler(Context context, Project project) {
+	    super(context);
+	    glbContext = context;
 		mProject = project;
         setTag(TAG);
 	}

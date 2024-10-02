@@ -40,8 +40,6 @@ dependencies {
     implementation(libs.appcompat)
     
     implementation(libs.gson)
-    
-    implementation(project(":core:core-utils"))
 }
 
 publishing {
