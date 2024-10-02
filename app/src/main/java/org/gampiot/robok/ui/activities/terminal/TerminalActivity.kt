@@ -39,7 +39,6 @@ import com.termux.view.TerminalViewClient
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.databinding.ActivityTerminalBinding
 import org.gampiot.robok.databinding.LayoutDialogInputBinding
-import org.gampiot.robok.exceptions.NotImplementedExeception
 import org.gampiot.robok.core.utils.KeyboardUtil
 import org.gampiot.robok.core.utils.base.RobokActivity
 
