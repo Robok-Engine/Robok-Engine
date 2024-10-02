@@ -102,6 +102,7 @@ class DebugActivity : RobokActivity() {
                 modifier = Modifier
                     .padding(16.dp)
                     .fillMaxSize()
+                    .weight(1f)
             ) {
                 items(madeErrMsg.split("\n")) { line ->
                     Text(text = line, style = MaterialTheme.typography.bodyMedium)
