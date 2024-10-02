@@ -26,6 +26,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.res.stringResource
 
 import org.gampiot.robok.strings.Strings
 import org.gampiot.robok.core.utils.base.RobokActivity
@@ -65,7 +66,7 @@ class DebugActivity : RobokActivity() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = Strings.title_debug_title) },
+                    title = { Text(text = stringResource(id = Strings.title_debug_title)) },
                     navigationIcon = {
                         IconButton(onClick = { finish() }) {
                             Icon(Icons.Default.ArrowBack, contentDescription = "Back")
@@ -82,10 +83,10 @@ class DebugActivity : RobokActivity() {
             onDismissRequest = { finish() },
             confirmButton = {
                 TextButton(onClick = { finish() }) {
-                    Text(Strings.common_word_end)
+                    Text(stringResource(id = Strings.common_word_end))
                 }
             },
-            title = { Text(Strings.title_debug_title) },
+            title = { Text(stringResource(id = Strings.title_debug_title)) },
             text = { Text(madeErrMsg) }
         )
     }
