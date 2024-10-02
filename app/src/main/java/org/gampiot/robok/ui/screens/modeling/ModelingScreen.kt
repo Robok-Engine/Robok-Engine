@@ -38,6 +38,7 @@ fun ModelingScreen() {
 
     Box(modifier = Modifier.fillMaxSize()) {
         Column(modifier = Modifier.fillMaxSize()) {
+         //idk
         }
 
         Image(
@@ -55,16 +56,17 @@ fun ModelingScreen() {
         ExpandAndShrink(
             visible = isOptionsOpen,
             modifier = Modifier
-                .size(200.dp, 200.dp)
                 .align(Alignment.TopEnd)
-                .offset { IntOffset(0, 80) }
                 .padding(16.dp)
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh),
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
+            Box(
+                modifier = Modifier
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                Text("Conteúdo Aqui")
             }
         }
     }
