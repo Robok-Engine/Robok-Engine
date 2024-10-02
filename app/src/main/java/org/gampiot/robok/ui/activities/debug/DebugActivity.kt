@@ -18,6 +18,7 @@ package org.gampiot.robok.ui.activities.debug
  */
 
 import android.os.Bundle
+
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
@@ -61,6 +62,7 @@ class DebugActivity : RobokActivity() {
     @Composable
     fun DebugScreen(errorMessage: String) {
         var madeErrMsg by remember { mutableStateOf("") }
+        var showDialog by remember { mutableStateOf(true) }
 
         LaunchedEffect(errorMessage) {
             madeErrMsg = processErrorMessage(errorMessage)
@@ -82,21 +84,24 @@ class DebugActivity : RobokActivity() {
             }
         )
 
-        AlertDialog(
-            onDismissRequest = { finish() },
-            confirmButton = {
-                TextButton(onClick = { finish() }) {
-                    Text(stringResource(id = Strings.common_word_end))
-                }
-            },
-            title = { Text(stringResource(id = Strings.title_debug_title)) },
-            text = { Text(madeErrMsg) }
-        )
+        if (showDialog) {
+            AlertDialog(
+                onDismissRequest = { showDialog = false },
+                confirmButton = {
+                    TextButton(onClick = { showDialog = false }) {
+                        Text(stringResource(id = Strings.common_word_end))
+                    }
+                },
+                title = { Text(stringResource(id = Strings.title_debug_title)) },
+                text = { Text(madeErrMsg) }
+            )
+        }
     }
 
     @Composable
     fun ErrorContent(madeErrMsg: String, modifier: Modifier = Modifier) {
-        val scrollState = rememberScrollState()
+        val verticalScrollState = rememberScrollState()
+        val horizontalScrollState = rememberScrollState()
 
         SelectionContainer {
             Text(
@@ -104,7 +109,8 @@ class DebugActivity : RobokActivity() {
                 fontSize = 11.sp,
                 lineHeight = 14.sp,
                 modifier = modifier
-                    .horizontalScroll(scrollState)
+                    .verticalScroll(verticalScrollState)
+                    .horizontalScroll(horizontalScrollState)
                     .padding(8.dp)
             )
         }
@@ -112,6 +118,9 @@ class DebugActivity : RobokActivity() {
 
     private fun processErrorMessage(errMsg: String): String {
         val splitMessage = errMsg.split("\n")
+        if (splitMessage.isEmpty() || splitMessage[0].isEmpty()) {
+            return errMsg
+        }
         for (i in exceptionType.indices) {
             if (splitMessage[0].contains(exceptionType[i])) {
                 val additionalInfo = splitMessage[0].substringAfter(exceptionType[i])
