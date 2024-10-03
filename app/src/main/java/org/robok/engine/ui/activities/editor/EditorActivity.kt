@@ -273,21 +273,19 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
         binding.fileTree.loadFiles(fileObject)
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
-                if (node.value.isDirectory()) {
-                    return
-                }
-
-                val fileExtension = node.value.getName().substringAfterLast(".")
-                
-                when (fileExtension) {
-                    "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // Open 3D modeling
-                    "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
-                    else -> {}
-
-                }
+                if (node.value.isDirectory()) return
+                handleFileExtension(node.value.getName().substringAfterLast("."))
             }
         })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
+    }
+    
+    private fun handleFileExtension(fileExtension: String) {
+        when (fileExtension) {
+           "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // Open 3D modeling
+           "java" -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
+           else -> {}
+        }
     }
 
     private fun updateUndoRedo() {
