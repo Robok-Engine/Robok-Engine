@@ -320,27 +320,31 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
                 is EditorEvent.CloseAll -> closeAll()
             }
         }
-        
-        editorViewModel.files.observe(this) { files ->
-            
-        }
     }
     
     private fun openFile(file: File) {
-        val index = editorViewModel.fileCount
-        val editor = RobokCodeEditor(this, file)
+        editorViewModel.files.observe(this) { files ->
+            files.forEach { cFile ->
+                if (cFile = file) {
+                   Toast.makeText(this, getString(Strings.warning_file_already_opened, Toast.LENGTH_SHORT).show()
+                   return
+                }
+                val index = editorViewModel.fileCount
+                val editor = RobokCodeEditor(this, file)
 
-        editorViewModel.addFile(file)
-        binding.apply {
-            tabs.visibility = View.VISIBLE
-            noContentLayout.visibility = View.GONE
-            editorContainer.addView(editor)
-            tabs.addTab(tabs.newTab())
-            drawerLayout.closeDrawer(GravityCompat.START)
+                editorViewModel.addFile(file)
+                binding.apply {
+                    tabs.visibility = View.VISIBLE
+                    noContentLayout.visibility = View.GONE
+                    editorContainer.addView(editor)
+                    tabs.addTab(tabs.newTab())
+                    drawerLayout.closeDrawer(GravityCompat.START)
+                }
+                editorViewModel.setCurrentFile(index)
+                setEditorListeners(editor)
+                updateTabs()
+            }
         }
-        editorViewModel.setCurrentFile(index)
-        setEditorListeners(editor)
-        updateTabs()
     }
 
     private fun setEditorListeners(editor: RobokCodeEditor) {

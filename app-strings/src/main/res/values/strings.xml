@@ -105,6 +105,7 @@
     <string name="warning_project_created_title">Project Created Successfully!</string>
     <string name="warning_project_created_message">Your project has been created successfully!</string>
     <string name="warning_project_installer_not_found">No package installer found.</string>
+    <string name="warning_file_already_opened">File is already open in the editor.</string>
     <!-- end section -->
     
     <!-- errors section -->
