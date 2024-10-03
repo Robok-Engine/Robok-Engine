@@ -112,7 +112,8 @@
     <string name="item_libraries_title">Softwares de terceiros</string>
     <string name="item_libraries_description">As bibliotecas que usamos</string>
     <!--end section-->
-<string name="title_templates">Templates</string>
+    
+    <string name="title_templates">Templates</string>
     <string name="template_name_empty_game">Jogo vazio</string>
     <string name="item_whatsapp_description">Ou grupo do whatsapp.</string>
     <string name="item_whatsapp_title">WhatsApp</string>
