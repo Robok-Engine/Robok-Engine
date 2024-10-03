@@ -23,6 +23,7 @@ import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.content.Intent
 import android.net.Uri
@@ -225,6 +226,8 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
     }
 
     private fun configureDrawer() {
+        binding.drawerLayout.setScrimColor(Color.TRANSPARENT)
+        binding.drawerLayout.setDrawerElevation(0f)
         binding.drawerLayout.addDrawerListener(object : DrawerLayout.DrawerListener {
             var leftDrawerOffset = 0f
             var rightDrawerOffset = 0f
