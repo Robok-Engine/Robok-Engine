@@ -45,9 +45,9 @@ import org.robok.aapt2.apksigner.Main;
 
 public class CompilerTask {
 
-    public interface onCompileResult {
-        void onSuccess(File file);
-        void onFailed(String msg);
+    public interface OnCompileResult {
+        void onCompileSuccess(File file);
+        void onCompileError(String msg);
     }
 
     private final WeakReference<Context> mContext;
@@ -58,7 +58,7 @@ public class CompilerTask {
     private TextView progress;
     private long startTime;
     private Project project;
-    private final onCompileResult onResult;
+    private final OnCompileResult onResult;
 
     public CompilerTask(Context context, onCompileResult result) {
         mContext = new WeakReference<>(context);
@@ -192,9 +192,9 @@ public class CompilerTask {
 
     protected void onPostExecute(CompilerResult result) {
         if (result.isError()) {
-            onResult.onFailed(result.getMessage());
+            onResult.onCompileError(result.getMessage());
         } else {
-            onResult.onSuccess(result.getSignApk());
+            onResult.onCompileSuccess(result.getSignApk());
         }
     }
 

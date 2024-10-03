@@ -74,7 +74,7 @@ import java.io.File
 
 import kotlinx.coroutines.*
 
-class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
+class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
 
     private lateinit var projectManager: ProjectManager
     private var projectPath: String? = null
@@ -138,8 +138,29 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     override fun onTabSelected(tab: TabLayout.Tab) {
         editorViewModel.setCurrentFile(tab.position)
     }
-
+   
     override fun onTabUnselected(tab: TabLayout.Tab) {}
+    
+    override fun onCompileSuccess(signApk: File) {
+        val context = this@EditorActivity
+                    
+        val apkUri: Uri = FileProvider.getUriForFile(
+            context,
+            "${context.packageName}.provider",
+            signApk
+        )
+        val intent = Intent(Intent.ACTION_VIEW).apply {
+            setDataAndType(apkUri, "application/vnd.android.package-archive")
+            flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
+        }
+        if (intent.resolveActivity(context.packageManager) != null) {
+            context.startActivity(intent)
+        } else {
+            Toast.makeText(context, getString(Strings.warning_project_installer_not_found), Toast.LENGTH_SHORT).show()
+        }
+    }
+    
+    override fun onCompileError(error: String) { }
 
     private fun configureScreen() {
         configureTabLayout()
@@ -153,31 +174,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     
     private fun configureButtons() {
         binding.runButton.setOnClickListener {
-            projectManager.build(object : CompilerTask.onCompileResult{
-                override fun onSuccess(signApk: File){
-                    val context = this@EditorActivity
-                    
-                    val apkUri: Uri = FileProvider.getUriForFile(
-                        context,
-                        "${context.packageName}.provider",
-                        signApk
-                    )
-                    val intent = Intent(Intent.ACTION_VIEW).apply {
-                        setDataAndType(apkUri, "application/vnd.android.package-archive")
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    }
-
-                    if (intent.resolveActivity(context.packageManager) != null) {
-                        context.startActivity(intent)
-                    } else {
-                        Toast.makeText(context, getString(Strings.warning_project_installer_not_found), Toast.LENGTH_SHORT).show()
-                    }
-                }
-                
-                override fun onFailed(msg: String){
-                    
-                }
-            })
+            projectManager.build(this)
         }
         
         binding.openFilesButton.setOnClickListener {
