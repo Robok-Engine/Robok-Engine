@@ -100,7 +100,6 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
          _binding = ActivityEditorBinding.inflate(layoutInflater)
          setContentView(binding.root)
 
-         
          val extras = intent.extras
          if (extras != null) {
               projectPath = extras.getString("projectPath")
@@ -324,10 +323,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
     
     private fun openFile(file: File) {
         editorViewModel.files.observe(this) { files ->
-            if (files.contains(file)) {
-                Toast.makeText(this, getString(Strings.warning_file_already_opened), Toast.LENGTH_SHORT).show()
-                return@observe
-            }
+            if (files.contains(file)) return@observe
             val index = editorViewModel.fileCount
             val editor = RobokCodeEditor(this, file)
             
