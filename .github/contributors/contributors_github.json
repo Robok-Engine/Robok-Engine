@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 670,
+    "contributions": 698,
     "role": "Main Developer"
   },
   {
@@ -62,7 +62,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 121,
+    "contributions": 122,
     "role": "Bot"
   },
   {
@@ -238,7 +238,28 @@
     "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 3,
+    "contributions": 5,
     "role": "Some fixes"
+  },
+  {
+    "login": "weblate",
+    "id": 1607653,
+    "node_id": "MDQ6VXNlcjE2MDc2NTM=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1607653?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/weblate",
+    "html_url": "https://github.com/weblate",
+    "followers_url": "https://api.github.com/users/weblate/followers",
+    "following_url": "https://api.github.com/users/weblate/following{/other_user}",
+    "gists_url": "https://api.github.com/users/weblate/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/weblate/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/weblate/subscriptions",
+    "organizations_url": "https://api.github.com/users/weblate/orgs",
+    "repos_url": "https://api.github.com/users/weblate/repos",
+    "events_url": "https://api.github.com/users/weblate/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/weblate/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 1
   }
 ]
