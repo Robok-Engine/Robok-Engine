@@ -257,55 +257,54 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     private fun configureEditor() {
         binding.tabs.addOnTabSelectedListener(this)
         observeViewModel()
-        /*val antlrListener = object : AntlrListener {
-            override fun onDiagnosticStatusReceive(isError: Boolean) {
-                handler.removeCallbacks(diagnosticTimeoutRunnable)
+        getCurrentEditor()?.let { editor ->
+            val antlrListener = object : AntlrListener {
+                override fun onDiagnosticStatusReceive(isError: Boolean) {
+                    handler.removeCallbacks(diagnosticTimeoutRunnable)
+                    if (isError) {
+                         binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
+                    } else {
+                         binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
+                    }
+                    binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
+                    binding.diagnosticStatusImage.visibility = View.VISIBLE
+                 }
 
-                if (isError) {
-                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
-                } else {
-                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
-                }
-                binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
-                binding.diagnosticStatusImage.visibility = View.VISIBLE
-            }
-
-            override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
-                binding.codeEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
-                diagnosticsList.add(
-                    DiagnosticItem(
-                        "Error",
-                        msg,
-                        1
+                override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
+                    currentEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
+                    diagnosticsList.add(
+                        DiagnosticItem(
+                           "Error",
+                            msg,
+                            1
+                        )
                     )
-                )
-                onDiagnosticStatusReceive(true)
+                    onDiagnosticStatusReceive(true)
+                }
             }
-        }
-
-        val editorListener = object : EditorListener {
-            override fun onEditorTextChange() {
+            val editorListener = object : EditorListener {
+                override fun onEditorTextChange() {
+                    updateUndoRedo()
+                    binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
+                    binding.diagnosticStatusImage.visibility = View.INVISIBLE
+                    
+                    handler.removeCallbacks(diagnosticTimeoutRunnable)
+                    handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
+                }
+            }
+            currentEditor.setAntlrListener(antlrListener)
+            currentEditor.setEditorListener(editorListener)
+            currentEditor.reload()
+            binding.undo.setOnClickListener {
+                currentEditor.undo()
                 updateUndoRedo()
-                binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
-                binding.diagnosticStatusImage.visibility = View.INVISIBLE
-
-                handler.removeCallbacks(diagnosticTimeoutRunnable)
-                handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
             }
+            binding.redo.setOnClickListener {
+                currentEditor.redo()
+                updateUndoRedo()
+            }
+            handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
         }
-
-        binding.codeEditor.setAntlrListener(antlrListener)
-        binding.codeEditor.setEditorListener(editorListener)
-        binding.codeEditor.reload()
-        binding.undo.setOnClickListener {
-            binding.codeEditor.undo()
-            updateUndoRedo()
-        }
-        binding.redo.setOnClickListener {
-            binding.codeEditor.redo()
-            updateUndoRedo()
-        }
-        handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)*/
     }
 
     private fun configureFileTree() {
