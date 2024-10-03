@@ -116,7 +116,7 @@
     <string name="item_contribute_title">Contributer</string>
     <string name="item_contribute_description">Découvrez comment vous pouvez contribuer avec nous</string>
     <string name="item_libraries_title">Logiciels tiers</string>
-    <string name="item_libraries_description">Les bibliothèques que nous avons utilisées </string>
+    <string name="item_libraries_description">Les bibliothèques que nous avons utilisées</string>
     <!--end section-->
 <string name="item_whatsapp_title">WhatsApp</string>
     <string name="item_whatsapp_description">Ou le groupe Whatsapp.</string>
