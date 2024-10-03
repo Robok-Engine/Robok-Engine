@@ -332,6 +332,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
         editorViewModel.addFile(file)
         binding.apply {
             tabs.visibility = View.VISIBLE
+            noContentLayout.visibility = View.GONE
             editorContainer.addView(editor)
             tabs.addTab(tabs.newTab())
         }

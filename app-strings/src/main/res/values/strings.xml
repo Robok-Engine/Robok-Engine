@@ -96,6 +96,7 @@
     <string name="text_sans_serif">Sans-Serif</string>
     <string name="text_basic_info">Basic information</string>
     <string name="text_error_info">Error info</string>
+    <string name="text_no_files_open">No files open.</string>
     <!-- end section -->
     
     <!-- warnings section -->
