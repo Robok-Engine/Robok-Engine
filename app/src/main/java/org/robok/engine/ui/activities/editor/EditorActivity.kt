@@ -257,53 +257,14 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
     private fun configureEditor() {
         binding.tabs.addOnTabSelectedListener(this)
         observeViewModel()
-        getCurrentEditor()?.let { currentEdior ->
-            val antlrListener = object : AntlrListener {
-                override fun onDiagnosticStatusReceive(isError: Boolean) {
-                    handler.removeCallbacks(diagnosticTimeoutRunnable)
-                    if (isError) {
-                         binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
-                    } else {
-                         binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
-                    }
-                    binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
-                    binding.diagnosticStatusImage.visibility = View.VISIBLE
-                 }
 
-                override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
-                    currentEditor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
-                    diagnosticsList.add(
-                        DiagnosticItem(
-                           "Error",
-                            msg,
-                            1
-                        )
-                    )
-                    onDiagnosticStatusReceive(true)
-                }
-            }
-            val editorListener = object : EditorListener {
-                override fun onEditorTextChange() {
-                    updateUndoRedo()
-                    binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
-                    binding.diagnosticStatusImage.visibility = View.INVISIBLE
-                    
-                    handler.removeCallbacks(diagnosticTimeoutRunnable)
-                    handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
-                }
-            }
-            currentEditor.setAntlrListener(antlrListener)
-            currentEditor.setEditorListener(editorListener)
-            currentEditor.reload()
-            binding.undo.setOnClickListener {
-                currentEditor.undo()
-                updateUndoRedo()
-            }
-            binding.redo.setOnClickListener {
-                currentEditor.redo()
-                updateUndoRedo()
-            }
-            handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
+        binding.undo.setOnClickListener {
+            getCurrentEditor()?.undo()
+            updateUndoRedo()
+        }
+        binding.redo.setOnClickListener {
+            getCurrentEditor()?.redo()
+            updateUndoRedo()
         }
     }
 
@@ -375,7 +336,48 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
             tabs.addTab(tabs.newTab())
         }
         editorViewModel.setCurrentFile(index)
+        setEditorListeners(editor)
         updateTabs()
+    }
+
+    private fun setEditorListeners(RobokCodeEditor editor) {
+        val antlrListener = object : AntlrListener {
+            override fun onDiagnosticStatusReceive(isError: Boolean) {
+                handler.removeCallbacks(diagnosticTimeoutRunnable)
+                if (isError) {
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
+                } else {
+                    binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
+                }
+                binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
+                binding.diagnosticStatusImage.visibility = View.VISIBLE
+            }
+
+            override fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String) {
+                editor.addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg)
+                diagnosticsList.add(
+                    DiagnosticItem(
+                        "Error",
+                        msg,
+                        1
+                    )
+                )
+                onDiagnosticStatusReceive(true)
+            }
+        }
+        val editorListener = object : EditorListener {
+            override fun onEditorTextChange() {
+                updateUndoRedo()
+                binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
+                binding.diagnosticStatusImage.visibility = View.INVISIBLE
+
+                handler.removeCallbacks(diagnosticTimeoutRunnable)
+                handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
+            }
+        }
+        editor.setAntlrListener(antlrListener)
+        editor.setEditorListener(editorListener)
+        editor.reload()
     }
     
     private fun closeFile(index: Int) {}
