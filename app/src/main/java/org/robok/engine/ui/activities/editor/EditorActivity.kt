@@ -180,7 +180,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
             })
         }
         
-        binding.open_files_button.setOnClickListener {
+        binding.openFilesButton.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
     }
