@@ -11,4 +11,4 @@
 | Kefir2105 | 4 | Translation |
 | RohitKushvaha01 | 4 | Improvements and fixes in the Terminal |
 | teixeira0x | 5 | Some fixes |
-| weblate | 1 | N/A |
+| weblate | 1 | Bot |
