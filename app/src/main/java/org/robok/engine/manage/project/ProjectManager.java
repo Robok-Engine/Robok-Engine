@@ -147,7 +147,7 @@ public class ProjectManager {
         }
     }
 
-    public void build(CompilerTask.onCompileResult result) {
+    public void build(CompilerTask.OnCompileResult result) {
         if (outputPath == null) {
             throw new IllegalStateException("outputPath não foi inicializado.");
         }
