@@ -60,7 +60,7 @@ public class CompilerTask {
     private Project project;
     private final OnCompileResult onResult;
 
-    public CompilerTask(Context context, onCompileResult result) {
+    public CompilerTask(Context context, OnCompileResult result) {
         mContext = new WeakReference<>(context);
         mHandler = new Handler(Looper.getMainLooper());
         mExecutor = Executors.newSingleThreadExecutor();
