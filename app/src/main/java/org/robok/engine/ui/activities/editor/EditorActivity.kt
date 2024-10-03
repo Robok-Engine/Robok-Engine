@@ -335,6 +335,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
             noContentLayout.visibility = View.GONE
             editorContainer.addView(editor)
             tabs.addTab(tabs.newTab())
+            drawerLayout.closeDrawer(GravityCompat.START)
         }
         editorViewModel.setCurrentFile(index)
         setEditorListeners(editor)
