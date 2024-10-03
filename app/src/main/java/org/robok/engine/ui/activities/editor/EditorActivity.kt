@@ -274,16 +274,18 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
         binding.fileTree.setOnFileClickListener(object : FileClickListener {
             override fun onClick(node: Node<FileObject>) {
                 if (node.value.isDirectory()) return
-                handleFileExtension(node.value.getName().substringAfterLast("."))
+                handleFileExtension(node)
             }
         })
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
     }
     
-    private fun handleFileExtension(fileExtension: String) {
+    private fun handleFileExtension(node: Node<FileObject>) {
+        val fileExtension = node.value.getName().substringAfterLast(".")
+        val fileToOpen = File(node.value.getAbsolutePath())
         when (fileExtension) {
-           "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // Open 3D modeling
-           else -> editorViewModel.openFile(File(node.value.getAbsolutePath())) // Open file in editor
+           "obj" -> startActivity(Intent(this@EditorActivity, ModelingActivity::class.java)) // open 3d modeling (todo: send args)
+           else -> editorViewModel.openFile(fileToOpen) // open file on editor
         }
     }
 
