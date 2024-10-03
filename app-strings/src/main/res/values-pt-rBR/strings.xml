@@ -124,8 +124,5 @@
     <string name="settings_app_use_monet_title">Cores dinâmicas</string>
     <string name="warning_project_installer_not_found">Nenhum instalador de pacote encontrado.</string>
     <string name="title_un_error_ocurred">Ocorreu um erro</string>
-    <string name="editor_close">Feche isto</string>
-    <string name="editor_close_all">Fechar tudo</string>
-    <string name="editor_close_others">Fechar Outros</string>
     <string name="text_error_info">Informações de erro</string>
 </resources>
