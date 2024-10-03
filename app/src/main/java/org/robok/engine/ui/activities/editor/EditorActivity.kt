@@ -326,7 +326,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         editorViewModel.files.observe(this) { files ->
             files.forEach { cFile ->
                 if (cFile = file) {
-                   Toast.makeText(this, getString(Strings.warning_file_already_opened, Toast.LENGTH_SHORT).show()
+                   Toast.makeText(this, getString(Strings.warning_file_already_opened), Toast.LENGTH_SHORT).show()
                    return
                 }
                 val index = editorViewModel.fileCount
