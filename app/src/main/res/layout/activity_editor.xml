@@ -121,13 +121,20 @@
         <LinearLayout
             android:id="@+id/no_content_layout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
             android:layout_below="@id/tabs" >
             
             <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:text="@string/text_no_files_open" />
+            <Button
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="@string/text_click_here_to_open_files" 
+               android:id="@+id/open_files_button"
+               style="@style/Widget.Material3.Button.TextButton"/>
         </LinearLayout>
     </RelativeLayout>
 

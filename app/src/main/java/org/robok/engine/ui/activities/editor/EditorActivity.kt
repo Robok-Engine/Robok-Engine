@@ -179,6 +179,10 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
                 }
             })
         }
+        
+        binding.open_files_button.setOnClickListener {
+            binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
     }
 
     private fun configureTabLayout() {

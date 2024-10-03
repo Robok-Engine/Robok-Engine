@@ -97,6 +97,7 @@
     <string name="text_basic_info">Basic information</string>
     <string name="text_error_info">Error info</string>
     <string name="text_no_files_open">No files open.</string>
+    <string name="text_click_here_to_open_files">Click here to open file</string>
     <!-- end section -->
     
     <!-- warnings section -->
