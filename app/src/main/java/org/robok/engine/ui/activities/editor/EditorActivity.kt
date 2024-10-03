@@ -334,13 +334,14 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
             editorViewModel.addFile(file)
             binding.apply {
                 tabs.visibility = View.VISIBLE
+                relativeLayoutDiagnostics.visibility = View.VISIBLE
                 noContentLayout.visibility = View.GONE
                 editorContainer.addView(editor)
                 tabs.addTab(tabs.newTab())
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
             editorViewModel.setCurrentFile(index)
-           setEditorListeners(editor)
+            setEditorListeners(editor)
             updateTabs()
         }
     }
