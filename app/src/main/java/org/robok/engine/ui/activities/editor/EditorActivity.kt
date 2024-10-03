@@ -120,9 +120,9 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener {
 
     override fun onTabReselected(tab: TabLayout.Tab) {
         val pm = PopupMenu(this, tab.view)
-        pm.menu.add(0, 0, 0, Strings.editor_close)
-        pm.menu.add(0, 1, 0, Strings.editor_close_others)
-        pm.menu.add(0, 2, 0, Strings.editor_close_all)
+        pm.menu.add(0, 0, 0, Strings.common_word_close)
+        pm.menu.add(0, 1, 0, Strings.common_word_close_others)
+        pm.menu.add(0, 2, 0, Strings.common_word_close_all)
 
         pm.setOnMenuItemClickListener { item ->
             when (item.itemId) {

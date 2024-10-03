@@ -20,6 +20,9 @@
     <string name="common_word_normal">Normal</string>
     <string name="common_word_retry">Retry</string>
     <string name="common_word_save">Save</string>
+    <string name="common_word_close">Close</string>
+    <string name="common_word_close_others">Close Others</string>
+    <string name="common_word_close_all">Close All</string>
     <!-- end section -->
     
     <!-- links section -->
@@ -53,11 +56,6 @@
     <string name="hint_package_name">Package name</string>
     <!-- end section -->
   
-    <!-- editor section -->
-    <string name="editor_close">Close This</string>
-    <string name="editor_close_others">Close Others</string>
-    <string name="editor_close_all">Close All</string>
-    <!-- end section -->
     
     <!-- settings section -->
     <string name="settings_app_title">App Settings</string>
