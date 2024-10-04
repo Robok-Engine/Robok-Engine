@@ -19,7 +19,6 @@ rootProject.name = "Robok-Engine"
 
 include(":app")
 
-include(":robok:old-compiler")
 include(":robok:antlr4:java")
 include(":robok:lang")
 include(":robok:util")

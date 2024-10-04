@@ -142,7 +142,6 @@ dependencies {
     implementation(libs.about.libraries.compose.m3)
     
     // projects
-    implementation(project(":robok:old-compiler"))
     implementation(project(":robok:antlr4:java"))
     implementation(project(":robok:aapt2"))
     
