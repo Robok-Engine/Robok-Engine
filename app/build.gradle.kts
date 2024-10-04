@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin)
     alias(libs.plugins.compose.compiler)
+    alias(libs.plugins.about.libraries.plugin)
     kotlin("plugin.serialization") version "2.0.20"
     id("kotlin-kapt")
 }
@@ -135,6 +136,10 @@ dependencies {
     implementation(libs.termux.terminal.emulator)
     
     implementation(libs.coil.compose)
+    
+    implementation(libs.about.libraries.core)
+    implementation(libs.about.libraries.compose)
+    implementation(libs.about.libraries.compose.m3)
     
     // projects
     implementation(project(":robok:compiler"))
