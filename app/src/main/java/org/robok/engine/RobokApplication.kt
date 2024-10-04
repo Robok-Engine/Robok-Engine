@@ -38,9 +38,9 @@ import org.koin.core.context.*
 import org.koin.android.ext.android.getKoin
 import org.koin.core.component.*
 
+import org.robok.engine.di.appModule
+import org.robok.engine.di.appPreferencesModule
 import org.robok.engine.ui.activities.debug.DebugActivity
-import org.robok.engine.core.utils.di.appModule
-import org.robok.engine.core.utils.di.appPreferencesModule
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 import java.io.PrintWriter
