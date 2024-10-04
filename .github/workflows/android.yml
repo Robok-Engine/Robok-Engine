@@ -150,6 +150,7 @@ jobs:
       - name: Upload mapping
         uses: actions/upload-artifact@v4
         if: always()
+        continue-on-error: true
         with:
           name: robok-release-mapping
           compression-level: 0
@@ -170,6 +171,7 @@ jobs:
 
       - name: Upload release apk
         uses: actions/upload-artifact@v4
+        continue-on-error: true
         with:
           name: robok-release
           compression-level: 0
