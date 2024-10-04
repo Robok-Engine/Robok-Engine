@@ -102,6 +102,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     
     private Language handleLanguage() {
         if(file.getName().endsWith(".java")) return new JavaLanguage(this, diagnostics);
+        return new JavaLanguage(this, diagnostics);
     }
 
     private void readFile() {
