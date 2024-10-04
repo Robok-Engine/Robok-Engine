@@ -67,7 +67,7 @@ import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
 
-import org.robok.antlr.logic.AntlrListener
+import org.robok.antlr4.java.AntlrListener
 import org.robok.aapt2.compiler.CompilerTask
 
 import java.util.concurrent.CompletableFuture

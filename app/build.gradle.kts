@@ -136,7 +136,7 @@ dependencies {
     
     // projects
     implementation(project(":robok:compiler"))
-    implementation(project(":robok:antlr"))
+    implementation(project(":robok:antlr4:java"))
     implementation(project(":robok:aapt2"))
     
     implementation(project(":app-strings"))

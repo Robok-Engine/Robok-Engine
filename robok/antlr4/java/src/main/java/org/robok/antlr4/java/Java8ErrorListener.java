@@ -1,4 +1,4 @@
-package org.robok.antlr.logic;
+package org.robok.antlr4.java;
 
 import android.util.Log;
 import org.antlr.v4.runtime.*;

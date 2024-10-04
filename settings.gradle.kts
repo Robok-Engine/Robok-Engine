@@ -20,7 +20,7 @@ rootProject.name = "Robok-Engine"
 include(":app")
 
 include(":robok:compiler")
-include(":robok:antlr")
+include(":robok:antlr4:java")
 include(":robok:lang")
 include(":robok:util")
 include(":robok:aapt2")

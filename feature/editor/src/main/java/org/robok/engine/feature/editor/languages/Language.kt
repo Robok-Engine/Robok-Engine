@@ -18,7 +18,7 @@ package org.robok.engine.feature.editor.languages
  */ 
 
 import org.robok.engine.feature.editor.EditorListener
-import org.robok.antlr4.logic.AntlrListener
+import org.robok.antlr4.java.AntlrListener
 
 /*
 * A Interface base for Languages.

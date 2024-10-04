@@ -79,7 +79,7 @@ import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAut
 import org.robok.engine.feature.editor.languages.java.models.*;
 import org.robok.engine.feature.editor.languages.java.store.JavaClasses;
 
-import org.robok.antlr.logic.*;
+import org.robok.antlr4.java.*;
 
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
