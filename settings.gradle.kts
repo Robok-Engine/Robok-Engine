@@ -31,7 +31,7 @@ include(":feature:treeview")
 include(":feature:editor")
 include(":feature:modeling")
 
-include(":feature-compose:settings")
+include(":feature:settings")
 
 include(":core-compose:components")
 
