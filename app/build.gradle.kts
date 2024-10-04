@@ -151,7 +151,7 @@ dependencies {
 
     implementation(project(":core-compose:components"))
     
-    implementation(project(":feature-compose:settings"))
+    implementation(project(":feature:settings"))
 
     implementation(project(":easy-components"))
 }

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.compose.viewmodels
+package org.robok.engine.feature.settings.viewmodels
 
 /*
  *  This file is part of Robok © 2024.

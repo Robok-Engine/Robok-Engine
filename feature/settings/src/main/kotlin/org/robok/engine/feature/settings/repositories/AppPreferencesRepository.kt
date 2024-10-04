@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.compose.repositories
+package org.robok.engine.feature.settings.repositories
 
 /*
  *  This file is part of Robok © 2024.
