@@ -39,11 +39,17 @@ import org.robok.engine.R
 
 val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects")
 
+//check if a given file is a robok project or not
+private fun isProject(file: File):Boolean{
+  //simple check for now
+  return file.isDirectory and (file.listFiles().isNullOrEmpty().not())
+}
+
 class ProjectViewModel : ViewModel() {
   private val _projects = MutableStateFlow<Array<File>>(emptyArray())
   val projects: StateFlow<Array<File>> = _projects
-  fun updateProjects(songs: Array<File>) {
-    _projects.update { songs }
+  fun updateProjects(projects: Array<File>) {
+    _projects.update { projects.filter { isProject(it) }.toTypedArray() }
   }
 }
 
