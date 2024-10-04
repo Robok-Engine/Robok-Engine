@@ -39,7 +39,7 @@ import androidx.core.view.WindowCompat
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.robok.engine.feature.settings.compose.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 private val LightColorScheme = lightColorScheme(
     primary = md_theme_light_primary,
