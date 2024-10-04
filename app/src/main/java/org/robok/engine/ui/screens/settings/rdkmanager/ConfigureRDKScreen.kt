@@ -40,8 +40,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-import org.robok.engine.feature.settings.compose.viewmodels.ConfigureRDKViewModel
-import org.robok.engine.feature.settings.compose.viewmodels.DownloadState
+import org.robok.engine.feature.settings.viewmodels.ConfigureRDKViewModel
+import org.robok.engine.feature.settings.viewmodels.DownloadState
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.textfields.DynamicSelectTextField

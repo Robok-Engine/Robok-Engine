@@ -38,8 +38,8 @@ import androidx.annotation.IdRes
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.robok.engine.feature.settings.compose.R
-import org.robok.engine.feature.settings.compose.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.R
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.core.components.compose.preferences.base.LocalIsExpandedScreen
 import org.robok.engine.core.components.compose.preferences.normal.Preference
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout

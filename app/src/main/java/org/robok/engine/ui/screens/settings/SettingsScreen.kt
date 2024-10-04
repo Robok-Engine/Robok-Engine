@@ -28,7 +28,7 @@ import androidx.compose.ui.text.font.FontWeight
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.robok.engine.feature.settings.compose.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.core.components.compose.preferences.normal.Preference
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
