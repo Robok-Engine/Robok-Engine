@@ -134,6 +134,8 @@ dependencies {
     implementation(libs.termux.terminal.view)
     implementation(libs.termux.terminal.emulator)
     
+    implementation(libs.coil.compose)
+    
     // projects
     implementation(project(":robok:compiler"))
     implementation(project(":robok:antlr4:java"))
