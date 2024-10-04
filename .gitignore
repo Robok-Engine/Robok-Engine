@@ -1,3 +1,6 @@
+.androidide/
+/.androidide
+.kotlin
 *.iml
 .gradle
 .idea
