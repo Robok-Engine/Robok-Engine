@@ -1,10 +1,13 @@
-package org.robok.engine.ui.activities.editor.vm
+package org.robok.engine.ui.activities.editor.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import androidx.lifecycle.ViewModelProvider
+
+import org.robok.engine.ui.activities.editor.state.EditorState
+import org.robok.engine.ui.activities.editor.event.EditorEvent
 
 import java.io.File
 
@@ -69,16 +72,4 @@ class EditorViewModel : ViewModel() {
       files.removeAt(index)
       _files.value = files
     }
-
-    sealed interface EditorEvent {
-        data class OpenFile(val file: File): EditorEvent
-        data class CloseFile(val index: Int): EditorEvent
-        object CloseOthers : EditorEvent
-        object CloseAll : EditorEvent
-    }
-
-    data class EditorState(
-        val currentIndex: Int,
-        val currentFile: File?
-    )
 }

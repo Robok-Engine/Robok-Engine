@@ -53,8 +53,8 @@ import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
-import org.robok.engine.ui.activities.editor.vm.EditorViewModel
-import org.robok.engine.ui.activities.editor.vm.EditorViewModel.EditorEvent
+import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
+import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.core.utils.base.RobokActivity
