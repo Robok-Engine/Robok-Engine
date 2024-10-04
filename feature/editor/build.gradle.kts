@@ -59,7 +59,6 @@ dependencies {
     implementation(project(":feature:settings"))
     implementation(project(":core:utils"))
     
-    implementation(project(":robok:compiler"))
     implementation(project(":robok:antlr4:java"))
 }
 
