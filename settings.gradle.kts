@@ -30,8 +30,6 @@ include(":feature:modeling")
 
 include(":feature:settings")
 
-include(":core-compose:components")
-
 include(":core:components")
 include(":core:utils")
 include(":core:templates")

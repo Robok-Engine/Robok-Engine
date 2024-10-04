@@ -154,8 +154,6 @@ dependencies {
     implementation(project(":core:templates"))
     implementation(project(":core:components"))
     implementation(project(":core:utils"))
-
-    implementation(project(":core-compose:components"))
     
     implementation(project(":feature:settings"))
 
