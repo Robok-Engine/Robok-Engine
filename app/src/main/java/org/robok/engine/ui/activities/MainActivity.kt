@@ -41,12 +41,12 @@ import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
-import org.robok.engine.feature.settings.compose.screens.ui.SettingsScreen
-import org.robok.engine.feature.settings.compose.screens.ui.app.SettingsAppScreen
-import org.robok.engine.feature.settings.compose.screens.ui.editor.SettingsCodeEditorScreen
-import org.robok.engine.feature.settings.compose.screens.ui.libraries.LibrariesScreen
-import org.robok.engine.feature.settings.compose.screens.ui.about.AboutScreen
-import org.robok.engine.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
+import org.robok.engine.ui.screens.settings.SettingsScreen
+import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
+import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
+import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
+import org.robok.engine.ui.screens.settings.about.AboutScreen
+import org.robok.engine.ui.screens.settings.rdkmanager.ConfigureRDKScreen
 
 class MainActivity : RobokActivity() {
 

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.compose.screens.ui.app
+package org.robok.engine.ui.screens.settings.app
 
 /*
  *  This file is part of Robok © 2024.
