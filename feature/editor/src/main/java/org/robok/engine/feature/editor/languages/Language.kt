@@ -37,5 +37,5 @@ interface Language: io.github.rosemoe.sora.lang.Language {
    * Set the listener of editor
    * @link AntlrListener, module robok:robok:antlr4
    */
-   fun setAntlrListener(antlrListener: AntlrListener) {
+   fun setAntlrListener(antlrListener: AntlrListener) 
 }
