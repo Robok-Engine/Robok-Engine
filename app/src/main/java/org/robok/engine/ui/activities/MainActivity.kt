@@ -25,6 +25,10 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Surface
+import androidx.compose.material3.MaterialTheme
 
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
@@ -64,23 +68,28 @@ class MainActivity : RobokActivity() {
         )
         setContent {
             RobokTheme {
-                val navController = rememberNavController()
-                NavHost(
-                    navController = navController,
-                    startDestination = "home",
-                    enterTransition = { materialSharedAxisXIn(forward = true, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
-                    exitTransition = { materialSharedAxisXOut(forward = true, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
-                    popEnterTransition = { materialSharedAxisXIn(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
-                    popExitTransition = { materialSharedAxisXOut(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION)  }
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
                 ) {
-                    composable("home") { HomeScreen(navController = navController, actContext = this@MainActivity) }
-                    composable("settings") { SettingsScreen(navController = navController) }
-                    composable("settings/app") { SettingsAppScreen(navController = navController) }
-                    composable("settings/codeeditor") { SettingsCodeEditorScreen(navController = navController) }
-                    composable("settings/libraries") { LibrariesScreen(navController = navController) }
-                    composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
-                    composable("settings/about") { AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME) }
-                    composable("project/create") { CreateProjectScreen(navController = navController, projectTemplate = defaultTemplate) }
+                    val navController = rememberNavController()
+                    NavHost(
+                        navController = navController,
+                        startDestination = "home",
+                        enterTransition = { materialSharedAxisXIn(forward = true, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
+                        exitTransition = { materialSharedAxisXOut(forward = true, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
+                        popEnterTransition = { materialSharedAxisXIn(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION) },
+                        popExitTransition = { materialSharedAxisXOut(forward = false, slideDistance = MSAX_SLIDE_DISTANCE, durationMillis = MSAX_DURATION)  }
+                    ) {
+                         composable("home") { HomeScreen(navController = navController, actContext = this@MainActivity) }
+                         composable("settings") { SettingsScreen(navController = navController) }
+                         composable("settings/app") { SettingsAppScreen(navController = navController) }
+                         composable("settings/codeeditor") { SettingsCodeEditorScreen(navController = navController) }
+                         composable("settings/libraries") { LibrariesScreen(navController = navController) }
+                         composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
+                         composable("settings/about") { AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME) }
+                         composable("project/create") { CreateProjectScreen(navController = navController, projectTemplate = defaultTemplate) }
+                    }
                 }
             }
         }
