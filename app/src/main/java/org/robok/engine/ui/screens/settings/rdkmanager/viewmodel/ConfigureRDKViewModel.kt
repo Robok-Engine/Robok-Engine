@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.viewmodels
+package org.robok.engine.ui.screens.settings.rdkmanager.viewmodel
 
 /*
  *  This file is part of Robok © 2024.
@@ -47,5 +47,12 @@ class ConfigureRDKViewModel(private val context: Context) : ViewModel() {
                 _downloadState.value = DownloadState.Error("Erro durante o download ou extração do arquivo.")
             }
         }
+    }
+    
+    sealed class DownloadState {
+        object NotStarted : DownloadState()
+        object Loading : DownloadState()
+        data class Success(val message: String) : DownloadState()
+        data class Error(val error: String) : DownloadState()
     }
 }
