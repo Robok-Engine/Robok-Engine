@@ -145,7 +145,7 @@ private fun Screen(
                    },
                    onError = {  error ->
                         isShowDialog.value = true
-                        title = "Un error ocurred"
+                        title = "An error occurred"
                         message = error
                    }
                 )
@@ -153,12 +153,12 @@ private fun Screen(
         ) {
            Text(text = stringResource(id = Strings.title_create_project))
         }
-        showVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
+        ShowVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
     }
 }
 
 @Composable
-fun showVeryBasicDialog(
+fun ShowVeryBasicDialog(
     title: String,
     message: String,
     isShowDialog: MutableState<Boolean>

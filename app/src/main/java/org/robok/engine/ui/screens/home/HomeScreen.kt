@@ -128,7 +128,7 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                             0 -> navController.navigate("project/create")
-                            1 -> onOpenProjectClicked(folderPickerLauncher)
+                            1 -> navController.navigate("project/manage")
                             2 -> navController.navigate("settings")
                             else -> onTerminalClicked(actContext)
                         }

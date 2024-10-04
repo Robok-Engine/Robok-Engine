@@ -43,6 +43,7 @@ import org.robok.engine.feature.settings.compose.screens.ui.editor.SettingsCodeE
 import org.robok.engine.feature.settings.compose.screens.ui.libraries.LibrariesScreen
 import org.robok.engine.feature.settings.compose.screens.ui.about.AboutScreen
 import org.robok.engine.feature.settings.compose.screens.ui.rdkmanager.ConfigureRDKScreen
+import org.robok.engine.ui.screens.project.manage.ManageProjects
 
 class MainActivity : RobokActivity() {
 
@@ -81,6 +82,7 @@ class MainActivity : RobokActivity() {
                     composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
                     composable("settings/about") { AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME) }
                     composable("project/create") { CreateProjectScreen(navController = navController, projectTemplate = defaultTemplate) }
+                    composable("project/manage"){ ManageProjects()}
                 }
             }
         }

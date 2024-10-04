@@ -15,6 +15,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -57,16 +58,15 @@ fun ManageProjects() {
     }
   }
 
-  LazyColumn {
-    items(projects) { project ->
-      Project(projectFile = project)
+  Scaffold { padding ->
+    LazyColumn(modifier = Modifier.padding(padding)) {
+      items(projects) { project ->
+        Project(projectFile = project)
+      }
     }
   }
-
 }
 
-
-//todo : modify project composable to make it look good
 @Composable
 fun Project(projectFile: File) {
   val context = LocalContext.current
@@ -87,10 +87,10 @@ fun Project(projectFile: File) {
         verticalArrangement = Arrangement.Center
       ) {
         Text(
-          text = projectFile.name, style = MaterialTheme.typography.titleLarge
+          text = projectFile.name, style = MaterialTheme.typography.titleMedium
         )
         Text(
-          text = projectFile.path, style = MaterialTheme.typography.titleMedium
+          text = projectFile.path, style = MaterialTheme.typography.titleSmall
         )
       }
     }
