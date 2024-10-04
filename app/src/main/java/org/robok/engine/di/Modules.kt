@@ -1,4 +1,4 @@
-package org.robok.engine.core.utils.di
+package org.robok.engine.di
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,6 +18,7 @@ package org.robok.engine.core.utils.di
  */ 
 
 import android.content.Context
+
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
 
@@ -27,7 +28,7 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
-import org.robok.engine.feature.settings.viewmodels.ConfigureRDKViewModel
+import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKViewModel
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
 
