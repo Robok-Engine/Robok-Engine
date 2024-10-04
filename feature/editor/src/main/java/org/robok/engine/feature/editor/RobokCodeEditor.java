@@ -22,6 +22,7 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
+import io.github.rosemoe.sora.lang.Language;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
@@ -53,7 +54,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     private final LayoutCodeEditorBinding binding;
 
-    private JavaLanguage language; // Configuration of JavaLanguage
+    private Language language; // Configuration of JavaLanguage
 
     private EditorConfigManager editorConfigManager;
 
@@ -81,15 +82,13 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      */
     private void configureEditor() {
         // Diagnostics
+        
         diagnostics = new DiagnosticsContainer();
-        language = new JavaLanguage(this, diagnostics);
+        language = handleLanguage();
         reload();
         readFile();
 
-        getSoraCodeEditor()
-                .setTypefaceText(
-                        AppearanceManager.getTypeface(
-                                editorConfigManager.getEditorTypefacePreference()));
+        getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
         getSoraCodeEditor().setTextSize(16);
         getSoraCodeEditor().setEditorLanguage(language);
         getSoraCodeEditor().setWordwrap(editorConfigManager.isUseWordWrap());
@@ -99,6 +98,10 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                 .setColorScheme(
                         AppearanceManager.getTheme(
                                 this, editorConfigManager.getEditorThemePreference()));
+    }
+    
+    private Language handleLanguage() {
+        if(file.getName().endsWith(".java")) return new JavaLanguage(this, diagnostics);
     }
 
     private void readFile() {
