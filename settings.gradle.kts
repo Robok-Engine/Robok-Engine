@@ -20,7 +20,6 @@ rootProject.name = "Robok-Engine"
 include(":app")
 
 include(":robok:antlr4:java")
-include(":robok:lang")
 include(":robok:aapt2")
 
 include(":app-strings")
