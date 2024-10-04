@@ -36,7 +36,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import io.github.rosemoe.sora.lang.EmptyLanguage;
-import io.github.rosemoe.sora.lang.Language;
 import io.github.rosemoe.sora.lang.QuickQuoteHandler;
 import io.github.rosemoe.sora.lang.analysis.AnalyzeManager;
 import io.github.rosemoe.sora.lang.completion.CompletionHelper;
@@ -74,6 +73,7 @@ import java.util.regex.Pattern;
 
 import org.robok.engine.feature.editor.RobokCodeEditor;
 import org.robok.engine.feature.editor.EditorListener;
+import org.robok.engine.feature.editor.languages.Language;
 import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
 import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.robok.engine.feature.editor.languages.java.models.*;
@@ -151,10 +151,12 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
           return inputText;
      }
      
+     @Override
      public void setEditorListener(EditorListener value) { 
           editorListener = value;
      }
      
+     @Override
      public void setAntlrListener(AntlrListener value) {
           diagnostics.diagnosticListener = value;
      }

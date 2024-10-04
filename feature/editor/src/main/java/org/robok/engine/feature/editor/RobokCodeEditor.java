@@ -22,7 +22,6 @@ import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 
-import io.github.rosemoe.sora.lang.Language;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticsContainer;
@@ -35,6 +34,7 @@ import kotlin.io.FilesKt;
 
 import org.robok.engine.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.robok.engine.feature.editor.languages.java.*;
+import org.robok.engine.feature.editor.languages.Language;
 import org.robok.engine.feature.editor.schemes.*;
 import org.robok.antlr.logic.*;
 
