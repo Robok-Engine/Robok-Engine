@@ -24,7 +24,6 @@ android {
 }
 
 dependencies {
-    implementation(project(":robok:util"))
     implementation(project(":robok:lang"))
 }
 

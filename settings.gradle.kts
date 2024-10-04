@@ -21,7 +21,6 @@ include(":app")
 
 include(":robok:antlr4:java")
 include(":robok:lang")
-include(":robok:util")
 include(":robok:aapt2")
 
 include(":app-strings")
