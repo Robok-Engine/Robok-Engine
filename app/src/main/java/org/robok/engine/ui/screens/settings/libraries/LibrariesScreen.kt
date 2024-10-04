@@ -48,7 +48,6 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.input.nestedscroll.nestedScroll
-import androidx.compose.material.Text
 import androidx.compose.ui.text.style.TextOverflow
 
 import com.mikepenz.aboutlibraries.Libs
