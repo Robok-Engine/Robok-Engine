@@ -31,7 +31,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.datastore.preferences)
     implementation(libs.material)
-    implementation(lifecycle.runtime.ktx)
+    implementation(libs.lifecycle.runtime.ktx)
 }
 
 publishing {
