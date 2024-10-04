@@ -125,4 +125,10 @@
     <string name="warning_project_installer_not_found">Nenhum instalador de pacote encontrado.</string>
     <string name="title_un_error_ocurred">Ocorreu um erro</string>
     <string name="text_error_info">Informações de erro</string>
+    <string name="common_word_close_others">Fechar outros</string>
+    <string name="common_word_close">Fechar</string>
+    <string name="common_word_close_all">Fechar todos</string>
+    <string name="text_no_files_open">Nenhum arquivo aberto.</string>
+    <string name="text_click_here_to_open_files">Clique aqui para abrir um arquivo</string>
+    <string name="warning_file_already_opened">Arquivo já aberto no editor.</string>
 </resources>
