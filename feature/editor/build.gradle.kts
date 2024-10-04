@@ -29,36 +29,29 @@ android {
 }
 
 dependencies {
-    implementation("androidx.constraintlayout:constraintlayout:2.1.4")
-    implementation("com.google.android.material:material:1.13.0-alpha06")
-    implementation("androidx.appcompat:appcompat:1.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.8.6")
-    implementation("androidx.core:core-ktx:1.13.1")
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation(libs.material)
+    implementation(libs.appcompat) 
+    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.datastore.preferences)
     
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.9.0")
-    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.7.3")
+    implementation(libs.coroutines.android)
+    implementation(libs.serialization.json)
     
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.12.0"))
+    implementation(platform(libs.okhttp.bom))
     implementation("com.squareup.okhttp3:okhttp")
     
-    implementation("io.insert-koin:koin-android:4.0.0")
+    implementation(libs.koin.android)
     
-    val editorGroupId = "io.github.Rosemoe.sora-editor"
-    implementation(platform("$editorGroupId:bom:0.23.4"))
-    implementation("$editorGroupId:editor")
-    implementation("$editorGroupId:editor-lsp")
-    implementation("$editorGroupId:language-java")
-    implementation("$editorGroupId:language-textmate")
+    implementation(libs.sora.editor)
+    implementation(libs.sora.editor.language.java)
+    implementation(libs.sora.editor.language.textmate)
     
-    val antlrVersion = "4.13.2"
-    implementation("org.antlr:antlr4:$antlrVersion") 
-    implementation("org.antlr:antlr4-runtime:$antlrVersion")
+    implementation(libs.antlr)
+    implementation(libs.antlr.runtime)
     
     implementation(project(":app-strings"))
     implementation(project(":feature:settings"))
     implementation(project(":core:utils"))
-    
     implementation(project(":robok:antlr4:java"))
 }
 
