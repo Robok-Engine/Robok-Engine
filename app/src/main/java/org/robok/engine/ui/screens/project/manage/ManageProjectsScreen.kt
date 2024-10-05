@@ -129,7 +129,7 @@ fun EmptyContentItem() {
     PreferenceTemplate(
         title = { 
             Text(
-                text = Strings.warning_no_projects, 
+                text = stringResource(id = Strings.warning_no_projects), 
                 style = MaterialTheme.typography.titleMedium
             ) 
         },
