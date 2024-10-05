@@ -27,31 +27,37 @@ import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
 class AppPreferencesViewModel(
     private val repo: AppPreferencesRepository
 ) : ViewModel() {
-
+     val installedRDKVersion = repo.installedRDKVersion
      val appIsUseMonet = repo.appIsUseMonet
      val editorTheme = repo.editorTheme
      val editorTypeface = repo.editorTypeface
      val editorIsUseWordWrap = repo.editorIsUseWordWrap
      
-     fun enableMonet (value: Boolean) {
+     fun changeInstalledRDK(value: String) {
+         viewModelScope.launch {
+              repo.changeInstalledRDK(value)
+         }
+     }
+     
+     fun enableMonet(value: Boolean) {
          viewModelScope.launch {
               repo.enableMonet(value)
          }
      }
      
-     fun changeEditorTheme (value: Int) {
+     fun changeEditorTheme(value: Int) {
          viewModelScope.launch {
               repo.changeEditorTheme(value)
          }
      }
      
-     fun changeEditorTypeface (value: Int) {
+     fun changeEditorTypeface(value: Int) {
          viewModelScope.launch {
               repo.changeEditorTypeface(value)
          }
      }
      
-     fun enableEditorWordWrap (value: Boolean) {
+     fun enableEditorWordWrap(value: Boolean) {
          viewModelScope.launch {
               repo.enableEditorWordWrap(value)
          }

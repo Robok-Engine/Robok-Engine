@@ -23,11 +23,13 @@ import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.booleanPreferencesKey
+import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.core.edit
 
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.map
 
+private val installedRDKVersion = stringPreferencesKey("installed_rdk_version")
 private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
 private val editorThemePreference = intPreferencesKey("editor_theme")
 private val editorTypefacePreference = intPreferencesKey("editor_typeface")
@@ -36,6 +38,11 @@ private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_w
 class AppPreferencesRepository(
     private val dataStore: DataStore<Preferences>
 ) {
+
+     val installedRDKVersion = dataStore.data
+          .map {
+              it[installedRDKVersion] ?: "RDK-1"
+          }
      val appIsUseMonet = dataStore.data
           .map {
               it[appIsUseMonetPreference] ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false
@@ -53,6 +60,12 @@ class AppPreferencesRepository(
               it[editorIsUseWordWrapPreference] ?: false
           }
           
+     suspend fun changeInstalledRDK(value: String) {
+         dataStore.edit { preferences ->
+             preferences[installedRDKVersion] = value
+         }
+     }
+     
      suspend fun enableMonet(value: Boolean) {
          dataStore.edit { preferences ->
              preferences[appIsUseMonetPreference] = value
