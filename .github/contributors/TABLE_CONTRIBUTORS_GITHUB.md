@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 722 | Main Developer |
+| trindadedev13 | 754 | Main Developer |
 | ThDev-only | 199 | Main Developer |
 | renovate[bot] | 122 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -9,6 +9,6 @@
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
 | Kefir2105 | 4 | Translation |
-| RohitKushvaha01 | 4 | Improvements and fixes in the Terminal |
+| RohitKushvaha01 | 13 | Improvements and fixes in the Terminal |
 | teixeira0x | 5 | Some fixes |
 | weblate | 1 | Bot |
