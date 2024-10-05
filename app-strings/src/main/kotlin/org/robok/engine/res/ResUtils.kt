@@ -36,5 +36,5 @@ class ResUtils(val context: Context) {
           }
      }
      
-     fun getColor(@AttrRes attrResID): Int = ContextCompat.getColor(context, attrResID)
+     fun getColor(@AttrRes attrResID: Int): Int = ContextCompat.getColor(context, attrResID)
 }
