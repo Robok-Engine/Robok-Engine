@@ -22,9 +22,6 @@ package org.robok.engine.feature.editor.schemes
 */
 
 import android.content.Context
-import android.util.TypedValue
-
-import androidx.annotation.AttrRes
 
 import androidx.core.content.ContextCompat
 
