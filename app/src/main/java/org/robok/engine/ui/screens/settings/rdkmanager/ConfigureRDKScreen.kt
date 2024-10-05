@@ -92,6 +92,7 @@ fun ConfigureRDKScreen(
                 modifier = modifir
                    .fillMaxWidth(),
                 onClick = {
+                    appPrefsViewModel.changeInstalledRDK(version)
                     viewModel.startDownload(zipUrl, version)
                 }
             ) {
