@@ -42,7 +42,7 @@ import kotlinx.coroutines.withContext
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceTemplate
 
-import org.robol.engine.strings.Strings
+import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 
 import java.io.File
