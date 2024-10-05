@@ -48,6 +48,6 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
         setColor(EditorColorScheme.FUNCTION_NAME, resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set function name colors
         setColor(EditorColorScheme.IDENTIFIER_NAME, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_identifier_name));
         setColor(EditorColorScheme.TEXT_NORMAL, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_text_normal));
-        setColor(EditorColorScheme.PUNCTUATION, resUtils.getAttrColor(com.google.android.material.R.attr.colorOnBackground)) // set delimiters color
+        setColor(EditorColorScheme.OPERATOR, resUtils.getAttrColor(com.google.android.material.R.attr.colorOnBackground)) // set delimiters color
     }
 }
