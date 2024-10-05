@@ -75,7 +75,7 @@ fun ManageProjectsScreen(
         PreferenceGroup(
             heading = stringResource(id = Strings.title_your_projects)
         ) {
-            if(project.isEmpty().not()) {
+            if(projects.isEmpty().not()) {
                 projects.forEach { project -> 
                     Project(projectFile = project)
                 }
