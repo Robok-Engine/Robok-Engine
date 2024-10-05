@@ -2,6 +2,7 @@ package org.robok.engine.ui.screens.project.manage
 
 import android.content.Intent
 import android.os.Environment
+
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -31,12 +32,16 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
+
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.withContext
+
+import org.robol.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
+
 import java.io.File
 
 val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects")
@@ -72,13 +77,13 @@ fun ManageProjects(navController: NavController) {
     TopAppBar(
     title = {
       //todo string
-      Text(text = "Projects")
+      Text(text = stringResource(id = Strings.title_projects))
     },
     navigationIcon = {
       IconButton(onClick = { navController.popBackStack() }) {
         Icon(
           imageVector = Icons.AutoMirrored.Filled.ArrowBack,
-          contentDescription = "Back"
+          contentDescription = stringResource(id = Strings.common_word_back)
         )
       }
     }
