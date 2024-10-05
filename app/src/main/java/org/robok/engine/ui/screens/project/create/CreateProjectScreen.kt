@@ -50,6 +50,7 @@ import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModelFactory
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.core.components.compose.dialog.RobokDialog
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
