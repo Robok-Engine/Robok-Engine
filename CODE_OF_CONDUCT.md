@@ -1,4 +1,4 @@
-# Code of Conduct for 3D Game Creation Engine
+# Robok Engine Code of Conduct
 
 ## 1. Purpose
 The purpose of this Code of Conduct is to provide guidelines for respectful, collaborative, and inclusive behavior within the community of developers, contributors, and users of the 3D game creation engine. We are committed to providing a welcoming environment for all participants.
