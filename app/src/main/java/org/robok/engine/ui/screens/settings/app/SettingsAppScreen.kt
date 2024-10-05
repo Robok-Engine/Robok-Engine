@@ -35,6 +35,7 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.compose.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
@@ -58,7 +59,7 @@ fun SettingsAppScreen(
 fun appearancePrefs(
     appPrefsViewModel: AppPreferencesViewModel
 ) {
-     val appIsUseMonet by appPrefsViewModel.appIsUseMonet.collectAsState()
+     val appIsUseMonet by appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
      PreferenceSwitch(
           checked = appIsUseMonet,
           onCheckedChange = { newValue ->

@@ -39,6 +39,7 @@ import androidx.core.view.WindowCompat
 
 import org.koin.androidx.compose.koinViewModel
 
+import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 private val LightColorScheme = lightColorScheme(
@@ -113,7 +114,7 @@ fun RobokTheme(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
-    val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState()
+    val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
 
     val colorScheme = when {
         dynamicColor && supportsDynamicTheming() -> {

@@ -35,6 +35,7 @@ import org.robok.engine.core.components.compose.preferences.choice.PreferenceCho
 import org.robok.engine.core.components.compose.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
@@ -82,8 +83,8 @@ fun appearancePrefs(
         context.getString(Strings.text_sans_serif),
         context.getString(Strings.text_serif)
      ) // strings/labels
-     val editorTheme by appPrefsViewModel.editorTheme.collectAsState()
-     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState()
+     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = DefaultValues.EDITOR_THEME)
+     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = DefaultValues.EDITOR_TYPEFACE)
      
      PreferenceChoice(
           label = stringResource(id = Strings.settings_code_editor_theme_title),
@@ -118,7 +119,7 @@ fun appearancePrefs(
 fun formattingPrefs(
     appPrefsViewModel: AppPreferencesViewModel
 ) {
-     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState()
+     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = DefaultValues.EDITOR_IS_USE_WORD_WRAP)
      PreferenceSwitch(
           checked = editorIsUseWordWrap,
           onCheckedChange = { newValue ->
