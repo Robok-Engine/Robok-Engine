@@ -142,7 +142,7 @@ fun EmptyContentItem() {
                     .clip(CircleShape)
                     .background(MaterialTheme.colorScheme.surfaceContainer),
             )
-        }
+        },
         modifier = Modifier
             .fillMaxWidth()
             .clickable(
