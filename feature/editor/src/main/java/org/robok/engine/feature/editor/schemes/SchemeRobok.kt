@@ -32,31 +32,25 @@ import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
 import org.robok.engine.feature.editor.R
+import org.robok.engine.strings.ResUtils
 
 class SchemeRobok(context: Context) : SchemeDarcula() {
 
-    val context : Context
-
+    val context: Context
+    val resUtils: ResUtils
+    
     init {
         this.context = context
-        setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground)) // set the background color
+        resUtils = ResUtils(context)
+        
+        setColor(EditorColorScheme.WHOLE_BACKGROUND, resUtils.getAttrColor(android.R.attr.colorBackground)) // set the background color
         setColor(EditorColorScheme.CURRENT_LINE, getColor(org.robok.engine.feature.editor.R.color.scheme_robok_current_line)) // set the current line color
-        setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
-        setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
-        setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors
-        setColor(EditorColorScheme.FUNCTION_NAME, getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set function name colors
+        setColor(EditorColorScheme.LINE_NUMBER_PANEL, resUtils.getAttrColor(android.R.attr.colorBackground)) // set color bar for line numbers
+        setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, resUtils.getAttrColor(android.R.attr.colorBackground)); // set color bar for line numbers
+        setColor(EditorColorScheme.KEYWORD, resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set keywords colors
+        setColor(EditorColorScheme.FUNCTION_NAME, resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary)); // set function name colors
         setColor(EditorColorScheme.IDENTIFIER_NAME, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_identifier_name));
         setColor(EditorColorScheme.TEXT_NORMAL, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_text_normal));
-        setColor(EditorColorScheme.PUNCTUATION, getAttrColor(com.google.android.material.R.attr.colorOnBackground)) // set delimiters color
-    }
-
-    private fun getAttrColor(@AttrRes resId: Int): Int {
-        val typedValue = TypedValue()
-        context.theme.resolveAttribute(resId, typedValue, true)
-        return if (typedValue.resourceId != 0) {
-            ContextCompat.getColor(context, typedValue.resourceId)
-        } else {
-            typedValue.data
-        }
+        setColor(EditorColorScheme.PUNCTUATION, resUtils.getAttrColor(com.google.android.material.R.attr.colorOnBackground)) // set delimiters color
     }
 }
