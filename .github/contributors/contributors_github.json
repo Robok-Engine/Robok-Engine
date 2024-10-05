@@ -217,7 +217,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 13,
-    "role": "Improvements and fixes in the Terminal"
+    "role": "Implement ManageProjectsScreen & Improve Terminal"
   },
   {
     "login": "teixeira0x",
