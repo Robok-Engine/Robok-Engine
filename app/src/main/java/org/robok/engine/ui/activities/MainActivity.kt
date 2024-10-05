@@ -42,26 +42,12 @@ import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.settings.SettingsScreen
-
 import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
-
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
-
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
-
 import org.robok.engine.ui.screens.settings.about.AboutScreen
-
 import org.robok.engine.ui.screens.settings.rdkmanager.ConfigureRDKScreen
-
-
-
-
-
-
 import org.robok.engine.ui.screens.project.manage.ManageProjects
-
-
-
 
 class MainActivity : RobokActivity() {
 
