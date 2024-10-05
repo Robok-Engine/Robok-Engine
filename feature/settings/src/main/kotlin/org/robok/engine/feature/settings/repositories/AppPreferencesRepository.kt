@@ -64,7 +64,7 @@ class AppPreferencesRepository(
           
      suspend fun changeInstalledRDK(value: String) {
          dataStore.edit { preferences ->
-             preferences[installedRDKVersion] = value
+             preferences[installedRDKVersionPreference] = value
          }
      }
      
