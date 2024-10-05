@@ -10,5 +10,5 @@
 | Xori71 | 1 | Translation |
 | Kefir2105 | 4 | Translation |
 | RohitKushvaha01 | 14 | Implement ManageProjectsScreen & Improve Terminal |
-| teixeira0x | 5 | Some fixes |
+| teixeira0x | 5 | Implement some Editor Actions |
 | weblate | 1 | Bot |
