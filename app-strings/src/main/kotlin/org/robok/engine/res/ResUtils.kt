@@ -38,5 +38,3 @@ class ResUtils(val context: Context) {
      
      fun getColor(@AttrRes attrResID): Int = ContextCompat.getColor(context, attrResID)
 }
-
-"
