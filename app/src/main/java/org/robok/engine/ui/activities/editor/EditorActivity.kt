@@ -333,7 +333,6 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
             editorViewModel.addFile(file)
             binding.apply {
                 tabs.visibility = View.VISIBLE
-                relativeLayoutDiagnostics.visibility = View.VISIBLE
                 noContentLayout.visibility = View.GONE
                 editorContainer.addView(editor)
                 tabs.addTab(tabs.newTab())
@@ -373,8 +372,12 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         val editorListener = object : EditorListener {
             override fun onEditorTextChange() {
                 updateUndoRedo()
+                with(binding) {
+                    if (relativeLayoutDiagnostics.visibility == View.GONE) relativeLayoutDiagnostics.visibility = View.VISIBLE
+                }
                 binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
+                
 
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
                 handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
