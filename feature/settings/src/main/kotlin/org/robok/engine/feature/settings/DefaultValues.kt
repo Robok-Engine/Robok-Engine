@@ -1,7 +1,7 @@
 package org.robok.engine.feature.settings
 
 import android.os.Build.VERSION
-import android.os.Build.VERSION_CODES.S
+import android.os.Build.VERSION_CODES
 
 object DefaultValues {
     const val INSTALLED_RDK_VERSION = "RDK-1"
