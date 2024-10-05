@@ -1,41 +1,15 @@
 name: Android CI
 
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - .github/workflows/android.yml
-      - app/**
-      - easy-ui/**
-      - feature/**
-      - feature-compose/**
-      - core/**
-      - core-compose/**
-      - app-strings/**
-      - robok/**
-      - gradle/**
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - settings.gradle.kts
+    branches: [ "**" ]
+    paths-ignore:
+      - '**/*.md'
   pull_request:
-    paths:
-      - .github/workflows/android.yml
-      - app/**
-      - easy-ui/**
-      - feature/**
-      - feature-compose/**
-      - core/**
-      - core-compose/**
-      - app-strings/**
-      - robok/**
-      - gradle/**
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - settings.gradle.kts
+    branches: [ "**" ]
+    paths-ignore:
+      - '**/*.md'
+  workflow_dispatch:
 
 jobs:
   robok-debug-apk:

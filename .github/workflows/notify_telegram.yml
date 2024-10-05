@@ -1,51 +1,13 @@
 name: Notify Telegram
 
 on:
-  workflow_dispatch:
   push:
-    paths:
-      - .github/**
-      - app/**
-      - easy-ui/**
-      - feature-compose/**
-      - feature/**
-      - gradle/**
-      - images/**
-      - robok/**
-      - .gitignore
-      - core/**
-      - core-compose/**
-      - app-strings/**
-      - LICENSE
-      - README.md
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - renovate.json
-      - settings.gradle.kts
+    branches:
+      - '**'
   pull_request:
-    paths:
-      - .github/**
-      - app/**
-      - easy-ui/**
-      - feature-compose/**
-      - feature/**
-      - gradle/**
-      - core/**
-      - core-compose/**
-      - app-strings/**
-      - images/**
-      - robok/**
-      - .gitignore
-      - LICENSE
-      - README.md
-      - build.gradle.kts
-      - gradle.properties
-      - gradlew
-      - gradlew.bat
-      - renovate.json
-      - settings.gradle.kts
+    branches:
+      - '**'
+  workflow_dispatch:
 
 jobs:
   init:
