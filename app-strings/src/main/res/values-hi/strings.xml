@@ -26,7 +26,6 @@
     <string name="title_open_project">प्रोजेक्ट खोलें</string>
     <string name="title_terminal" translatable="false">टर्मिनल</string>
     <string name="title_open_editor">एडिटर खोलें</string>
-    <string name="title_debug_title">एक त्रुटि हुई</string>
     <string name="title_select_theme">थीम चुनें</string>
     <string name="title_select_folder">फ़ोल्डर चुनें</string>
     <string name="title_templates">टेम्पलेट्स</string>

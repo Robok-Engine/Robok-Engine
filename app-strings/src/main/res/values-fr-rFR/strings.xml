@@ -26,7 +26,6 @@
     <string name="title_open_project">Ouvrir le projet</string>
     <string name="title_terminal" translatable="false">Terminal</string>
     <string name="title_open_editor">Ouvrir l\'éditeur</string>
-    <string name="title_debug_title">Une erreur s\'est produite</string>
     <string name="title_select_theme">Sélectionner le Thème</string>
     <string name="title_select_folder">Sélectionner un dossier</string>
     <string name="title_templates">Modèles</string>

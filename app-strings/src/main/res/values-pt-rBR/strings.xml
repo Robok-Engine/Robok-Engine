@@ -25,7 +25,6 @@
     <string name="title_create_project">Criar Projeto</string>
     <string name="title_open_project">Abrir Projeto</string>
     <string name="title_open_editor">Abrir Editor</string>
-    <string name="title_debug_title">Um erro ocorreu</string>
     <string name="title_select_theme">Selecionar tema</string>
     <string name="title_select_folder">Selecionar pasta</string>
     <!-- end section -->

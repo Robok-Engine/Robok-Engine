@@ -25,7 +25,6 @@
     <string name="title_create_project">إنشاء مشروع</string>
     <string name="title_open_project">فتح المشروع</string>
     <string name="title_open_editor">فتح محرر النصوص</string>
-    <string name="title_debug_title">وقع خطأ</string>
     <string name="title_select_theme">إختر السمة</string>
     <string name="title_select_folder">إختر مجلدا</string>
     <!-- end section -->

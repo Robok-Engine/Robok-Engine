@@ -13,7 +13,6 @@
     <string name="common_word_normal">Нормальний</string>
     <string name="common_word_retry">Повторити спробу</string>
     <string name="title_open_editor">Відкрити редактор</string>
-    <string name="title_debug_title">Виникла помилка</string>
     <string name="title_select_theme">Вибрати тему</string>
     <string name="title_templates">Шаблони</string>
     <string name="message_compiled">Ваш код скомпільовано!</string>
