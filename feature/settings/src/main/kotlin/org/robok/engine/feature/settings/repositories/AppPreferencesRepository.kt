@@ -31,7 +31,7 @@ import kotlinx.coroutines.flow.map
 
 import org.robok.engine.feature.settings.DefaultValues
 
-private val installedRDKVersion = stringPreferencesKey("installed_rdk_version")
+private val installedRDKVersionPreference = stringPreferencesKey("installed_rdk_version")
 private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
 private val editorThemePreference = intPreferencesKey("editor_theme")
 private val editorTypefacePreference = intPreferencesKey("editor_typeface")
@@ -43,7 +43,7 @@ class AppPreferencesRepository(
 
      val installedRDKVersion = dataStore.data
           .map {
-              it[installedRDKVersion] ?: DefaultValues.INSTALLED_RDK_VERSION
+              it[installedRDKVersionPreference] ?: DefaultValues.INSTALLED_RDK_VERSION
           }
      val appIsUseMonet = dataStore.data
           .map {
