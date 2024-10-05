@@ -32,7 +32,7 @@ import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
 import org.robok.engine.feature.editor.R
-import org.robok.engine.strings.ResUtils
+import org.robok.engine.res.ResUtils
 
 class SchemeRobok(context: Context) : SchemeDarcula() {
 

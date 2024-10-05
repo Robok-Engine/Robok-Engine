@@ -1,4 +1,4 @@
-package org.robok.engine.strings
+package org.robok.engine.res
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,5 +17,22 @@ package org.robok.engine.strings
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-typealias Strings = org.robok.engine.strings.R.string
-typealias AndroidAttr = android.R.attr
+import android.content.Context
+import android.util.TypedValue
+
+import androidx.annotation.AttrRes
+import androidx.core.content.ContextCompat
+
+class ResUtils(val context: Context) {
+     
+     fun getAttrColor(@AttrRes resId: Int): Int {
+          val typedValue = TypedValue()
+          context.theme.resolveAttribute(resId, typedValue, true)
+          return if (typedValue.resourceId != 0) {
+              ContextCompat.getColor(context, typedValue.resourceId)
+          } else {
+              typedValue.data
+          }
+     }
+}
+

@@ -22,7 +22,7 @@ import android.util.AttributeSet;
 
 import io.github.rosemoe.sora.widget.SymbolInputView;
 
-import org.robok.engine.strings.ResUtils;
+import org.robok.engine.res.ResUtils;
 
 public class RobokSymbolInput extends SymbolInputView {
 
