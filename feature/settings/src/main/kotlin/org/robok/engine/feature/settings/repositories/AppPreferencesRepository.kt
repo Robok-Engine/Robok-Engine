@@ -29,6 +29,8 @@ import androidx.datastore.preferences.core.edit
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.map
 
+import org.robok.engine.feature.settings.DefaultValues
+
 private val installedRDKVersion = stringPreferencesKey("installed_rdk_version")
 private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
 private val editorThemePreference = intPreferencesKey("editor_theme")
@@ -41,23 +43,23 @@ class AppPreferencesRepository(
 
      val installedRDKVersion = dataStore.data
           .map {
-              it[installedRDKVersion] ?: "RDK-1"
+              it[installedRDKVersion] ?: DefaultValues.INSTALLED_RDK_VERSION
           }
      val appIsUseMonet = dataStore.data
           .map {
-              it[appIsUseMonetPreference] ?: if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false
+              it[appIsUseMonetPreference] ?: DefaultValues.IS_USE_MONET
           }
      val editorTheme = dataStore.data
           .map {
-              it[editorThemePreference] ?: 0
+              it[editorThemePreference] ?: DefaultValues.EDITOR_THEME
           }
      val editorTypeface = dataStore.data
           .map {
-              it[editorTypefacePreference] ?: 0
+              it[editorTypefacePreference] ?: DefaultValues.EDITOR_TYPEFACE
           }
      val editorIsUseWordWrap = dataStore.data
           .map {
-              it[editorIsUseWordWrapPreference] ?: false
+              it[editorIsUseWordWrapPreference] ?: DefaultValues.EDITOR_IS_USE_WORD_WRAP
           }
           
      suspend fun changeInstalledRDK(value: String) {

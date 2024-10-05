@@ -113,7 +113,7 @@ fun RobokTheme(
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
-    val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState(initial = false)
+    val dynamicColor by appPrefsViewModel.appIsUseMonet.collectAsState()
 
     val colorScheme = when {
         dynamicColor && supportsDynamicTheming() -> {

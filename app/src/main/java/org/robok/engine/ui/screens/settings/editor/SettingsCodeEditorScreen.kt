@@ -82,8 +82,8 @@ fun appearancePrefs(
         context.getString(Strings.text_sans_serif),
         context.getString(Strings.text_serif)
      ) // strings/labels
-     val editorTheme by appPrefsViewModel.editorTheme.collectAsState(initial = 0)
-     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState(initial = 0)
+     val editorTheme by appPrefsViewModel.editorTheme.collectAsState()
+     val editorTypeface by appPrefsViewModel.editorTypeface.collectAsState()
      
      PreferenceChoice(
           label = stringResource(id = Strings.settings_code_editor_theme_title),
@@ -118,7 +118,7 @@ fun appearancePrefs(
 fun formattingPrefs(
     appPrefsViewModel: AppPreferencesViewModel
 ) {
-     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState(initial = false)
+     val editorIsUseWordWrap by appPrefsViewModel.editorIsUseWordWrap.collectAsState()
      PreferenceSwitch(
           checked = editorIsUseWordWrap,
           onCheckedChange = { newValue ->
