@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.create
+package org.robok.engine.ui.screens.project.create.viewmodel
 
 /*
  *  This file is part of Robok © 2024.
@@ -27,19 +27,15 @@ import androidx.compose.runtime.collectAsState
 
 import kotlinx.coroutines.launch
 
+import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.manage.project.ProjectManager
 
 import java.io.File
 
-data class CreateProjectState(
-    val projectName: String = "",
-    val packageName: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null
-)
-
-class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
+class CreateProjectViewModel(
+    private val projectManager: ProjectManager
+) : ViewModel() {
     var state by mutableStateOf(CreateProjectState())
     
     fun updateProjectName(name: String) {
