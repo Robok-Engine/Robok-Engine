@@ -18,25 +18,28 @@ package org.robok.engine.feature.editor.schemes
  */ 
 
 import android.content.Context
-import android.util.TypedValue
 
-import androidx.annotation.AttrRes
 import androidx.core.content.ContextCompat
 
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 
+import org.robok.engine.res.ResUtils
+
 class SchemeRobokTH(context: Context) : EditorColorScheme() {
 
     val context : Context
+    val resUtils: ResUtils
 
     init {
         this.context = context
-        setColor(EditorColorScheme.WHOLE_BACKGROUND, getAttrColor(android.R.attr.colorBackground))
+        resUtils = ResUtils(context)
+        
+        setColor(EditorColorScheme.WHOLE_BACKGROUND, resUtils.getAttrColor(android.R.attr.colorBackground))
         setColor(EditorColorScheme.CURRENT_LINE, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_current_line))
-        setColor(EditorColorScheme.LINE_NUMBER_PANEL, getAttrColor(android.R.attr.colorBackground))
-        setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, getAttrColor(android.R.attr.colorBackground))
-        setColor(EditorColorScheme.KEYWORD, getAttrColor(com.google.android.material.R.attr.colorPrimary))
-        setColor(EditorColorScheme.FUNCTION_NAME, getAttrColor(com.google.android.material.R.attr.colorOnSurface))
+        setColor(EditorColorScheme.LINE_NUMBER_PANEL, resUtils.getAttrColor(android.R.attr.colorBackground))
+        setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, resUtils.getAttrColor(android.R.attr.colorBackground))
+        setColor(EditorColorScheme.KEYWORD, resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary))
+        setColor(EditorColorScheme.FUNCTION_NAME, resUtils.getAttrColor(com.google.android.material.R.attr.colorOnSurface))
         setColor(EditorColorScheme.ATTRIBUTE_VALUE, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_attribute_value))
         setColor(EditorColorScheme.ATTRIBUTE_NAME, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_attribute_name))
         setColor(EditorColorScheme.HTML_TAG, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_html_tag))
@@ -74,15 +77,5 @@ class SchemeRobokTH(context: Context) : EditorColorScheme() {
         setColor(EditorColorScheme.LINE_NUMBER, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_line_number))
         setColor(EditorColorScheme.LINE_NUMBER_CURRENT, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_line_number_current))
         setColor(EditorColorScheme.LINE_DIVIDER, ContextCompat.getColor(context, org.robok.engine.feature.editor.R.color.scheme_robok_line_divider))
-    }
-
-    private fun getAttrColor(@AttrRes resId: Int): Int {
-        val typedValue = TypedValue()
-        context.theme.resolveAttribute(resId, typedValue, true)
-        return if (typedValue.resourceId != 0) {
-            ContextCompat.getColor(context, typedValue.resourceId)
-        } else {
-            typedValue.data
-        }
     }
 }
