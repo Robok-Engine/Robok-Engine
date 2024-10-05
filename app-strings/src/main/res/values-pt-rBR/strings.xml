@@ -131,4 +131,7 @@
     <string name="text_no_files_open">Nenhum arquivo aberto.</string>
     <string name="text_click_here_to_open_files">Clique aqui para abrir um arquivo</string>
     <string name="warning_file_already_opened">Arquivo já aberto no editor.</string>
+    <string name="title_your_projects">Seus Projetos</string>
+    <string name="title_projects">Projetos</string>
+    <string name="warning_no_projects">Nenhum projeto.</string>
 </resources>
