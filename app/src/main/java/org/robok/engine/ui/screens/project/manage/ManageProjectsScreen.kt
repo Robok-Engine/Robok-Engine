@@ -77,7 +77,7 @@ fun ManageProjectsScreen(
         ) {
             if(projects.isEmpty().not()) {
                 projects.forEach { project -> 
-                    Project(projectFile = project)
+                    ProjectItem(projectFile = project)
                 }
             } else {
                 Row(
@@ -94,7 +94,7 @@ fun ManageProjectsScreen(
 }
 
 @Composable
-fun Project(
+fun ProjectItem(
     projectFile: File
 ) {
     val context = LocalContext.current
