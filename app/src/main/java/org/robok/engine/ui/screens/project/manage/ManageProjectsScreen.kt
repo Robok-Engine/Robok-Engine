@@ -82,7 +82,7 @@ fun ManageProjectsScreen(
             } else {
                 Row(
                    modifier = Modifier
-                      .fillMaxWidth()
+                      .fillMaxWidth(),
                    verticalAlignment = Alignment.CenterVertically,
                    horizontalArrangement = Arrangement.Center
                 ){
