@@ -53,8 +53,8 @@ import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
-import org.robok.engine.ui.activities.editor.vm.EditorViewModel
-import org.robok.engine.ui.activities.editor.vm.EditorViewModel.EditorEvent
+import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
+import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.core.utils.base.RobokActivity
@@ -333,19 +333,18 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
             editorViewModel.addFile(file)
             binding.apply {
                 tabs.visibility = View.VISIBLE
-                relativeLayoutDiagnostics.visibility = View.VISIBLE
                 noContentLayout.visibility = View.GONE
                 editorContainer.addView(editor)
                 tabs.addTab(tabs.newTab())
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
             editorViewModel.setCurrentFile(index)
-            setEditorListeners(editor)
+            configureEditorListeners(editor)
             updateTabs()
         }
     }
 
-    private fun setEditorListeners(editor: RobokCodeEditor) {
+    private fun configureEditorListeners(editor: RobokCodeEditor) {
         val antlrListener = object : AntlrListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
@@ -373,8 +372,12 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         val editorListener = object : EditorListener {
             override fun onEditorTextChange() {
                 updateUndoRedo()
+                with(binding) {
+                    if (relativeLayoutDiagnostics.visibility == View.GONE) relativeLayoutDiagnostics.visibility = View.VISIBLE
+                }
                 binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
                 binding.diagnosticStatusImage.visibility = View.INVISIBLE
+                
 
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
                 handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)

@@ -19,10 +19,7 @@ rootProject.name = "Robok-Engine"
 
 include(":app")
 
-include(":robok:compiler")
 include(":robok:antlr4:java")
-include(":robok:lang")
-include(":robok:util")
 include(":robok:aapt2")
 
 include(":app-strings")
@@ -31,9 +28,7 @@ include(":feature:treeview")
 include(":feature:editor")
 include(":feature:modeling")
 
-include(":feature-compose:settings")
-
-include(":core-compose:components")
+include(":feature:settings")
 
 include(":core:components")
 include(":core:utils")

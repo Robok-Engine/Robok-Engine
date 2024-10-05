@@ -57,6 +57,7 @@ jobs:
 
       - name: notify telegram
         uses: EverythingSuckz/github-telegram-notify@main
+        continue-on-error: true
         with:
           bot_token: '${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}'
           chat_id: '${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}'

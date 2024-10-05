@@ -2,11 +2,10 @@ plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
     id("maven-publish")
-    kotlin("plugin.serialization") version "2.0.20"
 }
 
 android {
-    namespace = "org.robok.engine.feature.editor"
+    namespace = "org.robok.engine.feature.settings"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {
@@ -14,10 +13,6 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures {
-        viewBinding = true
-    }
-   
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
         targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
@@ -26,40 +21,24 @@ android {
     kotlinOptions {
         jvmTarget = libs.versions.android.jvm.get()
     }
+    
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.15"
+    }
 }
 
 dependencies {
-    implementation(libs.material)
-    implementation(libs.appcompat) 
-    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.appcompat)
     implementation(libs.datastore.preferences)
-    
-    implementation(libs.coroutines.android)
-    implementation(libs.serialization.json)
-    
-    implementation(platform(libs.okhttp.bom))
-    implementation("com.squareup.okhttp3:okhttp")
-    
-    implementation(libs.koin.android)
-    
-    implementation(libs.sora.editor)
-    implementation(libs.sora.editor.language.java)
-    implementation(libs.sora.editor.language.textmate)
-    
-    implementation(libs.antlr)
-    implementation(libs.antlr.runtime)
-    
-    implementation(project(":app-strings"))
-    implementation(project(":feature:settings"))
-    implementation(project(":core:utils"))
-    implementation(project(":robok:antlr4:java"))
+    implementation(libs.material)
+    implementation(libs.lifecycle.runtime.ktx)
 }
 
 publishing {
     publications {
         create<MavenPublication>("mavenJava") {
             groupId = "com.github.robok-engine"
-            artifactId = "feature-editor"
+            artifactId = "feature-settings"
             version  = "0.0.1"
             
             from(components.findByName("release"))
