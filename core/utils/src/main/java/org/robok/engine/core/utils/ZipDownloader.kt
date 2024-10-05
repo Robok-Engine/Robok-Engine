@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.utils
+package org.robok.engine.core.utils
 
 /*
  *  This file is part of Robok © 2024.

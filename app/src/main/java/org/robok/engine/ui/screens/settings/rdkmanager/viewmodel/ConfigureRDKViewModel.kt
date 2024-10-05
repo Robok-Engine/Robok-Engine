@@ -26,7 +26,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-import org.robok.engine.feature.settings.utils.ZipDownloader
+import org.robok.engine.core.utils.ZipDownloader
 
 class ConfigureRDKViewModel(private val context: Context) : ViewModel() {
 
