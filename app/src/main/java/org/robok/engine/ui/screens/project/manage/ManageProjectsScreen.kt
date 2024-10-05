@@ -24,7 +24,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.Image
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -33,9 +35,11 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Alignment
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavController
@@ -47,6 +51,7 @@ import org.robok.engine.core.components.compose.preferences.base.PreferenceLayou
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.preferences.base.PreferenceTemplate
 
+import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
@@ -80,14 +85,7 @@ fun ManageProjectsScreen(
                     ProjectItem(projectFile = project)
                 }
             } else {
-                Row(
-                   modifier = Modifier
-                      .fillMaxWidth(),
-                   verticalAlignment = Alignment.CenterVertically,
-                   horizontalArrangement = Arrangement.Center
-                ){
-                   Text(text = stringResource(id = Strings.warning_no_projects))
-                }
+                EmptyContentItem()
             }
         }
     }
@@ -121,6 +119,34 @@ fun ProjectItem(
                         })
                     })
                 }
+            )
+    )
+}
+
+
+@Composable
+fun EmptyContentItem() {
+    PreferenceTemplate(
+        title = { 
+            Text(
+                text = Strings.warning_no_projects, 
+                style = MaterialTheme.typography.titleMedium
+            ) 
+        },
+        startWidget = {
+            Image(
+                painter = painterResource(id = Drawables.ic_warning_24),
+                contentDescription = null,
+                modifier = Modifier
+                    .size(32.dp)
+                    .clip(CircleShape)
+                    .background(MaterialTheme.colorScheme.surfaceContainer),
+            )
+        }
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable(
+                onClick = { /* TO-DO: go to CreateProjectScreen */ }
             )
     )
 }
