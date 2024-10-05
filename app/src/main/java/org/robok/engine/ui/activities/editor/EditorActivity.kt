@@ -340,12 +340,12 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
                 drawerLayout.closeDrawer(GravityCompat.START)
             }
             editorViewModel.setCurrentFile(index)
-            setEditorListeners(editor)
+            configureEditorListeners(editor)
             updateTabs()
         }
     }
 
-    private fun setEditorListeners(editor: RobokCodeEditor) {
+    private fun configureEditorListeners(editor: RobokCodeEditor) {
         val antlrListener = object : AntlrListener {
             override fun onDiagnosticStatusReceive(isError: Boolean) {
                 handler.removeCallbacks(diagnosticTimeoutRunnable)
