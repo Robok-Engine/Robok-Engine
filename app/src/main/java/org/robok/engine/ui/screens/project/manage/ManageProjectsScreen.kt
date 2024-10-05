@@ -113,7 +113,6 @@ fun Project(
         },
         modifier = Modifier
             .fillMaxWidth()
-            .padding(8.dp)
             .clickable(
                 onClick = {
                     context.startActivity(Intent(context, EditorActivity::class.java).apply {
