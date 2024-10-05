@@ -45,6 +45,8 @@ import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKVie
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.textfields.DynamicSelectTextField
+import org.robok.engine.feature.settings.DefaultValues
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,6 +56,8 @@ fun ConfigureRDKScreen(
 ) {
     val context = LocalContext.current
     val viewModel: ConfigureRDKViewModel = koinViewModel { parametersOf(context) }
+    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+    val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(initial = DefaultValues.INSTALLED_RDK_VERSION)
     
     var rdkVersions = listOf("RDK-1")
     val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
@@ -64,7 +68,7 @@ fun ConfigureRDKScreen(
             rdkVersionsState.value = rdkVersions
         }
     }
-    var version by remember { mutableStateOf("RDK-1") }
+    var version by remember { mutableStateOf(installedRDKVersion) }
     
     val zipUrl = "https://github.com/robok-inc/Robok-SDK/raw/dev/versions/$version/$version.zip"
     
