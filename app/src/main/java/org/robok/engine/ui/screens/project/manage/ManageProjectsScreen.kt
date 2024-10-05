@@ -44,7 +44,7 @@ import org.robok.engine.core.components.compose.preferences.base.PreferenceTempl
 
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
-import org.robok.engine.ui.screens.project.manage.ManageProjectsViewModel
+import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 
 import java.io.File
 
