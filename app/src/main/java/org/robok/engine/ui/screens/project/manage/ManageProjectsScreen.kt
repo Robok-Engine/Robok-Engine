@@ -68,8 +68,12 @@ fun ManageProjectsScreen(
         label = stringResource(id = Strings.title_projects),
         backArrowVisible = true,
     ) {
-        projects.forEach { project -> 
-            Project(projectFile = project)
+        PreferenceGroup(
+            heading = stringResource(id = Strings.title_your_projects)
+        ) {
+            projects.forEach { project -> 
+                Project(projectFile = project)
+            }
         }
     }
 }
