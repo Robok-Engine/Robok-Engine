@@ -239,7 +239,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 5,
-    "role": "Some fixes"
+    "role": "Implement some Editor Actions"
   },
   {
     "login": "weblate",
