@@ -9,6 +9,6 @@
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
 | Kefir2105 | 4 | Translation |
-| RohitKushvaha01 | 13 | Improvements and fixes in the Terminal |
+| RohitKushvaha01 | 13 | Implement ManageProjectsScreen & Improve Terminal |
 | teixeira0x | 5 | Some fixes |
 | weblate | 1 | Bot |
