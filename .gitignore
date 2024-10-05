@@ -19,3 +19,4 @@
 *.log
 local.properties
 */build
+**/build/

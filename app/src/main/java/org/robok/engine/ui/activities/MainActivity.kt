@@ -90,7 +90,7 @@ class MainActivity : RobokActivity() {
                          composable("settings/configure_rdk") { ConfigureRDKScreen(navController = navController) }
                          composable("settings/about") { AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME) }
                          composable("project/create") { CreateProjectScreen(navController = navController, projectTemplate = defaultTemplate) }
-                         composable("project/manage"){ ManageProjects()}
+                         composable("project/manage"){ ManageProjects(navController = navController)}
                     }
                 }
             }

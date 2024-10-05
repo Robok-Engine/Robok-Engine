@@ -27,33 +27,34 @@ import org.robok.engine.feature.treeview.interfaces.FileIconProvider
 import org.robok.engine.feature.treeview.interfaces.FileObject
 
 class DefaultFileIconProvider(context: Context) : FileIconProvider {
-    private val file = ContextCompat.getDrawable(context, R.drawable.file)
-    private val folder = ContextCompat.getDrawable(context, R.drawable.folder)
-    private val chevronRight = ContextCompat.getDrawable(context, R.drawable.ic_chevron_right)
-    private val expandMore = ContextCompat.getDrawable(context, R.drawable.round_expand_more_24)
-    private val java = ContextCompat.getDrawable(context, R.drawable.ic_language_java)
-    private val html = ContextCompat.getDrawable(context, R.drawable.ic_language_html)
-    private val kotlin = ContextCompat.getDrawable(context, R.drawable.ic_language_kotlin)
-    private val python = ContextCompat.getDrawable(context, R.drawable.ic_language_python)
-    private val xml = ContextCompat.getDrawable(context, R.drawable.ic_language_xml)
-    private val js = ContextCompat.getDrawable(context, R.drawable.ic_language_js)
-    private val c = ContextCompat.getDrawable(context, R.drawable.ic_language_c)
-    private val cpp = ContextCompat.getDrawable(context, R.drawable.ic_language_cpp)
-    private val json = ContextCompat.getDrawable(context, R.drawable.ic_language_json)
-    private val css = ContextCompat.getDrawable(context, R.drawable.ic_language_css)
-    private val csharp = ContextCompat.getDrawable(context, R.drawable.ic_language_csharp)
+    private val file by lazy { ContextCompat.getDrawable(context, R.drawable.file) }
+    private val folder by lazy { ContextCompat.getDrawable(context, R.drawable.folder) }
+    private val chevron_right by lazy { ContextCompat.getDrawable(context, R.drawable.ic_chevron_right) }
+    private val expand_more by lazy { ContextCompat.getDrawable(context, R.drawable.round_expand_more_24) }
+    private val java by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_java) }
+    private val html by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_html) }
+    private val kotlin by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_kotlin) }
+    private val python by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_python) }
+    private val xml by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_xml) }
+    private val js by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_js) }
+    private val c by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_c) }
+    private val cpp by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_cpp) }
+    private val json by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_json) }
+    private val css by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_css) }
+    private val csharp by lazy { ContextCompat.getDrawable(context, R.drawable.ic_language_csharp) }
 
-    private val bash = ContextCompat.getDrawable(context, R.drawable.bash)
-    private val apk = ContextCompat.getDrawable(context, R.drawable.apkfile)
-    private val archive = ContextCompat.getDrawable(context, R.drawable.archive)
-    private val contract = ContextCompat.getDrawable(context, R.drawable.contract)
-    private val text = ContextCompat.getDrawable(context, R.drawable.text)
-    private val video = ContextCompat.getDrawable(context, R.drawable.video)
-    private val audio = ContextCompat.getDrawable(context, R.drawable.music)
-    private val image = ContextCompat.getDrawable(context, R.drawable.image)
-    private val react = ContextCompat.getDrawable(context,R.drawable.react)
-    private val rust = ContextCompat.getDrawable(context,R.drawable.rust)
-    private val markdown = ContextCompat.getDrawable(context,R.drawable.markdown)
+    private val bash by lazy { ContextCompat.getDrawable(context, R.drawable.bash) }
+    private val apk by lazy { ContextCompat.getDrawable(context, R.drawable.apkfile) }
+    private val archive by lazy { ContextCompat.getDrawable(context, R.drawable.archive) }
+    private val contract by lazy { ContextCompat.getDrawable(context, R.drawable.contract) }
+    private val text by lazy { ContextCompat.getDrawable(context, R.drawable.text) }
+    private val video by lazy { ContextCompat.getDrawable(context, R.drawable.video) }
+    private val audio by lazy { ContextCompat.getDrawable(context, R.drawable.music) }
+    private val image by lazy { ContextCompat.getDrawable(context, R.drawable.image) }
+    private val react by lazy { ContextCompat.getDrawable(context, R.drawable.react) }
+    private val rust by lazy { ContextCompat.getDrawable(context, R.drawable.rust) }
+    private val markdown by lazy { ContextCompat.getDrawable(context, R.drawable.markdown) }
+
 
     override fun getIcon(node: Node<FileObject>): Drawable? {
         return if (node.value.isFile()) {
@@ -93,10 +94,10 @@ class DefaultFileIconProvider(context: Context) : FileIconProvider {
     }
 
     override fun getChevronRight(): Drawable? {
-        return chevronRight
+        return chevron_right
     }
 
     override fun getExpandMore(): Drawable? {
-        return expandMore
+        return expand_more
     }
 }

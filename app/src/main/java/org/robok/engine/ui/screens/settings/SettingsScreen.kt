@@ -17,29 +17,24 @@ package org.robok.engine.ui.screens.settings
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
 import androidx.compose.ui.text.font.FontWeight
-
+import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
-
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
-import org.robok.engine.core.components.compose.preferences.normal.Preference
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.compose.preferences.normal.Preference
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsScreen(
     navController: NavController
 ) {
-    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  koinViewModel<AppPreferencesViewModel>()
     
     PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
@@ -50,11 +45,11 @@ fun SettingsScreen(
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_build_title)) {
-             buildPrefs(navController)
+             BuildPrefs(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
-             aboutPrefs(navController)
+              AboutPrefs(navController)
         }
     }
 }
@@ -80,7 +75,7 @@ fun generalPrefs(
 }
 
 @Composable
-fun buildPrefs(
+fun BuildPrefs(
     navController: NavController
 ) {
    Preference(
@@ -93,7 +88,7 @@ fun buildPrefs(
 }
 
 @Composable
-fun aboutPrefs(
+fun AboutPrefs(
     navController: NavController
 ) {
    Preference(
