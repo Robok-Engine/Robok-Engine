@@ -5,7 +5,7 @@
     <string name="common_word_output">Вивід</string>
     <string name="common_word_end">Закінчити</string>
     <string name="common_word_confirm">Підтвердити</string>
-    <string name="common_word_cancel">СКАСУВАТИ</string>
+    <string name="common_word_cancel">Скасувати</string>
     <string name="common_word_undo">Скасувати</string>
     <string name="common_word_redo">Повторити</string>
     <string name="common_word_allow">Дозволити</string>
@@ -56,12 +56,12 @@
     <string name="slogan">Від Java до гри в одну мить</string>
     <string name="text_seeus">Завітайте до нас</string>
     <string name="item_telegram_title">Telegram</string>
-    <string name="item_whatsapp_description">На група у WhatsApp.</string>
+    <string name="item_whatsapp_description">Наша група у WhatsApp.</string>
     <string name="item_github_description">Репозиторій на Github</string>
     <string name="text_contributors">Вкладники</string>
     <string name="item_contribute_title">Зробити внесок</string>
     <string name="item_contribute_description">Дізнайтеся, як ви можете зробити свій внесок разом з нами</string>
-    <string name="item_libraries_description">„Бібліотеки, які ми використали</string>
+    <string name="item_libraries_description">Бібліотеки, які ми використали</string>
     <string name="settings_code_editor_title">Налаштування редактора коду</string>
     <string name="settings_code_editor_description">Деякі налаштування редактора коду.</string>
     <string name="settings_libraries_title">Бібліотеки</string>
@@ -89,4 +89,15 @@
     <string name="settings_app_use_monet_title">Динамічні кольори</string>
     <string name="warning_project_installer_not_found">Встановлювач пакетів не знайдено.</string>
     <string name="settings_app_use_monet_description">Використовує тему пристрою в застосунку.</string>
+    <string name="title_un_error_ocurred">Виникла помилка</string>
+    <string name="text_error_info">Інформація про помилку</string>
+    <string name="common_word_close">Закрити</string>
+    <string name="common_word_close_others">Закрити «Інше»</string>
+    <string name="common_word_close_all">Закрити все</string>
+    <string name="title_projects">Проєкти</string>
+    <string name="title_your_projects">Ваші проєкти</string>
+    <string name="text_no_files_open">Немає файлів для відкриття.</string>
+    <string name="text_click_here_to_open_files">Натисніть тут, щоби відкрити файл</string>
+    <string name="warning_file_already_opened">Файл вже відкрито в редакторі.</string>
+    <string name="warning_no_projects">Немає проєкту.</string>
 </resources>
