@@ -79,15 +79,21 @@ class EditorViewModel : ViewModel() {
     }
 
     fun addFile(file: File) {
-      val files = _files.value!!
-      files.add(file)
-      _files.value = files
+        val files = _files.value!!
+        files.add(file)
+        _files.value = files
     }
 
     fun removeFile(index: Int) {
-      val files = _files.value!!
-      files.removeAt(index)
-      _files.value = files
+        val files = _files.value!!
+        files.removeAt(index)
+        _files.value = files
+    }
+    
+    fun removeAllFiles() {
+        val files = _files.value!!
+        files.clear()
+        _files.value = files
     }
 
     fun indexOfFile(file: File): Int {

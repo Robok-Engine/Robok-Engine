@@ -390,12 +390,56 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         editor.setEditorListener(editorListener)
         editor.reload()
     }
+
+    private fun closeFile(index: Int) {
+        if (index >= 0 && index < editorViewModel.fileCount) {
+            val editor = getEditorAtIndex(index) ?: return
+
+            val file = editor.file
+            if (editor.modified && file != null) {
+              notifyUnsavedFile(file) { closeFile(index) }
+              return
+            }
+            editor.release()
+
+            editorViewModel.removeFile(index)
+            binding.apply {
+              tabs.removeTabAt(index)
+              container.removeViewAt(index)
+            }
+            updateTabs()
+        }
+    }
     
-    private fun closeFile(index: Int) {}
+    private fun closeOthers() {
+        if (editorViewModel.editorState.currentIndex >= 0) {
+            val file = editorViewModel.editorState.currentFile
+            var index: Int = 0
+            while (editorViewModel.fileCount > 1) {
+              val editor = getEditorAtIndex(index) ?: continue
+
+              if (file != editor.file) {
+                closeFile(index)
+              } else {
+                index = 1
+              }
+            }
+            editorViewModel.setCurrentFile(editorViewModel.indexOfFile(file))
+        }
+    }
     
-    private fun closeOthers() {}
-    
-    private fun closeAll() {}
+    private fun closeAll() {
+        for (i in 0 until editorViewModel.fileCount) {
+            getEditorAtIndex(i)?.release()
+        }
+
+        editorViewModel.removeAllFiles()
+        binding.apply {
+            tabs.removeAllTabs()
+            tabs.requestLayout()
+            container.removeAllViews()
+        }
+    }
     
     private fun saveFile(index: Int) {
         /*lifecycleScope.launch {
