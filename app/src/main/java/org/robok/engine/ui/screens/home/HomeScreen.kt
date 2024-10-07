@@ -146,7 +146,7 @@ fun HomeScreen(
                                 navController.navigate(ProjectRoute)
                            }
                            2 -> {
-                                navController.navigate(SettingsRoutes)
+                                navController.navigate(SettingsRoute)
                            }
                            else -> onTerminalClicked(context)
                         }
