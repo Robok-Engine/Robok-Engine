@@ -126,6 +126,7 @@ dependencies {
     implementation(libs.activity.compose)
     implementation(libs.navigation.compose)
     implementation(libs.material.motion.compose.core)
+    implementation(libs.material.icons.extended)
     
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)

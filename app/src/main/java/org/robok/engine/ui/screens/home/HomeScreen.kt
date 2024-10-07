@@ -33,6 +33,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.FolderOpen
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.navigation.NavController
 
 import org.robok.engine.R
@@ -115,11 +121,11 @@ fun HomeScreen(
             items(4) { index ->
                 HomeCardItem(
                     icon = when (index) {
-                        0 -> Drawables.ic_add_24
-                        1 -> Drawables.ic_folder_open_24
-                        2 -> Drawables.ic_settings_24
-                        else -> Drawables.ic_info_24
-                    },
+                        0 -> Icons.Filled.Add
+                        1 -> Icons.Filled.FolderOpen
+                        2 -> Icons.Filled.Settings
+                        else -> Icons.Filled.Info
+                    }
                     title = when (index) {
                         0 -> stringResource(id = Strings.title_create_project)
                         1 -> stringResource(id = Strings.title_open_project)
@@ -174,7 +180,8 @@ private fun processUri(ac: Context, uri: Uri): String {
 
 @Composable
 fun HomeCardItem(
-    icon: Int, title: String,
+    icon: ImageVector,
+    title: String,
     onClick: () -> Unit
 ) {
     Card(
@@ -193,8 +200,8 @@ fun HomeCardItem(
             verticalArrangement = Arrangement.Top
         ) {
             Image(
-                painter = painterResource(id = icon),
-                contentDescription = null,
+                imageVector = icon,
+                contentDescription = title,
                 modifier = Modifier.size(25.dp)
             )
             Text(
