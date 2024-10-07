@@ -92,6 +92,9 @@ class DebugActivity : RobokActivity() {
                 text = {
                    ErrorCard(madeErrMsg)
                 },
+                onConfirmation = {
+                   showDialog = false 
+                },
                 onDismissRequest = {
                    showDialog = false 
                 },
