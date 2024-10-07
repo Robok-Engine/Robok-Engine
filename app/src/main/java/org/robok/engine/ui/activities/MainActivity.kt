@@ -26,6 +26,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.material3.MaterialTheme
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 
 import org.robok.engine.routes.MainNavHost
 import org.robok.engine.core.utils.base.RobokActivity
@@ -35,7 +36,7 @@ class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         installSplashScreen()
         super.onCreate(savedInstanceState)
-
+        
         setContent {
             RobokTheme {
                 Surface(
@@ -43,6 +44,9 @@ class MainActivity : RobokActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
+                    val viewModelStoreOwner = LocalViewModelStoreOwner.current ?: error("No ViewModelStoreOwner found")
+                    navController.setViewModelStore(viewModelStoreOwner.viewModelStore)
+    
                     MainNavHost(navController, this@MainActivity)
                 }
             }
