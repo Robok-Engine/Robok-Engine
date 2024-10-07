@@ -45,13 +45,13 @@ fun SettingsNavHost(navController: NavHostController) {
         composable<SettingsCodeEditorRoute> {
             SettingsCodeEditorScreen(navController = navController)
         }
-        composable<SettingsRDKRoute>) {
+        composable<SettingsRDKRoute> {
             SettingsRDKScreen(navController = navController)
         }
-        composable<AboutLibrariesRoute) {
+        composable<AboutLibrariesRoute> {
             LibrariesScreen(navController = navController)
         }
-        composable<AboutRoute>) { 
+        composable<AboutRoute> { 
             AboutScreen(
                navController = navController, 
                version = BuildConfig.VERSION_NAME
