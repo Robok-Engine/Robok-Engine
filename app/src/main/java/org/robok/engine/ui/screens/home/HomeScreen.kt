@@ -125,7 +125,7 @@ fun HomeScreen(
                         1 -> Icons.Filled.FolderOpen
                         2 -> Icons.Filled.Settings
                         else -> Icons.Filled.Info
-                    }
+                    },
                     title = when (index) {
                         0 -> stringResource(id = Strings.title_create_project)
                         1 -> stringResource(id = Strings.title_open_project)
