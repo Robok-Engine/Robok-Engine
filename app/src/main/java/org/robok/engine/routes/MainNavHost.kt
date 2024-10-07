@@ -36,7 +36,7 @@ fun MainNavHost(
         startDestination = HomeRoute
     ) {
         composable <HomeRoute> {
-            HomeScreen(navController = navController, actContext = context)
+            HomeScreen(navController = navController, context = context)
         }
         composable<ProjectRoute> {
             ProjectNavHost(navController = navController, context = context)
