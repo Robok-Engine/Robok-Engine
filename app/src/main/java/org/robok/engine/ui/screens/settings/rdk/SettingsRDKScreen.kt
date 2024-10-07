@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.settings.rdkmanager
+package org.robok.engine.ui.screens.settings.rdk
 
 /*
  *  This file is part of Robok © 2024.
@@ -40,8 +40,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKViewModel
-import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKViewModel.DownloadState
+import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.SettingsRDKViewModel
+import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.SettingsRDKViewModel.DownloadState
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.textfields.DynamicSelectTextField
@@ -51,11 +51,11 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConfigureRDKScreen(
+fun SettingsRDKScreen(
     navController: NavController
 ) {
     val context = LocalContext.current
-    val viewModel: ConfigureRDKViewModel = koinViewModel { parametersOf(context) }
+    val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(initial = DefaultValues.INSTALLED_RDK_VERSION)
     

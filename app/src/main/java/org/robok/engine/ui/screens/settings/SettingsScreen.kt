@@ -24,20 +24,16 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 
-import org.koin.androidx.compose.koinViewModel
-
+import org.robok.engine.routes.SettingsRoutes
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.normal.Preference
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsScreen(
     navController: NavController
 ) {
-  koinViewModel<AppPreferencesViewModel>()
-    
     PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
@@ -64,14 +60,14 @@ fun generalPrefs(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
-           navController.navigate("settings/app")
+           navController.navigate(SettingsRoutes.SettingsApp.route)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
-           navController.navigate("settings/codeeditor")
+           navController.navigate(SettingsRoutes.SettingsCodeEditor.route)
        }
    )
 }
@@ -84,7 +80,7 @@ fun BuildPrefs(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
-           navController.navigate("settings/configure_rdk")
+           navController.navigate(SettingsRoutes.SettingsRDK.route)
        }
    )
 }
@@ -97,14 +93,14 @@ fun AboutPrefs(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
-           navController.navigate("settings/libraries")
+           navController.navigate(SettingsRoutes.AboutLibraries.route)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
-           navController.navigate("settings/about")
+           navController.navigate(SettingsRoutes.About.route)
        }
    )
 }
