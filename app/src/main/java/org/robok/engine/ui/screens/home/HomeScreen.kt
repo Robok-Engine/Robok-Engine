@@ -59,6 +59,7 @@ import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.ProjectRoute
 import org.robok.engine.routes.CreateProjectRoute
 import org.robok.engine.models.project.ProjectTemplate
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.activities.terminal.TerminalActivity
 import org.robok.engine.ui.theme.Typography
@@ -140,13 +141,13 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                            0 -> {
-                                navController.navigate(CreateProjectRoute(getTemplate(context)))
+                                navController.navigateSingleTop(CreateProjectRoute(getTemplate(context)))
                            }
                            1 -> {
-                                navController.navigate(ProjectRoute)
+                                navController.navigateSingleTop(ProjectRoute)
                            }
                            2 -> {
-                                navController.navigate(SettingsRoute)
+                                navController.navigateSingleTop(SettingsRoute)
                            }
                            else -> onTerminalClicked(context)
                         }

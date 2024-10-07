@@ -29,6 +29,7 @@ import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.AboutLibrariesRoute
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.normal.Preference
@@ -64,14 +65,14 @@ fun GeneralPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
-           navController.navigate(SettingsAppRoute)
+           navController.navigateSingleTop(SettingsAppRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
-           navController.navigate(SettingsCodeEditorRoute)
+           navController.navigateSingleTop(SettingsCodeEditorRoute)
        }
    )
 }
@@ -84,7 +85,7 @@ fun BuildPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
-           navController.navigate(SettingsRDKRoute)
+           navController.navigateSingleTop(SettingsRDKRoute)
        }
    )
 }
@@ -97,14 +98,14 @@ fun AboutPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
-           navController.navigate(AboutLibrariesRoute)
+           navController.navigateSingleTop(AboutLibrariesRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
-           navController.navigate(AboutRoute)
+           navController.navigateSingleTop(AboutRoute)
        }
    )
 }
