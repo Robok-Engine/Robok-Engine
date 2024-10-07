@@ -89,4 +89,14 @@ class EditorViewModel : ViewModel() {
       files.removeAt(index)
       _files.value = files
     }
+
+    fun indexOfFile(file: File): Int {
+        val files = this.openedFiles
+        for (i in files.indices) {
+          if (files[i] == file) {
+            return i
+          }
+        }
+        return -1
+    }
 }
