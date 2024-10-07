@@ -32,11 +32,7 @@ import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 fun ProjectNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = ProjectRoutes.CreateProject.route,
-        enterTransition = AnimationTransitions.enterTransition,
-        exitTransition = AnimationTransitions.exitTransition,
-        popEnterTransition = AnimationTransitions.popEnterTransition,
-        popExitTransition = AnimationTransitions.popExitTransition
+        startDestination = ProjectRoutes.CreateProject.route
     ) {
         composable(ProjectRoutes.CreateProject.route) {
             CreateProjectScreen(

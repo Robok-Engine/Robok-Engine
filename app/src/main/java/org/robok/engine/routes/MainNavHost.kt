@@ -33,11 +33,7 @@ fun MainNavHost(
 ) {
     NavHost(
         navController = navController, 
-        startDestination = MainRoutes.Home.route,
-        enterTransition = AnimationTransitions.enterTransition,
-        exitTransition = AnimationTransitions.exitTransition,
-        popEnterTransition = AnimationTransitions.popEnterTransition,
-        popExitTransition = AnimationTransitions.popExitTransition
+        startDestination = MainRoutes.Home.route
     ){
         composable(MainRoutes.Home.route) {
              HomeScreen(navController = navController, actContext = context)

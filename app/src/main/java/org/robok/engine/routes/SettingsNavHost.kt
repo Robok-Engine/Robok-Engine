@@ -34,11 +34,7 @@ import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 fun SettingsNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = SettingsRoutes.Settings.route,
-        enterTransition = AnimationTransitions.enterTransition,
-        exitTransition = AnimationTransitions.exitTransition,
-        popEnterTransition = AnimationTransitions.popEnterTransition,
-        popExitTransition = AnimationTransitions.popExitTransition
+        startDestination = SettingsRoutes.Settings.route
     ) {
         composable(SettingsRoutes.Settings.route) {
             SettingsScreen(navController = navController)
