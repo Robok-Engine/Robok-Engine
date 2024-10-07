@@ -77,7 +77,7 @@ fun RobokDialog(
                     onDismissRequest()
                 }
             ) {
-                dismissButton.let?{
+                dismissButton?.let {
                    it()
                 }
             }
