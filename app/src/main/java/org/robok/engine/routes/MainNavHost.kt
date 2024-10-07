@@ -23,6 +23,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
 
 import org.robok.engine.ui.screens.home.HomeScreen
 
@@ -31,18 +32,22 @@ fun MainNavHost(
     navController: NavHostController,
     context: Context
 ) {
+    val viewModelStoreOwner = LocalViewModelStoreOwner.current 
+        ?: error("No ViewModelStoreOwner found")
+    navController.setViewModelStore(viewModelStoreOwner.viewModelStore)
+
     NavHost(
-        navController = navController, 
+        navController = navController,
         startDestination = MainRoutes.Home.route
-    ){
+    ) {
         composable(MainRoutes.Home.route) {
-             HomeScreen(navController = navController, actContext = context)
+            HomeScreen(navController = navController, actContext = context)
         }
         composable(MainRoutes.Project.route) {
-             ProjectNavHost(navController = navController, context = context)
+            ProjectNavHost(navController = navController, context = context)
         }
         composable(MainRoutes.Settings.route) {
-             SettingsNavHost(navController = navController)
+            SettingsNavHost(navController = navController)
         }
     }
 }
