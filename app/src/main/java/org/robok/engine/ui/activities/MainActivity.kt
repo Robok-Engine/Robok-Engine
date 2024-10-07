@@ -44,9 +44,6 @@ class MainActivity : RobokActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     val navController = rememberNavController()
-                    val viewModelStoreOwner = LocalViewModelStoreOwner.current ?: error("No ViewModelStoreOwner found")
-                    navController.setViewModelStore(viewModelStoreOwner.viewModelStore)
-    
                     MainNavHost(navController, this@MainActivity)
                 }
             }

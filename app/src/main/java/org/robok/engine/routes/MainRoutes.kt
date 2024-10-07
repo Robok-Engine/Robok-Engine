@@ -17,8 +17,13 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-sealed class MainRoutes(val route: String) {
-    object Home: MainRoutes("home")
-    object Project: MainRoutes("project/create")
-    object Settings: MainRoutes("settings")
-}
+import kotlinx.serialization.Serializable
+
+@Serializable
+object HomeRoute
+
+@Serializable
+object ProjectRoute
+
+@Serializable
+object SettingsRoute

@@ -34,24 +34,24 @@ import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 fun SettingsNavHost(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = SettingsRoutes.Settings.route
+        startDestination = SettingsRoute
     ) {
-        composable(SettingsRoutes.Settings.route) {
+        composable<SettingsRoute> {
             SettingsScreen(navController = navController)
         }
-        composable(SettingsRoutes.SettingsApp.route) {
+        composable<SettingsAppRoute> {
             SettingsAppScreen(navController = navController)
         }
-        composable(SettingsRoutes.SettingsCodeEditor.route) {
+        composable<SettingsCodeEditorRoute> {
             SettingsCodeEditorScreen(navController = navController)
         }
-        composable(SettingsRoutes.AboutLibraries.route) {
-            LibrariesScreen(navController = navController)
-        }
-        composable(SettingsRoutes.SettingsRDK.route) {
+        composable<SettingsRDKRoute>) {
             SettingsRDKScreen(navController = navController)
         }
-        composable(SettingsRoutes.About.route) { 
+        composable<AboutLibrariesRoute) {
+            LibrariesScreen(navController = navController)
+        }
+        composable<AboutRoute>) { 
             AboutScreen(
                navController = navController, 
                version = BuildConfig.VERSION_NAME

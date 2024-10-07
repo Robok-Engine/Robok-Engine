@@ -55,7 +55,10 @@ import androidx.navigation.NavController
 import org.robok.engine.R
 import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
-import org.robok.engine.routes.MainRoutes
+import org.robok.engine.routes.SettingsRoute
+import org.robok.engine.routes.ProjectRoute
+import org.robok.engine.routes.CreateProjectRoute
+import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.activities.terminal.TerminalActivity
 import org.robok.engine.ui.theme.Typography
@@ -67,7 +70,7 @@ import java.io.File
 @Composable
 fun HomeScreen(
     navController: NavController,
-    actContext: Context
+    context: Context
 ) {
     var selectedFolderUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -77,12 +80,12 @@ fun HomeScreen(
         selectedFolderUri = uri
         if (uri != null) {
             val bundle = Bundle().apply {
-                putString("projectPath", processUri(actContext, uri!!))
+                putString("projectPath", processUri(context, uri!!))
             }
-            val intent = Intent(actContext, EditorActivity::class.java).apply {
+            val intent = Intent(context, EditorActivity::class.java).apply {
                 putExtras(bundle)
             }
-            actContext.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 
@@ -137,19 +140,15 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                            0 -> {
-                                navController.navigate(MainRoutes.Project.route) {
-                                   launchSingleTop = true
-                                }
+                                navController.navigate(CreateProjectRoute(getTemplate(context)))
                            }
                            1 -> {
-                                navController.navigate(MainRoutes.Project.route) {
-                                   launchSingleTop = true 
-                                }
+                                navController.navigate(ProjectRoute)
                            }
                            2 -> {
-                               navController.navigate(MainRoutes.Settings.route)
+                                navController.navigate(SettingsRoutes)
                            }
-                           else -> onTerminalClicked(actContext)
+                           else -> onTerminalClicked(context)
                         }
                     }
                 )
@@ -162,8 +161,8 @@ private fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Ur
     folderPickerLauncher.launch(null)
 }
 
-private fun onTerminalClicked(actContext: Context) {
-    actContext.startActivity(Intent(actContext, TerminalActivity::class.java))
+private fun onTerminalClicked(context: Context) {
+    context.startActivity(Intent(context, TerminalActivity::class.java))
 }
 
 private fun processUri(ac: Context, uri: Uri): String {
@@ -178,6 +177,17 @@ private fun processUri(ac: Context, uri: Uri): String {
         return "${getDefaultPath()}/Robok"
     }
     return path
+}
+
+private fun getTemplate(context: Context): ProjectTemplate {
+    return ProjectTemplate(
+       name = context.getString(Strings.template_name_empty_game),
+       packageName = "com.robok.empty",
+       zipFileName = "empty_game.zip",
+       javaSupport = true,
+       kotlinSupport = false,
+       imageResId = Drawables.ic_empty_game
+    )
 }
 
 @Composable

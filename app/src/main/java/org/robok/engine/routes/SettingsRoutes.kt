@@ -16,12 +16,19 @@ package org.robok.engine.routes
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
+import kotlinx.serialization.Serializable
 
-sealed class SettingsRoutes(val route: String) {
-    object Settings: SettingsRoutes("settings")
-    object SettingsApp: SettingsRoutes("settings_app")
-    object SettingsCodeEditor: SettingsRoutes("settings_codeeditor")
-    object SettingsRDK: SettingsRoutes("settings/rdk")
-    object About: SettingsRoutes("settings/about")
-    object AboutLibraries: SettingsRoutes("settings/libraries")
-}
+@Serializable
+object SettingsAppRoute
+
+@Serializable
+object SettingsCodeEditorRoute
+
+@Serializable
+object SettingsRDKRoute
+
+@Serializable
+object AboutRoute
+
+@Serializable
+object AboutLibrariesRoute

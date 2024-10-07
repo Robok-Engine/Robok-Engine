@@ -25,7 +25,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
 import org.robok.engine.Drawables
-import org.robok.engine.strings.Strings
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
@@ -37,27 +36,17 @@ fun ProjectNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = ProjectRoutes.CreateProject.route
+        startDestination = CreateProjectRoute
     ) {
-        composable(ProjectRoutes.CreateProject.route) {
+        composable<CreateProjectRoute> { backStackEntry ->
+            val template: ProjectTemplate = backStackEntry.route()
             CreateProjectScreen(
                 navController = navController,
-                projectTemplate = getTemplate(context)
+                projectTemplate = template
             )
         } 
-        composable(ProjectRoutes.ManageProjects.route){
+        composable<ManageProjectsRoute>{
             ManageProjectsScreen(navController = navController)
         }
     }
-}
-
-private fun getTemplate(context: Context): ProjectTemplate {
-    return ProjectTemplate(
-       name = context.getString(Strings.template_name_empty_game),
-       packageName = "com.robok.empty",
-       zipFileName = "empty_game.zip",
-       javaSupport = true,
-       kotlinSupport = false,
-       imageResId = Drawables.ic_empty_game
-    )
 }

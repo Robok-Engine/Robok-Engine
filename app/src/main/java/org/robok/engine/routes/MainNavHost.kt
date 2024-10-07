@@ -33,15 +33,15 @@ fun MainNavHost(
 ) {
     NavHost(
         navController = navController,
-        startDestination = MainRoutes.Home.route
+        startDestination = HomeRoute
     ) {
-        composable(MainRoutes.Home.route) {
+        composable <HomeRoute> {
             HomeScreen(navController = navController, actContext = context)
         }
-        composable(MainRoutes.Project.route) {
+        composable<ProjectRoute> {
             ProjectNavHost(navController = navController, context = context)
         }
-        composable(MainRoutes.Settings.route) {
+        composable<SettingsRoute> {
             SettingsNavHost(navController = navController)
         }
     }

@@ -24,7 +24,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavController
 
-import org.robok.engine.routes.SettingsRoutes
+import org.robok.engine.routes.SettingsAppRoute
+import org.robok.engine.routes.SettingsCodeEditorRoute
+import org.robok.engine.routes.SettingsRDKRoute
+import org.robok.engine.routes.AboutRoute
+import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.normal.Preference
@@ -39,68 +43,68 @@ fun SettingsScreen(
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_general_title)) {
-             generalPrefs(navController)
+             GeneralPreferences(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_build_title)) {
-             BuildPrefs(navController)
+             BuildPreferences(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
-              AboutPrefs(navController)
+              AboutPreferences(navController)
         }
     }
 }
 
 @Composable
-fun generalPrefs(
+fun GeneralPreferences(
     navController: NavController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
-           navController.navigate(SettingsRoutes.SettingsApp.route)
+           navController.navigate(SettingsAppRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
-           navController.navigate(SettingsRoutes.SettingsCodeEditor.route)
+           navController.navigate(SettingsCodeEditorRoute)
        }
    )
 }
 
 @Composable
-fun BuildPrefs(
+fun BuildPreferences(
     navController: NavController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
-           navController.navigate(SettingsRoutes.SettingsRDK.route)
+           navController.navigate(SettingsRDKRoute)
        }
    )
 }
 
 @Composable
-fun AboutPrefs(
+fun AboutPreferences(
     navController: NavController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
-           navController.navigate(SettingsRoutes.AboutLibraries.route)
+           navController.navigate(AboutLibrariesRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
-           navController.navigate(SettingsRoutes.About.route)
+           navController.navigate(AboutRoute)
        }
    )
 }

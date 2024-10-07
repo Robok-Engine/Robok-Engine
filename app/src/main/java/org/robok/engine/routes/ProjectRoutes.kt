@@ -17,7 +17,12 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-sealed class ProjectRoutes(val route: String) {
-    object CreateProject: ProjectRoutes("project/create")
-    object ManageProjects: ProjectRoutes("project/manage")
-}
+import org.robok.engine.models.project.ProjectTemplate
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class CreateProjectRoute(template: ProjectTemplate)
+
+@Serializable
+object ManageProjectsRoute
