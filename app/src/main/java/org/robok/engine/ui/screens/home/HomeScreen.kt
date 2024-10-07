@@ -47,6 +47,7 @@ import androidx.navigation.NavController
 import org.robok.engine.R
 import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
+import org.robok.engine.routes.MainRoutes
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.activities.terminal.TerminalActivity
 import org.robok.engine.ui.theme.Typography
@@ -127,10 +128,20 @@ fun HomeScreen(
                     },
                     onClick = { 
                         when (index) {
-                            0 -> navController.navigate("project/create")
-                            1 -> navController.navigate("project/manage")
-                            2 -> navController.navigate("settings")
-                            else -> onTerminalClicked(actContext)
+                           0 -> {
+                                navController.navigate(MainRoutes.Project.route) {
+                                   launchSingleTop = true
+                                }
+                           }
+                           1 -> {
+                                navController.navigate(MainRoutes.Project.route) {
+                                   launchSingleTop = true 
+                                }
+                           }
+                           2 -> {
+                               navController.navigate(MainRoutes.Settings.route)
+                           }
+                           else -> onTerminalClicked(actContext)
                         }
                     }
                 )
