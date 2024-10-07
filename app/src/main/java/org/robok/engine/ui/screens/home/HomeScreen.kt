@@ -45,9 +45,11 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.navigation.NavController
 
 import org.robok.engine.R
@@ -188,6 +190,7 @@ fun HomeCardItem(
         modifier = Modifier
             .padding(8.dp)
             .clickable(onClick = onClick)
+            .clip(RoundedCornerShape(17.dp))
             .height(100.dp),
         shape = RoundedCornerShape(17.dp),
         elevation = CardDefaults.cardElevation(0.dp)
@@ -202,7 +205,8 @@ fun HomeCardItem(
             Image(
                 imageVector = icon,
                 contentDescription = title,
-                modifier = Modifier.size(25.dp)
+                modifier = Modifier.size(25.dp),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
             )
             Text(
                 text = title,
