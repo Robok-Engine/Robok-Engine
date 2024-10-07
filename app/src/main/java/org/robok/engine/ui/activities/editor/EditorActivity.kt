@@ -412,7 +412,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
     
     private fun closeOthers() {
         if (editorViewModel.currentFileIndex >= 0) {
-            val file = editorViewModel.currentFile
+            val file = editorViewModel.currentFile!!
             var index: Int = 0
             while (editorViewModel.fileCount > 1) {
               val editor = getEditorAtIndex(index) ?: continue
