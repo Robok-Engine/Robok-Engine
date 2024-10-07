@@ -17,6 +17,8 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import android.content.Context
+
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -29,7 +31,10 @@ import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 
 @Composable
-fun ProjectNavHost(navController: NavHostController) {
+fun ProjectNavHost(
+    navController: NavHostController,
+    context: Context
+) {
     NavHost(
         navController = navController,
         startDestination = ProjectRoutes.CreateProject.route
@@ -37,7 +42,7 @@ fun ProjectNavHost(navController: NavHostController) {
         composable(ProjectRoutes.CreateProject.route) {
             CreateProjectScreen(
                 navController = navController,
-                projectTemplate = getTemplate()
+                projectTemplate = getTemplate(context)
             )
         } 
         composable(ProjectRoutes.ManageProjects.route){
@@ -46,9 +51,9 @@ fun ProjectNavHost(navController: NavHostController) {
     }
 }
 
-private fun getTemplate(): ProjectTemplate {
+private fun getTemplate(context: Context): ProjectTemplate {
     return ProjectTemplate(
-       name = getString(Strings.template_name_empty_game),
+       name = context.getString(Strings.template_name_empty_game),
        packageName = "com.robok.empty",
        zipFileName = "empty_game.zip",
        javaSupport = true,
