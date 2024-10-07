@@ -19,6 +19,9 @@ package org.robok.engine.models.project
 
 import androidx.annotation.DrawableRes
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class ProjectTemplate(
     val name: String = "",
     val packageName: String = "",
