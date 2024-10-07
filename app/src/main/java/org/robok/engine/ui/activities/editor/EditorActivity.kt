@@ -35,6 +35,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.core.util.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
@@ -322,26 +323,35 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
                 is EditorEvent.CloseAll -> closeAll()
             }
         }
+        
+        editorViewModel.files.observe(this) { openedFiles ->
+            val hasOpenedFiles = openedFiles.isNotEmpty()
+            binding.apply {
+                tabs.isVisible = hasOpenedFiles
+                noContentLayout.isVisible = !hasOpenedFiles
+            }
+        }
     }
     
     private fun openFile(file: File) {
-        editorViewModel.files.observe(this) { files ->
-            if (files.contains(file)) return@observe
-            val index = editorViewModel.fileCount
-            val editor = RobokCodeEditor(this, file)
-            
-            editorViewModel.addFile(file)
-            binding.apply {
-                tabs.visibility = View.VISIBLE
-                noContentLayout.visibility = View.GONE
-                editorContainer.addView(editor)
-                tabs.addTab(tabs.newTab())
-                drawerLayout.closeDrawer(GravityCompat.START)
-            }
-            editorViewModel.setCurrentFile(index)
-            configureEditorListeners(editor)
-            updateTabs()
+        val openedFileIndex = editorViewModel.indexOfFile(file)
+        if (openedFileIndex >= 0) {
+            editorViewModel.setCurrentFile(openedFileIndex)
+            return
         }
+
+        val index = editorViewModel.fileCount
+        val editor = RobokCodeEditor(this, file)
+
+        editorViewModel.addFile(file)
+        binding.apply {
+            editorContainer.addView(editor)
+            tabs.addTab(tabs.newTab())
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        editorViewModel.setCurrentFile(index)
+        configureEditorListeners(editor)
+        updateTabs()
     }
 
     private fun configureEditorListeners(editor: RobokCodeEditor) {
@@ -387,12 +397,48 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         editor.setEditorListener(editorListener)
         editor.reload()
     }
+
+    private fun closeFile(index: Int) {
+        if (index >= 0 && index < editorViewModel.fileCount) {
+            getEditorAtIndex(index)?.release()
+            editorViewModel.removeFile(index)
+            binding.apply {
+              tabs.removeTabAt(index)
+              editorContainer.removeViewAt(index)
+            }
+            updateTabs()
+        }
+    }
     
-    private fun closeFile(index: Int) {}
+    private fun closeOthers() {
+        if (editorViewModel.currentFileIndex >= 0) {
+            val file = editorViewModel.currentFile!!
+            var index: Int = 0
+            while (editorViewModel.fileCount > 1) {
+              val editor = getEditorAtIndex(index) ?: continue
+
+              if (file != editor.file) {
+                closeFile(index)
+              } else {
+                index = 1
+              }
+            }
+            editorViewModel.setCurrentFile(editorViewModel.indexOfFile(file))
+        }
+    }
     
-    private fun closeOthers() {}
-    
-    private fun closeAll() {}
+    private fun closeAll() {
+        for (i in 0 until editorViewModel.fileCount) {
+            getEditorAtIndex(i)?.release()
+        }
+
+        editorViewModel.removeAllFiles()
+        binding.apply {
+            tabs.removeAllTabs()
+            tabs.requestLayout()
+            editorContainer.removeAllViews()
+        }
+    }
     
     private fun saveFile(index: Int) {
         /*lifecycleScope.launch {

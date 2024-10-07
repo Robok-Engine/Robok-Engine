@@ -161,6 +161,10 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         language.setAntlrListener(antlrListener);
     }
 
+    public void release() {
+        getSoraCodeEditor().release();
+    }
+
     /*
      * Method to resolve a simple error quickly
      * not implemented yet.
@@ -239,6 +243,15 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     public boolean isModified() {
         return this.isModified;
+    }
+
+    /**
+     * Get current file from editor.
+     * 
+     * @return The file.
+     */
+    public File getFile() {
+        return this.file;
     }
 
     /*
