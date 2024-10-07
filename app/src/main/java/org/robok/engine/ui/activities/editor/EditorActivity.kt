@@ -35,6 +35,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
+import androidx.core.view.isVisible
 import androidx.core.util.forEach
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.annotation.IdRes 
@@ -322,6 +323,14 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
                 is EditorEvent.CloseAll -> closeAll()
             }
         }
+        
+        editorViewModel.files.observe(this) { openedFiles ->
+            val hasOpenedFiles = openedFiles.isNotEmpty()
+            binding.apply {
+                tabs.isVisible = hasOpenedFiles
+                noContentLayout.isVisible = !hasOpenedFiles
+            }
+        }
     }
     
     private fun openFile(file: File) {
@@ -336,8 +345,6 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
 
         editorViewModel.addFile(file)
         binding.apply {
-            tabs.visibility = View.VISIBLE
-            noContentLayout.visibility = View.GONE
             editorContainer.addView(editor)
             tabs.addTab(tabs.newTab())
             drawerLayout.closeDrawer(GravityCompat.START)
