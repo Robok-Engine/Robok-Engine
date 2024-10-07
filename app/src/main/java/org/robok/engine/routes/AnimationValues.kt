@@ -26,19 +26,19 @@ import soup.compose.material.motion.animation.materialSharedAxisXOut
 
 object AnimationTransitions {
 
-    val enterTransition: (NavBackStackEntry, NavBackStackEntry?) -> EnterTransition? = { _, _ ->
+    val enterTransition: () -> EnterTransition = {
         materialSharedAxisXIn(forward = true, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
     }
 
-    val exitTransition: (NavBackStackEntry, NavBackStackEntry?) -> ExitTransition? = { _, _ ->
+    val exitTransition: () -> ExitTransition = {
         materialSharedAxisXOut(forward = true, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
     }
 
-    val popEnterTransition: (NavBackStackEntry, NavBackStackEntry?) -> EnterTransition? = { _, _ ->
+    val popEnterTransition: () -> EnterTransition = {
         materialSharedAxisXIn(forward = false, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
     }
 
-    val popExitTransition: (NavBackStackEntry, NavBackStackEntry?) -> ExitTransition? = { _, _ ->
+    val popExitTransition: () -> ExitTransition = {
         materialSharedAxisXOut(forward = false, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
     }
 }
