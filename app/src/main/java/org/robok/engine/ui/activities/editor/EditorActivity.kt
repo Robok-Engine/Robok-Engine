@@ -393,27 +393,19 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
 
     private fun closeFile(index: Int) {
         if (index >= 0 && index < editorViewModel.fileCount) {
-            val editor = getEditorAtIndex(index) ?: return
-
-            val file = editor.file
-            if (editor.modified && file != null) {
-              notifyUnsavedFile(file) { closeFile(index) }
-              return
-            }
-            editor.release()
-
+            getEditorAtIndex(index)?.release()
             editorViewModel.removeFile(index)
             binding.apply {
               tabs.removeTabAt(index)
-              container.removeViewAt(index)
+              editorContainer.removeViewAt(index)
             }
             updateTabs()
         }
     }
     
     private fun closeOthers() {
-        if (editorViewModel.editorState.currentIndex >= 0) {
-            val file = editorViewModel.editorState.currentFile
+        if (editorViewModel.currentFileIndex >= 0) {
+            val file = editorViewModel.currentFile
             var index: Int = 0
             while (editorViewModel.fileCount > 1) {
               val editor = getEditorAtIndex(index) ?: continue
@@ -437,7 +429,7 @@ class EditorActivity : RobokActivity(), TabLayout.OnTabSelectedListener, Compile
         binding.apply {
             tabs.removeAllTabs()
             tabs.requestLayout()
-            container.removeAllViews()
+            editorContainer.removeAllViews()
         }
     }
     
