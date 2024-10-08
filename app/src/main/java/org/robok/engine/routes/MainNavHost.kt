@@ -51,7 +51,8 @@ fun MainNavHost(
         }
         
         composable<CreateProjectRoute> { backStackEntry ->
-            val template: ProjectTemplate = backStackEntry.toRoute().template
+            val route: CreateProjectRoute = backStackEntry.toRoute()
+            val template: ProjectTemplate = route.template
             CreateProjectScreen(
                 navController = navController,
                 projectTemplate = template
