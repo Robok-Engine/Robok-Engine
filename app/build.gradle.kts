@@ -142,6 +142,9 @@ dependencies {
     implementation(libs.about.libraries.compose)
     implementation(libs.about.libraries.compose.m3)
     
+    implementation(libs.easy.ui.antlr)
+    implementation(libs.easy.ui.gui)
+    
     // projects
     implementation(project(":robok:antlr4:java"))
     implementation(project(":robok:aapt2"))
