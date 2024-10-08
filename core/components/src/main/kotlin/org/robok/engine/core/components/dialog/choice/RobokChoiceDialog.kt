@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
 
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.radio.IntRadioController
 
 @Composable
