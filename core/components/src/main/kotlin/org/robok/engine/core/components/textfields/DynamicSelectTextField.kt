@@ -18,6 +18,7 @@ package org.robok.engine.core.components.textfields
  */
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -47,6 +48,7 @@ fun DynamicSelectTextField(
             value = selectedValue,
             onValueChange = {},
             label = { Text(text = label) },
+            shape = RoundedCornerShape(12.dp),
             trailingIcon = {
                 ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded)
             },

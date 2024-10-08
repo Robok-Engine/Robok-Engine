@@ -22,6 +22,7 @@ import android.os.Environment
 import android.widget.Toast
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.material.icons.*
 import androidx.compose.material.icons.outlined.Settings
@@ -109,12 +110,14 @@ private fun Screen(
         value = state.projectName,
         onValueChange = { viewModel.updateProjectName(it) },
         label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
+        shape = RoundedCornerShape(12.dp),
         modifier = modifier.fillMaxWidth()
     )
     OutlinedTextField(
         value = state.packageName,
         onValueChange = { viewModel.updatePackageName(it) },
         label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
+        shape = RoundedCornerShape(12.dp),
         modifier = modifier.fillMaxWidth()
     )
     
