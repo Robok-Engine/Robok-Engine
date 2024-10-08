@@ -22,89 +22,90 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
-import org.koin.androidx.compose.koinViewModel
-
+import org.robok.engine.routes.SettingsAppRoute
+import org.robok.engine.routes.SettingsCodeEditorRoute
+import org.robok.engine.routes.SettingsRDKRoute
+import org.robok.engine.routes.AboutRoute
+import org.robok.engine.routes.AboutLibrariesRoute
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.normal.Preference
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsScreen(
-    navController: NavController
+    navController: NavHostController
 ) {
-  koinViewModel<AppPreferencesViewModel>()
-    
     PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_general_title)) {
-             generalPrefs(navController)
+             GeneralPreferences(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_build_title)) {
-             BuildPrefs(navController)
+             BuildPreferences(navController)
         }
         
         PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
-              AboutPrefs(navController)
+              AboutPreferences(navController)
         }
     }
 }
 
 @Composable
-fun generalPrefs(
-    navController: NavController
+fun GeneralPreferences(
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
-           navController.navigate("settings/app")
+           navController.navigateSingleTop(route = SettingsAppRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
-           navController.navigate("settings/codeeditor")
+           navController.navigateSingleTop(route = SettingsCodeEditorRoute)
        }
    )
 }
 
 @Composable
-fun BuildPrefs(
-    navController: NavController
+fun BuildPreferences(
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
-           navController.navigate("settings/configure_rdk")
+           navController.navigateSingleTop(route = SettingsRDKRoute)
        }
    )
 }
 
 @Composable
-fun AboutPrefs(
-    navController: NavController
+fun AboutPreferences(
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
-           navController.navigate("settings/libraries")
+           navController.navigateSingleTop(route = AboutLibrariesRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
-           navController.navigate("settings/about")
+           navController.navigateSingleTop(route = AboutRoute)
        }
    )
 }

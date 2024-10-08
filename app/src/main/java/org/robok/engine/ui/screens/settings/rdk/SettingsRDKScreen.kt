@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.settings.rdkmanager
+package org.robok.engine.ui.screens.settings.rdk
 
 /*
  *  This file is part of Robok © 2024.
@@ -23,7 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 
@@ -40,8 +40,8 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
-import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKViewModel
-import org.robok.engine.ui.screens.settings.rdkmanager.viewmodel.ConfigureRDKViewModel.DownloadState
+import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
+import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.DownloadState
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.compose.textfields.DynamicSelectTextField
@@ -51,11 +51,11 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ConfigureRDKScreen(
-    navController: NavController
+fun SettingsRDKScreen(
+    navController: NavHostController
 ) {
     val context = LocalContext.current
-    val viewModel: ConfigureRDKViewModel = koinViewModel { parametersOf(context) }
+    val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(initial = DefaultValues.INSTALLED_RDK_VERSION)
     

@@ -43,7 +43,7 @@ fun RobokDialog(
     title: @Composable () -> Unit,
     text: @Composable () -> Unit,
     confirmButton: @Composable () -> Unit,
-    dismissButton: @Composable () -> Unit,
+    dismissButton: @Composable (() -> Unit)? = null,
     icon: @Composable (() -> Unit)? = null,
     iconDescription: String = "Icon"
 ) {
@@ -77,7 +77,9 @@ fun RobokDialog(
                     onDismissRequest()
                 }
             ) {
-                dismissButton()
+                dismissButton?.let {
+                   it()
+                }
             }
         }
     )

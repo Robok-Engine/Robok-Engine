@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.settings.rdkmanager.viewmodel
+package org.robok.engine.ui.screens.settings.rdk.viewmodel
 
 /*
  *  This file is part of Robok © 2024.
@@ -28,7 +28,7 @@ import kotlinx.coroutines.launch
 
 import org.robok.engine.core.utils.ZipDownloader
 
-class ConfigureRDKViewModel(private val context: Context) : ViewModel() {
+class SettingsRDKViewModel(private val context: Context) : ViewModel() {
 
     private val zipDownloader = ZipDownloader(context)
     

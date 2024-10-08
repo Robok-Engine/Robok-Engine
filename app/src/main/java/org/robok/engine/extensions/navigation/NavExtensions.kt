@@ -1,4 +1,4 @@
-package org.robok.engine.models.project
+package org.robok.engine.extensions.navigation
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,16 +16,12 @@ package org.robok.engine.models.project
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
+ 
+import androidx.navigation.NavHostController
 
-import androidx.annotation.DrawableRes
-
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class ProjectTemplate(
-    val name: String = "",
-    val packageName: String = "",
-    val zipFileName: String = "",
-    val javaSupport: Boolean = false,
-    val kotlinSupport: Boolean = false
-) 
+fun <T : Any> NavHostController.navigateSingleTop(route: T) {
+    navigate(route) {
+       restoreState = true
+       launchSingleTop = true
+    }
+}

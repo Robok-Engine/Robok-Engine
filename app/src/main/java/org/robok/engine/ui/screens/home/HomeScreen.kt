@@ -33,6 +33,11 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.material3.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.FolderOpen
+import androidx.compose.material.icons.filled.Settings
+import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -40,13 +45,21 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.NavController
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.navigation.NavHostController
 
 import org.robok.engine.R
 import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
+import org.robok.engine.routes.SettingsRoute
+import org.robok.engine.routes.CreateProjectRoute
+import org.robok.engine.routes.ManageProjectsRoute
+import org.robok.engine.models.project.ProjectTemplate
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.activities.terminal.TerminalActivity
 import org.robok.engine.ui.theme.Typography
@@ -57,8 +70,8 @@ import java.io.File
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
-    actContext: Context
+    navController: NavHostController,
+    context: Context
 ) {
     var selectedFolderUri by remember { mutableStateOf<Uri?>(null) }
 
@@ -68,12 +81,12 @@ fun HomeScreen(
         selectedFolderUri = uri
         if (uri != null) {
             val bundle = Bundle().apply {
-                putString("projectPath", processUri(actContext, uri!!))
+                putString("projectPath", processUri(context, uri!!))
             }
-            val intent = Intent(actContext, EditorActivity::class.java).apply {
+            val intent = Intent(context, EditorActivity::class.java).apply {
                 putExtras(bundle)
             }
-            actContext.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 
@@ -114,10 +127,10 @@ fun HomeScreen(
             items(4) { index ->
                 HomeCardItem(
                     icon = when (index) {
-                        0 -> Drawables.ic_add_24
-                        1 -> Drawables.ic_folder_open_24
-                        2 -> Drawables.ic_settings_24
-                        else -> Drawables.ic_info_24
+                        0 -> Icons.Filled.Add
+                        1 -> Icons.Filled.FolderOpen
+                        2 -> Icons.Filled.Settings
+                        else -> Icons.Filled.Info
                     },
                     title = when (index) {
                         0 -> stringResource(id = Strings.title_create_project)
@@ -127,10 +140,16 @@ fun HomeScreen(
                     },
                     onClick = { 
                         when (index) {
-                            0 -> navController.navigate("project/create")
-                            1 -> navController.navigate("project/manage")
-                            2 -> navController.navigate("settings")
-                            else -> onTerminalClicked(actContext)
+                           0 -> {
+                                navController.navigateSingleTop(route = CreateProjectRoute)
+                           }
+                           1 -> {
+                                navController.navigateSingleTop(route = ManageProjectsRoute)
+                           }
+                           2 -> {
+                                navController.navigateSingleTop(route = SettingsRoute)
+                           }
+                           else -> onTerminalClicked(context)
                         }
                     }
                 )
@@ -143,8 +162,8 @@ private fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Ur
     folderPickerLauncher.launch(null)
 }
 
-private fun onTerminalClicked(actContext: Context) {
-    actContext.startActivity(Intent(actContext, TerminalActivity::class.java))
+private fun onTerminalClicked(context: Context) {
+    context.startActivity(Intent(context, TerminalActivity::class.java))
 }
 
 private fun processUri(ac: Context, uri: Uri): String {
@@ -163,13 +182,15 @@ private fun processUri(ac: Context, uri: Uri): String {
 
 @Composable
 fun HomeCardItem(
-    icon: Int, title: String,
+    icon: ImageVector,
+    title: String,
     onClick: () -> Unit
 ) {
     Card(
         modifier = Modifier
             .padding(8.dp)
             .clickable(onClick = onClick)
+            .clip(RoundedCornerShape(17.dp))
             .height(100.dp),
         shape = RoundedCornerShape(17.dp),
         elevation = CardDefaults.cardElevation(0.dp)
@@ -182,9 +203,10 @@ fun HomeCardItem(
             verticalArrangement = Arrangement.Top
         ) {
             Image(
-                painter = painterResource(id = icon),
-                contentDescription = null,
-                modifier = Modifier.size(25.dp)
+                imageVector = icon,
+                contentDescription = title,
+                modifier = Modifier.size(25.dp),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
             )
             Text(
                 text = title,

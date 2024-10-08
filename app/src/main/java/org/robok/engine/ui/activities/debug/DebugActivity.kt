@@ -21,16 +21,20 @@ import android.os.Bundle
 
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.draw.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.*
 
 import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.core.utils.base.RobokActivity
+import org.robok.engine.core.components.compose.dialog.RobokDialog
 import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
 import org.robok.engine.strings.Strings
@@ -77,36 +81,51 @@ class DebugActivity : RobokActivity() {
             backArrowVisible = true
         ) {
             PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
-                ErrorContent(madeErrMsg)
+                ErrorCard(madeErrMsg)
             }
         }
 
         if (showDialog) {
-            AlertDialog(
-                onDismissRequest = { showDialog = false },
-                confirmButton = {
-                    TextButton(onClick = { showDialog = false }) {
-                        Text(stringResource(id = Strings.common_word_end))
-                    }
+            RobokDialog(
+                title = { 
+                   Text(stringResource(id = Strings.title_un_error_ocurred))
                 },
-                title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
-                text = { Text(madeErrMsg) }
+                text = {
+                   ErrorCard(madeErrMsg)
+                },
+                onConfirmation = {
+                   showDialog = false 
+                },
+                onDismissRequest = {
+                   showDialog = false 
+                },
+                confirmButton = {
+                    Text(stringResource(id = Strings.common_word_end))
+                }
             )
         }
     }
-
+    
     @Composable
-    fun ErrorContent(madeErrMsg: String) {
-        Column(modifier = Modifier.fillMaxSize()) {
-            LazyColumn(
-                modifier = Modifier
-                    .padding(16.dp)
-                    .fillMaxSize()
-                    .weight(1f)
-            ) {
-                items(madeErrMsg.split("\n")) { line ->
-                    Text(text = line, style = MaterialTheme.typography.bodyMedium)
-                }
+    fun ErrorCard(
+         madeErrMsg: String
+    ) {
+        Card(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clip(RoundedCornerShape(18.dp)),
+            colors = CardDefaults.cardColors(
+                containerColor = MaterialTheme.colorScheme.errorContainer
+            ),
+            shape = RoundedCornerShape(18.dp) 
+        ) {
+            SelectionContainer {
+               Text(
+                   text = madeErrMsg,
+                   modifier = Modifier
+                       .padding(16.dp), 
+                   color = MaterialTheme.colorScheme.onErrorContainer 
+               )
             }
         }
     }

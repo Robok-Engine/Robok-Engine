@@ -1,4 +1,4 @@
-package org.robok.engine.models.project
+package org.robok.engine.routes
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,16 +16,22 @@ package org.robok.engine.models.project
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
-
-import androidx.annotation.DrawableRes
-
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class ProjectTemplate(
-    val name: String = "",
-    val packageName: String = "",
-    val zipFileName: String = "",
-    val javaSupport: Boolean = false,
-    val kotlinSupport: Boolean = false
-) 
+object SettingsRoute
+
+@Serializable
+object SettingsAppRoute
+
+@Serializable
+object SettingsCodeEditorRoute
+
+@Serializable
+object SettingsRDKRoute
+
+@Serializable
+object AboutRoute
+
+@Serializable
+object AboutLibrariesRoute

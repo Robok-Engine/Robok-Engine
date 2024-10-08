@@ -31,7 +31,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.robok.engine.strings.Strings
+import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.activities.editor.EditorActivity
@@ -61,8 +62,7 @@ import java.io.File
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateProjectScreen(
-    navController: NavController,
-    projectTemplate: ProjectTemplate
+    navController: NavHostController
 ) {
     val context = LocalContext.current
     val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects/Empty")
@@ -80,7 +80,7 @@ fun CreateProjectScreen(
             Screen(
                state = state,
                viewModel = viewModel,
-               template = projectTemplate,
+               template= DefaultTemplate(),
                navController = navController,
                context = context
             )
@@ -100,7 +100,7 @@ private fun Screen(
     state: CreateProjectState,
     viewModel: CreateProjectViewModel,
     template: ProjectTemplate,
-    navController: NavController,
+    navController: NavHostController,
     context: android.content.Context,
     modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 ) {
