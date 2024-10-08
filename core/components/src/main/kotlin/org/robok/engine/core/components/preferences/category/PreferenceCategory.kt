@@ -31,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 
@@ -39,7 +40,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 @Composable
 fun PreferenceCategory(
     label: String,
-    @DrawableRes iconResource: Int,
+    icon: ImageVector,
     onNavigate: () -> Unit,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
@@ -73,7 +74,7 @@ fun PreferenceCategory(
                 modifier = Modifier.size(32.dp),
             ) {
                 Icon(
-                    painter = painterResource(id = iconResource),
+                    imageVector = icon,
                     contentDescription = null,
                     modifier = Modifier.size(24.dp),
                     tint = MaterialTheme.colorScheme.primary,
