@@ -26,7 +26,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 
 import org.robok.engine.BuildConfig
-import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.home.HomeScreen
@@ -47,15 +46,15 @@ fun MainNavHost(
         startDestination = HomeRoute
     ) {
         composable <HomeRoute> {
-            HomeScreen(navController = navController, context = context)
+            HomeScreen(
+                navController = navController,
+                context = context
+            )
         }
         
-        composable<CreateProjectRoute> { backStackEntry ->
-            val route: CreateProjectRoute = backStackEntry.toRoute()
-            val template: ProjectTemplate = route.toTemplate()
+        composable<CreateProjectRoute> {
             CreateProjectScreen(
-                navController = navController,
-                projectTemplate = template
+                navController = navController
             )
         }
         

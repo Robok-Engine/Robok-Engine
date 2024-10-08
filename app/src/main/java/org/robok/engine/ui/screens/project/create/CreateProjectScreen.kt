@@ -46,6 +46,7 @@ import kotlinx.coroutines.launch
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 import org.robok.engine.strings.Strings
+import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.activities.editor.EditorActivity
@@ -61,8 +62,7 @@ import java.io.File
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun CreateProjectScreen(
-    navController: NavHostController,
-    projectTemplate: ProjectTemplate
+    navController: NavHostController
 ) {
     val context = LocalContext.current
     val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects/Empty")
@@ -80,7 +80,7 @@ fun CreateProjectScreen(
             Screen(
                state = state,
                viewModel = viewModel,
-               template = projectTemplate,
+               template= DefaultTemplate(),
                navController = navController,
                context = context
             )
