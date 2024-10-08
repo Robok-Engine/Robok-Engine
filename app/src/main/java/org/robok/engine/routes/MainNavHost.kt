@@ -24,7 +24,17 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 
+import org.robok.engine.BuildConfig
+import org.robok.engine.models.project.ProjectTemplate
+import org.robok.engine.ui.screens.project.create.CreateProjectScreen
+import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.home.HomeScreen
+import org.robok.engine.ui.screens.settings.SettingsScreen
+import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
+import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
+import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
+import org.robok.engine.ui.screens.settings.about.AboutScreen
+import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 
 @Composable
 fun MainNavHost(
@@ -38,11 +48,44 @@ fun MainNavHost(
         composable <HomeRoute> {
             HomeScreen(navController = navController, context = context)
         }
-        composable<ProjectRoute> {
-            ProjectNavHost(navController = navController, context = context)
+        
+        composable<CreateProjectRoute> { backStackEntry ->
+            val template: ProjectTemplate = backStackEntry.toRoute()
+            CreateProjectScreen(
+                navController = navController,
+                projectTemplate = template
+            )
         }
+        
+        composable<ManageProjectsRoute>{
+            ManageProjectsScreen(navController = navController)
+        }
+        
         composable<SettingsRoute> {
-            SettingsNavHost(navController = navController)
+            SettingsScreen(navController = navController)
+        }
+        
+        composable<SettingsAppRoute> {
+            SettingsAppScreen(navController = navController)
+        }
+        
+        composable<SettingsCodeEditorRoute> {
+            SettingsCodeEditorScreen(navController = navController)
+        }
+        
+        composable<SettingsRDKRoute> {
+            SettingsRDKScreen(navController = navController)
+        }
+        
+        composable<AboutLibrariesRoute> {
+            LibrariesScreen(navController = navController)
+        }
+        
+        composable<AboutRoute> { 
+            AboutScreen(
+               navController = navController, 
+               version = BuildConfig.VERSION_NAME
+            ) 
         }
     }
 }
