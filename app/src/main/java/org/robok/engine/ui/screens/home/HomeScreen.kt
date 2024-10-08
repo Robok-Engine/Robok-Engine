@@ -56,8 +56,8 @@ import org.robok.engine.R
 import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
 import org.robok.engine.routes.SettingsRoute
-import org.robok.engine.routes.ProjectRoute
 import org.robok.engine.routes.CreateProjectRoute
+import org.robok.engine.routes.ManageProjectsRoute
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.ui.activities.editor.EditorActivity
@@ -141,10 +141,10 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                            0 -> {
-                                navController.navigateSingleTop(route = CreateProjectRoute(getTemplate(context)))
+                                navController.navigateSingleTop(route = CreateProjectRoute)
                            }
                            1 -> {
-                                navController.navigateSingleTop(route = ProjectRoute)
+                                navController.navigateSingleTop(route = ManageProjectsRoute)
                            }
                            2 -> {
                                 navController.navigateSingleTop(route = SettingsRoute)
@@ -178,17 +178,6 @@ private fun processUri(ac: Context, uri: Uri): String {
         return "${getDefaultPath()}/Robok"
     }
     return path
-}
-
-private fun getTemplate(context: Context): ProjectTemplate {
-    return ProjectTemplate(
-       name = context.getString(Strings.template_name_empty_game),
-       packageName = "com.robok.empty",
-       zipFileName = "empty_game.zip",
-       javaSupport = true,
-       kotlinSupport = false,
-       imageResId = Drawables.ic_empty_game
-    )
 }
 
 @Composable

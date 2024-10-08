@@ -17,12 +17,13 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CreateProjectRoute(val template: ProjectTemplate)
+data class CreateProjectRoute(val template: ProjectTemplate = DefaultTemplate)
 
 @Serializable
 object ManageProjectsRoute

@@ -1,5 +1,4 @@
-package org.robok.engine.routes
-
+package org.robok.engine.defaulrs
 /*
  *  This file is part of Robok © 2024.
  *
@@ -16,22 +15,17 @@ package org.robok.engine.routes
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
-import kotlinx.serialization.Serializable
 
-@Serializable
-object SettingsRoute
-
-@Serializable
-object SettingsAppRoute
-
-@Serializable
-object SettingsCodeEditorRoute
-
-@Serializable
-object SettingsRDKRoute
-
-@Serializable
-object AboutRoute
-
-@Serializable
-object AboutLibrariesRoute
+/*
+* Default template.
+*/
+fun DefaultTemplate(): ProjectTemplate {
+    return ProjectTemplate(
+       name = "Empty Game",
+       packageName = "com.robok.empty",
+       zipFileName = "empty_game.zip",
+       javaSupport = true,
+       kotlinSupport = false,
+       imageResId = Drawables.ic_empty_game
+    )
+}

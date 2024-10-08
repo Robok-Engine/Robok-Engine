@@ -51,11 +51,15 @@ fun MainNavHost(
         }
         
         composable<CreateProjectRoute> { backStackEntry ->
-            val template: ProjectTemplate = backStackEntry.toRoute()
-            CreateProjectScreen(
-                navController = navController,
-                projectTemplate = template
-            )
+            try {
+                val template: ProjectTemplate = backStackEntry.toRoute()
+                CreateProjectScreen(
+                    navController = navController,
+                    projectTemplate = template
+                )
+            } catch (e: Exception) { 
+                /* error handle */ 
+            }
         }
         
         composable<ManageProjectsRoute>{
