@@ -23,7 +23,11 @@ import org.robok.engine.models.project.ProjectTemplate
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CreateProjectRoute(val template: ProjectTemplate)
+data class CreateProjectRoute(val template: ProjectTemplate?) {
+    fun toTemplate(): ProjectTemplate {
+        return template ?: DefaultTemplate()
+    }
+}
 
 @Serializable
 object ManageProjectsRoute
