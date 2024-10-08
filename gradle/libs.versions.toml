@@ -59,7 +59,7 @@ datastore-preferences = { group = "androidx.datastore", name = "datastore-prefer
 # Compose
 compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
 material-compose = { group = "androidx.compose.material", name = "material" }
-material3-compose = { group = "androidx.compose.material3", name = "material3", }
+material3-compose = { group = "androidx.compose.material3", name = "material3" }
 ui-compose = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics-compose = { group = "androidx.compose.ui", name = "ui-graphics" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
