@@ -100,7 +100,7 @@ private fun Screen(
     state: CreateProjectState,
     viewModel: CreateProjectViewModel,
     template: ProjectTemplate,
-    navController: NavController,
+    navController: NavHostController,
     context: android.content.Context,
     modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 ) {
