@@ -90,14 +90,7 @@ fun PreferenceSwitch(
                 checked = checked,
                 onCheckedChange = onCheckedChange,
                 enabled = enabled,
-                interactionSource = interactionSource,
-                colors = SwitchDefaults.colors().copy(
-                    uncheckedThumbColor = MaterialTheme.colorScheme.background,
-                    uncheckedTrackColor = MaterialTheme.colorScheme.onBackground.copy(
-                        alpha = 0.5f
-                    ),
-                    uncheckedBorderColor = Color.Transparent,
-                    )
+                interactionSource = interactionSource
             )
         },
         enabled = enabled,
