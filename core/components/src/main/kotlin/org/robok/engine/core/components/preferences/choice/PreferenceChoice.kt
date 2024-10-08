@@ -38,7 +38,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.text.font.FontWeight
 
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.core.components.dialog.RobokChoiceDialog
+import org.robok.engine.core.components.dialog.choice.RobokChoiceDialog
 
 /**
  * A Preference that allows the user to choose an option from a list of options.

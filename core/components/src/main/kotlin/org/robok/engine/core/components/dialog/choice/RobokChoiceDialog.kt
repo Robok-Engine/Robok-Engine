@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.dialog
+package org.robok.engine.core.components.dialog.choice
 
 /*
  *  This file is part of Robok © 2024.
