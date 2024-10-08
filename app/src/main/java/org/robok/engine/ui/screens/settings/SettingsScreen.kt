@@ -94,7 +94,7 @@ fun AboutPreferences(
    PreferenceCategory(
        label = stringResource(id = Strings.settings_libraries_title),
        description = stringResource(Strings.settings_libraries_description),
-       icon = Icons.Filled.Library,
+       icon = Icons.Filled.Book,
        onClick = {
            navController.navigateSingleTop(route = AboutLibrariesRoute)
        }
