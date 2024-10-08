@@ -54,10 +54,10 @@ fun MainNavHost(
     NavHost(
         navController = navController,
         startDestination = HomeRoute,
-        enterTransition = NavigationAnimationTransitions.enterTransition,
-        exitTransition = NavigationAnimationTransitions.exitTransition,
-        popEnterTransition = NavigationAnimationTransitions.popEnterTransition,
-        popExitTransition = NavigationAnimationTransitions.popExitTransition
+        enterTransition = { NavigationAnimationTransitions.enterTransition() },
+        exitTransition = { NavigationAnimationTransitions.exitTransition() },
+        popEnterTransition = { NavigationAnimationTransitions.popEnterTransition() },
+        popExitTransition = { NavigationAnimationTransitions.popExitTransition() }
     ) {
         composable <HomeRoute> {
             HomeScreen(
