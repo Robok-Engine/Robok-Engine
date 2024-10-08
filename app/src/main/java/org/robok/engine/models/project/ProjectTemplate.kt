@@ -27,6 +27,5 @@ data class ProjectTemplate(
     val packageName: String = "",
     val zipFileName: String = "",
     val javaSupport: Boolean = false,
-    val kotlinSupport: Boolean = false,
-    @DrawableRes val imageResId: Int = 0
+    val kotlinSupport: Boolean = false
 ) 
