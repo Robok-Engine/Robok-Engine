@@ -141,13 +141,13 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                            0 -> {
-                                navController.navigateSingleTop(CreateProjectRoute(getTemplate(context)))
+                                navController.navigateSingleTop(route = CreateProjectRoute(getTemplate(context)))
                            }
                            1 -> {
-                                navController.navigateSingleTop(ProjectRoute)
+                                navController.navigateSingleTop(route = ProjectRoute)
                            }
                            2 -> {
-                                navController.navigateSingleTop(SettingsRoute)
+                                navController.navigateSingleTop(route = SettingsRoute)
                            }
                            else -> onTerminalClicked(context)
                         }

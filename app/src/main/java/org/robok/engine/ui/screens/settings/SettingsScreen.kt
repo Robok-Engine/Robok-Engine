@@ -65,14 +65,14 @@ fun GeneralPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
        onClick = {
-           navController.navigateSingleTop(SettingsAppRoute)
+           navController.navigateSingleTop(route = SettingsAppRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
        secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
        onClick = {
-           navController.navigateSingleTop(SettingsCodeEditorRoute)
+           navController.navigateSingleTop(route = SettingsCodeEditorRoute)
        }
    )
 }
@@ -85,7 +85,7 @@ fun BuildPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
        onClick = {
-           navController.navigateSingleTop(SettingsRDKRoute)
+           navController.navigateSingleTop(route = SettingsRDKRoute)
        }
    )
 }
@@ -98,14 +98,14 @@ fun AboutPreferences(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
        onClick = {
-           navController.navigateSingleTop(AboutLibrariesRoute)
+           navController.navigateSingleTop(route = AboutLibrariesRoute)
        }
    )
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
        secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
        onClick = {
-           navController.navigateSingleTop(AboutRoute)
+           navController.navigateSingleTop(route = AboutRoute)
        }
    )
 }
