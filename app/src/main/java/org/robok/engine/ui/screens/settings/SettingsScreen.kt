@@ -19,6 +19,8 @@ package org.robok.engine.ui.screens.settings
 
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -32,7 +34,7 @@ import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.preferences.normal.Preference
+import org.robok.engine.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.strings.Strings
 
 @Composable
@@ -43,17 +45,9 @@ fun SettingsScreen(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
     ) {
-        PreferenceGroup(heading = stringResource(id = Strings.settings_general_title)) {
-             GeneralPreferences(navController)
-        }
-        
-        PreferenceGroup(heading = stringResource(id = Strings.settings_build_title)) {
-             BuildPreferences(navController)
-        }
-        
-        PreferenceGroup(heading = stringResource(id = Strings.settings_about_title)) {
-              AboutPreferences(navController)
-        }
+        GeneralPreferences(navController)
+        BuildPreferences(navController)
+        AboutPreferences(navController)
     }
 }
 
@@ -61,16 +55,18 @@ fun SettingsScreen(
 fun GeneralPreferences(
     navController: NavHostController
 ) {
-   Preference(
-       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
-       secondaryText = { Text(text = stringResource(id = Strings.settings_app_description)) },
+   PreferenceCategory(
+       label = stringResource(id = Strings.settings_app_title),
+       description = stringResource(id = Strings.settings_app_description),
+       icon = Icons.Filled.Android,
        onClick = {
            navController.navigateSingleTop(route = SettingsAppRoute)
        }
    )
-   Preference(
-       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_code_editor_title)) },
-       secondaryText = { Text(text = stringResource(id = Strings.settings_code_editor_description)) },
+   PreferenceCategory(
+       label = stringResource(id = Strings.settings_code_editor_title),
+       description = stringResource(id = Strings.settings_code_editor_description),
+       icon = Icons.Filled.Edit,
        onClick = {
            navController.navigateSingleTop(route = SettingsCodeEditorRoute)
        }
@@ -81,9 +77,10 @@ fun GeneralPreferences(
 fun BuildPreferences(
     navController: NavHostController
 ) {
-   Preference(
-       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_configure_rdk_description)) },
+   PreferenceCategory(
+       label = stringResource(id = Strings.settings_configure_rdk_title),
+       description = stringResource(Strings.settings_configure_rdk_description),
+       icon = Icons.Filled.CodeBlocks,
        onClick = {
            navController.navigateSingleTop(route = SettingsRDKRoute)
        }
@@ -94,16 +91,18 @@ fun BuildPreferences(
 fun AboutPreferences(
     navController: NavHostController
 ) {
-   Preference(
-       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_libraries_description)) },
+   PreferenceCategory(
+       label = stringResource(id = Strings.settings_libraries_title),
+       description = stringResource(Strings.settings_libraries_description),
+       icon = Icons.Filled.Library,
        onClick = {
            navController.navigateSingleTop(route = AboutLibrariesRoute)
        }
    )
-   Preference(
-       text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_about_title)) },
-       secondaryText = { Text(stringResource(id = Strings.settings_about_description)) },
+   PreferenceCategory(
+       label = stringResource(id = Strings.settings_about_title),
+       description = stringResource(id = Strings.settings_about_description),
+       icon = Icons.Filled.Info,
        onClick = {
            navController.navigateSingleTop(route = AboutRoute)
        }

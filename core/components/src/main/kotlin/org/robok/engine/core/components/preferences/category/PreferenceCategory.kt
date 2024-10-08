@@ -41,7 +41,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 fun PreferenceCategory(
     label: String,
     icon: ImageVector,
-    onNavigate: () -> Unit,
+    onClick: () -> Unit,
     modifier: Modifier = Modifier,
     isSelected: Boolean = false,
     description: String? = null,
@@ -52,7 +52,7 @@ fun PreferenceCategory(
         modifier = modifier
             .padding(horizontal = 16.dp)
             .clip(MaterialTheme.shapes.large)
-            .clickable { onNavigate() }
+            .clickable { onClick() }
             .background(
                 if (isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp) else Color.Transparent,
             ),
