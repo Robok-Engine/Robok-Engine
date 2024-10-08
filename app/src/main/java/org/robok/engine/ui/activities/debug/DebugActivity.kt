@@ -34,9 +34,9 @@ import androidx.compose.foundation.shape.*
 
 import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.core.utils.base.RobokActivity
-import org.robok.engine.core.components.compose.dialog.RobokDialog
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.dialog.RobokDialog
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)

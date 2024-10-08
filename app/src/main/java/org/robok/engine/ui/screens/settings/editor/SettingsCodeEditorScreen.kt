@@ -30,11 +30,11 @@ import androidx.compose.ui.text.font.FontWeight
 
 import org.koin.androidx.compose.koinViewModel
 
-import org.robok.engine.core.components.compose.preferences.normal.Preference
-import org.robok.engine.core.components.compose.preferences.choice.PreferenceChoice
-import org.robok.engine.core.components.compose.preferences.switch.PreferenceSwitch
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.normal.Preference
+import org.robok.engine.core.components.preferences.choice.PreferenceChoice
+import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings

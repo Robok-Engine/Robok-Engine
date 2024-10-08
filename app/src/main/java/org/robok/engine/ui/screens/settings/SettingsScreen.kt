@@ -30,9 +30,9 @@ import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.normal.Preference
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.normal.Preference
 import org.robok.engine.strings.Strings
 
 @Composable

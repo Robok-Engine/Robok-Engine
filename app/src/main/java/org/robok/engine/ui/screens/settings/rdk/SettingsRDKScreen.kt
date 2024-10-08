@@ -42,9 +42,9 @@ import okhttp3.Request
 
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.DownloadState
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.compose.textfields.DynamicSelectTextField
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings

@@ -53,9 +53,9 @@ import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModelFactory
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
-import org.robok.engine.core.components.compose.dialog.RobokDialog
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.dialog.RobokDialog
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 
 import java.io.File
 

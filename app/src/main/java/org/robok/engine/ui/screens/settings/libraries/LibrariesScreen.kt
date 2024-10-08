@@ -56,9 +56,9 @@ import com.mikepenz.aboutlibraries.ui.compose.LibraryDefaults
 import com.mikepenz.aboutlibraries.entity.Library
 
 import org.robok.engine.strings.Strings
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceTemplate
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

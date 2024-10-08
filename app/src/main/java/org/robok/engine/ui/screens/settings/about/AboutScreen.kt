@@ -40,11 +40,11 @@ import org.koin.androidx.compose.koinViewModel
 
 import org.robok.engine.feature.settings.R
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
-import org.robok.engine.core.components.compose.preferences.base.LocalIsExpandedScreen
-import org.robok.engine.core.components.compose.preferences.normal.Preference
-import org.robok.engine.core.components.compose.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.compose.preferences.base.PreferenceTemplate
-import org.robok.engine.core.components.compose.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.LocalIsExpandedScreen
+import org.robok.engine.core.components.preferences.normal.Preference
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.strings.Strings
 
 import coil.compose.SubcomposeAsyncImage

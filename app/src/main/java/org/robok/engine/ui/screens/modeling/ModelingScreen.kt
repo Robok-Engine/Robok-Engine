@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.IntOffset
 
 import org.robok.engine.Drawables
-import org.robok.engine.core.components.compose.preferences.base.ExpandAndShrink
+import org.robok.engine.core.components.preferences.base.ExpandAndShrink
 
 @Composable
 fun ModelingScreen() {
