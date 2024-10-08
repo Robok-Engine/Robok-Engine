@@ -55,6 +55,7 @@ import androidx.navigation.NavHostController
 import org.robok.engine.R
 import org.robok.engine.Drawables
 import org.robok.engine.strings.Strings
+import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.CreateProjectRoute
 import org.robok.engine.routes.ManageProjectsRoute
@@ -141,7 +142,7 @@ fun HomeScreen(
                     onClick = { 
                         when (index) {
                            0 -> {
-                                navController.navigateSingleTop(route = CreateProjectRoute)
+                                navController.navigateSingleTop(route = CreateProjectRoute(DefaultTemplate()))
                            }
                            1 -> {
                                 navController.navigateSingleTop(route = ManageProjectsRoute)
