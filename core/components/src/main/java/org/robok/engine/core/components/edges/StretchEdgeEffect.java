@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.robok.engine.core.components.compose.edges;
+package org.robok.engine.core.components.edges;
 
 import android.animation.ValueAnimator;
 import android.content.Context;

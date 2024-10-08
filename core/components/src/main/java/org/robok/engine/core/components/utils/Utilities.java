@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.robok.engine.core.components.compose.utils;
+package org.robok.engine.core.components.utils;
 
 import android.os.Build;
 import static android.os.Build.VERSION_CODES;

@@ -13,13 +13,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.robok.engine.core.components.compose.edges;
+package org.robok.engine.core.components.edges;
 
 import android.content.Context;
 import android.view.View;
 import android.widget.EdgeEffect;
 
-import org.robok.engine.core.components.compose.utils.Utilities;
+import org.robok.engine.core.components.utils.Utilities;
 
 /**
  * Extension of {@link EdgeEffect} to allow backwards compatibility
