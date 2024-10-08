@@ -80,7 +80,7 @@ fun BuildPreferences(
    PreferenceCategory(
        label = stringResource(id = Strings.settings_configure_rdk_title),
        description = stringResource(Strings.settings_configure_rdk_description),
-       icon = Icons.Filled.CodeBlocks,
+       icon = Icons.Filled.DeveloperMode,
        onClick = {
            navController.navigateSingleTop(route = SettingsRDKRoute)
        }
