@@ -102,7 +102,6 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.fragment.ktx)
     implementation(libs.splashscreen)
-    implementation(libs.preference)
     implementation(libs.datastore.preferences)
 
     implementation(libs.coroutines.core)
