@@ -72,13 +72,13 @@ fun RobokDialog(
             }
         },
         dismissButton = {
-            OutlinedButton(
-                onClick = {
-                    onDismissRequest()
-                }
-            ) {
-                dismissButton?.let {
-                   it()
+            dismissButton?.let { dismissText ->
+                OutlinedButton(
+                    onClick = {
+                        onDismissRequest()
+                    }
+                ) { 
+                   dismissText()
                 }
             }
         }
