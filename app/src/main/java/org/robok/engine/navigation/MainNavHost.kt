@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.navigation
 
 /*
  *  This file is part of Robok © 2024.
@@ -26,6 +26,15 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 
 import org.robok.engine.BuildConfig
+import org.robok.engine.routes.HomeRoute
+import org.robok.engine.routes.CreateProjectRoute
+import org.robok.engine.routes.ManageProjectsRoute
+import org.robok.engine.routes.SettingsRoute
+import org.robok.engine.routes.SettingsAppRoute
+import org.robok.engine.routes.SettingsCodeEditorRoute
+import org.robok.engine.routes.SettingsRDKRoute
+import org.robok.engine.routes.AboutRoute
+import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.home.HomeScreen
@@ -35,6 +44,7 @@ import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.about.AboutScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 
 @Composable
 fun MainNavHost(
@@ -44,10 +54,10 @@ fun MainNavHost(
     NavHost(
         navController = navController,
         startDestination = HomeRoute,
-        enterTransition = enterTransition,
-        exitTransition = exitTransition,
-        popEnterTransition = popEnterTransition,
-        popExitTransition = popExitTransition
+        enterTransition = NavigationAnimationTransitions.enterTransition,
+        exitTransition = NavigationAnimationTransitions.exitTransition,
+        popEnterTransition = NavigationAnimationTransitions.popEnterTransition,
+        popExitTransition = NavigationAnimationTransitions.popExitTransition
     ) {
         composable <HomeRoute> {
             HomeScreen(

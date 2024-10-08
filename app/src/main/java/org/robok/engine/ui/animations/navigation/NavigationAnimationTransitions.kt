@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.ui.animations.navigation
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,33 +17,27 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import androidx.navigation.NavBackStackEntry
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.ExitTransition
 
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
-object AnimationTransitions {
+object NavigationAnimationTransitions {
 
     val enterTransition: () -> EnterTransition = {
-        materialSharedAxisXIn(forward = true, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
+        materialSharedAxisXIn(forward = true, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
     }
 
     val exitTransition: () -> ExitTransition = {
-        materialSharedAxisXOut(forward = true, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
+        materialSharedAxisXOut(forward = true, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
     }
 
     val popEnterTransition: () -> EnterTransition = {
-        materialSharedAxisXIn(forward = false, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
+        materialSharedAxisXIn(forward = false, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
     }
 
     val popExitTransition: () -> ExitTransition = {
-        materialSharedAxisXOut(forward = false, slideDistance = AnimationValues.SlideDistance, durationMillis = AnimationValues.SlideDuration)
+        materialSharedAxisXOut(forward = false, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
     }
-}
-
-object AnimationValues {
-    const val SlideDistance: Int = 100
-    const val SlideDuration: Int = 700
 }
