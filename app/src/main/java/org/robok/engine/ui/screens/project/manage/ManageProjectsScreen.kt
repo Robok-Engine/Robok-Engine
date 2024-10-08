@@ -44,7 +44,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.Alignment
 import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -65,7 +65,7 @@ val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projec
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManageProjectsScreen(
-    navController: NavController
+    navController: NavHostController
 ) {
     val projectViewModel: ManageProjectsViewModel = viewModel()
     val projects by projectViewModel.projects.collectAsState()

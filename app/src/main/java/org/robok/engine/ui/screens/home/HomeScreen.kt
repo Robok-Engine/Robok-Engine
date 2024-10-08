@@ -50,7 +50,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.ColorFilter
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 import org.robok.engine.R
 import org.robok.engine.Drawables
@@ -70,7 +70,7 @@ import java.io.File
 
 @Composable
 fun HomeScreen(
-    navController: NavController,
+    navController: NavHostController,
     context: Context
 ) {
     var selectedFolderUri by remember { mutableStateOf<Uri?>(null) }

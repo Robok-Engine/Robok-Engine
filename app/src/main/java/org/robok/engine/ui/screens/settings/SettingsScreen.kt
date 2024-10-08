@@ -22,7 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
@@ -37,7 +37,7 @@ import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsScreen(
-    navController: NavController
+    navController: NavHostController
 ) {
     PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
@@ -59,7 +59,7 @@ fun SettingsScreen(
 
 @Composable
 fun GeneralPreferences(
-    navController: NavController
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_app_title)) },
@@ -79,7 +79,7 @@ fun GeneralPreferences(
 
 @Composable
 fun BuildPreferences(
-    navController: NavController
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_configure_rdk_title)) },
@@ -92,7 +92,7 @@ fun BuildPreferences(
 
 @Composable
 fun AboutPreferences(
-    navController: NavController
+    navController: NavHostController
 ) {
    Preference(
        text = { Text(fontWeight = FontWeight.Bold, text = stringResource(id = Strings.settings_libraries_title)) },

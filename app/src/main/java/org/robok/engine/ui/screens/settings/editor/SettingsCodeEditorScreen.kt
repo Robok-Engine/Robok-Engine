@@ -24,7 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 
@@ -42,7 +42,7 @@ import org.robok.engine.strings.Strings
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsCodeEditorScreen(
-    navController: NavController
+    navController: NavHostController
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     
