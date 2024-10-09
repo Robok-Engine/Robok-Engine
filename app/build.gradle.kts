@@ -139,7 +139,7 @@ dependencies {
     
     implementation(libs.about.libraries.core)
     implementation(libs.about.libraries.compose)
-    implementation(libs.about.libraries.compose.m3)l
+    implementation(libs.about.libraries.compose.m3)
     
     // projects
     implementation(project(":robok:antlr4:java"))
