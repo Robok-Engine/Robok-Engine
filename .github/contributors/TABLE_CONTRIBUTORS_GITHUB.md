@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 812 | Main Developer |
+| trindadedev13 | 820 | Main Developer |
 | ThDev-only | 199 | Main Developer |
 | renovate[bot] | 123 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -12,3 +12,4 @@
 | Paxsenix0 | 2 | N/A |
 | Xori71 | 1 | N/A |
 | weblate | 1 | Bot |
+| itsvks19 | 1 | N/A |
