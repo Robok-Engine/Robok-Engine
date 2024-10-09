@@ -464,12 +464,12 @@ public class ZioEntry implements Cloneable {
      * Returns timetamp in Java format
      */
     public long getTime() {
-        int year = (int)(((modificationDate >> 9) & 0x007f) + 80);
-        int month = (int)(((modificationDate >> 5) & 0x000f) - 1);
-        int day = (int)(modificationDate & 0x001f);
-        int hour = (int)((modificationTime >> 11) & 0x001f);
-        int minute = (int)((modificationTime >> 5) & 0x003f);
-        int seconds = (int)((modificationTime << 1) & 0x003e);
+        int year = ((modificationDate >> 9) & 0x007f) + 80;
+        int month = ((modificationDate >> 5) & 0x000f) - 1;
+        int day = modificationDate & 0x001f;
+        int hour = (modificationTime >> 11) & 0x001f;
+        int minute = (modificationTime >> 5) & 0x003f;
+        int seconds = (modificationTime << 1) & 0x003e;
         Date d = new Date( year, month, day, hour, minute, seconds);
         return d.getTime();
     }
@@ -485,8 +485,8 @@ public class ZioEntry implements Cloneable {
             dtime = (1 << 21) | (1 << 16);
         }
         else {
-            dtime = (year - 1980) << 25 | (d.getMonth() + 1) << 21 |
-            d.getDate() << 16 | d.getHours() << 11 | d.getMinutes() << 5 |
+            dtime = (long) (year - 1980) << 25 | (long) (d.getMonth() + 1) << 21 |
+                (long) d.getDate() << 16 | (long) d.getHours() << 11 | (long) d.getMinutes() << 5 |
             d.getSeconds() >> 1;
         }
 

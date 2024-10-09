@@ -39,23 +39,22 @@ import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 public class ModelingActivity extends RobokActivity implements AndroidFragmentApplication.Callbacks {
     
      private Activity3dModelBinding binding;
-     private LibGDXFragment libGDXFragment;
-     private Model3DView model3dView;
+  private Model3DView model3dView;
      
      @Override
      protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           binding = Activity3dModelBinding.inflate(getLayoutInflater());
           setContentView(binding.getRoot());
-        
-          libGDXFragment = new LibGDXFragment();
+
+          LibGDXFragment libGDXFragment = new LibGDXFragment();
           FragmentManager fragmentManager = getSupportFragmentManager();
           FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
           fragmentTransaction.replace(binding.frameLibGdx.getId(), libGDXFragment);
           fragmentTransaction.commit();
 
           fragmentManager.executePendingTransactions();
-          model3dView = libGDXFragment.getModel3DView().clazz;
+          model3dView = Model3DView.clazz;
           
           var activityHelper = new ModelingActivityHelper(this);
           ComposeView composeUI = activityHelper.createComposeView();
@@ -69,7 +68,7 @@ public class ModelingActivity extends RobokActivity implements AndroidFragmentAp
      */
      private void verifyIfMy3dGameIsNull(){
           if(model3dView != null) return;
-          model3dView = libGDXFragment.getModel3DView().clazz;
+          model3dView = Model3DView.clazz;
      }
      
      /*

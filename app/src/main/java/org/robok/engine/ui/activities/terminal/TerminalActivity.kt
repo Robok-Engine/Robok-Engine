@@ -25,8 +25,8 @@ import android.view.View
 import android.view.WindowManager
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 
-import androidx.annotation.MainThread
 import androidx.appcompat.app.AlertDialog
 
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
@@ -53,17 +53,29 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     private var _binding: ActivityTerminalBinding? = null
     private val binding get() = _binding!!
-    
+
     private var cwd: String? = null
     private var session: TerminalSession? = null
+
+    private val backPressedCallback = object : OnBackPressedCallback(enabled = false) {
+        override fun handleOnBackPressed() {
+            if (!session!!.isRunning) {
+                isEnabled = true
+                onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isEdgeToEdge = false
         super.onCreate(savedInstanceState)
+
+        onBackPressedDispatcher.addCallback(backPressedCallback)
+
         _binding = ActivityTerminalBinding.inflate(layoutInflater)
         setContentView(binding.getRoot())
         handleInsetts(binding.root)
-        
+
         cwd = if (intent.hasExtra("path")) {
             val path = intent.getStringExtra("path")
             if (File(path.toString()).exists().not()) {
@@ -182,7 +194,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     fun installPackage(packageName: String?) {
-        TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED") 
+        TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED")
     }
 
     private fun sendTextInPink(text: String) {
@@ -296,11 +308,4 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     override fun onCopyTextToClipboard(arg0: TerminalSession, arg1: String) {}
 
     override fun onPasteTextFromClipboard(session: TerminalSession?) {}
-
-    @MainThread
-    override fun onBackPressed() {
-        if (!session!!.isRunning) {
-            super.onBackPressed()
-        }
-    }
 }

@@ -24,7 +24,7 @@ import androidx.compose.ui.platform.ComposeView
 import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.ui.screens.modeling.ModelingScreen
 
-/*
+/**
 * Class to create ComposeView in 3D Modeling.
 * @author Aquiles Trindade (trindadedev).
 */

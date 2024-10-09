@@ -1,3 +1,4 @@
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.ByteArrayOutputStream
 
 plugins {
@@ -27,7 +28,7 @@ android {
         }
     }
     
-    packagingOptions {
+    packaging {
         jniLibs {
             useLegacyPackaging = true
         }
@@ -93,7 +94,9 @@ android {
 }
 
 tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    kotlinOptions.jvmTarget = "17"
+    compilerOptions {
+        jvmTarget = JvmTarget.JVM_17
+    }
 }
 
 dependencies {
@@ -112,7 +115,7 @@ dependencies {
     implementation(libs.koin.androidx.compose)
 
     implementation(platform(libs.okhttp.bom))
-    implementation("com.squareup.okhttp3:okhttp")
+    implementation(libs.okhttp)
 
     implementation(libs.glide)
     
