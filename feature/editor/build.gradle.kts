@@ -53,6 +53,8 @@ dependencies {
     implementation(project(":feature:settings"))
     implementation(project(":core:utils"))
     implementation(project(":robok:antlr4:java"))
+    
+    implementation("com.github.Robok-Engine:Robok-Easy-UI:v0.1")
 }
 
 publishing {
