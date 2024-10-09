@@ -51,10 +51,10 @@ class CreateProjectViewModel(
     }
     
     fun setProjectPath(file: File) {
-        projectManager.setProjectPath(file)
+        projectManager.projectPath = file
     }
     
-    fun getProjectPath(): File = projectManager.getProjectPath()
+    fun getProjectPath(): File = projectManager.projectPath
     
     fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
         if (state.projectName.isEmpty() || state.packageName.isEmpty()) {

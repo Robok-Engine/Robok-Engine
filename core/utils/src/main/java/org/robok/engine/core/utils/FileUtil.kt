@@ -58,18 +58,14 @@ fun requestAllFilesAccessPermission(activity: Activity, listener: PermissionList
 }
 
 fun requestReadWritePermissions(activity: Activity, listener: PermissionListener) {
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
-            ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+    if (ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED ||
+        ContextCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
 
-            ActivityCompat.requestPermissions(
-                activity,
-                arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
-                REQUEST_CODE_READ_WRITE_PERMISSIONS
-            )
-        } else {
-            listener.onReceive(true)
-        }
+        ActivityCompat.requestPermissions(
+            activity,
+            arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE),
+            REQUEST_CODE_READ_WRITE_PERMISSIONS
+        )
     } else {
         listener.onReceive(true)
     }
@@ -98,7 +94,9 @@ fun handlePermissionsResult(
             listener.onReceive(allPermissionsGranted)
         }
         REQUEST_CODE_ALL_FILES_ACCESS_PERMISSION -> {
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
             listener.onReceive(Environment.isExternalStorageManager())
+          }
         }
         else -> {
             listener.onReceive(false)

@@ -26,6 +26,7 @@ import android.os.Build
 import android.view.Surface
 import android.view.WindowManager
 import androidx.compose.runtime.mutableStateOf
+import kotlin.math.PI
 import kotlin.math.atan2
 import kotlin.math.ceil
 import kotlin.math.max
@@ -125,7 +126,7 @@ class ParallaxEffect(
     vx /= len
     vy /= len
 
-    angle.value = (atan2(vx * -1f - vy * 0f, vx * 0f + vy * -1f) / (Math.PI / 180f)).toFloat().let {
+    angle.value = (atan2(vx * -1f - vy * 0f, vx * 0f + vy * -1f) / (PI / 180f)).toFloat().let {
       if (it < 0) it + 360 else it
     }
   }
