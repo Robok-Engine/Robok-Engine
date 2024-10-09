@@ -19,6 +19,7 @@ package org.robok.engine.navigation
 
 import android.content.Context
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
@@ -50,9 +51,7 @@ import org.robok.engine.ui.screens.template.TemplateScreen
 import kotlin.reflect.typeOf
 
 @Composable
-fun MainNavHost(
-  context: Context
-) {
+fun MainNavHost() {
   val navController = LocalMainNavController.current
 
   NavHost(
@@ -64,7 +63,7 @@ fun MainNavHost(
     popExitTransition = { NavigationAnimationTransitions.popExitTransition }
   ) {
     composable<HomeRoute> {
-      HomeScreen(context = context)
+      HomeScreen()
     }
 
     composable<TemplateRoute> {

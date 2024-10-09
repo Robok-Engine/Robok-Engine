@@ -58,6 +58,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -78,10 +79,9 @@ import org.robok.engine.ui.theme.Typography
 import java.io.File
 
 @Composable
-fun HomeScreen(
-  context: Context
-) {
+fun HomeScreen() {
   val navController = LocalMainNavController.current
+  val context = LocalContext.current
 
   var selectedFolderUri by remember { mutableStateOf<Uri?>(null) }
 

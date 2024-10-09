@@ -44,7 +44,7 @@ class MainActivity : RobokActivity() {
           color = MaterialTheme.colorScheme.background
         ) {
           ProvideMainCompositionLocals {
-            MainNavHost(this@MainActivity)
+            MainNavHost()
           }
         }
       }
