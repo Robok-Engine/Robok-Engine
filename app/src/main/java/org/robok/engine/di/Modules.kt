@@ -15,35 +15,32 @@ package org.robok.engine.di
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
-
 import androidx.datastore.preferences.core.PreferenceDataStoreFactory
 import androidx.datastore.preferences.preferencesDataStoreFile
-
-import org.koin.androidx.viewmodel.dsl.viewModelOf
-import org.koin.androidx.viewmodel.dsl.viewModel
-import org.koin.core.module.dsl.singleOf
 import org.koin.android.ext.koin.androidContext
+import org.koin.core.module.dsl.singleOf
+import org.koin.core.module.dsl.viewModel
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
+import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 
 const val APP_PREFERENCES = "app_preferences"
 
 val appModule = module {
-    singleOf(::AppPreferencesRepository)
-    viewModelOf(::AppPreferencesViewModel)
-    viewModel { (context: Context) -> SettingsRDKViewModel(context) }
+  singleOf(::AppPreferencesRepository)
+  viewModelOf(::AppPreferencesViewModel)
+  viewModel { (context: Context) -> SettingsRDKViewModel(context) }
 }
 
 val appPreferencesModule = module {
-    single {
-        PreferenceDataStoreFactory.create {
-            androidContext().preferencesDataStoreFile(APP_PREFERENCES)
-        }
+  single {
+    PreferenceDataStoreFactory.create {
+      androidContext().preferencesDataStoreFile(APP_PREFERENCES)
     }
+  }
 }

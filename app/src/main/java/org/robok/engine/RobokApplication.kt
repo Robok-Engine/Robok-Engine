@@ -27,6 +27,7 @@ import android.util.Log
 import androidx.lifecycle.lifecycleScope
 
 import com.google.android.material.color.DynamicColors
+import kotlinx.coroutines.DelicateCoroutinesApi
 
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.GlobalScope
@@ -69,6 +70,7 @@ class RobokApplication : Application() {
         configureTheme() 
     }
 
+    @OptIn(DelicateCoroutinesApi::class)
     private fun configureTheme() {
         appPrefsViewModel = getKoin().get()
         GlobalScope.launch(Dispatchers.Main) {

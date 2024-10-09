@@ -84,6 +84,7 @@ koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compos
 
 # Internet
 okhttp-bom = { group = "com.squareup.okhttp3", name = "okhttp-bom", version.ref = "okhttp-bom" }
+okhttp = { module = "com.squareup.okhttp3:okhttp" }
 
 # ANTLR4
 antlr = { group = "org.antlr", name = "antlr4", version = "4.13.2" }

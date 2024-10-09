@@ -72,7 +72,7 @@ class ZipDownloader(private val context: Context) {
                 if (zipEntry.isDirectory) {
                     newFile.mkdirs()
                 } else {
-                    newFile.parentFile.mkdirs()
+                    newFile.parentFile?.mkdirs()
                     FileOutputStream(newFile).use { fileOutputStream ->
                         zipInputStream.copyTo(fileOutputStream)
                     }
