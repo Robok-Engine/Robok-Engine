@@ -104,8 +104,8 @@ sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "l
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
 
 # Robok Easy UI
-easy-ui-gui = { group = "com.github.robok-engine.robok-easy-ui", name = "robok-gui", version.ref = "easy-ui" }
-easy-ui-antlr = { group = "com.github.robok-engine.robok-easy-ui", name = "robok-antlr4", version.ref = "easy-ui" }
+# easy-ui-gui = { group = "com.github.robok-engine.robok-easy-ui", name = "robok-gui", version.ref = "easy-ui" }
+# easy-ui-antlr = { group = "com.github.robok-engine.robok-easy-ui", name = "robok-antlr4", version.ref = "easy-ui" }
 
 # Others
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }

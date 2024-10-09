@@ -139,10 +139,7 @@ dependencies {
     
     implementation(libs.about.libraries.core)
     implementation(libs.about.libraries.compose)
-    implementation(libs.about.libraries.compose.m3)
-    
-    implementation(libs.easy.ui.antlr)
-    implementation(libs.easy.ui.gui)
+    implementation(libs.about.libraries.compose.m3)l
     
     // projects
     implementation(project(":robok:antlr4:java"))
