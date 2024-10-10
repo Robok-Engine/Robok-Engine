@@ -15,17 +15,18 @@ package org.robok.engine.models.project
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-import androidx.annotation.DrawableRes
-
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import kotlinx.serialization.Serializable
 
 @Serializable
+@Parcelize
 data class ProjectTemplate(
-    val name: String = "",
-    val packageName: String = "",
-    val zipFileName: String = "",
-    val javaSupport: Boolean = false,
-    val kotlinSupport: Boolean = false
-) 
+  val name: String = "",
+  val packageName: String = "",
+  val zipFileName: String = "",
+  val javaSupport: Boolean = false,
+  val kotlinSupport: Boolean = false
+) : Parcelable

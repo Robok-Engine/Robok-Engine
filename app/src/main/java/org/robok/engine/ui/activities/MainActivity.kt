@@ -15,38 +15,49 @@ package org.robok.engine.ui.activities
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Bundle
-
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.ui.Modifier
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.Surface
-import androidx.compose.material3.MaterialTheme
-import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
-
-import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.core.utils.base.RobokActivity
+import org.robok.engine.navigation.MainNavHost
+import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.ui.theme.RobokTheme
 
 class MainActivity : RobokActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
-        super.onCreate(savedInstanceState)
-        
-        setContent {
-            RobokTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    val navController = rememberNavController()
-                    MainNavHost(navController, this@MainActivity)
-                }
-            }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    installSplashScreen()
+    super.onCreate(savedInstanceState)
+
+    setContent {
+      RobokTheme {
+        Surface(
+          modifier = Modifier.fillMaxSize(),
+          color = MaterialTheme.colorScheme.background
+        ) {
+          ProvideMainCompositionLocals {
+            MainNavHost()
+          }
         }
+      }
     }
+  }
+
+  @Composable
+  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
+    val navController = rememberNavController()
+
+    CompositionLocalProvider(
+      LocalMainNavController provides navController,
+      content = content
+    )
+  }
 }

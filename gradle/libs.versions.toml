@@ -29,6 +29,7 @@ libgdx = "1.12.1"
 koin = "4.0.0"
 termux = "0.118.1"
 easy-ui = "1.0.0-Alpha01"
+gson = "2.11.0"
 
 [plugins]
 # Android Gradle Plugin
@@ -38,8 +39,9 @@ agp-app = { id = "com.android.application", version.ref = "agp" }
 # Kotlin
 kotlin = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 
-# Compose 
+# Compose
 compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
 
 # AboutLibraries
@@ -112,5 +114,5 @@ sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name 
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" }
 insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version = "0.6.1" }
-gson = { group = "com.google.code.gson", name = "gson", version = "2.11.0" }
+gson = { group = "com.google.code.gson", name = "gson", version.ref ="gson" }
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }

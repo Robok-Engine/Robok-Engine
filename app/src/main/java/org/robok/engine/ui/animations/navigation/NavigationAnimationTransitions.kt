@@ -15,29 +15,34 @@ package org.robok.engine.ui.animations.navigation
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
-
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.ExitTransition
+ */
 
 import soup.compose.material.motion.animation.materialSharedAxisXIn
 import soup.compose.material.motion.animation.materialSharedAxisXOut
 
 object NavigationAnimationTransitions {
 
-    val enterTransition: () -> EnterTransition = {
-        materialSharedAxisXIn(forward = true, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
-    }
+  val enterTransition = materialSharedAxisXIn(
+    forward = true,
+    slideDistance = NavigationAnimationValues.SlideDistance,
+    durationMillis = NavigationAnimationValues.SlideDuration
+  )
 
-    val exitTransition: () -> ExitTransition = {
-        materialSharedAxisXOut(forward = true, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
-    }
+  val exitTransition = materialSharedAxisXOut(
+    forward = true,
+    slideDistance = NavigationAnimationValues.SlideDistance,
+    durationMillis = NavigationAnimationValues.SlideDuration
+  )
 
-    val popEnterTransition: () -> EnterTransition = {
-        materialSharedAxisXIn(forward = false, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
-    }
+  val popEnterTransition = materialSharedAxisXIn(
+    forward = false,
+    slideDistance = NavigationAnimationValues.SlideDistance,
+    durationMillis = NavigationAnimationValues.SlideDuration
+  )
 
-    val popExitTransition: () -> ExitTransition = {
-        materialSharedAxisXOut(forward = false, slideDistance = NavigationAnimationValues.SlideDistance, durationMillis = NavigationAnimationValues.SlideDuration)
-    }
+  val popExitTransition = materialSharedAxisXOut(
+    forward = false,
+    slideDistance = NavigationAnimationValues.SlideDistance,
+    durationMillis = NavigationAnimationValues.SlideDuration
+  )
 }

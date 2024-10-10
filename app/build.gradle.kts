@@ -4,10 +4,11 @@ import java.io.ByteArrayOutputStream
 plugins {
     alias(libs.plugins.agp.app)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.compiler)
     alias(libs.plugins.about.libraries.plugin)
-    kotlin("plugin.serialization") version "2.0.20"
     id("kotlin-kapt")
+    id("kotlin-parcelize")
 }
 
 val app_version = "0.0.1"
@@ -139,6 +140,8 @@ dependencies {
     implementation(libs.termux.terminal.emulator)
     
     implementation(libs.coil.compose)
+
+    implementation(libs.gson)
     
     implementation(libs.about.libraries.core)
     implementation(libs.about.libraries.compose)

@@ -40,7 +40,9 @@ import org.robok.antlr4.java.*;
 
 import java.io.File;
 import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 public class RobokCodeEditor extends LinearLayout implements AntlrListener, EditorListener {
@@ -106,7 +108,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     }
 
     private void readFile() {
-        CompletableFuture.supplyAsync(() -> FilesKt.readText(file, Charset.forName("UTF-8")))
+        CompletableFuture.supplyAsync(() -> FilesKt.readText(file, StandardCharsets.UTF_8))
                 .whenComplete((result, error) -> getSoraCodeEditor().setText(result));
     }
 
@@ -126,7 +128,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                 });
     }
 
-    /*
+    /**
      * Method to add a diagnostic box/popup in the sora editor.
      * @param positionStart corresponds to the first character of the error code.
      * @param positionEnd corresponds to the end character of the error code.
@@ -147,7 +149,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                                                 org.robok.engine.strings.R.string
                                                         .text_error_details),
                                 msg,
-                                Arrays.asList(new Quickfix("Fix Quick", 0L, () -> quickFix())),
+                            List.of(new Quickfix("Fix Quick", 0L, () -> quickFix())),
                                 null));
         diagnostics.addDiagnostic(diagnosticRegion);
         getSoraCodeEditor().setDiagnostics(diagnostics);
@@ -173,7 +175,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         // TO-DO: logic to fix basic errors quickly
     }
 
-    /*
+    /**
      * Method to set the AntlrListener
      * @param antlrListener New listener instance (AntlrListener interface)
      */
@@ -181,7 +183,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         this.antlrListener = antlrListener;
     }
 
-    /*
+    /**
      * Method to set the EditorListener
      * @param editorListener New listener instance (EditorListener interface)
      */
@@ -189,7 +191,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         this.editorListener = editorListener;
     }
 
-    /*
+    /**
      * Method to directly work with the editor (sora)
      * @return Returns current *io.github.rosemoe.sora.widget.CodeEditor* instance
      */
@@ -197,7 +199,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         return binding.editor;
     }
 
-    /*
+    /**
      * Method to get editor text
      * @return Returns a CharSequence like every textview & etc.
      */
@@ -254,7 +256,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         return this.file;
     }
 
-    /*
+    /**
      * This method is used to notify the editor that a new error dialigost has been received.
      * @param line an integer corresponding to the error line
      * @param positionStart corresponds to the first character of the error code.
@@ -267,7 +269,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         addDiagnosticInEditor(positionStart, positionEnd, DiagnosticRegion.SEVERITY_ERROR, msg);
     }
 
-    /*
+    /**
      * This method is called when some diagnostic status is received.
      * @param isError: returns whether it is an error or not.
      */
@@ -286,53 +288,37 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      */
     public static final class AppearanceManager {
 
-        /*
+        /**
          * Method to choose editor font typeface.
          * @param typefaceIndex number of theme 0...4
          * @return Return a TypeFace to use on editor
          */
-        public static final Typeface getTypeface(int typefaceIndex) {
-            switch (typefaceIndex) {
-                case 0:
-                    return Typeface.DEFAULT;
-                case 1:
-                    return Typeface.DEFAULT_BOLD;
-                case 2:
-                    return Typeface.MONOSPACE;
-                case 3:
-                    return Typeface.SANS_SERIF;
-                case 4:
-                    return Typeface.SERIF;
-                default:
-                    return Typeface.DEFAULT;
-            }
+        public static Typeface getTypeface(int typefaceIndex) {
+          return switch (typefaceIndex) {
+            case 1 -> Typeface.DEFAULT_BOLD;
+            case 2 -> Typeface.MONOSPACE;
+            case 3 -> Typeface.SANS_SERIF;
+            case 4 -> Typeface.SERIF;
+            default -> Typeface.DEFAULT;
+          };
         }
 
-        /*
+        /**
          * Method to choose editor theme.
          * @param themeIndex number of theme 0...6
          * @return Return a EditorColorScheme instance
          */
-        public static final EditorColorScheme getTheme(RobokCodeEditor rcd, int themeIndex) {
+        public static EditorColorScheme getTheme(RobokCodeEditor rcd, int themeIndex) {
             var ctx = rcd.getSoraCodeEditor().getContext();
-            switch (themeIndex) {
-                case 0:
-                    return new SchemeRobok(ctx);
-                case 1:
-                    return new SchemeRobokTH(ctx);
-                case 2:
-                    return new SchemeGitHub();
-                case 3:
-                    return new SchemeEclipse();
-                case 4:
-                    return new SchemeDarcula();
-                case 5:
-                    return new SchemeVS2019();
-                case 6:
-                    return new SchemeNotepadXX();
-                default:
-                    return new SchemeRobok(ctx);
-            }
+          return switch (themeIndex) {
+            case 1 -> new SchemeRobokTH(ctx);
+            case 2 -> new SchemeGitHub();
+            case 3 -> new SchemeEclipse();
+            case 4 -> new SchemeDarcula();
+            case 5 -> new SchemeVS2019();
+            case 6 -> new SchemeNotepadXX();
+            default -> new SchemeRobok(ctx);
+          };
         }
     }
 }

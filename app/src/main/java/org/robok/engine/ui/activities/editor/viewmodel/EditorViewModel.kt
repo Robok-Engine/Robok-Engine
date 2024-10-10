@@ -30,9 +30,9 @@ import java.io.File
 
 class EditorViewModel : ViewModel() {
 
-    private val _editorState = MutableLiveData<EditorState>(EditorState(-1, null))
+    private val _editorState = MutableLiveData(EditorState(-1, null))
     private val _editorEvent = MutableLiveData<EditorEvent>()
-    private val _files = MutableLiveData<MutableList<File>>(mutableListOf<File>())
+    private val _files = MutableLiveData(mutableListOf<File>())
 
     val editorState: LiveData<EditorState>
         get() = _editorState
@@ -53,7 +53,7 @@ class EditorViewModel : ViewModel() {
         get() = editorState.value?.currentIndex ?: -1
 
     val currentFile: File?
-        get() = editorState.value?.currentFile ?: null
+        get() = editorState.value?.currentFile
 
     fun openFile(file: File) {
         _editorEvent.value = EditorEvent.OpenFile(file)
