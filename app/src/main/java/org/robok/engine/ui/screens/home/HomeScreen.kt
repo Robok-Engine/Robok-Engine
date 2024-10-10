@@ -109,6 +109,7 @@ fun HomeScreen() {
                 painter = painterResource(id = Drawables.ic_robok),
                 contentDescription = null,
                 modifier = Modifier.size(70.dp).padding(8.dp),
+                colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
             )
             Text(
                 text = "Robok",
