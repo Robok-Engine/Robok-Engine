@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.preferences.base
+package org.robok.engine.core.components.spacer
 
 /*
  * Copyright 2021, Lawnchair.

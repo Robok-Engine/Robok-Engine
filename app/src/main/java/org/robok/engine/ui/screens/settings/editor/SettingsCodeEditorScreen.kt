@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.choice.PreferenceChoice
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
@@ -37,7 +37,7 @@ import org.robok.engine.strings.Strings
 fun SettingsCodeEditorScreen(navController: NavHostController) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.settings_code_editor_title),
         backArrowVisible = true,
     ) {

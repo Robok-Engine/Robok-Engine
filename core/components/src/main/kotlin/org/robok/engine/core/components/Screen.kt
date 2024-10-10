@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.preferences.base
+package org.robok.engine.core.components
 
 /*
  * Copyright 2021, Lawnchair.
@@ -43,12 +43,12 @@ import androidx.compose.ui.unit.dp
  * @param actions what content to show at the top-right of the layout
  * @param bottomBar what content to show at the bottom of the layout
  * @param content the actual content
- * @see [PreferenceLayoutLazyColumn]
+ * @see [ScreenLazyColumn]
  *
  * TODO: use DSL to represent all preferences
  */
 @Composable
-fun PreferenceLayout(
+fun Screen(
     label: String,
     modifier: Modifier = Modifier,
     backArrowVisible: Boolean = true,
@@ -90,12 +90,12 @@ fun PreferenceLayout(
  * @param state the state object to be used to control or observe the list's state
  * @param actions what content to show at the top-right of the layout
  * @param content the actual content
- * @see [PreferenceLayout]
+ * @see [Screen]
  *
  * TODO: use DSL to represent all preferences
  */
 @Composable
-fun PreferenceLayoutLazyColumn(
+fun ScreenLazyColumn(
     label: String,
     modifier: Modifier = Modifier,
     isExpandedScreen: Boolean = LocalIsExpandedScreen.current,

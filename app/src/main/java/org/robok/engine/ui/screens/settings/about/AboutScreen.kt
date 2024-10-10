@@ -57,7 +57,7 @@ import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.preferences.base.LocalIsExpandedScreen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.feature.settings.R
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -108,7 +108,7 @@ fun AboutScreen(navController: NavHostController, version: String) {
             ),
         )
 
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.settings_about_title),
         modifier = Modifier,
         backArrowVisible = !LocalIsExpandedScreen.current,

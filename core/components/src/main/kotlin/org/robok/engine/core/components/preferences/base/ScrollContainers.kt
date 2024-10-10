@@ -37,6 +37,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.awaitCancellation
 import org.robok.engine.core.components.utils.addIf
+import org.robok.engine.core.components.scroll.NestedScrollStretch
 
 @Composable
 fun PreferenceColumn(

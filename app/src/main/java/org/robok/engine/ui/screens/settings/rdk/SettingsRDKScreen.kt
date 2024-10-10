@@ -36,7 +36,7 @@ import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -70,7 +70,7 @@ fun SettingsRDKScreen(navController: NavHostController) {
 
     val downloadState by viewModel.downloadState.collectAsState()
     val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         backArrowVisible = true,
     ) {

@@ -45,7 +45,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
@@ -64,7 +64,7 @@ fun ManageProjectsScreen(navController: NavHostController) {
             projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
         }
     }
-    PreferenceLayout(label = stringResource(id = Strings.title_projects), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.title_projects), backArrowVisible = true) {
         PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
             if (projects.isEmpty().not()) {
                 projects.forEach { project -> ProjectItem(projectFile = project) }

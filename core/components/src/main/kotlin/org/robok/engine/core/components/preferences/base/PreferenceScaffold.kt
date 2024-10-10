@@ -25,6 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import org.robok.engine.core.components.appbars.TopBar
+import org.robok.engine.core.components.spacer.BottomSpacer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

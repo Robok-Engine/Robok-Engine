@@ -33,7 +33,7 @@ import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.util.withContext
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.strings.Strings
 
@@ -41,7 +41,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun LibrariesScreen(navController: NavController) {
     val context = LocalContext.current
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.settings_libraries_title),
         backArrowVisible = true,
     ) {

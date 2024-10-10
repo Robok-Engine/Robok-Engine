@@ -48,7 +48,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
@@ -72,7 +72,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         viewModel.updatePackageName(template.packageName)
     }
 
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.title_create_project),
         backArrowVisible = true,
     ) {

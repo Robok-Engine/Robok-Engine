@@ -25,7 +25,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -35,7 +35,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun SettingsAppScreen(navController: NavHostController) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    PreferenceLayout(
+    Screen(
         label = stringResource(id = Strings.settings_app_title),
         backArrowVisible = true,
     ) {
