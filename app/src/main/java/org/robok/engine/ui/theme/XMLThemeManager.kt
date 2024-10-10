@@ -11,6 +11,7 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.first
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
+import org.robok.engine.RobokApplication
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 /**
@@ -56,7 +57,7 @@ class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScop
      * Initialize ViewModel.
      */
     private fun init() {
-        appPrefsViewModel = getKoin().get()
+        appPrefsViewModel = RobokApplication.instance.getKoin().get()
     }
 
     /**
