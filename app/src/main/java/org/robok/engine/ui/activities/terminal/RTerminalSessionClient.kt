@@ -21,7 +21,9 @@ import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 
-class RTerminalSessionClient : TerminalSessionClient {
+class RTerminalSessionClient(
+   onTextChange: () -> Unit
+) : TerminalSessionClient {
 
     private var cwd: String? = null
 
@@ -40,7 +42,7 @@ class RTerminalSessionClient : TerminalSessionClient {
     override fun logStackTrace(tag: String, e: Exception) {}
 
     override fun onTextChanged(changedSession: TerminalSession) {
-        // binding.terminalView.onScreenUpdated()
+        onTextChange()
     }
 
     override fun onTitleChanged(changedSession: TerminalSession) {}

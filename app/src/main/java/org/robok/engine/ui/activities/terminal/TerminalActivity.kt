@@ -24,6 +24,8 @@ import com.termux.terminal.TerminalSession
 import java.io.File
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.databinding.ActivityTerminalBinding
+import org.robok.engine.RobokApplication
+import org.robok.engine.core.utils.KeyboardUtil
 
 /*
  * TO-DO: Refactor with Compose.
@@ -72,7 +74,15 @@ class TerminalActivity : RobokActivity() {
         binding.terminalView.setTextSize(24)
         session = createSession()
         binding.terminalView.attachSession(session)
-        val viewClient = RTerminalViewClient()
+        val viewClient = RTerminalViewClient(
+           onSingleTap = {
+              val kUtil = KeyboardUtil(RobokApplication.instance)
+              kUtil.showSoftInput(binding.terminalView)
+           },
+           onKeyEventEnter = {
+              finish()
+           }
+        )
         binding.terminalView.setTerminalViewClient(viewClient)
     }
 
@@ -97,7 +107,11 @@ class TerminalActivity : RobokActivity() {
             )
 
         val shell = "/system/bin/sh"
-        val sessionClient = RTerminalSessionClient()
+        val sessionClient = RTerminalSessionClient(
+           onTextChange = {
+              binding.terminalView.onScreenUpdated()
+           }
+        )
         return TerminalSession(
             shell,
             workingDir,
