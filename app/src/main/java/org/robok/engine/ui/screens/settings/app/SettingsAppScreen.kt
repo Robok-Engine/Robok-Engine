@@ -50,7 +50,8 @@ fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
     val appIsUseMonet by
         appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
     val appIsUseAmoled by
-        appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+        appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
+        
     PreferenceSwitch(
         checked = appIsUseMonet,
         onCheckedChange = { newValue -> appPrefsViewModel.enableMonet(newValue) },
