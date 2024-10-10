@@ -71,8 +71,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
         _binding = ActivityTerminalBinding.inflate(layoutInflater)
         setContentView(binding.getRoot())
-        handleInsetts(binding.root)
-
+        
         cwd =
             if (intent.hasExtra("path")) {
                 val path = intent.getStringExtra("path")
@@ -89,23 +88,6 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
         session = createSession()
         binding.terminalView.attachSession(session)
         binding.terminalView.setTerminalViewClient(this)
-        configureFabs()
-    }
-
-    private fun configureFabs() {
-        setOptionsVisibility(true)
-        binding.terminalOptionsButton.setOnClickListener { view: View? ->
-            setOptionsVisibility(false)
-        }
-        binding.closeButton.setOnClickListener { view: View? -> setOptionsVisibility(true) }
-        binding.installPackageButton.setOnClickListener { v: View? ->
-            showInstallPackageDialog()
-            setOptionsVisibility(true)
-        }
-        binding.updatePackagesButton.setOnClickListener { v: View? ->
-            showUpdatePackagesDialog()
-            setOptionsVisibility(true)
-        }
     }
 
     private fun createSession(): TerminalSession {
@@ -138,79 +120,6 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
             this,
         )
-    }
-
-    fun setOptionsVisibility(isHide: Boolean) {
-        binding.terminalOptionsLayout
-            .animate()
-            .translationY((if (isHide) 300 else 0).toFloat())
-            .alpha((if (isHide) 0 else 1).toFloat())
-            .setInterpolator(OvershootInterpolator())
-
-        binding.terminalOptionsButton
-            .animate()
-            .translationY((if (isHide) 0 else 300).toFloat())
-            .alpha((if (isHide) 1 else 0).toFloat())
-            .setInterpolator(OvershootInterpolator())
-    }
-
-    fun showInstallPackageDialog() {
-        val dialogBinding = LayoutDialogInputBinding.inflate(layoutInflater)
-        val textField = dialogBinding.dialogEdittext
-        textField.hint = getString(Strings.terminal_install_package_hint)
-        textField.setCornerRadius(15f)
-
-        val dialog =
-            MaterialAlertDialogBuilder(this)
-                .setView(dialogBinding.root)
-                .setTitle(getString(Strings.terminal_install_package))
-                .setMessage(getString(Strings.terminal_install_package_hint))
-                .setPositiveButton("Install", null)
-                .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
-                    dialogInterface.dismiss()
-                }
-                .create()
-
-        dialog.setOnShowListener { dialogInterface: DialogInterface ->
-            val positiveButton =
-                (dialogInterface as AlertDialog).getButton(DialogInterface.BUTTON_POSITIVE)
-            positiveButton.setOnClickListener { view: View? ->
-                val packageName = textField.text.toString().trim { it <= ' ' }
-                if (packageName.isEmpty()) {
-                    Toast.makeText(this, getString(Strings.error_invalid_name), Toast.LENGTH_LONG)
-                        .show()
-                } else {
-                    installPackage(packageName)
-                }
-                dialogInterface.dismiss()
-            }
-        }
-        dialog.setView(dialogBinding.root)
-        dialog.show()
-        dialog.window!!.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE)
-        textField.requestFocus()
-    }
-
-    fun showUpdatePackagesDialog() {
-        val dialog =
-            MaterialAlertDialogBuilder(this)
-                .setTitle(getString(Strings.terminal_update_packages))
-                .setMessage(getString(Strings.terminal_warning_update_packages))
-                .setPositiveButton("Update") { dialogInterface: DialogInterface?, i: Int -> }
-                .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
-                    dialogInterface.dismiss()
-                }
-                .create()
-        dialog.show()
-    }
-
-    fun installPackage(packageName: String?) {
-        TODO("ISSO NÃO FOI IMPLEMENTADO\n THIS WAS NOT IMPLEMENTED")
-    }
-
-    private fun sendTextInPink(text: String) {
-        val pinkText = "\u001B[35m$text\u001B[0m"
-        session?.write(pinkText)
     }
 
     override fun onDestroy() {
