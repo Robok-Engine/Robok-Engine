@@ -28,6 +28,7 @@ import org.robok.engine.feature.settings.DefaultValues
 
 private val installedRDKVersionPreference = stringPreferencesKey("installed_rdk_version")
 private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
+private val appIsUseAmoledPreference = booleanPreferencesKey("app_amoled")
 private val editorThemePreference = intPreferencesKey("editor_theme")
 private val editorTypefacePreference = intPreferencesKey("editor_typeface")
 private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
@@ -40,6 +41,8 @@ class AppPreferencesRepository(private val dataStore: DataStore<Preferences>) {
         }
     val appIsUseMonet =
         dataStore.data.map { it[appIsUseMonetPreference] ?: DefaultValues.IS_USE_MONET }
+    val appIsUseAmoled =
+        dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.IS_USE_AMOLED }
     val editorTheme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.EDITOR_THEME }
     val editorTypeface =
         dataStore.data.map { it[editorTypefacePreference] ?: DefaultValues.EDITOR_TYPEFACE }
@@ -54,6 +57,10 @@ class AppPreferencesRepository(private val dataStore: DataStore<Preferences>) {
 
     suspend fun enableMonet(value: Boolean) {
         dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
+    }
+    
+    suspend fun enableAmoled(value: Boolean) {
+        dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
     }
 
     suspend fun changeEditorTheme(value: Int) {
