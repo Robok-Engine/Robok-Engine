@@ -40,7 +40,7 @@ import org.robok.engine.core.components.utils.addIf
 import org.robok.engine.core.components.scroll.NestedScrollStretch
 
 @Composable
-fun ScreenColumnColumn(
+fun ScreenColumn(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
@@ -63,7 +63,7 @@ fun ScreenColumnColumn(
 }
 
 @Composable
-fun ScreenColumnLazyColumn(
+fun ScreenLazyColumn(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,

@@ -33,8 +33,8 @@ import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.spacer.BottomSpacer
 
 /**
- * Represents the layout of all Preference screens. Uses a combination of [ScreenScaffold] and
- * [PreferenceColumn] to represent the layout.
+ * Represents the layout of all Screen screens. Uses a combination of [ScreenScaffold] and
+ * [ScreenColumn] to represent the layout.
  *
  * @param label the text to be displayed at the top of the screen
  * @param backArrowVisible whether to show the back arrow or not
@@ -69,7 +69,7 @@ fun Screen(
         actions = actions,
         bottomBar = bottomBar,
     ) {
-        PreferenceColumn(
+        ScreenColumn(
             contentPadding = it,
             verticalArrangement = verticalArrangement,
             horizontalAlignment = horizontalAlignment,
@@ -80,12 +80,12 @@ fun Screen(
 }
 
 /**
- * Represents the layout of all Preference screens. This composable only composes and lays out the
- * currently visible items. Uses a combination of [ScreenScaffold] and [PreferenceLazyColumn] to
+ * Represents the layout of all Screen screens. This composable only composes and lays out the
+ * currently visible items. Uses a combination of [ScreenScaffold] and [ScreenLazyColumn] to
  * represent the layout.
  *
  * @param label the text to be displayed at the top of the screen
- * @param modifier the [Modifier] to apply at [PreferenceLazyColumn]
+ * @param modifier the [Modifier] to apply at [ScreenLazyColumn]
  * @param enabled whether the layout allows user input or not
  * @param backArrowVisible whether to show the back arrow or not
  * @param state the state object to be used to control or observe the list's state
@@ -112,7 +112,7 @@ fun ScreenLazyColumn(
         isExpandedScreen = isExpandedScreen,
         actions = actions,
     ) {
-        PreferenceLazyColumn(
+        ScreenLazyColumn(
             contentPadding = it,
             modifier = modifier,
             enabled = enabled,
