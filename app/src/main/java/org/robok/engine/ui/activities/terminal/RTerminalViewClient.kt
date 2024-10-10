@@ -57,7 +57,7 @@ class RTerminalViewClient: TerminalViewClient {
     override fun onKeyDown(keyCode: Int, e: KeyEvent, session: TerminalSession): Boolean {
         if (!session.isRunning) {
             if (e.keyCode == KeyEvent.KEYCODE_ENTER) {
-                finish()
+                //finish()
             }
         }
         return false
