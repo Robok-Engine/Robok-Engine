@@ -42,14 +42,14 @@ class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScop
             // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
             if (isDarkMode && useAmoled) {
                 if (useMonet) {
-                    activity.setTheme(R.style.Theme_Robok_Oled_Monet)
-                } else {
-                    activity.setTheme(R.style.Theme_Robok_Oled)
+                    activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
+                    return
                 }
-            } else if (useMonet) {
-                // Apply Monet theme if AMOLED not used but Monet is enabled
-                DynamicColors.applyToActivityIfAvailable(activity)
-            }
+                activity.setTheme(R.style.Theme_Robok_Amoled)
+                return
+            } 
+            // Apply Monet theme if AMOLED not used but Monet is enabled
+            if (useMonet) DynamicColors.applyToActivityIfAvailable(activity)
         }
     }
 
