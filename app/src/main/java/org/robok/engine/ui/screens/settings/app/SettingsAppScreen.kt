@@ -60,7 +60,6 @@ fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
         checked = appIsUseAmoled,
         onCheckedChange = { newValue -> appPrefsViewModel.enableAmoled(newValue) },
         label = stringResource(id = Strings.settings_app_use_amoled_title),
-        description = stringResource(id = Strings.settings_app_use_amoled_description),
-        enabled = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false,
+        description = stringResource(id = Strings.settings_app_use_amoled_description)
     )
 }
