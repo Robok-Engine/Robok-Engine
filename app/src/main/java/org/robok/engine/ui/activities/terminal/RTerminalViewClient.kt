@@ -90,4 +90,6 @@ class RTerminalViewClient: TerminalViewClient {
     override fun onCodePoint(codePoint: Int, ctrlDown: Boolean, session: TerminalSession): Boolean {
         return false
     }
+    
+    override fun onEmulatorSet() {}
 }

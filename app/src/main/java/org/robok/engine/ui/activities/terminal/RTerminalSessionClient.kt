@@ -28,12 +28,6 @@ import org.robok.engine.core.utils.KeyboardUtil
 class RTerminalSessionClient: TerminalSessionClient {
 
     private var cwd: String? = null
-    
-    
-
-    
-
-    override fun onEmulatorSet() {}
 
     override fun logError(tag: String, message: String) {}
 
