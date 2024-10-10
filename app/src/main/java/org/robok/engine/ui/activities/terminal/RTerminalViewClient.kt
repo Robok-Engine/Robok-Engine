@@ -24,8 +24,8 @@ import com.termux.view.TerminalViewClient
 
 
 class RTerminalViewClient(
-  onSingleTap: () -> Unit,
-  onKeyEventEnter: () -> Unit
+  private val onSingleTap: () -> Unit,
+  private val onKeyEventEnter: () -> Unit
 ) : TerminalViewClient {
     override fun onScale(scale: Float): Float {
         return 1f

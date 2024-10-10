@@ -22,7 +22,7 @@ import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 
 class RTerminalSessionClient(
-   onTextChange: () -> Unit
+   private val onTextChange: () -> Unit
 ) : TerminalSessionClient {
 
     private var cwd: String? = null
