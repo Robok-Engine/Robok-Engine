@@ -15,9 +15,8 @@ package org.robok.engine.routes
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import kotlinx.serialization.Serializable
 
-@Serializable
-object HomeRoute
+@Serializable object HomeRoute

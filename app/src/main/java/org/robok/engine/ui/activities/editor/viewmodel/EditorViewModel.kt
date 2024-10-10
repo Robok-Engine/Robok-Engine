@@ -15,18 +15,14 @@ package org.robok.engine.ui.activities.editor.viewmodel
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.ViewModelProvider
-
-import org.robok.engine.ui.activities.editor.state.EditorState
-import org.robok.engine.ui.activities.editor.event.EditorEvent
-
+import androidx.lifecycle.ViewModel
 import java.io.File
+import org.robok.engine.ui.activities.editor.event.EditorEvent
+import org.robok.engine.ui.activities.editor.state.EditorState
 
 class EditorViewModel : ViewModel() {
 
@@ -72,10 +68,8 @@ class EditorViewModel : ViewModel() {
     }
 
     fun setCurrentFile(index: Int) {
-        _editorState.value = _editorState.value!!.copy(
-            currentIndex = index,
-            currentFile = openedFiles[index],
-        )
+        _editorState.value =
+            _editorState.value!!.copy(currentIndex = index, currentFile = openedFiles[index])
     }
 
     fun addFile(file: File) {
@@ -89,7 +83,7 @@ class EditorViewModel : ViewModel() {
         files.removeAt(index)
         _files.value = files
     }
-    
+
     fun removeAllFiles() {
         val files = _files.value!!
         files.clear()
@@ -99,9 +93,9 @@ class EditorViewModel : ViewModel() {
     fun indexOfFile(file: File): Int {
         val files = this.openedFiles
         for (i in files.indices) {
-          if (files[i] == file) {
-            return i
-          }
+            if (files[i] == file) {
+                return i
+            }
         }
         return -1
     }

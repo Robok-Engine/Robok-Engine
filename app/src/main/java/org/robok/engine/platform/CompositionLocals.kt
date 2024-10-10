@@ -17,12 +17,9 @@ package org.robok.engine.platform
  * along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
-
 import org.robok.engine.noLocalProvidedFor
 
-val LocalMainNavController = compositionLocalOf<NavHostController> {
-  noLocalProvidedFor("LocalMainNavController")
-}
+val LocalMainNavController =
+    compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalMainNavController") }

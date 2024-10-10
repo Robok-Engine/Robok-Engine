@@ -1,4 +1,5 @@
 package org.robok.engine.defaults
+
 /*
  *  This file is part of Robok © 2024.
  *
@@ -14,20 +15,20 @@ package org.robok.engine.defaults
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 /*
-* Default template.
-*/
+ * Default template.
+ */
 
 import org.robok.engine.models.project.ProjectTemplate
 
 fun DefaultTemplate(): ProjectTemplate {
     return ProjectTemplate(
-       name = "Empty Game",
-       packageName = "com.robok.empty",
-       zipFileName = "empty_game.zip",
-       javaSupport = true,
-       kotlinSupport = false
+        name = "Empty Game",
+        packageName = "com.robok.empty",
+        zipFileName = "empty_game.zip",
+        javaSupport = true,
+        kotlinSupport = false,
     )
 }

@@ -15,23 +15,17 @@ package org.robok.engine.routes
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 import kotlinx.serialization.Serializable
 
-@Serializable
-object SettingsRoute
+@Serializable object SettingsRoute
 
-@Serializable
-object SettingsAppRoute
+@Serializable object SettingsAppRoute
 
-@Serializable
-object SettingsCodeEditorRoute
+@Serializable object SettingsCodeEditorRoute
 
-@Serializable
-object SettingsRDKRoute
+@Serializable object SettingsRDKRoute
 
-@Serializable
-object AboutRoute
+@Serializable object AboutRoute
 
-@Serializable
-object AboutLibrariesRoute
+@Serializable object AboutLibrariesRoute

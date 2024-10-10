@@ -23,6 +23,10 @@ import android.content.Intent
 import android.os.Process
 import android.util.Log
 import com.google.android.material.color.DynamicColors
+import java.io.PrintWriter
+import java.io.StringWriter
+import java.io.Writer
+import kotlin.system.exitProcess
 import kotlinx.coroutines.DelicateCoroutinesApi
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
@@ -35,88 +39,86 @@ import org.robok.engine.di.appModule
 import org.robok.engine.di.appPreferencesModule
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.ui.activities.debug.DebugActivity
-import java.io.PrintWriter
-import java.io.StringWriter
-import java.io.Writer
-import kotlin.system.exitProcess
 
 /*
-* A Class for basic application management.
-*/
+ * A Class for basic application management.
+ */
 class RobokApplication : Application() {
 
-  companion object {
-    // Do not place Android context classes in static fields (static reference to RobokApplication which has field robokContext pointing to Context); this is a memory leak
-    lateinit var instance: RobokApplication /* Instance of this class  */
-    lateinit var robokContext: Context /* A Context of this class */
-    const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
-  }
+    companion object {
+        // Do not place Android context classes in static fields (static reference to
+        // RobokApplication which has field robokContext pointing to Context); this is a memory leak
+        lateinit var instance: RobokApplication /* Instance of this class  */
+        lateinit var robokContext: Context /* A Context of this class */
+        const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
+    }
 
-  private lateinit var appPrefsViewModel: AppPreferencesViewModel
+    private lateinit var appPrefsViewModel: AppPreferencesViewModel
 
-  override fun onCreate() {
-    super.onCreate()
-    instance = this
-    robokContext = applicationContext
-    configureKoin()
-    configureCrashHandler()
-    configureTheme()
-  }
+    override fun onCreate() {
+        super.onCreate()
+        instance = this
+        robokContext = applicationContext
+        configureKoin()
+        configureCrashHandler()
+        configureTheme()
+    }
 
-  @OptIn(DelicateCoroutinesApi::class)
-  private fun configureTheme() {
-    appPrefsViewModel = getKoin().get()
-    GlobalScope.launch(Dispatchers.Main) {
-      appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
-        if (dynamicColor) {
-          DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
+    @OptIn(DelicateCoroutinesApi::class)
+    private fun configureTheme() {
+        appPrefsViewModel = getKoin().get()
+        GlobalScope.launch(Dispatchers.Main) {
+            appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
+                if (dynamicColor) {
+                    DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
+                }
+            }
         }
-      }
     }
-  }
 
-  /*
-  * Function that configures the error manager.
-  */
-  fun configureCrashHandler() {
-    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-      val intent = Intent(applicationContext, DebugActivity::class.java).apply {
-        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-        putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
-      }
-      startActivity(intent)
-      Process.killProcess(Process.myPid())
-      exitProcess(1)
+    /*
+     * Function that configures the error manager.
+     */
+    fun configureCrashHandler() {
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+            val intent =
+                Intent(applicationContext, DebugActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
+                }
+            startActivity(intent)
+            Process.killProcess(Process.myPid())
+            exitProcess(1)
+        }
     }
-  }
 
-  /*
-  * Function that configures Koin for Dependency Injection.
-  */
-  fun configureKoin() {
-    startKoin {
-      androidLogger()
-      androidContext(this@RobokApplication)
-      modules(appModule, appPreferencesModule)
+    /*
+     * Function that configures Koin for Dependency Injection.
+     */
+    fun configureKoin() {
+        startKoin {
+            androidLogger()
+            androidContext(this@RobokApplication)
+            modules(appModule, appPreferencesModule)
+        }
     }
-  }
 
-  /*
-  * Function to get the stack trace.
-  */
-  fun getStackTrace(cause: Throwable?): String {
-    val result: Writer = StringWriter()
-    PrintWriter(result).use { printWriter ->
-      var throwable: Throwable? = cause
-      while (throwable != null) {
-        throwable.printStackTrace(printWriter)
-        throwable = throwable.cause
-      }
+    /*
+     * Function to get the stack trace.
+     */
+    fun getStackTrace(cause: Throwable?): String {
+        val result: Writer = StringWriter()
+        PrintWriter(result).use { printWriter ->
+            var throwable: Throwable? = cause
+            while (throwable != null) {
+                throwable.printStackTrace(printWriter)
+                throwable = throwable.cause
+            }
+        }
+        return result.toString()
     }
-    return result.toString()
-  }
 }
 
 internal fun noLocalProvidedFor(name: String): Nothing {
-  error("CompositionLocal $name not present")
+    error("CompositionLocal $name not present")
 }

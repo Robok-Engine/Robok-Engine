@@ -15,23 +15,18 @@ package org.robok.engine.core.components.terminal
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.view.LayoutInflater
-
-import androidx.appcompat.app.AppCompatDelegate
-
 import com.google.android.material.bottomsheet.BottomSheetDialog
-
-import org.robok.engine.core.components.R
 import org.robok.engine.core.components.databinding.LayoutBottomsheetTerminalBinding
 import org.robok.engine.core.components.log.Log
 
 /*
-* A Basic BottomSheet for Logs.
-* @author Aquiles Trindade (trindadedev).
-*/
+ * A Basic BottomSheet for Logs.
+ * @author Aquiles Trindade (trindadedev).
+ */
 
 open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
@@ -50,7 +45,7 @@ open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
         val log = Log(context, value)
         terminal.addView(log)
     }
-    
+
     open fun setTerminalTitle(title: String) {
         terminalTitle.text = title
     }

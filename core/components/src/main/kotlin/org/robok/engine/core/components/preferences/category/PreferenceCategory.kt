@@ -15,8 +15,7 @@ package org.robok.engine.core.components.preferences.category
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
- 
-import androidx.annotation.DrawableRes
+
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -32,9 +31,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
@@ -46,21 +43,25 @@ fun PreferenceCategory(
     isSelected: Boolean = false,
     description: String? = null,
     endWidget: (@Composable () -> Unit)? = null,
-    enabled: Boolean = true
+    enabled: Boolean = true,
 ) {
     PreferenceTemplate(
-        modifier = modifier
-            .padding(horizontal = 16.dp)
-            .clip(MaterialTheme.shapes.large)
-            .clickable { onClick() }
-            .background(
-                if (isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp) else Color.Transparent,
-            ),
+        modifier =
+            modifier
+                .padding(horizontal = 16.dp)
+                .clip(MaterialTheme.shapes.large)
+                .clickable { onClick() }
+                .background(
+                    if (isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp)
+                    else Color.Transparent
+                ),
         verticalPadding = 14.dp,
         title = {
             Text(
                 text = label,
-                color = if (isSelected) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.onBackground,
+                color =
+                    if (isSelected) MaterialTheme.colorScheme.primary
+                    else MaterialTheme.colorScheme.onBackground,
             )
         },
         description = {
@@ -69,10 +70,7 @@ fun PreferenceCategory(
             }
         },
         startWidget = {
-            Box(
-                contentAlignment = Alignment.Center,
-                modifier = Modifier.size(32.dp),
-            ) {
+            Box(contentAlignment = Alignment.Center, modifier = Modifier.size(32.dp)) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
@@ -81,11 +79,7 @@ fun PreferenceCategory(
                 )
             }
         },
-        endWidget = {
-            endWidget?.let {
-                it()
-            }
-        },
-        enabled = enabled
+        endWidget = { endWidget?.let { it() } },
+        enabled = enabled,
     )
 }

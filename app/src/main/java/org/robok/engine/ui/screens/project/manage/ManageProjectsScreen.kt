@@ -19,15 +19,12 @@ package org.robok.engine.ui.screens.project.manage
 
 import android.content.Intent
 import android.os.Environment
-
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -36,37 +33,29 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.Alignment
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-
+import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-
 import org.robok.engine.Drawables
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
-
-import java.io.File
 
 val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects")
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ManageProjectsScreen(
-    navController: NavHostController
-) {
+fun ManageProjectsScreen(navController: NavHostController) {
     val projectViewModel: ManageProjectsViewModel = viewModel()
     val projects by projectViewModel.projects.collectAsState()
 
@@ -75,17 +64,10 @@ fun ManageProjectsScreen(
             projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
         }
     }
-    PreferenceLayout(
-        label = stringResource(id = Strings.title_projects),
-        backArrowVisible = true,
-    ) {
-        PreferenceGroup(
-            heading = stringResource(id = Strings.title_your_projects)
-        ) {
-            if(projects.isEmpty().not()) {
-                projects.forEach { project -> 
-                    ProjectItem(projectFile = project)
-                }
+    PreferenceLayout(label = stringResource(id = Strings.title_projects), backArrowVisible = true) {
+        PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
+            if (projects.isEmpty().not()) {
+                projects.forEach { project -> ProjectItem(projectFile = project) }
             } else {
                 EmptyContentItem()
             }
@@ -94,61 +76,51 @@ fun ManageProjectsScreen(
 }
 
 @Composable
-fun ProjectItem(
-    projectFile: File
-) {
+fun ProjectItem(projectFile: File) {
     val context = LocalContext.current
     PreferenceTemplate(
-        title = { 
-            Text(
-                text = projectFile.name, 
-                style = MaterialTheme.typography.titleMedium
-            ) 
-        },
+        title = { Text(text = projectFile.name, style = MaterialTheme.typography.titleMedium) },
         description = {
-            Text(
-                text = projectFile.path,
-                style = MaterialTheme.typography.titleSmall
-            )
+            Text(text = projectFile.path, style = MaterialTheme.typography.titleSmall)
         },
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(
-                onClick = {
-                    context.startActivity(Intent(context, EditorActivity::class.java).apply {
-                        putExtras(android.os.Bundle().apply {
-                            putString("projectPath", projectFile.absolutePath)
-                        })
-                    })
-                }
-            )
+        modifier =
+            Modifier.fillMaxWidth()
+                .clickable(
+                    onClick = {
+                        context.startActivity(
+                            Intent(context, EditorActivity::class.java).apply {
+                                putExtras(
+                                    android.os.Bundle().apply {
+                                        putString("projectPath", projectFile.absolutePath)
+                                    }
+                                )
+                            }
+                        )
+                    }
+                ),
     )
 }
-
 
 @Composable
 fun EmptyContentItem() {
     PreferenceTemplate(
-        title = { 
+        title = {
             Text(
-                text = stringResource(id = Strings.warning_no_projects), 
-                style = MaterialTheme.typography.titleMedium
-            ) 
+                text = stringResource(id = Strings.warning_no_projects),
+                style = MaterialTheme.typography.titleMedium,
+            )
         },
         startWidget = {
             Image(
                 painter = painterResource(id = Drawables.ic_warning_24),
                 contentDescription = null,
-                modifier = Modifier
-                    .size(32.dp)
-                    .clip(CircleShape)
-                    .background(MaterialTheme.colorScheme.surfaceContainer),
+                modifier =
+                    Modifier.size(32.dp)
+                        .clip(CircleShape)
+                        .background(MaterialTheme.colorScheme.surfaceContainer),
             )
         },
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable(
-                onClick = { /* TO-DO: go to CreateProjectScreen */ }
-            )
+        modifier =
+            Modifier.fillMaxWidth().clickable(onClick = { /* TO-DO: go to CreateProjectScreen */ }),
     )
 }

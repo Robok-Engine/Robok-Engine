@@ -15,14 +15,15 @@ package org.robok.engine.feature.treeview.util
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Xed-Editor (Karbon).  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 
 object Sorter {
     fun sort(root: FileObject): List<Node<FileObject>> {
-        return root.listFiles()
+        return root
+            .listFiles()
             .sortedWith(compareBy<FileObject> { !it.isDirectory() }.thenBy { it.getName() })
             .map { Node(it) }
     }

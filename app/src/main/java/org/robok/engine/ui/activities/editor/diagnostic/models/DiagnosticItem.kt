@@ -15,10 +15,6 @@ package org.robok.engine.ui.activities.editor.diagnostic.models
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-data class DiagnosticItem(
-    val name: String,
-    val description: String,
-    val type: Int
-)
+data class DiagnosticItem(val name: String, val description: String, val type: Int)

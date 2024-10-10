@@ -15,7 +15,7 @@ package org.robok.engine.core.utils
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.app.Activity
 import android.app.Application
@@ -30,15 +30,11 @@ import android.view.Window
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 
-import androidx.annotation.NonNull
-import androidx.annotation.Nullable
-
-class KeyboardUtil(
-   private val applicationClass: Application 
-) {
+class KeyboardUtil(private val applicationClass: Application) {
 
     fun showSoftInput() {
-        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm =
+            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.showSoftInput(null, InputMethodManager.SHOW_IMPLICIT)
     }
 
@@ -53,18 +49,26 @@ class KeyboardUtil(
     }
 
     fun showSoftInput(view: View, flags: Int) {
-        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm =
+            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.let {
             view.isFocusable = true
             view.isFocusableInTouchMode = true
             view.requestFocus()
-            it.showSoftInput(view, flags, object : ResultReceiver(Handler(Looper.getMainLooper())) {
-                override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
-                    if (resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN || resultCode == InputMethodManager.RESULT_HIDDEN) {
-                        showSoftInput()
+            it.showSoftInput(
+                view,
+                flags,
+                object : ResultReceiver(Handler(Looper.getMainLooper())) {
+                    override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+                        if (
+                            resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN ||
+                                resultCode == InputMethodManager.RESULT_HIDDEN
+                        ) {
+                            showSoftInput()
+                        }
                     }
-                }
-            })
+                },
+            )
         }
     }
 
@@ -78,10 +82,12 @@ class KeyboardUtil(
             if (view == null) {
                 val decorView = it.decorView
                 val focusView = decorView.findViewWithTag<View>("keyboardTagView")
-                view = focusView ?: EditText(window.context).apply {
-                    tag = "keyboardTagView"
-                    (decorView as ViewGroup).addView(this, 0, 0)
-                }
+                view =
+                    focusView
+                        ?: EditText(window.context).apply {
+                            tag = "keyboardTagView"
+                            (decorView as ViewGroup).addView(this, 0, 0)
+                        }
                 view.requestFocus()
             }
             hideSoftInput(view)
@@ -89,11 +95,12 @@ class KeyboardUtil(
     }
 
     fun hideSoftInput(view: View) {
-        val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+        val imm =
+            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
         imm?.hideSoftInputFromWindow(view.windowToken, 0)
     }
-    
-    fun isSoftInputVisible (act: Activity): Boolean {
+
+    fun isSoftInputVisible(act: Activity): Boolean {
         return false
     }
 }

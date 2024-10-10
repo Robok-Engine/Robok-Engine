@@ -15,25 +15,19 @@ package org.robok.engine.core.components.terminal
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.view.LayoutInflater
-
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.google.android.material.bottomsheet.BottomSheetDialog
-
-import org.robok.engine.core.components.R
 import org.robok.engine.core.components.databinding.LayoutBottomsheetTerminalWithRecyclerBinding
-import org.robok.engine.core.components.log.Log
 
 /*
-* A Basic BottomSheet for Logs, with RecyclerView.
-* @author Aquiles Trindade (trindadedev).
-*/
+ * A Basic BottomSheet for Logs, with RecyclerView.
+ * @author Aquiles Trindade (trindadedev).
+ */
 
 open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(context) {
 
@@ -43,9 +37,8 @@ open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(conte
     val recycler = binding.recycler
     val terminalTitle = binding.terminalTitle
 
-    
-    open fun getRecyclerView() : RecyclerView {
-         return recycler
+    open fun getRecyclerView(): RecyclerView {
+        return recycler
     }
 
     init {
@@ -53,11 +46,11 @@ open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(conte
         setCancelable(true)
         binding.recycler.layoutManager = LinearLayoutManager(context)
     }
-    
+
     open fun setTerminalTitle(title: String) {
         terminalTitle.text = title
     }
-    
+
     open fun getTerminalTitle(): String {
         return terminalTitle.text.toString()
     }

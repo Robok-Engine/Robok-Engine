@@ -24,14 +24,13 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-
-import org.robok.engine.strings.Strings
 import org.robok.engine.core.components.dialog.RobokDialog
+import org.robok.engine.strings.Strings
 
 /*
-* A Basic Dialog with Text Field for input.
-* @author Aquiles Trindade (trindadedev).
-*/
+ * A Basic Dialog with Text Field for input.
+ * @author Aquiles Trindade (trindadedev).
+ */
 @Composable
 fun InputDialog(
     title: String,
@@ -39,7 +38,7 @@ fun InputDialog(
     inputValue: String,
     onInputValueChange: (String) -> Unit,
     onConfirm: () -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
 ) {
     RobokDialog(
         onDismissRequest = onDismiss,
@@ -51,16 +50,12 @@ fun InputDialog(
                     onValueChange = onInputValueChange,
                     label = { Text(inputLabel) },
                     modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(12.dp),
                 )
             }
         },
-        confirmButton = {
-            Text(stringResource(id = Strings.common_word_save))
-        },
+        confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
         onConfirmation = onConfirm,
-        dismissButton = {
-            Text(stringResource(id = Strings.common_word_cancel))
-        }
+        dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
     )
 }

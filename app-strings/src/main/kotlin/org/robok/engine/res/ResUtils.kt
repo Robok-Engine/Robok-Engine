@@ -15,26 +15,24 @@ package org.robok.engine.res
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.util.TypedValue
-
 import androidx.annotation.AttrRes
-import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 
 class ResUtils(val context: Context) {
-     
-     fun getAttrColor(@AttrRes attrResID: Int): Int {
-          val typedValue = TypedValue()
-          context.theme.resolveAttribute(attrResID, typedValue, true)
-          return if (typedValue.resourceId != 0) {
-              ContextCompat.getColor(context, typedValue.resourceId)
-          } else {
-              typedValue.data
-          }
-     }
-     
-     fun getColor(@AttrRes attrResID: Int): Int = ContextCompat.getColor(context, attrResID)
+
+    fun getAttrColor(@AttrRes attrResID: Int): Int {
+        val typedValue = TypedValue()
+        context.theme.resolveAttribute(attrResID, typedValue, true)
+        return if (typedValue.resourceId != 0) {
+            ContextCompat.getColor(context, typedValue.resourceId)
+        } else {
+            typedValue.data
+        }
+    }
+
+    fun getColor(@AttrRes attrResID: Int): Int = ContextCompat.getColor(context, attrResID)
 }

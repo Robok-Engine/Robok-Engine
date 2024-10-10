@@ -15,29 +15,23 @@ package org.robok.engine.ui.screens.project.create.viewmodel
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import androidx.lifecycle.ViewModelProvider
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.collectAsState
-
-import kotlinx.coroutines.launch
-
-import org.robok.engine.ui.screens.project.create.state.CreateProjectState
-import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.manage.project.ProjectManager
-
+import androidx.compose.runtime.setValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import java.io.File
+import kotlinx.coroutines.launch
+import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.models.project.ProjectTemplate
+import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 
-class CreateProjectViewModel(
-    private val projectManager: ProjectManager
-) : ViewModel() {
+class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
     var state by mutableStateOf(CreateProjectState())
-    
+
     fun updateProjectName(name: String) {
         state = state.copy(projectName = name)
     }
@@ -45,43 +39,44 @@ class CreateProjectViewModel(
     fun updatePackageName(name: String) {
         state = state.copy(packageName = name)
     }
-    
+
     fun updateErrorMessage(message: String?) {
         state = state.copy(errorMessage = message ?: "Null Message")
     }
-    
+
     fun setProjectPath(file: File) {
         projectManager.projectPath = file
     }
-    
+
     fun getProjectPath(): File = projectManager.projectPath
-    
+
     fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
         if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
             state = state.copy(errorMessage = "Project name and package name cannot be empty.")
             return
         }
-        
+
         viewModelScope.launch {
             state = state.copy(isLoading = true, errorMessage = null)
-            val projectCreationListener = object : ProjectManager.CreationListener {
-                override fun onProjectCreate() { 
-                     onSuccess()
-                     state = state.copy(isLoading = false)
+            val projectCreationListener =
+                object : ProjectManager.CreationListener {
+                    override fun onProjectCreate() {
+                        onSuccess()
+                        state = state.copy(isLoading = false)
+                    }
+
+                    override fun onProjectCreateError(error: String) {
+                        onError(error)
+                    }
                 }
-                override fun onProjectCreateError(error: String) {
-                     onError(error)
-                }
-            }
             projectManager.setListener(projectCreationListener)
             projectManager.create(state.projectName, state.packageName, template)
         }
     }
 }
 
-class CreateProjectViewModelFactory(
-    private val projectManager: ProjectManager
-) : ViewModelProvider.Factory {
+class CreateProjectViewModelFactory(private val projectManager: ProjectManager) :
+    ViewModelProvider.Factory {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if (modelClass.isAssignableFrom(CreateProjectViewModel::class.java)) {
             @Suppress("UNCHECKED_CAST")

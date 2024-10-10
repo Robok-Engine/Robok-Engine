@@ -15,11 +15,9 @@ package org.robok.engine.core.templates.code.android.game.logic
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Parcel
-
-import org.robok.engine.core.templates.code.CodeTemplate
 import org.robok.engine.core.templates.code.java.JavaClassTemplate
 
 open class GameScreenLogicTemplate : JavaClassTemplate {
@@ -46,8 +44,8 @@ open class GameScreenLogicTemplate : JavaClassTemplate {
                     
                 }
             }
-            """.trimIndent()
+            """
+                .trimIndent()
         )
     }
 }
-

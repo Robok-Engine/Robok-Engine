@@ -15,15 +15,20 @@ package org.robok.engine.feature.treeview.interfaces
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Xed-Editor (Karbon).  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import java.io.Serializable
 
-interface FileObject : Serializable{
-    fun listFiles():List<FileObject>
-    fun isDirectory():Boolean
-    fun isFile():Boolean
-    fun getName():String
+interface FileObject : Serializable {
+    fun listFiles(): List<FileObject>
+
+    fun isDirectory(): Boolean
+
+    fun isFile(): Boolean
+
+    fun getName(): String
+
     fun getParentFile(): FileObject?
-    fun getAbsolutePath():String
+
+    fun getAbsolutePath(): String
 }

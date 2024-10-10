@@ -15,7 +15,7 @@ package org.robok.engine.core.templates.code
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Parcel
 import android.os.Parcelable
@@ -55,15 +55,15 @@ open class CodeTemplate() : Parcelable {
         classPackageName = value
     }
 
-    open fun getCodeClassContent() : String? {
+    open fun getCodeClassContent(): String? {
         return classCodeContent
     }
 
-    open fun getCodeClassName () : String? {
+    open fun getCodeClassName(): String? {
         return className
     }
 
-    open fun getCodeClassPackageName () : String? {
+    open fun getCodeClassPackageName(): String? {
         return classPackageName
     }
 

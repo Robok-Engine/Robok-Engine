@@ -15,14 +15,14 @@ package org.robok.engine.feature.modeling.objects
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
- 
+ */
+
 /*
-* Command to create object on ModelingScreen.
-* see {@link ObjectsCreator} for see that methods.
-* see {@link Model3DView} for see that methods call.
-* @author Aquiles Trindade (trindadedev).
-*/
+ * Command to create object on ModelingScreen.
+ * see {@link ObjectsCreator} for see that methods.
+ * see {@link Model3DView} for see that methods call.
+ * @author Aquiles Trindade (trindadedev).
+ */
 object ObjectCommand {
     const val CREATE_CUBE = "createCube"
     const val CREATE_TRIANGLE = "createTriangle"

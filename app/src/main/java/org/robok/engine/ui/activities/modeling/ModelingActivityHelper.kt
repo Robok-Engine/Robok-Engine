@@ -15,30 +15,20 @@ package org.robok.engine.ui.activities.modeling
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
-
 import androidx.compose.ui.platform.ComposeView
-
-import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.ui.screens.modeling.ModelingScreen
+import org.robok.engine.ui.theme.RobokTheme
 
 /**
-* Class to create ComposeView in 3D Modeling.
-* @author Aquiles Trindade (trindadedev).
-*/
-
-class ModelingActivityHelper(
-   private val context: Context 
-) {
+ * Class to create ComposeView in 3D Modeling.
+ *
+ * @author Aquiles Trindade (trindadedev).
+ */
+class ModelingActivityHelper(private val context: Context) {
     fun createComposeView(): ComposeView {
-        return ComposeView(context).apply {
-            setContent {
-                 RobokTheme {
-                     ModelingScreen()
-                 }
-            }
-        }
+        return ComposeView(context).apply { setContent { RobokTheme { ModelingScreen() } } }
     }
 }

@@ -15,25 +15,24 @@ package org.robok.engine.feature.treeview.provider
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Xed-Editor (Karbon).  If not, see <https://www.gnu.org/licenses/>.
- */ 
-
-import org.robok.engine.feature.treeview.interfaces.FileObject
+ */
 
 import java.io.File
+import org.robok.engine.feature.treeview.interfaces.FileObject
 
-//wrapper for java.io.File
+// wrapper for java.io.File
 class FileWrapper(val file: File) : FileObject {
 
     override fun listFiles(): List<FileObject> {
         val list = file.listFiles()
-        if (list.isNullOrEmpty()){
+        if (list.isNullOrEmpty()) {
             return emptyList()
         }
 
         return list.map { f -> FileWrapper(f) }
     }
 
-    fun getNativeFile():File{
+    fun getNativeFile(): File {
         return file
     }
 
@@ -42,11 +41,11 @@ class FileWrapper(val file: File) : FileObject {
     }
 
     override fun isFile(): Boolean {
-       return file.isFile
+        return file.isFile
     }
 
     override fun getName(): String {
-       return file.name
+        return file.name
     }
 
     override fun getParentFile(): FileObject? {

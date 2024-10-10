@@ -18,32 +18,22 @@ package org.robok.engine.ui.screens.settings.app
  */
 
 import android.os.Build
-import android.content.Context
-
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
-
 import org.koin.androidx.compose.koinViewModel
-
-import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsAppScreen(
-    navController: NavHostController
-) {
+fun SettingsAppScreen(navController: NavHostController) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     PreferenceLayout(
         label = stringResource(id = Strings.settings_app_title),
@@ -56,17 +46,14 @@ fun SettingsAppScreen(
 }
 
 @Composable
-fun appearancePrefs(
-    appPrefsViewModel: AppPreferencesViewModel
-) {
-     val appIsUseMonet by appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
-     PreferenceSwitch(
-          checked = appIsUseMonet,
-          onCheckedChange = { newValue ->
-              appPrefsViewModel.enableMonet(newValue)
-          },
-          label = stringResource(id = Strings.settings_app_use_monet_title),
-          description = stringResource(id = Strings.settings_app_use_monet_description),
-          enabled = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false
-     )
+fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
+    val appIsUseMonet by
+        appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+    PreferenceSwitch(
+        checked = appIsUseMonet,
+        onCheckedChange = { newValue -> appPrefsViewModel.enableMonet(newValue) },
+        label = stringResource(id = Strings.settings_app_use_monet_title),
+        description = stringResource(id = Strings.settings_app_use_monet_description),
+        enabled = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) true else false,
+    )
 }

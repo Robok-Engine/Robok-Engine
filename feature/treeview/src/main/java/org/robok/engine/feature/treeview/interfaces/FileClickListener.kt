@@ -15,7 +15,7 @@ package org.robok.engine.feature.treeview.interfaces
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Xed-Editor (Karbon).  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import org.robok.engine.feature.treeview.model.Node
 

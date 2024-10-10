@@ -15,31 +15,28 @@ package org.robok.engine.ui.activities.editor.diagnostic
  *
  *  You should have received a copy of the GNU General Public License
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
-import androidx.annotation.DrawableRes
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
-import org.robok.engine.R
 import org.robok.engine.databinding.FragmentEditorDiagnosticBinding
-import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.robok.engine.ui.activities.editor.diagnostic.adapters.DiagnosticsAdapter
+import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
 
 class DiagnosticFragment(private val diagnostics: List<DiagnosticItem>) : Fragment() {
 
     private var _binding: FragmentEditorDiagnosticBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     override fun onCreateView(
-        inflater: LayoutInflater, 
-        container: ViewGroup?, 
-        savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?,
     ): View {
         _binding = FragmentEditorDiagnosticBinding.inflate(inflater, container, false)
         return binding.root

@@ -17,51 +17,45 @@ package org.robok.engine.core.utils
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.app.Activity
 import android.content.Context
-import android.widget.Toast
-import android.os.Handler
-import android.os.Looper
-
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-
 import java.io.File
 import java.io.FileOutputStream
-import java.io.InputStream
 import java.net.HttpURLConnection
 import java.net.URL
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class ZipDownloader(private val context: Context) {
 
-    suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String): Boolean = withContext(Dispatchers.IO) {
-        val url = URL(zipUrl)
-        val connection = url.openConnection() as HttpURLConnection
+    suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String): Boolean =
+        withContext(Dispatchers.IO) {
+            val url = URL(zipUrl)
+            val connection = url.openConnection() as HttpURLConnection
 
-        try {
-            connection.inputStream.use { inputStream ->
-                val outputDir = File(context.filesDir, outputDirName)
-                if (!outputDir.exists()) {
-                    outputDir.mkdirs()
+            try {
+                connection.inputStream.use { inputStream ->
+                    val outputDir = File(context.filesDir, outputDirName)
+                    if (!outputDir.exists()) {
+                        outputDir.mkdirs()
+                    }
+
+                    val zipFile = File(context.filesDir, "$outputDirName.zip")
+                    FileOutputStream(zipFile).use { fileOutputStream ->
+                        inputStream.copyTo(fileOutputStream)
+                    }
+
+                    extractZipFile(zipFile, outputDir)
                 }
-
-                val zipFile = File(context.filesDir, "$outputDirName.zip")
-                FileOutputStream(zipFile).use { fileOutputStream ->
-                    inputStream.copyTo(fileOutputStream)
-                }
-
-                extractZipFile(zipFile, outputDir)
+                true
+            } catch (e: Exception) {
+                e.printStackTrace()
+                false
+            } finally {
+                connection.disconnect()
             }
-            true 
-        } catch (e: Exception) {
-            e.printStackTrace()
-            false
-        } finally {
-            connection.disconnect()
         }
-    }
 
     private fun extractZipFile(zipFile: File, outputDir: File) {
         ZipInputStream(zipFile.inputStream()).use { zipInputStream ->

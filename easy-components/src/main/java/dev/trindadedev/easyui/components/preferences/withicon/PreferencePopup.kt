@@ -15,24 +15,22 @@ package dev.trindadedev.easyui.components.preferences.withicon
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
+import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
-import android.widget.ImageView
-
 import dev.trindadedev.easyui.components.R
 
-class PreferencePopup @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+class PreferencePopup
+@JvmOverloads
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
 
     public val preferenceTitle: TextView
     public val preferenceDescription: TextView
@@ -48,19 +46,16 @@ class PreferencePopup @JvmOverloads constructor(
         preferenceIcon = findViewById(R.id.preference_icon)
         preference = findViewById(R.id.preference)
 
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.PreferencePopup,
-            0, 0
-        ).apply {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.PreferencePopup, 0, 0).apply {
             try {
                 val title = getString(R.styleable.PreferencePopup_preferencePopupTitle) ?: ""
-                val description = getString(R.styleable.PreferencePopup_preferencePopupDescription) ?: ""
+                val description =
+                    getString(R.styleable.PreferencePopup_preferencePopupDescription) ?: ""
                 val iconResId = getResourceId(R.styleable.PreferencePopup_preferencePopupIcon, 0)
-                
+
                 preferenceTitle.text = title
                 preferenceDescription.text = description
-                
+
                 if (iconResId != 0) {
                     preferenceIcon.setImageResource(iconResId)
                 } else {

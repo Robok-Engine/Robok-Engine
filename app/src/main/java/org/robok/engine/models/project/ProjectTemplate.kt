@@ -24,9 +24,9 @@ import kotlinx.serialization.Serializable
 @Serializable
 @Parcelize
 data class ProjectTemplate(
-  val name: String = "",
-  val packageName: String = "",
-  val zipFileName: String = "",
-  val javaSupport: Boolean = false,
-  val kotlinSupport: Boolean = false
+    val name: String = "",
+    val packageName: String = "",
+    val zipFileName: String = "",
+    val javaSupport: Boolean = false,
+    val kotlinSupport: Boolean = false,
 ) : Parcelable

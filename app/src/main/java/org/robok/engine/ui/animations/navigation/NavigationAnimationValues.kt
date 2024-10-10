@@ -15,7 +15,7 @@ package org.robok.engine.ui.animations.navigation
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 object NavigationAnimationValues {
     const val SlideDistance: Int = 100

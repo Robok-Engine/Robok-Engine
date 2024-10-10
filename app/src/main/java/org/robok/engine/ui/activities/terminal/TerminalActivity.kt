@@ -1,21 +1,21 @@
 package org.robok.engine.ui.activities.terminal
 
 /*
-*  This file is part of Robok © 2024.
-*
-*  Robok is free software: you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License as published by
-*  the Free Software Foundation, either version 3 of the License, or
-*  (at your option) any later version.
-*
-*  Robok is distributed in the hope that it will be useful,
-*  but WITHOUT ANY WARRANTY; without even the implied warranty of
-*  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-*  GNU General Public License for more details.
-*
-*  You should have received a copy of the GNU General Public License
-*   along with Robok. If not, see <https://www.gnu.org/licenses/>.
-*/
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
+ */
 
 import android.content.DialogInterface
 import android.os.Bundle
@@ -26,45 +26,42 @@ import android.view.WindowManager
 import android.view.animation.OvershootInterpolator
 import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-
 import androidx.appcompat.app.AlertDialog
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
-
-import org.robok.engine.strings.Strings
+import java.io.File
 import org.robok.engine.RobokApplication
-import org.robok.engine.databinding.ActivityTerminalBinding
-import org.robok.engine.databinding.LayoutDialogInputBinding
 import org.robok.engine.core.utils.KeyboardUtil
 import org.robok.engine.core.utils.base.RobokActivity
-
-import java.io.File
+import org.robok.engine.databinding.ActivityTerminalBinding
+import org.robok.engine.databinding.LayoutDialogInputBinding
+import org.robok.engine.strings.Strings
 
 /*
-* TO-DO: Refactor with Compose.
-*/
+ * TO-DO: Refactor with Compose.
+ */
 
 class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {
 
     private var _binding: ActivityTerminalBinding? = null
-    private val binding get() = _binding!!
+    private val binding
+        get() = _binding!!
 
     private var cwd: String? = null
     private var session: TerminalSession? = null
 
-    private val backPressedCallback = object : OnBackPressedCallback(enabled = false) {
-        override fun handleOnBackPressed() {
-            if (!session!!.isRunning) {
-                isEnabled = true
-                onBackPressedDispatcher.onBackPressed()
+    private val backPressedCallback =
+        object : OnBackPressedCallback(enabled = false) {
+            override fun handleOnBackPressed() {
+                if (!session!!.isRunning) {
+                    isEnabled = true
+                    onBackPressedDispatcher.onBackPressed()
+                }
             }
         }
-    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         isEdgeToEdge = false
@@ -76,16 +73,17 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
         setContentView(binding.getRoot())
         handleInsetts(binding.root)
 
-        cwd = if (intent.hasExtra("path")) {
-            val path = intent.getStringExtra("path")
-            if (File(path.toString()).exists().not()) {
-                filesDir.absolutePath
+        cwd =
+            if (intent.hasExtra("path")) {
+                val path = intent.getStringExtra("path")
+                if (File(path.toString()).exists().not()) {
+                    filesDir.absolutePath
+                } else {
+                    path
+                }
             } else {
-                path
+                filesDir.absolutePath
             }
-        } else {
-            filesDir.absolutePath
-        }
 
         binding.terminalView.setTextSize(24)
         session = createSession()
@@ -96,7 +94,9 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
 
     private fun configureFabs() {
         setOptionsVisibility(true)
-        binding.terminalOptionsButton.setOnClickListener { view: View? -> setOptionsVisibility(false) }
+        binding.terminalOptionsButton.setOnClickListener { view: View? ->
+            setOptionsVisibility(false)
+        }
         binding.closeButton.setOnClickListener { view: View? -> setOptionsVisibility(true) }
         binding.installPackageButton.setOnClickListener { v: View? ->
             showInstallPackageDialog()
@@ -119,13 +119,14 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             tmpDir.mkdirs()
         }
 
-        val env = arrayOf(
-            "TMP_DIR=${tmpDir.absolutePath}",
-            "HOME=" + filesDir.absolutePath,
-            "PUBLIC_HOME=" + getExternalFilesDir(null)?.absolutePath,
-            "COLORTERM=truecolor",
-            "TERM=xterm-256color"
-        )
+        val env =
+            arrayOf(
+                "TMP_DIR=${tmpDir.absolutePath}",
+                "HOME=" + filesDir.absolutePath,
+                "PUBLIC_HOME=" + getExternalFilesDir(null)?.absolutePath,
+                "COLORTERM=truecolor",
+                "TERM=xterm-256color",
+            )
 
         val shell = "/system/bin/sh"
 
@@ -135,17 +136,19 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             arrayOf(""),
             env,
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-            this
+            this,
         )
     }
 
     fun setOptionsVisibility(isHide: Boolean) {
-        binding.terminalOptionsLayout.animate()
+        binding.terminalOptionsLayout
+            .animate()
             .translationY((if (isHide) 300 else 0).toFloat())
             .alpha((if (isHide) 0 else 1).toFloat())
             .setInterpolator(OvershootInterpolator())
 
-        binding.terminalOptionsButton.animate()
+        binding.terminalOptionsButton
+            .animate()
             .translationY((if (isHide) 0 else 300).toFloat())
             .alpha((if (isHide) 1 else 0).toFloat())
             .setInterpolator(OvershootInterpolator())
@@ -157,20 +160,25 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
         textField.hint = getString(Strings.terminal_install_package_hint)
         textField.setCornerRadius(15f)
 
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setView(dialogBinding.root)
-            .setTitle(getString(Strings.terminal_install_package))
-            .setMessage(getString(Strings.terminal_install_package_hint))
-            .setPositiveButton("Install", null)
-            .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.dismiss() }
-            .create()
+        val dialog =
+            MaterialAlertDialogBuilder(this)
+                .setView(dialogBinding.root)
+                .setTitle(getString(Strings.terminal_install_package))
+                .setMessage(getString(Strings.terminal_install_package_hint))
+                .setPositiveButton("Install", null)
+                .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
+                }
+                .create()
 
         dialog.setOnShowListener { dialogInterface: DialogInterface ->
-            val positiveButton = (dialogInterface as AlertDialog).getButton(DialogInterface.BUTTON_POSITIVE)
+            val positiveButton =
+                (dialogInterface as AlertDialog).getButton(DialogInterface.BUTTON_POSITIVE)
             positiveButton.setOnClickListener { view: View? ->
                 val packageName = textField.text.toString().trim { it <= ' ' }
                 if (packageName.isEmpty()) {
-                    Toast.makeText(this, getString(Strings.error_invalid_name), Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, getString(Strings.error_invalid_name), Toast.LENGTH_LONG)
+                        .show()
                 } else {
                     installPackage(packageName)
                 }
@@ -184,12 +192,15 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
     }
 
     fun showUpdatePackagesDialog() {
-        val dialog = MaterialAlertDialogBuilder(this)
-            .setTitle(getString(Strings.terminal_update_packages))
-            .setMessage(getString(Strings.terminal_warning_update_packages))
-            .setPositiveButton("Update") { dialogInterface: DialogInterface?, i: Int -> }
-            .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int -> dialogInterface.dismiss() }
-            .create()
+        val dialog =
+            MaterialAlertDialogBuilder(this)
+                .setTitle(getString(Strings.terminal_update_packages))
+                .setMessage(getString(Strings.terminal_warning_update_packages))
+                .setPositiveButton("Update") { dialogInterface: DialogInterface?, i: Int -> }
+                .setNegativeButton("Cancel") { dialogInterface: DialogInterface, i: Int ->
+                    dialogInterface.dismiss()
+                }
+                .create()
         dialog.show()
     }
 

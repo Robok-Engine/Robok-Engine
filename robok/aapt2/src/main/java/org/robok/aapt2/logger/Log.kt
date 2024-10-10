@@ -17,7 +17,4 @@ package org.robok.aapt2.logger
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-data class Log(
-   val tag: CharSequence,
-   val message: CharSequence
-)
+data class Log(val tag: CharSequence, val message: CharSequence)

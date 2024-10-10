@@ -15,19 +15,15 @@ package org.robok.engine.core.utils.base
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Bundle
 import android.view.View
-
-import androidx.fragment.app.Fragment
-import androidx.activity.OnBackPressedDispatcher
 import androidx.annotation.IdRes
-
-import com.google.android.material.transition.MaterialSharedAxis
+import androidx.fragment.app.Fragment
 import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.color.MaterialColors
-
+import com.google.android.material.transition.MaterialSharedAxis
 import org.robok.engine.core.utils.R
 import org.robok.engine.core.utils.getBackPressedClickListener
 
@@ -40,12 +36,12 @@ open class RobokFragment() : Fragment() {
         exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
         reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
     }
-    
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
     }
-    
+
     fun openFragment(@IdRes idRes: Int, fragment: Fragment) {
         parentFragmentManager.beginTransaction().apply {
             replace(idRes, fragment)
@@ -53,7 +49,7 @@ open class RobokFragment() : Fragment() {
             commit()
         }
     }
-    
+
     fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
         val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
         toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))

@@ -15,21 +15,18 @@ package org.robok.engine.ui.screens.modeling
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.IntOffset
-
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.preferences.base.ExpandAndShrink
 
@@ -43,22 +40,19 @@ fun ModelingScreen() {
         Image(
             painter = painterResource(id = Drawables.ic_robok),
             contentDescription = "open3DOptions",
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(16.dp)
-                .size(50.dp)
-                .clickable {
+            modifier =
+                Modifier.align(Alignment.TopEnd).padding(16.dp).size(50.dp).clickable {
                     isOptionsOpen = !isOptionsOpen
-                }
+                },
         )
 
         ExpandAndShrink(
             visible = isOptionsOpen,
-            modifier = Modifier
-                .align(Alignment.TopEnd)
-                .padding(16.dp)
-                .size(width = 200.dp, height = 400.dp)
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh)
+            modifier =
+                Modifier.align(Alignment.TopEnd)
+                    .padding(16.dp)
+                    .size(width = 200.dp, height = 400.dp)
+                    .background(MaterialTheme.colorScheme.surfaceContainerHigh),
         ) {
             Box(modifier = Modifier.padding(16.dp)) {
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {

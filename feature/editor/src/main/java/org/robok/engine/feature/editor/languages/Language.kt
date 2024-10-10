@@ -15,27 +15,27 @@ package org.robok.engine.feature.editor.languages
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-import org.robok.engine.feature.editor.EditorListener
 import org.robok.antlr4.java.AntlrListener
+import org.robok.engine.feature.editor.EditorListener
 
 /*
-* A Interface base for Languages.
-* @extends Extends a Sora Editor Language.
-* @author Aquiles Trindade (trindadedev).
-*/
+ * A Interface base for Languages.
+ * @extends Extends a Sora Editor Language.
+ * @author Aquiles Trindade (trindadedev).
+ */
 
-interface Language: io.github.rosemoe.sora.lang.Language {
-   /*
-   * Set the listener of editor
-   * @link EditorListener.kt
-   */
-   fun setEditorListener(editorListener: EditorListener)
-   
-   /*
-   * Set the listener of editor
-   * @link AntlrListener, module robok:robok:antlr4
-   */
-   fun setAntlrListener(antlrListener: AntlrListener) 
+interface Language : io.github.rosemoe.sora.lang.Language {
+    /*
+     * Set the listener of editor
+     * @link EditorListener.kt
+     */
+    fun setEditorListener(editorListener: EditorListener)
+
+    /*
+     * Set the listener of editor
+     * @link AntlrListener, module robok:robok:antlr4
+     */
+    fun setAntlrListener(antlrListener: AntlrListener)
 }

@@ -15,11 +15,8 @@ package org.robok.engine.ui.activities.editor.state
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import java.io.File
 
-data class EditorState(
-   val currentIndex: Int,
-   val currentFile: File?
-)
+data class EditorState(val currentIndex: Int, val currentFile: File?)

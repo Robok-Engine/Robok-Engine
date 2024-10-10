@@ -15,10 +15,9 @@ package org.robok.engine.core.utils
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.view.View
-
 import androidx.activity.OnBackPressedDispatcher
 
 fun getBackPressedClickListener(dispatcher: OnBackPressedDispatcher): View.OnClickListener {
@@ -26,7 +25,7 @@ fun getBackPressedClickListener(dispatcher: OnBackPressedDispatcher): View.OnCli
 }
 
 class Helper {
-     fun getBackPressedClickListener(dispatcher: OnBackPressedDispatcher): View.OnClickListener {
-           return View.OnClickListener { dispatcher.onBackPressed() }
-     }
+    fun getBackPressedClickListener(dispatcher: OnBackPressedDispatcher): View.OnClickListener {
+        return View.OnClickListener { dispatcher.onBackPressed() }
+    }
 }

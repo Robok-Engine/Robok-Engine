@@ -17,30 +17,23 @@ package org.robok.engine.ui.screens.settings
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.navigation.NavHostController
-
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.preferences.category.PreferenceCategory
+import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.routes.AboutLibrariesRoute
+import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
-import org.robok.engine.routes.AboutRoute
-import org.robok.engine.routes.AboutLibrariesRoute
-import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
-import org.robok.engine.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.strings.Strings
 
 @Composable
-fun SettingsScreen(
-    navController: NavHostController
-) {
+fun SettingsScreen(navController: NavHostController) {
     PreferenceLayout(
         label = stringResource(id = Strings.common_word_settings),
         backArrowVisible = true,
@@ -52,59 +45,43 @@ fun SettingsScreen(
 }
 
 @Composable
-fun GeneralPreferences(
-    navController: NavHostController
-) {
-   PreferenceCategory(
-       label = stringResource(id = Strings.settings_app_title),
-       description = stringResource(id = Strings.settings_app_description),
-       icon = Icons.Filled.Android,
-       onClick = {
-           navController.navigateSingleTop(route = SettingsAppRoute)
-       }
-   )
-   PreferenceCategory(
-       label = stringResource(id = Strings.settings_code_editor_title),
-       description = stringResource(id = Strings.settings_code_editor_description),
-       icon = Icons.Filled.Edit,
-       onClick = {
-           navController.navigateSingleTop(route = SettingsCodeEditorRoute)
-       }
-   )
+fun GeneralPreferences(navController: NavHostController) {
+    PreferenceCategory(
+        label = stringResource(id = Strings.settings_app_title),
+        description = stringResource(id = Strings.settings_app_description),
+        icon = Icons.Filled.Android,
+        onClick = { navController.navigateSingleTop(route = SettingsAppRoute) },
+    )
+    PreferenceCategory(
+        label = stringResource(id = Strings.settings_code_editor_title),
+        description = stringResource(id = Strings.settings_code_editor_description),
+        icon = Icons.Filled.Edit,
+        onClick = { navController.navigateSingleTop(route = SettingsCodeEditorRoute) },
+    )
 }
 
 @Composable
-fun BuildPreferences(
-    navController: NavHostController
-) {
-   PreferenceCategory(
-       label = stringResource(id = Strings.settings_configure_rdk_title),
-       description = stringResource(Strings.settings_configure_rdk_description),
-       icon = Icons.Filled.DeveloperMode,
-       onClick = {
-           navController.navigateSingleTop(route = SettingsRDKRoute)
-       }
-   )
+fun BuildPreferences(navController: NavHostController) {
+    PreferenceCategory(
+        label = stringResource(id = Strings.settings_configure_rdk_title),
+        description = stringResource(Strings.settings_configure_rdk_description),
+        icon = Icons.Filled.DeveloperMode,
+        onClick = { navController.navigateSingleTop(route = SettingsRDKRoute) },
+    )
 }
 
 @Composable
-fun AboutPreferences(
-    navController: NavHostController
-) {
-   PreferenceCategory(
-       label = stringResource(id = Strings.settings_libraries_title),
-       description = stringResource(Strings.settings_libraries_description),
-       icon = Icons.Filled.Book,
-       onClick = {
-           navController.navigateSingleTop(route = AboutLibrariesRoute)
-       }
-   )
-   PreferenceCategory(
-       label = stringResource(id = Strings.settings_about_title),
-       description = stringResource(id = Strings.settings_about_description),
-       icon = Icons.Filled.Info,
-       onClick = {
-           navController.navigateSingleTop(route = AboutRoute)
-       }
-   )
+fun AboutPreferences(navController: NavHostController) {
+    PreferenceCategory(
+        label = stringResource(id = Strings.settings_libraries_title),
+        description = stringResource(Strings.settings_libraries_description),
+        icon = Icons.Filled.Book,
+        onClick = { navController.navigateSingleTop(route = AboutLibrariesRoute) },
+    )
+    PreferenceCategory(
+        label = stringResource(id = Strings.settings_about_title),
+        description = stringResource(id = Strings.settings_about_description),
+        icon = Icons.Filled.Info,
+        onClick = { navController.navigateSingleTop(route = AboutRoute) },
+    )
 }

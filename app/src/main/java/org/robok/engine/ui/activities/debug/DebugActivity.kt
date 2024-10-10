@@ -18,53 +18,49 @@ package org.robok.engine.ui.activities.debug
  */
 
 import android.os.Bundle
-
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.*
+import androidx.compose.foundation.shape.*
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.draw.*
-import androidx.compose.foundation.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.shape.*
-
-import org.robok.engine.ui.theme.RobokTheme
-import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.core.components.dialog.RobokDialog
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.theme.RobokTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 class DebugActivity : RobokActivity() {
 
-    private val exceptionType = listOf(
-        "StringIndexOutOfBoundsException",
-        "IndexOutOfBoundsException",
-        "ArithmeticException",
-        "NumberFormatException",
-        "ActivityNotFoundException"
-    )
+    private val exceptionType =
+        listOf(
+            "StringIndexOutOfBoundsException",
+            "IndexOutOfBoundsException",
+            "ArithmeticException",
+            "NumberFormatException",
+            "ActivityNotFoundException",
+        )
 
-    private val errMessage = listOf(
-        "Invalid string operation\n",
-        "Invalid list operation\n",
-        "Invalid arithmetical operation\n",
-        "Invalid toNumber block operation\n",
-        "Invalid intent operation"
-    )
+    private val errMessage =
+        listOf(
+            "Invalid string operation\n",
+            "Invalid list operation\n",
+            "Invalid arithmetical operation\n",
+            "Invalid toNumber block operation\n",
+            "Invalid intent operation",
+        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContent {
-            RobokTheme {
-                DebugScreen(intent.getStringExtra("error") ?: "")
-            }
-        }
+        setContent { RobokTheme { DebugScreen(intent.getStringExtra("error") ?: "") } }
     }
 
     @Composable
@@ -72,13 +68,11 @@ class DebugActivity : RobokActivity() {
         var madeErrMsg by remember { mutableStateOf("") }
         var showDialog by remember { mutableStateOf(true) }
 
-        LaunchedEffect(errorMessage) {
-            madeErrMsg = processErrorMessage(errorMessage)
-        }
+        LaunchedEffect(errorMessage) { madeErrMsg = processErrorMessage(errorMessage) }
 
         PreferenceLayout(
             label = stringResource(id = Strings.title_un_error_ocurred),
-            backArrowVisible = true
+            backArrowVisible = true,
         ) {
             PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
                 ErrorCard(madeErrMsg)
@@ -87,45 +81,29 @@ class DebugActivity : RobokActivity() {
 
         if (showDialog) {
             RobokDialog(
-                title = { 
-                   Text(stringResource(id = Strings.title_un_error_ocurred))
-                },
-                text = {
-                   ErrorCard(madeErrMsg)
-                },
-                onConfirmation = {
-                   showDialog = false 
-                },
-                onDismissRequest = {
-                   showDialog = false 
-                },
-                confirmButton = {
-                    Text(stringResource(id = Strings.common_word_end))
-                }
+                title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
+                text = { ErrorCard(madeErrMsg) },
+                onConfirmation = { showDialog = false },
+                onDismissRequest = { showDialog = false },
+                confirmButton = { Text(stringResource(id = Strings.common_word_end)) },
             )
         }
     }
-    
+
     @Composable
-    fun ErrorCard(
-         madeErrMsg: String
-    ) {
+    fun ErrorCard(madeErrMsg: String) {
         Card(
-            modifier = Modifier
-                .fillMaxWidth()
-                .clip(RoundedCornerShape(18.dp)),
-            colors = CardDefaults.cardColors(
-                containerColor = MaterialTheme.colorScheme.errorContainer
-            ),
-            shape = RoundedCornerShape(18.dp) 
+            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)),
+            colors =
+                CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+            shape = RoundedCornerShape(18.dp),
         ) {
             SelectionContainer {
-               Text(
-                   text = madeErrMsg,
-                   modifier = Modifier
-                       .padding(16.dp), 
-                   color = MaterialTheme.colorScheme.onErrorContainer 
-               )
+                Text(
+                    text = madeErrMsg,
+                    modifier = Modifier.padding(16.dp),
+                    color = MaterialTheme.colorScheme.onErrorContainer,
+                )
             }
         }
     }

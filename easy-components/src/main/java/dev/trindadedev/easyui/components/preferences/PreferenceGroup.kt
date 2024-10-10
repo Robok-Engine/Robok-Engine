@@ -15,7 +15,7 @@ package dev.trindadedev.easyui.components.preferences
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.util.AttributeSet
@@ -24,14 +24,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import dev.trindadedev.easyui.components.R
 
-class PreferenceGroup @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+class PreferenceGroup
+@JvmOverloads
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
 
     public val preferenceGroupTitle: TextView
     public val preferenceGroupContent: LinearLayout
@@ -44,11 +42,7 @@ class PreferenceGroup @JvmOverloads constructor(
         preferenceGroupContent = findViewById(R.id.preference_group_content)
         preferenceGroup = findViewById(R.id.preference_group)
 
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.PreferenceGroup,
-            0, 0
-        ).apply {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.PreferenceGroup, 0, 0).apply {
             try {
                 val title = getString(R.styleable.PreferenceGroup_preferenceGroupTitle) ?: ""
                 preferenceGroupTitle.text = title
@@ -56,7 +50,8 @@ class PreferenceGroup @JvmOverloads constructor(
                 recycle()
             }
         }
-        layoutParams = LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+        layoutParams =
+            LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
     }
 
     fun addPreference(view: View) {

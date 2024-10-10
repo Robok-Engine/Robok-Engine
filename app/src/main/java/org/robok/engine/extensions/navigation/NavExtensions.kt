@@ -15,13 +15,13 @@ package org.robok.engine.extensions.navigation
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
- 
+ */
+
 import androidx.navigation.NavHostController
 
 fun <T : Any> NavHostController.navigateSingleTop(route: T) {
     navigate(route) {
-       restoreState = true
-       launchSingleTop = true
+        restoreState = true
+        launchSingleTop = true
     }
 }

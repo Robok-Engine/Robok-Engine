@@ -15,7 +15,7 @@ package dev.trindadedev.easyui.components.preferences
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.util.AttributeSet
@@ -24,14 +24,12 @@ import android.view.View
 import android.widget.LinearLayout
 import android.widget.PopupMenu
 import android.widget.TextView
-
 import dev.trindadedev.easyui.components.R
 
-class PreferencePopup @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+class PreferencePopup
+@JvmOverloads
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
 
     public val preferenceTitle: TextView
     public val preferenceDescription: TextView
@@ -45,14 +43,11 @@ class PreferencePopup @JvmOverloads constructor(
         preferenceDescription = findViewById(R.id.preference_description)
         preference = findViewById(R.id.preference)
 
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.PreferencePopup,
-            0, 0
-        ).apply {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.PreferencePopup, 0, 0).apply {
             try {
                 val title = getString(R.styleable.PreferencePopup_preferencePopupTitle) ?: ""
-                val description = getString(R.styleable.PreferencePopup_preferencePopupDescription) ?: ""
+                val description =
+                    getString(R.styleable.PreferencePopup_preferencePopupDescription) ?: ""
                 preferenceTitle.text = title
                 preferenceDescription.text = description
             } finally {

@@ -15,7 +15,7 @@ package dev.trindadedev.easyui.components.preferences
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.content.Context
 import android.util.AttributeSet
@@ -23,14 +23,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import android.widget.TextView
-
 import dev.trindadedev.easyui.components.R
 
-class Preference @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr) {
+class Preference
+@JvmOverloads
+constructor(context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0) :
+    LinearLayout(context, attrs, defStyleAttr) {
 
     public val preferenceTitle: TextView
     public val preferenceDescription: TextView
@@ -43,11 +41,7 @@ class Preference @JvmOverloads constructor(
         preferenceDescription = findViewById(R.id.preference_description)
         preference = findViewById(R.id.preference)
 
-        context.theme.obtainStyledAttributes(
-            attrs,
-            R.styleable.Preference,
-            0, 0
-        ).apply {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.Preference, 0, 0).apply {
             try {
                 val title = getString(R.styleable.Preference_preferenceTitle) ?: ""
                 val description = getString(R.styleable.Preference_preferenceDescription) ?: ""
@@ -62,12 +56,12 @@ class Preference @JvmOverloads constructor(
     fun setPreferenceClickListener(listenerClick: View.OnClickListener) {
         preference.setOnClickListener(listenerClick)
     }
-    
+
     fun setTitle(value: String) {
-         preferenceTitle.text = value
+        preferenceTitle.text = value
     }
-    
+
     fun setDescription(value: String) {
-         preferenceDescription.text = value
+        preferenceDescription.text = value
     }
 }

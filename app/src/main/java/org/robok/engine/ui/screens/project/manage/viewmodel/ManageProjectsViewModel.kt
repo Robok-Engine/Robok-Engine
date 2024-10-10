@@ -16,35 +16,29 @@ package org.robok.engine.ui.screens.project.manage.viewmodel
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import androidx.lifecycle.ViewModel
 
+import androidx.lifecycle.ViewModel
+import java.io.File
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.update
 
-import java.io.File
-
 class ManageProjectsViewModel : ViewModel() {
 
     private val _projects = MutableStateFlow<Array<File>>(emptyArray())
-    
+
     val projects: StateFlow<Array<File>> = _projects
-    
+
     /*
-    * Update projects list
-    */
+     * Update projects list
+     */
     fun updateProjects(projects: Array<File>) {
-        _projects.update {
-             projects.filter { 
-                 isProject(it)
-             }.toTypedArray() 
-        }
+        _projects.update { projects.filter { isProject(it) }.toTypedArray() }
     }
-    
+
     /*
-    * Check if is project or not.
-    */
-    fun isProject(file: File): Boolean = file.isDirectory and (file.listFiles().isNullOrEmpty().not())
-    
+     * Check if is project or not.
+     */
+    fun isProject(file: File): Boolean =
+        file.isDirectory and (file.listFiles().isNullOrEmpty().not())
 }

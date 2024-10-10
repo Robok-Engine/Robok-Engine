@@ -33,31 +33,26 @@ import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.ui.theme.RobokTheme
 
 class MainActivity : RobokActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    installSplashScreen()
-    super.onCreate(savedInstanceState)
+    override fun onCreate(savedInstanceState: Bundle?) {
+        installSplashScreen()
+        super.onCreate(savedInstanceState)
 
-    setContent {
-      RobokTheme {
-        Surface(
-          modifier = Modifier.fillMaxSize(),
-          color = MaterialTheme.colorScheme.background
-        ) {
-          ProvideMainCompositionLocals {
-            MainNavHost()
-          }
+        setContent {
+            RobokTheme {
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background,
+                ) {
+                    ProvideMainCompositionLocals { MainNavHost() }
+                }
+            }
         }
-      }
     }
-  }
 
-  @Composable
-  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
-    val navController = rememberNavController()
+    @Composable
+    private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
+        val navController = rememberNavController()
 
-    CompositionLocalProvider(
-      LocalMainNavController provides navController,
-      content = content
-    )
-  }
+        CompositionLocalProvider(LocalMainNavController provides navController, content = content)
+    }
 }

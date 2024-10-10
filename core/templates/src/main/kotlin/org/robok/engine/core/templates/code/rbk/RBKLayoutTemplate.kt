@@ -15,10 +15,9 @@ package org.robok.engine.core.templates.code.rbk
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Parcel
-
 import org.robok.engine.core.templates.code.CodeTemplate
 
 open class RBKLayoutTemplate : CodeTemplate {
@@ -32,7 +31,8 @@ open class RBKLayoutTemplate : CodeTemplate {
     }
 
     override fun configure() {
-        setContent("""
+        setContent(
+            """
             ${getCodeClassName()} {
                 Button(
                     id = "shoot_button",
@@ -41,7 +41,8 @@ open class RBKLayoutTemplate : CodeTemplate {
                     height = px(20)
                 )
             }
-        """.trimIndent()
+        """
+                .trimIndent()
         )
     }
 
@@ -49,4 +50,3 @@ open class RBKLayoutTemplate : CodeTemplate {
         return ".rbk"
     }
 }
-

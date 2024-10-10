@@ -15,12 +15,18 @@ package org.robok.engine
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 typealias Drawables = org.robok.engine.R.drawable
+
 typealias Ids = org.robok.engine.R.id
+
 typealias Fonts = org.robok.engine.R.font
+
 typealias Styles = org.robok.engine.R.style
+
 typealias Colors = org.robok.engine.R.color
+
 typealias Layouts = org.robok.engine.R.layout
+
 typealias Mipmaps = org.robok.engine.R.mipmap

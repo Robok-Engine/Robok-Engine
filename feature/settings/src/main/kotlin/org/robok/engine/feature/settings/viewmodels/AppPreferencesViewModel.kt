@@ -19,47 +19,33 @@ package org.robok.engine.feature.settings.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-
 import kotlinx.coroutines.launch
-
 import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
 
-class AppPreferencesViewModel(
-    private val repo: AppPreferencesRepository
-) : ViewModel() {
-     val installedRDKVersion = repo.installedRDKVersion
-     val appIsUseMonet = repo.appIsUseMonet
-     val editorTheme = repo.editorTheme
-     val editorTypeface = repo.editorTypeface
-     val editorIsUseWordWrap = repo.editorIsUseWordWrap
-     
-     fun changeInstalledRDK(value: String) {
-         viewModelScope.launch {
-              repo.changeInstalledRDK(value)
-         }
-     }
-     
-     fun enableMonet(value: Boolean) {
-         viewModelScope.launch {
-              repo.enableMonet(value)
-         }
-     }
-     
-     fun changeEditorTheme(value: Int) {
-         viewModelScope.launch {
-              repo.changeEditorTheme(value)
-         }
-     }
-     
-     fun changeEditorTypeface(value: Int) {
-         viewModelScope.launch {
-              repo.changeEditorTypeface(value)
-         }
-     }
-     
-     fun enableEditorWordWrap(value: Boolean) {
-         viewModelScope.launch {
-              repo.enableEditorWordWrap(value)
-         }
-     }
+class AppPreferencesViewModel(private val repo: AppPreferencesRepository) : ViewModel() {
+    val installedRDKVersion = repo.installedRDKVersion
+    val appIsUseMonet = repo.appIsUseMonet
+    val editorTheme = repo.editorTheme
+    val editorTypeface = repo.editorTypeface
+    val editorIsUseWordWrap = repo.editorIsUseWordWrap
+
+    fun changeInstalledRDK(value: String) {
+        viewModelScope.launch { repo.changeInstalledRDK(value) }
+    }
+
+    fun enableMonet(value: Boolean) {
+        viewModelScope.launch { repo.enableMonet(value) }
+    }
+
+    fun changeEditorTheme(value: Int) {
+        viewModelScope.launch { repo.changeEditorTheme(value) }
+    }
+
+    fun changeEditorTypeface(value: Int) {
+        viewModelScope.launch { repo.changeEditorTypeface(value) }
+    }
+
+    fun enableEditorWordWrap(value: Boolean) {
+        viewModelScope.launch { repo.enableEditorWordWrap(value) }
+    }
 }

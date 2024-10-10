@@ -21,5 +21,5 @@ data class CreateProjectState(
     val projectName: String = "",
     val packageName: String = "",
     val isLoading: Boolean = false,
-    val errorMessage: String? = null
+    val errorMessage: String? = null,
 )

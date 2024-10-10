@@ -15,10 +15,9 @@ package org.robok.engine.core.templates.code.java
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Parcel
-
 import org.robok.engine.core.templates.code.CodeTemplate
 
 open class JavaClassTemplate : CodeTemplate {
@@ -39,7 +38,8 @@ open class JavaClassTemplate : CodeTemplate {
             class ${getCodeClassName()} {
 
             }
-            """.trimIndent()
+            """
+                .trimIndent()
         )
     }
 
@@ -47,4 +47,3 @@ open class JavaClassTemplate : CodeTemplate {
         return ".kt"
     }
 }
-

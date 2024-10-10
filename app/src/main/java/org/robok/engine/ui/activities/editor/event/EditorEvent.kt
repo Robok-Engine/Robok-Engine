@@ -15,13 +15,16 @@ package org.robok.engine.ui.activities.editor.event
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import java.io.File
 
 sealed interface EditorEvent {
-    data class OpenFile(val file: File): EditorEvent
-    data class CloseFile(val index: Int): EditorEvent
+    data class OpenFile(val file: File) : EditorEvent
+
+    data class CloseFile(val index: Int) : EditorEvent
+
     data object CloseOthers : EditorEvent
+
     data object CloseAll : EditorEvent
 }

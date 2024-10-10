@@ -17,13 +17,11 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Context
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
-
+import kotlin.reflect.typeOf
 import org.robok.engine.BuildConfig
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
@@ -50,73 +48,56 @@ import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 
-import kotlin.reflect.typeOf
-
 @Composable
 fun MainNavHost() {
-  val navController = LocalMainNavController.current
+    val navController = LocalMainNavController.current
 
-  NavHost(
-    navController = navController,
-    startDestination = HomeRoute,
-    enterTransition = { NavigationAnimationTransitions.enterTransition },
-    exitTransition = { NavigationAnimationTransitions.exitTransition },
-    popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
-    popExitTransition = { NavigationAnimationTransitions.popExitTransition }
-  ) {
-    composable<HomeRoute> {
-      HomeScreen()
-    }
-
-    composable<TemplatesRoute> {
-      ProjectTemplatesScreen(
-        onTemplateClick = { template ->
-          navController.navigateSingleTop(CreateProjectRoute(template))
-        }
-      )
-    }
-
-    composable<CreateProjectRoute>(
-      typeMap = mapOf(
-        typeOf<ProjectTemplate>() to CustomNavType(ProjectTemplate::class.java, ProjectTemplate.serializer())
-      )
-    ) {
-      val route: CreateProjectRoute = it.toRoute()
-
-      CreateProjectScreen(
-        template = route.template
-      )
-    }
-
-    composable<ManageProjectsRoute> {
-      ManageProjectsScreen(navController = navController)
-    }
-
-    composable<SettingsRoute> {
-      SettingsScreen(navController = navController)
-    }
-
-    composable<SettingsAppRoute> {
-      SettingsAppScreen(navController = navController)
-    }
-
-    composable<SettingsCodeEditorRoute> {
-      SettingsCodeEditorScreen(navController = navController)
-    }
-
-    composable<SettingsRDKRoute> {
-      SettingsRDKScreen(navController = navController)
-    }
-
-    composable<AboutLibrariesRoute> {
-      LibrariesScreen(navController = navController)
-    }
-
-    composable<AboutRoute> {
-      AboutScreen(
+    NavHost(
         navController = navController,
-        version = BuildConfig.VERSION_NAME
-      )
+        startDestination = HomeRoute,
+        enterTransition = { NavigationAnimationTransitions.enterTransition },
+        exitTransition = { NavigationAnimationTransitions.exitTransition },
+        popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
+        popExitTransition = { NavigationAnimationTransitions.popExitTransition },
+    ) {
+        composable<HomeRoute> { HomeScreen() }
+
+        composable<TemplatesRoute> {
+            ProjectTemplatesScreen(
+                onTemplateClick = { template ->
+                    navController.navigateSingleTop(CreateProjectRoute(template))
+                }
+            )
+        }
+
+        composable<CreateProjectRoute>(
+            typeMap =
+                mapOf(
+                    typeOf<ProjectTemplate>() to
+                        CustomNavType(ProjectTemplate::class.java, ProjectTemplate.serializer())
+                )
+        ) {
+            val route: CreateProjectRoute = it.toRoute()
+
+            CreateProjectScreen(template = route.template)
+        }
+
+        composable<ManageProjectsRoute> { ManageProjectsScreen(navController = navController) }
+
+        composable<SettingsRoute> { SettingsScreen(navController = navController) }
+
+        composable<SettingsAppRoute> { SettingsAppScreen(navController = navController) }
+
+        composable<SettingsCodeEditorRoute> {
+            SettingsCodeEditorScreen(navController = navController)
+        }
+
+        composable<SettingsRDKRoute> { SettingsRDKScreen(navController = navController) }
+
+        composable<AboutLibrariesRoute> { LibrariesScreen(navController = navController) }
+
+        composable<AboutRoute> {
+            AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME)
+        }
     }
-  }
 }

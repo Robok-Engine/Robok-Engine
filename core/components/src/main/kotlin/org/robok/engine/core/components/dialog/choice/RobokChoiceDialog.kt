@@ -21,23 +21,22 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.stringResource
-
-import org.robok.engine.strings.Strings
+import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.radio.IntRadioController
+import org.robok.engine.strings.Strings
 
 @Composable
 fun RobokChoiceDialog(
     visible: Boolean,
     title: @Composable () -> Unit,
     default: Int,
-    options: List<Int>, 
+    options: List<Int>,
     labelFactory: (Int) -> String,
     excludedOptions: List<Int>,
     onRequestClose: () -> Unit,
-    onChoice: (Int) -> Unit
+    onChoice: (Int) -> Unit,
 ) {
     var tempSelectedOption by remember { mutableStateOf(default) }
 
@@ -45,31 +44,23 @@ fun RobokChoiceDialog(
         RobokDialog(
             onDismissRequest = { onRequestClose() },
             onConfirmation = {
-                onChoice(tempSelectedOption) 
+                onChoice(tempSelectedOption)
                 onRequestClose()
             },
             title = title,
             text = {
-                Column(
-                    modifier = Modifier.padding(4.dp)
-                ) {
+                Column(modifier = Modifier.padding(4.dp)) {
                     IntRadioController(
                         default = tempSelectedOption,
                         options = options,
                         excludedOptions = excludedOptions,
                         labelFactory = labelFactory,
-                        onChoiceSelected = { selectedOption ->
-                            tempSelectedOption = selectedOption
-                        }
+                        onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
                     )
                 }
             },
-            confirmButton = {
-                Text(stringResource(id = Strings.common_word_save))
-            },
-            dismissButton = {
-                Text(stringResource(id = Strings.common_word_cancel))
-            }
+            confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
+            dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
         )
     }
 }

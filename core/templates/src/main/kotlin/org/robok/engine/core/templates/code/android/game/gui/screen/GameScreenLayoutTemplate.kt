@@ -15,11 +15,10 @@ package org.robok.engine.core.templates.code.android.game.gui.screen
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Parcel
 import android.os.Parcelable
-
 import org.robok.engine.core.templates.code.rbk.RBKLayoutTemplate
 
 open class GameScreenLayoutTemplate : RBKLayoutTemplate {
@@ -43,7 +42,8 @@ open class GameScreenLayoutTemplate : RBKLayoutTemplate {
                     height = px(20)
                 )
             }
-            """.trimIndent()
+            """
+                .trimIndent()
         )
     }
 
@@ -57,4 +57,3 @@ open class GameScreenLayoutTemplate : RBKLayoutTemplate {
         }
     }
 }
-
