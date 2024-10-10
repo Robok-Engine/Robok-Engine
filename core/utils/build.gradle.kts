@@ -43,8 +43,6 @@ dependencies {
     implementation(libs.material.compose)
     implementation(libs.ui.compose)
     
-    implementation(libs.insetter)
-    
     implementation(project(":easy-components"))
     
     implementation(project(":app-strings"))
