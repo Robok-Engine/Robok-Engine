@@ -145,4 +145,6 @@
     <color name="rbk_theme_red">#F44336</color>
     <color name="color_splash_bg">#FFFFFF</color>
     
+    <color name="black">#FF000000</color>
+    
 </resources>
