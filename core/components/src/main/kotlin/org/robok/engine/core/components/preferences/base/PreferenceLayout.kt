@@ -19,6 +19,7 @@ package org.robok.engine.core.components.preferences.base
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.lazy.LazyListState
@@ -57,7 +58,7 @@ fun PreferenceLayout(
     scrollState: ScrollState? = rememberScrollState(),
     actions: @Composable RowScope.() -> Unit = {},
     bottomBar: @Composable () -> Unit = { BottomSpacer() },
-    content: @Composable ColumnScope.() -> Unit,
+    content: @Composable ColumnScope.(PaddingValues) -> Unit,
 ) {
     PreferenceScaffold(
         modifier = modifier,
@@ -72,7 +73,7 @@ fun PreferenceLayout(
             verticalArrangement = verticalArrangement,
             horizontalAlignment = horizontalAlignment,
             scrollState = scrollState,
-            content = content,
+            content = { content(it) },
         )
     }
 }
@@ -102,7 +103,7 @@ fun PreferenceLayoutLazyColumn(
     backArrowVisible: Boolean = true,
     state: LazyListState = rememberLazyListState(),
     actions: @Composable RowScope.() -> Unit = {},
-    content: LazyListScope.() -> Unit,
+    content: LazyListScope.(PaddingValues) -> Unit,
 ) {
     PreferenceScaffold(
         backArrowVisible = backArrowVisible,
@@ -115,7 +116,7 @@ fun PreferenceLayoutLazyColumn(
             modifier = modifier,
             enabled = enabled,
             state = state,
-            content = content,
+            content = { content(it) },
         )
     }
 }
