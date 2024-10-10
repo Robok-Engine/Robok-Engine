@@ -29,69 +29,9 @@ class RTerminalSessionClient: TerminalSessionClient {
 
     private var cwd: String? = null
     
-    override fun onScale(scale: Float): Float {
-        return 1f
-    }
+    
 
-    override fun onSingleTapUp(e: MotionEvent) {
-        val kUtil = KeyboardUtil(RobokApplication.instance)
-        //kUtil.showSoftInput(binding.terminalView)
-    }
-
-    override fun shouldBackButtonBeMappedToEscape(): Boolean {
-        return false
-    }
-
-    override fun shouldEnforceCharBasedInput(): Boolean {
-        return true
-    }
-
-    override fun shouldUseCtrlSpaceWorkaround(): Boolean {
-        return false
-    }
-
-    override fun isTerminalViewSelected(): Boolean {
-        return true
-    }
-
-    override fun copyModeChanged(copyMode: Boolean) {}
-
-    override fun onKeyDown(keyCode: Int, e: KeyEvent, session: TerminalSession): Boolean {
-        if (!session.isRunning) {
-            if (e.keyCode == KeyEvent.KEYCODE_ENTER) {
-                finish()
-            }
-        }
-        return false
-    }
-
-    override fun onKeyUp(keyCode: Int, e: KeyEvent?): Boolean {
-        return false
-    }
-
-    override fun onLongPress(event: MotionEvent): Boolean {
-        return false
-    }
-
-    override fun readControlKey(): Boolean {
-        return false
-    }
-
-    override fun readAltKey(): Boolean {
-        return false
-    }
-
-    override fun readFnKey(): Boolean {
-        return false
-    }
-
-    override fun readShiftKey(): Boolean {
-        return false
-    }
-
-    override fun onCodePoint(codePoint: Int, ctrlDown: Boolean, session: TerminalSession): Boolean {
-        return false
-    }
+    
 
     override fun onEmulatorSet() {}
 

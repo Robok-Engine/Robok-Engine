@@ -22,7 +22,7 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.activity.OnBackPressedCallback
 import com.termux.terminal.TerminalEmulator
-import com.termux.terminal.TerminalSessio
+import com.termux.terminal.TerminalSession
 import java.io.File
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.databinding.ActivityTerminalBinding
@@ -74,7 +74,8 @@ class TerminalActivity : RobokActivity() {
         binding.terminalView.setTextSize(24)
         session = createSession()
         binding.terminalView.attachSession(session)
-        //binding.terminalView.setTerminalViewClient(this)
+        val viewClient = RTerminalViewClient()
+        binding.terminalView.setTerminalViewClient(viewClient)
     }
 
     private fun createSession(): TerminalSession {
