@@ -55,7 +55,6 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.core.components.preferences.base.LocalIsExpandedScreen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
@@ -111,7 +110,6 @@ fun AboutScreen(navController: NavHostController, version: String) {
     Screen(
         label = stringResource(id = Strings.settings_about_title),
         modifier = Modifier,
-        backArrowVisible = !LocalIsExpandedScreen.current,
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Column(
