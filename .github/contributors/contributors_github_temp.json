@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 820
+    "contributions": 849
   },
   {
     "login": "ThDev-only",
@@ -60,7 +60,7 @@
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
     "site_admin": false,
-    "contributions": 123
+    "contributions": 124
   },
   {
     "login": "gampiot-bot",
@@ -189,6 +189,27 @@
     "contributions": 5
   },
   {
+    "login": "itsvks19",
+    "id": 102840735,
+    "node_id": "U_kgDOBiE5nw",
+    "avatar_url": "https://avatars.githubusercontent.com/u/102840735?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/itsvks19",
+    "html_url": "https://github.com/itsvks19",
+    "followers_url": "https://api.github.com/users/itsvks19/followers",
+    "following_url": "https://api.github.com/users/itsvks19/following{/other_user}",
+    "gists_url": "https://api.github.com/users/itsvks19/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/itsvks19/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/itsvks19/subscriptions",
+    "organizations_url": "https://api.github.com/users/itsvks19/orgs",
+    "repos_url": "https://api.github.com/users/itsvks19/repos",
+    "events_url": "https://api.github.com/users/itsvks19/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/itsvks19/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 3
+  },
+  {
     "login": "Paxsenix0",
     "id": 126800641,
     "node_id": "U_kgDOB47TAQ",
@@ -247,27 +268,6 @@
     "repos_url": "https://api.github.com/users/weblate/repos",
     "events_url": "https://api.github.com/users/weblate/events{/privacy}",
     "received_events_url": "https://api.github.com/users/weblate/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 1
-  },
-  {
-    "login": "itsvks19",
-    "id": 102840735,
-    "node_id": "U_kgDOBiE5nw",
-    "avatar_url": "https://avatars.githubusercontent.com/u/102840735?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/itsvks19",
-    "html_url": "https://github.com/itsvks19",
-    "followers_url": "https://api.github.com/users/itsvks19/followers",
-    "following_url": "https://api.github.com/users/itsvks19/following{/other_user}",
-    "gists_url": "https://api.github.com/users/itsvks19/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/itsvks19/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/itsvks19/subscriptions",
-    "organizations_url": "https://api.github.com/users/itsvks19/orgs",
-    "repos_url": "https://api.github.com/users/itsvks19/repos",
-    "events_url": "https://api.github.com/users/itsvks19/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/itsvks19/received_events",
     "type": "User",
     "site_admin": false,
     "contributions": 1

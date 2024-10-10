@@ -1,15 +1,15 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 820 | Main Developer |
-| ThDev-only | 199 | Main Developer |
-| renovate[bot] | 123 | Bot |
+| trindadedev13 | 849 | Founder |
+| ThDev-only | 199 | Founder |
+| renovate[bot] | 124 | Bot |
 | gampiot-bot | 35 | Bot |
-| skinvent | 15 | N/A |
-| RohitKushvaha01 | 14 | N/A |
+| skinvent | 15 | Contributor |
+| RohitKushvaha01 | 14 | Contributor |
 | github-actions[bot] | 10 | Bot |
-| teixeira0x | 6 | N/A |
-| Kefir2105 | 5 | N/A |
-| Paxsenix0 | 2 | N/A |
-| Xori71 | 1 | N/A |
+| teixeira0x | 6 | Contributor |
+| Kefir2105 | 5 | Translation |
+| Paxsenix0 | 2 | Translation |
+| Xori71 | 1 | Translation |
 | weblate | 1 | Bot |
-| itsvks19 | 1 | N/A |
+| itsvks19 | 3 | Contributor |
