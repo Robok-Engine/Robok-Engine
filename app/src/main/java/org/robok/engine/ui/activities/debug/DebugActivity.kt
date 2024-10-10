@@ -32,7 +32,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceLayout
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.theme.RobokTheme
@@ -70,7 +70,7 @@ class DebugActivity : RobokActivity() {
 
         LaunchedEffect(errorMessage) { madeErrMsg = processErrorMessage(errorMessage) }
 
-        PreferenceLayout(
+        Screen(
             label = stringResource(id = Strings.title_un_error_ocurred),
             backArrowVisible = true,
         ) {
