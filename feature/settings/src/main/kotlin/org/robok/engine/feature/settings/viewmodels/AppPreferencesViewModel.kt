@@ -37,7 +37,7 @@ class AppPreferencesViewModel(private val repo: AppPreferencesRepository) : View
     fun enableMonet(value: Boolean) {
         viewModelScope.launch { repo.enableMonet(value) }
     }
-    
+
     fun enableAmoled(value: Boolean) {
         viewModelScope.launch { repo.enableAmoled(value) }
     }

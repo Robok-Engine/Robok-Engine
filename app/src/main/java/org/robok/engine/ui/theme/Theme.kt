@@ -106,18 +106,15 @@ private val DarkColorScheme =
     )
 
 @Composable
-fun RobokTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
-) {
+fun RobokTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     val dynamicColor by
         appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
-    
+
     val highContrastDarkTheme by
         appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
-        
+
     val colorScheme =
         when {
             dynamicColor && supportsDynamicTheming() -> {

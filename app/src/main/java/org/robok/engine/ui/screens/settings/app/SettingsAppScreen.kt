@@ -24,8 +24,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -35,10 +35,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun SettingsAppScreen(navController: NavHostController) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    Screen(
-        label = stringResource(id = Strings.settings_app_title),
-        backArrowVisible = true,
-    ) {
+    Screen(label = stringResource(id = Strings.settings_app_title), backArrowVisible = true) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
             appearancePrefs(appPrefsViewModel)
         }
@@ -51,7 +48,7 @@ fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
         appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
     val appIsUseAmoled by
         appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
-        
+
     PreferenceSwitch(
         checked = appIsUseMonet,
         onCheckedChange = { newValue -> appPrefsViewModel.enableMonet(newValue) },
@@ -63,6 +60,6 @@ fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
         checked = appIsUseAmoled,
         onCheckedChange = { newValue -> appPrefsViewModel.enableAmoled(newValue) },
         label = stringResource(id = Strings.settings_app_use_amoled_title),
-        description = stringResource(id = Strings.settings_app_use_amoled_description)
+        description = stringResource(id = Strings.settings_app_use_amoled_description),
     )
 }

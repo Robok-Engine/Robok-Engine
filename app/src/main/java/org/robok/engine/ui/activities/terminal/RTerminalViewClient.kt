@@ -19,21 +19,19 @@ package org.robok.engine.ui.activities.terminal
 
 import android.view.KeyEvent
 import android.view.MotionEvent
-import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
-import com.termux.terminal.TerminalSessionClient
 import com.termux.view.TerminalViewClient
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
 
-class RTerminalViewClient: TerminalViewClient {
+class RTerminalViewClient : TerminalViewClient {
     override fun onScale(scale: Float): Float {
         return 1f
     }
 
     override fun onSingleTapUp(e: MotionEvent) {
         val kUtil = KeyboardUtil(RobokApplication.instance)
-        //kUtil.showSoftInput(binding.terminalView)
+        // kUtil.showSoftInput(binding.terminalView)
     }
 
     override fun shouldBackButtonBeMappedToEscape(): Boolean {
@@ -57,7 +55,7 @@ class RTerminalViewClient: TerminalViewClient {
     override fun onKeyDown(keyCode: Int, e: KeyEvent, session: TerminalSession): Boolean {
         if (!session.isRunning) {
             if (e.keyCode == KeyEvent.KEYCODE_ENTER) {
-                //finish()
+                // finish()
             }
         }
         return false
@@ -70,7 +68,7 @@ class RTerminalViewClient: TerminalViewClient {
     override fun onLongPress(event: MotionEvent): Boolean {
         return false
     }
-    
+
     override fun readControlKey(): Boolean {
         return false
     }
@@ -90,6 +88,6 @@ class RTerminalViewClient: TerminalViewClient {
     override fun onCodePoint(codePoint: Int, ctrlDown: Boolean, session: TerminalSession): Boolean {
         return false
     }
-    
+
     override fun onEmulatorSet() {}
 }

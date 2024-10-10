@@ -17,15 +17,11 @@ package org.robok.engine.ui.activities.terminal
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.view.KeyEvent
-import android.view.MotionEvent
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
-import org.robok.engine.RobokApplication
-import org.robok.engine.core.utils.KeyboardUtil
 
-class RTerminalSessionClient: TerminalSessionClient {
+class RTerminalSessionClient : TerminalSessionClient {
 
     private var cwd: String? = null
 
@@ -44,7 +40,7 @@ class RTerminalSessionClient: TerminalSessionClient {
     override fun logStackTrace(tag: String, e: Exception) {}
 
     override fun onTextChanged(changedSession: TerminalSession) {
-        //binding.terminalView.onScreenUpdated()
+        // binding.terminalView.onScreenUpdated()
     }
 
     override fun onTitleChanged(changedSession: TerminalSession) {}

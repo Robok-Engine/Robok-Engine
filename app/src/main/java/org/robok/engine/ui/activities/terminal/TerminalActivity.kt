@@ -18,8 +18,6 @@ package org.robok.engine.ui.activities.terminal
  */
 
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.MotionEvent
 import androidx.activity.OnBackPressedCallback
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
@@ -58,7 +56,7 @@ class TerminalActivity : RobokActivity() {
 
         _binding = ActivityTerminalBinding.inflate(layoutInflater)
         setContentView(binding.getRoot())
-        
+
         cwd =
             if (intent.hasExtra("path")) {
                 val path = intent.getStringExtra("path")
@@ -106,7 +104,7 @@ class TerminalActivity : RobokActivity() {
             arrayOf(""),
             env,
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-            sessionClient
+            sessionClient,
         )
     }
 

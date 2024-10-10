@@ -58,7 +58,7 @@ class AppPreferencesRepository(private val dataStore: DataStore<Preferences>) {
     suspend fun enableMonet(value: Boolean) {
         dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
     }
-    
+
     suspend fun enableAmoled(value: Boolean) {
         dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
     }

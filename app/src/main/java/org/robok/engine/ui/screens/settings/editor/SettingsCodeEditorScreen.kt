@@ -24,8 +24,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.choice.PreferenceChoice
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues

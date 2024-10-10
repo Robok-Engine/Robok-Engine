@@ -34,10 +34,7 @@ import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsScreen(navController: NavHostController) {
-    Screen(
-        label = stringResource(id = Strings.common_word_settings),
-        backArrowVisible = true,
-    ) {
+    Screen(label = stringResource(id = Strings.common_word_settings), backArrowVisible = true) {
         GeneralPreferences(navController)
         BuildPreferences(navController)
         AboutPreferences(navController)
