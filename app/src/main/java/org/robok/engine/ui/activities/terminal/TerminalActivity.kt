@@ -22,21 +22,16 @@ import android.view.KeyEvent
 import android.view.MotionEvent
 import androidx.activity.OnBackPressedCallback
 import com.termux.terminal.TerminalEmulator
-import com.termux.terminal.TerminalSession
-import com.termux.terminal.TerminalSessionClient
-import com.termux.view.TerminalViewClient
+import com.termux.terminal.TerminalSessio
 import java.io.File
-import org.robok.engine.RobokApplication
-import org.robok.engine.core.utils.KeyboardUtil
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.databinding.ActivityTerminalBinding
-import org.robok.engine.strings.Strings
 
 /*
  * TO-DO: Refactor with Compose.
  */
 
-class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewClient {
+class TerminalActivity : RobokActivity() {
 
     private var _binding: ActivityTerminalBinding? = null
     private val binding
@@ -79,7 +74,7 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
         binding.terminalView.setTextSize(24)
         session = createSession()
         binding.terminalView.attachSession(session)
-        binding.terminalView.setTerminalViewClient(this)
+        //binding.terminalView.setTerminalViewClient(this)
     }
 
     private fun createSession(): TerminalSession {
@@ -103,14 +98,14 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
             )
 
         val shell = "/system/bin/sh"
-
+        val sessionClient = RTerminalSessionClient()
         return TerminalSession(
             shell,
             workingDir,
             arrayOf(""),
             env,
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-            this,
+            sessionClient
         )
     }
 
@@ -118,106 +113,4 @@ class TerminalActivity : RobokActivity(), TerminalSessionClient, TerminalViewCli
         super.onDestroy()
         _binding = null
     }
-
-    override fun onScale(scale: Float): Float {
-        return 1f
-    }
-
-    override fun onSingleTapUp(e: MotionEvent) {
-        val kUtil = KeyboardUtil(RobokApplication.instance)
-        kUtil.showSoftInput(binding.terminalView)
-    }
-
-    override fun shouldBackButtonBeMappedToEscape(): Boolean {
-        return false
-    }
-
-    override fun shouldEnforceCharBasedInput(): Boolean {
-        return true
-    }
-
-    override fun shouldUseCtrlSpaceWorkaround(): Boolean {
-        return false
-    }
-
-    override fun isTerminalViewSelected(): Boolean {
-        return true
-    }
-
-    override fun copyModeChanged(copyMode: Boolean) {}
-
-    override fun onKeyDown(keyCode: Int, e: KeyEvent, session: TerminalSession): Boolean {
-        if (!session.isRunning) {
-            if (e.keyCode == KeyEvent.KEYCODE_ENTER) {
-                finish()
-            }
-        }
-        return false
-    }
-
-    override fun onKeyUp(keyCode: Int, e: KeyEvent?): Boolean {
-        return false
-    }
-
-    override fun onLongPress(event: MotionEvent): Boolean {
-        return false
-    }
-
-    override fun readControlKey(): Boolean {
-        return false
-    }
-
-    override fun readAltKey(): Boolean {
-        return false
-    }
-
-    override fun readFnKey(): Boolean {
-        return false
-    }
-
-    override fun readShiftKey(): Boolean {
-        return false
-    }
-
-    override fun onCodePoint(codePoint: Int, ctrlDown: Boolean, session: TerminalSession): Boolean {
-        return false
-    }
-
-    override fun onEmulatorSet() {}
-
-    override fun logError(tag: String, message: String) {}
-
-    override fun logWarn(tag: String, message: String) {}
-
-    override fun logInfo(tag: String, message: String) {}
-
-    override fun logDebug(tag: String, message: String) {}
-
-    override fun logVerbose(tag: String, message: String) {}
-
-    override fun logStackTraceWithMessage(tag: String, message: String, e: Exception) {}
-
-    override fun logStackTrace(tag: String, e: Exception) {}
-
-    override fun onTextChanged(changedSession: TerminalSession) {
-        binding.terminalView.onScreenUpdated()
-    }
-
-    override fun onTitleChanged(changedSession: TerminalSession) {}
-
-    override fun onSessionFinished(finishedSession: TerminalSession) {}
-
-    override fun onBell(session: TerminalSession) {}
-
-    override fun onColorsChanged(session: TerminalSession) {}
-
-    override fun onTerminalCursorStateChange(state: Boolean) {}
-
-    override fun getTerminalCursorStyle(): Int {
-        return TerminalEmulator.DEFAULT_TERMINAL_CURSOR_STYLE
-    }
-
-    override fun onCopyTextToClipboard(arg0: TerminalSession, arg1: String) {}
-
-    override fun onPasteTextFromClipboard(session: TerminalSession?) {}
 }
