@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.preferences.base
+package org.robok.engine.core.components
 
 /*
  * Copyright 2021, Lawnchair.
@@ -29,7 +29,7 @@ import org.robok.engine.core.components.spacer.BottomSpacer
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun PreferenceScaffold(
+fun ScreenScaffold(
     label: String,
     isExpandedScreen: Boolean,
     modifier: Modifier = Modifier,

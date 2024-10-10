@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.preferences.base
+package org.robok.engine.core.components
 
 /*
  * Copyright 2021, Lawnchair.
@@ -40,7 +40,7 @@ import org.robok.engine.core.components.utils.addIf
 import org.robok.engine.core.components.scroll.NestedScrollStretch
 
 @Composable
-fun PreferenceColumn(
+fun ScreenColumnColumn(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     verticalArrangement: Arrangement.Vertical = Arrangement.Top,
@@ -63,7 +63,7 @@ fun PreferenceColumn(
 }
 
 @Composable
-fun PreferenceLazyColumn(
+fun ScreenColumnLazyColumn(
     contentPadding: PaddingValues,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,

@@ -30,9 +30,10 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import org.robok.engine.core.components.spacer.BottomSpacer
 
 /**
- * Represents the layout of all Preference screens. Uses a combination of [PreferenceScaffold] and
+ * Represents the layout of all Preference screens. Uses a combination of [ScreenScaffold] and
  * [PreferenceColumn] to represent the layout.
  *
  * @param label the text to be displayed at the top of the screen
@@ -60,7 +61,7 @@ fun Screen(
     bottomBar: @Composable () -> Unit = { BottomSpacer() },
     content: @Composable ColumnScope.(PaddingValues) -> Unit,
 ) {
-    PreferenceScaffold(
+    ScreenScaffold(
         modifier = modifier,
         backArrowVisible = backArrowVisible,
         label = label,
@@ -80,7 +81,7 @@ fun Screen(
 
 /**
  * Represents the layout of all Preference screens. This composable only composes and lays out the
- * currently visible items. Uses a combination of [PreferenceScaffold] and [PreferenceLazyColumn] to
+ * currently visible items. Uses a combination of [ScreenScaffold] and [PreferenceLazyColumn] to
  * represent the layout.
  *
  * @param label the text to be displayed at the top of the screen
@@ -105,7 +106,7 @@ fun ScreenLazyColumn(
     actions: @Composable RowScope.() -> Unit = {},
     content: LazyListScope.(PaddingValues) -> Unit,
 ) {
-    PreferenceScaffold(
+    ScreenScaffold(
         backArrowVisible = backArrowVisible,
         label = label,
         isExpandedScreen = isExpandedScreen,
