@@ -8,6 +8,7 @@ import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.flow.first
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -33,8 +34,8 @@ class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScop
 
         // Apply themes based on user preferences
         coroutineScope.launch {
-            val useMonet = appPrefsViewModel.appIsUseMonet.collect { it }
-            val useAmoled = appPrefsViewModel.appIsUseAmoled.collect { it }
+            val useMonet = appPrefsViewModel.appIsUseMonet.first()
+            val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
             val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
 
             // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
