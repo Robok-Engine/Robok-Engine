@@ -19,7 +19,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 820,
-    "role": "Main Developer"
+    "role": "Founder"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +41,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 199,
-    "role": "Main Developer"
+    "role": "Founder"
   },
   {
     "login": "renovate[bot]",
@@ -106,7 +106,8 @@
     "received_events_url": "https://api.github.com/users/skinvent/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 15
+    "contributions": 15,
+    "role": "Contributor"
   },
   {
     "login": "RohitKushvaha01",
@@ -127,7 +128,8 @@
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 14
+    "contributions": 14,
+    "role": "Contributor"
   },
   {
     "login": "github-actions[bot]",
@@ -170,7 +172,8 @@
     "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 6
+    "contributions": 6,
+    "role": "Contributor"
   },
   {
     "login": "Kefir2105",
@@ -191,7 +194,8 @@
     "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 5
+    "contributions": 5,
+    "role": "Translation"
   },
   {
     "login": "Paxsenix0",
@@ -212,7 +216,8 @@
     "received_events_url": "https://api.github.com/users/Paxsenix0/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 2
+    "contributions": 2,
+    "role": "Translation"
   },
   {
     "login": "Xori71",
@@ -233,7 +238,8 @@
     "received_events_url": "https://api.github.com/users/Xori71/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Translation"
   },
   {
     "login": "weblate",
@@ -276,6 +282,7 @@
     "received_events_url": "https://api.github.com/users/itsvks19/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Contributor"
   }
 ]
