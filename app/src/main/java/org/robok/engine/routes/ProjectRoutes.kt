@@ -29,4 +29,4 @@ data class CreateProjectRoute(
 object ManageProjectsRoute
 
 @Serializable
-object TemplateRoute
+object TemplatesRoute

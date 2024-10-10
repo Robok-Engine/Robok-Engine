@@ -15,7 +15,7 @@
  * along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.robok.engine.ui.screens.template
+package org.robok.engine.ui.screens.project.template
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Box
@@ -61,7 +61,7 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun TemplateScreen(
+fun ProjectTemplatesScreen(
   onTemplateClick: (ProjectTemplate) -> Unit
 ) {
   val navController = LocalMainNavController.current

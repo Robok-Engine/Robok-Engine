@@ -1,3 +1,5 @@
+package org.robok.engine.platform
+
 /*
  * This file is part of Robok © 2024.
  *
@@ -15,10 +17,10 @@
  * along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.robok.engine.platform
 
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
+
 import org.robok.engine.noLocalProvidedFor
 
 val LocalMainNavController = compositionLocalOf<NavHostController> {

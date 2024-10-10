@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+
 import org.robok.engine.BuildConfig
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
@@ -36,18 +37,19 @@ import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.SettingsRoute
-import org.robok.engine.routes.TemplateRoute
+import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
+import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
 import org.robok.engine.ui.screens.settings.SettingsScreen
 import org.robok.engine.ui.screens.settings.about.AboutScreen
 import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
-import org.robok.engine.ui.screens.template.TemplateScreen
+
 import kotlin.reflect.typeOf
 
 @Composable
@@ -66,8 +68,8 @@ fun MainNavHost() {
       HomeScreen()
     }
 
-    composable<TemplateRoute> {
-      TemplateScreen(
+    composable<TemplatesRoute> {
+      ProjectTemplatesScreen(
         onTemplateClick = { template ->
           navController.navigateSingleTop(CreateProjectRoute(template))
         }
