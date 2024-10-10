@@ -134,11 +134,16 @@ fun AboutScreen(navController: NavHostController, version: String) {
             )
             Spacer(modifier = Modifier.requiredHeight(16.dp))
         }
+
         if (contributors.isNotEmpty()) {
-            PreferenceGroup(heading = stringResource(id = Strings.text_contributors)) {
-                contributorsState.value.forEach { ContributorRow(dataInfo = it) }
+            val roles = contributorsState.value.groupBy { it.role }
+            roles.forEach { (role, contributorsList) ->
+                PreferenceGroup(heading = role) {
+                    contributorsList.forEach { ContributorRow(dataInfo = it) }
+                }
             }
         }
+
         PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
             links.forEach { LinkRow(dataInfo = it) }
         }
