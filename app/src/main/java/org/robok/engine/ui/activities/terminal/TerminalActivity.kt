@@ -17,17 +17,10 @@ package org.robok.engine.ui.activities.terminal
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.KeyEvent
 import android.view.MotionEvent
-import android.view.View
-import android.view.WindowManager
-import android.view.animation.OvershootInterpolator
-import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
-import androidx.appcompat.app.AlertDialog
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
@@ -37,7 +30,6 @@ import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
 import org.robok.engine.core.utils.base.RobokActivity
 import org.robok.engine.databinding.ActivityTerminalBinding
-import org.robok.engine.databinding.LayoutDialogInputBinding
 import org.robok.engine.strings.Strings
 
 /*
