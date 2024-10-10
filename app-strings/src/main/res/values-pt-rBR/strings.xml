@@ -133,4 +133,5 @@
     <string name="title_your_projects">Seus Projetos</string>
     <string name="title_projects">Projetos</string>
     <string name="warning_no_projects">Nenhum projeto.</string>
+    <string name="common_word_templates">Exemplos</string>
 </resources>
