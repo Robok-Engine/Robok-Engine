@@ -1,4 +1,4 @@
-package org.robok.engine.core.utils.base
+package org.robok.engine.ui.activities.base
 
 /*
  *  This file is part of Robok © 2024.

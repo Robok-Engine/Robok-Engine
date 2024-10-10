@@ -43,7 +43,7 @@ import org.robok.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.utils.UniqueNameBuilder
-import org.robok.engine.core.utils.base.RobokActivity
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.editor.EditorListener
 import org.robok.engine.feature.editor.RobokCodeEditor

@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.utils.base.RobokActivity
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.theme.RobokTheme
 

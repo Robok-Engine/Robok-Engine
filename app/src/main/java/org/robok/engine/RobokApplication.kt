@@ -61,19 +61,6 @@ class RobokApplication : Application() {
         robokContext = applicationContext
         configureKoin()
         configureCrashHandler()
-        configureTheme()
-    }
-
-    @OptIn(DelicateCoroutinesApi::class)
-    private fun configureTheme() {
-        appPrefsViewModel = getKoin().get()
-        GlobalScope.launch(Dispatchers.Main) {
-            appPrefsViewModel.appIsUseMonet.collect { dynamicColor ->
-                if (dynamicColor) {
-                    DynamicColors.applyToActivitiesIfAvailable(this@RobokApplication)
-                }
-            }
-        }
     }
 
     /*

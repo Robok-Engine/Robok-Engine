@@ -22,7 +22,7 @@ import androidx.activity.OnBackPressedCallback
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import java.io.File
-import org.robok.engine.core.utils.base.RobokActivity
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.databinding.ActivityTerminalBinding
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil

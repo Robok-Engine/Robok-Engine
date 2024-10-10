@@ -29,7 +29,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.compose.ui.platform.ComposeView;
 
-import org.robok.engine.core.utils.base.RobokActivity;
+import org.robok.engine.ui.activities.base.RobokActivity;
 import org.robok.engine.feature.modeling.databinding.Activity3dModelBinding;
 import org.robok.engine.feature.modeling.view.Model3DView;
 import org.robok.engine.feature.modeling.fragment.LibGDXFragment;

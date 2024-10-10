@@ -23,7 +23,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import org.robok.engine.core.components.log.Log
-import org.robok.engine.core.utils.base.RobokFragment
+import org.robok.engine.ui.activities.base.RobokFragment
 import org.robok.engine.databinding.FragmentEditorLogsBinding
 
 class LogsFragment() : RobokFragment() {
