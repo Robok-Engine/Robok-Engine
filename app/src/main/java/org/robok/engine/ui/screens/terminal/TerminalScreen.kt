@@ -22,12 +22,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.res.stringResource
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import java.io.File
 import org.robok.engine.RobokApplication
+import org.robok.engine.core.components.Screen
 import org.robok.engine.core.utils.KeyboardUtil
+import org.robok.engine.strings.Strings
 
 private var cwd: String? = null
 private var session: TerminalSession? = null
@@ -39,7 +42,11 @@ fun TerminalScreen(path: String? = null) {
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
-    Column { TerminalView() }
+    Screen(label = stringResource(Strings.title_terminal), isExpandedScreen = true) {
+       Column { 
+          TerminalView()
+       }
+    }
 }
 
 @Composable
