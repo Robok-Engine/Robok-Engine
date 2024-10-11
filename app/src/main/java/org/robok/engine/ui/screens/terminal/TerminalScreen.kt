@@ -17,8 +17,6 @@ package org.robok.engine.ui.screens.terminal
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -38,78 +36,67 @@ private var session: TerminalSession? = null
 private var terminalView: TerminalView? = null
 
 @Composable
-private fun TerminalScreen(
-   path: String? = null,
-   navController: NavHostController
-) {
-   cwd = path?.let { path ->
-      if (File(path).exists()) path else filesDir.absolutePath
-   } ?: filesDir.absolutePath
-    Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(top = 20.dp)
-    ) {
-       AndroidView(
-           factory = { context ->
-               TerminalView(context, null).apply { 
-                  setTextSize(24)
-                  session = createSession()
-                  attachSession(session)
-                  val viewClient = RTerminalViewClient(
-                     onSingleTap = {
-                        val kUtil = KeyboardUtil(RobokApplication.instance)
-                        kUtil.showSoftInput(this)
-                     },
-                     onKeyEventEnter = {
-                        //finish()
-                     }
-                  )
-                  setTerminalViewClient(viewClient)
-                  terminalView = this
-               }
-           },
-           modifier = Modifier
-              .fillMaxSize()
-              .weight(1f),
-           update = { terminalView ->
-               onScreenChanged()
-           }
-       )
-   }
+fun TerminalScreen(path: String? = null, navController: NavHostController) {
+    cwd =
+        path?.let { path -> if (File(path).exists()) path else filesDir.absolutePath }
+            ?: filesDir.absolutePath
+    Column(modifier = Modifier.fillMaxSize().padding(top = 20.dp)) {
+        AndroidView(
+            factory = { context ->
+                TerminalView(context, null).apply {
+                    setTextSize(24)
+                    session = createSession()
+                    attachSession(session)
+                    val viewClient =
+                        RTerminalViewClient(
+                            onSingleTap = {
+                                val kUtil = KeyboardUtil(RobokApplication.instance)
+                                kUtil.showSoftInput(this)
+                            },
+                            onKeyEventEnter = {
+                                // finish()
+                            },
+                        )
+                    setTerminalViewClient(viewClient)
+                    terminalView = this
+                }
+            },
+            modifier = Modifier.fillMaxSize().weight(1f),
+            update = { terminalView -> onScreenChanged() },
+        )
+    }
 }
-    
+
 private fun onScreenChanged() {
-     terminalView?.onScreenUpdated()
+    terminalView?.onScreenUpdated()
 }
 
 private fun createSession(): TerminalSession {
     val workingDir = cwd
     val tmpDir = File(filesDir.parentFile, "tmp")
-    
+
     if (tmpDir.exists()) {
         tmpDir.deleteRecursively()
     }
     tmpDir.mkdirs()
 
-    val env = arrayOf(
-         "TMP_DIR=${tmpDir.absolutePath}",
-         "HOME=${filesDir.absolutePath}",
-         "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
-         "COLORTERM=truecolor",
-         "TERM=xterm-256color"
-    )
+    val env =
+        arrayOf(
+            "TMP_DIR=${tmpDir.absolutePath}",
+            "HOME=${filesDir.absolutePath}",
+            "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
+            "COLORTERM=truecolor",
+            "TERM=xterm-256color",
+        )
 
     val shell = "/system/bin/sh"
-    val sessionClient = RTerminalSessionClient(
-        onTextChange = { onScreenChanged() }
-    )
+    val sessionClient = RTerminalSessionClient(onTextChange = { onScreenChanged() })
     return TerminalSession(
-       shell,
-       workingDir,
-       arrayOf(""),
-       env,
-       TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-       sessionClient
+        shell,
+        workingDir,
+        arrayOf(""),
+        env,
+        TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
+        sessionClient,
     )
 }
