@@ -90,20 +90,14 @@ fun MainNavHost() {
 
         composable<SettingsAppRoute> { SettingsAppScreen() }
 
-        composable<SettingsCodeEditorRoute> {
-            SettingsCodeEditorScreen()
-        }
+        composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
 
         composable<SettingsRDKRoute> { SettingsRDKScreen() }
 
         composable<AboutLibrariesRoute> { LibrariesScreen() }
 
-        composable<AboutRoute> {
-            AboutScreen(version = BuildConfig.VERSION_NAME)
-        }
+        composable<AboutRoute> { AboutScreen(version = BuildConfig.VERSION_NAME) }
 
-        composable<TerminalRoute> {
-            TerminalScreen() 
-        }
+        composable<TerminalRoute> { TerminalScreen() }
     }
 }
