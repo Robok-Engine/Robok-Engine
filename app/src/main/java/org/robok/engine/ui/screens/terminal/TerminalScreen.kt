@@ -36,7 +36,7 @@ private var session: TerminalSession? = null
 private var terminalView: TerminalView? = null
 
 @Composable
-fun TerminalScreen(path: String? = null, navController: NavHostController) {
+fun TerminalScreen(path: String? = null) {
     cwd =
         path?.let { path -> if (File(path).exists()) path else filesDir.absolutePath }
             ?: filesDir.absolutePath

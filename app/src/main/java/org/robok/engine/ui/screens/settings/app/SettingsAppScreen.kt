@@ -33,7 +33,7 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsAppScreen(navController: NavHostController) {
+fun SettingsAppScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
     Screen(label = stringResource(id = Strings.settings_app_title), backArrowVisible = true) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {

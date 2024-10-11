@@ -55,7 +55,7 @@ fun MainNavHost() {
     val navController = LocalMainNavController.current
 
     NavHost(
-        navController = navController,
+        ,
         startDestination = HomeRoute,
         enterTransition = { NavigationAnimationTransitions.enterTransition },
         exitTransition = { NavigationAnimationTransitions.exitTransition },
@@ -84,24 +84,26 @@ fun MainNavHost() {
             CreateProjectScreen(template = route.template)
         }
 
-        composable<ManageProjectsRoute> { ManageProjectsScreen(navController = navController) }
+        composable<ManageProjectsRoute> { ManageProjectsScreen() }
 
-        composable<SettingsRoute> { SettingsScreen(navController = navController) }
+        composable<SettingsRoute> { SettingsScreen() }
 
-        composable<SettingsAppRoute> { SettingsAppScreen(navController = navController) }
+        composable<SettingsAppRoute> { SettingsAppScreen() }
 
         composable<SettingsCodeEditorRoute> {
-            SettingsCodeEditorScreen(navController = navController)
+            SettingsCodeEditorScreen()
         }
 
-        composable<SettingsRDKRoute> { SettingsRDKScreen(navController = navController) }
+        composable<SettingsRDKRoute> { SettingsRDKScreen() }
 
-        composable<AboutLibrariesRoute> { LibrariesScreen(navController = navController) }
+        composable<AboutLibrariesRoute> { LibrariesScreen() }
 
         composable<AboutRoute> {
-            AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME)
+            AboutScreen(version = BuildConfig.VERSION_NAME)
         }
 
-        composable<TerminalRoute> { TerminalScreen(navController = navController) }
+        composable<TerminalRoute> {
+            TerminalScreen() 
+        }
     }
 }

@@ -72,7 +72,7 @@ var contributors =
     )
 
 @Composable
-fun AboutScreen(navController: NavHostController, version: String) {
+fun AboutScreen(version: String) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     val contributorsState = remember { mutableStateOf(contributors) }

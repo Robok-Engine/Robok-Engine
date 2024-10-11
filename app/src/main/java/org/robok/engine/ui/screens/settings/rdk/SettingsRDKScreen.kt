@@ -46,7 +46,7 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.D
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsRDKScreen(navController: NavHostController) {
+fun SettingsRDKScreen() {
     val context = LocalContext.current
     val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()

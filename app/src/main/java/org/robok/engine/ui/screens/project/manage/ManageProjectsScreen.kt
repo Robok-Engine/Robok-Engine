@@ -55,7 +55,7 @@ val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projec
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ManageProjectsScreen(navController: NavHostController) {
+fun ManageProjectsScreen() {
     val projectViewModel: ManageProjectsViewModel = viewModel()
     val projects by projectViewModel.projects.collectAsState()
 

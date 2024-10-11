@@ -34,7 +34,7 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsCodeEditorScreen(navController: NavHostController) {
+fun SettingsCodeEditorScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     Screen(

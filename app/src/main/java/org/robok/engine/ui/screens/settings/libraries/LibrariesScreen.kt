@@ -39,7 +39,7 @@ import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun LibrariesScreen(navController: NavController) {
+fun LibrariesScreen() {
     val context = LocalContext.current
     Screen(label = stringResource(id = Strings.settings_libraries_title), backArrowVisible = true) {
         PreferenceGroup { librariesScreen(context) }
