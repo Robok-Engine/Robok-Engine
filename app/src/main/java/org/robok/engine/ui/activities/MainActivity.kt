@@ -34,8 +34,8 @@ import org.robok.engine.ui.theme.RobokTheme
 
 class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
-        installSplashScreen()
         super.onCreate(savedInstanceState)
+        installSplashScreen()
 
         setContent {
             RobokTheme {
