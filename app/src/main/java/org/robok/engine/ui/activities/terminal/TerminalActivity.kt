@@ -108,9 +108,7 @@ class TerminalActivity : RobokActivity() {
 
         val shell = "/system/bin/sh"
         val sessionClient = RTerminalSessionClient(
-            onTextChange = {
-                // Aqui você pode implementar a lógica para atualizar a tela conforme necessário
-            }
+            onTextChange = { /**/ }
         )
         return TerminalSession(
             shell,
@@ -120,10 +118,5 @@ class TerminalActivity : RobokActivity() {
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
             sessionClient
         )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        session?.close()
     }
 }
