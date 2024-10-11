@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler;
+package org.robok.aapt2.compiler
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,29 +17,6 @@ package org.robok.aapt2.compiler;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.io.File;
+import java.io.File
 
-public class CompilerResult {
-	
-	private boolean isError;
-	private String message;
-    private File signApk;
-	
-	public CompilerResult(String message, boolean error, File signApk) {
-		this.isError = error;
-		this.message = message;
-        this.signApk = signApk;
-	}
-	
-	public String getMessage() {
-		return message;
-	}
-	
-	public boolean isError() {
-		return isError;
-	}
-    
-    public File getSignApk(){
-        return signApk;
-    }
-}
+data class CompilerResult(val message: String, val isError: Boolean, val signApk: File)

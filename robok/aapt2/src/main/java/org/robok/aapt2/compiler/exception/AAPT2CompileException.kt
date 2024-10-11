@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.exception;
+package org.robok.aapt2.compiler.exception
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,9 +17,4 @@ package org.robok.aapt2.compiler.exception;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-public class CompilerException extends Exception {
-    
-	public CompilerException(String message) {
-		super(message);
-	}
-}
+open class AAPT2CompileException(private val vv: String) : CompilerException(vv)

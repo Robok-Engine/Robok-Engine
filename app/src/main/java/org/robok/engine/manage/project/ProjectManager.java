@@ -149,7 +149,7 @@ public class ProjectManager {
 
     public void build(CompilerTask.OnCompileResult result) {
         if (outputPath == null) {
-            throw new IllegalStateException("outputPath não foi inicializado.");
+            throw new IllegalStateException("outputPath has not been initialized.");
         }
 
         try {
