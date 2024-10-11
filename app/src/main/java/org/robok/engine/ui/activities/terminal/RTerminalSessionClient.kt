@@ -21,9 +21,7 @@ import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.terminal.TerminalSessionClient
 
-class RTerminalSessionClient(
-   private val onTextChange: () -> Unit
-) : TerminalSessionClient {
+class RTerminalSessionClient(private val onTextChange: () -> Unit) : TerminalSessionClient {
 
     private var cwd: String? = null
 

@@ -22,10 +22,9 @@ import android.view.MotionEvent
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalViewClient
 
-
 class RTerminalViewClient(
-  private val onSingleTap: () -> Unit,
-  private val onKeyEventEnter: () -> Unit
+    private val onSingleTap: () -> Unit,
+    private val onKeyEventEnter: () -> Unit,
 ) : TerminalViewClient {
     override fun onScale(scale: Float): Float {
         return 1f
@@ -56,7 +55,7 @@ class RTerminalViewClient(
     override fun onKeyDown(keyCode: Int, e: KeyEvent, session: TerminalSession): Boolean {
         if (!session.isRunning) {
             if (e.keyCode == KeyEvent.KEYCODE_ENTER) {
-               onKeyEventEnter()
+                onKeyEventEnter()
             }
         }
         return false
@@ -91,7 +90,7 @@ class RTerminalViewClient(
     }
 
     override fun onEmulatorSet() {}
-    
+
     override fun logError(tag: String, message: String) {}
 
     override fun logWarn(tag: String, message: String) {}

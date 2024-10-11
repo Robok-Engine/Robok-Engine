@@ -7,8 +7,8 @@ import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
 import org.robok.engine.RobokApplication
@@ -18,10 +18,12 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
  * A helper for applying the correct theme in the app, managing XML themes.
  *
  * This class uses ViewModel to handle theme-related settings.
- * 
+ *
  * @author Aquiles Trindade
  */
-class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)) {
+class XMLThemeManager(
+    private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
+) {
 
     private lateinit var appPrefsViewModel: AppPreferencesViewModel
 
@@ -37,7 +39,8 @@ class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScop
         coroutineScope.launch {
             val useMonet = appPrefsViewModel.appIsUseMonet.first()
             val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
-            val isDarkMode = AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
+            val isDarkMode =
+                AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
 
             // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
             if (isDarkMode && useAmoled) {
@@ -47,15 +50,13 @@ class XMLThemeManager(private val coroutineScope: CoroutineScope = CoroutineScop
                 }
                 activity.setTheme(R.style.Theme_Robok_Amoled)
                 return@launch
-            } 
+            }
             // Apply Monet theme if AMOLED not used but Monet is enabled
             if (useMonet) DynamicColors.applyToActivityIfAvailable(activity)
         }
     }
 
-    /**
-     * Initialize ViewModel.
-     */
+    /** Initialize ViewModel. */
     private fun init() {
         appPrefsViewModel = RobokApplication.instance.getKoin().get()
     }

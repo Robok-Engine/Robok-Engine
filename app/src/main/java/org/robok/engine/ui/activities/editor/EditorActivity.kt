@@ -43,7 +43,6 @@ import org.robok.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.utils.UniqueNameBuilder
-import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.editor.EditorListener
 import org.robok.engine.feature.editor.RobokCodeEditor
@@ -54,6 +53,7 @@ import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
 import org.robok.engine.feature.treeview.provider.FileWrapper
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.robok.engine.ui.activities.editor.event.EditorEvent

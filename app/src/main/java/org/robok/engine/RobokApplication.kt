@@ -22,16 +22,10 @@ import android.content.Context
 import android.content.Intent
 import android.os.Process
 import android.util.Log
-import com.google.android.material.color.DynamicColors
 import java.io.PrintWriter
 import java.io.StringWriter
 import java.io.Writer
 import kotlin.system.exitProcess
-import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import org.koin.android.ext.android.getKoin
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin

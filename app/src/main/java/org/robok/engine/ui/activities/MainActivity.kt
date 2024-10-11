@@ -27,9 +27,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.theme.RobokTheme
 
 class MainActivity : RobokActivity() {

@@ -34,8 +34,8 @@ import org.robok.engine.core.utils.getBackPressedClickListener
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
-import org.robok.engine.ui.theme.XMLThemeManager
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.theme.XMLThemeManager
 
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
@@ -47,7 +47,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         themeManager.apply(this)
         super.onCreate(savedInstanceState)
         if (isEdgeToEdge) enableEdgeToEdge()
-        
+
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 requestAllFilesAccessPermissionDialog()
