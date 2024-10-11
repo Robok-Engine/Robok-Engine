@@ -3,6 +3,7 @@ package org.robok.engine.ui.theme
 import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
+import android.util.Log
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.color.DynamicColors
 import kotlinx.coroutines.CoroutineScope
@@ -24,7 +25,7 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 class XMLThemeManager(
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) {
-
+    const val TAG = "XMLThemeManager"
     private lateinit var appPrefsViewModel: AppPreferencesViewModel
 
     /**
@@ -41,18 +42,27 @@ class XMLThemeManager(
             val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
             val isDarkMode =
                 AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
-
+                
+            Log.d(TAG, useMonet.toString())
+            Log.d(TAG, useAmoled.toString())
+            Log.d(TAG, isDarkMode.toString())
+                
             // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
             if (isDarkMode && useAmoled) {
                 if (useMonet) {
                     activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
+                    Log.d(TAG, "Amoled Monet Theme Set")
                     return@launch
                 }
                 activity.setTheme(R.style.Theme_Robok_Amoled)
+                Log.d(TAG, "Amoled Theme Set")
                 return@launch
             }
             // Apply Monet theme if AMOLED not used but Monet is enabled
-            if (useMonet) DynamicColors.applyToActivityIfAvailable(activity)
+            if (useMonet) {
+                DynamicColors.applyToActivityIfAvailable(activity)
+                Log.d(TAG, "Monet Theme Set")
+            ]
         }
     }
 

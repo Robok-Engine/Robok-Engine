@@ -43,9 +43,9 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
     var isEdgeToEdge: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         val themeManager = XMLThemeManager()
         themeManager.apply(this)
-        super.onCreate(savedInstanceState)
         if (isEdgeToEdge) enableEdgeToEdge()
 
         if (!getStoragePermStatus(this)) {
