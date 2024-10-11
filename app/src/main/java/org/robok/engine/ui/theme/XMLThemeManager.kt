@@ -1,6 +1,5 @@
 package org.robok.engine.ui.theme
 
-import android.app.Activity
 import android.content.Context
 import android.content.res.Resources
 import android.util.Log
@@ -13,6 +12,7 @@ import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
 import org.robok.engine.RobokApplication
+import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 /**
@@ -35,22 +35,20 @@ class XMLThemeManager(
      *
      * @param activity An instance of an Activity.
      */
-    fun apply(activity: Activity) {
+    fun apply(activity: RobokActivity) {
         init()
 
         // Apply themes based on user preferences
         coroutineScope.launch {
             val useMonet = appPrefsViewModel.appIsUseMonet.first()
             val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
-            val isDarkMode =
-                AppCompatDelegate.getDefaultNightMode() == AppCompatDelegate.MODE_NIGHT_YES
-                
+            
             Log.d(TAG, useMonet.toString())
             Log.d(TAG, useAmoled.toString())
-            Log.d(TAG, isDarkMode.toString())
+            Log.d(TAG, activity.isDarkMode().toString())
                 
             // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
-            if (isDarkMode && useAmoled) {
+            if (activity.isDarkMode() && useAmoled) {
                 if (useMonet) {
                     activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
                     Log.d(TAG, "Amoled Monet Theme Set")
