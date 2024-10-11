@@ -39,78 +39,77 @@ private var terminalView: TerminalView? = null
 
 @Composable
 private fun TerminalScreen(
-       path: String? = null,
-       navController: NavHostController
+   path: String? = null,
+   navController: NavHostController
 ) {
    cwd = path?.let { path ->
       if (File(path).exists()) path else filesDir.absolutePath
    } ?: filesDir.absolutePath
-        Column(
+    Column(
             modifier = Modifier
                 .fillMaxSize()
                 .padding(top = 20.dp)
-        ) {
-            AndroidView(
-                factory = { context ->
-                    TerminalView(context, null).apply { 
-                        setTextSize(24)
-                        session = createSession()
-                        attachSession(session)
-                        val viewClient = RTerminalViewClient(
-                           onSingleTap = {
-                               val kUtil = KeyboardUtil(RobokApplication.instance)
-                               kUtil.showSoftInput(this)
-                           },
-                           onKeyEventEnter = {
-                              //finish()
-                           }
-                        )
-                        setTerminalViewClient(viewClient)
-                        terminalView = this
-                    }
-                },
-                modifier = Modifier
-                    .fillMaxSize()
-                    .weight(1f),
-                update = { terminalView ->
-                    onScreenChanged()
-                }
-            )
-        }
+    ) {
+       AndroidView(
+           factory = { context ->
+               TerminalView(context, null).apply { 
+                  setTextSize(24)
+                  session = createSession()
+                  attachSession(session)
+                  val viewClient = RTerminalViewClient(
+                     onSingleTap = {
+                        val kUtil = KeyboardUtil(RobokApplication.instance)
+                        kUtil.showSoftInput(this)
+                     },
+                     onKeyEventEnter = {
+                        //finish()
+                     }
+                  )
+                  setTerminalViewClient(viewClient)
+                  terminalView = this
+               }
+           },
+           modifier = Modifier
+              .fillMaxSize()
+              .weight(1f),
+           update = { terminalView ->
+               onScreenChanged()
+           }
+       )
    }
+}
     
-   fun onScreenChanged() {
-       terminalView?.onScreenUpdated()
-   }
+private fun onScreenChanged() {
+     terminalView?.onScreenUpdated()
+}
 
-   private fun createSession(): TerminalSession {
-       val workingDir = cwd
-       val tmpDir = File(filesDir.parentFile, "tmp")
-        
-       if (tmpDir.exists()) {
-            tmpDir.deleteRecursively()
-       }
-       tmpDir.mkdirs()
+private fun createSession(): TerminalSession {
+    val workingDir = cwd
+    val tmpDir = File(filesDir.parentFile, "tmp")
+    
+    if (tmpDir.exists()) {
+        tmpDir.deleteRecursively()
+    }
+    tmpDir.mkdirs()
 
-       val env = arrayOf(
-           "TMP_DIR=${tmpDir.absolutePath}",
-           "HOME=${filesDir.absolutePath}",
-           "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
-           "COLORTERM=truecolor",
-           "TERM=xterm-256color"
-       )
+    val env = arrayOf(
+         "TMP_DIR=${tmpDir.absolutePath}",
+         "HOME=${filesDir.absolutePath}",
+         "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
+         "COLORTERM=truecolor",
+         "TERM=xterm-256color"
+    )
 
-       val shell = "/system/bin/sh"
-       val sessionClient = RTerminalSessionClient(
-           onTextChange = { onScreenChanged() }
-       )
-       return TerminalSession(
-           shell,
-           workingDir,
-           arrayOf(""),
-           env,
-           TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-           sessionClient
-       )
-   }
+    val shell = "/system/bin/sh"
+    val sessionClient = RTerminalSessionClient(
+        onTextChange = { onScreenChanged() }
+    )
+    return TerminalSession(
+       shell,
+       workingDir,
+       arrayOf(""),
+       env,
+       TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
+       sessionClient
+    )
 }
