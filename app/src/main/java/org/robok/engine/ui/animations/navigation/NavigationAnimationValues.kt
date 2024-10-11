@@ -18,6 +18,6 @@ package org.robok.engine.ui.animations.navigation
  */
 
 object NavigationAnimationValues {
-    const val SlideDistance: Int = 100
-    const val SlideDuration: Int = 700
+    const val SlideDistance: Int = 50
+    const val SlideDuration: Int = 400
 }
