@@ -77,6 +77,16 @@ class TerminalActivity : RobokActivity() {
                         setTextSize(24)
                         session = createSession()
                         attachSession(session)
+                        val viewClient = RTerminalViewClient(
+                           onSingleTap = {
+                               val kUtil = KeyboardUtil(RobokApplication.instance)
+                               kUtil.showSoftInput(it)
+                           },
+                           onKeyEventEnter = {
+                              finish()
+                           }
+                        )
+                        setTerminalViewClient(viewClient)
                     }
                 },
                 modifier = Modifier
