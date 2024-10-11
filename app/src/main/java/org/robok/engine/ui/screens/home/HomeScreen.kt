@@ -76,7 +76,6 @@ import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
-import org.robok.engine.ui.activities.terminal.TerminalActivity
 import org.robok.engine.ui.theme.Typography
 
 @Composable
@@ -169,10 +168,6 @@ fun HomeScreen() {
 
 private fun onOpenProjectClicked(folderPickerLauncher: ActivityResultLauncher<Uri?>) {
     folderPickerLauncher.launch(null)
-}
-
-private fun onTerminalClicked(context: Context) {
-    context.startActivity(Intent(context, TerminalActivity::class.java))
 }
 
 private fun processUri(ac: Context, uri: Uri): String {

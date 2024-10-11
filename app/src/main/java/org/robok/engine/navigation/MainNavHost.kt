@@ -36,6 +36,7 @@ import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.TemplatesRoute
+import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
