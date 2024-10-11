@@ -53,7 +53,7 @@ fun IntRadioController(
                     startWidget = {
                          RadioButton(selected = option == selectedChoice, onClick = null)
                     },
-                }
+                )
             }
     }
 }
