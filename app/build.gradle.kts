@@ -164,8 +164,6 @@ dependencies {
     implementation(project(":core:utils"))
     
     implementation(project(":feature:settings"))
-
-    implementation(project(":easy-components"))
 }
 
 fun execAndGetOutput(vararg command: String): String {

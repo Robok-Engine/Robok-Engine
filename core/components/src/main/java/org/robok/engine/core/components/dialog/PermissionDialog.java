@@ -1,4 +1,4 @@
-package dev.trindadedev.easyui.components.dialogs;
+package org.robok.engine.core.components.dialog;
 
 /*
  *  This file is part of Robok © 2024.
@@ -28,7 +28,11 @@ import android.widget.TextView;
 
 import androidx.annotation.DrawableRes;
 
-import dev.trindadedev.easyui.components.R;
+import org.robok.engine.core.components.R;
+
+/*
+* TO-DO: refactor with compose
+*/
 
 public class PermissionDialog extends Dialog {
 

@@ -33,8 +33,3 @@ include(":feature:settings")
 include(":core:components")
 include(":core:utils")
 include(":core:templates")
-
-include(":easy-components")
-
-include("Robok-Easy-UI:robok-gui")
-include("Robok-Easy-UI:robok-antlr4")
