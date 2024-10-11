@@ -88,7 +88,9 @@
         <item name="android:windowLightStatusBar">false</item>
         <item name="android:windowLightNavigationBar">false</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-
+	<item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
+        
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
         <item name="collapsingToolbarLayoutLargeStyle">@style/CollapsingToolbarLarge</item>
