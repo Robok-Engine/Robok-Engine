@@ -1,4 +1,4 @@
-package org.robok.aapt2.compiler.exception;
+package org.robok.aapt2.compiler.incremental.file
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,9 +17,15 @@ package org.robok.aapt2.compiler.exception;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-public class CompilerException extends Exception {
-    
-	public CompilerException(String message) {
-		super(message);
-	}
+import java.io.File
+
+class JavaFile(pathname: String) : File(pathname) {
+
+    override fun equals(other: Any?): Boolean {
+        return if (other is JavaFile) {
+            other.name == this.name
+        } else {
+            false
+        }
+    }
 }
