@@ -38,8 +38,8 @@ private var terminalView: TerminalView? = null
 @Composable
 fun TerminalScreen(path: String? = null) {
     cwd =
-        path?.let { path -> if (File(path).exists()) path else filesDir.absolutePath }
-            ?: filesDir.absolutePath
+        path?.let { path -> if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath }
+            ?: RobokApplication.instance.filesDir.absolutePath
     Column(modifier = Modifier.fillMaxSize().padding(top = 20.dp)) {
         AndroidView(
             factory = { context ->
@@ -73,7 +73,7 @@ private fun onScreenChanged() {
 
 private fun createSession(): TerminalSession {
     val workingDir = cwd
-    val tmpDir = File(filesDir.parentFile, "tmp")
+    val tmpDir = File(RobokApplication.instance.filesDir.parentFile, "tmp")
 
     if (tmpDir.exists()) {
         tmpDir.deleteRecursively()
@@ -83,8 +83,8 @@ private fun createSession(): TerminalSession {
     val env =
         arrayOf(
             "TMP_DIR=${tmpDir.absolutePath}",
-            "HOME=${filesDir.absolutePath}",
-            "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
+            "HOME=${RobokApplication.instance.filesDir.absolutePath}",
+            "PUBLIC_HOME=${RobokApplication.instance.getExternalFilesDir(null)?.absolutePath}",
             "COLORTERM=truecolor",
             "TERM=xterm-256color",
         )
