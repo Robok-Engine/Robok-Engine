@@ -19,4 +19,4 @@ package org.robok.aapt2.compiler
 
 import java.io.File
 
-data class CompilerResult(val message: String, val isError: Boolean, val signApk: File)
+data class CompilerResult(val message: String, val isError: Boolean, val signApk: File? = null)
