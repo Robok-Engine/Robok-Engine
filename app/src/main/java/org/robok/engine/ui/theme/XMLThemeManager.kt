@@ -62,7 +62,7 @@ class XMLThemeManager(
             if (useMonet) {
                 DynamicColors.applyToActivityIfAvailable(activity)
                 Log.d(TAG, "Monet Theme Set")
-            ]
+            }
         }
     }
 
