@@ -22,10 +22,12 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
  *
  * @author Aquiles Trindade
  */
+ 
+const val TAG = "XMLThemeManager"
 class XMLThemeManager(
     private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) {
-    const val TAG = "XMLThemeManager"
+    
     private lateinit var appPrefsViewModel: AppPreferencesViewModel
 
     /**
