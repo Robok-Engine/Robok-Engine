@@ -27,6 +27,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.unit.dp
+import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun IntRadioController(
@@ -42,19 +43,16 @@ fun IntRadioController(
         options
             .filterNot { it in excludedOptions }
             .forEach { option ->
-                Row(
+                PreferenceTemplate(
+                    title = { Text(text = labelFactory(option)) },
                     modifier =
-                        Modifier.fillMaxWidth()
-                            .clip(RoundedCornerShape(15.dp))
-                            .padding(vertical = 7.dp, horizontal = 10.dp)
-                            .clickable {
-                                selectedChoice = option
-                                onChoiceSelected(option)
-                            },
-                    verticalAlignment = Alignment.CenterVertically,
-                ) {
-                    Text(text = labelFactory(option), modifier = Modifier.weight(1f))
-                    RadioButton(selected = option == selectedChoice, onClick = null)
+                         Modifier.clickable {
+                            selectedChoice = option
+                            onChoiceSelected(option)
+                         },
+                    startWidget = {
+                         RadioButton(selected = option == selectedChoice, onClick = null)
+                    },
                 }
             }
     }
