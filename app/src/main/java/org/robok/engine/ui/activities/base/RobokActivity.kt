@@ -29,8 +29,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.chrisbanes.insetter.Insetter
 import org.robok.engine.core.components.dialog.PermissionDialog
 import kotlinx.coroutines.runBlocking
+import org.robok.engine.Drawables
 import org.robok.engine.core.utils.PermissionListener
-import org.robok.engine.core.utils.R
 import org.robok.engine.core.utils.getBackPressedClickListener
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
@@ -71,7 +71,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         }
         permissionDialog =
             PermissionDialog.Builder(this)
-                .setIconResId(R.drawable.ic_folder_24)
+                .setIconResId(Drawables.ic_folder_24)
                 .setText(getString(Strings.warning_storage_perm_message))
                 .setAllowClickListener {
                     requestReadWritePermissions(this@RobokActivity, this@RobokActivity)
@@ -88,7 +88,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
         }
         permissionDialog =
             PermissionDialog.Builder(this)
-                .setIconResId(R.drawable.ic_folder_24)
+                .setIconResId(Drawables.ic_folder_24)
                 .setText(getString(Strings.warning_all_files_perm_message))
                 .setAllowClickListener {
                     requestAllFilesAccessPermission(this@RobokActivity, this@RobokActivity)
