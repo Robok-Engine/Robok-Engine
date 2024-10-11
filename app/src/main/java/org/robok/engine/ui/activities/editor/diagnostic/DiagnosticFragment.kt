@@ -21,37 +21,19 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import org.robok.engine.databinding.FragmentEditorDiagnosticBinding
-import org.robok.engine.ui.activities.editor.diagnostic.adapters.DiagnosticsAdapter
-import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
+import org.robok.engine.ui.activities.base.RobokFragment
 
-class DiagnosticFragment(private val diagnostics: List<DiagnosticItem>) : Fragment() {
-
-    private var _binding: FragmentEditorDiagnosticBinding? = null
-    private val binding
-        get() = _binding!!
+class DiagnosticFragment() : RobokFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _binding = FragmentEditorDiagnosticBinding.inflate(inflater, container, false)
-        return binding.root
+        return View(requireContext())
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        binding.recyclerView.adapter = DiagnosticsAdapter(diagnostics)
-    }
-
-    fun getDiagnostics(): List<DiagnosticItem> = diagnostics
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

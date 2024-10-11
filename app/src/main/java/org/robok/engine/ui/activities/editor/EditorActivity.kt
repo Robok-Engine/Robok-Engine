@@ -55,7 +55,6 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.activities.editor.diagnostic.DiagnosticFragment
-import org.robok.engine.ui.activities.editor.diagnostic.models.DiagnosticItem
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
@@ -78,7 +77,6 @@ class EditorActivity :
         binding.diagnosticStatusImage.visibility = View.VISIBLE
     }
 
-    private var diagnosticsList: MutableList<DiagnosticItem> = mutableListOf()
     private val diagnosticStandTime: Long = 800
 
     private lateinit var antlrListener: AntlrListener
@@ -191,7 +189,7 @@ class EditorActivity :
                                     .beginTransaction()
                                     .replace(
                                         Ids.drawer_editor_right_fragment_container,
-                                        DiagnosticFragment(diagnosticsList),
+                                        DiagnosticFragment(),
                                     )
                                     .commit()
                             }
@@ -391,7 +389,6 @@ class EditorActivity :
                         DiagnosticRegion.SEVERITY_ERROR,
                         msg,
                     )
-                    diagnosticsList.add(DiagnosticItem("Error", msg, 1))
                     onDiagnosticStatusReceive(true)
                 }
             }
