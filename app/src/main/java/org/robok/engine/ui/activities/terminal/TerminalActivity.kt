@@ -38,6 +38,7 @@ class TerminalActivity : RobokActivity() {
 
     private var cwd: String? = null
     private var session: TerminalSession? = null
+    private var terminalView: TerminalView? = null
 
     private val backPressedCallback =
         object : OnBackPressedCallback(enabled = false) {
@@ -87,16 +88,21 @@ class TerminalActivity : RobokActivity() {
                            }
                         )
                         setTerminalViewClient(viewClient)
+                        terminalView = this
                     }
                 },
                 modifier = Modifier
                     .fillMaxSize()
                     .weight(1f),
                 update = { terminalView ->
-                    terminalView.onScreenUpdated()
+                    onScreenChanged()
                 }
             )
         }
+    }
+    
+    fun onScreenChanged() {
+        terminalView.onScreenUpdated()
     }
 
     private fun createSession(): TerminalSession {
@@ -118,7 +124,7 @@ class TerminalActivity : RobokActivity() {
 
         val shell = "/system/bin/sh"
         val sessionClient = RTerminalSessionClient(
-            onTextChange = { /**/ }
+            onTextChange = { onScreenChanged() }
         )
         return TerminalSession(
             shell,
