@@ -28,6 +28,7 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import dev.chrisbanes.insetter.Insetter
 import dev.trindadedev.easyui.components.dialogs.PermissionDialog
+import kotlinx.coroutines.runBlocking
 import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.R
 import org.robok.engine.core.utils.getBackPressedClickListener
@@ -44,7 +45,12 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val themeManager = XMLThemeManager()
-        themeManager.apply(this)
+        
+        //block main thread until the theme is applied
+        runBlocking {
+            themeManager.apply(this@RobokActivity)
+        }
+        
         super.onCreate(savedInstanceState)
         if (isEdgeToEdge) enableEdgeToEdge()
 
