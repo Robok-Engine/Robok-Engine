@@ -64,7 +64,7 @@ private fun TerminalView() {
                 terminalView = this
             }
         },
-        modifier = Modifier.fillMaxSize().weight(1f),
+        modifier = Modifier.fillMaxSize(),
         update = { terminalView -> onScreenChanged() },
     )
 }
