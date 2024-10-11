@@ -69,7 +69,7 @@ fun PreferenceChoice(
         endWidget = {
             if (!disabled) {
                 FilledTonalButton(
-                    modifier = Modifier.width(150.dp).padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = 16.dp),
                     onClick = { setOpened(true) },
                     enabled = !disabled,
                 ) {
