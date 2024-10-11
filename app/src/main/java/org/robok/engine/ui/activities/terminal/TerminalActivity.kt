@@ -102,7 +102,7 @@ class TerminalActivity : RobokActivity() {
     }
     
     fun onScreenChanged() {
-        terminalView.onScreenUpdated()
+        terminalView?.onScreenUpdated()
     }
 
     private fun createSession(): TerminalSession {
