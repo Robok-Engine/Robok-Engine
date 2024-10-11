@@ -73,7 +73,7 @@ class TerminalActivity : RobokActivity() {
         ) {
             AndroidView(
                 factory = { context ->
-                    TerminalView(context).apply {
+                    TerminalView(context, null).apply {
                         setTextSize(24)
                         session = createSession()
                         attachSession(session)
