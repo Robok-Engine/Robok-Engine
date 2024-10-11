@@ -19,7 +19,7 @@ package org.robok.engine.defaults
 
 import org.robok.engine.models.about.Contributor
 
-fun DefaultContributors(): Contributor {
+fun DefaultContributors(): List<Contributor> {
     return listOf(
         Contributor(
             login = "Aquiles Trindade",
