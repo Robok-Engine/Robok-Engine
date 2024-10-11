@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
-    alias(libs.plugins.compose.compiler)
     id("maven-publish")
 }
 
