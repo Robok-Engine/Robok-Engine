@@ -28,6 +28,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
+import com.termux.view.TerminalView
 import java.io.File
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
@@ -72,7 +73,7 @@ class TerminalActivity : RobokActivity() {
         ) {
             AndroidView(
                 factory = { context ->
-                    com.termux.view.TerminalView(context).apply {
+                    TerminalView(context).apply {
                         setTextSize(24)
                         session = createSession()
                         attachSession(session)
