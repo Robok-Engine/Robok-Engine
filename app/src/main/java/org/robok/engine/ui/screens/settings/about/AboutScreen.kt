@@ -17,7 +17,6 @@ package org.robok.engine.ui.screens.settings.about
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.annotation.DrawableRes
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -49,7 +48,6 @@ import coil.compose.SubcomposeAsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -57,18 +55,14 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.R
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.models.about.Contributor
+import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
 
-var contributors =
-    listOf(
-        Contributor(
-            login = "trindadedev",
-            role = "Main Developer",
-            avatar_url = "https://github.com/trindadedev13.png",
-        )
-    )
+var contributors = DefaultContributors()
 
 @Composable
 fun AboutScreen(version: String) {
@@ -215,42 +209,8 @@ fun LinkRow(dataInfo: Link) {
             Image(
                 painter = painterResource(id = dataInfo.imageResId),
                 contentDescription = null,
-                modifier =
-                    Modifier.size(32.dp)
-                        .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.surfaceContainer),
+                modifier = Modifier.size(32.dp).clip(CircleShape),
             )
         },
     )
 }
-
-@Serializable
-data class Contributor(
-    val login: String = "Name",
-    val id: Int = 0,
-    val node_id: String = "node",
-    val avatar_url: String = "avatar_url",
-    val gravatar_id: String = "gravatar_id",
-    val url: String = "url",
-    val html_url: String = "html_url",
-    val followers_url: String = "folowers_url",
-    val following_url: String = "following_url",
-    val gists_url: String = "gistis_url",
-    val starred_url: String = "starred_url",
-    val subscriptions_url: String = "subscriptions_url",
-    val organizations_url: String = "organizations_url",
-    val repos_url: String = "repos_url",
-    val events_url: String = "events_url",
-    val received_events_url: String = "received_events_url",
-    val type: String = "User",
-    val site_admin: Boolean = false,
-    val contributions: Int = 0,
-    val role: String = "Contributor",
-)
-
-data class Link(
-    val name: String,
-    val description: String,
-    @DrawableRes val imageResId: Int,
-    val url: String,
-)
