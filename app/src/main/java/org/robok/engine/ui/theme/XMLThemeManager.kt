@@ -34,12 +34,13 @@ class XMLThemeManager(
      * Applies the theme based on user settings.
      *
      * @param activity An instance of an Activity.
+     *
+     * Runs on main thread
      */
-    fun apply(activity: RobokActivity) {
+    suspend fun apply(activity: RobokActivity) {
         init()
 
-        // Apply themes based on user preferences
-        coroutineScope.launch {
+            // Apply themes based on user preferences
             val useMonet = appPrefsViewModel.appIsUseMonet.first()
             val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
             
@@ -52,18 +53,17 @@ class XMLThemeManager(
                 if (useMonet) {
                     activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
                     Log.d(TAG, "Amoled Monet Theme Set")
-                    return@launch
+                    return
                 }
                 activity.setTheme(R.style.Theme_Robok_Amoled)
                 Log.d(TAG, "Amoled Theme Set")
-                return@launch
+                return
             }
             // Apply Monet theme if AMOLED not used but Monet is enabled
             if (useMonet) {
                 DynamicColors.applyToActivityIfAvailable(activity)
                 Log.d(TAG, "Monet Theme Set")
             }
-        }
     }
 
     /** Initialize ViewModel. */
