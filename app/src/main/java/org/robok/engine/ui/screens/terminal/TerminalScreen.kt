@@ -21,9 +21,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavHostController
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
@@ -38,33 +36,37 @@ private var terminalView: TerminalView? = null
 @Composable
 fun TerminalScreen(path: String? = null) {
     cwd =
-        path?.let { path -> if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath }
-            ?: RobokApplication.instance.filesDir.absolutePath
-    Column(modifier = Modifier.fillMaxSize().padding(top = 20.dp)) {
-        AndroidView(
-            factory = { context ->
-                TerminalView(context, null).apply {
-                    setTextSize(24)
-                    session = createSession()
-                    attachSession(session)
-                    val viewClient =
-                        RTerminalViewClient(
-                            onSingleTap = {
-                                val kUtil = KeyboardUtil(RobokApplication.instance)
-                                kUtil.showSoftInput(this)
-                            },
-                            onKeyEventEnter = {
-                                // finish()
-                            },
-                        )
-                    setTerminalViewClient(viewClient)
-                    terminalView = this
-                }
-            },
-            modifier = Modifier.fillMaxSize().weight(1f),
-            update = { terminalView -> onScreenChanged() },
-        )
-    }
+        path?.let { path ->
+            if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
+        } ?: RobokApplication.instance.filesDir.absolutePath
+    Column { TerminalView() }
+}
+
+@Composable
+private fun TerminalView() {
+    AndroidView(
+        factory = { context ->
+            TerminalView(context, null).apply {
+                setTextSize(24)
+                session = createSession()
+                attachSession(session)
+                val viewClient =
+                    RTerminalViewClient(
+                        onSingleTap = {
+                            val kUtil = KeyboardUtil(RobokApplication.instance)
+                            kUtil.showSoftInput(this)
+                        },
+                        onKeyEventEnter = {
+                            // finish()
+                        },
+                    )
+                setTerminalViewClient(viewClient)
+                terminalView = this
+            }
+        },
+        modifier = Modifier.fillMaxSize().weight(1f),
+        update = { terminalView -> onScreenChanged() },
+    )
 }
 
 private fun onScreenChanged() {
