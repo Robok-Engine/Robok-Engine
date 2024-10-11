@@ -73,6 +73,7 @@ import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.ManageProjectsRoute
 import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.TemplatesRoute
+import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.activities.terminal.TerminalActivity
@@ -155,7 +156,9 @@ fun HomeScreen() {
                                 navController.navigateSingleTop(route = SettingsRoute)
                             }
 
-                            else -> onTerminalClicked(context)
+                            else -> {
+                                navController.navigateSingleTop(route = TerminalRoute)
+                            }
                         }
                     },
                 )

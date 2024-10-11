@@ -20,3 +20,5 @@ package org.robok.engine.routes
 import kotlinx.serialization.Serializable
 
 @Serializable object HomeRoute
+
+@Serializable object TerminalRoute

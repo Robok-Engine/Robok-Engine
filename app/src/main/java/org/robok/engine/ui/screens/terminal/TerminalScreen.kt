@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.terminal
+package org.robok.engine.ui.screens.terminal
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,7 +17,6 @@ package org.robok.engine.ui.activities.terminal
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
@@ -26,47 +25,26 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.navigation.NavHostController
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
 import java.io.File
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
-import org.robok.engine.ui.activities.base.RobokActivity
 
-class TerminalActivity : RobokActivity() {
+private var cwd: String? = null
+private var session: TerminalSession? = null
+private var terminalView: TerminalView? = null
 
-    private var cwd: String? = null
-    private var session: TerminalSession? = null
-    private var terminalView: TerminalView? = null
-
-    private val backPressedCallback =
-        object : OnBackPressedCallback(enabled = false) {
-            override fun handleOnBackPressed() {
-                if (session?.isRunning == false) {
-                    isEnabled = true
-                    onBackPressedDispatcher.onBackPressed()
-                }
-            }
-        }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        isEdgeToEdge = false
-
-        onBackPressedDispatcher.addCallback(backPressedCallback)
-
-        cwd = intent.getStringExtra("path")?.let { path ->
-            if (File(path).exists()) path else filesDir.absolutePath
-        } ?: filesDir.absolutePath
-
-        setContent {
-            TerminalScreen()
-        }
-    }
-
-    @Composable
-    private fun TerminalScreen() {
+@Composable
+private fun TerminalScreen(
+       path: String? = null,
+       navController: NavHostController
+) {
+   cwd = path?.let { path ->
+      if (File(path).exists()) path else filesDir.absolutePath
+   } ?: filesDir.absolutePath
         Column(
             modifier = Modifier
                 .fillMaxSize()
@@ -84,7 +62,7 @@ class TerminalActivity : RobokActivity() {
                                kUtil.showSoftInput(this)
                            },
                            onKeyEventEnter = {
-                              finish()
+                              //finish()
                            }
                         )
                         setTerminalViewClient(viewClient)
@@ -99,40 +77,40 @@ class TerminalActivity : RobokActivity() {
                 }
             )
         }
-    }
+   }
     
-    fun onScreenChanged() {
-        terminalView?.onScreenUpdated()
-    }
+   fun onScreenChanged() {
+       terminalView?.onScreenUpdated()
+   }
 
-    private fun createSession(): TerminalSession {
-        val workingDir = cwd
-        val tmpDir = File(filesDir.parentFile, "tmp")
-
-        if (tmpDir.exists()) {
+   private fun createSession(): TerminalSession {
+       val workingDir = cwd
+       val tmpDir = File(filesDir.parentFile, "tmp")
+        
+       if (tmpDir.exists()) {
             tmpDir.deleteRecursively()
-        }
-        tmpDir.mkdirs()
+       }
+       tmpDir.mkdirs()
 
-        val env = arrayOf(
-            "TMP_DIR=${tmpDir.absolutePath}",
-            "HOME=${filesDir.absolutePath}",
-            "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
-            "COLORTERM=truecolor",
-            "TERM=xterm-256color"
-        )
+       val env = arrayOf(
+           "TMP_DIR=${tmpDir.absolutePath}",
+           "HOME=${filesDir.absolutePath}",
+           "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
+           "COLORTERM=truecolor",
+           "TERM=xterm-256color"
+       )
 
-        val shell = "/system/bin/sh"
-        val sessionClient = RTerminalSessionClient(
-            onTextChange = { onScreenChanged() }
-        )
-        return TerminalSession(
-            shell,
-            workingDir,
-            arrayOf(""),
-            env,
-            TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-            sessionClient
-        )
-    }
+       val shell = "/system/bin/sh"
+       val sessionClient = RTerminalSessionClient(
+           onTextChange = { onScreenChanged() }
+       )
+       return TerminalSession(
+           shell,
+           workingDir,
+           arrayOf(""),
+           env,
+           TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
+           sessionClient
+       )
+   }
 }

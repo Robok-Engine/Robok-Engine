@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.terminal
+package org.robok.engine.ui.screens.terminal
 
 /*
  *  This file is part of Robok © 2024.

@@ -38,6 +38,7 @@ import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.home.HomeScreen
+import org.robok.engine.ui.screens.terminal.TerminalScreen
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
@@ -98,6 +99,10 @@ fun MainNavHost() {
 
         composable<AboutRoute> {
             AboutScreen(navController = navController, version = BuildConfig.VERSION_NAME)
+        }
+        
+        composable<TerminalRoute> {
+            TerminalScreen(navController = navController)
         }
     }
 }
