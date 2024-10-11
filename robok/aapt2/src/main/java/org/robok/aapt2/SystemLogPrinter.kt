@@ -25,7 +25,7 @@ import org.robok.aapt2.util.FileUtil
 
 object SystemLogPrinter {
 
-    fun start(glbContext: Context, logger: Logger) {
+    const fun start(glbContext: Context, logger: Logger) {
         // Reset the log file
         FileUtil.writeFile("${glbContext.getExternalFilesDir(null)}/logs.txt", "")
 
