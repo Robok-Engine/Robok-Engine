@@ -52,7 +52,7 @@ class LogAdapter(private val mData: List<Log>) : RecyclerView.Adapter<LogAdapter
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val mText: TextView =
             TextView(view.context).apply {
-                textIsSelectable = true
+                isTextSelectable = true
                 (view as ViewGroup).addView(this)
             }
     }
