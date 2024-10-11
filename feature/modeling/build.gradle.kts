@@ -1,7 +1,6 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
-    id("maven-publish")
 }
 
 android {
@@ -43,16 +42,4 @@ dependencies {
     implementation(libs.gson)
     
     implementation(project(":core:utils"))
-}
-
-publishing {
-    publications {
-        create<MavenPublication>("mavenJava") {
-            groupId = "com.github.robok-engine"
-            artifactId = "feature-modeling"
-            version  = "0.0.1"
-            
-            from(components.findByName("release"))
-        }
-    }
 }
