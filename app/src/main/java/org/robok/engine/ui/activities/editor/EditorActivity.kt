@@ -42,7 +42,6 @@ import org.robok.aapt2.compiler.CompilerTask
 import org.robok.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
-import org.robok.engine.R
 import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.editor.EditorListener
@@ -90,7 +89,6 @@ class EditorActivity :
         super.onCreate(savedInstanceState)
         _binding = ActivityEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
 
         val extras = intent.extras
         if (extras != null) {

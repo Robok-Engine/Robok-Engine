@@ -45,12 +45,10 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val themeManager = XMLThemeManager()
-        
-        //block main thread until the theme is applied
-        runBlocking {
-            themeManager.apply(this@RobokActivity)
-        }
-        
+
+        // block main thread until the theme is applied
+        runBlocking { themeManager.apply(this@RobokActivity) }
+
         super.onCreate(savedInstanceState)
         if (isEdgeToEdge) enableEdgeToEdge()
 
