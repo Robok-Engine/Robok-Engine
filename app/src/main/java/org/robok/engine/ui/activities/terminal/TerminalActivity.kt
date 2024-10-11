@@ -73,14 +73,14 @@ class TerminalActivity : RobokActivity() {
         ) {
             AndroidView(
                 factory = { context ->
-                    TerminalView(context, null).apply {
+                    TerminalView(context, null).apply { t ->
                         setTextSize(24)
                         session = createSession()
                         attachSession(session)
                         val viewClient = RTerminalViewClient(
                            onSingleTap = {
                                val kUtil = KeyboardUtil(RobokApplication.instance)
-                               kUtil.showSoftInput(it)
+                               kUtil.showSoftInput(t)
                            },
                            onKeyEventEnter = {
                               finish()
