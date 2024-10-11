@@ -23,6 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
@@ -43,7 +44,7 @@ fun TerminalScreen(path: String? = null) {
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
     Screen(label = stringResource(Strings.title_terminal), isExpandedScreen = true) {
-       Column { 
+       Column(Modifier.padding(top = 50.dp)) { 
           TerminalView()
        }
     }
