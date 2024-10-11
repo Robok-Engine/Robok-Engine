@@ -55,7 +55,7 @@ fun MainNavHost() {
     val navController = LocalMainNavController.current
 
     NavHost(
-        ,
+        navController = navController,
         startDestination = HomeRoute,
         enterTransition = { NavigationAnimationTransitions.enterTransition },
         exitTransition = { NavigationAnimationTransitions.exitTransition },
