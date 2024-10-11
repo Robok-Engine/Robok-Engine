@@ -19,14 +19,10 @@ package org.robok.engine.core.components.radio
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
@@ -46,12 +42,12 @@ fun IntRadioController(
                 PreferenceTemplate(
                     title = { Text(text = labelFactory(option)) },
                     modifier =
-                         Modifier.clickable {
+                        Modifier.clickable {
                             selectedChoice = option
                             onChoiceSelected(option)
-                         },
+                        },
                     startWidget = {
-                         RadioButton(selected = option == selectedChoice, onClick = null)
+                        RadioButton(selected = option == selectedChoice, onClick = null)
                     },
                 )
             }
