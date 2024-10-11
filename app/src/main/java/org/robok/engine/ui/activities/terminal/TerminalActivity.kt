@@ -19,31 +19,31 @@ package org.robok.engine.ui.activities.terminal
 
 import android.os.Bundle
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.viewinterop.AndroidView
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
+import com.termux.view.TerminalView
 import java.io.File
-import org.robok.engine.ui.activities.base.RobokActivity
-import org.robok.engine.databinding.ActivityTerminalBinding
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
-
-/*
- * TO-DO: Refactor with Compose.
- */
+import org.robok.engine.ui.activities.base.RobokActivity
 
 class TerminalActivity : RobokActivity() {
 
-    private var _binding: ActivityTerminalBinding? = null
-    private val binding
-        get() = _binding!!
-
     private var cwd: String? = null
     private var session: TerminalSession? = null
+    private var terminalView: TerminalView? = null
 
     private val backPressedCallback =
         object : OnBackPressedCallback(enabled = false) {
             override fun handleOnBackPressed() {
-                if (!session!!.isRunning) {
+                if (session?.isRunning == false) {
                     isEnabled = true
                     onBackPressedDispatcher.onBackPressed()
                 }
@@ -51,39 +51,58 @@ class TerminalActivity : RobokActivity() {
         }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isEdgeToEdge = false
         super.onCreate(savedInstanceState)
+        isEdgeToEdge = false
 
         onBackPressedDispatcher.addCallback(backPressedCallback)
 
-        _binding = ActivityTerminalBinding.inflate(layoutInflater)
-        setContentView(binding.getRoot())
+        cwd = intent.getStringExtra("path")?.let { path ->
+            if (File(path).exists()) path else filesDir.absolutePath
+        } ?: filesDir.absolutePath
 
-        cwd =
-            if (intent.hasExtra("path")) {
-                val path = intent.getStringExtra("path")
-                if (File(path.toString()).exists().not()) {
-                    filesDir.absolutePath
-                } else {
-                    path
+        setContent {
+            TerminalScreen()
+        }
+    }
+
+    @Composable
+    private fun TerminalScreen() {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(top = 20.dp)
+        ) {
+            AndroidView(
+                factory = { context ->
+                    TerminalView(context, null).apply { 
+                        setTextSize(24)
+                        session = createSession()
+                        attachSession(session)
+                        val viewClient = RTerminalViewClient(
+                           onSingleTap = {
+                               val kUtil = KeyboardUtil(RobokApplication.instance)
+                               kUtil.showSoftInput(this)
+                           },
+                           onKeyEventEnter = {
+                              finish()
+                           }
+                        )
+                        setTerminalViewClient(viewClient)
+                        terminalView = this
+                    }
+                },
+                modifier = Modifier
+                    .fillMaxSize()
+                    .weight(1f),
+                update = { terminalView ->
+                    onScreenChanged()
                 }
-            } else {
-                filesDir.absolutePath
-            }
-
-        binding.terminalView.setTextSize(24)
-        session = createSession()
-        binding.terminalView.attachSession(session)
-        val viewClient = RTerminalViewClient(
-           onSingleTap = {
-              val kUtil = KeyboardUtil(RobokApplication.instance)
-              kUtil.showSoftInput(binding.terminalView)
-           },
-           onKeyEventEnter = {
-              finish()
-           }
-        )
-        binding.terminalView.setTerminalViewClient(viewClient)
+            )
+        }
+    }
+    
+    fun onScreenChanged() {
+        terminalView?.onScreenUpdated()
     }
 
     private fun createSession(): TerminalSession {
@@ -92,25 +111,20 @@ class TerminalActivity : RobokActivity() {
 
         if (tmpDir.exists()) {
             tmpDir.deleteRecursively()
-            tmpDir.mkdirs()
-        } else {
-            tmpDir.mkdirs()
         }
+        tmpDir.mkdirs()
 
-        val env =
-            arrayOf(
-                "TMP_DIR=${tmpDir.absolutePath}",
-                "HOME=" + filesDir.absolutePath,
-                "PUBLIC_HOME=" + getExternalFilesDir(null)?.absolutePath,
-                "COLORTERM=truecolor",
-                "TERM=xterm-256color",
-            )
+        val env = arrayOf(
+            "TMP_DIR=${tmpDir.absolutePath}",
+            "HOME=${filesDir.absolutePath}",
+            "PUBLIC_HOME=${getExternalFilesDir(null)?.absolutePath}",
+            "COLORTERM=truecolor",
+            "TERM=xterm-256color"
+        )
 
         val shell = "/system/bin/sh"
         val sessionClient = RTerminalSessionClient(
-           onTextChange = {
-              binding.terminalView.onScreenUpdated()
-           }
+            onTextChange = { onScreenChanged() }
         )
         return TerminalSession(
             shell,
@@ -118,12 +132,7 @@ class TerminalActivity : RobokActivity() {
             arrayOf(""),
             env,
             TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-            sessionClient,
+            sessionClient
         )
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
     }
 }
