@@ -16,7 +16,10 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-
+        
+      - name: List all files in repo
+        run: ls
+      
       - name: notify telegram
         uses: EverythingSuckz/github-telegram-notify@main
         continue-on-error: true
