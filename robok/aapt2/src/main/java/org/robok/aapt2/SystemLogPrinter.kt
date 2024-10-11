@@ -24,7 +24,8 @@ import org.robok.aapt2.logger.Logger
 import org.robok.aapt2.util.FileUtil
 
 object SystemLogPrinter {
-
+    
+    @JvmStatic
     fun start(glbContext: Context, logger: Logger) {
         // Reset the log file
         FileUtil.writeFile("${glbContext.getExternalFilesDir(null)}/logs.txt", "")
