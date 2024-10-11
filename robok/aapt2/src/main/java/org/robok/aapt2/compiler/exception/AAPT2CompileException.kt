@@ -17,4 +17,4 @@ package org.robok.aapt2.compiler.exception
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-class AAPT2CompileException(private val message: String) : CompilerException(message)
+open class AAPT2CompileException(private val message: String) : CompilerException(message)
