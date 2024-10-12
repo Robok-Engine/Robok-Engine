@@ -24,38 +24,38 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
 import org.robok.engine.core.components.radio.IntRadioController
 import org.robok.engine.strings.Strings
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobokChoiceDialog(
-    visivel: Boolean,
-    titulo: @Composable () -> Unit,
-    padrao: Int,
-    opcoes: List<Int>,
-    fabricaDeLabel: (Int) -> String,
-    opcoesExcluidas: List<Int>,
-    aoSolicitarFechamento: () -> Unit,
-    aoEscolher: (Int) -> Unit,
+    visible: Boolean,
+    title: @Composable () -> Unit,
+    default: Int,
+    options: List<Int>,
+    labelFactory: (Int) -> String,
+    excludedOptions: List<Int>,
+    onRequestClose: () -> Unit,
+    onChoice: (Int) -> Unit,
 ) {
-    var opcaoTemporariaSelecionada by remember { mutableStateOf(padrao) }
-    val estadoBtmSheet = rememberModalBottomSheetState()
-    val escopoBtmSheet = rememberCoroutineScope()
+    var tempSelectedOption by remember { mutableStateOf(default) }
+    val btmSheetState = rememberModalBottomSheetState()
+    val btmSheetScope = rememberCoroutineScope()
 
-    if (visivel) {
+    if (visible) {
         ModalBottomSheet(
-            onDismissRequest = { aoSolicitarFechamento() },
-            sheetState = estadoBtmSheet,
+            onDismissRequest = { onRequestClose() },
+            sheetState = btmSheetState,
         ) {
             BottomSheetContent(
-                title = titulo,
+                title = title,
                 buttons = {
                     OutlinedButton(
                         onClick = {
-                            escopoBtmSheet.launch {
-                                estadoBtmSheet.hide()
-                                aoSolicitarFechamento()
+                            btmSheetScope.launch {
+                                btmSheetState.hide()
+                                onRequestClose()
                             }
                         }
                     ) {
@@ -63,10 +63,10 @@ fun RobokChoiceDialog(
                     }
                     Button(
                         onClick = {
-                            escopoBtmSheet.launch {
-                                estadoBtmSheet.hide()
-                                aoEscolher(opcaoTemporariaSelecionada)
-                                aoSolicitarFechamento()
+                            btmSheetScope.launch {
+                                btmSheetState.hide()
+                                onChoice(tempSelectedOption)
+                                onRequestClose()
                             }
                         }
                     ) {
@@ -75,11 +75,11 @@ fun RobokChoiceDialog(
                 },
             ) {
                 IntRadioController(
-                    default = opcaoTemporariaSelecionada,
-                    options = opcoes,
-                    excludedOptions = opcoesExcluidas,
-                    labelFactory = fabricaDeLabel,
-                    onChoiceSelected = { opcaoSelecionada -> opcaoTemporariaSelecionada = opcaoSelecionada },
+                    default = tempSelectedOption,
+                    options = options,
+                    excludedOptions = excludedOptions,
+                    labelFactory = labelFactory,
+                    onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
                 )
             }
         }
