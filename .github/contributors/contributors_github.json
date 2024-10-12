@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 921,
+    "contributions": 923,
     "role": "Founder"
   },
   {
@@ -304,7 +304,7 @@
     "received_events_url": "https://api.github.com/users/Yamenher/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1,
+    "contributions": 5,
     "role": "Translation"
   }
 ]

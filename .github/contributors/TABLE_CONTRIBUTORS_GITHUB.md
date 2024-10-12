@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 921 | Founder |
+| trindadedev13 | 923 | Founder |
 | ThDev-only | 199 | Founder |
 | renovate[bot] | 124 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -13,4 +13,4 @@
 | Xori71 | 1 | Translation |
 | weblate | 1 | Bot |
 | itsvks19 | 3 | Contributor |
-| Yamenher | 1 | Translation |
+| Yamenher | 5 | Translation |
