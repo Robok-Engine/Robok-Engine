@@ -28,10 +28,11 @@ jobs:
           echo "VERSION_NAME=$version_name" >> $GITHUB_ENV
           echo "VERSION_CODE=$version_code" >> $GITHUB_ENV
 
-      - name: Update app/build.gradle.kts with new app_version and version code
+      - name: Update app/build.gradle.kts & app-strings/build.gradle.kts with new app_version and version code
         run: |
           echo "Updating app_version to ${{ env.VERSION_NAME }} and versionCode to ${{ env.VERSION_CODE }}"
           sed -i "s/app_version = \"[^\"]*\"/app_version = \"${{ env.VERSION_NAME }}\"/g" app/build.gradle.kts
+          sed -i "s/app_version = \"[^\"]*\"/app_version = \"${{ env.VERSION_NAME }}\"/g" app-strings/build.gradle.kts
           sed -i "s/versionCode = [0-9]\+/versionCode = ${{ env.VERSION_CODE }}/g" app/build.gradle.kts 
 
       - name: Open pull request
