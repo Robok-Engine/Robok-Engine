@@ -63,7 +63,7 @@ fun ManageProjectsScreen() {
             projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
         }
     }
-    Screen(label = stringResource(id = Strings.title_projects), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.title_projects)) {
         PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
             if (projects.isEmpty().not()) {
                 projects.forEach { project -> ProjectItem(projectFile = project) }

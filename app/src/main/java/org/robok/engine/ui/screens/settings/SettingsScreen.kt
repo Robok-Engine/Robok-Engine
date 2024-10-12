@@ -36,7 +36,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun SettingsScreen() {
     val navController = LocalMainNavController.current
-    Screen(label = stringResource(id = Strings.common_word_settings), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.common_word_settings)) {
         GeneralPreferences(navController)
         BuildPreferences(navController)
         AboutPreferences(navController)

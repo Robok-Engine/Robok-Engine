@@ -37,8 +37,7 @@ fun SettingsCodeEditorScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     Screen(
-        label = stringResource(id = Strings.settings_code_editor_title),
-        backArrowVisible = true,
+        label = stringResource(id = Strings.settings_code_editor_title)
     ) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
             appearancePrefs(appPrefsViewModel)

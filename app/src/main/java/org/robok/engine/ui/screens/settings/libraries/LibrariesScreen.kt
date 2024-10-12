@@ -40,7 +40,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun LibrariesScreen() {
     val context = LocalContext.current
-    Screen(label = stringResource(id = Strings.settings_libraries_title), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.settings_libraries_title)) {
         PreferenceGroup { librariesScreen(context) }
     }
 }

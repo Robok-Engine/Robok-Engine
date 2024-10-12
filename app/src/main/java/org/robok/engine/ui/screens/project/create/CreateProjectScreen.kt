@@ -72,7 +72,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         viewModel.updatePackageName(template.packageName)
     }
 
-    Screen(label = stringResource(id = Strings.title_create_project), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.title_create_project)) {
         PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
             Screen(state = state, viewModel = viewModel, template = template, context = context)
         }

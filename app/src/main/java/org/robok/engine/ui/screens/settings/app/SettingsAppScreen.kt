@@ -34,7 +34,7 @@ import org.robok.engine.strings.Strings
 @Composable
 fun SettingsAppScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    Screen(label = stringResource(id = Strings.settings_app_title), backArrowVisible = true) {
+    Screen(label = stringResource(id = Strings.settings_app_title)) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
             appearancePrefs(appPrefsViewModel)
         }
