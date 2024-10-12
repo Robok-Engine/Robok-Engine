@@ -25,6 +25,9 @@ import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
+import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
+import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
@@ -32,12 +35,16 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 const val APP_PREFERENCES = "app_preferences"
 
 val appModule = module {
-    singleOf(::AppPreferencesRepository)
-    viewModelOf(::AppPreferencesViewModel)
+    viewModelOf(::CreateProjectViewModel)
+    viewModelOf(::ManageProjectsViewModel)
+    viewModelOf(::EditorViewModel)
     viewModel { (context: Context) -> SettingsRDKViewModel(context) }
 }
 
 val appPreferencesModule = module {
+    singleOf(::AppPreferencesRepository)
+    viewModelOf(::AppPreferencesViewModel)
+    
     single {
         PreferenceDataStoreFactory.create {
             androidContext().preferencesDataStoreFile(APP_PREFERENCES)
