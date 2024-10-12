@@ -45,7 +45,6 @@ public class XMLViewerActivity extends AppCompatActivity {
         binding = ActivityXmlViewerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        setupRecyclerView();
         clearResources();
 
         List<TreeNode> nodes = new ArrayList<>();
@@ -53,19 +52,12 @@ public class XMLViewerActivity extends AppCompatActivity {
 
         try {
             parseXmlAndBuildTree(nodes, treeNodeStack);
-            loadViewTree(nodes);
         } catch (Exception e) {
             e.printStackTrace();
         }
 
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
-    }
-
-    private void setupRecyclerView() {
-        RecyclerView rv = findViewById(R.id.err_list);
-        rv.setAdapter(new ErrorMessageAdapter());
-        rv.setLayoutManager(new LinearLayoutManager(this));
     }
 
     private void clearResources() {
@@ -124,41 +116,7 @@ public class XMLViewerActivity extends AppCompatActivity {
             })
             .parse(getIntent().getStringExtra("xml"));
     }
-
-    private void loadViewTree(List<TreeNode> nodes) {
-        RecyclerView rv = findViewById(R.id.view_tree);
-        rv.setLayoutManager(new LinearLayoutManager(this));
-
-        TreeViewAdapter adapter = new TreeViewAdapter(nodes, Collections.singletonList(new ViewNodeBinder()));
-        adapter.setPadding((int) Utils.dp2px(this, 16));
-        adapter.setOnTreeNodeListener(new TreeViewAdapter.OnTreeNodeListener() {
-            @Override
-            public boolean onLongClick(TreeNode node, RecyclerView.ViewHolder holder) {
-                ViewBean viewBean = (ViewBean) node.getContent();
-                // Handle long click logic here
-                return true;
-            }
-
-            @Override
-            public boolean onClick(TreeNode node, RecyclerView.ViewHolder holder) {
-                ViewBean type = (ViewBean) node.getContent();
-                if (type.isViewGroup()) {
-                    onToggle(!node.isExpand(), holder);
-                }
-                return false;
-            }
-
-            @Override
-            public void onToggle(boolean isExpand, RecyclerView.ViewHolder holder) {
-                ViewNodeBinder.ViewHolder dirViewHolder = (ViewNodeBinder.ViewHolder) holder;
-                ImageView ivArrow = dirViewHolder.arrow;
-                int rotateDegree = isExpand ? 90 : -90;
-                ivArrow.animate().rotationBy(rotateDegree).start();
-            }
-        });
-        rv.setAdapter(adapter);
-    }
-
+    
     private void setupOutlineClickListener(final List<TreeNode> nodes) {
         binding.xmlViewer.setOutlineClickListener(new OutlineView.OnOutlineClickListener() {
             @Override
