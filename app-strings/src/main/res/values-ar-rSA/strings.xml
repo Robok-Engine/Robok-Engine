@@ -79,13 +79,13 @@
     <string name="warning_storage_perm_title">إذن التخزين</string>
     <string name="warning_storage_perm_message">يحتاج روبوك إلى إذن التخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
     <string name="warning_all_files_perm_message">في Android 11+، لكي يعمل Robok بشكل صحيح، فإنه يحتاج إلى إذن للوصول إلى جميع الملفات.</string>
-    <string name="warning_project_created_title">Project Created Successfully!</string>
-    <string name="warning_project_created_message">Your project has been created successfully!</string>
+    <string name="warning_project_created_title">أنشأ المشروع بنجاح!</string>
+    <string name="warning_project_created_message">لقد أنشأ مشروعك بنجاح!</string>
     <!-- end section -->
     
     <!-- errors section -->
     <string name="error_storage_perm_title">خطا في السماح بالتخزين</string>
-    <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل روبوك</string>
+    <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل Robok.</string>
     <string name="error_invalid_name">إسم غير صالح</string>
     <string name="error_load_fail">خطأ في التحميل.</string>
     <!-- end section -->
@@ -93,7 +93,7 @@
     <!-- terminal section -->
     <string name="terminal_options">خيارات</string>
     <string name="terminal_install_package">تثبيت الحزمة</string>
-    <string name="terminal_install_package_hint">أكتب اسم الحزمة </string>
+    <string name="terminal_install_package_hint">اكتب اسم الحزمة</string>
     <string name="terminal_update_packages">تحديث الحزمات</string>
     <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
     <!-- end section -->
@@ -103,8 +103,8 @@
     <string name="text_seeus">تابعنا على </string>
     <string name="item_telegram_title">تلجرام</string>
     <string name="item_telegram_description">مجتمع تلجرام الخاص بنا</string>
-    <string name="item_github_title">جيتهب</string>
-    <string name="item_github_description">مستودع الجيتهب</string>
+    <string name="item_github_title">Github</string>
+    <string name="item_github_description">مستودع GitHub</string>
     <string name="text_contributors">المساهمون</string>
     <string name="item_contribute_title">ساهم</string>
     <string name="item_contribute_description">تعرف كيف تساهم معنا</string>
@@ -114,7 +114,7 @@
 <string name="title_templates">قوالب</string>
     <string name="template_name_empty_game">لعبة فارغة</string>
     <string name="item_whatsapp_title">واتساب</string>
-    <string name="item_whatsapp_description">او مجموعة الواتس اب .</string>
+    <string name="item_whatsapp_description">مجموعة الواتس اب الخاصة بنا.</string>
     <string name="common_word_close">غلق</string>
     <string name="common_word_close_all">غلق الكل</string>
     <string name="common_word_close_others">غلق الآخرين</string>
@@ -131,4 +131,7 @@
     <string name="text_basic_info">معلومات أساسية</string>
     <string name="text_error_info">تفاصيل الخطأ</string>
     <string name="text_no_files_open">لا ملفات مفتوحة.</string>
+    <string name="warning_project_installer_not_found">لم يتم العثور على أي مثبت حزم.</string>
+    <string name="warning_file_already_opened">الملف مفتوح بالفعل في المحرر.</string>
+    <string name="warning_no_projects">لا مشاريع.</string>
 </resources>
