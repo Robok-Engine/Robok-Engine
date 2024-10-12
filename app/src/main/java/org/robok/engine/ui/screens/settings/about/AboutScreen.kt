@@ -56,7 +56,8 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.feature.settings.R
+import org.robok.engine.Mipmaps
+import org.robok.engine.Drawables
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
@@ -83,19 +84,19 @@ fun AboutScreen(version: String) {
             Link(
                 name = stringResource(id = Strings.item_github_title),
                 description = stringResource(id = Strings.item_github_description),
-                imageResId = R.drawable.ic_github_24,
+                imageResId = Drawables.ic_github_24,
                 url = stringResource(id = Strings.link_github),
             ),
             Link(
                 name = stringResource(id = Strings.item_telegram_title),
                 description = stringResource(id = Strings.item_telegram_description),
-                imageResId = R.drawable.ic_send_24,
+                imageResId = Drawables.ic_send_24,
                 url = stringResource(id = Strings.link_telegram),
             ),
             Link(
                 name = stringResource(id = Strings.item_whatsapp_title),
                 description = stringResource(id = Strings.item_whatsapp_description),
-                imageResId = R.drawable.ic_whatsapp_24,
+                imageResId = Drawables.ic_whatsapp_24,
                 url = stringResource(id = Strings.link_whatsapp),
             ),
         )
@@ -110,7 +111,7 @@ fun AboutScreen(version: String) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
-                painter = painterResource(id = R.drawable.ic_launcher),
+                painter = painterResource(id = Mipmaps.ic_launcher),
                 contentDescription = null,
                 modifier = Modifier.size(72.dp).clip(CircleShape),
             )
