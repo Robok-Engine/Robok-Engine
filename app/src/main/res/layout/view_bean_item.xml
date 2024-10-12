@@ -23,7 +23,6 @@
         android:layout_marginStart="5dp"
         android:drawablePadding="5dp"
         android:gravity="center_vertical"
-        android:textColor="#000000"
         android:textSize="18sp" />
 
     <TextView
