@@ -23,44 +23,65 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.robok.engine.core.components.dialog.RobokDialog
+import kotlinx.coroutines.launch
+import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
 import org.robok.engine.core.components.radio.IntRadioController
 import org.robok.engine.strings.Strings
 
 @Composable
 fun RobokChoiceDialog(
-    visible: Boolean,
-    title: @Composable () -> Unit,
-    default: Int,
-    options: List<Int>,
-    labelFactory: (Int) -> String,
-    excludedOptions: List<Int>,
-    onRequestClose: () -> Unit,
-    onChoice: (Int) -> Unit,
+    visivel: Boolean,
+    titulo: @Composable () -> Unit,
+    padrao: Int,
+    opcoes: List<Int>,
+    fabricaDeLabel: (Int) -> String,
+    opcoesExcluidas: List<Int>,
+    aoSolicitarFechamento: () -> Unit,
+    aoEscolher: (Int) -> Unit,
 ) {
-    var tempSelectedOption by remember { mutableStateOf(default) }
+    var opcaoTemporariaSelecionada by remember { mutableStateOf(padrao) }
+    val estadoBtmSheet = rememberModalBottomSheetState()
+    val escopoBtmSheet = rememberCoroutineScope()
 
-    if (visible) {
-        RobokDialog(
-            onDismissRequest = { onRequestClose() },
-            onConfirmation = {
-                onChoice(tempSelectedOption)
-                onRequestClose()
-            },
-            title = title,
-            text = {
-                Column(modifier = Modifier.padding(4.dp)) {
-                    IntRadioController(
-                        default = tempSelectedOption,
-                        options = options,
-                        excludedOptions = excludedOptions,
-                        labelFactory = labelFactory,
-                        onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
-                    )
-                }
-            },
-            confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
-            dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
-        )
+    if (visivel) {
+        ModalBottomSheet(
+            onDismissRequest = { aoSolicitarFechamento() },
+            sheetState = estadoBtmSheet,
+        ) {
+            BottomSheetContent(
+                title = titulo,
+                buttons = {
+                    OutlinedButton(
+                        onClick = {
+                            escopoBtmSheet.launch {
+                                estadoBtmSheet.hide()
+                                aoSolicitarFechamento()
+                            }
+                        }
+                    ) {
+                        Text(stringResource(id = Strings.common_word_cancel))
+                    }
+                    Button(
+                        onClick = {
+                            escopoBtmSheet.launch {
+                                estadoBtmSheet.hide()
+                                aoEscolher(opcaoTemporariaSelecionada)
+                                aoSolicitarFechamento()
+                            }
+                        }
+                    ) {
+                        Text(stringResource(id = Strings.common_word_save))
+                    }
+                },
+            ) {
+                IntRadioController(
+                    default = opcaoTemporariaSelecionada,
+                    options = opcoes,
+                    excludedOptions = opcoesExcluidas,
+                    labelFactory = fabricaDeLabel,
+                    onChoiceSelected = { opcaoSelecionada -> opcaoTemporariaSelecionada = opcaoSelecionada },
+                )
+            }
+        }
     }
 }
