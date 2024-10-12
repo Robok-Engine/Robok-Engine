@@ -3,6 +3,8 @@ plugins {
     alias(libs.plugins.kotlin)
 }
 
+val app_version = "0.0.1"
+
 android {
     namespace = "org.robok.engine.strings"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
