@@ -18,6 +18,8 @@ package org.robok.engine.ui.activities
  */
 
 import android.os.Bundle
+import android.view.Window
+import android.graphics.Color.BLACK
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -25,7 +27,9 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
+import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
+import org.robok.engine.res.ResUtils
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.ui.activities.base.RobokActivity
@@ -51,5 +55,22 @@ class MainActivity : RobokActivity() {
         val navController = rememberNavController()
 
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
+    }
+    
+    // reset phone bars colors
+    override fun onBackPressed() {
+        val window: Window = window
+        val res = ResUtils(this@MainActivity)
+        
+        val statusBarColor = window.statusBarColor
+        val navigationBarColor = window.navigationBarColor
+
+        val colorSurface = res.getAttrColor(com.google.android.material.R.attr.colorSurface)
+
+        if (statusBarColor == BLACK && navigationBarColor == BLACK) {
+            window.statusBarColor = colorSurface
+            window.navigationBarColor = colorSurface
+        }
+        super.onBackPressed()
     }
 }
