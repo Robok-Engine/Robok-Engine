@@ -46,6 +46,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
+import org.koin.androidx.compose.koinViewModel
+import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
@@ -56,15 +58,13 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
-import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModelFactory
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
     val context = LocalContext.current
 
     val projectManager = ProjectManager(context)
-    val viewModel: CreateProjectViewModel =
-        viewModel(factory = CreateProjectViewModelFactory(projectManager))
+    val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
     val state = viewModel.state
 
     LaunchedEffect(template) {

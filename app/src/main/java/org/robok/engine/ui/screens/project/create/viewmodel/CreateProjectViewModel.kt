@@ -74,14 +74,3 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
         }
     }
 }
-
-class CreateProjectViewModelFactory(private val projectManager: ProjectManager) :
-    ViewModelProvider.Factory {
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(CreateProjectViewModel::class.java)) {
-            @Suppress("UNCHECKED_CAST")
-            return CreateProjectViewModel(projectManager) as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class")
-    }
-}

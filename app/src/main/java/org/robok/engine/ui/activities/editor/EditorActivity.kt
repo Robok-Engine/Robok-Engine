@@ -38,6 +38,7 @@ import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
+import org.koin.android.ext.android.getKoin
 import org.robok.aapt2.compiler.CompilerTask
 import org.robok.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
@@ -80,13 +81,16 @@ class EditorActivity :
     private val diagnosticStandTime: Long = 800
 
     private lateinit var antlrListener: AntlrListener
-    private val editorViewModel by viewModels<EditorViewModel>()
-
+    
+    private lateinit var editorViewModel: EditorViewModel
+    
     override fun onCreate(savedInstanceState: Bundle?) {
         isEdgeToEdge = false
         super.onCreate(savedInstanceState)
         _binding = ActivityEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        
+        editorViewModel = getKoin().get()
 
         val extras = intent.extras
         if (extras != null) {

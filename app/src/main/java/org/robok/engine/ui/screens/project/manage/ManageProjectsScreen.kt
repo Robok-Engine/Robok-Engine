@@ -42,6 +42,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
@@ -55,7 +56,7 @@ val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projec
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManageProjectsScreen() {
-    val projectViewModel: ManageProjectsViewModel = viewModel()
+    val projectViewModel = koinViewModel<ManageProjectsViewModel>()
     val projects by projectViewModel.projects.collectAsState()
 
     LaunchedEffect(Unit) {
