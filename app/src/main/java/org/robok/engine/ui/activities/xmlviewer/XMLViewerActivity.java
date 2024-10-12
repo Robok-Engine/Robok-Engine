@@ -34,7 +34,7 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewNodeBinder;
 import org.robok.engine.feature.xmlviewer.TreeNode;
 import org.robok.engine.feature.xmlviewer.TreeViewAdapter;
 
-public class ViewActivity extends AppCompatActivity {
+public class XMLViewerActivity extends AppCompatActivity {
     private boolean isEditMode = true;
     
     private ActivityXmlViewerBinding binding;

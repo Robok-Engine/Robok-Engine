@@ -158,6 +158,7 @@ dependencies {
     implementation(project(":feature:treeview"))
     implementation(project(":feature:editor"))
     implementation(project(":feature:modeling"))
+    implementation(project(":feature:xmlviewer"))
     
     implementation(project(":core:templates"))
     implementation(project(":core:components"))
