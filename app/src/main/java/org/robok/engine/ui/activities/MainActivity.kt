@@ -20,6 +20,7 @@ package org.robok.engine.ui.activities
 import android.os.Bundle
 import android.view.Window
 import android.graphics.Color.BLACK
+import android.graphics.Color.TRANSPARENT
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
@@ -67,11 +68,11 @@ class MainActivity : RobokActivity() {
             val statusBarColor = window.statusBarColor
             val navigationBarColor = window.navigationBarColor
 
-            val colorSurface = res.getAttrColor(com.google.android.material.R.attr.colorSurface)
-
+            val resetColor = TRANSPARENT
+            
             if (statusBarColor == BLACK && navigationBarColor == BLACK) {
-                window.statusBarColor = colorSurface
-                window.navigationBarColor = colorSurface
+                window.statusBarColor = resetColor
+                window.navigationBarColor = resetColor
             }
             isEnabled = true
             onBackPressedDispatcher.onBackPressed()
