@@ -60,7 +60,7 @@ class MainActivity : RobokActivity() {
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
     }
     
-    private val backPressedCallback = object : OnBackPressedCallback(enabled = false) {
+    private val backPressedCallback = object : OnBackPressedCallback(enabled = true) {
         override fun handleOnBackPressed() {
             val window: Window = window
             val res = ResUtils(this@MainActivity)
@@ -74,7 +74,7 @@ class MainActivity : RobokActivity() {
                 window.statusBarColor = resetColor
                 window.navigationBarColor = resetColor
             }
-            isEnabled = true
+            isEnabled = false
             onBackPressedDispatcher.onBackPressed()
         }
     }
