@@ -20,6 +20,7 @@ package org.robok.engine.ui.activities
 import android.os.Bundle
 import android.view.Window
 import android.graphics.Color.BLACK
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -38,6 +39,7 @@ import org.robok.engine.ui.theme.RobokTheme
 class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        onBackPressedDispatcher.addCallback(backPressedCallback)
         setContent {
             RobokTheme {
                 Surface(
@@ -57,20 +59,22 @@ class MainActivity : RobokActivity() {
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
     }
     
-    // reset phone bars colors
-    override fun onBackPressed() {
-        val window: Window = window
-        val res = ResUtils(this@MainActivity)
-        
-        val statusBarColor = window.statusBarColor
-        val navigationBarColor = window.navigationBarColor
+    private val backPressedCallback = object : OnBackPressedCallback(enabled = false) {
+        override fun handleOnBackPressed() {
+            val window: Window = window
+            val res = ResUtils(this@MainActivity)
+            
+            val statusBarColor = window.statusBarColor
+            val navigationBarColor = window.navigationBarColor
 
-        val colorSurface = res.getAttrColor(com.google.android.material.R.attr.colorSurface)
+            val colorSurface = res.getAttrColor(com.google.android.material.R.attr.colorSurface)
 
-        if (statusBarColor == BLACK && navigationBarColor == BLACK) {
-            window.statusBarColor = colorSurface
-            window.navigationBarColor = colorSurface
+            if (statusBarColor == BLACK && navigationBarColor == BLACK) {
+                window.statusBarColor = colorSurface
+                window.navigationBarColor = colorSurface
+            }
+            isEnabled = true
+            onBackPressedDispatcher.onBackPressed()
         }
-        super.onBackPressed()
     }
 }
