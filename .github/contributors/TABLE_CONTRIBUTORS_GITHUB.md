@@ -13,3 +13,4 @@
 | Xori71 | 1 | Translation |
 | weblate | 1 | Bot |
 | itsvks19 | 3 | Contributor |
+| Yamenher | 1 | N/A |
