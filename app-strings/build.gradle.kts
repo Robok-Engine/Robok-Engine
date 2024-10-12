@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.kotlin)
 }
 
-val app_version = "0.0.1"
+val app_version = "2.0.0"
 
 android {
     namespace = "org.robok.engine.strings"
