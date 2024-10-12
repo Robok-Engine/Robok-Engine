@@ -42,7 +42,7 @@ fun TerminalScreen(path: String? = null) {
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
-    Column(Modifier.padding(top = 40.dp).background(Color.Black) { TerminalView() }
+    Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
 }
 
 @Composable
