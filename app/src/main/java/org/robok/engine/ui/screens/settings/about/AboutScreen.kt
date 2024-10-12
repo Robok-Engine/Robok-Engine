@@ -56,7 +56,6 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.Mipmaps
 import org.robok.engine.Drawables
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
@@ -111,7 +110,7 @@ fun AboutScreen(version: String) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
-                painter = painterResource(id = Mipmaps.ic_launcher_png),
+                painter = painterResource(id = Drawables.ic_launcher),
                 contentDescription = null,
                 modifier = Modifier.size(72.dp).clip(CircleShape),
             )
