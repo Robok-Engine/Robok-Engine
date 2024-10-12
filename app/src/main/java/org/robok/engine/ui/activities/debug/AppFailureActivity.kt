@@ -38,7 +38,7 @@ import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.theme.RobokTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
-class DebugActivity : RobokActivity() {
+class AppFailureActivity : RobokActivity() {
 
     private val exceptionType =
         listOf(

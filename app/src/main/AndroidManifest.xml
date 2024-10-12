@@ -42,7 +42,7 @@
             android:windowSoftInputMode="adjustResize"/>
         
         <activity
-            android:name="org.robok.engine.ui.activities.debug.DebugActivity"
+            android:name="org.robok.engine.ui.activities.debug.AppFailureActivity"
             android:exported="true" />
             
         <activity

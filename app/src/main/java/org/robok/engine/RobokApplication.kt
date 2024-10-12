@@ -32,7 +32,7 @@ import org.koin.core.context.startKoin
 import org.robok.engine.di.appModule
 import org.robok.engine.di.appPreferencesModule
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
-import org.robok.engine.ui.activities.debug.DebugActivity
+import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
  * A Class for basic application management.
@@ -63,7 +63,7 @@ class RobokApplication : Application() {
     fun configureCrashHandler() {
         Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
             val intent =
-                Intent(applicationContext, DebugActivity::class.java).apply {
+                Intent(applicationContext, AppFailureActivity::class.java).apply {
                     flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                     putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
                 }
