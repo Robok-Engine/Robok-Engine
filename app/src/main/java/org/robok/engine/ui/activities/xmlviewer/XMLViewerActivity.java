@@ -140,7 +140,7 @@ public class XMLViewerActivity extends AppCompatActivity {
                         for (ViewBean.ViewInfo info : bean.getInfoList()) {
                             sb.append(info.getAttributeName()).append("=").append(info.getAttributeValue()).append("\n");
                         }
-                        new AlertDialog.Builder(ViewActivity.this)
+                        new AlertDialog.Builder(XMLViewerActivity.this)
                             .setMessage(sb)
                             .show();
                     }
