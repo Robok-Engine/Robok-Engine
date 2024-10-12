@@ -62,14 +62,14 @@
     <string name="settings_build_title">بناء</string>
     <string name="settings_formatting_title">Formatting</string>
     <string name="settings_appearance_title">Appearance</string>
-    <string name="settings_general_title">General</string>
+    <string name="settings_general_title">عام</string>
     <!-- end section -->
     
     <!-- texts section -->
     <string name="text_diagnostic">التشخيص</string>
     <string name="text_logs">السجل</string>
-    <string name="text_error_details">Error details:</string>
-    <string name="text_bold">Bold</string>
+    <string name="text_error_details">تفاصيل الخطأ :</string>
+    <string name="text_bold">سميك</string>
     <string name="text_monospace">Monospace</string>
     <string name="text_serif">Serif</string>
     <string name="text_sans_serif">Sans-Serif</string>
@@ -118,4 +118,11 @@
     <string name="common_word_close">غلق</string>
     <string name="common_word_close_all">غلق الكل</string>
     <string name="common_word_close_others">غلق الآخرين</string>
+    <string name="settings_app_title">اعدادات التطبيق</string>
+    <string name="settings_app_use_monet_title">الألوان الديناميكية</string>
+    <string name="title_un_error_ocurred">لقد حدث خطأ</string>
+    <string name="settings_app_use_monet_description">إستخدام سمة الجاهز في التطبيق.</string>
+    <string name="settings_app_description">بعض الإعدادات المرتبطة بالتطبيق.</string>
+    <string name="title_projects">المشاريع</string>
+    <string name="title_your_projects">مشاريعك</string>
 </resources>
