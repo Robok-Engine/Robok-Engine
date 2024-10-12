@@ -55,20 +55,10 @@ android {
         getByName("release") {
             isMinifyEnabled = true
             proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-            resValue("string", "app_name", "Robok")
-            resValue("string", "app_version", app_version)
-            resValue("string", "GIT_COMMIT_HASH", getGitHash())
-            resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
-            resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
         getByName("debug") {
             applicationIdSuffix = ".debug"
             versionNameSuffix = "@${getShortGitHash()}"
-            resValue("string", "app_name", "Robok Debug")
-            resValue("string", "app_version", app_version)
-            resValue("string", "GIT_COMMIT_HASH", getGitHash())
-            resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
-            resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
     }
 
