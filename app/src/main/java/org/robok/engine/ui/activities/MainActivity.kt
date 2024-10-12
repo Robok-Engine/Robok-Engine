@@ -21,7 +21,6 @@ import android.os.Bundle
 import android.view.Window
 import android.graphics.Color.BLACK
 import android.graphics.Color.TRANSPARENT
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -60,22 +59,20 @@ class MainActivity : RobokActivity() {
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
     }
     
-    private val backPressedCallback = object : OnBackPressedCallback(enabled = true) {
-        override fun handleOnBackPressed() {
-            val window: Window = window
-            val res = ResUtils(this@MainActivity)
+    @Suppress("DEPRECATION")
+    override fun onBackPressed () {
+        val window: Window = window
+        val res = ResUtils(this@MainActivity)
             
-            val statusBarColor = window.statusBarColor
-            val navigationBarColor = window.navigationBarColor
-
-            val resetColor = TRANSPARENT
+        val statusBarColor = window.statusBarColor
+        val navigationBarColor = window.navigationBarColor
+        
+        val resetColor = TRANSPARENT
             
-            if (statusBarColor == BLACK && navigationBarColor == BLACK) {
+        if (statusBarColor == BLACK && navigationBarColor == BLACK) {
                 window.statusBarColor = resetColor
-                window.navigationBarColor = resetColor
-            }
-            isEnabled = false
-            onBackPressedDispatcher.onBackPressed()
+               window.navigationBarColor = resetColor
         }
+        super.onBackPressed()
     }
 }
