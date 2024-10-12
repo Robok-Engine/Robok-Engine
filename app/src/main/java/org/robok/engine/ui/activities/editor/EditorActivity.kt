@@ -71,7 +71,7 @@ class EditorActivity :
     private lateinit var projectManager: ProjectManager
     private var projectPath: String? = null
     
-    private var diagnosticStatusDotProgress: DotProgressBar
+    private var diagnosticStatusDotProgress: DotProgressBar? = null
     
     private lateinit var diagnosticStatusImage: MenuItem? = null
     private lateinit var undo: MenuItem? = null
@@ -84,7 +84,7 @@ class EditorActivity :
     private val handler = Handler(Looper.getMainLooper())
     private val diagnosticTimeoutRunnable = Runnable {
         diagnosticStatusImage?.setIcon(Drawables.ic_success_24)
-        diagnosticStatusDotProgress.visibility = View.INVISIBLE
+        diagnosticStatusDotProgress?.visibility = View.INVISIBLE
         diagnosticStatusImage.isVisible = true
     }
 
@@ -255,7 +255,7 @@ class EditorActivity :
     }
 
     private fun configureToolbar() {
-        diagnosticStatusDotProgress.startAnimation()
+        diagnosticStatusDotProgress?.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
@@ -404,7 +404,7 @@ class EditorActivity :
                     } else {
                         diagnosticStatusImage?.setIcon(Drawables.ic_success_24)
                     }
-                    diagnosticStatusDotProgress.visibility = View.INVISIBLE
+                    diagnosticStatusDotProgress?.visibility = View.INVISIBLE
                     diagnosticStatusImage.isVisible = false
                 }
 
@@ -428,7 +428,7 @@ class EditorActivity :
                 override fun onEditorTextChange() {
                     updateUndoRedo()
                     
-                    diagnosticStatusDotProgress.visibility = View.VISIBLE
+                    diagnosticStatusDotProgress?.visibility = View.VISIBLE
                     diagnosticStatusImage.isVisible = false
 
                     handler.removeCallbacks(diagnosticTimeoutRunnable)
