@@ -40,10 +40,10 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Add
-import androidx.compose.material.icons.outlined.FolderOpen
-import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.FolderOpen
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Settings
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
@@ -129,10 +129,10 @@ fun HomeScreen() {
                 HomeCardItem(
                     icon =
                         when (index) {
-                            0 -> Icons.Outlined.Add
-                            1 -> Icons.Outlined.FolderOpen
-                            2 -> Icons.Outlined.Settings
-                            else -> Icons.Outlined.Info
+                            0 -> Icons.Rounded.Add
+                            1 -> Icons.Rounded.FolderOpen
+                            2 -> Icons.Rounded.Settings
+                            else -> Icons.Rounded.Info
                         },
                     title =
                         when (index) {

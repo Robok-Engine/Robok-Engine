@@ -18,7 +18,7 @@ package org.robok.engine.ui.screens.settings
  */
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.*
+import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
@@ -48,13 +48,13 @@ fun GeneralPreferences(navController: NavHostController) {
     PreferenceCategory(
         label = stringResource(id = Strings.settings_app_title),
         description = stringResource(id = Strings.settings_app_description),
-        icon = Icons.Outlined.Android,
+        icon = Icons.Rounded.Android,
         onClick = { navController.navigateSingleTop(route = SettingsAppRoute) },
     )
     PreferenceCategory(
         label = stringResource(id = Strings.settings_code_editor_title),
         description = stringResource(id = Strings.settings_code_editor_description),
-        icon = Icons.Outlined.Edit,
+        icon = Icons.Rounded.Edit,
         onClick = { navController.navigateSingleTop(route = SettingsCodeEditorRoute) },
     )
 }
@@ -64,7 +64,7 @@ fun BuildPreferences(navController: NavHostController) {
     PreferenceCategory(
         label = stringResource(id = Strings.settings_configure_rdk_title),
         description = stringResource(Strings.settings_configure_rdk_description),
-        icon = Icons.Outlined.DeveloperMode,
+        icon = Icons.Rounded.DeveloperMode,
         onClick = { navController.navigateSingleTop(route = SettingsRDKRoute) },
     )
 }
@@ -74,13 +74,13 @@ fun AboutPreferences(navController: NavHostController) {
     PreferenceCategory(
         label = stringResource(id = Strings.settings_libraries_title),
         description = stringResource(Strings.settings_libraries_description),
-        icon = Icons.Outlined.Book,
+        icon = Icons.Rounded.Book,
         onClick = { navController.navigateSingleTop(route = AboutLibrariesRoute) },
     )
     PreferenceCategory(
         label = stringResource(id = Strings.settings_about_title),
         description = stringResource(id = Strings.settings_about_description),
-        icon = Icons.Outlined.Info,
+        icon = Icons.Rounded.Info,
         onClick = { navController.navigateSingleTop(route = AboutRoute) },
     )
 }
