@@ -17,6 +17,7 @@ android {
             resValue("string", "app_name", "Robok")
             resValue("string", "app_version", app_version)
             resValue("string", "GIT_COMMIT_HASH", getGitHash())
+            resValue("string", "GIT_COMMIT_SHORT_HASH", getShortGitHash())
             resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
             resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
@@ -24,6 +25,7 @@ android {
             resValue("string", "app_name", "Robok Debug")
             resValue("string", "app_version", app_version)
             resValue("string", "GIT_COMMIT_HASH", getGitHash())
+            resValue("string", "GIT_COMMIT_SHORT_HASH", getShortGitHash())
             resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
             resValue("string", "GIT_COMMIT_BRANCH", getGitBranch())
         }
@@ -42,4 +44,24 @@ android {
 dependencies { 
     implementation(libs.material)
     implementation(libs.appcompat)
+}
+
+fun execAndGetOutput(vararg command: String): String {
+    val stdout = ByteArrayOutputStream()
+    exec {
+        commandLine(*command)
+        standardOutput = stdout
+    }
+    return stdout.toString().trim()
+}
+
+fun getGitHash() = execAndGetOutput("git", "rev-parse", "HEAD")
+
+fun getShortGitHash() = execAndGetOutput("git", "rev-parse", "--short", "HEAD")
+
+fun getGitBranch() = execAndGetOutput("git", "rev-parse", "--abbrev-ref", "HEAD")
+
+fun getGitCommitAuthor(): String {
+    val author = execAndGetOutput("git", "log", "-1", "--pretty=format:%an")
+    return author.replace(Regex("[^\\p{L}\\p{N}\\s]"), "") // Remove special characters
 }

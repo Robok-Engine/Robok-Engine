@@ -166,13 +166,4 @@ fun execAndGetOutput(vararg command: String): String {
     return stdout.toString().trim()
 }
 
-fun getGitHash() = execAndGetOutput("git", "rev-parse", "HEAD")
-
 fun getShortGitHash() = execAndGetOutput("git", "rev-parse", "--short", "HEAD")
-
-fun getGitBranch() = execAndGetOutput("git", "rev-parse", "--abbrev-ref", "HEAD")
-
-fun getGitCommitAuthor(): String {
-    val author = execAndGetOutput("git", "log", "-1", "--pretty=format:%an")
-    return author.replace(Regex("[^\\p{L}\\p{N}\\s]"), "") // Remove special characters
-}
