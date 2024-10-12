@@ -209,6 +209,7 @@ public class ViewActivity extends AppCompatActivity {
         super.onBackPressed();
     }
 
+    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
          if (item.getItemId() == R.id.display_view) {
@@ -234,4 +235,5 @@ public class ViewActivity extends AppCompatActivity {
         });
         return true;
     }
+    */
 }
