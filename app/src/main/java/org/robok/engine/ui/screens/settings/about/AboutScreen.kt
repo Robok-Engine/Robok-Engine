@@ -111,7 +111,7 @@ fun AboutScreen(version: String) {
             horizontalAlignment = Alignment.CenterHorizontally,
         ) {
             Image(
-                painter = painterResource(id = Mipmaps.ic_launcher),
+                painter = painterResource(id = Mipmaps.ic_launcher_png),
                 contentDescription = null,
                 modifier = Modifier.size(72.dp).clip(CircleShape),
             )
