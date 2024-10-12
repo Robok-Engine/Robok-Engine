@@ -17,12 +17,14 @@ package org.robok.engine.ui.screens.terminal
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.graphics.*
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 import com.termux.view.TerminalView
@@ -40,7 +42,7 @@ fun TerminalScreen(path: String? = null) {
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
-    Column(Modifier.padding(top = 40.dp)) { TerminalView() }
+    Column(Modifier.padding(top = 40.dp).background(Color.Black) { TerminalView() }
 }
 
 @Composable
