@@ -43,7 +43,6 @@ class RobokApplication : Application() {
         // Do not place Android context classes in static fields (static reference to
         // RobokApplication which has field robokContext pointing to Context); this is a memory leak
         lateinit var instance: RobokApplication /* Instance of this class  */
-        lateinit var robokContext: Context /* A Context of this class */
         const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
     }
 
@@ -52,7 +51,6 @@ class RobokApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        robokContext = applicationContext
         configureKoin()
         configureCrashHandler()
     }
