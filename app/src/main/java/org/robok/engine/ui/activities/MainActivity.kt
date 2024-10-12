@@ -39,7 +39,6 @@ import org.robok.engine.ui.theme.RobokTheme
 class MainActivity : RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onBackPressedDispatcher.addCallback(backPressedCallback)
         setContent {
             RobokTheme {
                 Surface(
