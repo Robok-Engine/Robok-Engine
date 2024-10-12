@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.dialog.choice
+package org.robok.engine.core.components.dialog.sheet.choice
 
 /*
  *  This file is part of Robok © 2024.
@@ -25,11 +25,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.robok.engine.core.components.radio.IntRadioController
+import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RobokChoiceDialog(
+fun ChoiceBottomSheet(
     visible: Boolean,
     title: @Composable () -> Unit,
     default: Int,

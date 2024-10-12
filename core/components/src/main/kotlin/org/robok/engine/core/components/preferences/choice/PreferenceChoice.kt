@@ -30,7 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import org.robok.engine.core.components.dialog.choice.RobokChoiceDialog
+import org.robok.engine.core.components.dialog.sheet.choice.ChoiceBottomSheet
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 /**
@@ -81,7 +81,7 @@ fun PreferenceChoice(
     )
 
     if (opened) {
-        RobokChoiceDialog(
+        ChoiceBottomSheet(
             visible = opened,
             title = { Text(fontWeight = FontWeight.Bold, text = title) },
             default = pref,
