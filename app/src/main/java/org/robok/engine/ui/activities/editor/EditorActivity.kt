@@ -60,7 +60,6 @@ import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.core.components.progress.DotProgressBar
-import org.robok.engine.R
 import android.view.Menu
 import android.view.MenuItem
 import android.view.MenuInflater
@@ -115,18 +114,18 @@ class EditorActivity :
     }
     
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
-        diagnosticStatusImage = menu.findItem(R.id.diagnostic_status_image)
-        undo = menu.findItem(R.id.undo)
-        redo = menu.findItem(R.id.redo)
-        val menuDotProgress = menu.findItem(R.id.menu_dotprogress)
+        diagnosticStatusImage = menu.findItem(Ids.diagnostic_status_image)
+        undo = menu.findItem(Ids.undo)
+        redo = menu.findItem(Ids.redo)
+        val menuDotProgress = menu.findItem(Ids.menu_dotprogress)
         val view = menuDotProgress.actionView ?: return null
-        diagnosticStatusDotProgress = view.findViewById(R.id.diagnostic_status_dot_progress)
+        diagnosticStatusDotProgress = view.findViewById(Ids.diagnostic_status_dot_progress)
         return super.onCreateOptionsMenu(menu, inflater)
     }
     
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
-           R.id.diagnostic_status_image -> {
+           Ids.diagnostic_status_image -> {
                if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
                    binding.drawerLayout.closeDrawer(GravityCompat.END)
                } else {
@@ -135,17 +134,17 @@ class EditorActivity :
                binding.tabLayout.getTabAt(1)?.select()
                true
            }
-           R.id.undo -> {
+           Ids.undo -> {
                getCurrentEditor()?.undo()
                updateUndoRedo()
                true
            }
-           R.id.redo -> {
+           Ids.redo -> {
                getCurrentEditor()?.redo()
                updateUndoRedo()
                true
            }
-           R.id.run_button -> {
+           Ids.run_button -> {
                projectManager.build(this)
            }
            else ->
