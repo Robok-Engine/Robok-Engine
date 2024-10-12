@@ -19,7 +19,7 @@ package org.robok.engine.core.components.appbars
 import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.rounded.ArrowBack
+import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.LargeTopAppBar
 import androidx.compose.material3.Text
@@ -50,7 +50,7 @@ fun TopBar(
             navigationIcon = {
                 if (backArrowVisible) {
                     ClickableIcon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                         onClick = { backDispatcher?.onBackPressed() },
                     )
                 }
@@ -65,7 +65,7 @@ fun TopBar(
             navigationIcon = {
                 if (backArrowVisible) {
                     ClickableIcon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+                        imageVector = Icons.AutoMirrored.Outlined.ArrowBack,
                         onClick = { backDispatcher?.onBackPressed() },
                     )
                 }
