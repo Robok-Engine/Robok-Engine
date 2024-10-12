@@ -117,8 +117,7 @@ class XMLViewerActivity : AppCompatActivity() {
             override fun onClick(view: View, displayType: Int) {
                 if (isEditMode) {
                     findBeanByView(nodes, view)?.let { bean ->
-                        val message = bean.infoList.joinToString("
-") { "${it.attributeName}=${it.attributeValue}" }
+                        val message = bean.infoList.joinToString("") { "${it.attributeName}=${it.attributeValue}" }
                         AlertDialog.Builder(this@XMLViewerActivity)
                             .setMessage(message)
                             .show()
