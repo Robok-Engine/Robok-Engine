@@ -21,7 +21,7 @@ import android.content.Context
 import java.io.OutputStream
 import java.io.PrintStream
 import org.robok.aapt2.logger.Logger
-import org.robok.aapt2.util.FileUtil
+import org.robok.engine.core.utils.FileUtil
 
 object SystemLogPrinter {
     

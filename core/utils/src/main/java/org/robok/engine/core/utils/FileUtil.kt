@@ -28,14 +28,6 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import java.io.File
 
-fun getDefaultPath(): String {
-    return Environment.getExternalStorageDirectory().absolutePath
-}
-
-fun getDefaultPathFile(): File {
-    return Environment.getExternalStorageDirectory()
-}
-
 interface PermissionListener {
     fun onReceive(status: Boolean)
 }

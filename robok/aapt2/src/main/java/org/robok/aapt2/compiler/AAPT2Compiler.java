@@ -26,7 +26,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.robok.aapt2.compiler.exception.CompilerException;
-import org.robok.aapt2.util.FileUtil;
+import org.robok.engine.core.utils.FileUtil;
 import org.robok.aapt2.BinaryExecutor;
 import org.robok.aapt2.model.Project;
 import org.robok.aapt2.model.Library;

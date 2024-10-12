@@ -19,7 +19,7 @@ package org.robok.engine.core.utils
 
 /*
   Class to help with path management.
-  @author Rohit Kushvaha
+  @author Rohit Kushvaha, Aquiles Trindade.
 */
 
 import android.content.Context
@@ -173,4 +173,19 @@ object PathUtils {
         }
         return null
     }
+}
+
+
+/*
+* Return a String of externalDir
+*/
+fun getDefaultPath(): String {
+    return Environment.getExternalStorageDirectory().absolutePath
+}
+
+/*
+* Return a File of externalDir
+*/
+fun getDefaultPathFile(): File {
+    return Environment.getExternalStorageDirectory()
 }
