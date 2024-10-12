@@ -1,3 +1,5 @@
+import java.io.ByteArrayOutputStream
+
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
