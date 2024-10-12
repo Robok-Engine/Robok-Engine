@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    
+    <item
+        android:id="@+id/undo"
+        android:title="@string/common_word_undo"
+        app:icon="@drawable/ic_undo_24"/>
+        
+    <item
+        android:id="@+id/redo"
+        android:title="@string/common_word_redo"
+        app:icon="@drawable/ic_redo_24"/>
+        
+    <item
+        android:id="@+id/run_button"
+        android:title="@string/common_word_run"
+        app:icon="@drawable/ic_run_24"/>
+
+    <item
+        android:id="@+id/menu_dotprogress"
+        android:title="@string/text_dot_progress"
+        app:showAsAction="always"
+        app:actionLayout="@layout/dotprogress"/>
+    
+    <item
+        android:id="@+id/diagnostic_status_image"
+        app:icon="@drawable/ic_success_24"
+        android:visible="false"/>
+    
+</menu>

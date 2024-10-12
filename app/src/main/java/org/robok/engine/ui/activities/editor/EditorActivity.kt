@@ -59,12 +59,23 @@ import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
+import org.robok.engine.core.components.progress.DotProgressBar
+import org.robok.engine.R
+import android.view.Menu
+import android.view.MenuItem
+import android.view.MenuInflater
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
 
     private lateinit var projectManager: ProjectManager
     private var projectPath: String? = null
+    
+    private var diagnosticStatusDotProgress: DotProgressBar
+    
+    private lateinit var diagnosticStatusImage: MenuItem? = null
+    private lateinit var undo: MenuItem? = null
+    private lateinit var redo: MenuItem? = null
 
     private var _binding: ActivityEditorBinding? = null
     private val binding
@@ -72,9 +83,9 @@ class EditorActivity :
 
     private val handler = Handler(Looper.getMainLooper())
     private val diagnosticTimeoutRunnable = Runnable {
-        binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
-        binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
-        binding.diagnosticStatusImage.visibility = View.VISIBLE
+        diagnosticStatusImage?.setIcon(Drawables.ic_success_24)
+        diagnosticStatusDotProgress.visibility = View.INVISIBLE
+        diagnosticStatusImage.isVisible = true
     }
 
     private val diagnosticStandTime: Long = 800
@@ -101,6 +112,45 @@ class EditorActivity :
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+    
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        diagnosticStatusImage = menu.findItem(R.id.diagnostic_status_image)
+        undo = menu.findItem(R.id.undo)
+        redo = menu.findItem(R.id.redo)
+        val menuDotProgress = menu.findItem(R.id.menu_dotprogress)
+        val view = menuDotProgress.actionView ?: return null
+        diagnosticStatusDotProgress = view.findViewById(R.id.diagnostic_status_dot_progress)
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+    
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+           R.id.diagnostic_status_image -> {
+               if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+                   binding.drawerLayout.closeDrawer(GravityCompat.END)
+               } else {
+                   binding.drawerLayout.openDrawer(GravityCompat.END)
+               }
+               binding.tabLayout.getTabAt(1)?.select()
+               true
+           }
+           R.id.undo -> {
+               getCurrentEditor()?.undo()
+               updateUndoRedo()
+               true
+           }
+           R.id.redo -> {
+               getCurrentEditor()?.redo()
+               updateUndoRedo()
+               true
+           }
+           R.id.run_button -> {
+               projectManager.build(this)
+           }
+           else ->
+           super.onOptionsItemSelected(item)
+        }
     }
 
     override fun onTabReselected(tab: TabLayout.Tab) {
@@ -161,8 +211,6 @@ class EditorActivity :
     }
 
     private fun configureButtons() {
-        binding.runButton.setOnClickListener { projectManager.build(this) }
-
         binding.openFilesButton.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
@@ -207,21 +255,13 @@ class EditorActivity :
     }
 
     private fun configureToolbar() {
-        binding.diagnosticStatusDotProgress.startAnimation()
+        diagnosticStatusDotProgress.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
             } else {
                 binding.drawerLayout.openDrawer(GravityCompat.START)
             }
-        }
-        binding.diagnosticStatusImage.setOnClickListener {
-            if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.END)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.END)
-            }
-            binding.tabLayout.getTabAt(1)?.select()
         }
     }
 
@@ -264,15 +304,6 @@ class EditorActivity :
     private fun configureEditor() {
         binding.tabs.addOnTabSelectedListener(this)
         observeViewModel()
-
-        binding.undo.setOnClickListener {
-            getCurrentEditor()?.undo()
-            updateUndoRedo()
-        }
-        binding.redo.setOnClickListener {
-            getCurrentEditor()?.redo()
-            updateUndoRedo()
-        }
     }
 
     private fun configureFileTree() {
@@ -303,12 +334,12 @@ class EditorActivity :
 
     private fun updateUndoRedo() {
         getCurrentEditor()?.let { editor ->
-            binding.redo.isEnabled = editor.isCanRedo
-            binding.undo.isEnabled = editor.isCanUndo
+            redo.isEnabled = editor.isCanRedo
+            undo.isEnabled = editor.isCanUndo
         }
             ?: run {
-                binding.redo.isEnabled = false
-                binding.undo.isEnabled = false
+                redo.isEnabled = false
+                undo.isEnabled = false
             }
     }
 
@@ -369,12 +400,12 @@ class EditorActivity :
                 override fun onDiagnosticStatusReceive(isError: Boolean) {
                     handler.removeCallbacks(diagnosticTimeoutRunnable)
                     if (isError) {
-                        binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_error_24)
+                        diagnosticStatusImage?.setIcon(Drawables.ic_error_24)
                     } else {
-                        binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
+                        diagnosticStatusImage?.setIcon(Drawables.ic_success_24)
                     }
-                    binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
-                    binding.diagnosticStatusImage.visibility = View.VISIBLE
+                    diagnosticStatusDotProgress.visibility = View.INVISIBLE
+                    diagnosticStatusImage.isVisible = false
                 }
 
                 override fun onDiagnosticReceive(
@@ -396,12 +427,9 @@ class EditorActivity :
             object : EditorListener {
                 override fun onEditorTextChange() {
                     updateUndoRedo()
-                    with(binding) {
-                        if (relativeLayoutDiagnostics.visibility == View.GONE)
-                            relativeLayoutDiagnostics.visibility = View.VISIBLE
-                    }
-                    binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
-                    binding.diagnosticStatusImage.visibility = View.INVISIBLE
+                    
+                    diagnosticStatusDotProgress.visibility = View.VISIBLE
+                    diagnosticStatusImage.isVisible = false
 
                     handler.removeCallbacks(diagnosticTimeoutRunnable)
                     handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)

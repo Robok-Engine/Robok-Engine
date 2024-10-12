@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+     xmlns:android="http://schemas.android.com/apk/res/android"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:layout_height="wrap_content"
+     android:layout_width="wrap_content"
+     android:clickable="true"
+     android:padding="5dp"
+     android:clipToPadding="false">
+
+    <org.robok.engine.core.components.progress.DotProgressBar
+      android:id="@+id/diagnostic_status_dot_progress"
+      android:layout_height="@dimen/toolbar_icon_width"
+      android:layout_width="@dimen/toolbar_icon_width"
+      app:dotRadius="4dp"
+      app:numberOfDots="3"
+      app:animationDuration="2000"
+      app:minScale="0.3"
+      app:maxScale="1.0"
+      app:dotBackground="@drawable/ic_dot_24"
+      app:margin="1dp" />
+
+</FrameLayout>
