@@ -54,14 +54,14 @@
     <string name="settings_about_title">حول التطبيق</string>
     <string name="settings_about_description">كل شيء حول robok</string>
     <string name="settings_libraries_title">المكتبات</string>
-    <string name="settings_libraries_description">كل المكتبات التي تستخدمها في التطبيق.</string>
+    <string name="settings_libraries_description">كل المكتبات التي نستخدمها في التطبيق.</string>
     <string name="settings_configure_rdk_title">Configure RDK</string>
     <string name="settings_configure_rdk_description">Robok-SDK settings like version and more.</string>
     <string name="settings_configure_rdk_select_rdk_label">Select RDK version</string>
     <string name="settings_configure_rdk_version">Define RDK Version</string>
     <string name="settings_build_title">بناء</string>
-    <string name="settings_formatting_title">Formatting</string>
-    <string name="settings_appearance_title">Appearance</string>
+    <string name="settings_formatting_title">صياغة</string>
+    <string name="settings_appearance_title">المظهر</string>
     <string name="settings_general_title">عام</string>
     <!-- end section -->
     
@@ -76,9 +76,9 @@
     <!-- ene section -->
     
     <!-- warnings section -->
-    <string name="warning_storage_perm_title"> السماح بالتخزين</string>
-    <string name="warning_storage_perm_message">يحتاج روبوك إلى السماح بالتخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
-    <string name="warning_all_files_perm_message">in Android 11 +, for Robok to work properly, it needs permission to access all files.</string>
+    <string name="warning_storage_perm_title">إذن التخزين</string>
+    <string name="warning_storage_perm_message">يحتاج روبوك إلى إذن التخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
+    <string name="warning_all_files_perm_message">في Android 11+، لكي يعمل Robok بشكل صحيح، فإنه يحتاج إلى إذن للوصول إلى جميع الملفات.</string>
     <string name="warning_project_created_title">Project Created Successfully!</string>
     <string name="warning_project_created_message">Your project has been created successfully!</string>
     <!-- end section -->
@@ -125,4 +125,10 @@
     <string name="settings_app_description">بعض الإعدادات المرتبطة بالتطبيق.</string>
     <string name="title_projects">المشاريع</string>
     <string name="title_your_projects">مشاريعك</string>
+    <string name="text_click_here_to_open_files">إضغط هنا بفتح الملف</string>
+    <string name="settings_app_use_amoled_title">سمة سوداء</string>
+    <string name="settings_app_use_amoled_description">إستخدام سمة سوداء في التطبيق.</string>
+    <string name="text_basic_info">معلومات أساسية</string>
+    <string name="text_error_info">تفاصيل الخطأ</string>
+    <string name="text_no_files_open">لا ملفات مفتوحة.</string>
 </resources>
