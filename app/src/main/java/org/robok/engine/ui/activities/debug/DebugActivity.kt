@@ -72,7 +72,7 @@ class DebugActivity : RobokActivity() {
 
         Screen(
             label = stringResource(id = Strings.title_un_error_ocurred),
-            backArrowVisible = true,
+            backArrowVisible = false,
         ) {
             PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
                 ErrorCard(madeErrMsg)
