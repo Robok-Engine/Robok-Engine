@@ -8,7 +8,7 @@
     <string name="common_word_logs">السجل</string>
     <string name="common_word_output">الناتج</string>
     <string name="common_word_end">النهاية</string>
-    <string name="common_word_confirm">Confirm</string>
+    <string name="common_word_confirm">تأكيد</string>
     <string name="common_word_settings">الإعدادت</string>
     <string name="common_word_cancel">إلغاء</string>
     <string name="common_word_next">التالي</string>
@@ -115,4 +115,7 @@
     <string name="template_name_empty_game">لعبة فارغة</string>
     <string name="item_whatsapp_title">واتساب</string>
     <string name="item_whatsapp_description">او مجموعة الواتس اب .</string>
+    <string name="common_word_close">غلق</string>
+    <string name="common_word_close_all">غلق الكل</string>
+    <string name="common_word_close_others">غلق الآخرين</string>
 </resources>
