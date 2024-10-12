@@ -181,4 +181,7 @@ fun getShortGitHash() = execAndGetOutput("git", "rev-parse", "--short", "HEAD")
 
 fun getGitBranch() = execAndGetOutput("git", "rev-parse", "--abbrev-ref", "HEAD")
 
-fun getGitCommitAuthor() = execAndGetOutput("git", "log", "-1", "--pretty=format:%an")
+fun getGitCommitAuthor(): String {
+    val author = execAndGetOutput("git", "log", "-1", "--pretty=format:%an")
+    return author.replace(Regex("[^\\p{L}\\p{N}\\s]"), "") // Remove special characters
+}
