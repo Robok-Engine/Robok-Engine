@@ -146,5 +146,6 @@
     <color name="color_splash_bg">#FFFFFF</color>
     
     <color name="black">#FF000000</color>
+    <color name="blue">#2196f3</color>
     
 </resources>
