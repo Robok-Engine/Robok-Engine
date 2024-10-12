@@ -73,8 +73,8 @@ class EditorActivity :
     
     private var diagnosticStatusDotProgress: DotProgressBar? = null
     
-    private lateinit var diagnosticStatusImage: MenuItem? = null
-    private lateinit var undo: MenuItem? = null
+    private var diagnosticStatusImage: MenuItem? = null
+    private var undo: MenuItem? = null
     private lateinit var redo: MenuItem? = null
 
     private var _binding: ActivityEditorBinding? = null
