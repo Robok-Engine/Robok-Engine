@@ -46,12 +46,8 @@ public class XMLViewerActivity extends RobokActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityXmlViewerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-        try {  
-           clearResources();
-        } catch(Exception e) {
-           Toast.makeText(this, e.toString(), 4000).show();
-        }
-
+        handleInsetts(binding.getRoot());
+        
         List<TreeNode> nodes = new ArrayList<>();
         Stack<TreeNode> treeNodeStack = new Stack<>();
 
@@ -63,15 +59,6 @@ public class XMLViewerActivity extends RobokActivity {
 
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
-    }
-
-    private void clearResources() {
-        try {
-            ProxyResources.getInstance().getViewIdMap().clear();
-            MessageArray.getInstanse().clear();
-        } catch(Exception e) {
-           Toast.makeText(this, e.toString(), 4000).show();
-        }
     }
 
     private void parseXmlAndBuildTree(List<TreeNode> nodes, Stack<TreeNode> treeNodeStack) {
