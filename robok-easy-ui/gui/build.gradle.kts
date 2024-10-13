@@ -35,5 +35,5 @@ dependencies {
     implementation(libs.antlr)
     implementation(libs.antlr.runtime)
     
-    implementation(project(":robok-easy-ui:antlr4))
+    implementation(project(":robok-easy-ui:antlr4"))
 }
