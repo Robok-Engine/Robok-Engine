@@ -1,10 +1,10 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 960 | Founder |
+| trindadedev13 | 968 | Founder |
 | ThDev-only | 199 | Founder |
 | renovate[bot] | 124 | Bot |
 | gampiot-bot | 35 | Bot |
-| skinvent | 16 | Contributor |
+| skinvent | 18 | Contributor |
 | RohitKushvaha01 | 15 | Contributor |
 | github-actions[bot] | 10 | Bot |
 | teixeira0x | 6 | Contributor |
