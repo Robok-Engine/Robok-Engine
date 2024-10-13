@@ -100,4 +100,7 @@
     <string name="text_click_here_to_open_files">Натисніть тут, щоби відкрити файл</string>
     <string name="warning_file_already_opened">Файл вже відкрито в редакторі.</string>
     <string name="warning_no_projects">Немає проєкту.</string>
+    <string name="common_word_templates">Шаблони</string>
+    <string name="settings_app_use_amoled_title">Чорна тема</string>
+    <string name="settings_app_use_amoled_description">Використовуйте чорну тему в застосунку.</string>
 </resources>
