@@ -140,8 +140,7 @@ dependencies {
     implementation(libs.insetter)
     
     // projects
-    implementation(project(":robok:antlr4:java"))
-    implementation(project(":robok:aapt2"))
+    implementation(project(":antlr4:java"))
     
     implementation(project(":app-strings"))
     
@@ -149,6 +148,7 @@ dependencies {
     implementation(project(":feature:editor"))
     implementation(project(":feature:modeling"))
     implementation(project(":feature:xmlviewer"))
+    implementation(project(":feature:compiler"))
     
     implementation(project(":core:templates"))
     implementation(project(":core:components"))

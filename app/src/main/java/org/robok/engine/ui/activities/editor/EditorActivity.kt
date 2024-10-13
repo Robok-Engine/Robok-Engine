@@ -39,7 +39,7 @@ import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
 import org.koin.android.ext.android.getKoin
-import org.robok.aapt2.compiler.CompilerTask
+import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids

@@ -33,11 +33,11 @@ import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.core.templates.code.android.game.logic.GameScreenLogicTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 
-import org.robok.aapt2.compiler.CompilerTask;
-import org.robok.aapt2.model.Project;
-import org.robok.aapt2.model.Library;
-import org.robok.aapt2.logger.Logger;
-import org.robok.aapt2.SystemLogPrinter;
+import org.robok.engine.feature.compiler.CompilerTask;
+import org.robok.engine.feature.compiler.model.Project;
+import org.robok.engine.feature.compiler.model.Library;
+import org.robok.engine.feature.compiler.logger.Logger;
+import org.robok.engine.feature.compiler.SystemLogPrinter;
 
 public class ProjectManager {
 
