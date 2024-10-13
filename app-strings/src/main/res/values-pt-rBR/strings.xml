@@ -136,4 +136,5 @@
     <string name="common_word_templates">Exemplos</string>
     <string name="settings_app_use_amoled_title">Tema Amoled</string>
     <string name="settings_app_use_amoled_description">Use o tema AMOLED no aplicativo.</string>
+    <string name="text_view_layout">Ver GUI</string>
 </resources>
