@@ -17,7 +17,7 @@ package org.robok.engine.feature.editor.languages.java.models;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
-import static org.robok.antlr4.java.Java8Parser.MethodModifierContext;
+import static org.robok.engine.core.antlr4.java.Java8Parser.MethodModifierContext;
 
 import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
 
