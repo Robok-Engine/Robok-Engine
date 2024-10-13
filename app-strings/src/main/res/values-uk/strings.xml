@@ -103,4 +103,5 @@
     <string name="common_word_templates">Шаблони</string>
     <string name="settings_app_use_amoled_title">Чорна тема</string>
     <string name="settings_app_use_amoled_description">Використовуйте чорну тему в застосунку.</string>
+    <string name="text_view_layout">Переглянути GUI</string>
 </resources>
