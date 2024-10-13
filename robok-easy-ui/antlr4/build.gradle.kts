@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.robok.antlr4"
+    namespace = "org.robok.antlr4.gui"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {
