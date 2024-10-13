@@ -367,20 +367,22 @@ class EditorActivity :
     }
     
     private fun configureMoreOptions() {
-        val popm = PopupMenu(this, binding.moreOptions)
-        popm.menu.add(0, 0, 0, Strings.text_view_layout)
+        binding.moreOptions.setOnClickListener(v -> {
+             val popm = PopupMenu(this, binding.moreOptions)
+             popm.menu.add(0, 0, 0, Strings.text_view_layout)
    
-        popm.setOnMenuItemClickListener { item ->
-            when (item.itemId) {
-                0 -> {
-                   getCurrentEditor()?.let { editor ->
-                       editorViewModel.saveFile(editor.getFile())
-                   }
-                }
-            }
-            true
+             popm.setOnMenuItemClickListener { item ->
+                  when (item.itemId) {
+                      0 -> {
+                          getCurrentEditor()?.let { editor ->
+                              editorViewModel.saveFile(editor.getFile())
+                          }
+                      }
+                  }
+                  true
+             }
+             popm.show()
         }
-        popm.show()
     }
     
     private fun observeViewModel() {
