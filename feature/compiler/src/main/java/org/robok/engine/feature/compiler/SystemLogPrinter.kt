@@ -20,11 +20,11 @@ package org.robok.engine.feature.compiler
 import android.content.Context
 import java.io.OutputStream
 import java.io.PrintStream
-import org.robok.engine.feature.compiler.logger.Logger
 import org.robok.engine.core.utils.FileUtil
+import org.robok.engine.feature.compiler.logger.Logger
 
 object SystemLogPrinter {
-    
+
     @JvmStatic
     fun start(glbContext: Context, logger: Logger) {
         // Reset the log file

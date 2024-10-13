@@ -176,17 +176,16 @@ object PathUtils {
     }
 }
 
-
 /*
-* Return a String of externalDir
-*/
+ * Return a String of externalDir
+ */
 fun getDefaultPath(): String {
     return Environment.getExternalStorageDirectory().absolutePath
 }
 
 /*
-* Return a File of externalDir
-*/
+ * Return a File of externalDir
+ */
 fun getDefaultPathFile(): File {
     return Environment.getExternalStorageDirectory()
 }

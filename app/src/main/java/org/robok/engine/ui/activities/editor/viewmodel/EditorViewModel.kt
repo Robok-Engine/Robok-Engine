@@ -66,11 +66,11 @@ class EditorViewModel : ViewModel() {
     fun closeAll() {
         _editorEvent.value = EditorEvent.CloseAll
     }
-    
+
     fun saveFile(file: File) {
         _editorEvent.value = EditorEvent.SaveFile(file)
     }
-    
+
     fun saveAllFiles() {
         _editorEvent.value = EditorEvent.SaveAllFiles
     }

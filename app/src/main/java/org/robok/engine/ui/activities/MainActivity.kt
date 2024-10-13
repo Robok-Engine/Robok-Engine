@@ -17,10 +17,10 @@ package org.robok.engine.ui.activities
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
-import android.view.Window
 import android.graphics.Color.BLACK
 import android.graphics.Color.TRANSPARENT
+import android.os.Bundle
+import android.view.Window
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -28,11 +28,10 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
-import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.res.ResUtils
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.res.ResUtils
 import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.theme.RobokTheme
 
@@ -57,20 +56,20 @@ class MainActivity : RobokActivity() {
 
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
     }
-    
+
     @Suppress("DEPRECATION")
-    override fun onBackPressed () {
+    override fun onBackPressed() {
         val window: Window = window
         val res = ResUtils(this@MainActivity)
-            
+
         val statusBarColor = window.statusBarColor
         val navigationBarColor = window.navigationBarColor
-        
+
         val resetColor = TRANSPARENT
-            
+
         if (statusBarColor == BLACK && navigationBarColor == BLACK) {
-                window.statusBarColor = resetColor
-               window.navigationBarColor = resetColor
+            window.statusBarColor = resetColor
+            window.navigationBarColor = resetColor
         }
         super.onBackPressed()
     }

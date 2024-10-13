@@ -69,9 +69,7 @@ fun SettingsRDKScreen() {
 
     val downloadState by viewModel.downloadState.collectAsState()
     val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
-    Screen(
-        label = stringResource(id = Strings.settings_configure_rdk_title)
-    ) {
+    Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
             DynamicSelectTextField(
                 modifier = modifir,

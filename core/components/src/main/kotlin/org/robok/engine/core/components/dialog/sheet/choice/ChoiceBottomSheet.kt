@@ -20,12 +20,10 @@ package org.robok.engine.core.components.dialog.sheet.choice
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
-import org.robok.engine.core.components.radio.IntRadioController
 import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
+import org.robok.engine.core.components.radio.IntRadioController
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -45,10 +43,7 @@ fun ChoiceBottomSheet(
     val btmSheetScope = rememberCoroutineScope()
 
     if (visible) {
-        ModalBottomSheet(
-            onDismissRequest = { onRequestClose() },
-            sheetState = btmSheetState,
-        ) {
+        ModalBottomSheet(onDismissRequest = { onRequestClose() }, sheetState = btmSheetState) {
             BottomSheetContent(
                 title = title,
                 buttons = {

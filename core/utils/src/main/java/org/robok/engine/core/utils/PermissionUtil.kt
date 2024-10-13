@@ -26,7 +26,6 @@ import android.os.Environment
 import android.provider.Settings
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
-import java.io.File
 
 interface PermissionListener {
     fun onReceive(status: Boolean)

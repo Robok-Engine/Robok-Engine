@@ -18,7 +18,6 @@ package org.robok.engine
  */
 
 import android.app.Application
-import android.content.Context
 import android.content.Intent
 import android.os.Process
 import android.util.Log

@@ -16,7 +16,7 @@ package org.robok.engine.ui.activities.editor
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 object ExtraKeys {
     const val PROJECT_PATH = "projectPath"
     const val XML = "xml"

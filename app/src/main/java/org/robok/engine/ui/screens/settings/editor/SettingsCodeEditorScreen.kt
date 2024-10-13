@@ -36,9 +36,7 @@ import org.robok.engine.strings.Strings
 fun SettingsCodeEditorScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
-    Screen(
-        label = stringResource(id = Strings.settings_code_editor_title)
-    ) {
+    Screen(label = stringResource(id = Strings.settings_code_editor_title)) {
         PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
             appearancePrefs(appPrefsViewModel)
         }

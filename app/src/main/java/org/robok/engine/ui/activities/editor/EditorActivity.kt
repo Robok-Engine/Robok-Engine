@@ -26,7 +26,6 @@ import android.os.Looper
 import android.util.SparseArray
 import android.view.View
 import android.widget.Toast
-import androidx.activity.viewModels
 import androidx.appcompat.widget.PopupMenu
 import androidx.core.content.FileProvider
 import androidx.core.util.forEach
@@ -39,14 +38,12 @@ import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
 import org.koin.android.ext.android.getKoin
-import org.robok.gui.GUIBuilder
-import org.robok.gui.compiler.GUICompiler
-import org.robok.engine.feature.compiler.CompilerTask
-import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
+import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.databinding.ActivityEditorBinding
+import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
@@ -63,6 +60,8 @@ import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
+import org.robok.gui.GUIBuilder
+import org.robok.gui.compiler.GUICompiler
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -84,15 +83,15 @@ class EditorActivity :
     private val diagnosticStandTime: Long = 800
 
     private lateinit var antlrListener: AntlrListener
-    
+
     private lateinit var editorViewModel: EditorViewModel
-    
+
     override fun onCreate(savedInstanceState: Bundle?) {
         isEdgeToEdge = false
         super.onCreate(savedInstanceState)
         _binding = ActivityEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        
+
         editorViewModel = getKoin().get()
 
         val extras = intent.extras
@@ -132,7 +131,7 @@ class EditorActivity :
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab) {}
-    
+
     override fun onCompileSuccess(signApk: File) {
         val context = this@EditorActivity
 
@@ -213,7 +212,7 @@ class EditorActivity :
             }
         )
     }
-    
+
     private fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
@@ -368,50 +367,46 @@ class EditorActivity :
         editor.setEditorListener(editorListener)
         editor.reload()
     }
-    
+
     private fun configureMoreOptions() {
         binding.moreOptions.setOnClickListener {
-             val popm = PopupMenu(this, binding.moreOptions)
-             popm.menu.add(0, 0, 0, Strings.text_view_layout)
-   
-             popm.setOnMenuItemClickListener { item ->
-                  when (item.itemId) {
-                      0 -> {
-                          getCurrentEditor()?.let { editor ->
-                              editorViewModel.saveFile(editor.getFile())
-                              compileGuiCode(editor.getText().toString())
-                          }
-                      }
-                  }
-                  true
-             }
-             popm.show()
+            val popm = PopupMenu(this, binding.moreOptions)
+            popm.menu.add(0, 0, 0, Strings.text_view_layout)
+
+            popm.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    0 -> {
+                        getCurrentEditor()?.let { editor ->
+                            editorViewModel.saveFile(editor.getFile())
+                            compileGuiCode(editor.getText().toString())
+                        }
+                    }
+                }
+                true
+            }
+            popm.show()
         }
     }
-    
+
     private fun compileGuiCode(code: String) {
-        val guiBuilder = GUIBuilder(
-            context = this,
-            codeComments = false,
-            onGenerateCode = { code ->
-                 val intent = Intent(
-                     this,
-                     XMLViewerActivity::class.java
-                 ).apply { 
-                     putExtra(ExtraKeys.XML, code) 
-                 }
-                 startActivity(intent)
-            },
-            onError = {
-                 //
-            }
-        )
-        val guiCompiler = GUICompiler(
-            guiBuilder = guiBuilder, 
-            code = code
-        )
+        val guiBuilder =
+            GUIBuilder(
+                context = this,
+                codeComments = false,
+                onGenerateCode = { code ->
+                    val intent =
+                        Intent(this, XMLViewerActivity::class.java).apply {
+                            putExtra(ExtraKeys.XML, code)
+                        }
+                    startActivity(intent)
+                },
+                onError = {
+                    //
+                },
+            )
+        val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
     }
-    
+
     private fun observeViewModel() {
         editorViewModel.editorState.observe(this) { state ->
             val index = state.currentIndex
@@ -443,7 +438,7 @@ class EditorActivity :
             }
         }
     }
-    
+
     private fun openFile(file: File) {
         val openedFileIndex = editorViewModel.indexOfFile(file)
         if (openedFileIndex >= 0) {
@@ -508,9 +503,9 @@ class EditorActivity :
     }
 
     private fun saveFile(file: File) {
-        // todo: 
+        // todo:
     }
-    
+
     private fun saveAllFiles() {
         // todo:
     }
