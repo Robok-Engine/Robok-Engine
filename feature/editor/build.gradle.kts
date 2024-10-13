@@ -51,5 +51,5 @@ dependencies {
     implementation(project(":app-strings"))
     implementation(project(":feature:settings"))
     implementation(project(":core:utils"))
-    implementation(project(":robok:antlr4:java"))
+    implementation(project(":antlr4:java"))
 }
