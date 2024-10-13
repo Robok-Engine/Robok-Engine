@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -45,8 +46,11 @@ public class XMLViewerActivity extends RobokActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityXmlViewerBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
-
-        clearResources();
+        try {  
+           clearResources();
+        } catch(Exception e) {
+           Toast.makeText(this, e.toString(), 4000).show();
+        }
 
         List<TreeNode> nodes = new ArrayList<>();
         Stack<TreeNode> treeNodeStack = new Stack<>();
@@ -62,8 +66,12 @@ public class XMLViewerActivity extends RobokActivity {
     }
 
     private void clearResources() {
-        ProxyResources.getInstance().getViewIdMap().clear();
-        MessageArray.getInstanse().clear();
+        try {
+            ProxyResources.getInstance().getViewIdMap().clear();
+            MessageArray.getInstanse().clear();
+        } catch(Exception e) {
+           Toast.makeText(this, e.toString(), 4000).show();
+        }
     }
 
     private void parseXmlAndBuildTree(List<TreeNode> nodes, Stack<TreeNode> treeNodeStack) {
