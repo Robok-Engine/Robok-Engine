@@ -148,13 +148,14 @@ dependencies {
     implementation(project(":feature:modeling"))
     implementation(project(":feature:xmlviewer"))
     implementation(project(":feature:compiler"))
+    implementation(project(":feature:settings"))
     
     implementation(project(":core:templates"))
     implementation(project(":core:components"))
     implementation(project(":core:utils"))
     implementation(project(":core:antlr4:java"))
     
-    implementation(project(":feature:settings"))
+    implementation(project(":robok-easy-ui:gui"))
 }
 
 fun execAndGetOutput(vararg command: String): String {

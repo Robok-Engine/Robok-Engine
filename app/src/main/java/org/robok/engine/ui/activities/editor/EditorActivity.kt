@@ -39,6 +39,8 @@ import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
 import org.koin.android.ext.android.getKoin
+import org.robok.gui.GUIBuilder
+import org.robok.gui.compiler.GUICompiler
 import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
@@ -60,6 +62,7 @@ import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
+import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -94,7 +97,7 @@ class EditorActivity :
 
         val extras = intent.extras
         if (extras != null) {
-            projectPath = extras.getString("projectPath")
+            projectPath = extras.getString(ExtraKeys.PROJECT_PATH)
             projectManager = ProjectManager(this@EditorActivity)
             projectPath?.let { projectManager.projectPath = File(it) }
         }
@@ -376,6 +379,7 @@ class EditorActivity :
                       0 -> {
                           getCurrentEditor()?.let { editor ->
                               editorViewModel.saveFile(editor.getFile())
+                              compileGuiCode(editor.getText().toString())
                           }
                       }
                   }
@@ -383,6 +387,29 @@ class EditorActivity :
              }
              popm.show()
         }
+    }
+    
+    private fun compileGuiCode(code: String) {
+        val guiBuilder = GUIBuilder(
+            context = this,
+            codeComments = false,
+            onGenerateCode = { code ->
+                 val intent = Intent(
+                     this,
+                     XMLViewerActivity::class.java
+                 ).apply { 
+                     putExtra(ExtraKeys.XML, code) 
+                 }
+                 startActivity(intent)
+            },
+            onError = {
+                 //
+            }
+        )
+        val guiCompiler = GUICompiler(
+            guiBuilder = guiBuilder, 
+            code = code
+        )
     }
     
     private fun observeViewModel() {

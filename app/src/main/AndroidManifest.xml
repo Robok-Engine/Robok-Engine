@@ -55,7 +55,11 @@
             android:screenOrientation="landscape"
             android:exported="true" />
             
-         <provider
+        <activity
+            android:name="org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity"
+            android:exported="true" />
+            
+        <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
             android:exported="false"

@@ -1,4 +1,4 @@
-package org.robok.engine;
+package org.robok.engine.ui.activities.xmlviewer;
 
 import android.os.Bundle;
 import android.view.Menu;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Stack;
 
 import org.robok.engine.databinding.ActivityXmlViewerBinding;
+import org.robok.engine.ui.activities.base.RobokActivity;
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser;
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser;
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources;
@@ -34,7 +35,7 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewNodeBinder;
 import org.robok.engine.feature.xmlviewer.TreeNode;
 import org.robok.engine.feature.xmlviewer.TreeViewAdapter;
 
-public class XMLViewerActivity extends AppCompatActivity {
+public class XMLViewerActivity extends RobokActivity {
     private boolean isEditMode = true;
     
     private ActivityXmlViewerBinding binding;
