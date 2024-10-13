@@ -1,14 +1,14 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 955 | Founder |
+| trindadedev13 | 960 | Founder |
 | ThDev-only | 199 | Founder |
 | renovate[bot] | 124 | Bot |
 | gampiot-bot | 35 | Bot |
-| skinvent | 15 | Contributor |
+| skinvent | 16 | Contributor |
 | RohitKushvaha01 | 15 | Contributor |
 | github-actions[bot] | 10 | Bot |
 | teixeira0x | 6 | Contributor |
-| Kefir2105 | 5 | Translation |
+| Kefir2105 | 6 | Translation |
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
 | weblate | 1 | Bot |

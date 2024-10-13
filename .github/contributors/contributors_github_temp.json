@@ -18,7 +18,7 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 955
+    "contributions": 960
   },
   {
     "login": "ThDev-only",
@@ -102,7 +102,7 @@
     "received_events_url": "https://api.github.com/users/skinvent/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 15
+    "contributions": 16
   },
   {
     "login": "RohitKushvaha01",
@@ -147,6 +147,27 @@
     "contributions": 10
   },
   {
+    "login": "Kefir2105",
+    "id": 103105829,
+    "node_id": "U_kgDOBiVFJQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/103105829?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Kefir2105",
+    "html_url": "https://github.com/Kefir2105",
+    "followers_url": "https://api.github.com/users/Kefir2105/followers",
+    "following_url": "https://api.github.com/users/Kefir2105/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Kefir2105/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Kefir2105/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Kefir2105/subscriptions",
+    "organizations_url": "https://api.github.com/users/Kefir2105/orgs",
+    "repos_url": "https://api.github.com/users/Kefir2105/repos",
+    "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
+    "type": "User",
+    "site_admin": false,
+    "contributions": 6
+  },
+  {
     "login": "teixeira0x",
     "id": 134708771,
     "node_id": "U_kgDOCAd-Iw",
@@ -166,27 +187,6 @@
     "type": "User",
     "site_admin": false,
     "contributions": 6
-  },
-  {
-    "login": "Kefir2105",
-    "id": 103105829,
-    "node_id": "U_kgDOBiVFJQ",
-    "avatar_url": "https://avatars.githubusercontent.com/u/103105829?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/Kefir2105",
-    "html_url": "https://github.com/Kefir2105",
-    "followers_url": "https://api.github.com/users/Kefir2105/followers",
-    "following_url": "https://api.github.com/users/Kefir2105/following{/other_user}",
-    "gists_url": "https://api.github.com/users/Kefir2105/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/Kefir2105/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/Kefir2105/subscriptions",
-    "organizations_url": "https://api.github.com/users/Kefir2105/orgs",
-    "repos_url": "https://api.github.com/users/Kefir2105/repos",
-    "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
-    "type": "User",
-    "site_admin": false,
-    "contributions": 5
   },
   {
     "login": "Yamenher",
