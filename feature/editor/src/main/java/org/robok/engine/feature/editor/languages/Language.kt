@@ -17,7 +17,7 @@ package org.robok.engine.feature.editor.languages
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.antlr4.java.AntlrListener
+import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.feature.editor.EditorListener
 
 /*

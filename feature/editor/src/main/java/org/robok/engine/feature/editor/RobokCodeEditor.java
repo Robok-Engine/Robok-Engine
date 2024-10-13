@@ -36,7 +36,7 @@ import org.robok.engine.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.robok.engine.feature.editor.languages.java.*;
 import org.robok.engine.feature.editor.languages.Language;
 import org.robok.engine.feature.editor.schemes.*;
-import org.robok.antlr4.java.*;
+import org.robok.engine.core.antlr4.java.*;
 
 import java.io.File;
 import java.nio.charset.Charset;

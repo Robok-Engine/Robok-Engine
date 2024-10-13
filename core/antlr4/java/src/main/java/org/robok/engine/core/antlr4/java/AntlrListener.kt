@@ -1,4 +1,4 @@
-package org.robok.antlr4.java
+package org.robok.engine.core.antlr4.java
 
 /*
  *  This file is part of Robok © 2024.

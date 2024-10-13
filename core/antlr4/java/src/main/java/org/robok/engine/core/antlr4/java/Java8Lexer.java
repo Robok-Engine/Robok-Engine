@@ -1,5 +1,5 @@
 // Generated from Java8.g4 by ANTLR 4.13.2
-package org.robok.antlr4.java;
+package org.robok.engine.core.antlr4.java;
 
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;

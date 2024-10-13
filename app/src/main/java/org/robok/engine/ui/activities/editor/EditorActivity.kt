@@ -40,7 +40,7 @@ import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.feature.compiler.CompilerTask
-import org.robok.antlr4.java.AntlrListener
+import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.utils.UniqueNameBuilder

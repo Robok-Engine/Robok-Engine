@@ -140,7 +140,6 @@ dependencies {
     implementation(libs.insetter)
     
     // projects
-    implementation(project(":antlr4:java"))
     
     implementation(project(":app-strings"))
     
@@ -153,6 +152,7 @@ dependencies {
     implementation(project(":core:templates"))
     implementation(project(":core:components"))
     implementation(project(":core:utils"))
+    implementation(project(":core:antlr4:java"))
     
     implementation(project(":feature:settings"))
 }

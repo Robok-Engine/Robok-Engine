@@ -1,4 +1,4 @@
-package org.robok.antlr4.java;
+package org.robok.engine.core.antlr4.java;
 
 import android.util.Log;
 import org.antlr.v4.runtime.*;
@@ -8,7 +8,7 @@ import org.antlr.v4.runtime.*;
 
 public class Java8ErrorListener extends BaseErrorListener {
     
-    AntlrListener d;
+    private AntlrListener d;
     
     @Override
     public void syntaxError(Recognizer<?, ?> recognizer, Object offendingSymbol,
