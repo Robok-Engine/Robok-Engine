@@ -30,6 +30,7 @@ koin = "4.0.0"
 termux = "0.118.1"
 easy-ui = "1.0.0-Alpha01"
 gson = "2.11.0"
+tabler-icons = "1.1.1"
 
 [plugins]
 # Android Gradle Plugin
@@ -69,6 +70,7 @@ viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 material-motion-compose-core = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version = "1.7.3" }
+tabler-icons = { group = "br.com.devsrsouza.compose.icons", name = "tabler-icons", version.ref = "tabler-icons" }
 
 # About Libraries
 about-libraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "about-libraries"}
