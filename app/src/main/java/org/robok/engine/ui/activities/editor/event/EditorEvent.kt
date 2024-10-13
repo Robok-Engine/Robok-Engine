@@ -20,11 +20,12 @@ package org.robok.engine.ui.activities.editor.event
 import java.io.File
 
 sealed interface EditorEvent {
-    data class OpenFile(val file: File) : EditorEvent
+    data class OpenFile(val file: File): EditorEvent
 
-    data class CloseFile(val index: Int) : EditorEvent
-
-    data object CloseOthers : EditorEvent
-
-    data object CloseAll : EditorEvent
+    data class CloseFile(val index: Int): EditorEvent
+    data object CloseOthers: EditorEvent
+    data object CloseAll: EditorEvent
+    
+    data class SaveFile(val file: File): EditorEvent
+    data object SaveAllFiles: EditorEvent
 }

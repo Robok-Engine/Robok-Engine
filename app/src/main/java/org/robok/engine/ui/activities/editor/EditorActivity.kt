@@ -129,7 +129,7 @@ class EditorActivity :
     }
 
     override fun onTabUnselected(tab: TabLayout.Tab) {}
-
+    
     override fun onCompileSuccess(signApk: File) {
         val context = this@EditorActivity
 
@@ -162,6 +162,7 @@ class EditorActivity :
         configureFileTree()
         configureButtons()
         updateUndoRedo()
+        configureMoreOptions()
     }
 
     private fun configureButtons() {
@@ -209,7 +210,7 @@ class EditorActivity :
             }
         )
     }
-
+    
     private fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
@@ -316,57 +317,6 @@ class EditorActivity :
             }
     }
 
-    private fun observeViewModel() {
-        editorViewModel.editorState.observe(this) { state ->
-            val index = state.currentIndex
-            binding.apply {
-                val tab = tabs.getTabAt(index)
-                if (tab != null && !tab.isSelected) {
-                    tab.select()
-                }
-                binding.editorContainer.displayedChild = index
-            }
-        }
-
-        editorViewModel.editorEvent.observe(this) { event ->
-            when (event) {
-                is EditorEvent.OpenFile -> openFile(event.file)
-                is EditorEvent.CloseFile -> closeFile(event.index)
-                is EditorEvent.CloseOthers -> closeOthers()
-                is EditorEvent.CloseAll -> closeAll()
-            }
-        }
-
-        editorViewModel.files.observe(this) { openedFiles ->
-            val hasOpenedFiles = openedFiles.isNotEmpty()
-            binding.apply {
-                tabs.isVisible = hasOpenedFiles
-                noContentLayout.isVisible = !hasOpenedFiles
-            }
-        }
-    }
-
-    private fun openFile(file: File) {
-        val openedFileIndex = editorViewModel.indexOfFile(file)
-        if (openedFileIndex >= 0) {
-            editorViewModel.setCurrentFile(openedFileIndex)
-            return
-        }
-
-        val index = editorViewModel.fileCount
-        val editor = RobokCodeEditor(this, file)
-
-        editorViewModel.addFile(file)
-        binding.apply {
-            editorContainer.addView(editor)
-            tabs.addTab(tabs.newTab())
-            drawerLayout.closeDrawer(GravityCompat.START)
-        }
-        editorViewModel.setCurrentFile(index)
-        configureEditorListeners(editor)
-        updateTabs()
-    }
-
     private fun configureEditorListeners(editor: RobokCodeEditor) {
         val antlrListener =
             object : AntlrListener {
@@ -415,6 +365,76 @@ class EditorActivity :
         editor.setEditorListener(editorListener)
         editor.reload()
     }
+    
+    private fun configureMoreOptions() {
+        val popm = PopupMenu(this, binding.moreOptions)
+        popm.menu.add(0, 0, 0, Strings.text_view_layout)
+   
+        popm.setOnMenuItemClickListener { item ->
+            when (item.itemId) {
+                0 -> {
+                   getCurrentEditor()?.let { editor ->
+                       editorViewModel.saveFile(editor.getFile())
+                   }
+                }
+            }
+            true
+        }
+        popm.show()
+    }
+    
+    private fun observeViewModel() {
+        editorViewModel.editorState.observe(this) { state ->
+            val index = state.currentIndex
+            binding.apply {
+                val tab = tabs.getTabAt(index)
+                if (tab != null && !tab.isSelected) {
+                    tab.select()
+                }
+                binding.editorContainer.displayedChild = index
+            }
+        }
+
+        editorViewModel.editorEvent.observe(this) { event ->
+            when (event) {
+                is EditorEvent.OpenFile -> openFile(event.file)
+                is EditorEvent.CloseFile -> closeFile(event.index)
+                is EditorEvent.CloseOthers -> closeOthers()
+                is EditorEvent.CloseAll -> closeAll()
+                is EditorEvent.SaveFile -> saveFile(event.file)
+                is EditorEvent.SaveAllFiles -> saveAllFiles()
+            }
+        }
+
+        editorViewModel.files.observe(this) { openedFiles ->
+            val hasOpenedFiles = openedFiles.isNotEmpty()
+            binding.apply {
+                tabs.isVisible = hasOpenedFiles
+                noContentLayout.isVisible = !hasOpenedFiles
+            }
+        }
+    }
+    
+    private fun openFile(file: File) {
+        val openedFileIndex = editorViewModel.indexOfFile(file)
+        if (openedFileIndex >= 0) {
+            editorViewModel.setCurrentFile(openedFileIndex)
+            return
+        }
+
+        val index = editorViewModel.fileCount
+        val editor = RobokCodeEditor(this, file)
+
+        editorViewModel.addFile(file)
+        binding.apply {
+            editorContainer.addView(editor)
+            tabs.addTab(tabs.newTab())
+            drawerLayout.closeDrawer(GravityCompat.START)
+        }
+        editorViewModel.setCurrentFile(index)
+        configureEditorListeners(editor)
+        updateTabs()
+    }
 
     private fun closeFile(index: Int) {
         if (index >= 0 && index < editorViewModel.fileCount) {
@@ -458,10 +478,12 @@ class EditorActivity :
         }
     }
 
-    private fun saveFile(index: Int) {
-        /*lifecycleScope.launch {
-
-        }*/
+    private fun saveFile(file: File) {
+        // todo: 
+    }
+    
+    private fun saveAllFiles() {
+        // todo:
     }
 
     fun getCurrentEditor(): RobokCodeEditor? {
