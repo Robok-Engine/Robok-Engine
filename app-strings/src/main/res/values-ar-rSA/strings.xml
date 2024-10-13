@@ -70,9 +70,9 @@
     <string name="text_logs">السجل</string>
     <string name="text_error_details">تفاصيل الخطأ :</string>
     <string name="text_bold">سميك</string>
-    <string name="text_monospace">Monospace</string>
-    <string name="text_serif">Serif</string>
-    <string name="text_sans_serif">Sans-Serif</string>
+    <string name="text_monospace">مونوسبايس</string>
+    <string name="text_serif">خط رقيق</string>
+    <string name="text_sans_serif">دون تشعبات</string>
     <!-- ene section -->
     
     <!-- warnings section -->
@@ -108,8 +108,8 @@
     <string name="text_contributors">المساهمون</string>
     <string name="item_contribute_title">ساهم</string>
     <string name="item_contribute_description">تعرف كيف تساهم معنا</string>
-    <string name="item_libraries_title">المكتبات</string>
-    <string name="item_libraries_description">المكتبات المستعملة في التطبيق</string>
+    <string name="item_libraries_title">المكتبات المستخدمة</string>
+    <string name="item_libraries_description">المكتبات المستعملة في روبوك</string>
     <!--end section-->
 <string name="title_templates">قوالب</string>
     <string name="template_name_empty_game">لعبة فارغة</string>
@@ -134,4 +134,6 @@
     <string name="warning_project_installer_not_found">لم يتم العثور على أي مثبت حزم.</string>
     <string name="warning_file_already_opened">الملف مفتوح بالفعل في المحرر.</string>
     <string name="warning_no_projects">لا مشاريع.</string>
+    <string name="text_view_layout">إظهار واجهة المستخدم</string>
+    <string name="common_word_templates">القوالب</string>
 </resources>
