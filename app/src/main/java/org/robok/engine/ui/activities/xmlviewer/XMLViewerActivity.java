@@ -9,12 +9,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -68,7 +69,14 @@ public class XMLViewerActivity extends RobokActivity {
             ProxyResources.getInstance().getViewIdMap().clear();
             MessageArray.getInstanse().clear();
         } catch(Exception e) {
-            Toast.makeText(this, e.toString(), 4000).show();
+            var dia = new 
+                 MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(org.robok.engine.strings.R.string.title_un_error_ocurred))
+                    .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
+                       d.dismiss();
+                    })
+                    .create();
+            dia.show();
         }
     }
 
@@ -147,7 +155,7 @@ public class XMLViewerActivity extends RobokActivity {
                         for (ViewBean.ViewInfo info : bean.getInfoList()) {
                             sb.append(info.getAttributeName()).append("=").append(info.getAttributeValue()).append("\n");
                         }
-                        new AlertDialog.Builder(XMLViewerActivity.this)
+                        new MaterialAlertDialogBuilder(XMLViewerActivity.this)
                             .setMessage(sb)
                             .show();
                     }
