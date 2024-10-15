@@ -107,7 +107,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 18,
-    "role": "Contributor"
+    "role": "Development"
   },
   {
     "login": "RohitKushvaha01",
@@ -129,7 +129,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 16,
-    "role": "Contributor"
+    "role": "Development"
   },
   {
     "login": "github-actions[bot]",
@@ -173,7 +173,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 6,
-    "role": "Contributor"
+    "role": "Development"
   },
   {
     "login": "Kefir2105",
@@ -283,7 +283,7 @@
     "type": "User",
     "site_admin": false,
     "contributions": 3,
-    "role": "Contributor"
+    "role": "Development"
   },
   {
     "login": "Yamenher",
