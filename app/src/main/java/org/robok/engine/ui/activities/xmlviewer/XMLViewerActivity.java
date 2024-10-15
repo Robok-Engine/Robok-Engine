@@ -72,7 +72,7 @@ public class XMLViewerActivity extends RobokActivity {
             var dia = new 
                  MaterialAlertDialogBuilder(this)
                     .setTitle(getString(org.robok.engine.strings.R.string.title_un_error_ocurred))
-                    .setMessage(e.toStrring())
+                    .setMessage(e.toString())
                     .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
                        d.dismiss();
                     })
