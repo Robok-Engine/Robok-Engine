@@ -24,6 +24,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.util.SparseArray
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
@@ -65,6 +66,10 @@ import org.robok.gui.compiler.GUICompiler
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
+
+    companion object {
+        const val GUI_CODE_TAG = "GuiCodeTag"
+    }
 
     private lateinit var projectManager: ProjectManager
     private var projectPath: String? = null
@@ -399,9 +404,10 @@ class EditorActivity :
                             putExtra(ExtraKeys.XML, code)
                         }
                     startActivity(intent)
+                    Log.d(GUI_CODE_TAG, code)
                 },
                 onError = {
-                    //
+                    Log.e(GUI_CODE_TAG, it)
                 },
             )
         val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
