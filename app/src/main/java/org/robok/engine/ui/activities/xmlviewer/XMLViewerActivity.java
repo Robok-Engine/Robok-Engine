@@ -50,7 +50,9 @@ public class XMLViewerActivity extends RobokActivity {
         
         List<TreeNode> nodes = new ArrayList<>();
         Stack<TreeNode> treeNodeStack = new Stack<>();
-
+        
+        clearResources();
+        
         try {
             parseXmlAndBuildTree(nodes, treeNodeStack);
         } catch (Exception e) {
@@ -59,6 +61,15 @@ public class XMLViewerActivity extends RobokActivity {
 
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
+    }
+    
+    private void clearResources() {
+        try {
+            ProxyResources.getInstance().getViewIdMap().clear();
+            MessageArray.getInstanse().clear();
+        } catch(Exception e) {
+            Toast.makeText(this, e.toString(), 4000).show();
+        }
     }
 
     private void parseXmlAndBuildTree(List<TreeNode> nodes, Stack<TreeNode> treeNodeStack) {
