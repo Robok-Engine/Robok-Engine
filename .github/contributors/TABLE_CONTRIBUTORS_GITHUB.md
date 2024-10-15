@@ -4,7 +4,7 @@
 | ThDev-only | 199 | Founder |
 | renovate[bot] | 124 | Bot |
 | gampiot-bot | 35 | Bot |
-| skinvent | 18 | Development |
+| skinvent | 18 | Bot |
 | RohitKushvaha01 | 16 | Development |
 | github-actions[bot] | 10 | Bot |
 | teixeira0x | 6 | Development |
