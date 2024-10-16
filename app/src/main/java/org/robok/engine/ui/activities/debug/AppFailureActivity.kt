@@ -34,11 +34,11 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.base.RobokActivity
+import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.theme.RobokTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
-class AppFailureActivity : RobokActivity() {
+class AppFailureActivity : RobokComposeActivity() {
 
     private val exceptionType =
         listOf(

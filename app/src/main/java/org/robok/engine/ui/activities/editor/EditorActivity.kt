@@ -93,7 +93,6 @@ class EditorActivity :
     private lateinit var editorViewModel: EditorViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        isEdgeToEdge = false
         super.onCreate(savedInstanceState)
         _binding = ActivityEditorBinding.inflate(layoutInflater)
         setContentView(binding.root)

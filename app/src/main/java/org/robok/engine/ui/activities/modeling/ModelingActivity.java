@@ -29,17 +29,17 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.compose.ui.platform.ComposeView;
 
-import org.robok.engine.ui.activities.base.RobokActivity;
+import org.robok.engine.ui.activities.base.RobokComposeActivity;
 import org.robok.engine.feature.modeling.databinding.Activity3dModelBinding;
 import org.robok.engine.feature.modeling.view.Model3DView;
 import org.robok.engine.feature.modeling.fragment.LibGDXFragment;
 
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 
-public class ModelingActivity extends RobokActivity implements AndroidFragmentApplication.Callbacks {
+public class ModelingActivity extends RobokComposeActivity implements AndroidFragmentApplication.Callbacks {
     
      private Activity3dModelBinding binding;
-  private Model3DView model3dView;
+     private Model3DView model3dView;
      
      @Override
      protected void onCreate(Bundle savedInstanceState) {

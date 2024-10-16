@@ -41,16 +41,12 @@ import org.robok.engine.ui.theme.XMLThemeManager
 open class RobokActivity : AppCompatActivity(), PermissionListener {
 
     private var permissionDialog: PermissionDialog? = null
-    var isEdgeToEdge: Boolean = true
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val themeManager = XMLThemeManager()
-
         // block main thread until the theme is applied
         runBlocking { themeManager.apply(this@RobokActivity) }
-
         super.onCreate(savedInstanceState)
-        if (isEdgeToEdge) enableEdgeToEdge()
 
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -119,5 +115,13 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
                 }
                 .show()
         }
+    }
+}
+
+
+open class RobokComposeActivity: RobokActivity {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
+        super.onCreate(savedInstanceState)
     }
 }
