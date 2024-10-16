@@ -119,7 +119,7 @@ open class RobokActivity : AppCompatActivity(), PermissionListener {
 }
 
 
-open class RobokComposeActivity: RobokActivity {
+open class RobokComposeActivity: RobokActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
