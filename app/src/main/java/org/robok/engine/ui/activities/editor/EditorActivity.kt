@@ -381,7 +381,12 @@ class EditorActivity :
     private fun configureMoreOptions() {
         binding.moreOptions.setOnClickListener {
             val popm = PopupMenu(this, binding.moreOptions)
-            popm.menu.add(0, 0, 0, Strings.text_view_layout)
+            getCurrentEditor()?.let { editor -> {
+                val fileExtension = editor.getFile().getName().substringAfterLast(".")
+                when(fileExtension) {
+                    "gui" -> popm.menu.add(0, 0, 0, Strings.text_view_layout)
+                }
+            }
 
             popm.setOnMenuItemClickListener { item ->
                 when (item.itemId) {
