@@ -363,8 +363,11 @@ class EditorActivity :
                 override fun onEditorTextChange() {
                     updateUndoRedo()
                     with(binding) {
-                        if (relativeLayoutDiagnostics.visibility == View.GONE)
-                            relativeLayoutDiagnostics.visibility = View.VISIBLE
+                        if (getCurrentFileExtension().equals("java")) {
+                            if (relativeLayoutDiagnostics.visibility == View.GONE) {
+                                relativeLayoutDiagnostics.visibility = View.VISIBLE
+                            }
+                        }
                     }
                     binding.diagnosticStatusDotProgress.visibility = View.VISIBLE
                     binding.diagnosticStatusImage.visibility = View.INVISIBLE
@@ -381,11 +384,9 @@ class EditorActivity :
     private fun configureMoreOptions() {
         binding.moreOptions.setOnClickListener {
             val popm = PopupMenu(this, binding.moreOptions)
-            getCurrentEditor()?.let { editor -> 
-                val fileExtension = editor.getFile().getName().substringAfterLast(".")
-                when(fileExtension) {
-                    "gui" -> popm.menu.add(0, 0, 0, Strings.text_view_layout)
-                }
+            
+            when(getCurrentFileExtension()) {
+                "gui" -> popm.menu.add(0, 0, 0, Strings.text_view_layout)
             }
 
             popm.setOnMenuItemClickListener { item ->
@@ -456,6 +457,12 @@ class EditorActivity :
                 undo.isVisible = hasOpenedFiles
                 redo.isVisible = hasOpenedFiles
             }
+        }
+    }
+    
+    private fun getCurrentFileExtension(): String {
+        getCurrentEditor()?.let { editor -> 
+            return editor.getFile().getName().substringAfterLast(".")
         }
     }
 
