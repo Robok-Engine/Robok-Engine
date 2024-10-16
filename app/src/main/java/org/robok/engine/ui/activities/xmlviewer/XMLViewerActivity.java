@@ -183,31 +183,20 @@ public class XMLViewerActivity extends RobokActivity {
         super.onBackPressed();
     }
 
-    /*
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-         if (item.getItemId() == R.id.display_view) {
-            binding.xmlViewer.setDisplayType(OutlineView.DISPLAY_VIEW);
-        } else if (item.getItemId() == R.id.display_design) {
-            binding.xmlViewer.setDisplayType(OutlineView.DISPLAY_DESIGN);
-        } else if (item.getItemId() == R.id.display_blueprint) {
-            binding.xmlViewer.setDisplayType(OutlineView.DISPLAY_BLUEPRINT);
-        }
-        return super.onOptionsItemSelected(item);
+        int id = item.getItemId();
+        if (id == R.id.item_see_code) {
+            var dialog = MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
+                    .setMessage(getIntent().getStringExtra("xml"))
+                    .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
+                       d.dismiss();
+                    })
+                    .create();
+            dialog.show();
+            return true;
+       }
+       return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.view, menu);
-        CheckBoxActionProvider p = (CheckBoxActionProvider) MenuItemCompat.getActionProvider(menu.findItem(R.id.toggle_edit));
-        p.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            isEditMode = !isChecked;
-            if (isEditMode) {
-                binding.xmlViewer.removeSelect();
-            }
-            binding.xmlViewer.setHoldOutline(isChecked);
-        });
-        return true;
-    }
-    */
 }

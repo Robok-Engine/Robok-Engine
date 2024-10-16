@@ -44,6 +44,7 @@
   <string name="title_templates">Templates</string>
   <string name="title_projects">Projects</string>
   <string name="title_your_projects">Your Projects</string>
+  <string name="title_gui_viewer">Gui Viewer</string>
   <!-- end section -->
 
   <!-- messages section -->
@@ -103,6 +104,7 @@
   <string name="text_click_here_to_open_files">Click here to open file</string>
   <string name="text_view_layout">View GUI</string>
   <string name="text_saved">Saved!</string>
+  <string name="text_see_code">See Code</string>
   <!-- end section -->
 
   <!-- warnings section -->
