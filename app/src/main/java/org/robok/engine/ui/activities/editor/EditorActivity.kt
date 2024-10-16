@@ -363,7 +363,7 @@ class EditorActivity :
                 override fun onEditorTextChange() {
                     updateUndoRedo()
                     with(binding) {
-                        if (getCurrentFileExtension()?.equals("java")) {
+                        if (getCurrentFileExtension() ?: "java".equals("java")) {
                             if (relativeLayoutDiagnostics.visibility == View.GONE) {
                                 relativeLayoutDiagnostics.visibility = View.VISIBLE
                             }
@@ -385,7 +385,7 @@ class EditorActivity :
         binding.moreOptions.setOnClickListener {
             val popm = PopupMenu(this, binding.moreOptions)
             
-            when(getCurrentFileExtension()?) {
+            when(getCurrentFileExtension() ?: "java") {
                 "gui" -> popm.menu.add(0, 0, 0, Strings.text_view_layout)
             }
 
