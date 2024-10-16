@@ -446,6 +446,8 @@ class EditorActivity :
             binding.apply {
                 tabs.isVisible = hasOpenedFiles
                 noContentLayout.isVisible = !hasOpenedFiles
+                save.isVisible = hasOpenedFiles
+                moreOptions = hasOpenedFiles
             }
         }
     }
