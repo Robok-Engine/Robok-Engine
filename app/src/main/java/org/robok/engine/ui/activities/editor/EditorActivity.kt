@@ -363,7 +363,7 @@ class EditorActivity :
                 override fun onEditorTextChange() {
                     updateUndoRedo()
                     with(binding) {
-                        if (getCurrentFileExtension() ?: "java".equals("java")) {
+                        if ((getCurrentFileExtension() ?: "java") == "java") {
                             if (relativeLayoutDiagnostics.visibility == View.GONE) {
                                 relativeLayoutDiagnostics.visibility = View.VISIBLE
                             }
