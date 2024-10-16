@@ -452,7 +452,7 @@ class EditorActivity :
                 tabs.isVisible = hasOpenedFiles
                 noContentLayout.isVisible = !hasOpenedFiles
                 save.isVisible = hasOpenedFiles
-                moreOptions = hasOpenedFiles
+                moreOptions.isVisible = hasOpenedFiles
                 undo.isVisible = hasOpenedFiles
                 redo.isVisible = hasOpenedFiles
             }
