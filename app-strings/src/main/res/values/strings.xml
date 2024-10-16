@@ -102,6 +102,7 @@
   <string name="text_no_files_open">No files open.</string>
   <string name="text_click_here_to_open_files">Click here to open file</string>
   <string name="text_view_layout">View GUI</string>
+  <string name="text_saved">Saved!</string>
   <!-- end section -->
 
   <!-- warnings section -->

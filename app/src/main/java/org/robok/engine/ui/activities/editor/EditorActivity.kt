@@ -43,6 +43,7 @@ import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.core.utils.UniqueNameBuilder
+import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
@@ -68,7 +69,7 @@ class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
 
     companion object {
-        const val GUI_CODE_TAG = "GuiCodeTag"
+        const val GUI_COMPILER_TAG = "GUICompiler"
     }
 
     private lateinit var projectManager: ProjectManager
@@ -138,8 +139,6 @@ class EditorActivity :
     override fun onTabUnselected(tab: TabLayout.Tab) {}
 
     override fun onCompileSuccess(signApk: File) {
-        val context = this@EditorActivity
-
         val apkUri: Uri =
             FileProvider.getUriForFile(context, "${context.packageName}.provider", signApk)
         val intent =
@@ -148,10 +147,10 @@ class EditorActivity :
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
         if (intent.resolveActivity(context.packageManager) != null) {
-            context.startActivity(intent)
+            startActivity(intent)
         } else {
             Toast.makeText(
-                    context,
+                    this@EditorActivity,
                     getString(Strings.warning_project_installer_not_found),
                     Toast.LENGTH_SHORT,
                 )
@@ -173,10 +172,16 @@ class EditorActivity :
     }
 
     private fun configureButtons() {
-        binding.runButton.setOnClickListener { projectManager.build(this) }
+        binding.runButton.setOnClickListener {
+            projectManager.build(this)
+        }
 
         binding.openFilesButton.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
+        }
+        
+        binding.save.setOnClickListener {
+            editorViewModel.saveFile()
         }
     }
 
@@ -382,7 +387,7 @@ class EditorActivity :
                 when (item.itemId) {
                     0 -> {
                         getCurrentEditor()?.let { editor ->
-                            editorViewModel.saveFile(editor.getFile())
+                            editorViewModel.saveFile()
                             compileGuiCode(editor.getText().toString())
                         }
                     }
@@ -404,10 +409,10 @@ class EditorActivity :
                             putExtra(ExtraKeys.XML, code)
                         }
                     startActivity(intent)
-                    Log.d(GUI_CODE_TAG, code)
+                    Log.d(GUI_COMPILER_TAG, code)
                 },
                 onError = {
-                    Log.e(GUI_CODE_TAG, it)
+                    Log.e(GUI_COMPILER_TAG, it)
                 },
             )
         val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
@@ -431,7 +436,7 @@ class EditorActivity :
                 is EditorEvent.CloseFile -> closeFile(event.index)
                 is EditorEvent.CloseOthers -> closeOthers()
                 is EditorEvent.CloseAll -> closeAll()
-                is EditorEvent.SaveFile -> saveFile(event.file)
+                is EditorEvent.SaveFile -> saveFile()
                 is EditorEvent.SaveAllFiles -> saveAllFiles()
             }
         }
@@ -508,8 +513,11 @@ class EditorActivity :
         }
     }
 
-    private fun saveFile(file: File) {
-        // todo:
+    private fun saveFile() {
+        getCurrentEditor()?.let { editor ->
+            FileUtil.writeFile(editor.getFile(), editor.getText().toString())
+            Toast.makeText(this, getString(Strings.text_saved), Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun saveAllFiles() {

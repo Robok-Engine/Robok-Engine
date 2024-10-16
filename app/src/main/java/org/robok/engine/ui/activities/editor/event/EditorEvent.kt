@@ -28,7 +28,7 @@ sealed interface EditorEvent {
 
     data object CloseAll : EditorEvent
 
-    data class SaveFile(val file: File) : EditorEvent
+    data object SaveFile : EditorEvent
 
     data object SaveAllFiles : EditorEvent
 }

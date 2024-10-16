@@ -64,7 +64,18 @@
                         android:background="?attr/selectableItemBackgroundBorderless"
                         android:src="@drawable/ic_run_24"
                         app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toStartOf="@id/more_options"
+                        app:layout_constraintEnd_toStartOf="@id/save"
+                        app:layout_constraintTop_toTopOf="parent"/>
+                        
+                    <ImageView
+                        android:id="@+id/save"
+                        android:layout_width="@dimen/toolbar_icon_width"
+                        android:layout_height="@dimen/toolbar_icon_height"
+                        android:layout_marginEnd="8dp"
+                        android:background="?attr/selectableItemBackgroundBorderless"
+                        android:src="@drawable/ic_save_24"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@id/relative_layout_diagnostics"
                         app:layout_constraintTop_toTopOf="parent"/>
 
                     <RelativeLayout
