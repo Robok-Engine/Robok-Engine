@@ -448,6 +448,8 @@ class EditorActivity :
                 noContentLayout.isVisible = !hasOpenedFiles
                 save.isVisible = hasOpenedFiles
                 moreOptions = hasOpenedFiles
+                undo.isVisible = hasOpenedFiles
+                redo.isVisible = hasOpenedFiles
             }
         }
     }
