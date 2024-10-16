@@ -140,13 +140,13 @@ class EditorActivity :
 
     override fun onCompileSuccess(signApk: File) {
         val apkUri: Uri =
-            FileProvider.getUriForFile(context, "${context.packageName}.provider", signApk)
+            FileProvider.getUriForFile(this@EditorActivity, "${packageName}.provider", signApk)
         val intent =
             Intent(Intent.ACTION_VIEW).apply {
                 setDataAndType(apkUri, "application/vnd.android.package-archive")
                 flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_GRANT_READ_URI_PERMISSION
             }
-        if (intent.resolveActivity(context.packageManager) != null) {
+        if (intent.resolveActivity(packageManager) != null) {
             startActivity(intent)
         } else {
             Toast.makeText(
@@ -515,7 +515,7 @@ class EditorActivity :
 
     private fun saveFile() {
         getCurrentEditor()?.let { editor ->
-            FileUtil.writeFile(editor.getFile(), editor.getText().toString())
+            FileUtil.writeFile(editor.getFile().absolutePath, editor.getText().toString())
             Toast.makeText(this, getString(Strings.text_saved), Toast.LENGTH_SHORT).show()
         }
     }
