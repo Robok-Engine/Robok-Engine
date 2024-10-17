@@ -155,6 +155,7 @@ public class ProjectManager {
     
     private void extractLibs(String projectName) {
         ZipUtilsKt.extractZipFromAssets(context, "libs.zip", getLibsPath());
+        
         if (creationListener != null) {
             creationListener.onProjectCreate();
         }
