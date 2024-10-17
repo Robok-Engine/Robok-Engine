@@ -104,4 +104,10 @@
     <string name="settings_app_use_amoled_title">Чорна тема</string>
     <string name="settings_app_use_amoled_description">Використовуйте чорну тему в застосунку.</string>
     <string name="text_view_layout">Переглянути GUI</string>
+    <string name="title_gui_viewer">Переглядач Gui</string>
+    <string name="text_saved">Збережено!</string>
+    <string name="text_saved_all">Все збережено!</string>
+    <string name="warning_exit_project_title">Вийти з проєкту</string>
+    <string name="warning_exit_project_message">Ви впевнені, що хочете вийти з архіву? (всі файли будуть збережені)</string>
+    <string name="text_see_code">Побачити код</string>
 </resources>
