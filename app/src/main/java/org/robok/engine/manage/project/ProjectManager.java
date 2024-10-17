@@ -60,6 +60,14 @@ public class ProjectManager {
     public File getProjectPath() {
         return outputPath;
     }
+    
+    public String getProjectName() {
+        return getProjectPath().substring(getProjectPath().lastIndexOf("/") + 1);
+    }
+    
+    public File getLibsPath() {
+        return new File(context.getFilesDir(), getProjectName());
+    }
 
     public void create(String projectName, String packageName, ProjectTemplate template) {
         Log.e(TAG, "ProjectName" + projectName);
@@ -67,7 +75,7 @@ public class ProjectManager {
         Log.e(TAG, template.toString());
         
         if (outputPath == null) {
-            throw new IllegalStateException("outputPath não foi inicializado.");
+            throw new IllegalStateException("outputPath has not been initialized.");
         }
 
         try (InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
@@ -116,7 +124,7 @@ public class ProjectManager {
 
     private void createJavaClass(String projectName, String packageName) {
         if (outputPath == null) {
-            throw new IllegalStateException("outputPath is not initialized.");
+            throw new IllegalStateException("outputPath has not been initialized.");
         }
 
         try {
@@ -150,7 +158,7 @@ public class ProjectManager {
     }
     
     private void extractLibs(String projectName) {
-        ZipUtilsKt.extractZipFromAssets(context, "libs.zip", new File(context.getFilesDir(), projectName));
+        ZipUtilsKt.extractZipFromAssets(context, "libs.zip", getLibsPath());
     }
 
     public void build(CompilerTask.OnCompileResult result) {
