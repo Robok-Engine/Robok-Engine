@@ -138,4 +138,9 @@
     <string name="settings_app_use_amoled_description">Use o tema AMOLED no aplicativo.</string>
     <string name="text_view_layout">Ver GUI</string>
     <string name="text_saved">Salvo!</string>
+    <string name="text_see_code">Ver Código</string>
+    <string name="title_gui_viewer">Visualizador de GUI</string>
+    <string name="text_saved_all">Tudo Salvo!</string>
+    <string name="warning_exit_project_title">Sair do Projeto</string>
+    <string name="warning_exit_project_message">Você tem certeza que quer sair do projeto? (todos os arquivos serão salvos)</string>
 </resources>
