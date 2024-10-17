@@ -552,7 +552,15 @@ class EditorActivity :
     }
 
     private fun saveAllFiles() {
-        // todo:
+        for (i in 0 until editorViewModel.fileCount) {
+            val editor = getEditorAtIndex(i)
+            editor?.let {
+                val file = it.getFile()
+                val text = it.getText().toString()
+                FileUtil.writeFile(file.absolutePath, text)
+            }
+        }
+        Toast.makeText(this, getString(Strings.text_saved_all), Toast.LENGTH_SHORT).show()
     }
 
     fun getCurrentEditor(): RobokCodeEditor? {
