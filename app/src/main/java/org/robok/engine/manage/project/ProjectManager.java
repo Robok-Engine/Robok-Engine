@@ -32,7 +32,7 @@ import java.util.zip.ZipInputStream;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.core.templates.code.android.game.logic.GameScreenLogicTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
-import org.robok.engine.core.utils.ZipUtilsKt
+import org.robok.engine.core.utils.ZipUtilsKt;
 
 import org.robok.engine.feature.compiler.CompilerTask;
 import org.robok.engine.feature.compiler.model.Project;
