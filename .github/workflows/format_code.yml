@@ -26,15 +26,6 @@ jobs:
         run: |
           find . -name "*.kt" -exec java -jar ktfmt.jar --kotlinlang-style {} +
 
-      - name: Check for uncommitted changes
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            echo "unformatted files found. please format your kt files."
-            exit 1
-          else
-            echo "all kotlin files are properly formatted."
-          fi
-      
       - name: Commit and Push changes
         run: |
           git config --global user.name "trindadedev13"
