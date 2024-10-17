@@ -32,6 +32,7 @@ import java.util.zip.ZipInputStream;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.core.templates.code.android.game.logic.GameScreenLogicTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
+import org.robok.engine.core.utils.ZipUtilsKt
 
 import org.robok.engine.feature.compiler.CompilerTask;
 import org.robok.engine.feature.compiler.model.Project;
@@ -102,6 +103,7 @@ public class ProjectManager {
             }
 
             createJavaClass(projectName, packageName);
+            extractLibs(projectName);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -145,6 +147,10 @@ public class ProjectManager {
             e.printStackTrace();
             notifyCreationError(e, "createJavaClass");
         }
+    }
+    
+    private void extractLibs(String projectName) {
+        ZipUtilsKt.extractZipFromAssets(context, "libs.zip", new File(context.getFilesDir(), projectName));
     }
 
     public void build(CompilerTask.OnCompileResult result) {
