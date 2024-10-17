@@ -63,6 +63,7 @@ public class XMLViewerActivity extends RobokActivity {
 
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
+        configureToolbar();
     }
     
     private void configureToolbar() {
@@ -79,6 +80,7 @@ public class XMLViewerActivity extends RobokActivity {
                 dialog.show();
                 return true;
             }
+            return false;
         });
     }
     
