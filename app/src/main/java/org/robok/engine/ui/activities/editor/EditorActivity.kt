@@ -34,6 +34,7 @@ import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.tabs.TabLayout
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 import java.io.File
 import java.util.concurrent.CompletableFuture
@@ -112,6 +113,20 @@ class EditorActivity :
     override fun onDestroy() {
         super.onDestroy()
         _binding = null
+    }
+    
+    // remove this deprecated method
+    override fun onBackPressed() {
+        MaterialAlertDialogBuilder(this)
+            .setTitle(getString(Strings.warning_exit_project_title))
+            .setMessage(getString(Strings.warning_exit_project_message))
+            .setPositiveButton(getString(Strings.common_word_confirm)) { d, w -> 
+                editorViewModel.saveAllFiles()
+                super.onBackPressed()
+            }
+            .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> 
+                d.dismiss()
+            }.show()
     }
 
     override fun onTabReselected(tab: TabLayout.Tab) {
