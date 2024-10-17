@@ -117,6 +117,8 @@
   <string name="warning_project_installer_not_found">No package installer found.</string>
   <string name="warning_file_already_opened">File is already open in the editor.</string>
   <string name="warning_no_projects">No project.</string>
+  <string name="warning_exit_project_title">Exit of Project</string>
+  <string name="warning_exit_project_message">Are you sure you want to exit the archive? (all files will be saved)</string>
   <!-- end section -->
 
   <!-- errors section -->
