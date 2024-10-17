@@ -1,4 +1,4 @@
-package org.robok.engine.core.templates.code.android.game.gui.screen
+package org.robok.engine.templates.screen
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,9 +19,9 @@ package org.robok.engine.core.templates.code.android.game.gui.screen
 
 import android.os.Parcel
 import android.os.Parcelable
-import org.robok.engine.core.templates.code.rbk.RBKLayoutTemplate
+import org.robok.engine.templates.easyui.EasyUILayoutTemplate
 
-open class GameScreenLayoutTemplate : RBKLayoutTemplate {
+open class GameScreenLayoutTemplate : EasyUILayoutTemplate {
 
     constructor() : super()
 

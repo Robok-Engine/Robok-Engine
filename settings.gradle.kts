@@ -33,7 +33,6 @@ include(":feature:compiler")
 
 include(":core:components")
 include(":core:utils")
-include(":core:templates")
 
 include(":robok-easy-ui:antlr4")
 include(":robok-easy-ui:gui")

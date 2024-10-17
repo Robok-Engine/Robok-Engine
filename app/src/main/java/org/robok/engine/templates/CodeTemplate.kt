@@ -1,4 +1,4 @@
-package org.robok.engine.core.templates.code
+package org.robok.engine.templates
 
 /*
  *  This file is part of Robok © 2024.

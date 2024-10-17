@@ -1,4 +1,4 @@
-package org.robok.engine.core.templates.code.rbk
+package org.robok.engine.templates.screen
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,35 +18,34 @@ package org.robok.engine.core.templates.code.rbk
  */
 
 import android.os.Parcel
-import org.robok.engine.core.templates.code.CodeTemplate
+import org.robok.engine.templates.java.JavaClassTemplate
 
-open class RBKLayoutTemplate : CodeTemplate {
+open class GameScreenLogicTemplate : JavaClassTemplate {
 
     constructor() : super()
 
     constructor(parcel: Parcel) : super(parcel)
 
     override fun getName(): String {
-        return "RBK Layout File"
+        return "GameScreenLogicTemplate"
     }
 
     override fun configure() {
         setContent(
             """
-            ${getCodeClassName()} {
-                Button(
-                    id = "shoot_button",
-                    text = "Shoot",
-                    width = px(20),
-                    height = px(20)
-                )
+            package ${getCodeClassPackageName()};
+
+            import robok.game.screen.GameScreen;
+
+            public class ${getCodeClassName()} extends GameScreen {
+
+                @Override
+                public void onScreenCreated() {
+                    
+                }
             }
-        """
+            """
                 .trimIndent()
         )
-    }
-
-    override fun getExtension(): String {
-        return ".rbk"
     }
 }

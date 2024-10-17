@@ -1,4 +1,4 @@
-package org.robok.engine.core.templates.code.java
+package org.robok.engine.templates.easyui
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,32 +18,35 @@ package org.robok.engine.core.templates.code.java
  */
 
 import android.os.Parcel
-import org.robok.engine.core.templates.code.CodeTemplate
+import org.robok.engine.templates.CodeTemplate
 
-open class JavaClassTemplate : CodeTemplate {
+open class EasyUILayoutTemplate : CodeTemplate {
 
     constructor() : super()
 
     constructor(parcel: Parcel) : super(parcel)
 
     override fun getName(): String {
-        return "Kotlin class"
+        return "RBK Layout File"
     }
 
     override fun configure() {
         setContent(
             """
-            package ${getCodeClassPackageName()}
-
-            class ${getCodeClassName()} {
-
+            ${getCodeClassName()} {
+                Button(
+                    id = "shoot_button",
+                    text = "Shoot",
+                    width = px(20),
+                    height = px(20)
+                )
             }
-            """
+        """
                 .trimIndent()
         )
     }
 
     override fun getExtension(): String {
-        return ".kt"
+        return ".rbk"
     }
 }

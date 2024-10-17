@@ -149,8 +149,7 @@ dependencies {
     implementation(project(":feature:xmlviewer"))
     implementation(project(":feature:compiler"))
     implementation(project(":feature:settings"))
-    
-    implementation(project(":core:templates"))
+   
     implementation(project(":core:components"))
     implementation(project(":core:utils"))
     implementation(project(":core:antlr4:java"))
