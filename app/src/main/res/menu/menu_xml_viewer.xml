@@ -4,5 +4,5 @@
         android:id="@+id/item_see_code"
         android:icon="@drawable/ic_code_24"
         android:title="@string/text_see_code"
-        android:showAsAction="ifRoom" />
+        android:showAsAction="always" />
 </menu>
