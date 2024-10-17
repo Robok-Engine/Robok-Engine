@@ -70,7 +70,7 @@ public class ProjectManager {
     }
     
     public File getLibsPath() {
-        var v = new File(context.getFilesDir(), getProjectName());
+        var v = new File(context.getFilesDir(), getProjectName() + "/libs/");
         Log.d(TAG, "ProjectLibsPath" + v);
         return v;
     }
@@ -179,7 +179,7 @@ public class ProjectManager {
             SystemLogPrinter.start(context, logger);
             
             Project project = new Project();
-            project.setLibraries(Library.fromFile(new File(getProjectPath().getAbsolutePath() + "/libs/")));
+            project.setLibraries(Library.fromFile(getLibsPath()));
             project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
             project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
             project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
