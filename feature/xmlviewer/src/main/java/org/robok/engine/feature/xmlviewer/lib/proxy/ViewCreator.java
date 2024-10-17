@@ -1,4 +1,4 @@
-package org.robok.engine.feature.xmlviewer.lib.proxy;
+package coyamo.visualxml.lib.proxy;
 /**
  * Copyright (C) 2020 Coyamo
  * <p>
@@ -22,9 +22,9 @@ import androidx.annotation.NonNull;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-import org.robok.engine.feature.xmlviewer.lib.ui.DefaultView;
-import org.robok.engine.feature.xmlviewer.lib.ui.proxy.BlinkLayout;
-import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray;
+import coyamo.visualxml.lib.ui.DefaultView;
+import coyamo.visualxml.lib.ui.proxy.BlinkLayout;
+import coyamo.visualxml.lib.utils.MessageArray;
 
 public class ViewCreator {
     //private static final String TAG_MERGE = "merge";
@@ -40,7 +40,7 @@ public class ViewCreator {
     };
 
     public static View create(@NonNull String name, @NonNull Context ctx) {
-        if (name.startsWith("org.robok.engine.feature.xmlviewer.")) return createDefault(ctx, name);
+        if (name.startsWith("coyamo.visualxml.")) return createDefault(ctx, name);
         View v = null;
         if (isFullPackage(name)) {
             v = _create(name, ctx);
@@ -59,7 +59,7 @@ public class ViewCreator {
     }
 
     public static View create(@NonNull String name, @NonNull Context ctx, int defStyle) {
-        if (name.startsWith("org.robok.engine.feature.xmlviewer.")) return createDefault(ctx, name);
+        if (name.startsWith("coyamo.visualxml.")) return createDefault(ctx, name);
         View v = null;
         if (isFullPackage(name)) {
             v = _create(name, ctx, defStyle);

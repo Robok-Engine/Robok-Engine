@@ -1,4 +1,4 @@
-package org.robok.engine.feature.xmlviewer.lib.utils;
+package coyamo.visualxml.lib.utils;
 
 public class XmlMessage {
     public static final int TYPE_DEBUG = 0;

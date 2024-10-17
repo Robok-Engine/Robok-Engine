@@ -1,4 +1,4 @@
-package org.robok.engine.feature.xmlviewer.lib.utils;
+package coyamo.visualxml.lib.utils;
 
 import android.content.Context;
 import android.util.TypedValue;
