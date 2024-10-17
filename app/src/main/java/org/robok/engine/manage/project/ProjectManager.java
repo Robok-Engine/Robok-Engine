@@ -62,7 +62,7 @@ public class ProjectManager {
     }
     
     public String getProjectName() {
-        return getProjectPath().getAbsolute().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
+        return getProjectPath().getAbsolutePath().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
     }
     
     public File getLibsPath() {
