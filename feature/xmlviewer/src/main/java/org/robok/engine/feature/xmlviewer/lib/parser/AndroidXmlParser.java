@@ -1,4 +1,4 @@
-package coyamo.visualxml.lib.parser;
+package org.robok.engine.feature.xmlviewer.lib.parser;
 /**
  * Copyright (C) 2020 Coyamo
  * <p>
@@ -26,10 +26,10 @@ import java.io.Reader;
 import java.io.StringReader;
 import java.util.Stack;
 
-import coyamo.visualxml.lib.proxy.ProxyAttributeSet;
-import coyamo.visualxml.lib.proxy.ProxyResources;
-import coyamo.visualxml.lib.proxy.ViewCreator;
-import coyamo.visualxml.lib.utils.MessageArray;
+import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyAttributeSet;
+import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources;
+import org.robok.engine.feature.xmlviewer.lib.proxy.ViewCreator;
+import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray;
 
 public class AndroidXmlParser {
     public static final String ANDROID_NS = "http://schemas.android.com/apk/res/android";

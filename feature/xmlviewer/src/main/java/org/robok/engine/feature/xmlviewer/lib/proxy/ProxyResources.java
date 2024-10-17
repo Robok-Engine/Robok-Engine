@@ -1,4 +1,4 @@
-package coyamo.visualxml.lib.proxy;
+package org.robok.engine.feature.xmlviewer.lib.proxy;
 /**
  * Copyright (C) 2020 Coyamo
  * <p>
@@ -28,8 +28,8 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 import java.util.Map;
 
-import coyamo.visualxml.lib.utils.MessageArray;
-import coyamo.visualxml.lib.utils.Utils;
+import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray;
+import org.robok.engine.feature.xmlviewer.lib.utils.Utils;
 
 /*
 处理xml中的引用类型的值（不全面）

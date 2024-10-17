@@ -1,4 +1,4 @@
-package coyamo.visualxml.lib.ui;
+package org.robok.engine.feature.xmlviewer.lib.ui;
 /**
  * Copyright (C) 2020 Coyamo
  * <p>

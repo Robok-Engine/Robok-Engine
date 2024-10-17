@@ -1,4 +1,4 @@
-package coyamo.visualxml.lib.ui.proxy;
+package org.robok.engine.feature.xmlviewer.lib.ui.proxy;
 /*
  * Copyright (C) 2007 The Android Open Source Project
  *

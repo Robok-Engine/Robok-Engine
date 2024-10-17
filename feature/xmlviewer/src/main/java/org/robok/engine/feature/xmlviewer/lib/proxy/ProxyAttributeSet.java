@@ -1,4 +1,4 @@
-package coyamo.visualxml.lib.proxy;
+package org.robok.engine.feature.xmlviewer.lib.proxy;
 /**
  * Copyright (C) 2020 Coyamo
  * <p>
@@ -34,9 +34,9 @@ import org.xmlpull.v1.XmlPullParser;
 import java.util.HashMap;
 import java.util.Map;
 
-import coyamo.visualxml.lib.parser.AndroidXmlParser;
-import coyamo.visualxml.lib.utils.MessageArray;
-import coyamo.visualxml.lib.utils.Utils;
+import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser;
+import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray;
+import org.robok.engine.feature.xmlviewer.lib.utils.Utils;
 
 @SuppressLint("RtlHardcoded")
 public class ProxyAttributeSet {
