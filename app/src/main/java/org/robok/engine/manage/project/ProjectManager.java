@@ -55,18 +55,24 @@ public class ProjectManager {
 
     public void setProjectPath(File value) {
         outputPath = value;
+        Log.d(TAG, "ProjectPath" + value.getAbsolutePath());
     }
 
     public File getProjectPath() {
+        Log.d(TAG, "ProjectPath" + outputPath.getAbsolutePath());
         return outputPath;
     }
     
     public String getProjectName() {
-        return getProjectPath().getAbsolutePath().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
+        var v = getProjectPath().getAbsolutePath().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
+        Log.d(TAG, "ProjectName" + v);
+        return v;
     }
     
     public File getLibsPath() {
-        return new File(context.getFilesDir(), getProjectName());
+        var v = new File(context.getFilesDir(), getProjectName());
+        Log.d(TAG, "ProjectLibsPath" + v);
+        return v;
     }
 
     public void create(String projectName, String packageName, ProjectTemplate template) {
