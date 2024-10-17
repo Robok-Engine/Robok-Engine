@@ -188,7 +188,7 @@ public class XMLViewerActivity extends RobokActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.item_see_code) {
-            var dialog = MaterialAlertDialogBuilder(this)
+            var dialog = new MaterialAlertDialogBuilder(this)
                     .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
                     .setMessage(getIntent().getStringExtra("xml"))
                     .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
