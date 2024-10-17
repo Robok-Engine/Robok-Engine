@@ -65,6 +65,23 @@ public class XMLViewerActivity extends RobokActivity {
         setupOutlineClickListener(nodes);
     }
     
+    private void configureToolbar() {
+        binding.toolbar.setOnMenuItemClickListener(item -> {
+            int id = item.getItemId();
+            if (id == R.id.item_see_code) {
+                var dialog = new MaterialAlertDialogBuilder(this)
+                    .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
+                    .setMessage(getIntent().getStringExtra("xml"))
+                    .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
+                       d.dismiss();
+                    })
+                    .create();
+                dialog.show();
+                return true;
+            }
+        });
+    }
+    
     private void clearResources() {
         try {
             ProxyResources.getInstance().getViewIdMap().clear();
@@ -177,27 +194,5 @@ public class XMLViewerActivity extends RobokActivity {
             }
         }
         return null;
-    }
-
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-        if (id == R.id.item_see_code) {
-            var dialog = new MaterialAlertDialogBuilder(this)
-                    .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
-                    .setMessage(getIntent().getStringExtra("xml"))
-                    .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
-                       d.dismiss();
-                    })
-                    .create();
-            dialog.show();
-            return true;
-       }
-       return super.onOptionsItemSelected(item);
     }
 }
