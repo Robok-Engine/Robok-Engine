@@ -39,9 +39,7 @@ fun extractZipFromAssets(context: Context, assetFileName: String, outputDir: Fil
                 newFile.mkdirs()
             } else {
                 newFile.parentFile.mkdirs()
-                FileOutputStream(newFile).use { fos ->
-                    zipInputStream.copyTo(fos)
-                }
+                FileOutputStream(newFile).use { fos -> zipInputStream.copyTo(fos) }
             }
             zipInputStream.closeEntry()
             zipEntry = zipInputStream.nextEntry

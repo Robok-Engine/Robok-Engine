@@ -23,8 +23,8 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.SparseArray
 import android.util.Log
+import android.util.SparseArray
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.widget.PopupMenu
@@ -33,8 +33,8 @@ import androidx.core.util.forEach
 import androidx.core.view.GravityCompat
 import androidx.core.view.isVisible
 import androidx.drawerlayout.widget.DrawerLayout
-import com.google.android.material.tabs.TabLayout
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.tabs.TabLayout
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticRegion
 import java.io.File
 import java.util.concurrent.CompletableFuture
@@ -43,8 +43,8 @@ import org.koin.android.ext.android.getKoin
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
-import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.core.utils.FileUtil
+import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
@@ -114,19 +114,18 @@ class EditorActivity :
         super.onDestroy()
         _binding = null
     }
-    
+
     // remove this deprecated method
     override fun onBackPressed() {
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(Strings.warning_exit_project_title))
             .setMessage(getString(Strings.warning_exit_project_message))
-            .setPositiveButton(getString(Strings.common_word_confirm)) { d, w -> 
+            .setPositiveButton(getString(Strings.common_word_confirm)) { d, w ->
                 editorViewModel.saveAllFiles()
                 super.onBackPressed()
             }
-            .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> 
-                d.dismiss()
-            }.show()
+            .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> d.dismiss() }
+            .show()
     }
 
     override fun onTabReselected(tab: TabLayout.Tab) {
@@ -186,17 +185,13 @@ class EditorActivity :
     }
 
     private fun configureButtons() {
-        binding.runButton.setOnClickListener {
-            projectManager.build(this)
-        }
+        binding.runButton.setOnClickListener { projectManager.build(this) }
 
         binding.openFilesButton.setOnClickListener {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-        
-        binding.save.setOnClickListener {
-            editorViewModel.saveFile()
-        }
+
+        binding.save.setOnClickListener { editorViewModel.saveFile() }
     }
 
     private fun configureTabLayout() {
@@ -398,8 +393,8 @@ class EditorActivity :
     private fun configureMoreOptions() {
         binding.moreOptions.setOnClickListener {
             val popm = PopupMenu(this, binding.moreOptions)
-            
-            when(getCurrentFileExtension() ?: "java") {
+
+            when (getCurrentFileExtension() ?: "java") {
                 "gui" -> popm.menu.add(0, 0, 0, Strings.text_view_layout)
             }
 
@@ -431,9 +426,7 @@ class EditorActivity :
                     startActivity(intent)
                     Log.d(GUI_COMPILER_TAG, code)
                 },
-                onError = {
-                    Log.e(GUI_COMPILER_TAG, it)
-                },
+                onError = { Log.e(GUI_COMPILER_TAG, it) },
             )
         val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
     }
@@ -473,9 +466,9 @@ class EditorActivity :
             }
         }
     }
-    
+
     private fun getCurrentFileExtension(): String? {
-        getCurrentEditor()?.let { editor -> 
+        getCurrentEditor()?.let { editor ->
             return editor.getFile().getName().substringAfterLast(".")
         }
         return null
