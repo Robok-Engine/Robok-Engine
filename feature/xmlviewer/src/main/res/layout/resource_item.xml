@@ -9,7 +9,8 @@
         android:id="@+id/resource_item_icon"
         android:layout_width="64dp"
         android:layout_height="64dp"
-        android:layout_centerVertical="true" />
+        android:layout_centerVertical="true"
+        android:contentDescription="@string/resource" />
 
     <LinearLayout
         android:id="@+id/resource_item_ll"
@@ -28,7 +29,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:padding="2dp"
-            android:textColor="?colorPrimary"
+            android:textColor="@color/textColorPrimary"
             android:textSize="16sp"
             android:textStyle="bold" />
 
@@ -49,6 +50,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
         android:layout_toEndOf="@id/resource_item_icon"
-        android:background="?colorOutline" />
+        android:background="@color/divider" />
 
 </RelativeLayout>
