@@ -144,10 +144,6 @@ public class ProjectManager {
                 fos.write(template.getCodeClassContent().getBytes());
             }
 
-            if (creationListener != null) {
-                creationListener.onProjectCreate();
-            }
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             notifyCreationError(e, "createJavaClass");
@@ -159,6 +155,9 @@ public class ProjectManager {
     
     private void extractLibs(String projectName) {
         ZipUtilsKt.extractZipFromAssets(context, "libs.zip", getLibsPath());
+        if (creationListener != null) {
+            creationListener.onProjectCreate();
+        }
     }
 
     public void build(CompilerTask.OnCompileResult result) {
