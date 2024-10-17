@@ -36,3 +36,4 @@ jobs:
           git push origin dev
         env:
           TOKEN: ${{ secrets.SUPER_TOKEN }}
+        continue-on-error: true
