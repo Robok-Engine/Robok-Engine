@@ -53,6 +53,8 @@ public class XMLViewerActivity extends RobokActivity {
         List<TreeNode> nodes = new ArrayList<>();
         Stack<TreeNode> treeNodeStack = new Stack<>();
         
+        ProxyResources.init(this);
+        
         clearResources();
         
         try {
@@ -86,7 +88,9 @@ public class XMLViewerActivity extends RobokActivity {
     
     private void clearResources() {
         try {
-            ProxyResources.getInstance().getViewIdMap().clear();
+            if (!ProxyResources.getInstance().getViewIdMap().isEmpty()) {
+                ProxyResources.getInstance().getViewIdMap().clear();
+            }
             MessageArray.getInstanse().clear();
         } catch(Exception e) {
             var dia = new 
