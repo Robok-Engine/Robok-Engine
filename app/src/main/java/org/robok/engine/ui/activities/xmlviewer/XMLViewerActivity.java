@@ -86,7 +86,9 @@ public class XMLViewerActivity extends RobokActivity {
     
     private void clearResources() {
         try {
-            ProxyResources.getInstance().getViewIdMap().clear();
+            if (!ProxyResources.getInstance().getViewIdMap().isEmpty()) {
+                ProxyResources.getInstance().getViewIdMap().clear();
+            }
             MessageArray.getInstanse().clear();
         } catch(Exception e) {
             var dia = new 
