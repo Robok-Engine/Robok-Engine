@@ -17,8 +17,9 @@
     "events_url": "https://api.github.com/users/trindadedev13/events{/privacy}",
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1014
+    "contributions": 1017
   },
   {
     "login": "ThDev-only",
@@ -38,6 +39,7 @@
     "events_url": "https://api.github.com/users/ThDev-only/events{/privacy}",
     "received_events_url": "https://api.github.com/users/ThDev-only/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 199
   },
@@ -59,6 +61,7 @@
     "events_url": "https://api.github.com/users/renovate%5Bbot%5D/events{/privacy}",
     "received_events_url": "https://api.github.com/users/renovate%5Bbot%5D/received_events",
     "type": "Bot",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 129
   },
@@ -80,6 +83,7 @@
     "events_url": "https://api.github.com/users/gampiot-bot/events{/privacy}",
     "received_events_url": "https://api.github.com/users/gampiot-bot/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 35
   },
@@ -101,6 +105,7 @@
     "events_url": "https://api.github.com/users/skinvent/events{/privacy}",
     "received_events_url": "https://api.github.com/users/skinvent/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 18
   },
@@ -122,6 +127,7 @@
     "events_url": "https://api.github.com/users/RohitKushvaha01/events{/privacy}",
     "received_events_url": "https://api.github.com/users/RohitKushvaha01/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 16
   },
@@ -143,6 +149,7 @@
     "events_url": "https://api.github.com/users/github-actions%5Bbot%5D/events{/privacy}",
     "received_events_url": "https://api.github.com/users/github-actions%5Bbot%5D/received_events",
     "type": "Bot",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 10
   },
@@ -164,8 +171,9 @@
     "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
-    "contributions": 7
+    "contributions": 8
   },
   {
     "login": "teixeira0x",
@@ -185,6 +193,7 @@
     "events_url": "https://api.github.com/users/teixeira0x/events{/privacy}",
     "received_events_url": "https://api.github.com/users/teixeira0x/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 6
   },
@@ -206,6 +215,7 @@
     "events_url": "https://api.github.com/users/Yamenher/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Yamenher/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 6
   },
@@ -227,6 +237,7 @@
     "events_url": "https://api.github.com/users/itsvks19/events{/privacy}",
     "received_events_url": "https://api.github.com/users/itsvks19/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 3
   },
@@ -248,6 +259,29 @@
     "events_url": "https://api.github.com/users/Paxsenix0/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Paxsenix0/received_events",
     "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 2
+  },
+  {
+    "login": "OSilvaDev",
+    "id": 148734093,
+    "node_id": "U_kgDOCN2AjQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/148734093?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/OSilvaDev",
+    "html_url": "https://github.com/OSilvaDev",
+    "followers_url": "https://api.github.com/users/OSilvaDev/followers",
+    "following_url": "https://api.github.com/users/OSilvaDev/following{/other_user}",
+    "gists_url": "https://api.github.com/users/OSilvaDev/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/OSilvaDev/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/OSilvaDev/subscriptions",
+    "organizations_url": "https://api.github.com/users/OSilvaDev/orgs",
+    "repos_url": "https://api.github.com/users/OSilvaDev/repos",
+    "events_url": "https://api.github.com/users/OSilvaDev/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/OSilvaDev/received_events",
+    "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 2
   },
@@ -269,6 +303,7 @@
     "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Xori71/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 1
   },
@@ -290,6 +325,7 @@
     "events_url": "https://api.github.com/users/weblate/events{/privacy}",
     "received_events_url": "https://api.github.com/users/weblate/received_events",
     "type": "User",
+    "user_view_type": "public",
     "site_admin": false,
     "contributions": 1
   }

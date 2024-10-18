@@ -18,8 +18,9 @@
     "received_events_url": "https://api.github.com/users/trindadedev13/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 1014,
-    "role": "Founder"
+    "contributions": 1017,
+    "role": "Founder",
+    "user_view_type": "public"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +42,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 199,
-    "role": "Founder"
+    "role": "Founder",
+    "user_view_type": "public"
   },
   {
     "login": "renovate[bot]",
@@ -63,7 +65,8 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 129,
-    "role": "Bot"
+    "role": "Bot",
+    "user_view_type": "public"
   },
   {
     "login": "gampiot-bot",
@@ -85,7 +88,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 35,
-    "role": "Bot"
+    "role": "Bot",
+    "user_view_type": "public"
   },
   {
     "login": "skinvent",
@@ -107,7 +111,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 18,
-    "role": "Bot"
+    "role": "Bot",
+    "user_view_type": "public"
   },
   {
     "login": "RohitKushvaha01",
@@ -129,7 +134,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 16,
-    "role": "Development"
+    "role": "Development",
+    "user_view_type": "public"
   },
   {
     "login": "github-actions[bot]",
@@ -151,7 +157,8 @@
     "type": "Bot",
     "site_admin": false,
     "contributions": 10,
-    "role": "Bot"
+    "role": "Bot",
+    "user_view_type": "public"
   },
   {
     "login": "teixeira0x",
@@ -173,7 +180,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 6,
-    "role": "Development"
+    "role": "Development",
+    "user_view_type": "public"
   },
   {
     "login": "Kefir2105",
@@ -194,8 +202,9 @@
     "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
     "type": "User",
     "site_admin": false,
-    "contributions": 7,
-    "role": "Translation"
+    "contributions": 8,
+    "role": "Translation",
+    "user_view_type": "public"
   },
   {
     "login": "Paxsenix0",
@@ -217,7 +226,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 2,
-    "role": "Translation"
+    "role": "Translation",
+    "user_view_type": "public"
   },
   {
     "login": "Xori71",
@@ -239,7 +249,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 1,
-    "role": "Translation"
+    "role": "Translation",
+    "user_view_type": "public"
   },
   {
     "login": "weblate",
@@ -261,7 +272,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 1,
-    "role": "Bot"
+    "role": "Bot",
+    "user_view_type": "public"
   },
   {
     "login": "itsvks19",
@@ -283,7 +295,8 @@
     "type": "User",
     "site_admin": false,
     "contributions": 3,
-    "role": "Development"
+    "role": "Development",
+    "user_view_type": "public"
   },
   {
     "login": "Yamenher",
@@ -305,6 +318,29 @@
     "type": "User",
     "site_admin": false,
     "contributions": 6,
-    "role": "Translation"
+    "role": "Translation",
+    "user_view_type": "public"
+  },
+  {
+    "login": "OSilvaDev",
+    "id": 148734093,
+    "node_id": "U_kgDOCN2AjQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/148734093?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/OSilvaDev",
+    "html_url": "https://github.com/OSilvaDev",
+    "followers_url": "https://api.github.com/users/OSilvaDev/followers",
+    "following_url": "https://api.github.com/users/OSilvaDev/following{/other_user}",
+    "gists_url": "https://api.github.com/users/OSilvaDev/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/OSilvaDev/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/OSilvaDev/subscriptions",
+    "organizations_url": "https://api.github.com/users/OSilvaDev/orgs",
+    "repos_url": "https://api.github.com/users/OSilvaDev/repos",
+    "events_url": "https://api.github.com/users/OSilvaDev/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/OSilvaDev/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 2
   }
 ]
