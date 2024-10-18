@@ -53,6 +53,8 @@ public class XMLViewerActivity extends RobokActivity {
         List<TreeNode> nodes = new ArrayList<>();
         Stack<TreeNode> treeNodeStack = new Stack<>();
         
+        ProxyResources.init(this);
+        
         clearResources();
         
         try {
