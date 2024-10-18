@@ -14,4 +14,4 @@
 | weblate | 1 | Bot |
 | itsvks19 | 3 | Development |
 | Yamenher | 6 | Translation |
-| OSilvaDev | 2 | N/A |
+| OSilvaDev | 2 | Development |
