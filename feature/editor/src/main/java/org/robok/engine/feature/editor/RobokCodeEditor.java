@@ -85,7 +85,6 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         
         diagnostics = new DiagnosticsContainer();
         
-        reload();
         readFile();
 
         getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
@@ -98,6 +97,8 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                 .setColorScheme(
                         AppearanceManager.getTheme(
                                 this, editorConfigManager.getEditorThemePreference()));
+        
+        reloadListeners();
     }
     
     /*
@@ -174,9 +175,9 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     }
 
     /*
-     * Method to reload Language config
+     * Method to reloadListeners Language config
      */
-    public void reload() {
+    public void reloadListeners() {
         getLanguage().setEditorListener(editorListener);
         getLanguage().setAntlrListener(antlrListener);
     }
