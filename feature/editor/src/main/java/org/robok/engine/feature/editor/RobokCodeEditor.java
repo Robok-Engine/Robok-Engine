@@ -29,6 +29,7 @@ import io.github.rosemoe.sora.lang.diagnostic.Quickfix;
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
 import io.github.rosemoe.sora.widget.schemes.*;
+import io.github.rosemoe.sora.lang.EmptyLanguage;
 
 import kotlin.io.FilesKt;
 
@@ -110,6 +111,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         var extension = fName.substring(fName.lastIndexOf(".") + 1);
         return switch (extension) {
             case "java" -> new JavaLanguage(this, diagnostics);
+            case "gui" -> new EmptyLanguage();
             default -> null;
         };
     }
