@@ -18,6 +18,7 @@ package org.robok.engine.feature.editor.languages
  */
 
 import org.robok.engine.feature.editor.EditorListener
+import org.robok.engine.core.antlr4.java.AntlrListener
 
 /*
  * A empty language for others languages.
@@ -25,7 +26,7 @@ import org.robok.engine.feature.editor.EditorListener
  * @author Silva (silvadeveloper1).
  */
 
-class EmptyLanguage : io.github.rosemoe.sora.lang.EmptyLanguage(), Language, EditorListener {
+class EmptyLanguage : io.github.rosemoe.sora.lang.EmptyLanguage(), Language, EditorListener, AntlrListener {
     
     private lateinit var editorListener: EditorListener
     
@@ -36,5 +37,7 @@ class EmptyLanguage : io.github.rosemoe.sora.lang.EmptyLanguage(), Language, Edi
     override fun setEditorListener(value: EditorListener) {
         editorListener = value
     }
+    
+    override fun setAntlrListener(value: AntlrListener) {}
     
 }
