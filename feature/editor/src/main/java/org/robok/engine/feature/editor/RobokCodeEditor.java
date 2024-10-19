@@ -29,13 +29,13 @@ import io.github.rosemoe.sora.lang.diagnostic.Quickfix;
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.component.EditorAutoCompletion;
 import io.github.rosemoe.sora.widget.schemes.*;
+import io.github.rosemoe.sora.lang.EmptyLanguage;
 
 import kotlin.io.FilesKt;
 
 import org.robok.engine.feature.editor.databinding.LayoutCodeEditorBinding;
 import org.robok.engine.feature.editor.languages.java.*;
 import org.robok.engine.feature.editor.languages.Language;
-import org.robok.engine.feature.editor.languages.EmptyLanguage;
 import org.robok.engine.feature.editor.schemes.*;
 import org.robok.engine.core.antlr4.java.*;
 
@@ -90,12 +90,16 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
         getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
         getSoraCodeEditor().setTextSize(16);
-        if(getLanguage() != null) getSoraCodeEditor().setEditorLanguage(getLanguage());
         getSoraCodeEditor().setWordwrap(editorConfigManager.isUseWordWrap());
-        if(getFileExtension()) {
+        
+        if(getFileExtension().equals("java")) {
+            getSoraCodeEditor().setEditorLanguage(new JavaLanguage(this, diagnostics));
             getSoraCodeEditor().getProps().symbolPairAutoCompletion = true;
             getSoraCodeEditor().getComponent(EditorAutoCompletion.class).setEnabled(true);
+        } else {
+            getSoraCodeEditor().setEditorLanguage(new EmptyLanguage());
         }
+        
         getSoraCodeEditor()
                 .setColorScheme(
                         AppearanceManager.getTheme(
@@ -111,17 +115,6 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         var fileName = getFile().getName();
         var extension = fileName.substring(fileName.lastIndexOf(".") + 1);
         return extension
-    }
-    
-    /*
-     * Method that provides the language based on the file extension.
-     * @return Language instance of correct language
-     */
-    private Language getLanguage() {
-        return switch (getFileExtension()) {
-            case "java" -> new JavaLanguage(this, diagnostics);
-            default -> new EmptyLanguage();
-        };
     }
     
     /*
