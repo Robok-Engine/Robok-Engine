@@ -385,9 +385,11 @@ class EditorActivity :
                     handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
                 }
             }
-        editor.setAntlrListener(antlrListener)
-        editor.setEditorListener(editorListener)
-        editor.reloadListeners()
+        if((getCurrentFileExtension() ?: "java") == "java") {
+            editor.setAntlrListener(antlrListener)
+            editor.setEditorListener(editorListener)
+            editor.reloadListeners()
+        }
     }
 
     private fun configureMoreOptions() {
