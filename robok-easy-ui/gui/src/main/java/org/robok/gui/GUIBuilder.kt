@@ -66,10 +66,7 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Opening Column Layout"))
         xmlCodeList.newLineBroken("${indent}<LinearLayout")
         indentLevel++
-        /*
-        xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_HEIGHT}")
-        xmlCodeList.newLine("${indent}${DefaultValues.LAYOUT_WIDTH}")
-        */
+        xmlCodeList.newLineBroken("${indent}\tandroid:orientation=\"vertical\"")
         xmlCodeList.newLineBroken(">")
         indentLevel++
         closingTagLayoutList.newLine("Column:</LinearLayout>")
