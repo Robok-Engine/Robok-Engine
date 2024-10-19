@@ -56,8 +56,6 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     private final LayoutCodeEditorBinding binding;
 
-    private Language language; // Configuration of JavaLanguage
-
     private EditorConfigManager editorConfigManager;
 
     private File file; // Editor file
@@ -87,15 +85,12 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         
         diagnostics = new DiagnosticsContainer();
         
-        var tempLang = getLanguage();
-        if (tempLang != null) language = tempLang
-        
         reload();
         readFile();
 
         getSoraCodeEditor().setTypefaceText(AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
         getSoraCodeEditor().setTextSize(16);
-        getSoraCodeEditor().setEditorLanguage(language);
+        if(getLanguage() != null) getSoraCodeEditor().setEditorLanguage(getLanguage());
         getSoraCodeEditor().setWordwrap(editorConfigManager.isUseWordWrap());
         getSoraCodeEditor().getProps().symbolPairAutoCompletion = true;
         getSoraCodeEditor().getComponent(EditorAutoCompletion.class).setEnabled(true);
@@ -182,8 +177,8 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      * Method to reload Language config
      */
     public void reload() {
-        language.setEditorListener(editorListener);
-        language.setAntlrListener(antlrListener);
+        getLanguage().setEditorListener(editorListener);
+        getLanguage().setAntlrListener(antlrListener);
     }
 
     public void release() {
