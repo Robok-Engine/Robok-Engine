@@ -102,13 +102,24 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                                 this, editorConfigManager.getEditorThemePreference()));
     }
     
+    /*
+     * Method that provides the language based on the file extension.
+     * @return Language instance of correct language
+     */
     private Language handleLanguage() {
-        if(file.getName().endsWith(".java")) return new JavaLanguage(this, diagnostics);
-        return new JavaLanguage(this, diagnostics);
+        var fName = editor.getFile().getName();
+        var extension = fName.substring(fName.lastIndexOf(".") + 1);
+        return switch (extension) {
+            case "java" -> new JavaLanguage(this, diagnostics);
+            default -> null;
+        };
     }
-
+    
+    /*
+     * Read text of the file of getFile()
+     */
     private void readFile() {
-        CompletableFuture.supplyAsync(() -> FilesKt.readText(file, StandardCharsets.UTF_8))
+        CompletableFuture.supplyAsync(() -> FilesKt.readText(getFile(), StandardCharsets.UTF_8))
                 .whenComplete((result, error) -> getSoraCodeEditor().setText(result));
     }
 
@@ -234,15 +245,19 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     public boolean isCanUndo() {
         return getSoraCodeEditor().canUndo();
     }
-
-    public void markModified() {
-        this.isModified = true;
+    
+    /*
+     * Method to mark editor value modifierd or not
+     * @param isModified  new value
+     */
+    public void setModified(boolean isModified) {
+        this.isModified = isModified;
     }
-
-    public void markUnmodified() {
-        this.isModified = false;
-    }
-
+    
+    /*
+     * Method to get if current editor value is modified or not
+     * @return value of true for yes, false for not
+     */
     public boolean isModified() {
         return this.isModified;
     }
