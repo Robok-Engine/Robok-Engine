@@ -55,7 +55,7 @@ class GUIBuilder(
         xmlCodeList.newLineBroken(DefaultValues.XMLNS(indent))
         xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_HEIGHT}")
         xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_WIDTH}")
-        xmlCodeList.newLine("${indent}android:id=\"@+id/root_view\"")
+        xmlCodeList.newLine("${indent}\tandroid:id=\"@+id/root_view\"")
         xmlCodeList.newLineBroken(">")
         indentLevel++
     }
