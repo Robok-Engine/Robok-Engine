@@ -114,7 +114,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     private String getFileExtension() {
         var fileName = getFile().getName();
         var extension = fileName.substring(fileName.lastIndexOf(".") + 1);
-        return extension
+        return extension;
     }
     
     /*
