@@ -147,21 +147,30 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      * @param msg a message about the error to the user.
      */
     public void addDiagnosticInEditor(
-            int positionStart, int positionEnd, short severity, String msg) {
+        int positionStart,
+        int positionEnd,
+        short severity, 
+        String msg
+    ) {
         DiagnosticRegion diagnosticRegion =
-                new DiagnosticRegion(
-                        positionStart,
-                        positionEnd,
-                        severity,
-                        0L,
-                        new DiagnosticDetail(
-                                getContext()
-                                        .getString(
-                                                org.robok.engine.strings.R.string
-                                                        .text_error_details),
-                                msg,
-                            List.of(new Quickfix("Fix Quick", 0L, () -> quickFix())),
-                                null));
+            new DiagnosticRegion(
+                positionStart,
+                positionEnd,
+                severity,
+                0L,
+                new DiagnosticDetail(
+                    getContext()
+                    .getString(org.robok.engine.strings.R.string.text_error_details),
+                    msg,
+                    List.of(
+                        new Quickfix(
+                            "Fix Quick", 
+                            0L, () -> quickFix()
+                        )
+                    ),
+                    null
+                )
+            );
         diagnostics.addDiagnostic(diagnosticRegion);
         getSoraCodeEditor().setDiagnostics(diagnostics);
     }
