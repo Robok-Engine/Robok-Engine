@@ -387,7 +387,7 @@ class EditorActivity :
             }
         editor.setAntlrListener(antlrListener)
         editor.setEditorListener(editorListener)
-        editor.reload()
+        editor.reloadListeners()
     }
 
     private fun configureMoreOptions() {
