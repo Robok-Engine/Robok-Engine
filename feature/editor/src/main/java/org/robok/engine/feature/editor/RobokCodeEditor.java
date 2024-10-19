@@ -105,7 +105,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
                         AppearanceManager.getTheme(
                                 this, editorConfigManager.getEditorThemePreference()));
         
-        reloadListeners();
+        if(getFileExtension().equals("java")) reloadListeners();
     }
     
     /*
@@ -115,6 +115,17 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         var fileName = getFile().getName();
         var extension = fileName.substring(fileName.lastIndexOf(".") + 1);
         return extension;
+    }
+    
+    /*
+     * Method that provides the language based on the file extension.
+     * @return Language instance of correct language
+     */
+    private Language getLanguage() {
+        return switch (getFileExtension()) {
+            case "java" -> new JavaLanguage(this, diagnostics);
+            default -> null;
+        };
     }
     
     /*
