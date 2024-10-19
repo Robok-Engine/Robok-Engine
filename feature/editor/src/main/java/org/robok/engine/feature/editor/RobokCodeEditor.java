@@ -107,7 +107,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      * @return Language instance of correct language
      */
     private Language handleLanguage() {
-        var fName = editor.getFile().getName();
+        var fName = getFile().getName();
         var extension = fName.substring(fName.lastIndexOf(".") + 1);
         return switch (extension) {
             case "java" -> new JavaLanguage(this, diagnostics);
