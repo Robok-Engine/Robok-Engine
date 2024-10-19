@@ -34,7 +34,7 @@ class GUIBuilder(
     private val onGenerateCode: (String) -> Unit,
     val onError: (String) -> Unit,
     private val codeComments: Boolean = false,
-    private val verticalRoot: Boolean = false
+    private val verticalRoot: Boolean = false,
 ) {
     val xmlCodeList: MutableList<String> = mutableListOf()
     private var indentLevel = 0

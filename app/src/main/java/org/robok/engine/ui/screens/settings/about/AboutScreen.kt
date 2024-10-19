@@ -162,7 +162,9 @@ suspend fun fetchContributors(): List<Contributor> {
                         val contributors = Json.decodeFromString<List<Contributor>>(it)
 
                         contributors.filter { contributor ->
-                            contributor.type != "Bot" && contributor.role != "Bot" && contributor.user_view_type != "private"
+                            contributor.type != "Bot" &&
+                                contributor.role != "Bot" &&
+                                contributor.user_view_type != "private"
                         }
                     } ?: emptyList()
                 } else {

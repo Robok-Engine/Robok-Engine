@@ -41,5 +41,5 @@ data class Contributor(
     val site_admin: Boolean = false,
     val contributions: Int = 0,
     val role: String = "Contributor",
-    val user_view_type: String = "public"
+    val user_view_type: String = "public",
 )
