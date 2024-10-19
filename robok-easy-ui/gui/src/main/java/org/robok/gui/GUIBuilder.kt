@@ -31,9 +31,10 @@ import org.robok.gui.internal.newLineBroken
 
 class GUIBuilder(
     private val context: Context,
-    private val codeComments: Boolean = false,
     private val onGenerateCode: (String) -> Unit,
     val onError: (String) -> Unit,
+    private val codeComments: Boolean = false,
+    private val verticalRoot: Boolean = false
 ) {
     val xmlCodeList: MutableList<String> = mutableListOf()
     private var indentLevel = 0
@@ -55,6 +56,7 @@ class GUIBuilder(
         xmlCodeList.newLineBroken(DefaultValues.XMLNS(indent))
         xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_HEIGHT}")
         xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_WIDTH}")
+        if (verticalRoot) xmlCodeList.newLineBroken("${indent}\tandroid:orientation=\"vertical\"")
         xmlCodeList.newLine("${indent}\tandroid:id=\"@+id/root_view\"")
         xmlCodeList.newLineBroken(">")
         indentLevel++
