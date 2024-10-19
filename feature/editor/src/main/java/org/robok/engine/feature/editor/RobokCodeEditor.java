@@ -86,7 +86,10 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
         // Diagnostics
         
         diagnostics = new DiagnosticsContainer();
-        language = handleLanguage();
+        
+        var tempLang = getLanguage();
+        if (tempLang != null) language = tempLang
+        
         reload();
         readFile();
 
@@ -106,7 +109,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
      * Method that provides the language based on the file extension.
      * @return Language instance of correct language
      */
-    private Language handleLanguage() {
+    private Language getLanguage() {
         var fName = getFile().getName();
         var extension = fName.substring(fName.lastIndexOf(".") + 1);
         return switch (extension) {
