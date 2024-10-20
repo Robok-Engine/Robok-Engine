@@ -143,6 +143,8 @@ fun AboutScreen(version: String) {
     }
 }
 
+val client = OkHttpClient()
+
 suspend fun fetchContributors(): List<Contributor> {
     val request =
         Request.Builder()
