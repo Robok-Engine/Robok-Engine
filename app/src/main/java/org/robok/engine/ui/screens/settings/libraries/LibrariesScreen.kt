@@ -41,14 +41,18 @@ import org.robok.engine.strings.Strings
 fun LibrariesScreen() {
     val context = LocalContext.current
     Screen(label = stringResource(id = Strings.settings_libraries_title)) {
-        PreferenceGroup { librariesScreen(context) }
+        PreferenceGroup {
+            Screen(context)
+        }
     }
 }
 
 @Composable
-fun librariesScreen(context: Context) {
+private fun Screen(context: Context) {
     val uriHandler = LocalUriHandler.current
-    val libs = remember { mutableStateOf<Libs?>(null) }
+    val libs = remember {
+        mutableStateOf<Libs?>(null)
+    }
     libs.value = Libs.Builder().withContext(context).build()
     val libraries = libs.value!!.libraries
 
@@ -58,24 +62,10 @@ fun librariesScreen(context: Context) {
             onClick = {
                 library.website?.let {
                     if (it.isNotEmpty()) {
-                        uriHandler.openUri(it)
+                        // dont open for now uriHandler.openUri(it)
                     }
                 }
             },
         )
     }
-}
-
-@Composable
-fun LibraryItem(library: Library, onClick: () -> Unit) {
-    PreferenceTemplate(
-        modifier = Modifier.clickable(onClick = onClick).padding(8.dp),
-        title = { LibraryItemTitle(library.name) },
-    )
-}
-
-@Composable
-fun LibraryItemTitle(title: String?) {
-    title?.let { Text(text = it, color = MaterialTheme.colorScheme.onSurface) }
-        ?: Text(text = "No Title Available", color = MaterialTheme.colorScheme.onSurface)
 }
