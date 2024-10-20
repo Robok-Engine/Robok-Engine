@@ -62,7 +62,7 @@ import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
 
-var contributors = DefaultContributors()()
+var contributors = DefaultContributors()
 
 @Composable
 fun AboutScreen(version: String) {
