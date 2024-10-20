@@ -19,8 +19,6 @@ rootProject.name = "Robok-Engine"
 
 include(":app")
 
-include(":core:antlr4:java")
-
 include(":app-strings")
 
 include(":feature:treeview")
@@ -33,6 +31,8 @@ include(":feature:compiler")
 
 include(":core:components")
 include(":core:utils")
+include(":core:theme")
+include(":core:antlr4:java")
 
 include(":robok-easy-ui:antlr4")
 include(":robok-easy-ui:gui")
