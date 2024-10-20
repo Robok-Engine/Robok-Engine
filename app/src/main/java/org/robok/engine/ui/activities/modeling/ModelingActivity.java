@@ -56,7 +56,7 @@ public class ModelingActivity extends RobokComposeActivity implements AndroidFra
           fragmentManager.executePendingTransactions();
           model3dView = Model3DView.clazz;
           
-          var activityHelper = new ModelingActivityHelper(this, model3DView);
+          var activityHelper = new ModelingActivityHelper(this, model3dView);
           ComposeView composeUI = activityHelper.createComposeView();
 
           binding.layoutParent.addView(composeUI);
