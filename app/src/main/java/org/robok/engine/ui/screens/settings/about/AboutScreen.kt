@@ -44,7 +44,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import coil.compose.SubcomposeAsyncImage
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -74,7 +73,8 @@ fun AboutScreen(version: String) {
     LaunchedEffect(Unit) {
         scope.launch {
             contributors = fetchContributors()
-            contributorsState.value = if (contributors.isEmpty()) DefaultContributors() else contributors
+            contributorsState.value =
+                if (contributors.isEmpty()) DefaultContributors() else contributors
         }
     }
 
@@ -186,7 +186,8 @@ fun ContributorRow(dataInfo: Contributor) {
         description = { Text(text = dataInfo.role) },
         modifier = Modifier.clickable(onClick = { uriHandler.openUri(dataInfo.html_url) }),
         startWidget = {
-            val avatarUrl = if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
+            val avatarUrl =
+                if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
             AsyncImage(
                 model = avatarUrl,
                 contentDescription = null,

@@ -21,11 +21,9 @@ import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeWalker
-
+import org.robok.easyui.GUIBuilder
 import org.robok.easyui.antlr4.GUILexer
 import org.robok.easyui.antlr4.GUIParser
-
-import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.listener.GUIParserListener
 
 /*

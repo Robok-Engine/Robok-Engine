@@ -19,26 +19,19 @@ package org.robok.engine.ui.activities.modeling
 
 import android.content.Context
 import androidx.compose.ui.platform.ComposeView
+import org.robok.engine.feature.modeling.view.Model3DView
 import org.robok.engine.ui.screens.modeling.ModelingScreen
 import org.robok.engine.ui.theme.RobokTheme
-import org.robok.engine.feature.modeling.view.Model3DView
 
 /**
  * Class to create ComposeView in 3D Modeling.
  *
  * @author Aquiles Trindade (trindadedev).
  */
-class ModelingActivityHelper(
-    private val context: Context,
-    private val model3dView: Model3DView
-) {
+class ModelingActivityHelper(private val context: Context, private val model3dView: Model3DView) {
     fun createComposeView(): ComposeView {
         return ComposeView(context).apply {
-            setContent {
-                RobokTheme {
-                    ModelingScreen(model3dView) 
-                }
-            } 
+            setContent { RobokTheme { ModelingScreen(model3dView) } }
         }
     }
 }

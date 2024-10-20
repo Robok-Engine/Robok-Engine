@@ -18,9 +18,7 @@ package org.robok.easyui
  */
 
 import android.content.Context
-
 import java.lang.reflect.InvocationTargetException
-
 import org.robok.easyui.converter.AttributeConverter
 import org.robok.easyui.internal.DefaultValues
 import org.robok.easyui.internal.Utils.comment

@@ -5,16 +5,18 @@ import io.material.utils.ColorUtils
 class Hct private constructor(argb: Int) {
     var hue = 0.0
         private set
+
     var chroma = 0.0
         private set
+
     var tone = 0.0
         private set
+
     var argb = 0
 
     init {
         setInternalState(argb)
     }
-
 
     fun toInt(): Int {
         return argb
@@ -38,18 +40,18 @@ class Hct private constructor(argb: Int) {
         val viewedInVc = cam16.xyzInViewingConditions(vc, null)
 
         // 2. Create CAM16 of those XYZ coordinates in default VC.
-        val recastInVc: Cam16 = Cam16.fromXyzInViewingConditions(
-            viewedInVc[0], viewedInVc[1], viewedInVc[2], ViewingConditions.DEFAULT
-        )
+        val recastInVc: Cam16 =
+            Cam16.fromXyzInViewingConditions(
+                viewedInVc[0],
+                viewedInVc[1],
+                viewedInVc[2],
+                ViewingConditions.DEFAULT,
+            )
 
         // 3. Create HCT from:
         // - CAM16 using default VC with XYZ coordinates in specified VC.
         // - L* converted from Y in XYZ coordinates in specified VC.
-        return from(
-            recastInVc.hue, recastInVc.chroma, ColorUtils.lstarFromY(
-                viewedInVc[1]
-            )
-        )
+        return from(recastInVc.hue, recastInVc.chroma, ColorUtils.lstarFromY(viewedInVc[1]))
     }
 
     private fun setInternalState(argb: Int) {

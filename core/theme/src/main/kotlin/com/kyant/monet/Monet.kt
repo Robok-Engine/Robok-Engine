@@ -9,13 +9,10 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
 
-val LocalTonalPalettes = staticCompositionLocalOf {
-    Color(0xFF007FAC).toTonalPalettes()
-}
+val LocalTonalPalettes = staticCompositionLocalOf { Color(0xFF007FAC).toTonalPalettes() }
 
 inline val Number.a1: Color
-    @Composable
-    get() = LocalTonalPalettes.current accent1 toDouble()
+    @Composable get() = LocalTonalPalettes.current accent1 toDouble()
 
 inline val Number.a2: Color
     @Composable get() = LocalTonalPalettes.current accent2 toDouble()
@@ -50,7 +47,7 @@ fun dynamicColorScheme(isLight: Boolean = !isSystemInDarkTheme()): ColorScheme {
             outlineVariant = 80.n2,
             primary = 40.a1,
             primaryContainer = 90.a1,
-//            scrim = 0.n1,
+            //            scrim = 0.n1,
             secondary = 40.a2,
             secondaryContainer = 90.a2,
             surface = 98.n1,
@@ -84,7 +81,7 @@ fun dynamicColorScheme(isLight: Boolean = !isSystemInDarkTheme()): ColorScheme {
             outlineVariant = 30.n2,
             primary = 80.a1,
             primaryContainer = 30.a1,
-//            scrim = 0.n1,
+            //            scrim = 0.n1,
             secondary = 80.a2,
             secondaryContainer = 30.a2,
             surface = 6.n1,

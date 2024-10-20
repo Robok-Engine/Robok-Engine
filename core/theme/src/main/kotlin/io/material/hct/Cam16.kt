@@ -13,8 +13,8 @@ import kotlin.math.sign
 import kotlin.math.sin
 import kotlin.math.sqrt
 
-
-class Cam16 private constructor(
+class Cam16
+private constructor(
     val hue: Double,
     val chroma: Double,
     val j: Double,
@@ -23,7 +23,7 @@ class Cam16 private constructor(
     val s: Double,
     val jstar: Double,
     val astar: Double,
-    val bstar: Double
+    val bstar: Double,
 ) {
 
     private val tempArray = doubleArrayOf(0.0, 0.0, 0.0)
@@ -47,17 +47,16 @@ class Cam16 private constructor(
 
     fun xyzInViewingConditions(
         viewingConditions: ViewingConditions,
-        returnArray: DoubleArray?
+        returnArray: DoubleArray?,
     ): DoubleArray {
-        val alpha = if (chroma == 0.0 || j == 0.0) 0.0 else chroma / sqrt(
-            j / 100.0
-        )
+        val alpha = if (chroma == 0.0 || j == 0.0) 0.0 else chroma / sqrt(j / 100.0)
         val t = (alpha / (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73)).pow(1.0 / 0.9)
         val hRad = hue.toRadians()
 
         val eHue = 0.25 * (cos(hRad + 2.0) + 3.8)
-        val ac = (viewingConditions.aw
-                * (j / 100.0).pow(1.0 / viewingConditions.c / viewingConditions.z))
+        val ac =
+            (viewingConditions.aw *
+                (j / 100.0).pow(1.0 / viewingConditions.c / viewingConditions.z))
         val p1 = eHue * (50000.0 / 13.0) * viewingConditions.nc * viewingConditions.ncb
         val p2 = ac / viewingConditions.nbb
         val hSin = sin(hRad)
@@ -92,17 +91,19 @@ class Cam16 private constructor(
     }
 
     companion object {
-        val XYZ_TO_CAM16RGB = arrayOf(
-            doubleArrayOf(0.401288, 0.650173, -0.051461),
-            doubleArrayOf(-0.250268, 1.204414, 0.045854),
-            doubleArrayOf(-0.002079, 0.048952, 0.953127)
-        )
+        val XYZ_TO_CAM16RGB =
+            arrayOf(
+                doubleArrayOf(0.401288, 0.650173, -0.051461),
+                doubleArrayOf(-0.250268, 1.204414, 0.045854),
+                doubleArrayOf(-0.002079, 0.048952, 0.953127),
+            )
 
-        val CAM16RGB_TO_XYZ = arrayOf(
-            doubleArrayOf(1.8620678, -1.0112547, 0.14918678),
-            doubleArrayOf(0.38752654, 0.62144744, -0.00897398),
-            doubleArrayOf(-0.01584150, -0.03412294, 1.0499644)
-        )
+        val CAM16RGB_TO_XYZ =
+            arrayOf(
+                doubleArrayOf(1.8620678, -1.0112547, 0.14918678),
+                doubleArrayOf(0.38752654, 0.62144744, -0.00897398),
+                doubleArrayOf(-0.01584150, -0.03412294, 1.0499644),
+            )
 
         fun fromInt(argb: Int): Cam16 {
             return fromIntInViewingConditions(argb, ViewingConditions.DEFAULT)
@@ -123,7 +124,10 @@ class Cam16 private constructor(
         }
 
         fun fromXyzInViewingConditions(
-            x: Double, y: Double, z: Double, viewingConditions: ViewingConditions
+            x: Double,
+            y: Double,
+            z: Double,
+            viewingConditions: ViewingConditions,
         ): Cam16 {
             val matrix = XYZ_TO_CAM16RGB
             val rT = x * matrix[0][0] + y * matrix[0][1] + z * matrix[0][2]
@@ -150,24 +154,25 @@ class Cam16 private constructor(
             val atan2 = atan2(b, a)
             val atanDegrees = atan2.toDegrees()
             val hue =
-                if (atanDegrees < 0) atanDegrees + 360.0 else if (atanDegrees >= 360) atanDegrees - 360.0 else atanDegrees
+                if (atanDegrees < 0) atanDegrees + 360.0
+                else if (atanDegrees >= 360) atanDegrees - 360.0 else atanDegrees
             val hueRadians = hue.toRadians()
 
             val ac = p2 * viewingConditions.nbb
 
-            val j = (100.0
-                    * (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z))
-            val q = ((4.0
-                    / viewingConditions.c) * sqrt(j / 100.0)
-                    * (viewingConditions.aw + 4.0)
-                    * viewingConditions.flRoot)
+            val j =
+                (100.0 * (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z))
+            val q =
+                ((4.0 / viewingConditions.c) *
+                    sqrt(j / 100.0) *
+                    (viewingConditions.aw + 4.0) *
+                    viewingConditions.flRoot)
 
             val huePrime = if (hue < 20.14) hue + 360 else hue
             val eHue = 0.25 * (cos(huePrime.toRadians() + 2.0) + 3.8)
             val p1 = 50000.0 / 13.0 * eHue * viewingConditions.nc * viewingConditions.ncb
             val t = p1 * hypot(a, b) / (u + 0.305)
-            val alpha =
-                (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73) * t.pow(0.9)
+            val alpha = (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73) * t.pow(0.9)
             val c = alpha * sqrt(j / 100.0)
             val m = c * viewingConditions.flRoot
             val s = 50.0 * sqrt(alpha * viewingConditions.c / (viewingConditions.aw + 4.0))
@@ -184,12 +189,16 @@ class Cam16 private constructor(
         }
 
         private fun fromJchInViewingConditions(
-            j: Double, c: Double, h: Double, viewingConditions: ViewingConditions
+            j: Double,
+            c: Double,
+            h: Double,
+            viewingConditions: ViewingConditions,
         ): Cam16 {
-            val q = ((4.0
-                    / viewingConditions.c) * sqrt(j / 100.0)
-                    * (viewingConditions.aw + 4.0)
-                    * viewingConditions.flRoot)
+            val q =
+                ((4.0 / viewingConditions.c) *
+                    sqrt(j / 100.0) *
+                    (viewingConditions.aw + 4.0) *
+                    viewingConditions.flRoot)
             val m = c * viewingConditions.flRoot
             val alpha = c / sqrt(j / 100.0)
             val s = 50.0 * sqrt(alpha * viewingConditions.c / (viewingConditions.aw + 4.0))
@@ -202,16 +211,14 @@ class Cam16 private constructor(
         }
 
         fun fromUcs(jstar: Double, astar: Double, bstar: Double): Cam16 {
-            return fromUcsInViewingConditions(
-                jstar,
-                astar,
-                bstar,
-                ViewingConditions.DEFAULT
-            )
+            return fromUcsInViewingConditions(jstar, astar, bstar, ViewingConditions.DEFAULT)
         }
 
         fun fromUcsInViewingConditions(
-            jstar: Double, astar: Double, bstar: Double, viewingConditions: ViewingConditions
+            jstar: Double,
+            astar: Double,
+            bstar: Double,
+            viewingConditions: ViewingConditions,
         ): Cam16 {
             val m = hypot(astar, bstar)
             val m2 = expm1(m * 0.0228) / 0.0228

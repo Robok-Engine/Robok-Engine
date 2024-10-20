@@ -40,6 +40,8 @@ import java.io.File
 import java.util.concurrent.CompletableFuture
 import kotlinx.coroutines.Runnable
 import org.koin.android.ext.android.getKoin
+import org.robok.easyui.GUIBuilder
+import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
@@ -63,8 +65,6 @@ import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
-import org.robok.easyui.GUIBuilder
-import org.robok.easyui.compiler.GUICompiler
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -385,7 +385,7 @@ class EditorActivity :
                     handler.postDelayed(diagnosticTimeoutRunnable, diagnosticStandTime)
                 }
             }
-        if((getCurrentFileExtension() ?: "java") == "java") {
+        if ((getCurrentFileExtension() ?: "java") == "java") {
             editor.setAntlrListener(antlrListener)
             editor.setEditorListener(editorListener)
             editor.reloadListeners()

@@ -18,22 +18,17 @@ package org.robok.engine.ui.screens.settings.libraries
  */
 
 import android.content.Context
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import com.mikepenz.aboutlibraries.Libs
-import com.mikepenz.aboutlibraries.entity.Library
 import com.mikepenz.aboutlibraries.util.withContext
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -41,18 +36,14 @@ import org.robok.engine.strings.Strings
 fun LibrariesScreen() {
     val context = LocalContext.current
     Screen(label = stringResource(id = Strings.settings_libraries_title)) {
-        PreferenceGroup {
-            Screen(context)
-        }
+        PreferenceGroup { Screen(context) }
     }
 }
 
 @Composable
 private fun Screen(context: Context) {
     val uriHandler = LocalUriHandler.current
-    val libs = remember {
-        mutableStateOf<Libs?>(null)
-    }
+    val libs = remember { mutableStateOf<Libs?>(null) }
     libs.value = Libs.Builder().withContext(context).build()
     val libraries = libs.value!!.libraries
 

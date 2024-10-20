@@ -4,20 +4,18 @@ import kotlin.math.pow
 import kotlin.math.roundToLong
 
 object ColorUtils {
-    val SRGB_TO_XYZ = arrayOf(
-        doubleArrayOf(0.41233895, 0.35762064, 0.18051042),
-        doubleArrayOf(0.2126, 0.7152, 0.0722),
-        doubleArrayOf(0.01932141, 0.11916382, 0.95034478)
-    )
-    val XYZ_TO_SRGB = arrayOf(
-        doubleArrayOf(
-            3.2413774792388685, -1.5376652402851851, -0.49885366846268053
-        ), doubleArrayOf(
-            -0.9691452513005321, 1.8758853451067872, 0.04156585616912061
-        ), doubleArrayOf(
-            0.05562093689691305, -0.20395524564742123, 1.0571799111220335
+    val SRGB_TO_XYZ =
+        arrayOf(
+            doubleArrayOf(0.41233895, 0.35762064, 0.18051042),
+            doubleArrayOf(0.2126, 0.7152, 0.0722),
+            doubleArrayOf(0.01932141, 0.11916382, 0.95034478),
         )
-    )
+    val XYZ_TO_SRGB =
+        arrayOf(
+            doubleArrayOf(3.2413774792388685, -1.5376652402851851, -0.49885366846268053),
+            doubleArrayOf(-0.9691452513005321, 1.8758853451067872, 0.04156585616912061),
+            doubleArrayOf(0.05562093689691305, -0.20395524564742123, 1.0571799111220335),
+        )
     val WHITE_POINT_D65 = doubleArrayOf(95.047, 100.0, 108.883)
 
     fun argbFromRgb(red: Int, green: Int, blue: Int): Int {
@@ -134,11 +132,12 @@ object ColorUtils {
 
     fun delinearized(rgbComponent: Double): Int {
         val normalized = rgbComponent / 100.0
-        val delinearized: Double = if (normalized <= 0.0031308) {
-            normalized * 12.92
-        } else {
-            1.055 * normalized.pow(1.0 / 2.4) - 0.055
-        }
+        val delinearized: Double =
+            if (normalized <= 0.0031308) {
+                normalized * 12.92
+            } else {
+                1.055 * normalized.pow(1.0 / 2.4) - 0.055
+            }
         return MathUtils.clampInt(0, 255, (delinearized * 255.0).roundToLong().toInt())
     }
 

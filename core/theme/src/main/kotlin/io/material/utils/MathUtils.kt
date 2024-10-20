@@ -12,9 +12,11 @@ object MathUtils {
             1
         }
     }
+
     fun lerp(start: Double, stop: Double, amount: Double): Double {
         return (1.0 - amount) * start + amount * stop
     }
+
     fun clampInt(min: Int, max: Int, input: Int): Int {
         if (input < min) {
             return min
@@ -23,6 +25,7 @@ object MathUtils {
         }
         return input
     }
+
     fun clampDouble(min: Double, max: Double, input: Double): Double {
         if (input < min) {
             return min
@@ -31,6 +34,7 @@ object MathUtils {
         }
         return input
     }
+
     fun sanitizeDegreesInt(degrees: Int): Int {
         var degrees = degrees
         degrees %= 360
@@ -39,6 +43,7 @@ object MathUtils {
         }
         return degrees
     }
+
     fun sanitizeDegreesDouble(degrees: Double): Double {
         var degrees = degrees
         degrees %= 360.0
@@ -47,6 +52,7 @@ object MathUtils {
         }
         return degrees
     }
+
     fun rotationDirection(from: Double, to: Double): Double {
         val increasingDifference = sanitizeDegreesDouble(to - from)
         return if (increasingDifference <= 180.0) 1.0 else -1.0
