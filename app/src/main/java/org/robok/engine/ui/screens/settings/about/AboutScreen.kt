@@ -62,7 +62,7 @@ import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
 
-var contributors = DefaultContributors()
+var contributors = DefaultContributors()()
 
 @Composable
 fun AboutScreen(version: String) {
@@ -74,7 +74,7 @@ fun AboutScreen(version: String) {
     LaunchedEffect(Unit) {
         scope.launch {
             contributors = fetchContributors()
-            contributorsState.value = contributors
+            contributorsState.value = if (contributors.isEmpty()) DefaultContributors() else contributors
         }
     }
 
@@ -128,7 +128,7 @@ fun AboutScreen(version: String) {
             Spacer(modifier = Modifier.requiredHeight(16.dp))
         }
 
-        if (contributors.isNotEmpty()) {
+        if (contributorsState.value.isNotEmpty()) {
             val roles = contributorsState.value.groupBy { it.role }
             roles.forEach { (role, contributorsList) ->
                 PreferenceGroup(heading = role) {
@@ -142,8 +142,6 @@ fun AboutScreen(version: String) {
         }
     }
 }
-
-val client = OkHttpClient()
 
 suspend fun fetchContributors(): List<Contributor> {
     val request =
@@ -186,8 +184,9 @@ fun ContributorRow(dataInfo: Contributor) {
         description = { Text(text = dataInfo.role) },
         modifier = Modifier.clickable(onClick = { uriHandler.openUri(dataInfo.html_url) }),
         startWidget = {
+            val avatarUrl = if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
             SubcomposeAsyncImage(
-                model = dataInfo.avatar_url,
+                model = avatarUrl,
                 contentDescription = null,
                 modifier =
                     Modifier.clip(CircleShape)
