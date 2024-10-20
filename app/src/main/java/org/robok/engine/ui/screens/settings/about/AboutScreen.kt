@@ -187,9 +187,10 @@ fun ContributorRow(dataInfo: Contributor) {
         modifier = Modifier.clickable(onClick = { uriHandler.openUri(dataInfo.html_url) }),
         startWidget = {
             val avatarUrl = if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
-            SubcomposeAsyncImage(
+            AsyncImage(
                 model = avatarUrl,
                 contentDescription = null,
+                placeholder = painterResource(Drawables.ic_nerd),
                 modifier =
                     Modifier.clip(CircleShape)
                         .size(32.dp)
