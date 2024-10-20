@@ -1,4 +1,4 @@
-package org.robok.gui
+package org.robok.easyui
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,12 +18,14 @@ package org.robok.gui
  */
 
 import android.content.Context
+
 import java.lang.reflect.InvocationTargetException
-import org.robok.gui.converter.AttributeConverter
-import org.robok.gui.internal.DefaultValues
-import org.robok.gui.internal.Utils.comment
-import org.robok.gui.internal.newLine
-import org.robok.gui.internal.newLineBroken
+
+import org.robok.easyui.converter.AttributeConverter
+import org.robok.easyui.internal.DefaultValues
+import org.robok.easyui.internal.Utils.comment
+import org.robok.easyui.internal.newLine
+import org.robok.easyui.internal.newLineBroken
 
 /*
  * Class that generates XML from the received data.

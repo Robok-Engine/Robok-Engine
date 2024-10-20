@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.robok.gui"
+    namespace = "org.robok.easyui"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

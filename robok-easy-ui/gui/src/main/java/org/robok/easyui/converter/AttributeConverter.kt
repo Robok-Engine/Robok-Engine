@@ -1,4 +1,4 @@
-package org.robok.gui.converter
+package org.robok.easyui.converter
 
 /*
  *  This file is part of Robok © 2024.

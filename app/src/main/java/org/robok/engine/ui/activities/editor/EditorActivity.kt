@@ -63,8 +63,8 @@ import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
-import org.robok.gui.GUIBuilder
-import org.robok.gui.compiler.GUICompiler
+import org.robok.easyui.GUIBuilder
+import org.robok.easyui.compiler.GUICompiler
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {

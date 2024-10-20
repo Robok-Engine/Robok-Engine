@@ -1,4 +1,4 @@
-package org.robok.gui.compiler
+package org.robok.easyui.compiler
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,10 +21,12 @@ import org.antlr.v4.runtime.CharStreams
 import org.antlr.v4.runtime.CommonTokenStream
 import org.antlr.v4.runtime.atn.PredictionMode
 import org.antlr.v4.runtime.tree.ParseTreeWalker
-import org.robok.antlr4.gui.GUILexer
-import org.robok.antlr4.gui.GUIParser
-import org.robok.gui.GUIBuilder
-import org.robok.gui.compiler.listener.GUIParserListener
+
+import org.robok.easyui.antlr4.GUILexer
+import org.robok.easyui.antlr4.GUIParser
+
+import org.robok.easyui.GUIBuilder
+import org.robok.easyui.compiler.listener.GUIParserListener
 
 /*
  * Class that uses ANTLR4 to compile the Code and use { @link GUIParserListener }.

@@ -1,4 +1,4 @@
-package org.robok.gui.compiler.listener;
+package org.robok.easyui.compiler.listener;
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,14 +17,14 @@ package org.robok.gui.compiler.listener;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import static org.robok.antlr4.gui.GUIParser.GuiFileContext;
-import static org.robok.antlr4.gui.GUIParser.ComponentContext;
-import static org.robok.antlr4.gui.GUIParser.ArgumentContext;
-import static org.robok.antlr4.gui.GUIParser.ArgumentListContext;
+import static org.robok.easyui.antlr4.GUIParser.GuiFileContext;
+import static org.robok.easyui.antlr4.GUIParser.ComponentContext;
+import static org.robok.easyui.antlr4.GUIParser.ArgumentContext;
+import static org.robok.easyui.antlr4.GUIParser.ArgumentListContext;
+import org.robok.easyui.antlr4.GUIBaseListener;
 
-import org.robok.gui.GUIBuilder;
-import org.robok.gui.internal.Utils;
-import org.robok.antlr4.gui.GUIBaseListener;
+import org.robok.easyui.GUIBuilder;
+import org.robok.easyui.internal.Utils;
 
 import java.lang.reflect.Method;
 

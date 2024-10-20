@@ -1,4 +1,4 @@
-package org.robok.gui.internal
+package org.robok.easyui.internal
 
 /*
  *  This file is part of Robok © 2024.
