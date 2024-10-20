@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1022 | Founder |
+| trindadedev13 | 1030 | Founder |
 | ThDev-only | 199 | Founder |
 | renovate[bot] | 129 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -14,4 +14,4 @@
 | weblate | 1 | Bot |
 | itsvks19 | 3 | Development |
 | Yamenher | 6 | Translation |
-| OSilvaDev | 2 | Development |
+| OSilvaDev | 9 | Development |
