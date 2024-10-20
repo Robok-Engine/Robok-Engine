@@ -196,8 +196,7 @@ fun ContributorRow(dataInfo: Contributor) {
                 modifier =
                     Modifier.clip(CircleShape)
                         .size(32.dp)
-                        .background(MaterialTheme.colorScheme.surfaceContainer),
-                loading = { Box(modifier = Modifier.fillMaxSize()) },
+                        .background(MaterialTheme.colorScheme.surfaceContainer)
             )
         },
     )
