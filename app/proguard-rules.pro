@@ -20,18 +20,30 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
+
+# Keep
 -keep class io.github.rosemoe.sora.widget.** { *; }
 
--dontwarn org.eclipse.jdt.internal.compiler.**
 -keep class org.eclipse.jdt.internal.compiler.** { *; }
 
 -keep class com.android.sdklib.** { *; }
 -keep class sun.security.** { *; }
 
--keep class org.gampiot.robok.feature.component.compose.edges.StretchEdgeEffect { *; }
--keep class org.gampiot.robok.feature.modeling.** { *; }
+# Robok
+-keep class org.robok.engine.core.components.edges.StretchEdgeEffect { *; }
+-keep class org.robok.engine.feature.modeling.** { *; }
+-keep class org.robok.easyui.GUIBuilder { *; }
+
+# LibGDX
 -keep class com.badlogic.gdx.** { *; }
 
+# Warns
+
+# Robok
+-dontwarn org.robok.engine.feature.component.compose.edge.StretchEdgeEffect
+
+# Other
+-dontwarn org.eclipse.jdt.internal.compiler.**
 -dontwarn com.android.SdkConstants
 -dontwarn com.android.dvlib.DeviceSchema
 -dontwarn com.android.io.FolderWrapper
@@ -188,4 +200,3 @@
 -dontwarn sun.security.util.ObjectIdentifier
 -dontwarn sun.security.x509.AlgorithmId
 -dontwarn sun.security.x509.X500Name
--dontwarn org.gampiot.robok.feature.component.compose.edge.StretchEdgeEffect
