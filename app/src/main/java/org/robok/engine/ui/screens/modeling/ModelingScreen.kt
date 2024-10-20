@@ -29,9 +29,12 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.animation.ExpandAndShrink
+import org.robok.engine.feature.modeling.view.Model3DView
 
 @Composable
-fun ModelingScreen() {
+fun ModelingScreen(
+    model3dView: Model3DView
+) {
     var isOptionsOpen by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
@@ -39,7 +42,7 @@ fun ModelingScreen() {
 
         Image(
             painter = painterResource(id = Drawables.ic_robok),
-            contentDescription = "open3DOptions",
+            contentDescription = "Open 3D Options",
             modifier =
                 Modifier.align(Alignment.TopEnd).padding(16.dp).size(50.dp).clickable {
                     isOptionsOpen = !isOptionsOpen
