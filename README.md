@@ -33,7 +33,7 @@
 
 ## 🔧 Installation Steps
 
-1. Download the latest release from the [releases page](https://github.com/Robok-Engine/Robok-Engine/releases).
+1. Download the latest release from the [releases page](https://github.com/Robok-Engine/Robok-Engine/releases).(we dont have any release for now😔)
 2. Install the downloaded application.
 3. Open Robok, and you're ready to start building your games!
 
@@ -43,9 +43,10 @@
 
 1. Open Robok.
 2. Go to **Create Project**.
-3. Enter the project name, package name, and version.
-4. Wait for the project to be created.
-5. Open the files and start programming your game!
+3. Select Template
+4. Enter the project name, package name, and version.
+5. Wait for the project to be created.
+6. Open the files and start programming your game!
 
 ---
 
