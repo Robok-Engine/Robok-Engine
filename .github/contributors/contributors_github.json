@@ -19,7 +19,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1049
+    "contributions": 1049,
+    "role": "Development"
   },
   {
     "login": "ThDev-only",
@@ -41,7 +42,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 199
+    "contributions": 199,
+    "role": "Development"
   },
   {
     "login": "renovate[bot]",
@@ -63,7 +65,8 @@
     "type": "Bot",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 129
+    "contributions": 129,
+    "role": "Bot"
   },
   {
     "login": "gampiot-bot",
@@ -85,7 +88,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 35
+    "contributions": 35,
+    "role": "Bot"
   },
   {
     "login": "SyntaxSpin",
@@ -107,7 +111,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 18
+    "contributions": 18,
+    "role": "Development"
   },
   {
     "login": "RohitKushvaha01",
@@ -129,7 +134,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 16
+    "contributions": 16,
+    "role": "Development"
   },
   {
     "login": "github-actions[bot]",
@@ -151,7 +157,8 @@
     "type": "Bot",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 10
+    "contributions": 10,
+    "role": "Bot"
   },
   {
     "login": "OSilvaDev",
@@ -173,7 +180,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 9
+    "contributions": 9,
+    "role": "Development"
   },
   {
     "login": "Kefir2105",
@@ -195,7 +203,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 8
+    "contributions": 8,
+    "role": "Translation"
   },
   {
     "login": "teixeira0x",
@@ -217,7 +226,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 6
+    "contributions": 6,
+    "role": "Development"
   },
   {
     "login": "Yamenher",
@@ -239,7 +249,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 6
+    "contributions": 6,
+    "role": "Translation"
   },
   {
     "login": "itsvks19",
@@ -261,7 +272,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 3
+    "contributions": 3,
+    "role": "Development"
   },
   {
     "login": "Paxsenix0",
@@ -283,7 +295,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 2
+    "contributions": 2,
+    "role": "Translation"
   },
   {
     "login": "Xori71",
@@ -305,7 +318,8 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Translation"
   },
   {
     "login": "weblate",
@@ -327,6 +341,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1
+    "contributions": 1,
+    "role": "Bot"
   }
 ]
