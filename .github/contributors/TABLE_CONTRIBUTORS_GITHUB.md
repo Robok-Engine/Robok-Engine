@@ -1,1 +1,17 @@
-
+| Contributor | Contributions | Role |
+| ------------ | -------------- | ---- |
+| trindadedev13 | 1049 | N/A |
+| ThDev-only | 199 | N/A |
+| renovate[bot] | 129 | N/A |
+| gampiot-bot | 35 | N/A |
+| SyntaxSpin | 18 | N/A |
+| RohitKushvaha01 | 16 | N/A |
+| github-actions[bot] | 10 | N/A |
+| OSilvaDev | 9 | N/A |
+| Kefir2105 | 8 | N/A |
+| teixeira0x | 6 | N/A |
+| Yamenher | 6 | N/A |
+| itsvks19 | 3 | N/A |
+| Paxsenix0 | 2 | N/A |
+| Xori71 | 1 | N/A |
+| weblate | 1 | N/A |
