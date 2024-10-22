@@ -20,7 +20,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 1049,
-    "role": "Development"
+    "role": "Founder"
   },
   {
     "login": "ThDev-only",
@@ -43,7 +43,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 199,
-    "role": "Development"
+    "role": "Founder"
   },
   {
     "login": "renovate[bot]",
