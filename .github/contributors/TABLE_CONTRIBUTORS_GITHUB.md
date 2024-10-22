@@ -1,7 +1,7 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1049 | Development |
-| ThDev-only | 199 | Development |
+| trindadedev13 | 1046 | Founder |
+| ThDev-only | 199 | Founder |
 | renovate[bot] | 129 | Bot |
 | gampiot-bot | 35 | Bot |
 | SyntaxSpin | 18 | Development |
