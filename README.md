@@ -3,7 +3,7 @@
   
   
   <h1>🚀 Robok Engine</h1>
-  <p>A cutting-edge engine for simplifying Java game development.</p>
+  <p>Revolutionary engine for creating 3D Java games.</p>
   <a href="https://github.com/Robok-Engine/Robok-Engine/issues">
     <img src="https://m3-markdown-badges.vercel.app/issues/1/2/Robok-Engine/Robok-Engine" alt="Issues">
   </a>
