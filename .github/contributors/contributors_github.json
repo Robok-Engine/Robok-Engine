@@ -341,6 +341,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 18
+    "contributions": 18,
+    "role": "Development"
   }
 ]
