@@ -8,10 +8,10 @@
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
         <item name="collapsingToolbarLayoutLargeStyle">@style/CollapsingToolbarLarge</item>
-        <!-- 
+        
         <item name="fontFamily">@font/nunito_regular</item>
         <item name="android:fontFamily">@font/nunito_regular</item>
-        -->
+
         <item name="android:forceDarkAllowed">false</item>
         
         <!-- Constant Colors -->
