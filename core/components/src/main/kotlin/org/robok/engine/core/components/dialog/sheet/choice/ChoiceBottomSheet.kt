@@ -20,8 +20,8 @@ package org.robok.engine.core.components.dialog.sheet.choice
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
@@ -56,7 +56,7 @@ fun ChoiceBottomSheet(
                                 btmSheetState.hide()
                                 onRequestClose()
                             }
-                        }
+                        },
                     ) {
                         Text(stringResource(id = Strings.common_word_cancel))
                     }
@@ -68,7 +68,7 @@ fun ChoiceBottomSheet(
                                 onChoice(tempSelectedOption)
                                 onRequestClose()
                             }
-                        }
+                        },
                     ) {
                         Text(stringResource(id = Strings.common_word_save))
                     }

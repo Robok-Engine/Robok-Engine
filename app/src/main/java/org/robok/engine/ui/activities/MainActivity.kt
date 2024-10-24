@@ -21,8 +21,8 @@ import android.graphics.Color.BLACK
 import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
 import android.view.Window
-import androidx.activity.compose.setContent
 import androidx.activity.OnBackPressedCallback
+import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -40,13 +40,14 @@ class MainActivity : RobokComposeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onBackPressedDispatcher.addCallback(this, 
+        onBackPressedDispatcher.addCallback(
+            this,
             object : OnBackPressedCallback(true) {
                 override fun handleOnBackPressed() {
                     resetPhoneBars()
                     isEnabled = false
                 }
-            }
+            },
         )
         setContent {
             RobokTheme {
@@ -66,11 +67,11 @@ class MainActivity : RobokComposeActivity() {
 
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
     }
-    
+
     /*
-    * Reset phone bars colors
-    * used because phone bars colors is defined to black when open terminal
-    */
+     * Reset phone bars colors
+     * used because phone bars colors is defined to black when open terminal
+     */
     private fun resetPhoneBars() {
         val window: Window = window
         val res = ResUtils(this@MainActivity)
