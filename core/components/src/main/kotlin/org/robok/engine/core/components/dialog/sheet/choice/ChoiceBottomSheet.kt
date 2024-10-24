@@ -48,6 +48,7 @@ fun ChoiceBottomSheet(
                 title = title,
                 buttons = {
                     OutlinedButton(
+                        modifier = Modifier.padding(start = 4.dp, end = 4.dp),
                         onClick = {
                             btmSheetScope.launch {
                                 btmSheetState.hide()
@@ -58,6 +59,7 @@ fun ChoiceBottomSheet(
                         Text(stringResource(id = Strings.common_word_cancel))
                     }
                     Button(
+                        modifier = Modifier.padding(start = 4.dp, end = 4.dp),
                         onClick = {
                             btmSheetScope.launch {
                                 btmSheetState.hide()
