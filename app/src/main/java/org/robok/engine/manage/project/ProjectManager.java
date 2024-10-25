@@ -45,7 +45,7 @@ public class ProjectManager {
 
     private CreationListener creationListener;
     public static final String TAG = "ProjectManager";
-    public static final Strng PROJECTS_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Robok/Projects/";
+    public static final String PROJECTS_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Robok/Projects/";
     private Context context;
     private File outputPath;
 
