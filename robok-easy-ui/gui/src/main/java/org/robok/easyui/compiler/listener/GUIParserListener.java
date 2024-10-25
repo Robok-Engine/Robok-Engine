@@ -52,21 +52,14 @@ public class GUIParserListener extends GUIBaseListener {
     @Override
     public void enterComponent(ComponentContext ctx) {
         String componentName = ctx.IDENTIFIER().getText();
-        if (ctx.getText().contains("{")) {
-            guiBuilder.runMethod(componentName);
-            // runMethodWithParams("enterLayout", componentName);  // Chama o método específico para
-            // layouts ao abrir {
-        } else {
-            guiBuilder.runMethod(componentName);
-            this.componentName = componentName;
-        }
+        this.componentName = componentName;
+        guiBuilder.runMethod(componentName);
     }
 
     // Detecta o fechamento de um layout (ex: })
     @Override
     public void exitComponent(ComponentContext ctx) {
         if (ctx.getText().endsWith("}")) {
-            guiBuilder.newLog(Utils.comment("Layout is closing"));
             guiBuilder.runMethod("closeBlockLayout");
         }else guiBuilder.runMethod("closeBlockComponent");
         
@@ -97,20 +90,19 @@ public class GUIParserListener extends GUIBaseListener {
         guiBuilder.runMethodWithParameters("addAttribute", componentName, key, value);
     }
 
-public String getValue(ArgumentContext ctx){
-    String value = "null";
+    public String getValue(ArgumentContext ctx){
+        String value = "null";
 
-    if(ctx.value().STRING() != null){
-        value = ctx.value().STRING().getText();
+        if(ctx.value().STRING() != null){
+            value = ctx.value().STRING().getText();
         
-    }else if(ctx.value().NUMBER() != null){
-        value = ctx.value().NUMBER().getText();
+        }else if(ctx.value().NUMBER() != null){
+            value = ctx.value().NUMBER().getText();
         
-    }else if(ctx.value().IDENTIFIER_DOT() != null){
-        value = ctx.value().IDENTIFIER_DOT().getText();
-        
-    }
+        }else if(ctx.value().IDENTIFIER_DOT() != null){
+            value = ctx.value().IDENTIFIER_DOT().getText();
+        }
 
-    return value;
+        return value;
 }
 }

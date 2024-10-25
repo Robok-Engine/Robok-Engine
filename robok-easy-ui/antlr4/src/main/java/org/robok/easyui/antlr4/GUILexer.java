@@ -1,7 +1,5 @@
-package org.robok.easyui.antlr4;
-
 // Generated from GUI.g4 by ANTLR 4.13.2
-
+package org.robok.easyui.antlr4;
 import org.antlr.v4.runtime.Lexer;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.Token;
@@ -39,7 +37,7 @@ public class GUILexer extends Lexer {
 
 	private static String[] makeLiteralNames() {
 		return new String[] {
-			null, "'{'", "'}'", "'('", "')'", "','", "'='"
+			null, "'('", "')'", "'{'", "'}'", "','", "'='"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
@@ -136,10 +134,10 @@ public class GUILexer extends Lexer {
 		"\u0000\u0000\u0000\u000b#\u0001\u0000\u0000\u0000\r%\u0001\u0000\u0000"+
 		"\u0000\u000f,\u0001\u0000\u0000\u0000\u00113\u0001\u0000\u0000\u0000\u0013"+
 		"?\u0001\u0000\u0000\u0000\u0015K\u0001\u0000\u0000\u0000\u0017`\u0001"+
-		"\u0000\u0000\u0000\u0019\u001a\u0005{\u0000\u0000\u001a\u0002\u0001\u0000"+
-		"\u0000\u0000\u001b\u001c\u0005}\u0000\u0000\u001c\u0004\u0001\u0000\u0000"+
-		"\u0000\u001d\u001e\u0005(\u0000\u0000\u001e\u0006\u0001\u0000\u0000\u0000"+
-		"\u001f \u0005)\u0000\u0000 \b\u0001\u0000\u0000\u0000!\"\u0005,\u0000"+
+		"\u0000\u0000\u0000\u0019\u001a\u0005(\u0000\u0000\u001a\u0002\u0001\u0000"+
+		"\u0000\u0000\u001b\u001c\u0005)\u0000\u0000\u001c\u0004\u0001\u0000\u0000"+
+		"\u0000\u001d\u001e\u0005{\u0000\u0000\u001e\u0006\u0001\u0000\u0000\u0000"+
+		"\u001f \u0005}\u0000\u0000 \b\u0001\u0000\u0000\u0000!\"\u0005,\u0000"+
 		"\u0000\"\n\u0001\u0000\u0000\u0000#$\u0005=\u0000\u0000$\f\u0001\u0000"+
 		"\u0000\u0000%)\u0007\u0000\u0000\u0000&(\u0007\u0001\u0000\u0000\'&\u0001"+
 		"\u0000\u0000\u0000(+\u0001\u0000\u0000\u0000)\'\u0001\u0000\u0000\u0000"+

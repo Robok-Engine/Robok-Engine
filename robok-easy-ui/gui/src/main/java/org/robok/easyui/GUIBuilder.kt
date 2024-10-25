@@ -18,7 +18,9 @@ package org.robok.easyui
  */
 
 import android.content.Context
+
 import java.lang.reflect.InvocationTargetException
+
 import org.robok.easyui.converter.AttributeConverter
 import org.robok.easyui.internal.DefaultValues
 import org.robok.easyui.internal.Utils.comment
@@ -51,6 +53,7 @@ class GUIBuilder(
 
     private fun rootView() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Opening Root Layout"))
+        xmlCodeList.newLineBroken("""<?xml version="1.0" encoding="utf-8"?>""")
         xmlCodeList.newLineBroken("<LinearLayout")
         indentLevel++
         xmlCodeList.newLineBroken(DefaultValues.XMLNS(indent))
@@ -111,11 +114,6 @@ class GUIBuilder(
                 }
                 indentLevel--
                 if (codeComments)
-                    xmlCodeList.newLineBroken(
-                        comment(
-                            "removing " + closingTagLayoutList.get((closingTagLayoutList.size - 1))
-                        )
-                    )
                 closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
@@ -139,11 +137,6 @@ class GUIBuilder(
                 xmlCodeList.newLineBroken("${indent}$closingTagXml" + "\n")
                 indentLevel--
                 if (codeComments)
-                    xmlCodeList.newLineBroken(
-                        comment(
-                            "removing " + closingTagLayoutList.get((closingTagLayoutList.size - 1))
-                        )
-                    )
                 closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
@@ -158,7 +151,7 @@ class GUIBuilder(
             val method = this::class.java.getDeclaredMethod(methodName)
             method.invoke(this)
         } catch (e: InvocationTargetException) {
-            onError(e.toString())
+            onError("runMethod: " + e.toString())
         }
     }
 
@@ -168,6 +161,7 @@ class GUIBuilder(
             val method = this::class.java.getDeclaredMethod(methodName, *parameterTypes)
             method.invoke(this, *args)
         } catch (e: NoSuchMethodException) {
+            
             onError(e.toString())
         } catch (e: InvocationTargetException) {
             val originalException = e.cause
