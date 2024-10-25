@@ -124,8 +124,7 @@ private fun Screen(
             onClick = {
                 viewModel.setProjectPath(
                     File(
-                        Environment.getExternalStorageDirectory(),
-                        "Robok/.projects/${state.projectName}",
+                        ProjectManager.PROJECTS_PATH + state.projectName
                     )
                 )
                 viewModel.createProject(

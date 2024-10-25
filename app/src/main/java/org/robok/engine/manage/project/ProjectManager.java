@@ -17,6 +17,7 @@ package org.robok.engine.manage.project;
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */ 
 
+import android.os.Environment;
 import android.content.Context;
 import android.util.Log;
 
@@ -44,6 +45,7 @@ public class ProjectManager {
 
     private CreationListener creationListener;
     public static final String TAG = "ProjectManager";
+    public static final Strng PROJECTS_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Robok/Projects/";
     private Context context;
     private File outputPath;
 

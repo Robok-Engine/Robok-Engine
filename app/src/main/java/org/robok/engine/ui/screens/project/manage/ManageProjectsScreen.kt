@@ -49,8 +49,9 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
+import org.robok.engine.manage.project.ProjectManager
 
-val projectPath = File(Environment.getExternalStorageDirectory(), "Robok/.projects")
+val projectPath = File(ProjectManager.PROJECTS_PATH)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
