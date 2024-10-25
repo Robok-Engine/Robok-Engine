@@ -28,7 +28,7 @@ internal object DefaultValues {
     private const val XMLNS_APP = "\txmlns:app=\"http://schemas.android.com/apk/res-auto\""
     private const val XMLNS_TOOLS = "\txmlns:tools=\"http://schemas.android.com/tools\""
     const val NO_ID = ""
-    const val LAYOUT_HEIGHT = "\tandroid:layout_height=\"wrap_content\""
+    const val LAYOUT_HEIGHT = "\tandroid:layout_height=\"match_parent\""
     const val LAYOUT_WIDTH = "\tandroid:layout_width=\"match_parent\""
 
     fun XMLNS(indent: String): String =
