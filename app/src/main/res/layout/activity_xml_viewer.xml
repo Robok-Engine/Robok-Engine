@@ -26,21 +26,21 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
         
         <org.robok.engine.feature.xmlviewer.lib.ui.OutlineView
             android:id="@+id/xml_viewer"
-            android:layout_width="0dp"
-            android:layout_height="0dp"/>
-            
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
         <ImageButton 
+            android:id="@+id/full_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_fullscreen_24"
-            android:id="@+id/full_screen"
-            android:alignParentRight="true"/>
+            android:layout_alignParentEnd="true"/>
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
