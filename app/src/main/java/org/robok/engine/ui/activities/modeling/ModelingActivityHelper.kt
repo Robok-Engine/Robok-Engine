@@ -28,10 +28,10 @@ import org.robok.engine.ui.theme.RobokTheme
  *
  * @author Aquiles Trindade (trindadedev).
  */
-class ModelingActivityHelper(private val context: Context, private val model3dView: Model3DView) {
+class ModelingActivityHelper(private val context: Context, private val model3dView: Model3DView?) {
     fun createComposeView(): ComposeView {
         return ComposeView(context).apply {
-            setContent { RobokTheme { ModelingScreen(model3dView) } }
+            setContent { RobokTheme { ModelingScreen(model3dView!!) } }
         }
     }
 }

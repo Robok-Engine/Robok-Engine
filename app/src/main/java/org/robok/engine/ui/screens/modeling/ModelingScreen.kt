@@ -32,7 +32,7 @@ import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.feature.modeling.view.Model3DView
 
 @Composable
-fun ModelingScreen(model3dView: Model3DView) {
+fun ModelingScreen(model3dView: Model3DView?) {
     var isOptionsOpen by remember { mutableStateOf(false) }
 
     Box(modifier = Modifier.fillMaxSize()) {
