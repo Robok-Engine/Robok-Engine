@@ -26,6 +26,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 
+import com.google.android.material.color.MaterialColors;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -357,7 +359,7 @@ public class OutlineView extends LinearLayout {
         paint.setStyle(Paint.Style.FILL);
         paint.setPathEffect(null);
         paint.setStrokeWidth(4);
-        paint.setColor(0xFF1886f7);
+        paint.setColor(MaterialColors.getColor(this, com.google.android.material.R.attr.colorPrimary));
     }
 
     public OnOutlineClickListener getOutlineClickListener() {
