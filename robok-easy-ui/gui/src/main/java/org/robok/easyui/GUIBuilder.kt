@@ -88,7 +88,7 @@ class GUIBuilder(
         xmlCodeList.newLineBroken("${indent}<TextView")
         indentLevel++
         xmlCodeList.newLineBroken(
-            "${indent}android:drawable=\"@drawable/" +
+            "${indent}android:background=\"@drawable/" +
                 config.convertStyleToFileName(config.style + "Text") +
                 "\""
         )
@@ -100,7 +100,7 @@ class GUIBuilder(
         xmlCodeList.newLineBroken("${indent}<Button")
         indentLevel++
         xmlCodeList.newLineBroken(
-            "${indent}android:drawable=\"@drawable/" +
+            "${indent}android:background=\"@drawable/" +
                 config.convertStyleToFileName(config.style + "Button") +
                 "\""
         )
@@ -117,11 +117,14 @@ class GUIBuilder(
 
     fun closeBlockComponent() {
         if (closingTagLayoutList.isNotEmpty()) {
-            if (closingTagLayoutList.last().equals(Config.getName())) {
+           /* if (closingTagLayoutList.last().equals(Config.getName())) {
+                xmlCodeList.newLineBroken(comment("It's here"))
                 config = Config(orientation = orientation, style = style)
                 closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
                 return
-            }
+            }else{
+                xmlCodeList.newLineBroken(comment("last is: " + closingTagLayoutList.last()))
+            }*/
             val tags = closingTagLayoutList.last().split(":")
 
             if (tags.size >= 2) {
@@ -202,12 +205,16 @@ class GUIBuilder(
         var attribute = ""
 
         if (methodName.equals(Config.getName())) {
-            if (!closingTagLayoutList.last().equals(methodName))
-                closingTagLayoutList.newLine(methodName)
+            /*if (!closingTagLayoutList.last().equals(methodName))
+                closingTagLayoutList.newLine(methodName)*/
+                
             when (key) {
                 "orientation" -> orientation = value
                 "style" -> style = value
             }
+            
+            config = Config(orientation = orientation, style = style)
+            
             return
         }
 
