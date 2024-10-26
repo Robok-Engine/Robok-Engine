@@ -87,7 +87,11 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Text Component"))
         xmlCodeList.newLineBroken("${indent}<TextView")
         indentLevel++
-        xmlCodeList.newLineBroken("${indent}android:drawable=\"@drawable/" + config.convertStyleToFileName(config.style + "Text") + "\"")
+        xmlCodeList.newLineBroken(
+            "${indent}android:drawable=\"@drawable/" +
+                config.convertStyleToFileName(config.style + "Text") +
+                "\""
+        )
         closingTagLayoutList.newLine("Text:/>")
     }
 
@@ -95,7 +99,11 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Button  Component"))
         xmlCodeList.newLineBroken("${indent}<Button")
         indentLevel++
-        xmlCodeList.newLineBroken("${indent}android:drawable=\"@drawable/" + config.convertStyleToFileName(config.style + "Button") + "\"")
+        xmlCodeList.newLineBroken(
+            "${indent}android:drawable=\"@drawable/" +
+                config.convertStyleToFileName(config.style + "Button") +
+                "\""
+        )
         closingTagLayoutList.newLine("Button:/>")
     }
 
@@ -194,7 +202,8 @@ class GUIBuilder(
         var attribute = ""
 
         if (methodName.equals(Config.getName())) {
-            if(!closingTagLayoutList.last().equals(methodName)) closingTagLayoutList.newLine(methodName)
+            if (!closingTagLayoutList.last().equals(methodName))
+                closingTagLayoutList.newLine(methodName)
             when (key) {
                 "orientation" -> orientation = value
                 "style" -> style = value

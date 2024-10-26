@@ -21,7 +21,7 @@ object ExtraKeys {
     object Project {
         const val PATH = "project_path"
     }
-    
+
     object Gui {
         const val CODE = "gui_code"
         const val CONFIG = "gui_config"
