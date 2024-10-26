@@ -24,5 +24,6 @@ object ExtraKeys {
     
     object Gui {
         const val CODE = "gui_code"
+        const val CONFIG = "gui_config"
     }
 }

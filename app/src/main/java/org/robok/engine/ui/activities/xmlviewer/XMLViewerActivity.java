@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.content.pm.ActivityInfo;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.MenuItemCompat;
@@ -38,6 +39,7 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewNodeBinder;
 import org.robok.engine.feature.xmlviewer.TreeNode;
 import org.robok.engine.feature.xmlviewer.TreeViewAdapter;
 import org.robok.engine.keys.ExtraKeys;
+import org.robok.easyui.config.Config;
 
 public class XMLViewerActivity extends RobokActivity {
     private boolean isEditMode = true;
@@ -67,6 +69,23 @@ public class XMLViewerActivity extends RobokActivity {
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
         configureToolbar();
+        loadGuiConfig():
+    }
+    
+    private void loadGuiConfig() {
+        Config config = (Config) getIntent().getSerializableExtra(ExtraKeys.Gui.CONFIG);
+        if (config != null) {
+            switch(config.getOrientation()) {
+                case "landscape":
+                case "horizontal":
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                    break;
+                case "portrait":
+                case "vertical":
+                    setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                    break;
+            }
+        }
     }
     
     private void configureToolbar() {

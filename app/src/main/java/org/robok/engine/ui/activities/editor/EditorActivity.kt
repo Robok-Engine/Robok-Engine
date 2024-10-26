@@ -425,6 +425,7 @@ class EditorActivity :
                     val intent =
                         Intent(this, XMLViewerActivity::class.java).apply {
                             putExtra(ExtraKeys.Gui.CODE, code)
+                            putExtra(ExtraKeys.Gui.CONFIG, config)
                         }
                     startActivity(intent)
                     Log.d(GUI_COMPILER_TAG, code)
