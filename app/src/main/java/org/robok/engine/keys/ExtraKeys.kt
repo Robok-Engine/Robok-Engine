@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.editor
+package org.robok.engine.keys
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,6 +18,11 @@ package org.robok.engine.ui.activities.editor
  */
 
 object ExtraKeys {
-    const val PROJECT_PATH = "projectPath"
-    const val XML = "xml"
+    object Project {
+        const val PATH = "projectPath"
+    }
+    
+    object Gui {
+        const val CODE = "xml"
+    }
 }

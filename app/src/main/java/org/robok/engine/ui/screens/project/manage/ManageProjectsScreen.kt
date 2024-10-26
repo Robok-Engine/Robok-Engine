@@ -49,6 +49,7 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
+import org.robok.engine.keys.ExtraKeys
 
 val projectPath = File(ProjectManager.PROJECTS_PATH)
 
@@ -90,7 +91,7 @@ fun ProjectItem(projectFile: File) {
                             Intent(context, EditorActivity::class.java).apply {
                                 putExtras(
                                     android.os.Bundle().apply {
-                                        putString("projectPath", projectFile.absolutePath)
+                                        putString(ExtraKeys.Project.PATH, projectFile.absolutePath)
                                     }
                                 )
                             }

@@ -37,6 +37,7 @@ import org.robok.engine.feature.xmlviewer.ui.menu.CheckBoxActionProvider;
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewNodeBinder;
 import org.robok.engine.feature.xmlviewer.TreeNode;
 import org.robok.engine.feature.xmlviewer.TreeViewAdapter;
+import org.robok.engine.keys.ExtraKeys;
 
 public class XMLViewerActivity extends RobokActivity {
     private boolean isEditMode = true;
@@ -74,7 +75,7 @@ public class XMLViewerActivity extends RobokActivity {
             if (id == R.id.item_see_code) {
                 var dialog = new MaterialAlertDialogBuilder(this)
                     .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
-                    .setMessage(getIntent().getStringExtra("xml"))
+                    .setMessage(getIntent().getStringExtra(ExtraKeys.Gui.CODE))
                     .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok), (d, i) -> {
                        d.dismiss();
                     })
@@ -154,7 +155,7 @@ public class XMLViewerActivity extends RobokActivity {
                     // No additional logic needed for now
                 }
             })
-            .parse(getIntent().getStringExtra("xml"));
+            .parse(getIntent().getStringExtra(ExtraKeys.Gui.CODE));
     }
     
     private void setupOutlineClickListener(final List<TreeNode> nodes) {

@@ -65,6 +65,7 @@ import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
+import org.robok.engine.keys.ExtraKeys
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -102,7 +103,7 @@ class EditorActivity :
 
         val extras = intent.extras
         if (extras != null) {
-            projectPath = extras.getString(ExtraKeys.PROJECT_PATH)
+            projectPath = extras.getString(ExtraKeys.Project.PATH)
             projectManager = ProjectManager(this@EditorActivity)
             projectPath?.let { projectManager.projectPath = File(it) }
         }
@@ -423,7 +424,7 @@ class EditorActivity :
                 onGenerateCode = { code, config ->
                     val intent =
                         Intent(this, XMLViewerActivity::class.java).apply {
-                            putExtra(ExtraKeys.XML, code)
+                            putExtra(ExtraKeys.Gui.CODE, code)
                         }
                     startActivity(intent)
                     Log.d(GUI_COMPILER_TAG, code)
