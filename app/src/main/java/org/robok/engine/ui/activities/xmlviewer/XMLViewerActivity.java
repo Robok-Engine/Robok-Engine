@@ -73,8 +73,8 @@ public class XMLViewerActivity extends RobokActivity {
         loadGuiConfig();
         
         binding.fullScreen.setOnClickListener(v -> {
-            binding.appBarLayout.setExpanded(!expanded, true)
-            expanded = !expanded
+            binding.appBarLayout.setExpanded(!expanded, true);
+            expanded = !expanded;
         });
     }
     
