@@ -87,6 +87,7 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Text Component"))
         xmlCodeList.newLineBroken("${indent}<TextView")
         indentLevel++
+        xmlCodeList.newLineBroken("${indent}android:drawable=\"@drawable/" + config.convertStyleToFileName(config.style + "Text") + "\"")
         closingTagLayoutList.newLine("Text:/>")
     }
 
@@ -94,6 +95,7 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Button  Component"))
         xmlCodeList.newLineBroken("${indent}<Button")
         indentLevel++
+        xmlCodeList.newLineBroken("${indent}android:drawable=\"@drawable/" + config.convertStyleToFileName(config.style + "Button") + "\"")
         closingTagLayoutList.newLine("Button:/>")
     }
 
@@ -109,6 +111,7 @@ class GUIBuilder(
         if (closingTagLayoutList.isNotEmpty()) {
             if (closingTagLayoutList.last().equals(Config.getName())) {
                 config = Config(orientation = orientation, style = style)
+                closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
                 return
             }
             val tags = closingTagLayoutList.last().split(":")
@@ -129,7 +132,7 @@ class GUIBuilder(
                     xmlCodeList.newLineBroken(previousAttribute + closingTagXml)
                 }
                 indentLevel--
-                if (codeComments) closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
+                closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
             }
@@ -151,7 +154,7 @@ class GUIBuilder(
 
                 xmlCodeList.newLineBroken("${indent}$closingTagXml" + "\n")
                 indentLevel--
-                if (codeComments) closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
+                closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
             }
@@ -191,7 +194,7 @@ class GUIBuilder(
         var attribute = ""
 
         if (methodName.equals(Config.getName())) {
-            closingTagLayoutList.newLine(methodName)
+            if(!closingTagLayoutList.last().equals(methodName)) closingTagLayoutList.newLine(methodName)
             when (key) {
                 "orientation" -> orientation = value
                 "style" -> style = value
