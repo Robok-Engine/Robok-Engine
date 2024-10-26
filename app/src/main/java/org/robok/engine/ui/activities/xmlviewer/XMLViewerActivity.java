@@ -69,7 +69,7 @@ public class XMLViewerActivity extends RobokActivity {
         binding.xmlViewer.setHoldOutline(false);
         setupOutlineClickListener(nodes);
         configureToolbar();
-        loadGuiConfig():
+        loadGuiConfig();
     }
     
     private void loadGuiConfig() {
