@@ -45,6 +45,7 @@ public class XMLViewerActivity extends RobokActivity {
     private boolean isEditMode = true;
     
     private ActivityXmlViewerBinding binding;
+    private boolean expanded = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +71,11 @@ public class XMLViewerActivity extends RobokActivity {
         setupOutlineClickListener(nodes);
         configureToolbar();
         loadGuiConfig();
+        
+        binding.fullScreen.setOnClickListener(v -> {
+            appBarLayout.setExpanded(!expanded, true)
+            expanded = !expanded
+        });
     }
     
     private void loadGuiConfig() {
