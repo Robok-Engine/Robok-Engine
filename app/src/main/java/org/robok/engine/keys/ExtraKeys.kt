@@ -23,6 +23,6 @@ object ExtraKeys {
     }
     
     object Gui {
-        const val CODE = "xml"
+        const val CODE = "gui_code"
     }
 }
