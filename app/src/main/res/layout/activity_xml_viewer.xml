@@ -35,7 +35,7 @@
             android:id="@+id/full_screen"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_fullscreen_24"
+            app:icon="@drawable/ic_fullscreen_24"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"/>
     </RelativeLayout>
