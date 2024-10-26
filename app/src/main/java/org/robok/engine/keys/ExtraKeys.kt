@@ -19,7 +19,7 @@ package org.robok.engine.keys
 
 object ExtraKeys {
     object Project {
-        const val PATH = "projectPath"
+        const val PATH = "project_path"
     }
     
     object Gui {
