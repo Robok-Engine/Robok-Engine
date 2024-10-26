@@ -420,7 +420,7 @@ class EditorActivity :
             GUIBuilder(
                 context = this,
                 codeComments = false,
-                onGenerateCode = { code ->
+                onGenerateCode = { code, config ->
                     val intent =
                         Intent(this, XMLViewerActivity::class.java).apply {
                             putExtra(ExtraKeys.XML, code)
