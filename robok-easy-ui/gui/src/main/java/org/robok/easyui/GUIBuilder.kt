@@ -19,15 +19,13 @@ package org.robok.easyui
 
 import android.content.Context
 import android.util.Log
-
 import java.lang.reflect.InvocationTargetException
-
+import org.robok.easyui.config.Config
 import org.robok.easyui.converter.AttributeConverter
 import org.robok.easyui.internal.DefaultValues
 import org.robok.easyui.internal.Utils.comment
 import org.robok.easyui.internal.newLine
 import org.robok.easyui.internal.newLineBroken
-import org.robok.easyui.config.Config
 
 /*
  * Class that generates XML from the received data.
@@ -43,7 +41,7 @@ class GUIBuilder(
     companion object {
         private const val TAG = "GUIBuilder"
     }
-    
+
     val xmlCodeList: MutableList<String> = mutableListOf()
     private var indentLevel = 0
     private val indent: String
@@ -51,13 +49,10 @@ class GUIBuilder(
 
     val closingTagLayoutList: MutableList<String> = mutableListOf()
     var attributeConverter: AttributeConverter? = null
-    
+
     private var orientation: String = ""
     private var style: String = ""
-    private var config: Config = Config(
-        orientation = "portrait", 
-        style = "defaultStyle"
-    )
+    private var config: Config = Config(orientation = "portrait", style = "defaultStyle")
 
     init {
         rootView()
@@ -101,9 +96,11 @@ class GUIBuilder(
         indentLevel++
         closingTagLayoutList.newLine("Button:/>")
     }
-    
-    fun config() { /* its fake method*/ }
-    
+
+    fun config() {
+        /* its fake method*/
+    }
+
     fun newLog(log: String) {
         if (codeComments) xmlCodeList.newLine(log)
     }
@@ -111,10 +108,7 @@ class GUIBuilder(
     fun closeBlockComponent() {
         if (closingTagLayoutList.isNotEmpty()) {
             if (closingTagLayoutList.last().equals(Config.getName())) {
-                config = Config(
-                    orientation = orientation,
-                    style = style
-                )
+                config = Config(orientation = orientation, style = style)
                 return
             }
             val tags = closingTagLayoutList.last().split(":")
@@ -135,8 +129,7 @@ class GUIBuilder(
                     xmlCodeList.newLineBroken(previousAttribute + closingTagXml)
                 }
                 indentLevel--
-                if (codeComments)
-                closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
+                if (codeComments) closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
             }
@@ -158,8 +151,7 @@ class GUIBuilder(
 
                 xmlCodeList.newLineBroken("${indent}$closingTagXml" + "\n")
                 indentLevel--
-                if (codeComments)
-                closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
+                if (codeComments) closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
             } else {
                 onError("Error: invalid tag format  tag of closing.")
             }
@@ -183,7 +175,7 @@ class GUIBuilder(
             val method = this::class.java.getDeclaredMethod(methodName, *parameterTypes)
             method.invoke(this, *args)
         } catch (e: NoSuchMethodException) {
-            
+
             onError(e.toString())
         } catch (e: InvocationTargetException) {
             val originalException = e.cause
@@ -197,8 +189,8 @@ class GUIBuilder(
         var containsCloseTag = false
         var containsSingleCloseTag = false
         var attribute = ""
-        
-        if(methodName.equals(Config.getName())) {
+
+        if (methodName.equals(Config.getName())) {
             closingTagLayoutList.newLine(methodName)
             when (key) {
                 "orientation" -> orientation = value
@@ -206,7 +198,7 @@ class GUIBuilder(
             }
             return
         }
-        
+
         if (xmlCodeList.get((xmlCodeList.size - 1)).contains("/>")) {
             containsCloseTag = true
             attribute = xmlCodeList.last().replace("/>", "").replace("\n", "")
@@ -249,10 +241,7 @@ class GUIBuilder(
         if (codeComments) xmlCodeList.newLineBroken(comment("Closing Root Layout"))
         xmlCodeList.newLineBroken("</LinearLayout>")
         if (codeComments) xmlCodeList.newLine("\n" + comment("End."))
-        onGenerateCode(
-            buildXML(), 
-            config
-        )
+        onGenerateCode(buildXML(), config)
         Log.d(TAG, config.toString())
     }
 }

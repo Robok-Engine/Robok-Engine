@@ -18,7 +18,6 @@ package org.robok.engine.ui.screens.project.create
  */
 
 import android.content.Intent
-import android.os.Environment
 import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -122,11 +121,7 @@ private fun Screen(
         Button(
             modifier = Modifier.weight(1f),
             onClick = {
-                viewModel.setProjectPath(
-                    File(
-                        ProjectManager.PROJECTS_PATH + state.projectName
-                    )
-                )
+                viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH + state.projectName))
                 viewModel.createProject(
                     template,
                     onSuccess = {

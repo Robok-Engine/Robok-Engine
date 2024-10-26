@@ -18,7 +18,6 @@ package org.robok.engine.ui.screens.project.manage
  */
 
 import android.content.Intent
-import android.os.Environment
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -46,10 +45,10 @@ import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
-import org.robok.engine.manage.project.ProjectManager
 
 val projectPath = File(ProjectManager.PROJECTS_PATH)
 
