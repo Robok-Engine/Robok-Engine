@@ -156,4 +156,5 @@
     <string name="text_libraries">As bibliotecas que usamos</string>
     <string name="text_open_contributor_github">Abra o perfil GitHub de -name- no navegador</string>
     <string name="text_telegram">Nossa Comunidade Telegram</string>
+    <string name="text_exit_without_save">Sair sem Salvar</string>
 </resources>
