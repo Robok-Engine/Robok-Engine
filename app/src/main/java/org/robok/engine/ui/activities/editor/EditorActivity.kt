@@ -125,7 +125,7 @@ class EditorActivity :
                 editorViewModel.saveAllFiles()
                 super.onBackPressed()
             }
-            .setNeutralButton(getString(R.string.text_exit_without_save)) { d, w ->
+            .setNeutralButton(getString(Strings.text_exit_without_save)) { d, w ->
                 super.onBackPressed()
             }
             .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> 
