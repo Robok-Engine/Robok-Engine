@@ -17,6 +17,9 @@ package org.robok.engine.ui.screens.settings.about
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -26,17 +29,14 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,12 +54,12 @@ import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.Drawables
 import org.robok.engine.BuildConfig
+import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
@@ -184,16 +184,11 @@ suspend fun fetchContributors(): List<Contributor> {
 
 @Composable
 fun ContributorRow(dataInfo: Contributor) {
-    var isShowDialog = remember {
-        mutableStateOf(false)
-    }
+    var isShowDialog = remember { mutableStateOf(false) }
     PreferenceTemplate(
         title = { Text(fontWeight = FontWeight.Bold, text = dataInfo.login) },
         description = { Text(text = dataInfo.role) },
-        modifier = Modifier
-            .clickable(
-                onClick = { isShowDialog.value= true }
-            ),
+        modifier = Modifier.clickable(onClick = { isShowDialog.value = true }),
         startWidget = {
             val avatarUrl =
                 if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
@@ -208,10 +203,7 @@ fun ContributorRow(dataInfo: Contributor) {
             )
         },
     )
-    OpenContributorDialog(
-        contributor = dataInfo,
-        isShowDialog = isShowDialog
-    )
+    OpenContributorDialog(contributor = dataInfo, isShowDialog = isShowDialog)
 }
 
 @Composable
@@ -232,43 +224,26 @@ fun LinkRow(dataInfo: Link) {
     )
 }
 
-
 @Composable
-fun OpenContributorDialog(
-    contributor: Contributor,
-    isShowDialog: MutableState<Boolean>
-) {
+fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<Boolean>) {
     val uriHandler = LocalUriHandler.current
-    AnimatedVisibility(
-        visible = isShowDialog.value,
-        enter = fadeIn(),
-        exit = fadeOut(),
-    ) {
+    AnimatedVisibility(visible = isShowDialog.value, enter = fadeIn(), exit = fadeOut()) {
         RobokDialog(
-            onDismissRequest = { 
-                isShowDialog.value = false 
-            },
-            onConfirmation = { 
-                isShowDialog.value = false 
+            onDismissRequest = { isShowDialog.value = false },
+            onConfirmation = {
+                isShowDialog.value = false
                 uriHandler.openUri(contributor.html_url)
             },
-            title = { 
-                Text(
-                    text = stringResource(Strings.title_open_contributor_github),
-                ) 
-            },
+            title = { Text(text = stringResource(Strings.title_open_contributor_github)) },
             text = {
                 Text(
-                    text = stringResource(Strings.text_open_contributor_github)
-                        .replace("-name-", contributor.login)
+                    text =
+                        stringResource(Strings.text_open_contributor_github)
+                            .replace("-name-", contributor.login)
                 )
             },
-            confirmButton = {
-                Text(stringResource(id = Strings.common_word_open)) 
-            },
-            dismissButton = {
-                Text(stringResource(id = Strings.common_word_cancel)) 
-            }
+            confirmButton = { Text(stringResource(id = Strings.common_word_open)) },
+            dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
         )
     }
 }
