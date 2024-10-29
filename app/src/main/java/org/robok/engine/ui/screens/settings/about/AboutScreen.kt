@@ -237,7 +237,7 @@ fun OpenContributorDialog(
     isShowDialog: MutableState<Boolean>
 ) {
     val uriHandler = LocalUriHandler.current
-    ExpandAndShrink(isShowDialog) {
+    ExpandAndShrink(isShowDialog.value) {
         RobokDialog(
             onDismissRequest = { 
                 isShowDialog.value = false 
