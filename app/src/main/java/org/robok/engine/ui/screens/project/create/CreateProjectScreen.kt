@@ -57,6 +57,7 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.keys.ExtraKeys
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
@@ -127,7 +128,7 @@ private fun Screen(
                     onSuccess = {
                         val bundle =
                             android.os.Bundle().apply {
-                                putString("projectPath", viewModel.getProjectPath().absolutePath)
+                                putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
                             }
                         val intent =
                             Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
