@@ -50,9 +50,10 @@ class GUIBuilder(
     val closingTagLayoutList: MutableList<String> = mutableListOf()
     var attributeConverter: AttributeConverter? = null
 
-    private var orientation: String = ""
-    private var style: String = ""
+    private var orientation: String = "portrait"
+    private var style: String = "defaultStyle"
     private var config: Config = Config(orientation = "portrait", style = "defaultStyle")
+    private var isConfigEnable = false
 
     init {
         rootView()
@@ -83,6 +84,16 @@ class GUIBuilder(
         closingTagLayoutList.newLine("Column:</LinearLayout>")
     }
 
+    fun Row() {
+        if (codeComments) xmlCodeList.newLineBroken(comment("Opening Row Layout"))
+        xmlCodeList.newLineBroken("${indent}<LinearLayout")
+        indentLevel++
+        xmlCodeList.newLineBroken("${indent}\tandroid:orientation=\"horizontal\"")
+        xmlCodeList.newLineBroken(">")
+        indentLevel++
+        closingTagLayoutList.newLine("Row:</LinearLayout>")
+    }
+
     fun Text() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Text Component"))
         xmlCodeList.newLineBroken("${indent}<TextView")
@@ -96,7 +107,7 @@ class GUIBuilder(
     }
 
     fun Button() {
-        if (codeComments) xmlCodeList.newLineBroken(comment("Button  Component"))
+        if (codeComments) xmlCodeList.newLineBroken(comment("Button Component"))
         xmlCodeList.newLineBroken("${indent}<Button")
         indentLevel++
         xmlCodeList.newLineBroken(
@@ -105,6 +116,16 @@ class GUIBuilder(
                 "\""
         )
         closingTagLayoutList.newLine("Button:/>")
+    }
+
+    /*
+     * for test
+     */
+    fun MaterialButton() {
+        if (codeComments) xmlCodeList.newLineBroken(comment("MaterialButton Component"))
+        xmlCodeList.newLineBroken("${indent}<com.google.android.material.button.MaterialButton")
+        indentLevel++
+        closingTagLayoutList.newLine("com.google.android.material.button.MaterialButton:/>")
     }
 
     fun config() {
@@ -116,8 +137,13 @@ class GUIBuilder(
     }
 
     fun closeBlockComponent() {
+        if (isConfigEnable) {
+            isConfigEnable = false
+            return
+        }
+
         if (closingTagLayoutList.isNotEmpty()) {
-           /* if (closingTagLayoutList.last().equals(Config.getName())) {
+            /* if (closingTagLayoutList.last().equals(Config.getName())) {
                 xmlCodeList.newLineBroken(comment("It's here"))
                 config = Config(orientation = orientation, style = style)
                 closingTagLayoutList.removeAt(closingTagLayoutList.size - 1)
@@ -148,7 +174,7 @@ class GUIBuilder(
                 onError("Error: invalid tag format  tag of closing.")
             }
         } else {
-            onError("Error: No layout to close.")
+            onError("Error: No layout to close in closeBlockComponent.")
         }
     }
 
@@ -170,7 +196,7 @@ class GUIBuilder(
                 onError("Error: invalid tag format  tag of closing.")
             }
         } else {
-            onError("Error: No layout to close.")
+            onError("Error: No layout to close in closeBlockLayout.")
         }
     }
 
@@ -206,15 +232,15 @@ class GUIBuilder(
 
         if (methodName.equals(Config.getName())) {
             /*if (!closingTagLayoutList.last().equals(methodName))
-                closingTagLayoutList.newLine(methodName)*/
-                
+            closingTagLayoutList.newLine(methodName)*/
+
             when (key) {
                 "orientation" -> orientation = value
                 "style" -> style = value
             }
-            
+
             config = Config(orientation = orientation, style = style)
-            
+            isConfigEnable = true
             return
         }
 
