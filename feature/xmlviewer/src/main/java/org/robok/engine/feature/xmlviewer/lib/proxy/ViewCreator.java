@@ -40,7 +40,7 @@ public class ViewCreator {
     };
 
     public static View create(@NonNull String name, @NonNull Context ctx) {
-        if (name.startsWith("org.robok.engine.feature.xmlviewer.")) return createDefault(ctx, name);
+        if (name.startsWith("org.robok.engine")) return createDefault(ctx, name);
         View v = null;
         if (isFullPackage(name)) {
             v = _create(name, ctx);
@@ -59,7 +59,7 @@ public class ViewCreator {
     }
 
     public static View create(@NonNull String name, @NonNull Context ctx, int defStyle) {
-        if (name.startsWith("org.robok.engine.feature.xmlviewer.")) return createDefault(ctx, name);
+        if (name.startsWith("org.robok.engine")) return createDefault(ctx, name);
         View v = null;
         if (isFullPackage(name)) {
             v = _create(name, ctx, defStyle);

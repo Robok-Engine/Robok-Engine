@@ -50,6 +50,7 @@ import com.google.android.material.chip.Chip;
 import com.google.android.material.chip.ChipGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.button.MaterialButton
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -121,7 +122,8 @@ public class ViewBean implements LayoutItemType {
         imgMap.put(AppBarLayout.class.getSimpleName(), R.drawable.ic_palette_app_bar_layout);
         imgMap.put(NavigationView.class.getSimpleName(), R.drawable.ic_palette_navigation_view);
         imgMap.put(BottomNavigationView.class.getSimpleName(), R.drawable.ic_palette_bottom_navigation_view);
-
+        imgMap.put(MaterialButton.class.getSimpleName(), R.drawable.ic_palette_button);
+        
     }
 
     private boolean isViewGroup;
