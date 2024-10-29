@@ -128,9 +128,7 @@ class EditorActivity :
             .setNeutralButton(getString(Strings.text_exit_without_save)) { d, w ->
                 super.onBackPressed()
             }
-            .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> 
-                d.dismiss()
-            }
+            .setNegativeButton(getString(Strings.common_word_cancel)) { d, w -> d.dismiss() }
             .show()
     }
 
