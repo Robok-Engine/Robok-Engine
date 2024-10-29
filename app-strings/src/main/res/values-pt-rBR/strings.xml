@@ -143,4 +143,17 @@
     <string name="text_saved_all">Tudo Salvo!</string>
     <string name="warning_exit_project_title">Sair do Projeto</string>
     <string name="warning_exit_project_message">Você tem certeza que quer sair do projeto? (todos os arquivos serão salvos)</string>
+    <string name="common_word_open">Abrir</string>
+    <string name="title_open_contributor_github">Abrir o GitHub do Contribuidor</string>
+    <string name="title_telegram">Telegram</string>
+    <string name="title_whatsapp">WhatsApp</string>
+    <string name="title_libraries">Software de terceiros</string>
+    <string name="text_whatsapp">Nosso grupo do WhatsApp.</string>
+    <string name="text_github">Repositório GitHub</string>
+    <string name="text_contribute">Veja como você pode contribuir conosco</string>
+    <string name="title_github">GitHub</string>
+    <string name="title_contribute">Contribuir</string>
+    <string name="text_libraries">As bibliotecas que usamos</string>
+    <string name="text_open_contributor_github">Abra o perfil GitHub de -name- no navegador</string>
+    <string name="text_telegram">Nossa Comunidade Telegram</string>
 </resources>
