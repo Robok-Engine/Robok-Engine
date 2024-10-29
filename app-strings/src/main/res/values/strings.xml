@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+
+  <string name="slogan">Java to Game in a Snap</string>
+
   <!-- common words section -->
   <string name="common_word_back">Back</string>
   <string name="common_word_result">Result</string>
@@ -47,6 +50,11 @@
   <string name="title_your_projects">Your Projects</string>
   <string name="title_gui_viewer">Gui Viewer</string>
   <string name="title_open_contributor_github">Open Contributor GitHub</string>
+  <string name="title_telegram">Telegram</string>
+  <string name="title_whatsapp">WhatsApp</string>
+  <string name="title_github_title">GitHub</string>
+  <string name="title_contribute">Contribute</string>
+  <string name="title_libraries">Third-Party Software</string>
   <!-- end section -->
 
   <!-- go to section -->
@@ -104,6 +112,13 @@
   <string name="text_saved_all">All Saved!</string>
   <string name="text_see_code">See Code</string>
   <string name="text_open_contributor_github">Open -name- GitHub Profile in Browser</string>
+  <string name="text_seeus">See us</string>
+  <string name="text_telegram">Our Telegram Community</string>
+  <string name="text_whatsapp">Our WhatsApp group.</string>
+  <string name="text_github">GitHub Repository</string>
+  <string name="text_contributors">Contributors</string>
+  <string name="text_contribute">See how you can contribute with us</string> 
+  <string name="text_libraries">The libraries we used</string>
   <!-- end section -->
 
   <!-- warnings section -->
@@ -136,21 +151,5 @@
 
   <!-- templates section -->
   <string name="template_name_empty_game">Empty Game</string>
-  <!-- end section -->
-
-  <!-- about section -->
-  <string name="slogan">Java to Game in a Snap</string>
-  <string name="text_seeus">See us</string>
-  <string name="item_telegram_title">Telegram</string>
-  <string name="item_telegram_description">Our Telegram Community</string>
-  <string name="item_whatsapp_title">WhatsApp</string>
-  <string name="item_whatsapp_description">Our WhatsApp group.</string>
-  <string name="item_github_title">GitHub</string>
-  <string name="item_github_description">GitHub Repository</string>
-  <string name="text_contributors">Contributors</string>
-  <string name="item_contribute_title">Contribute</string>
-  <string name="item_contribute_description">See how you can contribute with us</string> <!-- Corrigido aqui -->
-  <string name="item_libraries_title">Third-Party Software</string> <!-- Corrigido aqui -->
-  <string name="item_libraries_description">The libraries we used</string>
   <!-- end section -->
 </resources>

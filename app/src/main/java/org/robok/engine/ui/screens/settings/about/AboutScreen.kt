@@ -83,20 +83,20 @@ fun AboutScreen() {
     val links =
         listOf(
             Link(
-                name = stringResource(id = Strings.item_github_title),
-                description = stringResource(id = Strings.item_github_description),
+                name = stringResource(id = Strings.title_github),
+                description = stringResource(id = Strings.text_github),
                 imageResId = Drawables.ic_github_24,
                 url = stringResource(id = Strings.link_github),
             ),
             Link(
-                name = stringResource(id = Strings.item_telegram_title),
-                description = stringResource(id = Strings.item_telegram_description),
+                name = stringResource(id = Strings.title_telegram),
+                description = stringResource(id = Strings.text_telegram),
                 imageResId = Drawables.ic_send_24,
                 url = stringResource(id = Strings.link_telegram),
             ),
             Link(
-                name = stringResource(id = Strings.item_whatsapp_title),
-                description = stringResource(id = Strings.item_whatsapp_description),
+                name = stringResource(id = Strings.title_whatsapp),
+                description = stringResource(id = Strings.text_whatsapp),
                 imageResId = Drawables.ic_whatsapp_24,
                 url = stringResource(id = Strings.link_whatsapp),
             ),
