@@ -52,7 +52,7 @@ class Components(
         indentLevel++
         closingTagLayoutList.newLine("Row:</LinearLayout>")
     }
-    
+
     fun Box() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Opening Box Layout"))
         xmlCodeList.newLineBroken("${indent}<RelativeLayout")
@@ -61,7 +61,7 @@ class Components(
         indentLevel++
         closingTagLayoutList.newLine("Box:</RelativeLayout>")
     }
-    
+
     fun Text() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Text Component"))
         xmlCodeList.newLineBroken("${indent}<TextView")
@@ -73,7 +73,7 @@ class Components(
         )
         closingTagLayoutList.newLine("Text:/>")
     }
-    
+
     fun Image() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Image Component"))
         xmlCodeList.newLineBroken("${indent}<ImageView")
@@ -85,7 +85,7 @@ class Components(
         )
         closingTagLayoutList.newLine("Image:/>")
     }
-    
+
     fun CircleProgress() {
         if (codeComments) xmlCodeList.newLineBroken(comment("CircleProgress Component"))
         xmlCodeList.newLineBroken("${indent}<ProgressBar")
@@ -97,7 +97,7 @@ class Components(
         )
         closingTagLayoutList.newLine("CircleProgress:/>")
     }
-    
+
     fun BarProgress() {
         if (codeComments) xmlCodeList.newLineBroken(comment("BarProgress Component"))
         xmlCodeList.newLineBroken("${indent}<ProgressBar")
@@ -105,13 +105,14 @@ class Components(
         xmlCodeList.newLineBroken(
             "${indent}android:background=\"@drawable/" +
                 config.convertStyleToFileName(config.style + "BarProgress") +
-                "\"")
-                
+                "\""
+        )
+
         xmlCodeList.newLineBroken("style=\"?android:attr/progressBarStyleHorizontal\"")
-        
+
         closingTagLayoutList.newLine("BarProgress:/>")
     }
-    
+
     fun Switch() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Switch Component"))
         xmlCodeList.newLineBroken("${indent}<Switch")
@@ -123,7 +124,7 @@ class Components(
         )
         closingTagLayoutList.newLine("Switch:/>")
     }
-    
+
     fun CheckBox() {
         if (codeComments) xmlCodeList.newLineBroken(comment("CheckBox Component"))
         xmlCodeList.newLineBroken("${indent}<CheckBox")
@@ -135,7 +136,7 @@ class Components(
         )
         closingTagLayoutList.newLine("CheckBox:/>")
     }
-    
+
     fun RadioGroup() {
         if (codeComments) xmlCodeList.newLineBroken(comment("RadioGroup Component"))
         xmlCodeList.newLineBroken("${indent}<RadioGroup")
@@ -147,7 +148,7 @@ class Components(
         )
         closingTagLayoutList.newLine("RadioGroup:/>")
     }
-    
+
     fun RadioButton() {
         if (codeComments) xmlCodeList.newLineBroken(comment("RadioButton Component"))
         xmlCodeList.newLineBroken("${indent}<RadioButton")
@@ -159,7 +160,7 @@ class Components(
         )
         closingTagLayoutList.newLine("RadioButton:/>")
     }
-    
+
     fun Slider() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Slider Component"))
         xmlCodeList.newLineBroken("${indent}<SeekBar")
@@ -171,7 +172,7 @@ class Components(
         )
         closingTagLayoutList.newLine("Slider:/>")
     }
-    
+
     fun Button() {
         if (codeComments) xmlCodeList.newLineBroken(comment("Button Component"))
         xmlCodeList.newLineBroken("${indent}<Button")
