@@ -26,6 +26,9 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.requiredHeight
 import androidx.compose.foundation.layout.size
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -56,7 +59,6 @@ import org.robok.engine.BuildConfig
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
@@ -237,7 +239,11 @@ fun OpenContributorDialog(
     isShowDialog: MutableState<Boolean>
 ) {
     val uriHandler = LocalUriHandler.current
-    ExpandAndShrink(isShowDialog.value) {
+    AnimatedVisibility(
+        visible = isShowDialog.value,
+        enter = fadeIn(),
+        exit = fadeOut(),
+    ) {
         RobokDialog(
             onDismissRequest = { 
                 isShowDialog.value = false 
