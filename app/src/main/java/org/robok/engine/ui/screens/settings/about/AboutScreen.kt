@@ -55,6 +55,8 @@ import org.robok.engine.BuildConfig
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.core.components.animation.ExpandAndShrink
+import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
@@ -179,12 +181,16 @@ suspend fun fetchContributors(): List<Contributor> {
 
 @Composable
 fun ContributorRow(dataInfo: Contributor) {
-    val uriHandler = LocalUriHandler.current
-
+    var isShowDialog = remember {
+        mutableStateOf(false)
+    }
     PreferenceTemplate(
         title = { Text(fontWeight = FontWeight.Bold, text = dataInfo.login) },
         description = { Text(text = dataInfo.role) },
-        modifier = Modifier.clickable(onClick = { uriHandler.openUri(dataInfo.html_url) }),
+        modifier = Modifier
+            .clickable(
+                onClick = { isShowDialog.value= true }
+            ),
         startWidget = {
             val avatarUrl =
                 if (dataInfo.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else dataInfo.avatar_url
@@ -198,6 +204,10 @@ fun ContributorRow(dataInfo: Contributor) {
                         .background(MaterialTheme.colorScheme.surfaceContainer),
             )
         },
+    )
+    OpenContributorDialog(
+        contributor = dataInfo,
+        isShowDialog = isShowDialog
     )
 }
 
@@ -217,4 +227,41 @@ fun LinkRow(dataInfo: Link) {
             )
         },
     )
+}
+
+
+@Composable
+fun OpenContributorDialog(
+    contributor: Contributor,
+    isShowDialog: MutableState<Boolean>
+) {
+    val uriHandler = LocalUriHandler.current
+    ExpandAndShrink(isShowDialog) {
+        RobokDialog(
+            onDismissRequest = { 
+                isShowDialog.value = false 
+            },
+            onConfirmation = { 
+                isShowDialog.value = false 
+                uriHandler.openUri(contributor.html_url)
+            },
+            title = { 
+                Text(
+                    text = stringResource(Strings.title_open_contributor_github),
+                ) 
+            },
+            text = {
+                Text(
+                    text = stringResource(Strings.text_open_contributor_github)
+                        .replace("-name-", contributor.login)
+                )
+            },
+            confirmButton = {
+                Text(stringResource(id = Strings.common_word_open)) 
+            },
+            dismissButton = {
+                Text(stringResource(id = Strings.common_word_cancel)) 
+            }
+        )
+    }
 }
