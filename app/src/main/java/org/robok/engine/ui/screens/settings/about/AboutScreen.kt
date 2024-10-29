@@ -51,6 +51,7 @@ import okhttp3.OkHttpClient
 import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Drawables
+import org.robok.engine.BuildConfig
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
@@ -63,7 +64,7 @@ import org.robok.engine.strings.Strings
 var contributors = DefaultContributors()
 
 @Composable
-fun AboutScreen(version: String) {
+fun AboutScreen() {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     val contributorsState = remember { mutableStateOf(contributors) }
@@ -120,7 +121,7 @@ fun AboutScreen(version: String) {
                 style = MaterialTheme.typography.titleLarge,
             )
             Text(
-                text = version,
+                text = BuildConfig.VERSION_NAME,
                 style = MaterialTheme.typography.bodyLarge,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

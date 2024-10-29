@@ -22,7 +22,6 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
-import org.robok.engine.BuildConfig
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
@@ -96,7 +95,7 @@ fun MainNavHost() {
 
         composable<AboutLibrariesRoute> { LibrariesScreen() }
 
-        composable<AboutRoute> { AboutScreen(version = BuildConfig.VERSION_NAME) }
+        composable<AboutRoute> { AboutScreen() }
 
         composable<TerminalRoute> { TerminalScreen() }
     }
