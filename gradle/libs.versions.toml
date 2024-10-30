@@ -65,7 +65,7 @@ material3-compose = { group = "androidx.compose.material3", name = "material3" }
 ui-compose = { group = "androidx.compose.ui", name = "ui" }
 ui-graphics-compose = { group = "androidx.compose.ui", name = "ui-graphics" }
 activity-compose = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version = "2.8.6" }
+viewmodel-compose = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version = "2.8.7" }
 navigation-compose = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 material-motion-compose-core = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended", version = "1.7.5" }
