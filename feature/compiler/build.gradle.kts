@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.robok.aapt2"
+    namespace = "org.robok.engine.feature.compiler"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {
