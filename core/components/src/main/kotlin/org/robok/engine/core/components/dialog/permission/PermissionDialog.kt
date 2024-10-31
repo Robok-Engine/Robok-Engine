@@ -48,7 +48,7 @@ fun PermissionDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(28.dp))
+                .background(MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(28.dp))
                 .padding(10.dp),
             contentAlignment = Alignment.Center
         ) {
@@ -60,7 +60,7 @@ fun PermissionDialog(
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
-                        .size(30.dp)
+                        .size(80.dp)
                         .padding(top = 20.dp)
                 )
 
@@ -101,6 +101,7 @@ fun PermissionDialog(
                         fontWeight = FontWeight.Bold
                     )
                 }
+                Spacer(modifier = Modifier.height(8.dp))
             }
         }
     }
