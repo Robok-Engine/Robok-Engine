@@ -44,7 +44,7 @@ fun PermissionDialog(
     onDenyClicked: () -> Unit,
     onDismissRequest: () -> Unit
 ) {
-    Dialog(onDismissRequest = onDismissRequest) {
+    Dialog(onDismissRequest = {}) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
