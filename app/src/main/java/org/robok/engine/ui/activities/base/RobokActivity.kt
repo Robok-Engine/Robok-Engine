@@ -22,24 +22,16 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Folder
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.core.view.WindowInsetsCompat
 import com.google.android.material.appbar.MaterialToolbar
 import dev.chrisbanes.insetter.Insetter
 import kotlinx.coroutines.runBlocking
-import org.robok.engine.Drawables
 import org.robok.engine.core.components.dialog.permission.PermissionDialog
 import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.getBackPressedClickListener
@@ -81,8 +73,8 @@ open class RobokComposeActivity : RobokActivity(), PermissionListener {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
     }
-    
-    @Composable 
+
+    @Composable
     fun configurePermission() {
         CheckPermissions()
         if (showPermissionDialog) {
@@ -97,7 +89,7 @@ open class RobokComposeActivity : RobokActivity(), PermissionListener {
                     onDenyClick?.invoke()
                     showPermissionDialog = false
                 },
-                onDismissRequest = { showPermissionDialog = false }
+                onDismissRequest = { showPermissionDialog = false },
             )
         }
     }
@@ -107,10 +99,20 @@ open class RobokComposeActivity : RobokActivity(), PermissionListener {
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 permissionDialogText = getString(Strings.warning_all_files_perm_message)
-                onAllowClick = { requestAllFilesAccessPermission(this@RobokComposeActivity, this@RobokComposeActivity) }
+                onAllowClick = {
+                    requestAllFilesAccessPermission(
+                        this@RobokComposeActivity,
+                        this@RobokComposeActivity,
+                    )
+                }
             } else {
                 permissionDialogText = getString(Strings.warning_storage_perm_message)
-                onAllowClick = { requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity) }
+                onAllowClick = {
+                    requestReadWritePermissions(
+                        this@RobokComposeActivity,
+                        this@RobokComposeActivity,
+                    )
+                }
             }
             onDenyClick = { finish() }
             showPermissionDialog = true
@@ -121,7 +123,9 @@ open class RobokComposeActivity : RobokActivity(), PermissionListener {
         if (!status) {
             showPermissionDialog = true
             permissionDialogText = getString(Strings.error_storage_perm_message)
-            onAllowClick = { requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity) }
+            onAllowClick = {
+                requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity)
+            }
             onDenyClick = { finish() }
         }
     }

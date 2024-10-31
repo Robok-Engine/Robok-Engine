@@ -21,12 +21,9 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -42,26 +39,25 @@ fun PermissionDialog(
     dialogText: String,
     onAllowClicked: () -> Unit,
     onDenyClicked: () -> Unit,
-    onDismissRequest: () -> Unit
+    onDismissRequest: () -> Unit,
 ) {
     Dialog(onDismissRequest = {}) {
         Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .background(MaterialTheme.colorScheme.surfaceContainerHigh, shape = RoundedCornerShape(28.dp))
-                .padding(10.dp),
-            contentAlignment = Alignment.Center
+            modifier =
+                Modifier.fillMaxWidth()
+                    .background(
+                        MaterialTheme.colorScheme.surfaceContainerHigh,
+                        shape = RoundedCornerShape(28.dp),
+                    )
+                    .padding(10.dp),
+            contentAlignment = Alignment.Center,
         ) {
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
                     tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier
-                        .size(80.dp)
-                        .padding(top = 20.dp)
+                    modifier = Modifier.size(80.dp).padding(top = 20.dp),
                 )
 
                 Text(
@@ -69,20 +65,18 @@ fun PermissionDialog(
                     style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp)
+                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp),
                 )
 
                 Button(
                     onClick = onAllowClicked,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 2.dp)
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
                 ) {
                     Text(
                         text = stringResource(id = Strings.common_word_allow),
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
 
@@ -90,15 +84,13 @@ fun PermissionDialog(
 
                 Button(
                     onClick = onDenyClicked,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 20.dp, vertical = 2.dp)
+                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
                 ) {
                     Text(
                         text = stringResource(id = Strings.common_word_deny),
                         color = MaterialTheme.colorScheme.onPrimary,
                         fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold
+                        fontWeight = FontWeight.Bold,
                     )
                 }
                 Spacer(modifier = Modifier.height(8.dp))
