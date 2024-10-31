@@ -67,7 +67,7 @@ fun PermissionDialog(
 
                 Text(
                     text = dialogText,
-                    style = MaterialTheme.typography.h6,
+                    style = MaterialTheme.typography.titleLarge,
                     color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp)
@@ -75,7 +75,6 @@ fun PermissionDialog(
 
                 Button(
                     onClick = onAllowClicked,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 2.dp)
@@ -92,7 +91,6 @@ fun PermissionDialog(
 
                 Button(
                     onClick = onDenyClicked,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 2.dp)
