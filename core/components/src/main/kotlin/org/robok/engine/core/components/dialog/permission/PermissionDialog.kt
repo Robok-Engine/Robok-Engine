@@ -20,7 +20,7 @@ package org.robok.engine.core.components.dialog.permission
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Info
 import androidx.compose.runtime.*
@@ -48,18 +48,18 @@ fun PermissionDialog(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .background(MaterialTheme.colors.surface, shape = RoundedCornerShape(28.dp))
+                .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(28.dp))
                 .padding(20.dp),
             contentAlignment = Alignment.Center
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
+                modifier = Modifier.padding(15.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
                     imageVector = icon,
                     contentDescription = null,
-                    tint = MaterialTheme.colors.primary,
+                    tint = MaterialTheme.colorScheme.primary,
                     modifier = Modifier
                         .size(30.dp)
                         .padding(top = 20.dp)
@@ -68,21 +68,21 @@ fun PermissionDialog(
                 Text(
                     text = dialogText,
                     style = MaterialTheme.typography.h6,
-                    color = MaterialTheme.colors.onSurface,
+                    color = MaterialTheme.colorScheme.onSurface,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp)
                 )
 
                 Button(
                     onClick = onAllowClicked,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.primary),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 2.dp)
                 ) {
                     Text(
                         text = stringResource(id = Strings.common_word_allow),
-                        color = MaterialTheme.colors.onPrimary,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
                     )
@@ -92,14 +92,14 @@ fun PermissionDialog(
 
                 Button(
                     onClick = onDenyClicked,
-                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colors.error),
+                    colors = ButtonDefaults.buttonColors(backgroundColor = MaterialTheme.colorScheme.primary),
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(horizontal = 20.dp, vertical = 2.dp)
                 ) {
                     Text(
                         text = stringResource(id = Strings.common_word_deny),
-                        color = MaterialTheme.colors.onPrimary,
+                        color = MaterialTheme.colorScheme.onPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
                     )
