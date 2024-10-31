@@ -35,6 +35,7 @@ import com.termux.view.TerminalView
 import java.io.File
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
+import org.robok.engine.platform.LocalMainNavController
 
 private var cwd: String? = null
 private var session: TerminalSession? = null
@@ -43,6 +44,8 @@ private var terminalView: TerminalView? = null
 @Composable
 fun TerminalScreen(path: String? = null) {
     val activity = LocalContext.current as? Activity
+    val navController = LocalMainNavController.current
+    
     cwd =
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
@@ -56,6 +59,7 @@ fun TerminalScreen(path: String? = null) {
             it.window.setNavigationBarColor(AndroidColor.TRANSPARENT)
             it.window.setStatusBarColor(AndroidColor.TRANSPARENT)
         }
+        navController.popBackStack()
     }
     Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
 }
