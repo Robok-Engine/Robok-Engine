@@ -33,6 +33,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import org.robok.engine.strings.Strings
 
 @Composable
 fun PermissionDialog(
@@ -79,7 +81,7 @@ fun PermissionDialog(
                         .padding(horizontal = 20.dp, vertical = 2.dp)
                 ) {
                     Text(
-                        text = stringResource(id = R.string.common_word_allow),
+                        text = stringResource(id = Strings.common_word_allow),
                         color = MaterialTheme.colors.onPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
@@ -96,7 +98,7 @@ fun PermissionDialog(
                         .padding(horizontal = 20.dp, vertical = 2.dp)
                 ) {
                     Text(
-                        text = stringResource(id = R.string.common_word_deny),
+                        text = stringResource(id = Strings.common_word_deny),
                         color = MaterialTheme.colors.onPrimary,
                         fontSize = 12.sp,
                         fontWeight = FontWeight.Bold
