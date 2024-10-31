@@ -80,28 +80,30 @@ open class RobokComposeActivity : RobokActivity(), PermissionListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)
-        setContent {
-            CheckPermissions()
-            if (showPermissionDialog) {
-                PermissionDialog(
-                    icon = Icons.Default.Folder,
-                    dialogText = permissionDialogText,
-                    onAllowClicked = {
-                        onAllowClick?.invoke()
-                        showPermissionDialog = false
-                    },
-                    onDenyClicked = {
-                        onDenyClick?.invoke()
-                        showPermissionDialog = false
-                    },
-                    onDismissRequest = { showPermissionDialog = false }
-                )
-            }
+    }
+    
+    @Composable 
+    fun configurePermission() {
+        CheckPermissions()
+        if (showPermissionDialog) {
+            PermissionDialog(
+                icon = Icons.Default.Folder,
+                dialogText = permissionDialogText,
+                onAllowClicked = {
+                    onAllowClick?.invoke()
+                    showPermissionDialog = false
+                },
+                onDenyClicked = {
+                    onDenyClick?.invoke()
+                    showPermissionDialog = false
+                },
+                onDismissRequest = { showPermissionDialog = false }
+            )
         }
     }
 
     @Composable
-    fun CheckPermissions() {
+    private fun CheckPermissions() {
         if (!getStoragePermStatus(this)) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
                 permissionDialogText = getString(Strings.warning_all_files_perm_message)

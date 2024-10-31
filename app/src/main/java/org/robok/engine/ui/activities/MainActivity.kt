@@ -51,6 +51,7 @@ class MainActivity : RobokComposeActivity() {
         )
         setContent {
             RobokTheme {
+                configurePermission()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background,
