@@ -54,7 +54,7 @@ fun TerminalScreen(path: String? = null) {
 }
 
 @Composable
-private fun PhoneBars(color: AndroidColor) {
+private fun PhoneBars(color: Int) {
     val activity = LocalContext.current as? Activity
     activity?.let {
         it.window.setNavigationBarColor(color)
