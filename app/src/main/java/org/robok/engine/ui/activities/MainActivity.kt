@@ -17,11 +17,7 @@ package org.robok.engine.ui.activities
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.graphics.Color.BLACK
-import android.graphics.Color.TRANSPARENT
 import android.os.Bundle
-import android.view.Window
-import androidx.activity.OnBackPressedCallback
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
@@ -32,7 +28,6 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.res.ResUtils
 import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.theme.RobokTheme
 

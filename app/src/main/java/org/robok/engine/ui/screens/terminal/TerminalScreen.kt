@@ -45,7 +45,7 @@ private var terminalView: TerminalView? = null
 fun TerminalScreen(path: String? = null) {
     val activity = LocalContext.current as? Activity
     val navController = LocalMainNavController.current
-    
+
     cwd =
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
