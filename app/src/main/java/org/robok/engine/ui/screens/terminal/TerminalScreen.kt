@@ -42,22 +42,29 @@ private var terminalView: TerminalView? = null
 
 @Composable
 fun TerminalScreen(path: String? = null) {
+    val activity = LocalContext.current as? Activity
     cwd =
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
-    LaunchedEffect(Unit){
-        PhoneBars(AndroidColor.BLACK)
+    activity?.let {
+        it.window.setNavigationBarColor(AndroidColor.BLACK)
+        it.window.setStatusBarColor(AndroidColor.BLACK)
     }
     BackHandler {
-        PhoneBars(AndroidColor.TRANSPARENT)
+        PhoneBars(
+            color= AndroidColor.TRANSPARENT,
+            activity = activity
+        )
     }
     Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
 }
 
 @Composable
-private fun PhoneBars(color: Int) {
-    val activity = LocalContext.current as? Activity
+private fun PhoneBars(
+    color: Int,
+    activity: Activity
+) {
     activity?.let {
         it.window.setNavigationBarColor(color)
         it.window.setStatusBarColor(color)
