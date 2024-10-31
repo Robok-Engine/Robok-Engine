@@ -52,23 +52,12 @@ fun TerminalScreen(path: String? = null) {
         it.window.setStatusBarColor(AndroidColor.BLACK)
     }
     BackHandler {
-        PhoneBars(
-            color= AndroidColor.TRANSPARENT,
-            activity = activity
-        )
+        activity?.let {
+            it.window.setNavigationBarColor(AndroidColor.TRANSPARENT)
+            it.window.setStatusBarColor(AndroidColor.TRANSPARENT)
+        }
     }
     Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
-}
-
-@Composable
-private fun PhoneBars(
-    color: Int,
-    activity: Activity?
-) {
-    activity?.let {
-        it.window.setNavigationBarColor(color)
-        it.window.setStatusBarColor(color)
-    }
 }
 
 @Composable
