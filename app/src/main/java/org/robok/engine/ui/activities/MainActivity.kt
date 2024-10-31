@@ -40,15 +40,6 @@ class MainActivity : RobokComposeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        onBackPressedDispatcher.addCallback(
-            this,
-            object : OnBackPressedCallback(true) {
-                override fun handleOnBackPressed() {
-                    resetPhoneBars()
-                    isEnabled = false
-                }
-            },
-        )
         setContent {
             RobokTheme {
                 configurePermission()
@@ -67,24 +58,5 @@ class MainActivity : RobokComposeActivity() {
         val navController = rememberNavController()
 
         CompositionLocalProvider(LocalMainNavController provides navController, content = content)
-    }
-
-    /*
-     * Reset phone bars colors
-     * used because phone bars colors is defined to black when open terminal
-     */
-    private fun resetPhoneBars() {
-        val window: Window = window
-        val res = ResUtils(this@MainActivity)
-
-        val statusBarColor = window.statusBarColor
-        val navigationBarColor = window.navigationBarColor
-
-        val resetColor = TRANSPARENT
-
-        if (statusBarColor == BLACK && navigationBarColor == BLACK) {
-            window.statusBarColor = resetColor
-            window.navigationBarColor = resetColor
-        }
     }
 }

@@ -19,6 +19,7 @@ package org.robok.engine.ui.screens.terminal
 
 import android.app.Activity
 import android.graphics.Color as AndroidColor
+androidx.activity.compose.BackHandler
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -45,12 +46,20 @@ fun TerminalScreen(path: String? = null) {
         path?.let { path ->
             if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
         } ?: RobokApplication.instance.filesDir.absolutePath
-    val activity = LocalContext.current as? Activity
-    activity?.let {
-        it.window.setNavigationBarColor(AndroidColor.BLACK)
-        it.window.setStatusBarColor(AndroidColor.BLACK)
+    PhoneBars(AndroidColor.BLACK)
+    BackHandler {
+        PhoneBars(AndroidColor.TRANSPARENT)
     }
     Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
+}
+
+@Composable
+private fun PhoneBars(color: AndroidColor) {
+    val activity = LocalContext.current as? Activity
+    activity?.let {
+        it.window.setNavigationBarColor(color)
+        it.window.setStatusBarColor(color)
+    }
 }
 
 @Composable
