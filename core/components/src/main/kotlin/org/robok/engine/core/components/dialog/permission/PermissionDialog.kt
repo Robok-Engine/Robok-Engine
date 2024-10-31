@@ -49,11 +49,10 @@ fun PermissionDialog(
             modifier = Modifier
                 .fillMaxWidth()
                 .background(MaterialTheme.colorScheme.surface, shape = RoundedCornerShape(28.dp))
-                .padding(20.dp),
+                .padding(10.dp),
             contentAlignment = Alignment.Center
         ) {
             Column(
-                modifier = Modifier.padding(15.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 Icon(
