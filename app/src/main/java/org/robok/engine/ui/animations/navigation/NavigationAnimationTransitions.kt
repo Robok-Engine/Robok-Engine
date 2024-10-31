@@ -16,37 +16,24 @@ package org.robok.engine.ui.animations.navigation
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import soup.compose.material.motion.animation.materialSharedAxisXIn
-import soup.compose.material.motion.animation.materialSharedAxisXOut
+ 
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.core.tween
 
 object NavigationAnimationTransitions {
 
     val enterTransition =
-        materialSharedAxisXIn(
-            forward = true,
-            slideDistance = NavigationAnimationValues.SlideDistance,
-            durationMillis = NavigationAnimationValues.SlideDuration,
-        )
-
+        fadeIn(tween(250)) + slideInHorizontally { it / 2 }
+        
     val exitTransition =
-        materialSharedAxisXOut(
-            forward = true,
-            slideDistance = NavigationAnimationValues.SlideDistance,
-            durationMillis = NavigationAnimationValues.SlideDuration,
-        )
+        fadeIn(tween(200)) + slideInHorizontally { -it / 2 }
 
     val popEnterTransition =
-        materialSharedAxisXIn(
-            forward = false,
-            slideDistance = NavigationAnimationValues.SlideDistance,
-            durationMillis = NavigationAnimationValues.SlideDuration,
-        )
+        fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
 
     val popExitTransition =
-        materialSharedAxisXOut(
-            forward = false,
-            slideDistance = NavigationAnimationValues.SlideDistance,
-            durationMillis = NavigationAnimationValues.SlideDuration,
-        )
+        fadeIn(tween(200)) + slideInHorizontally { it / 2 }
 }
