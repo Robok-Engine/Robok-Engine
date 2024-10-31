@@ -63,7 +63,7 @@ fun TerminalScreen(path: String? = null) {
 @Composable
 private fun PhoneBars(
     color: Int,
-    activity: Activity
+    activity: Activity?
 ) {
     activity?.let {
         it.window.setNavigationBarColor(color)
