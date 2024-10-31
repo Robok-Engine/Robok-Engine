@@ -29,11 +29,11 @@ object NavigationAnimationTransitions {
         fadeIn(tween(250)) + slideInHorizontally { it / 2 }
         
     val exitTransition =
-        fadeIn(tween(200)) + slideInHorizontally { -it / 2 }
+        fadeOut(tween(200)) + slideInHorizontally { -it / 2 }
 
     val popEnterTransition =
         fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
 
     val popExitTransition =
-        fadeIn(tween(200)) + slideInHorizontally { it / 2 }
+        fadeOut(tween(200)) + slideInHorizontally { it / 2 }
 }
