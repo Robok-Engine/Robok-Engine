@@ -20,6 +20,12 @@ package org.robok.engine.ui.screens.settings.about
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -227,7 +233,11 @@ fun LinkRow(dataInfo: Link) {
 @Composable
 fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<Boolean>) {
     val uriHandler = LocalUriHandler.current
-    AnimatedVisibility(visible = isShowDialog.value, enter = fadeIn(), exit = fadeOut()) {
+    AnimatedVisibility(
+        visible = isShowDialog.value,
+        enter = fadeIn(tween(250)) + slideInVertically { it / 2 },
+        exit = fadeOut(tween(200)) + slideOutVertically { -it / 2 }
+    ) {
         RobokDialog(
             onDismissRequest = { isShowDialog.value = false },
             onConfirmation = {
