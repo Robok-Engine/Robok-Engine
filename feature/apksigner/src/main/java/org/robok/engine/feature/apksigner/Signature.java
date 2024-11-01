@@ -26,44 +26,43 @@ import javax.crypto.IllegalBlockSizeException;
 
 public class Signature {
 
-    private byte[] beforeAlgorithmIdBytes =  { 0x30, 0x21 };
+  private byte[] beforeAlgorithmIdBytes = {0x30, 0x21};
 
-    //      byte[] algorithmIdBytes;    
-    //		algorithmIdBytes =  sun.security.x509.AlgorithmId.get("SHA1").encode();    
-    private byte[] algorithmIdBytes = {0x30, 0x09, 0x06, 0x05, 0x2B, 0x0E, 0x03, 0x02, 0x1A, 0x05, 0x00 }; 
+  //      byte[] algorithmIdBytes;
+  //		algorithmIdBytes =  sun.security.x509.AlgorithmId.get("SHA1").encode();
+  private byte[] algorithmIdBytes = {
+    0x30, 0x09, 0x06, 0x05, 0x2B, 0x0E, 0x03, 0x02, 0x1A, 0x05, 0x00
+  };
 
-    private byte[] afterAlgorithmIdBytes = { 0x04, 0x14 };
+  private byte[] afterAlgorithmIdBytes = {0x04, 0x14};
 
-    private Cipher cipher;
+  private Cipher cipher;
 
-    private MessageDigest md;
-    private static Signature signature=new Signature();
+  private MessageDigest md;
+  private static Signature signature = new Signature();
 
-    public static Signature getInstance(){
-        
-        return signature;
-    }
+  public static Signature getInstance() {
 
-    private Signature(){
-    }
+    return signature;
+  }
 
-    public void initSign( PrivateKey privateKey) throws InvalidKeyException,Exception 
-    {
-        md = MessageDigest.getInstance("SHA1");
-        cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
-        cipher.init(Cipher.ENCRYPT_MODE, privateKey);
-    }
+  private Signature() {}
 
-    public void update( byte[] data) {
-        md.update( data);
-    }
+  public void initSign(PrivateKey privateKey) throws InvalidKeyException, Exception {
+    md = MessageDigest.getInstance("SHA1");
+    cipher = Cipher.getInstance("RSA/ECB/PKCS1Padding");
+    cipher.init(Cipher.ENCRYPT_MODE, privateKey);
+  }
 
-    public byte[] sign() throws BadPaddingException, IllegalBlockSizeException 
-    {
-        cipher.update( beforeAlgorithmIdBytes);
-        cipher.update( algorithmIdBytes);
-        cipher.update( afterAlgorithmIdBytes);
-        cipher.update( md.digest());		
-        return cipher.doFinal();
-    }
+  public void update(byte[] data) {
+    md.update(data);
+  }
+
+  public byte[] sign() throws BadPaddingException, IllegalBlockSizeException {
+    cipher.update(beforeAlgorithmIdBytes);
+    cipher.update(algorithmIdBytes);
+    cipher.update(afterAlgorithmIdBytes);
+    cipher.update(md.digest());
+    return cipher.doFinal();
+  }
 }

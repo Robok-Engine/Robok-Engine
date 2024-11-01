@@ -15,11 +15,9 @@ package org.robok.engine.feature.editor.languages.java.models;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import static org.robok.engine.core.antlr4.java.Java8Parser.MethodModifierContext;
-
-import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
 
 import java.util.List;
 
@@ -27,50 +25,54 @@ import java.util.List;
  * Data class to store method information.
  * because the identifier storage system did not store the types, access reasons and not.
  * @author ThDev-only
-*/
+ */
 public class Method {
 
-     private List<MethodModifierContext> modifiers;
-     private String returnType;
-     private String name;
-     private List<String> parameters;
+  private List<MethodModifierContext> modifiers;
+  private String returnType;
+  private String name;
+  private List<String> parameters;
 
-     public Method(List<MethodModifierContext> modifiers, String returnType, String name, List<String> parameters) {
-          this.modifiers = modifiers;
-          this.returnType = returnType;
-          this.name = name;
-          this.parameters = parameters;
-     }
+  public Method(
+      List<MethodModifierContext> modifiers,
+      String returnType,
+      String name,
+      List<String> parameters) {
+    this.modifiers = modifiers;
+    this.returnType = returnType;
+    this.name = name;
+    this.parameters = parameters;
+  }
 
-     public List<MethodModifierContext> getModifiers() {
-          return this.modifiers;
-     }
+  public List<MethodModifierContext> getModifiers() {
+    return this.modifiers;
+  }
 
-     public void setModifiers(List<MethodModifierContext> modifiers) {
-          this.modifiers = modifiers;
-     }
+  public void setModifiers(List<MethodModifierContext> modifiers) {
+    this.modifiers = modifiers;
+  }
 
-     public String getReturnType() {
-          return this.returnType;
-     }
+  public String getReturnType() {
+    return this.returnType;
+  }
 
-    public void setReturnType(String returnType) {
-         this.returnType = returnType;
-    }
+  public void setReturnType(String returnType) {
+    this.returnType = returnType;
+  }
 
-    public String getName() {
-         return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public void setName(String name) {
-         this.name = name;
-    }
+  public void setName(String name) {
+    this.name = name;
+  }
 
-    public List<String> getParameters() {
-         return this.parameters;
-    }
+  public List<String> getParameters() {
+    return this.parameters;
+  }
 
-    public void setParameters(List<String> parameters) {
-         this.parameters = parameters;
-    }
+  public void setParameters(List<String> parameters) {
+    this.parameters = parameters;
+  }
 }

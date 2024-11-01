@@ -29,36 +29,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import org.antlr.v4.runtime.ANTLRInputStream;
-import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlr.v4.runtime.ParserRuleContext;
-import org.antlr.v4.runtime.atn.PredictionMode;
-import org.antlr.v4.runtime.tree.ParseTreeWalker;
-import org.robok.engine.core.antlr4.java.AntlrListener;
-import org.robok.engine.core.antlr4.java.Java8BaseListener;
-import org.robok.engine.core.antlr4.java.Java8ErrorListener;
-import org.robok.engine.core.antlr4.java.Java8Lexer;
-import org.robok.engine.core.antlr4.java.Java8Parser;
-import org.robok.engine.feature.editor.EditorListener;
-import org.robok.engine.feature.editor.RobokCodeEditor;
-import org.robok.engine.feature.editor.languages.Language;
-import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
-import org.robok.engine.feature.editor.languages.java.models.Method;
-import org.robok.engine.feature.editor.languages.java.models.Tokens;
-import org.robok.engine.feature.editor.languages.java.models.Variable;
-import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
-import org.robok.engine.feature.editor.languages.java.store.JavaClasses;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
 import io.github.rosemoe.sora.event.ContentChangeEvent;
 import io.github.rosemoe.sora.lang.EmptyLanguage;
 import io.github.rosemoe.sora.lang.QuickQuoteHandler;
@@ -82,20 +54,46 @@ import io.github.rosemoe.sora.text.TextUtils;
 import io.github.rosemoe.sora.util.MyCharacter;
 import io.github.rosemoe.sora.widget.CodeEditor;
 import io.github.rosemoe.sora.widget.SymbolPairMatch;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.ParserRuleContext;
+import org.antlr.v4.runtime.atn.PredictionMode;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+import org.robok.engine.core.antlr4.java.AntlrListener;
+import org.robok.engine.core.antlr4.java.Java8BaseListener;
+import org.robok.engine.core.antlr4.java.Java8ErrorListener;
+import org.robok.engine.core.antlr4.java.Java8Lexer;
+import org.robok.engine.core.antlr4.java.Java8Parser;
+import org.robok.engine.feature.editor.EditorListener;
+import org.robok.engine.feature.editor.RobokCodeEditor;
+import org.robok.engine.feature.editor.languages.Language;
+import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
+import org.robok.engine.feature.editor.languages.java.models.Method;
+import org.robok.engine.feature.editor.languages.java.models.Tokens;
+import org.robok.engine.feature.editor.languages.java.models.Variable;
+import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
+import org.robok.engine.feature.editor.languages.java.store.JavaClasses;
 
 /**
- * Java language.
- * Simple implementation.
+ * Java language. Simple implementation.
  *
  * @author Rosemoe
  */
 public class JavaLanguage implements Language, EditorListener, AntlrListener {
 
-  private final static String TAG = "JavaLanguage";
-  private final static CodeSnippet FOR_SNIPPET = CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
-  private final static CodeSnippet STATIC_CONST_SNIPPET = CodeSnippetParser.parse("private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
-  private final static CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
-  private final static JavaQuoteHandler JAVA_QUOTE_HANDLER = new JavaQuoteHandler();
+  private static final String TAG = "JavaLanguage";
+  private static final CodeSnippet FOR_SNIPPET =
+      CodeSnippetParser.parse("for(int ${1:i} = 0;$1 < ${2:count};$1++) {\n    $0\n}");
+  private static final CodeSnippet STATIC_CONST_SNIPPET =
+      CodeSnippetParser.parse(
+          "private final static ${1:type} ${2/(.*)/${1:/upcase}/} = ${3:value};");
+  private static final CodeSnippet CLIPBOARD_SNIPPET = CodeSnippetParser.parse("${1:${CLIPBOARD}}");
+  private static final JavaQuoteHandler JAVA_QUOTE_HANDLER = new JavaQuoteHandler();
 
   private IdentifierAutoComplete identifierAutoComplete;
   private JavaIncrementalAnalyzeManager javaAnalyzeManager;
@@ -121,7 +119,8 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
   }
 
   private void init(RobokCodeEditor editor, DiagnosticsContainer diagnosticsContainer) {
-    identifierAutoComplete = new IdentifierAutoComplete(editor.getContext(), JavaTextTokenizer.sKeywords);
+    identifierAutoComplete =
+        new IdentifierAutoComplete(editor.getContext(), JavaTextTokenizer.sKeywords);
     javaAnalyzeManager = new JavaIncrementalAnalyzeManager();
     variablesMap = new HashMap<>();
     methodsMap = new HashMap<>();
@@ -160,10 +159,10 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
   /**
    * This method is used to notify the editor that a new error dialigost has been received.
    *
-   * @param line          an integer corresponding to the error line
+   * @param line an integer corresponding to the error line
    * @param positionStart corresponds to the first character of the error code.
-   * @param positionEnd   corresponds to the end character of the error code.
-   * @param msg           a message about the error to the user.
+   * @param positionEnd corresponds to the end character of the error code.
+   * @param msg a message about the error to the user.
    */
   @Override
   public void onDiagnosticReceive(int line, int positionStart, int positionEnd, String msg) {
@@ -176,35 +175,36 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
    * @param isError: returns whether it is an error or not.
    */
   @Override
-  public void onDiagnosticStatusReceive(boolean isError) {
-  }
+  public void onDiagnosticStatusReceive(boolean isError) {}
 
   /*
    * This method is called whenever the editor text is changed.
    */
   @Override
-  public void onEditorTextChange() {
-  }
+  public void onEditorTextChange() {}
 
   private void subscribeEventEditor() {
-    editor.subscribeEvent(ContentChangeEvent.class, (event, undubscribe) -> {
-      inputText = editor.getText().toString();
-      editorListener.onEditorTextChange();
-    });
+    editor.subscribeEvent(
+        ContentChangeEvent.class,
+        (event, undubscribe) -> {
+          inputText = editor.getText().toString();
+          editorListener.onEditorTextChange();
+        });
   }
 
   Handler handler = new Handler(Looper.getMainLooper());
 
   private void start() {
-    Runnable runnable = new Runnable() {
-      @Override
-      public void run() {
-        if (diagnostics.onSuccess) {
-          diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
-        }
-        handler.postDelayed(this, 1000);
-      }
-    };
+    Runnable runnable =
+        new Runnable() {
+          @Override
+          public void run() {
+            if (diagnostics.onSuccess) {
+              diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
+            }
+            handler.postDelayed(this, 1000);
+          }
+        };
     handler.postDelayed(runnable, 15);
   }
 
@@ -235,19 +235,15 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       @NonNull ContentReference content,
       @NonNull CharPosition position,
       @NonNull CompletionPublisher publisher,
-      @NonNull Bundle extraArguments
-  ) {
-         /*
-           prefix: contains the text of the current line in parts, String type
-           content: contains the text of all lines, appears to be a StringBuilder
-           position: contains the positions of the character, line, column, index, type CharPosition
-         */
+      @NonNull Bundle extraArguments) {
+    /*
+      prefix: contains the text of the current line in parts, String type
+      content: contains the text of all lines, appears to be a StringBuilder
+      position: contains the positions of the character, line, column, index, type CharPosition
+    */
 
-    var prefix = CompletionHelper.computePrefix(
-        content,
-        position,
-        MyCharacter::isJavaIdentifierPart
-    );
+    var prefix =
+        CompletionHelper.computePrefix(content, position, MyCharacter::isJavaIdentifierPart);
     final var idt = javaAnalyzeManager.identifiers;
 
     int lineIndex = position.getLine(); // get the index of the current line from the position
@@ -258,22 +254,35 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
     // 'currentLine' contains the entire contents of the line where the cursor is located
     cursorIndex = position.getIndex(); // full text cursor index
 
-    inputText = content.toString(); //Gets the text from the editor
+    inputText = content.toString(); // Gets the text from the editor
 
     if (idt != null) {
       identifierAutoComplete.setVariables(variablesMap);
       identifierAutoComplete.setMethods(methodsMap);
-      identifierAutoComplete.requireAutoComplete(content, currentLine, position, prefix, publisher, idt, currentMethod);
+      identifierAutoComplete.requireAutoComplete(
+          content, currentLine, position, prefix, publisher, idt, currentMethod);
     }
 
     if ("fori".startsWith(prefix) && !prefix.isEmpty()) {
-      publisher.addItem(new SimpleSnippetCompletionItem("fori", "Snippet - For loop on index", new SnippetDescription(prefix.length(), FOR_SNIPPET, true)));
+      publisher.addItem(
+          new SimpleSnippetCompletionItem(
+              "fori",
+              "Snippet - For loop on index",
+              new SnippetDescription(prefix.length(), FOR_SNIPPET, true)));
     }
     if ("sconst".startsWith(prefix) && !prefix.isEmpty()) {
-      publisher.addItem(new SimpleSnippetCompletionItem("sconst", "Snippet - Static Constant", new SnippetDescription(prefix.length(), STATIC_CONST_SNIPPET, true)));
+      publisher.addItem(
+          new SimpleSnippetCompletionItem(
+              "sconst",
+              "Snippet - Static Constant",
+              new SnippetDescription(prefix.length(), STATIC_CONST_SNIPPET, true)));
     }
     if ("clip".startsWith(prefix) && !prefix.isEmpty()) {
-      publisher.addItem(new SimpleSnippetCompletionItem("clip", "Snippet - Clipboard contents", new SnippetDescription(prefix.length(), CLIPBOARD_SNIPPET, true)));
+      publisher.addItem(
+          new SimpleSnippetCompletionItem(
+              "clip",
+              "Snippet - Clipboard contents",
+              new SnippetDescription(prefix.length(), CLIPBOARD_SNIPPET, true)));
     }
   }
 
@@ -296,7 +305,7 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
     return advance * 4;
   }
 
-  private final NewlineHandler[] newlineHandlers = new NewlineHandler[]{new BraceHandler()};
+  private final NewlineHandler[] newlineHandlers = new NewlineHandler[] {new BraceHandler()};
 
   @Override
   public boolean useTab() {
@@ -336,15 +345,21 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
   private class BraceHandler implements NewlineHandler {
 
     @Override
-    public boolean matchesRequirement(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style) {
+    public boolean matchesRequirement(
+        @NonNull Content text, @NonNull CharPosition position, @Nullable Styles style) {
       var line = text.getLine(position.line);
-      return !StylesUtils.checkNoCompletion(style, position) && getNonEmptyTextBefore(line, position.column, 1).equals("{") &&
-          getNonEmptyTextAfter(line, position.column, 1).equals("}");
+      return !StylesUtils.checkNoCompletion(style, position)
+          && getNonEmptyTextBefore(line, position.column, 1).equals("{")
+          && getNonEmptyTextAfter(line, position.column, 1).equals("}");
     }
 
     @NonNull
     @Override
-    public NewlineHandleResult handleNewline(@NonNull Content text, @NonNull CharPosition position, @Nullable Styles style, int tabSize) {
+    public NewlineHandleResult handleNewline(
+        @NonNull Content text,
+        @NonNull CharPosition position,
+        @Nullable Styles style,
+        int tabSize) {
       var line = text.getLine(position.line);
       int index = position.column;
       var beforeText = line.subSequence(0, index).toString();
@@ -358,30 +373,35 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       int advanceBefore = getIndentAdvance(beforeText);
       int advanceAfter = getIndentAdvance(afterText);
       String text;
-      StringBuilder sb = new StringBuilder("\n")
-          .append(TextUtils.createIndent(count + advanceBefore, tabSize, useTab()))
-          .append('\n')
-          .append(text = TextUtils.createIndent(count + advanceAfter, tabSize, useTab()));
+      StringBuilder sb =
+          new StringBuilder("\n")
+              .append(TextUtils.createIndent(count + advanceBefore, tabSize, useTab()))
+              .append('\n')
+              .append(text = TextUtils.createIndent(count + advanceAfter, tabSize, useTab()));
       int shiftLeft = text.length() + 1;
       return new NewlineHandleResult(sb, shiftLeft);
     }
   }
 
-
   private boolean codeIsVariable(String line) {
-    Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+    Pattern pattern =
+        Pattern.compile(
+            "((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
     Matcher matcher = pattern.matcher(line);
     return matcher.matches();
   }
 
   private void extractDataVariable(String line) {
-    Pattern pattern = Pattern.compile("((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
+    Pattern pattern =
+        Pattern.compile(
+            "((?:\\b(?:public|protected|private|static|final|native|volatile|synchronized|transient)\\b\\s*)+)?(\\b\\w+\\b)\\s+(\\b\\w+\\b)\\s*=\\s*(.*?);");
     Matcher matcher = pattern.matcher(line);
 
     if (matcher.find()) {
       String modify_access = matcher.group(1) != null ? matcher.group(1).trim() : "default";
 
-      // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the match, otherwise it just receives
+      // thdev: here if macth is equal to var, it calls the ObjectVariable method, passing the
+      // match, otherwise it just receives
       String type = matcher.group(2);
       String name = matcher.group(3);
       String value = matcher.group(4);
@@ -405,19 +425,23 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         JavaLanguage.currentMethod = ctx.methodHeader().methodDeclarator().Identifier().getText();
       }
       // Capturing the access modifier
-      List<Java8Parser.MethodModifierContext> accessModifiers = null;// Presume 'default' se nenhum modificador estiver presente
+      List<Java8Parser.MethodModifierContext> accessModifiers =
+          null; // Presume 'default' se nenhum modificador estiver presente
       if (ctx.methodModifier() != null && !ctx.methodModifier().isEmpty()) {
         accessModifiers = ctx.methodModifier();
       }
-      String returnType = ctx.methodHeader().result().getText();  // Capturing the method return type
-      String methodName = ctx.methodHeader().methodDeclarator().Identifier().getText(); // Capturing the method name
+      String returnType = ctx.methodHeader().result().getText(); // Capturing the method return type
+      String methodName =
+          ctx.methodHeader().methodDeclarator().Identifier().getText(); // Capturing the method name
 
       // Capturando os parâmetros do método
       List<String> parameters = new ArrayList<>();
       if (ctx.methodHeader().methodDeclarator().formalParameterList() != null) {
-        Java8Parser.FormalParameterListContext paramListCtx = ctx.methodHeader().methodDeclarator().formalParameterList();
+        Java8Parser.FormalParameterListContext paramListCtx =
+            ctx.methodHeader().methodDeclarator().formalParameterList();
         if (paramListCtx.formalParameters() != null) {
-          for (Java8Parser.FormalParameterContext paramCtx : paramListCtx.formalParameters().formalParameter()) {
+          for (Java8Parser.FormalParameterContext paramCtx :
+              paramListCtx.formalParameters().formalParameter()) {
             String paramType = paramCtx.unannType().getText();
             String paramName = paramCtx.variableDeclaratorId().getText();
             parameters.add(paramType + " " + paramName);
@@ -427,11 +451,13 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         if (paramListCtx.lastFormalParameter() != null) {
           if (paramListCtx.lastFormalParameter().formalParameter() != null) {
             // Parâmetro normal final
-            Java8Parser.FormalParameterContext lastParamCtx = paramListCtx.lastFormalParameter().formalParameter();
+            Java8Parser.FormalParameterContext lastParamCtx =
+                paramListCtx.lastFormalParameter().formalParameter();
             String paramType = lastParamCtx.unannType().getText();
             String paramName = lastParamCtx.variableDeclaratorId().getText();
             parameters.add(paramType + " " + paramName);
-          } else if (paramListCtx.lastFormalParameter().formalParameter().variableDeclaratorId() != null) {
+          } else if (paramListCtx.lastFormalParameter().formalParameter().variableDeclaratorId()
+              != null) {
             // VarArgs parameter
             Java8Parser.LastFormalParameterContext varArgsCtx = paramListCtx.lastFormalParameter();
             String paramType = varArgsCtx.unannType().getText() + "...";
@@ -451,9 +477,9 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       importPackage = JavaClasses.getClasses().get(type);
 
       if (importPackage != null) {
-        //this variable uses the JavaClass type
+        // this variable uses the JavaClass type
       } else {
-        //this variable uses other... (RDKClasses)
+        // this variable uses other... (RDKClasses)
       }
 
       ModifierAccess accessModifier = null;
@@ -464,7 +490,8 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         accessModifier = mapToModifierAccess(modify);
       }
       // Capturing the variable name and initial value
-      for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
+      for (Java8Parser.VariableDeclaratorContext varCtx :
+          ctx.variableDeclaratorList().variableDeclarator()) {
         String variableName = varCtx.variableDeclaratorId().getText();
         if (varCtx.variableInitializer() != null) {
           initialValue = varCtx.variableInitializer().getText();
@@ -473,14 +500,22 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         ParserRuleContext parentCtx = ctx.getParent();
         while (parentCtx != null) {
           if (parentCtx instanceof Java8Parser.MethodDeclarationContext methodCtx) {
-            enclosingMethod = methodCtx.methodHeader().methodDeclarator().Identifier().getText(); // Captura o nome do método ou assinatura
+            enclosingMethod =
+                methodCtx
+                    .methodHeader()
+                    .methodDeclarator()
+                    .Identifier()
+                    .getText(); // Captura o nome do método ou assinatura
             break;
           }
           parentCtx = parentCtx.getParent(); // Sobe um nível na árvore de análise
         }
         type = enclosingMethod + " : " + type;
         // Adding variable information to the variable map, including the enclosing method
-        variablesMap.put(variableName, new Variable(enclosingMethod, accessModifier, importPackage, type, variableName, initialValue));
+        variablesMap.put(
+            variableName,
+            new Variable(
+                enclosingMethod, accessModifier, importPackage, type, variableName, initialValue));
       }
     }
 
@@ -491,9 +526,9 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       importPackage = JavaClasses.getClasses().get(type);
 
       if (importPackage != null) {
-        //this variable uses the JavaClass type
+        // this variable uses the JavaClass type
       } else {
-        //this variable uses other... (RDKClasses)
+        // this variable uses other... (RDKClasses)
       }
 
       ModifierAccess accessModifier = null;
@@ -502,14 +537,18 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         String modify = ctx.fieldModifier(0).getText();
         accessModifier = mapToModifierAccess(modify);
       }
-      for (Java8Parser.VariableDeclaratorContext varCtx : ctx.variableDeclaratorList().variableDeclarator()) {
+      for (Java8Parser.VariableDeclaratorContext varCtx :
+          ctx.variableDeclaratorList().variableDeclarator()) {
         String variableName = varCtx.variableDeclaratorId().getText();
         if (varCtx.variableInitializer() != null) {
           initialValue = varCtx.variableInitializer().getText();
         }
         type = "global" + " : " + type;
-        variablesMap.put(variableName, new Variable("global", accessModifier, importPackage, type, variableName, initialValue));
-        //log += "\n" + "global" + ":" + variableName;
+        variablesMap.put(
+            variableName,
+            new Variable(
+                "global", accessModifier, importPackage, type, variableName, initialValue));
+        // log += "\n" + "global" + ":" + variableName;
       }
     }
 
@@ -546,26 +585,29 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       if (diagnostics != null) {
         diagnostics.reset();
       }
-      Thread th = new Thread(() -> {
-        try {
-          ANTLRInputStream input = new ANTLRInputStream(inputText);
-          Java8Lexer lexer = new Java8Lexer(input);
-          CommonTokenStream tokens = new CommonTokenStream(lexer);
-          Java8Parser parser = new Java8Parser(tokens);
-          parser.removeErrorListeners();
-          parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
-          Java8ErrorListener rbkError = new Java8ErrorListener();
-          rbkError.getError(diagnosticListener);
-          parser.addErrorListener(rbkError);
-          Java8Parser.CompilationUnitContext compilationUnitContext = parser.compilationUnit();
-          // Create and add the custom listener
-          ParseTreeWalker walker = new ParseTreeWalker();
-          JavaListener compiler = new JavaListener(positionIndex);
-          walker.walk(compiler, compilationUnitContext);
-        } catch (Exception e) {
-          Log.e(TAG, "Error reading file", e);
-        }
-      });
+      Thread th =
+          new Thread(
+              () -> {
+                try {
+                  ANTLRInputStream input = new ANTLRInputStream(inputText);
+                  Java8Lexer lexer = new Java8Lexer(input);
+                  CommonTokenStream tokens = new CommonTokenStream(lexer);
+                  Java8Parser parser = new Java8Parser(tokens);
+                  parser.removeErrorListeners();
+                  parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
+                  Java8ErrorListener rbkError = new Java8ErrorListener();
+                  rbkError.getError(diagnosticListener);
+                  parser.addErrorListener(rbkError);
+                  Java8Parser.CompilationUnitContext compilationUnitContext =
+                      parser.compilationUnit();
+                  // Create and add the custom listener
+                  ParseTreeWalker walker = new ParseTreeWalker();
+                  JavaListener compiler = new JavaListener(positionIndex);
+                  walker.walk(compiler, compilationUnitContext);
+                } catch (Exception e) {
+                  Log.e(TAG, "Error reading file", e);
+                }
+              });
       th.setPriority(Thread.MIN_PRIORITY);
       th.start();
     }

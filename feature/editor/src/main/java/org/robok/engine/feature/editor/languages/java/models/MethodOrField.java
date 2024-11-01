@@ -15,33 +15,32 @@ package org.robok.engine.feature.editor.languages.java.models;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
 public class MethodOrField {
-    
-    public String result;
-    public Field field;
-    public Method method;
-    
-    public MethodOrField(String result, Field field){
-        this.result = result;
-        this.field = field;
-    }
-    
-    public MethodOrField(String result, Method method){
-        this.result = result;
-        this.method = method;
-    }
-    
-    public Field getField(){
-        return this.field;
-    }
-    
-    public Method getMethod(){
-        return this.method;
-    }
-}
 
+  public String result;
+  public Field field;
+  public Method method;
+
+  public MethodOrField(String result, Field field) {
+    this.result = result;
+    this.field = field;
+  }
+
+  public MethodOrField(String result, Method method) {
+    this.result = result;
+    this.method = method;
+  }
+
+  public Field getField() {
+    return this.field;
+  }
+
+  public Method getMethod() {
+    return this.method;
+  }
+}

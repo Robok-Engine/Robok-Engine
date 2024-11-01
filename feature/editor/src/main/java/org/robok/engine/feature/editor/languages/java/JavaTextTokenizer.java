@@ -23,10 +23,8 @@
  */
 package org.robok.engine.feature.editor.languages.java;
 
-
 import io.github.rosemoe.sora.util.MyCharacter;
 import io.github.rosemoe.sora.util.TrieTree;
-
 import org.robok.engine.feature.editor.languages.java.models.*;
 
 /**
@@ -34,475 +32,578 @@ import org.robok.engine.feature.editor.languages.java.models.*;
  */
 public class JavaTextTokenizer {
 
-    private static TrieTree<Tokens> keywords;
+  private static TrieTree<Tokens> keywords;
 
-    static {
-        doStaticInit();
+  static {
+    doStaticInit();
+  }
+
+  public static TrieTree<Tokens> getTree() {
+    return keywords;
+  }
+
+  private CharSequence source;
+  protected int bufferLen;
+  private int line;
+  private int column;
+  private int index;
+  protected int offset;
+  protected int length;
+  private Tokens currToken;
+  private boolean lcCal;
+
+  public JavaTextTokenizer(CharSequence src) {
+    if (src == null) {
+      throw new IllegalArgumentException("src can not be null");
     }
+    this.source = src;
+    init();
+  }
 
-    public static TrieTree<Tokens> getTree() {
-        return keywords;
+  private void init() {
+    line = 0;
+    column = 0;
+    length = 0;
+    index = 0;
+    currToken = Tokens.WHITESPACE;
+    lcCal = false;
+    this.bufferLen = source.length();
+  }
+
+  public void setCalculateLineColumn(boolean cal) {
+    this.lcCal = cal;
+  }
+
+  public void pushBack(int length) {
+    if (length > getTokenLength()) {
+      throw new IllegalArgumentException("pushBack length too large");
     }
+    this.length -= length;
+  }
 
-    private CharSequence source;
-    protected int bufferLen;
-    private int line;
-    private int column;
-    private int index;
-    protected int offset;
-    protected int length;
-    private Tokens currToken;
-    private boolean lcCal;
+  private boolean isIdentifierPart(char ch) {
+    return MyCharacter.isJavaIdentifierPart(ch);
+  }
 
-    public JavaTextTokenizer(CharSequence src) {
-        if (src == null) {
-            throw new IllegalArgumentException("src can not be null");
-        }
-        this.source = src;
-        init();
-    }
+  private boolean isIdentifierStart(char ch) {
+    return MyCharacter.isJavaIdentifierStart(ch);
+  }
 
-    private void init() {
-        line = 0;
-        column = 0;
-        length = 0;
-        index = 0;
-        currToken = Tokens.WHITESPACE;
-        lcCal = false;
-        this.bufferLen = source.length();
-    }
+  public CharSequence getTokenText() {
+    return source.subSequence(offset, offset + length);
+  }
 
-    public void setCalculateLineColumn(boolean cal) {
-        this.lcCal = cal;
-    }
+  public int getTokenLength() {
+    return length;
+  }
 
-    public void pushBack(int length) {
-        if (length > getTokenLength()) {
-            throw new IllegalArgumentException("pushBack length too large");
-        }
-        this.length -= length;
-    }
+  public int getLine() {
+    return line;
+  }
 
-    private boolean isIdentifierPart(char ch) {
-        return MyCharacter.isJavaIdentifierPart(ch);
-    }
+  public int getColumn() {
+    return column;
+  }
 
-    private boolean isIdentifierStart(char ch) {
-        return MyCharacter.isJavaIdentifierStart(ch);
-    }
+  public int getIndex() {
+    return index;
+  }
 
-    public CharSequence getTokenText() {
-        return source.subSequence(offset, offset + length);
-    }
+  public Tokens getToken() {
+    return currToken;
+  }
 
-    public int getTokenLength() {
-        return length;
-    }
+  private char charAt(int i) {
+    return source.charAt(i);
+  }
 
-    public int getLine() {
-        return line;
-    }
+  private char charAt() {
+    return source.charAt(offset + length);
+  }
 
-    public int getColumn() {
-        return column;
-    }
+  public Tokens nextToken() {
+    return currToken = nextTokenInternal();
+  }
 
-    public int getIndex() {
-        return index;
-    }
-
-    public Tokens getToken() {
-        return currToken;
-    }
-
-    private char charAt(int i) {
-        return source.charAt(i);
-    }
-
-    private char charAt() {
-        return source.charAt(offset + length);
-    }
-
-    public Tokens nextToken() {
-        return currToken = nextTokenInternal();
-    }
-
-    private Tokens nextTokenInternal() {
-        if (lcCal) {
-            boolean r = false;
-            for (int i = offset; i < offset + length; i++) {
-                char ch = charAt(i);
-                if (ch == '\r') {
-                    r = true;
-                    line++;
-                    column = 0;
-                } else if (ch == '\n') {
-                    if (r) {
-                        r = false;
-                        continue;
-                    }
-                    line++;
-                    column = 0;
-                } else {
-                    r = false;
-                    column++;
-                }
-            }
-        }
-        index = index + length;
-        offset = offset + length;
-        if (offset >= bufferLen) {
-            return Tokens.EOF;
-        }
-        char ch = source.charAt(offset);
-        length = 1;
-        if (ch == '\n') {
-            return Tokens.NEWLINE;
-        } else if (ch == '\r') {
-            scanNewline();
-            return Tokens.NEWLINE;
-        } else if (isWhitespace(ch)) {
-            char chLocal;
-            while (offset + length < bufferLen && isWhitespace(chLocal = charAt(offset + length))) {
-                if (chLocal == '\r' || chLocal == '\n') {
-                    break;
-                }
-                length++;
-            }
-            return Tokens.WHITESPACE;
+  private Tokens nextTokenInternal() {
+    if (lcCal) {
+      boolean r = false;
+      for (int i = offset; i < offset + length; i++) {
+        char ch = charAt(i);
+        if (ch == '\r') {
+          r = true;
+          line++;
+          column = 0;
+        } else if (ch == '\n') {
+          if (r) {
+            r = false;
+            continue;
+          }
+          line++;
+          column = 0;
         } else {
-            if (isIdentifierStart(ch)) {
-                return scanIdentifier(ch);
-            }
-            if (isPrimeDigit(ch)) {
-                return scanNumber();
-            }
-            /* Scan usual symbols first */
-            if (ch == ';') {
-                return Tokens.SEMICOLON;
-            } else if (ch == '(') {
-                return Tokens.LPAREN;
-            } else if (ch == ')') {
-                return Tokens.RPAREN;
-            } else if (ch == ':') {
-                return Tokens.COLON;
-            } else if (ch == '<') {
-                return scanLT();
-            } else if (ch == '>') {
-                return scanGT();
-            }
-            /* Scan secondly symbols */
-            switch (ch) {
-                case '=':
-                    return scanOperatorTwo(Tokens.EQ);
-                case '.':
-                    return Tokens.DOT;
-                case '@':
-                    return Tokens.AT;
-                case '{':
-                    return Tokens.LBRACE;
-                case '}':
-                    return Tokens.RBRACE;
-                case '/':
-                    return scanDIV();
-                case '*':
-                    return scanOperatorTwo(Tokens.MULT);
-                case '-':
-                    return scanOperatorTwo(Tokens.MINUS);
-                case '+':
-                    return scanOperatorTwo(Tokens.PLUS);
-                case '[':
-                    return Tokens.LBRACK;
-                case ']':
-                    return Tokens.RBRACK;
-                case ',':
-                    return Tokens.COMMA;
-                case '!':
-                    return Tokens.NOT;
-                case '~':
-                    return Tokens.COMP;
-                case '?':
-                    return Tokens.QUESTION;
-                case '&':
-                    return scanOperatorTwo(Tokens.AND);
-                case '|':
-                    return scanOperatorTwo(Tokens.OR);
-                case '^':
-                    return scanOperatorTwo(Tokens.XOR);
-                case '%':
-                    return scanOperatorTwo(Tokens.MOD);
-                case '\'':
-                    scanCharLiteral();
-                    return Tokens.CHARACTER_LITERAL;
-                case '\"':
-                    scanStringLiteral();
-                    return Tokens.STRING;
-                default:
-                    return Tokens.UNKNOWN;
-            }
+          r = false;
+          column++;
         }
+      }
     }
+    index = index + length;
+    offset = offset + length;
+    if (offset >= bufferLen) {
+      return Tokens.EOF;
+    }
+    char ch = source.charAt(offset);
+    length = 1;
+    if (ch == '\n') {
+      return Tokens.NEWLINE;
+    } else if (ch == '\r') {
+      scanNewline();
+      return Tokens.NEWLINE;
+    } else if (isWhitespace(ch)) {
+      char chLocal;
+      while (offset + length < bufferLen && isWhitespace(chLocal = charAt(offset + length))) {
+        if (chLocal == '\r' || chLocal == '\n') {
+          break;
+        }
+        length++;
+      }
+      return Tokens.WHITESPACE;
+    } else {
+      if (isIdentifierStart(ch)) {
+        return scanIdentifier(ch);
+      }
+      if (isPrimeDigit(ch)) {
+        return scanNumber();
+      }
+      /* Scan usual symbols first */
+      if (ch == ';') {
+        return Tokens.SEMICOLON;
+      } else if (ch == '(') {
+        return Tokens.LPAREN;
+      } else if (ch == ')') {
+        return Tokens.RPAREN;
+      } else if (ch == ':') {
+        return Tokens.COLON;
+      } else if (ch == '<') {
+        return scanLT();
+      } else if (ch == '>') {
+        return scanGT();
+      }
+      /* Scan secondly symbols */
+      switch (ch) {
+        case '=':
+          return scanOperatorTwo(Tokens.EQ);
+        case '.':
+          return Tokens.DOT;
+        case '@':
+          return Tokens.AT;
+        case '{':
+          return Tokens.LBRACE;
+        case '}':
+          return Tokens.RBRACE;
+        case '/':
+          return scanDIV();
+        case '*':
+          return scanOperatorTwo(Tokens.MULT);
+        case '-':
+          return scanOperatorTwo(Tokens.MINUS);
+        case '+':
+          return scanOperatorTwo(Tokens.PLUS);
+        case '[':
+          return Tokens.LBRACK;
+        case ']':
+          return Tokens.RBRACK;
+        case ',':
+          return Tokens.COMMA;
+        case '!':
+          return Tokens.NOT;
+        case '~':
+          return Tokens.COMP;
+        case '?':
+          return Tokens.QUESTION;
+        case '&':
+          return scanOperatorTwo(Tokens.AND);
+        case '|':
+          return scanOperatorTwo(Tokens.OR);
+        case '^':
+          return scanOperatorTwo(Tokens.XOR);
+        case '%':
+          return scanOperatorTwo(Tokens.MOD);
+        case '\'':
+          scanCharLiteral();
+          return Tokens.CHARACTER_LITERAL;
+        case '\"':
+          scanStringLiteral();
+          return Tokens.STRING;
+        default:
+          return Tokens.UNKNOWN;
+      }
+    }
+  }
 
-    protected final void throwIfNeeded() {
-        if (offset + length == bufferLen) {
-            throw new RuntimeException("Token too long");
-        }
+  protected final void throwIfNeeded() {
+    if (offset + length == bufferLen) {
+      throw new RuntimeException("Token too long");
     }
+  }
 
-    protected void scanNewline() {
-        if (offset + length < bufferLen && charAt(offset + length) == '\n') {
-            length++;
-        }
+  protected void scanNewline() {
+    if (offset + length < bufferLen && charAt(offset + length) == '\n') {
+      length++;
     }
-    
-    protected Tokens scanIdentifier(char ch) {
+  }
+
+  protected Tokens scanIdentifier(char ch) {
     TrieTree.Node<Tokens> n = keywords.root.map.get(ch);
     boolean isClassName = Character.isUpperCase(ch); // Verifica se o primeiro caractere é maiúsculo
     while (offset + length < bufferLen && isIdentifierPart(ch = charAt(offset + length))) {
-        length++;
-        n = n == null ? null : n.map.get(ch);
+      length++;
+      n = n == null ? null : n.map.get(ch);
     }
 
     if (n != null && n.token != null) {
-        return n.token; // Retorna o token se for uma palavra-chave conhecida
+      return n.token; // Retorna o token se for uma palavra-chave conhecida
     }
-    
+
     // Se o primeiro caractere era maiúsculo, define como CLASS_NAME
     return isClassName ? Tokens.CLASS_NAME : Tokens.IDENTIFIER;
-}
+  }
 
-    protected Tokens scanIdentifier2(char ch) {
-        TrieTree.Node<Tokens> n = keywords.root.map.get(ch);
-        while (offset + length < bufferLen && isIdentifierPart(ch = charAt(offset + length))) {
-            length++;
-            n = n == null ? null : n.map.get(ch);
-        }
-        
-        return n == null ? Tokens.IDENTIFIER : (n.token == null ? Tokens.IDENTIFIER : n.token);
+  protected Tokens scanIdentifier2(char ch) {
+    TrieTree.Node<Tokens> n = keywords.root.map.get(ch);
+    while (offset + length < bufferLen && isIdentifierPart(ch = charAt(offset + length))) {
+      length++;
+      n = n == null ? null : n.map.get(ch);
     }
 
-    protected void scanTrans() {
+    return n == null ? Tokens.IDENTIFIER : (n.token == null ? Tokens.IDENTIFIER : n.token);
+  }
+
+  protected void scanTrans() {
+    throwIfNeeded();
+    char ch = charAt();
+    if (ch == '\\'
+        || ch == 't'
+        || ch == 'f'
+        || ch == 'n'
+        || ch == 'r'
+        || ch == '0'
+        || ch == '\"'
+        || ch == '\''
+        || ch == 'b') {
+      length++;
+    } else if (ch == 'u') {
+      length++;
+      for (int i = 0; i < 4; i++) {
         throwIfNeeded();
-        char ch = charAt();
-        if (ch == '\\' || ch == 't' || ch == 'f' || ch == 'n' || ch == 'r' || ch == '0' || ch == '\"' || ch == '\''
-                || ch == 'b') {
-            length++;
-        } else if (ch == 'u') {
-            length++;
-            for (int i = 0; i < 4; i++) {
-                throwIfNeeded();
-                if (!isDigit(charAt(offset + length))) {
-                    return;
-                }
-                length++;
-            }
+        if (!isDigit(charAt(offset + length))) {
+          return;
         }
+        length++;
+      }
     }
+  }
 
-    protected void scanStringLiteral() {
-        char ch;
-        while (offset + length < bufferLen && (ch = charAt(offset + length)) != '\"') {
-            if (ch == '\\') {
-                length++;
-                scanTrans();
-            } else {
-                if (ch == '\n') {
-                    return;
-                }
-                length++;
-            }
+  protected void scanStringLiteral() {
+    char ch;
+    while (offset + length < bufferLen && (ch = charAt(offset + length)) != '\"') {
+      if (ch == '\\') {
+        length++;
+        scanTrans();
+      } else {
+        if (ch == '\n') {
+          return;
         }
-        if (offset + length < bufferLen) {
-            length++;
-        }
+        length++;
+      }
     }
+    if (offset + length < bufferLen) {
+      length++;
+    }
+  }
 
-    protected void scanCharLiteral() {
+  protected void scanCharLiteral() {
+    throwIfNeeded();
+    char ch;
+    while (offset + length < bufferLen && (ch = charAt(offset + length)) != '\'') {
+      if (ch == '\\') {
+        length++;
+        scanTrans();
+      } else {
+        if (ch == '\n') {
+          return;
+        }
+        length++;
         throwIfNeeded();
-        char ch;
-        while (offset + length < bufferLen && (ch = charAt(offset + length)) != '\'') {
-            if (ch == '\\') {
-                length++;
-                scanTrans();
-            } else {
-                if (ch == '\n') {
-                    return;
-                }
-                length++;
-                throwIfNeeded();
-            }
-        }
-        if (offset + length != bufferLen) {
-            length++;
-        }
+      }
     }
+    if (offset + length != bufferLen) {
+      length++;
+    }
+  }
 
-    protected Tokens scanNumber() {
+  protected Tokens scanNumber() {
+    if (offset + length == bufferLen) {
+      return Tokens.INTEGER_LITERAL;
+    }
+    boolean flag = false;
+    char ch = charAt(offset);
+    if (ch == '0') {
+      if (charAt() == 'x') {
+        length++;
+      }
+      flag = true;
+    }
+    while (offset + length < bufferLen && isDigit(charAt())) {
+      length++;
+    }
+    if (offset + length == bufferLen) {
+      return Tokens.INTEGER_LITERAL;
+    }
+    ch = charAt();
+    if (ch == '.') {
+      if (flag) {
+        return Tokens.INTEGER_LITERAL;
+      }
+      if (offset + length + 1 == bufferLen) {
+        return Tokens.INTEGER_LITERAL;
+      }
+      length++;
+      throwIfNeeded();
+      while (offset + length < bufferLen && isDigit(charAt())) {
+        length++;
+      }
+      if (offset + length == bufferLen) {
+        return Tokens.FLOATING_POINT_LITERAL;
+      }
+      ch = charAt();
+      if (ch == 'e' || ch == 'E') {
+        length++;
+        throwIfNeeded();
+        if (charAt() == '-' || charAt() == '+') {
+          length++;
+          throwIfNeeded();
+        }
+        while (offset + length < bufferLen && isPrimeDigit(charAt())) {
+          length++;
+        }
         if (offset + length == bufferLen) {
-            return Tokens.INTEGER_LITERAL;
-        }
-        boolean flag = false;
-        char ch = charAt(offset);
-        if (ch == '0') {
-            if (charAt() == 'x') {
-                length++;
-            }
-            flag = true;
-        }
-        while (offset + length < bufferLen && isDigit(charAt())) {
-            length++;
-        }
-        if (offset + length == bufferLen) {
-            return Tokens.INTEGER_LITERAL;
+          return Tokens.FLOATING_POINT_LITERAL;
         }
         ch = charAt();
-        if (ch == '.') {
-            if (flag) {
-                return Tokens.INTEGER_LITERAL;
-            }
-            if (offset + length + 1 == bufferLen) {
-                return Tokens.INTEGER_LITERAL;
-            }
-            length++;
-            throwIfNeeded();
-            while (offset + length < bufferLen && isDigit(charAt())) {
-                length++;
-            }
-            if (offset + length == bufferLen) {
-                return Tokens.FLOATING_POINT_LITERAL;
-            }
-            ch = charAt();
-            if (ch == 'e' || ch == 'E') {
-                length++;
-                throwIfNeeded();
-                if (charAt() == '-' || charAt() == '+') {
-                    length++;
-                    throwIfNeeded();
-                }
-                while (offset + length < bufferLen && isPrimeDigit(charAt())) {
-                    length++;
-                }
-                if (offset + length == bufferLen) {
-                    return Tokens.FLOATING_POINT_LITERAL;
-                }
-                ch = charAt();
-            }
-            if (ch == 'f' || ch == 'F' || ch == 'D'
-                    || ch == 'd') {
-                length++;
-            }
-            return Tokens.FLOATING_POINT_LITERAL;
-        } else if (ch == 'l' || ch == 'L') {
-            length++;
-            return Tokens.INTEGER_LITERAL;
-        } else if (ch == 'F' || ch == 'f' || ch == 'D'
-                || ch == 'd') {
-            length++;
-            return Tokens.FLOATING_POINT_LITERAL;
-        } else {
-            return Tokens.INTEGER_LITERAL;
+      }
+      if (ch == 'f' || ch == 'F' || ch == 'D' || ch == 'd') {
+        length++;
+      }
+      return Tokens.FLOATING_POINT_LITERAL;
+    } else if (ch == 'l' || ch == 'L') {
+      length++;
+      return Tokens.INTEGER_LITERAL;
+    } else if (ch == 'F' || ch == 'f' || ch == 'D' || ch == 'd') {
+      length++;
+      return Tokens.FLOATING_POINT_LITERAL;
+    } else {
+      return Tokens.INTEGER_LITERAL;
+    }
+  }
+
+  /* The following methods have been simplified for syntax high light */
+
+  protected Tokens scanDIV() {
+    if (offset + 1 == bufferLen) {
+      return Tokens.DIV;
+    }
+    char ch = charAt();
+    if (ch == '/') {
+      length++;
+      while (offset + length < bufferLen && charAt() != '\n') {
+        length++;
+      }
+      return Tokens.LINE_COMMENT;
+    } else if (ch == '*') {
+      length++;
+      char pre, curr = '?';
+      boolean finished = false;
+      while (offset + length < bufferLen) {
+        pre = curr;
+        curr = charAt();
+        if (curr == '/' && pre == '*') {
+          length++;
+          finished = true;
+          break;
         }
+        length++;
+      }
+      return finished ? Tokens.LONG_COMMENT_COMPLETE : Tokens.LONG_COMMENT_INCOMPLETE;
+    } else {
+      return Tokens.DIV;
     }
+  }
 
-    /* The following methods have been simplified for syntax high light */
+  @SuppressWarnings("SameReturnValue")
+  protected Tokens scanLT() {
+    return Tokens.LT;
+  }
 
-    protected Tokens scanDIV() {
-        if (offset + 1 == bufferLen) {
-            return Tokens.DIV;
-        }
-        char ch = charAt();
-        if (ch == '/') {
-            length++;
-            while (offset + length < bufferLen && charAt() != '\n') {
-                length++;
-            }
-            return Tokens.LINE_COMMENT;
-        } else if (ch == '*') {
-            length++;
-            char pre, curr = '?';
-            boolean finished = false;
-            while (offset + length < bufferLen) {
-                pre = curr;
-                curr = charAt();
-                if (curr == '/' && pre == '*') {
-                    length++;
-                    finished = true;
-                    break;
-                }
-                length++;
-            }
-            return finished ? Tokens.LONG_COMMENT_COMPLETE : Tokens.LONG_COMMENT_INCOMPLETE;
-        } else {
-            return Tokens.DIV;
-        }
+  @SuppressWarnings("SameReturnValue")
+  protected Tokens scanGT() {
+    return Tokens.GT;
+  }
+
+  protected Tokens scanOperatorTwo(Tokens ifWrong) {
+    return ifWrong;
+  }
+
+  public void reset(CharSequence src) {
+    if (src == null) {
+      throw new IllegalArgumentException();
     }
+    this.source = src;
+    line = 0;
+    column = 0;
+    length = 0;
+    index = 0;
+    offset = 0;
+    currToken = Tokens.WHITESPACE;
+    bufferLen = src.length();
+  }
 
-    @SuppressWarnings("SameReturnValue")
-    protected Tokens scanLT() {
-        return Tokens.LT;
-    }
+  protected static String[] sKeywords;
 
-    @SuppressWarnings("SameReturnValue")
-    protected Tokens scanGT() {
-        return Tokens.GT;
-    }
-
-    protected Tokens scanOperatorTwo(Tokens ifWrong) {
-        return ifWrong;
-    }
-
-    public void reset(CharSequence src) {
-        if (src == null) {
-            throw new IllegalArgumentException();
-        }
-        this.source = src;
-        line = 0;
-        column = 0;
-        length = 0;
-        index = 0;
-        offset = 0;
-        currToken = Tokens.WHITESPACE;
-        bufferLen = src.length();
-    }
-
-    protected static String[] sKeywords;
-
-    protected static void doStaticInit() {
-        sKeywords = new String[]{
-                "abstract", "assert", "boolean", "byte", "char", "class", "do",
-                "double", "final", "float", "for", "if", "int", "long", "new",
-                "public", "private", "protected", "package", "return", "static",
-                "short", "super", "switch", "else", "volatile", "synchronized", "strictfp",
-                "goto", "continue", "break", "transient", "void", "try", "catch",
-                "finally", "while", "case", "default", "const", "enum", "extends",
-                "implements", "import", "instanceof", "interface", "native",
-                "this", "throw", "throws", "true", "false", "null", "var", "sealed", "permits"
+  protected static void doStaticInit() {
+    sKeywords =
+        new String[] {
+          "abstract",
+          "assert",
+          "boolean",
+          "byte",
+          "char",
+          "class",
+          "do",
+          "double",
+          "final",
+          "float",
+          "for",
+          "if",
+          "int",
+          "long",
+          "new",
+          "public",
+          "private",
+          "protected",
+          "package",
+          "return",
+          "static",
+          "short",
+          "super",
+          "switch",
+          "else",
+          "volatile",
+          "synchronized",
+          "strictfp",
+          "goto",
+          "continue",
+          "break",
+          "transient",
+          "void",
+          "try",
+          "catch",
+          "finally",
+          "while",
+          "case",
+          "default",
+          "const",
+          "enum",
+          "extends",
+          "implements",
+          "import",
+          "instanceof",
+          "interface",
+          "native",
+          "this",
+          "throw",
+          "throws",
+          "true",
+          "false",
+          "null",
+          "var",
+          "sealed",
+          "permits"
         };
-        Tokens[] sTokens = new Tokens[]{
-                Tokens.ABSTRACT, Tokens.ASSERT, Tokens.BOOLEAN, Tokens.BYTE, Tokens.CHAR, Tokens.CLASS, Tokens.DO,
-                Tokens.DOUBLE, Tokens.FINAL, Tokens.FLOAT, Tokens.FOR, Tokens.IF, Tokens.INT, Tokens.LONG, Tokens.NEW,
-                Tokens.PUBLIC, Tokens.PRIVATE, Tokens.PROTECTED, Tokens.PACKAGE, Tokens.RETURN, Tokens.STATIC,
-                Tokens.SHORT, Tokens.SUPER, Tokens.SWITCH, Tokens.ELSE, Tokens.VOLATILE, Tokens.SYNCHRONIZED, Tokens.STRICTFP,
-                Tokens.GOTO, Tokens.CONTINUE, Tokens.BREAK, Tokens.TRANSIENT, Tokens.VOID, Tokens.TRY, Tokens.CATCH,
-                Tokens.FINALLY, Tokens.WHILE, Tokens.CASE, Tokens.DEFAULT, Tokens.CONST, Tokens.ENUM, Tokens.EXTENDS,
-                Tokens.IMPLEMENTS, Tokens.IMPORT, Tokens.INSTANCEOF, Tokens.INTERFACE, Tokens.NATIVE,
-                Tokens.THIS, Tokens.THROW, Tokens.THROWS, Tokens.TRUE, Tokens.FALSE, Tokens.NULL, Tokens.VAR, Tokens.SEALED, Tokens.PERMITS
+    Tokens[] sTokens =
+        new Tokens[] {
+          Tokens.ABSTRACT,
+          Tokens.ASSERT,
+          Tokens.BOOLEAN,
+          Tokens.BYTE,
+          Tokens.CHAR,
+          Tokens.CLASS,
+          Tokens.DO,
+          Tokens.DOUBLE,
+          Tokens.FINAL,
+          Tokens.FLOAT,
+          Tokens.FOR,
+          Tokens.IF,
+          Tokens.INT,
+          Tokens.LONG,
+          Tokens.NEW,
+          Tokens.PUBLIC,
+          Tokens.PRIVATE,
+          Tokens.PROTECTED,
+          Tokens.PACKAGE,
+          Tokens.RETURN,
+          Tokens.STATIC,
+          Tokens.SHORT,
+          Tokens.SUPER,
+          Tokens.SWITCH,
+          Tokens.ELSE,
+          Tokens.VOLATILE,
+          Tokens.SYNCHRONIZED,
+          Tokens.STRICTFP,
+          Tokens.GOTO,
+          Tokens.CONTINUE,
+          Tokens.BREAK,
+          Tokens.TRANSIENT,
+          Tokens.VOID,
+          Tokens.TRY,
+          Tokens.CATCH,
+          Tokens.FINALLY,
+          Tokens.WHILE,
+          Tokens.CASE,
+          Tokens.DEFAULT,
+          Tokens.CONST,
+          Tokens.ENUM,
+          Tokens.EXTENDS,
+          Tokens.IMPLEMENTS,
+          Tokens.IMPORT,
+          Tokens.INSTANCEOF,
+          Tokens.INTERFACE,
+          Tokens.NATIVE,
+          Tokens.THIS,
+          Tokens.THROW,
+          Tokens.THROWS,
+          Tokens.TRUE,
+          Tokens.FALSE,
+          Tokens.NULL,
+          Tokens.VAR,
+          Tokens.SEALED,
+          Tokens.PERMITS
         };
-        keywords = new TrieTree<>();
-        for (int i = 0; i < sKeywords.length; i++) {
-            keywords.put(sKeywords[i], sTokens[i]);
-        }
+    keywords = new TrieTree<>();
+    for (int i = 0; i < sKeywords.length; i++) {
+      keywords.put(sKeywords[i], sTokens[i]);
     }
+  }
 
-    protected static boolean isDigit(char c) {
-        return ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'));
-    }
+  protected static boolean isDigit(char c) {
+    return ((c >= '0' && c <= '9') || (c >= 'A' && c <= 'F') || (c >= 'a' && c <= 'f'));
+  }
 
-    protected static boolean isPrimeDigit(char c) {
-        return (c >= '0' && c <= '9');
-    }
+  protected static boolean isPrimeDigit(char c) {
+    return (c >= '0' && c <= '9');
+  }
 
-    protected static boolean isWhitespace(char c) {
-        return (c == '\t' || c == ' ' || c == '\f' || c == '\n' || c == '\r');
-    }
+  protected static boolean isWhitespace(char c) {
+    return (c == '\t' || c == ' ' || c == '\f' || c == '\n' || c == '\r');
+  }
 }

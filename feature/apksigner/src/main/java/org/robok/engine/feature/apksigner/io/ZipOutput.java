@@ -16,109 +16,98 @@ package org.robok.engine.feature.apksigner.io;
  * limitations under the License.
  */
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.List;
-import java.util.LinkedList;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Set;
 
-/**
- *
- */
-public class ZipOutput 
-{
+/** */
+public class ZipOutput {
 
-    private OutputStream out = null;
-    private int filePointer = 0;
+  private OutputStream out = null;
+  private int filePointer = 0;
 
-    private List<ZioEntry> entriesWritten = new LinkedList<ZioEntry>();
-    private Set<String> namesWritten = new HashSet<String>();
-        
-    public ZipOutput( OutputStream os) throws IOException
-    {
-        out = os;
+  private List<ZioEntry> entriesWritten = new LinkedList<ZioEntry>();
+  private Set<String> namesWritten = new HashSet<String>();
+
+  public ZipOutput(OutputStream os) throws IOException {
+    out = os;
+  }
+
+  public void write(ZioEntry entry) throws IOException {
+    String entryName = entry.getName();
+    if (namesWritten.contains(entryName)) {
+      return;
     }
-    
+    entry.writeLocalEntry(this);
+    entriesWritten.add(entry);
+    namesWritten.add(entryName);
+  }
 
-    public void write( ZioEntry entry) throws IOException {
-        String entryName = entry.getName();
-        if (namesWritten.contains( entryName)) {
-            return;
-        }
-        entry.writeLocalEntry( this);
-        entriesWritten.add( entry);
-        namesWritten.add( entryName);
-        
-    }
+  public void close() throws IOException {
+    CentralEnd centralEnd = new CentralEnd();
 
+    centralEnd.centralStartOffset = (int) getFilePointer();
+    centralEnd.numCentralEntries = centralEnd.totalCentralEntries = (short) entriesWritten.size();
 
-    
-    public void close() throws IOException
-    {
-        CentralEnd centralEnd = new CentralEnd();
-        
-        centralEnd.centralStartOffset = (int)getFilePointer();
-        centralEnd.numCentralEntries = centralEnd.totalCentralEntries = (short)entriesWritten.size();
-        
-        for (ZioEntry entry : entriesWritten) {
-            entry.write( this);
-        }
-        
-        centralEnd.centralDirectorySize = (int)(getFilePointer() - centralEnd.centralStartOffset);
-        centralEnd.fileComment = "";
-        
-        centralEnd.write( this);
-        
-        if (out != null) try { out.close(); } catch( Throwable t) {}
+    for (ZioEntry entry : entriesWritten) {
+      entry.write(this);
     }
 
-    public int getFilePointer() throws IOException {
-        return filePointer;
+    centralEnd.centralDirectorySize = (int) (getFilePointer() - centralEnd.centralStartOffset);
+    centralEnd.fileComment = "";
+
+    centralEnd.write(this);
+
+    if (out != null)
+      try {
+        out.close();
+      } catch (Throwable t) {
+      }
+  }
+
+  public int getFilePointer() throws IOException {
+    return filePointer;
+  }
+
+  public void writeInt(int value) throws IOException {
+    byte[] data = new byte[4];
+    for (int i = 0; i < 4; i++) {
+      data[i] = (byte) (value & 0xFF);
+      value = value >> 8;
     }
+    out.write(data);
+    filePointer += 4;
+  }
 
-
-    public void writeInt( int value) throws IOException{
-        byte[] data = new byte[4];
-        for (int i = 0; i < 4; i++) {
-            data[i] = (byte)(value & 0xFF);
-            value = value >> 8;
-        }
-        out.write( data);
-        filePointer += 4;
+  public void writeShort(short value) throws IOException {
+    byte[] data = new byte[2];
+    for (int i = 0; i < 2; i++) {
+      data[i] = (byte) (value & 0xFF);
+      value = (short) (value >> 8);
     }
+    out.write(data);
+    filePointer += 2;
+  }
 
-    public void writeShort( short value) throws IOException {
-        byte[] data = new byte[2];
-        for (int i = 0; i < 2; i++) {
-            data[i] = (byte)(value & 0xFF);
-            value = (short)(value >> 8);
-        }
-        out.write( data);
-        filePointer += 2;
-    }
+  public void writeString(String value) throws IOException {
 
-    public void writeString( String value) throws IOException {
+    byte[] data = value.getBytes();
+    out.write(data);
+    filePointer += data.length;
+  }
 
-        byte[] data = value.getBytes();
-        out.write( data);
-        filePointer += data.length;
-    }
+  public void writeBytes(byte[] value) throws IOException {
 
-    public void writeBytes( byte[] value) throws IOException {
+    out.write(value);
+    filePointer += value.length;
+  }
 
-        out.write( value);
-        filePointer += value.length;
-    }
+  public void writeBytes(byte[] value, int offset, int length) throws IOException {
 
-    public void writeBytes( byte[] value, int offset, int length) throws IOException {
-
-        out.write( value, offset, length);
-        filePointer += length;
-    }    
-
+    out.write(value, offset, length);
+    filePointer += length;
+  }
 }
-
-

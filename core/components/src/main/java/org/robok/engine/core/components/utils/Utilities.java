@@ -16,12 +16,13 @@
 
 package org.robok.engine.core.components.utils;
 
-import android.os.Build;
 import static android.os.Build.VERSION_CODES;
+
+import android.os.Build;
 import androidx.annotation.ChecksSdkIntAtLeast;
 
 public final class Utilities {
 
-    @ChecksSdkIntAtLeast(api = VERSION_CODES.S)
-    public static final boolean ATLEAST_S = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
+  @ChecksSdkIntAtLeast(api = VERSION_CODES.S)
+  public static final boolean ATLEAST_S = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 }

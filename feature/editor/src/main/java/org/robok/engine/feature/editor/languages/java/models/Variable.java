@@ -15,7 +15,7 @@ package org.robok.engine.feature.editor.languages.java.models;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
 
@@ -23,70 +23,76 @@ import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
  * Data class to store variable information.
  * because the identifier storage system did not store the types, access reasons and not.
  * @author ThDev-only
-*/
+ */
 public class Variable {
 
-     private String createdIn;
-     private String importPackage;
-     private String type;
-     private String name;
-     private ModifierAccess acessModifier;
-     private String value;
+  private String createdIn;
+  private String importPackage;
+  private String type;
+  private String name;
+  private ModifierAccess acessModifier;
+  private String value;
 
-     public Variable(String createdIn, ModifierAccess acessModifier, String importPackage, String type, String name, String value) {
-          this.createdIn = createdIn;
-          this.acessModifier = acessModifier;
-          this.importPackage = importPackage;
-          this.type = type;
-          this.name = name;
-          this.value = value;
-     }
-    
-     public String getCreatedIn() {
-          return this.createdIn;
-     }
+  public Variable(
+      String createdIn,
+      ModifierAccess acessModifier,
+      String importPackage,
+      String type,
+      String name,
+      String value) {
+    this.createdIn = createdIn;
+    this.acessModifier = acessModifier;
+    this.importPackage = importPackage;
+    this.type = type;
+    this.name = name;
+    this.value = value;
+  }
 
-     public void setCreatedIn(String name) {
-          this.name = name;
-     }
-    
-     public String getCode() {
-          return this.name;
-     }
+  public String getCreatedIn() {
+    return this.createdIn;
+  }
 
-     public void setCode(String name) {
-          this.name = name;
-     }
+  public void setCreatedIn(String name) {
+    this.name = name;
+  }
 
-     public String getImportPackage() {
-          return this.importPackage;
-     }
+  public String getCode() {
+    return this.name;
+  }
 
-     public void setImportPackage(String importPackage) {
-          this.importPackage = importPackage;
-     }
-    
-     public String getType() {
-          return this.type;
-     }
+  public void setCode(String name) {
+    this.name = name;
+  }
 
-     public void setType(String type) {
-          this.type = type;
-     }
+  public String getImportPackage() {
+    return this.importPackage;
+  }
 
-     public ModifierAccess getAcessModifier() {
-          return this.acessModifier;
-     }
+  public void setImportPackage(String importPackage) {
+    this.importPackage = importPackage;
+  }
 
-     public void setAcessModifier(ModifierAccess acessModifier) {
-          this.acessModifier = acessModifier;
-     }
+  public String getType() {
+    return this.type;
+  }
 
-     public String getValue() {
-          return this.value;
-     }
+  public void setType(String type) {
+    this.type = type;
+  }
 
-     public void setValue(String value) {
-          this.value = value;
-     }
+  public ModifierAccess getAcessModifier() {
+    return this.acessModifier;
+  }
+
+  public void setAcessModifier(ModifierAccess acessModifier) {
+    this.acessModifier = acessModifier;
+  }
+
+  public String getValue() {
+    return this.value;
+  }
+
+  public void setValue(String value) {
+    this.value = value;
+  }
 }

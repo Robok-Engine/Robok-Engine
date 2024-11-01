@@ -18,40 +18,37 @@ package org.robok.engine.core.components.edges;
 import android.content.Context;
 import android.view.View;
 import android.widget.EdgeEffect;
-
 import org.robok.engine.core.components.utils.Utilities;
 
-/**
- * Extension of {@link EdgeEffect} to allow backwards compatibility
- */
+/** Extension of {@link EdgeEffect} to allow backwards compatibility */
 public class EdgeEffectCompat extends EdgeEffect {
 
-    public EdgeEffectCompat(Context context) {
-        super(context);
-    }
+  public EdgeEffectCompat(Context context) {
+    super(context);
+  }
 
-    @Override
-    public float getDistance() {
-        return Utilities.ATLEAST_S ? super.getDistance() : 0;
-    }
+  @Override
+  public float getDistance() {
+    return Utilities.ATLEAST_S ? super.getDistance() : 0;
+  }
 
-    @Override
-    public float onPullDistance(float deltaDistance, float displacement) {
-        if (Utilities.ATLEAST_S) {
-            return super.onPullDistance(deltaDistance, displacement);
-        } else {
-            onPull(deltaDistance, displacement);
-            return deltaDistance;
-        }
+  @Override
+  public float onPullDistance(float deltaDistance, float displacement) {
+    if (Utilities.ATLEAST_S) {
+      return super.onPullDistance(deltaDistance, displacement);
+    } else {
+      onPull(deltaDistance, displacement);
+      return deltaDistance;
     }
+  }
 
-    public static EdgeEffectCompat create(Context context, View view) {
-        if (Utilities.ATLEAST_S) {
-            return new EdgeEffectCompat(context);
-        } else {
-            StretchEdgeEffect effect = new StretchEdgeEffect(context);
-            effect.setPostInvalidateOnAnimation(view::postInvalidateOnAnimation);
-            return effect;
-        }
+  public static EdgeEffectCompat create(Context context, View view) {
+    if (Utilities.ATLEAST_S) {
+      return new EdgeEffectCompat(context);
+    } else {
+      StretchEdgeEffect effect = new StretchEdgeEffect(context);
+      effect.setPostInvalidateOnAnimation(view::postInvalidateOnAnimation);
+      return effect;
     }
+  }
 }

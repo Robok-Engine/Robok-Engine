@@ -15,11 +15,9 @@ package org.robok.engine.feature.editor.languages.java.store;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
-import android.app.Activity;
 import android.content.Context;
-
 import java.io.File;
 import java.net.URL;
 import java.net.URLClassLoader;
@@ -27,63 +25,65 @@ import java.util.HashMap;
 
 public class RDKFileMapper {
 
-    private Context context;
-    private HashMap<String, String> robokClasses;
-    private String actuallyRdk; 
-    private File rdkDirectory;
+  private Context context;
+  private HashMap<String, String> robokClasses;
+  private String actuallyRdk;
+  private File rdkDirectory;
 
-    public RDKFileMapper(Context context) {
-        this.context = context;
-        robokClasses = new HashMap<>();
+  public RDKFileMapper(Context context) {
+    this.context = context;
+    robokClasses = new HashMap<>();
 
-        actuallyRdk = "RDK-1"; 
-        rdkDirectory = new File(context.getFilesDir(), actuallyRdk + "/rdk/");
+    actuallyRdk = "RDK-1";
+    rdkDirectory = new File(context.getFilesDir(), actuallyRdk + "/rdk/");
 
-        load();
+    load();
+  }
+
+  public void load() {
+    this.robokClasses = mapRdkClasses();
+  }
+
+  public HashMap<String, String> getClasses() {
+    return this.robokClasses;
+  }
+
+  public HashMap<String, String> mapRdkClasses() {
+    File rdkFolder = rdkDirectory;
+
+    if (rdkFolder.exists() && rdkFolder.isDirectory()) {
+      mapClassesRecursively(rdkFolder, "", robokClasses);
+    } else {
+      robokClasses.put("RDKNotExistsException", "robok.rdk.RDKNotExistsException");
     }
 
-    public void load() {
-        this.robokClasses = mapRdkClasses();
+    return robokClasses;
+  }
+
+  private void mapClassesRecursively(
+      File folder, String packageName, HashMap<String, String> robokClasses) {
+    File[] files = folder.listFiles();
+    if (files == null) return;
+
+    for (File file : files) {
+      if (file.isDirectory()) {
+        String newPackageName =
+            packageName.isEmpty() ? file.getName() : packageName + "." + file.getName();
+        mapClassesRecursively(file, newPackageName, robokClasses);
+      } else if (file.getName().endsWith(".class")) {
+        String className = file.getName().replace(".class", "");
+        String classPath = packageName + "." + className;
+        robokClasses.put(className, classPath);
+      }
     }
+  }
 
-    public HashMap<String, String> getClasses() {
-        return this.robokClasses;
-    }
-    
-    public HashMap<String, String> mapRdkClasses() {
-        File rdkFolder = rdkDirectory;
+  public URLClassLoader getClassLoader() throws Exception {
+    File file = rdkDirectory;
 
-        if (rdkFolder.exists() && rdkFolder.isDirectory()) {
-            mapClassesRecursively(rdkFolder, "", robokClasses);
-        } else {
-            robokClasses.put("RDKNotExistsException", "robok.rdk.RDKNotExistsException");
-        }
+    URL url = file.toURI().toURL();
+    URL[] urls = new URL[] {url};
 
-        return robokClasses;
-    }
-
-    private void mapClassesRecursively(File folder, String packageName, HashMap<String, String> robokClasses) {
-        File[] files = folder.listFiles();
-        if (files == null) return;
-
-        for (File file: files) {
-            if (file.isDirectory()) {
-                String newPackageName = packageName.isEmpty() ? file.getName() : packageName + "." + file.getName();
-                mapClassesRecursively(file, newPackageName, robokClasses);
-            } else if (file.getName().endsWith(".class")) {
-                String className = file.getName().replace(".class", "");
-                String classPath = packageName + "." + className;
-                robokClasses.put(className, classPath);
-            }
-        }
-    }
-
-    public URLClassLoader getClassLoader() throws Exception {
-        File file = rdkDirectory;
-
-        URL url = file.toURI().toURL();
-        URL[] urls = new URL[]{url};
-
-        return new URLClassLoader(urls);
-    }
+    return new URLClassLoader(urls);
+  }
 }

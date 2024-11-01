@@ -28,204 +28,192 @@ import java.util.jar.Manifest;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/** */
+public class ZipInput {
 
+  public String inputFilename;
+  RandomAccessFile in = null;
+  long fileLength;
+  int scanIterations = 0;
 
-/**
- *
- */
-public class ZipInput 
-{
+  Map<String, ZioEntry> zioEntries = new LinkedHashMap<String, ZioEntry>();
+  CentralEnd centralEnd;
+  Manifest manifest;
 
+  public ZipInput(String filename) throws IOException {
+    this.inputFilename = filename;
+    in = new RandomAccessFile(new File(inputFilename), "r");
+    fileLength = in.length();
+  }
 
-    public String inputFilename;
-    RandomAccessFile in = null;
-    long fileLength;
-    int scanIterations = 0;
+  public ZipInput(File inFile) throws IOException {
+    this.inputFilename = inFile.getName();
+    in = new RandomAccessFile(inFile, "r");
+    fileLength = in.length();
+  }
 
-    Map<String,ZioEntry> zioEntries = new LinkedHashMap<String,ZioEntry>();
-    CentralEnd centralEnd;
-    Manifest manifest;
+  public String getFilename() {
+    return inputFilename;
+  }
 
-    public ZipInput( String filename) throws IOException
-    {
-        this.inputFilename = filename;
-        in = new RandomAccessFile( new File( inputFilename), "r");
-        fileLength = in.length();
+  public long getFileLength() {
+    return fileLength;
+  }
+
+  public static ZipInput read(String filename) throws IOException {
+    ZipInput zipInput = new ZipInput(filename);
+    zipInput.doRead();
+    return zipInput;
+  }
+
+  public static ZipInput read(File file) throws IOException {
+    ZipInput zipInput = new ZipInput(file);
+    zipInput.doRead();
+    return zipInput;
+  }
+
+  public ZioEntry getEntry(String filename) {
+    return zioEntries.get(filename);
+  }
+
+  public Map<String, ZioEntry> getEntries() {
+    return zioEntries;
+  }
+
+  /**
+   * Returns the names of immediate children in the directory with the given name. The path value
+   * must end with a "/" character. Use a value of "/" to get the root entries.
+   */
+  public Collection<String> list(String path) {
+    if (!path.endsWith("/"))
+      throw new IllegalArgumentException("Invalid path -- does not end with '/'");
+
+    if (path.startsWith("/")) path = path.substring(1);
+
+    Pattern p = Pattern.compile(String.format("^%s([^/]+/?).*", path));
+
+    Set<String> names = new TreeSet<String>();
+
+    for (String name : zioEntries.keySet()) {
+      Matcher m = p.matcher(name);
+      if (m.matches()) names.add(m.group(1));
     }
-    public ZipInput(File inFile) throws IOException
-    {
-        this.inputFilename = inFile.getName();
-        in = new RandomAccessFile(inFile, "r");
-        fileLength = in.length();
+    return names;
+  }
+
+  public Manifest getManifest() throws IOException {
+    if (manifest == null) {
+      ZioEntry e = zioEntries.get("META-INF/MANIFEST.MF");
+      if (e != null) {
+        manifest = new Manifest(e.getInputStream());
+      }
     }
+    return manifest;
+  }
 
+  /**
+   * Scan the end of the file for the end of central directory record (EOCDR). Returns the file
+   * offset of the EOCD signature. The size parameter is an initial buffer size (e.g., 256).
+   */
+  public long scanForEOCDR(int size) throws IOException {
+    if (size > fileLength || size > 65536)
+      throw new IllegalStateException("End of central directory not found in " + inputFilename);
 
-   
+    int scanSize = (int) Math.min(fileLength, size);
 
-    public String getFilename() {
-        return inputFilename;
-    }
+    byte[] scanBuf = new byte[scanSize];
 
-    public long getFileLength() {
-        return fileLength;
-    }
-    
-    public static ZipInput read( String filename) throws IOException {
-        ZipInput zipInput = new ZipInput( filename);
-        zipInput.doRead();
-        return zipInput;
-    }
-     
-    public static ZipInput read( File file) throws IOException {
-        ZipInput zipInput = new ZipInput( file);
-        zipInput.doRead();
-        return zipInput;
-    }
-    
-    
-    public ZioEntry getEntry( String filename) {
-        return zioEntries.get(filename);
-    }
-    
-    public Map<String,ZioEntry> getEntries() {
-        return zioEntries;
-    }
-    
-    /** Returns the names of immediate children in the directory with the given name.
-     *  The path value must end with a "/" character.  Use a value of "/" 
-     *  to get the root entries.
-     */
-    public Collection<String> list(String path) 
-    {
-        if (!path.endsWith("/")) throw new IllegalArgumentException("Invalid path -- does not end with '/'");
-        
-        if (path.startsWith("/")) path = path.substring(1);
-       
-        Pattern p = Pattern.compile( String.format("^%s([^/]+/?).*", path));
-        
-        Set<String> names = new TreeSet<String>();
-        
-        for (String name : zioEntries.keySet()) {
-            Matcher m = p.matcher(name);
-            if (m.matches()) names.add(m.group(1));
-        }
-        return names;
-    }
-    
-    public Manifest getManifest() throws IOException {
-        if (manifest == null) {
-            ZioEntry e = zioEntries.get("META-INF/MANIFEST.MF");
-            if (e != null) {
-                manifest = new Manifest( e.getInputStream());
-            }
-        }
-        return manifest; 
-    }
+    in.seek(fileLength - scanSize);
 
-    /** Scan the end of the file for the end of central directory record (EOCDR).
-        Returns the file offset of the EOCD signature.  The size parameter is an
-        initial buffer size (e.g., 256).
-     */
-    public long scanForEOCDR( int size) throws IOException {
-        if (size > fileLength || size > 65536) throw new IllegalStateException( "End of central directory not found in " + inputFilename);
+    in.readFully(scanBuf);
 
-        int scanSize = (int)Math.min( fileLength, size);
-
-        byte[] scanBuf = new byte[scanSize];
-
-        in.seek( fileLength - scanSize);
-
-        in.readFully( scanBuf);
-
-        for (int i = scanSize - 22; i >= 0; i--) {
-            scanIterations += 1;
-            if (scanBuf[i] == 0x50 && scanBuf[i+1] == 0x4b && scanBuf[i+2] == 0x05 && scanBuf[i+3] == 0x06) {
-                return fileLength - scanSize + i;
-            }
-        }
-
-        return scanForEOCDR( size * 2);
-    }
-                              
-        
-    private void doRead()
-    {
-        try {
-
-            long posEOCDR = scanForEOCDR( 256);
-            in.seek( posEOCDR);
-            centralEnd = CentralEnd.read( this);
-
-
-                
-
-            in.seek( centralEnd.centralStartOffset);            
-
-            for (int i = 0; i < centralEnd.totalCentralEntries; i++) {
-                ZioEntry entry = ZioEntry.read(this);
-                zioEntries.put( entry.getName(), entry);
-            }
-
-        }
-        catch (Throwable t) {
-            t.printStackTrace();
-        }    	
+    for (int i = scanSize - 22; i >= 0; i--) {
+      scanIterations += 1;
+      if (scanBuf[i] == 0x50
+          && scanBuf[i + 1] == 0x4b
+          && scanBuf[i + 2] == 0x05
+          && scanBuf[i + 3] == 0x06) {
+        return fileLength - scanSize + i;
+      }
     }
 
-    public void close() {
-        if (in != null) try { in.close(); } catch( Throwable t) {}
+    return scanForEOCDR(size * 2);
+  }
+
+  private void doRead() {
+    try {
+
+      long posEOCDR = scanForEOCDR(256);
+      in.seek(posEOCDR);
+      centralEnd = CentralEnd.read(this);
+
+      in.seek(centralEnd.centralStartOffset);
+
+      for (int i = 0; i < centralEnd.totalCentralEntries; i++) {
+        ZioEntry entry = ZioEntry.read(this);
+        zioEntries.put(entry.getName(), entry);
+      }
+
+    } catch (Throwable t) {
+      t.printStackTrace();
     }
+  }
 
-    public long getFilePointer() throws IOException {
-        return in.getFilePointer(); 
+  public void close() {
+    if (in != null)
+      try {
+        in.close();
+      } catch (Throwable t) {
+      }
+  }
+
+  public long getFilePointer() throws IOException {
+    return in.getFilePointer();
+  }
+
+  public void seek(long position) throws IOException {
+    in.seek(position);
+  }
+
+  public byte readByte() throws IOException {
+    return in.readByte();
+  }
+
+  public int readInt() throws IOException {
+    int result = 0;
+    for (int i = 0; i < 4; i++) {
+      result |= (in.readUnsignedByte() << (8 * i));
     }
+    return result;
+  }
 
-    public void seek( long position) throws IOException {
-        in.seek(position);
+  public short readShort() throws IOException {
+    short result = 0;
+    for (int i = 0; i < 2; i++) {
+      result |= (in.readUnsignedByte() << (8 * i));
     }
+    return result;
+  }
 
-    public byte readByte() throws IOException {
-        return in.readByte();
+  public String readString(int length) throws IOException {
+
+    byte[] buffer = new byte[length];
+    for (int i = 0; i < length; i++) {
+      buffer[i] = in.readByte();
     }
-    
-    public int readInt() throws IOException{
-        int result = 0;
-        for (int i = 0; i < 4; i++) {
-            result |= (in.readUnsignedByte() << (8 * i));
-        }
-        return result;
+    return new String(buffer);
+  }
+
+  public byte[] readBytes(int length) throws IOException {
+
+    byte[] buffer = new byte[length];
+    for (int i = 0; i < length; i++) {
+      buffer[i] = in.readByte();
     }
+    return buffer;
+  }
 
-    public short readShort() throws IOException {
-        short result = 0;
-        for (int i = 0; i < 2; i++) {
-            result |= (in.readUnsignedByte() << (8 * i));
-        }
-        return result;
-    }
-
-    public String readString( int length) throws IOException {
-
-        byte[] buffer = new byte[length];
-        for (int i = 0; i < length; i++) {
-            buffer[i] = in.readByte();
-        }
-        return new String(buffer);
-    }
-
-    public byte[] readBytes( int length) throws IOException {
-
-        byte[] buffer = new byte[length];
-        for (int i = 0; i < length; i++) {
-            buffer[i] = in.readByte();
-        }
-        return buffer;
-    }
-
-    public int read( byte[] b, int offset, int length) throws IOException {
-        return in.read( b, offset, length);
-    }
-
+  public int read(byte[] b, int offset, int length) throws IOException {
+    return in.read(b, offset, length);
+  }
 }
-
-

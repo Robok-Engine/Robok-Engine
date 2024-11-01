@@ -21,110 +21,101 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.RandomAccessFile;
 
-
-
 /** Input stream used to read just the data from a zip file entry. */
 public class ZioEntryInputStream extends InputStream {
 
-    RandomAccessFile raf;
-    int size;
-    int offset;
-    boolean returnDummyByte = false;
-    OutputStream monitor = null;
-    
-    public ZioEntryInputStream( ZioEntry entry) throws IOException {
+  RandomAccessFile raf;
+  int size;
+  int offset;
+  boolean returnDummyByte = false;
+  OutputStream monitor = null;
 
-        offset = 0;
-        size = entry.getCompressedSize();
-        raf = entry.getZipInput().in;
-        long dpos = entry.getDataPosition();
-        if (dpos >= 0) {
-            raf.seek( entry.getDataPosition());
-        }
-        else {
-            // seeks to, then reads, the local header, causing the 
-            // file pointer to be positioned at the start of the data.
-            entry.readLocalHeader();
-        }
-        
-    }
+  public ZioEntryInputStream(ZioEntry entry) throws IOException {
 
-    public void setReturnDummyByte( boolean returnExtraByte) {
-        returnDummyByte = returnExtraByte;
+    offset = 0;
+    size = entry.getCompressedSize();
+    raf = entry.getZipInput().in;
+    long dpos = entry.getDataPosition();
+    if (dpos >= 0) {
+      raf.seek(entry.getDataPosition());
+    } else {
+      // seeks to, then reads, the local header, causing the
+      // file pointer to be positioned at the start of the data.
+      entry.readLocalHeader();
     }
-    
-    // For debugging, if the monitor is set we write all data read to the monitor.
-    public void setMonitorStream(OutputStream monitorStream) {
-        monitor = monitorStream;
-    }
-    
-    @Override
-    public void close() throws IOException {
-    }
+  }
 
-    @Override
-    public boolean markSupported() {
-        return false;
-    }
+  public void setReturnDummyByte(boolean returnExtraByte) {
+    returnDummyByte = returnExtraByte;
+  }
 
-    @Override
-    public int available() throws IOException {
-        int available = size - offset;
-        if (available == 0 && returnDummyByte) return 1;
-        else return available;
-    }
+  // For debugging, if the monitor is set we write all data read to the monitor.
+  public void setMonitorStream(OutputStream monitorStream) {
+    monitor = monitorStream;
+  }
 
-    @Override
-    public int read() throws IOException {
-        if ((size - offset) == 0) {
-            if (returnDummyByte) {
-                returnDummyByte = false;
-                return 0;
-            }
-            else return -1;
-        }
-        int b = raf.read();
-        if (b >= 0) {
-            if (monitor != null) monitor.write(b);
-            offset += 1;
-        }
-        return b;
-    }
+  @Override
+  public void close() throws IOException {}
 
-    @Override
-    public int read(byte[] b, int off, int len) throws IOException {
-        return readBytes( b, off, len);
-    }
+  @Override
+  public boolean markSupported() {
+    return false;
+  }
 
-    private int readBytes(byte[] b, int off, int len) throws IOException {
-        if ((size - offset) == 0) {
-            if (returnDummyByte) {
-                returnDummyByte = false;
-                b[off] = 0;
-                return 1;
-            }
-            else return -1;
-        }        
-        int numToRead = Math.min( len, available());
-        int numRead = raf.read(b, off, numToRead);
-        if (numRead > 0) {
-            if (monitor != null) monitor.write(b, off, numRead);
-            offset += numRead;
-        }
-        return numRead;
-    }
+  @Override
+  public int available() throws IOException {
+    int available = size - offset;
+    if (available == 0 && returnDummyByte) return 1;
+    else return available;
+  }
 
-    @Override
-    public int read(byte[] b) throws IOException {
-        return readBytes( b, 0, b.length);
+  @Override
+  public int read() throws IOException {
+    if ((size - offset) == 0) {
+      if (returnDummyByte) {
+        returnDummyByte = false;
+        return 0;
+      } else return -1;
     }
+    int b = raf.read();
+    if (b >= 0) {
+      if (monitor != null) monitor.write(b);
+      offset += 1;
+    }
+    return b;
+  }
 
-    @Override
-    public long skip(long n) throws IOException {
-        long numToSkip = Math.min( n, available());
-        raf.seek( raf.getFilePointer() + numToSkip);
-        return numToSkip;
+  @Override
+  public int read(byte[] b, int off, int len) throws IOException {
+    return readBytes(b, off, len);
+  }
+
+  private int readBytes(byte[] b, int off, int len) throws IOException {
+    if ((size - offset) == 0) {
+      if (returnDummyByte) {
+        returnDummyByte = false;
+        b[off] = 0;
+        return 1;
+      } else return -1;
     }
+    int numToRead = Math.min(len, available());
+    int numRead = raf.read(b, off, numToRead);
+    if (numRead > 0) {
+      if (monitor != null) monitor.write(b, off, numRead);
+      offset += numRead;
+    }
+    return numRead;
+  }
+
+  @Override
+  public int read(byte[] b) throws IOException {
+    return readBytes(b, 0, b.length);
+  }
+
+  @Override
+  public long skip(long n) throws IOException {
+    long numToSkip = Math.min(n, available());
+    raf.seek(raf.getFilePointer() + numToSkip);
+    return numToSkip;
+  }
 }
-
-

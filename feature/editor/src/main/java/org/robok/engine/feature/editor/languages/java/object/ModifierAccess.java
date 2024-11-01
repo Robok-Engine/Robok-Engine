@@ -15,21 +15,21 @@ package org.robok.engine.feature.editor.languages.java.object;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 public enum ModifierAccess {
-     DEFAULT("default"),
-     PUBLIC("public"),
-     PROTECTED("protected"),
-     PRIVATE("private");
-    
-     private String s;
-     
-     ModifierAccess(String s){
-          this.s = s;
-     }
-    
-     public String toString(){
-        return this.s;
-     }
+  DEFAULT("default"),
+  PUBLIC("public"),
+  PROTECTED("protected"),
+  PRIVATE("private");
+
+  private String s;
+
+  ModifierAccess(String s) {
+    this.s = s;
+  }
+
+  public String toString() {
+    return this.s;
+  }
 }

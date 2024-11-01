@@ -1,6 +1,5 @@
 package org.robok.engine.feature.modeling.fragment;
 
-
 /*
  *  This file is part of Robok © 2024.
  *
@@ -16,34 +15,33 @@ package org.robok.engine.feature.modeling.fragment;
  *
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
- */ 
+ */
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
-
+import com.badlogic.gdx.backends.android.AndroidFragmentApplication;
 import org.robok.engine.feature.modeling.view.Model3DView;
 
 public class LibGDXFragment extends AndroidFragmentApplication {
-    
-    private Model3DView model3dView;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
-        config.useGL30 = true; // Configuração GL30 conforme necessário
+  private Model3DView model3dView;
 
-        model3dView = new Model3DView(); // Sua classe que implementa ApplicationListener
+  @Override
+  public View onCreateView(
+      LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    AndroidApplicationConfiguration config = new AndroidApplicationConfiguration();
+    config.useGL30 = true; // Configuração GL30 conforme necessário
 
-        View libgdxView = initializeForView(model3dView, config);
-        return libgdxView;
-    }
+    model3dView = new Model3DView(); // Sua classe que implementa ApplicationListener
 
-    public Model3DView getModel3DView() {
-        return model3dView;
-    }
+    View libgdxView = initializeForView(model3dView, config);
+    return libgdxView;
+  }
+
+  public Model3DView getModel3DView() {
+    return model3dView;
+  }
 }
