@@ -1,4 +1,4 @@
-package org.robok.engine.templates.java
+package org.robok.engine.templates.logic
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,33 +17,26 @@ package org.robok.engine.templates.java
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Parcel
-import org.robok.engine.templates.CodeTemplate
 
-open class JavaClassTemplate : CodeTemplate {
+open class ScreenLogicTemplate: JavaClassTemplate {
 
-    constructor() : super()
-
-    constructor(parcel: Parcel) : super(parcel)
-
-    override fun getName(): String {
-        return "Kotlin class"
-    }
-
-    override fun configure() {
-        setContent(
-            """
-            package ${getCodeClassPackageName()}
-
-            class ${getCodeClassName()} {
-
+    override var code: String? =
+        """
+        package ${getCodeClassPackageName()};
+        
+        import robok.game.screen.GameScreen;
+        
+        public class ${getCodeClassName()} extends GameScreen {
+        
+            @Override
+            public void onScreenCreated() {
+            
             }
-            """
-                .trimIndent()
-        )
-    }
-
-    override fun getExtension(): String {
-        return ".kt"
-    }
+        }
+        """.trimIndent()
+        
+    
+    override var name: String = "Screen Logic"
+    override var packageName: String? = "org.robok.empty"
+    override var extension: String? = ".java"
 }

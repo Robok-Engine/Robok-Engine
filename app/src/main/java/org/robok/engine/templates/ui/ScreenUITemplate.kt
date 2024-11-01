@@ -1,4 +1,4 @@
-package org.robok.engine.templates.easyui
+package org.robok.engine.templates.ui
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,36 +17,29 @@ package org.robok.engine.templates.easyui
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Parcel
 import org.robok.engine.templates.CodeTemplate
 
-open class EasyUILayoutTemplate : CodeTemplate {
+class ScreenUITemplate: CodeTemplate {
 
-    constructor() : super()
-
-    constructor(parcel: Parcel) : super(parcel)
-
-    override fun getName(): String {
-        return "RBK Layout File"
-    }
-
-    override fun configure() {
-        setContent(
-            """
-            ${getCodeClassName()} {
-                Button(
-                    id = "shoot_button",
-                    text = "Shoot",
-                    width = px(20),
-                    height = px(20)
-                )
-            }
+    override var code: String? = 
         """
-                .trimIndent()
+        config(
+            orientation = "horizontal"
         )
-    }
-
-    override fun getExtension(): String {
-        return ".rbk"
-    }
+        Column(
+            width = "match_parent",
+            height = "match_parent"
+        ) {
+            Button(
+                id = "shoot_button",
+                text = "Shoot",
+                width = "wrap_content",
+                height = "wrap_content"
+            )
+        }
+        """.trimIndent()
+    
+    override var name: String? = "Screen UI"
+    override var packageName: String? = "org.robok.empty"
+    override var extension: String? = ".gui"
 }

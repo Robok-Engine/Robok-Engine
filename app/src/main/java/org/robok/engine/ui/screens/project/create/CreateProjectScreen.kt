@@ -122,7 +122,7 @@ private fun Screen(
         Button(
             modifier = Modifier.weight(1f),
             onClick = {
-                viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH + state.projectName))
+                viewModel.setProjectPath(File(ProjectManager.getProjectsPath(), state.projectName))
                 viewModel.createProject(
                     template,
                     onSuccess = {

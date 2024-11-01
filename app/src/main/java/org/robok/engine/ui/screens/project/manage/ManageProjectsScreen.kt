@@ -51,7 +51,7 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 
-val projectPath = File(ProjectManager.PROJECTS_PATH)
+val projectPath = ProjectManager.getProjectsPath()
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

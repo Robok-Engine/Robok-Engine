@@ -1,4 +1,4 @@
-package org.robok.engine.templates
+package org.robok.engine.templates.logic
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,14 +16,21 @@ package org.robok.engine.templates
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
+ 
+import org.robok.engine.templates.CodeTemplate
 
+open class JavaClassTemplate: CodeTemplate {
 
-/*
-* Base Template class
-*/
-abstract class CodeTemplate {
-    abstract var name: String?
-    abstract var packageName: String?
-    abstract var code: String?
-    abstract var extension: String?
+    override var code: String? = 
+        """
+        package ${getCodeClassPackageName()};
+        
+        public class ${getCodeClassName()} {
+            
+        }
+        """.trimIndent()
+    
+    override var name: String? = "Java Class"
+    override var packageName: String? = "org.robok.empty"
+    override var extension: String? = ".java"
 }

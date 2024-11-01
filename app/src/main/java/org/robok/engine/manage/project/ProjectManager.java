@@ -19,7 +19,6 @@ package org.robok.engine.manage.project;
 
 import android.os.Environment;
 import android.content.Context;
-import android.util.Log;
 
 import java.io.BufferedInputStream;
 import java.io.File;
@@ -31,7 +30,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.robok.engine.models.project.ProjectTemplate;
-import org.robok.engine.templates.screen.GameScreenLogicTemplate;
+import org.robok.engine.templates.ui.ScreenLogicTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 import org.robok.engine.core.utils.ZipUtilsKt;
 
@@ -43,54 +42,35 @@ import org.robok.engine.feature.compiler.SystemLogPrinter;
 
 public class ProjectManager {
 
-    private CreationListener creationListener;
-    public static final String TAG = "ProjectManager";
-    public static final String PROJECTS_PATH = Environment.getExternalStorageDirectory().getAbsolutePath() + "/Robok/Projects/";
+    private static final String TAG = "ProjectManager";
+    private static final File PROJECTS_PATH = new File(Environment.getExternalStorageDirectory().getAbsolutePath() + "/Robok/Projects/");
+    
     private Context context;
-    private File outputPath;
+    private File projectPath;
+    private CreationListener creationListener;
 
     public ProjectManager() {}
 
     public ProjectManager(Context context) {
         this.context = context;
     }
-
-    public void setProjectPath(File value) {
-        outputPath = value;
-        Log.d(TAG, "ProjectPath" + value.getAbsolutePath());
-    }
-
-    public File getProjectPath() {
-        Log.d(TAG, "ProjectPath" + outputPath.getAbsolutePath());
-        return outputPath;
-    }
     
-    public String getProjectName() {
-        var v = getProjectPath().getAbsolutePath().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
-        Log.d(TAG, "ProjectName" + v);
-        return v;
-    }
-    
-    public File getLibsPath() {
-        var v = new File(context.getFilesDir(), getProjectName() + "/libs/");
-        Log.d(TAG, "ProjectLibsPath" + v);
-        return v;
-    }
-
+    /*
+     * Create Project Folders & Extract Template
+     * @param projectName: Name of Project
+     * @param packageName: Package Name of Project
+     * @param template: A Instance of Template selected from user
+     */
     public void create(String projectName, String packageName, ProjectTemplate template) {
-        Log.e(TAG, "ProjectName" + projectName);
-        Log.e(TAG, "PackageName" + packageName);
-        Log.e(TAG, template.toString());
-        
-        if (outputPath == null) {
-            throw new IllegalStateException("outputPath has not been initialized.");
+        if (projectPath == null) {
+            notifyCreationError("projectPath has not been initialized.", "create");
         }
 
         try (InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
              ZipInputStream zipInputStream = new ZipInputStream(new BufferedInputStream(zipFileInputStream))) {
 
-            if (!outputPath.exists()) {
-                outputPath.mkdirs();
+            if (!projectPath.exists()) {
+                projectPath.mkdirs();
             }
 
             ZipEntry zipEntry;
@@ -101,7 +81,7 @@ public class ProjectManager {
                             .replace(template.getName(), projectName)
                             .replace("game/logic/$pkgName", "game/logic/" + packageName.replace('.', '/'));
 
-                    File outputFile = new File(outputPath, outputFileName);
+                    File outputFile = new File(projectPath, outputFileName);
 
                     if (!outputFile.getParentFile().exists()) {
                         outputFile.getParentFile().mkdirs();
@@ -129,27 +109,35 @@ public class ProjectManager {
             notifyCreationError(e, "create");
         }
     }
-
-    private void createJavaClass(String projectName, String packageName) {
-        if (outputPath == null) {
-            throw new IllegalStateException("outputPath has not been initialized.");
+    
+    /*
+     * Create Java Classes .
+     * @param projectName, Name of actually project.
+     * @parsm packageName, Package Name of actually project.
+     */
+    private void createJavaClass(
+        String projectName, 
+        String packageName
+    ) {
+        if (projectPath == null) {
+            notifyCreationError("projectPath has not been initialized.", "createJavaClass");
         }
 
         try {
-            GameScreenLogicTemplate template = new GameScreenLogicTemplate();
-            template.setCodeClassName("MainScreen");
-            template.setCodeClassPackageName(packageName);
+            ScreenLogicTemplate template = new ScreenLogicTemplate();
+            template.setName("MainScreen");
+            template.setPackageName(packageName);
             template.configure();
 
-            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getClassName() + ".java";
-            File javaFile = new File(outputPath, classFilePath);
+            String classFilePath = "game/logic/" + packageName.replace('.', '/') + "/" + template.getName() + ".java";
+            File javaFile = new File(projectPath, classFilePath);
 
             if (!javaFile.getParentFile().exists()) {
                 javaFile.getParentFile().mkdirs();
             }
 
             try (FileOutputStream fos = new FileOutputStream(javaFile)) {
-                fos.write(template.getCodeClassContent().getBytes());
+                fos.write(template.getContent().getBytes());
             }
 
         } catch (FileNotFoundException e) {
@@ -161,6 +149,12 @@ public class ProjectManager {
         }
     }
     
+    /*
+     * Extract some necessary libraries to the private directory.
+     * TODO: 
+     *  A better way to deal with libs, because when the user deletes the project, the libs persist.
+     *  When the user imports a project outside of robok, the libs will not be found.
+     */
     private void extractLibs(String projectName) {
         ZipUtilsKt.extractZipFromAssets(context, "libs.zip", getLibsPath());
         
@@ -168,10 +162,16 @@ public class ProjectManager {
             creationListener.onProjectCreate();
         }
     }
-
+    
+    /*
+     * Build Project APK
+     * Uses AAPT2
+     * See {@link feature/compiler module}
+     * @param result A Instance of CompilerTask.OnCompileResult, that returns apk.
+     */
     public void build(CompilerTask.OnCompileResult result) {
-        if (outputPath == null) {
-            throw new IllegalStateException("outputPath has not been initialized.");
+        if (projectPath == null) {
+            notifyCreationError("projectPath has not been initialized.", "build");
         }
 
         try {
@@ -200,12 +200,90 @@ public class ProjectManager {
             notifyCreationError(e, "build");
         }
     }
-
+    
+    /*
+     * Define listener for creationListener
+     * @param instance of CreationListener interface
+     */
     public void setListener(CreationListener creationListener) {
         this.creationListener = creationListener;
     }
-
-    private void notifyCreationError(Exception e, String methodName) {
+    
+    /*
+     * Define projectPath Variable
+     * @param value New File of Project Path
+     */
+    public void setProjectPath(File value) {
+        projectPath = value;
+    }
+    
+    /*
+     * Method to get current project path
+     * @return File instance of ProjectPath.
+     */
+    public File getProjectPath() {
+        return projectPath;
+    }
+    
+    /*
+     * Method to get current project name
+     * @return String of ProjectName.
+     */
+    public String getProjectName() {
+        var v = getProjectPath().getAbsolutePath().substring(getProjectPath().getAbsolutePath().lastIndexOf("/") + 1);
+        return v;
+    }
+    
+    /*
+     * Method to get current project libs path
+     * @return File instance of ProjectLibsPath.
+     */
+    public File getLibsPath() {
+        var path = new File(context.getFilesDir(), getProjectName() + "/libs/");
+        return path;
+    }
+    
+    /*
+     * Method to get all projects path
+     * @return A File instance ot Projects Path
+     */
+    public static File getProjectsPath() {
+        return PROJECTS_PATH;
+    }
+    
+    /*
+     * Notify Error method to CreateProjectScreen 
+     * @param value A Message of Error
+     */
+    private void notifyCreationError(String value) {
+        if (creationListener != null) {
+            creationListener.onProjectCreateError(value);
+        }
+    }
+    
+    /*
+     * Notify Error method to CreateProjectScreen 
+     * @param value A Message of Error
+     * @param methodName Name of the method where the error occurred
+     */
+    private void notifyCreationError(
+        String value,
+        String methodName
+    ) {
+        if (creationListener != null) {
+            creationListener.onProjectCreateError(value + " Method: " + methodName);
+        }
+    }
+    
+    /*
+     * Notify Error method to CreateProjectScreen 
+     * @param e, A Exeception of error 
+     * @param methodName Name of the method where the error occurred
+     */
+    private void notifyCreationError(
+        Exception e,
+        String methodName
+    ) {
         if (creationListener != null) {
             creationListener.onProjectCreateError(e.toString() + " Method: " + methodName);
         }
