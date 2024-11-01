@@ -312,14 +312,14 @@ class EditorActivity :
             object : FileClickListener {
                 override fun onClick(node: Node<FileObject>) {
                     if (node.value.isDirectory()) return
-                    handleFileExtension(node)
+                    handleNodeFileExtension(node)
                 }
             }
         )
         binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
     }
 
-    private fun handleFileExtension(node: Node<FileObject>) {
+    private fun handleNodeFileExtension(node: Node<FileObject>) {
         val fileExtension = node.value.getName().substringAfterLast(".")
         val fileToOpen = File(node.value.getAbsolutePath())
         when (fileExtension) {
@@ -330,6 +330,8 @@ class EditorActivity :
             else -> editorViewModel.openFile(fileToOpen) // open file on editor
         }
     }
+    
+    private fun File.getFileExtension(): String = this.getName().substringAfterLast(".")
 
     private fun updateUndoRedo() {
         getCurrentEditor()?.let { editor ->
@@ -409,7 +411,10 @@ class EditorActivity :
                     0 -> {
                         getCurrentEditor()?.let { editor ->
                             editorViewModel.saveFile()
-                            compileGuiCode(editor.getText().toString())
+                            compileGuiCode(
+                                code = editor.getText().toString(),
+                                fileName = editor.getFile().nameWithoutExtension
+                            )
                         }
                     }
                 }
@@ -418,8 +423,12 @@ class EditorActivity :
             popm.show()
         }
     }
+    
 
-    private fun compileGuiCode(code: String) {
+    private fun compileGuiCode(
+        code: String,
+        fileName: String
+    ) {
         val guiBuilder =
             GUIBuilder(
                 context = this,
@@ -432,10 +441,22 @@ class EditorActivity :
                         }
                     startActivity(intent)
                     Log.d(GUI_COMPILER_TAG, code)
+                    saveGuiResultXmlCode(
+                        code = code,
+                        fileName = fileName
+                    )
                 },
                 onError = { Log.e(GUI_COMPILER_TAG, it) },
             )
         val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
+    }
+    
+    private fun saveGuiResultXmlCode(
+        code: String,
+        fileName: String
+    )  {
+        FileUtil.writeFile(ProjectManager.getAndroidResPath().absolutePath + "/layout/${fileName}.xml", code)
+        Toast.makeText(this, getString(Strings.text_saved), Toast.LENGTH_SHORT).show()
     }
 
     private fun observeViewModel() {
