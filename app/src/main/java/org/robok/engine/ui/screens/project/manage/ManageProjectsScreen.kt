@@ -117,7 +117,6 @@ fun EmptyContentItem() {
                 modifier =
                     Modifier.size(32.dp)
                         .clip(CircleShape)
-                        .background(MaterialTheme.colorScheme.surfaceContainer),
             )
         },
         modifier =
