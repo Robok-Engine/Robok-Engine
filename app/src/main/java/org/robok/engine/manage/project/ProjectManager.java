@@ -137,7 +137,7 @@ public class ProjectManager {
             }
 
             try (FileOutputStream fos = new FileOutputStream(javaFile)) {
-                fos.write(template.getContent().getBytes());
+                fos.write(template.getCode().getBytes());
             }
 
         } catch (FileNotFoundException e) {
