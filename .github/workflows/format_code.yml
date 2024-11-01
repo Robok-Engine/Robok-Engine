@@ -24,7 +24,7 @@ jobs:
 
       - name: Run ktfmt on Kotlin files
         run: |
-          find . -name "*.kt" -exec java -jar ktfmt.jar --kotlinlang-style {} +
+          find . -name "*.kt" -exec java -jar ktfmt.jar --google-style {} +
 
       - name: Commit and Push changes
         run: |
