@@ -59,13 +59,13 @@ import org.robok.engine.feature.treeview.provider.FileWrapper
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.ui.activities.base.RobokActivity
+import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
-import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
+import org.robok.engine.ui.theme.RobokTheme
 
 class EditorActivity :
     RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -124,7 +124,7 @@ class EditorActivity :
         }
         if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
             binding.drawerLayout.closeDrawer(GravityCompat.END)
-            return 
+            return
         }
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(Strings.warning_exit_project_title))
@@ -257,12 +257,8 @@ class EditorActivity :
                 override fun onDrawerStateChanged(newState: Int) {}
             }
         )
-        
-        binding.drawerEditorRightComposeView.setContent {
-            RobokTheme {
-                ProjectInfoDrawer()
-            }
-        }
+
+        binding.drawerEditorRightComposeView.setContent { RobokTheme { ProjectInfoDrawer() } }
     }
 
     private fun configureEditor() {

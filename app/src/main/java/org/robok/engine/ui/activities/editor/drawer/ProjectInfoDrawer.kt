@@ -17,38 +17,31 @@ package org.robok.engine.ui.activities.editor.drawer
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.foundation.*
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
-import androidx.compose.runtime.*
-import androidx.compose.material3.*
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
 import org.robok.engine.strings.Strings
 
 @Composable
 fun ProjectInfoDrawer() {
-    var selectedTabIndex by remember {
-        mutableStateOf(0)
-    }
-    val tabTitles = listOf(
-        stringResource(id = Strings.common_word_logs),
-        stringResource(id = Strings.text_diagnostic)
-    )
+    var selectedTabIndex by remember { mutableStateOf(0) }
+    val tabTitles =
+        listOf(
+            stringResource(id = Strings.common_word_logs),
+            stringResource(id = Strings.text_diagnostic),
+        )
 
     Column {
-        TabRow(
-            selectedTabIndex = selectedTabIndex
-        ) {
+        TabRow(selectedTabIndex = selectedTabIndex) {
             tabTitles.forEachIndexed { index, title ->
                 Tab(
                     selected = selectedTabIndex == index,
-                    onClick = {
-                        selectedTabIndex = index
-                    },
-                    text = {
-                        Text(title)
-                    }
+                    onClick = { selectedTabIndex = index },
+                    text = { Text(title) },
                 )
             }
         }
@@ -61,15 +54,7 @@ fun ProjectInfoDrawer() {
 
 @Composable
 private fun DrawerContent(text: String) {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(
-            text = text,
-            fontSize = 24.sp
-        )
+    Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
+        Text(text = text, fontSize = 24.sp)
     }
 }
