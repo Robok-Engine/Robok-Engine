@@ -455,7 +455,7 @@ class EditorActivity :
         code: String,
         fileName: String
     )  {
-        FileUtil.writeFile(ProjectManager.getAndroidResPath().absolutePath + "/layout/${fileName}.xml", code)
+        FileUtil.writeFile(projectManager.getAndroidResPath().absolutePath + "/layout/${fileName}.xml", code)
         Toast.makeText(this, getString(Strings.text_saved), Toast.LENGTH_SHORT).show()
     }
 
