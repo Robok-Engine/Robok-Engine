@@ -185,7 +185,6 @@ class EditorActivity :
     override fun onCompileError(error: String) {}
 
     private fun configureScreen() {
-        configureTabLayout()
         configureToolbar()
         configureDrawer()
         configureEditor()
