@@ -54,7 +54,7 @@ fun ProjectInfoDrawer() {
 
 @Composable
 private fun DrawerContent(text: String) {
-    Box(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
+    Column(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
         Text(text = text, fontSize = 24.sp)
     }
 }

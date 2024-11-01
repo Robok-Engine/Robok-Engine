@@ -30,6 +30,8 @@ import org.robok.engine.feature.treeview.model.Node
 
 @Composable
 fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
-    Text(text = stringResource(id = Strings.common_word_files))
-    FileTree(path = path, onClick = onClick)
+    Column {
+        Text(text = stringResource(id = Strings.common_word_files))
+        FileTree(path = path, onClick = onClick)
+    }
 }
