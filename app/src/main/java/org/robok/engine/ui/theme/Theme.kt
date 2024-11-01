@@ -38,7 +38,11 @@ import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 @Composable
-fun RobokTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable () -> Unit) {
+fun RobokTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    content: @Composable () -> Unit,
+    isActivity: Boolean = true
+) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
     val dynamicColor by
@@ -69,10 +73,12 @@ fun RobokTheme(darkTheme: Boolean = isSystemInDarkTheme(), content: @Composable 
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
-            (view.context as Activity).apply {
-                WindowCompat.getInsetsController(window, window.decorView).apply {
-                    isAppearanceLightStatusBars = !darkTheme
-                    isAppearanceLightNavigationBars = !darkTheme
+            if (isActivity) {
+                (view.context as Activity).apply {
+                    WindowCompat.getInsetsController(window, window.decorView).apply {
+                        isAppearanceLightStatusBars = !darkTheme
+                        isAppearanceLightNavigationBars = !darkTheme
+                    }
                 }
             }
         }
