@@ -20,13 +20,13 @@ package org.robok.engine.templates.logic
 
 open class ScreenLogicTemplate: JavaClassTemplate() {
 
-    override var code: String? =
+    override var code: String =
         """
-        package ${getCodeClassPackageName()};
+        package ${packageName};
         
         import robok.game.screen.GameScreen;
         
-        public class ${getCodeClassName()} extends GameScreen {
+        public class ${name} extends GameScreen {
         
             @Override
             public void onScreenCreated() {
@@ -37,6 +37,6 @@ open class ScreenLogicTemplate: JavaClassTemplate() {
         
     
     override var name: String = "Screen Logic"
-    override var packageName: String? = "org.robok.empty"
-    override var extension: String? = ".java"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".java"
 }

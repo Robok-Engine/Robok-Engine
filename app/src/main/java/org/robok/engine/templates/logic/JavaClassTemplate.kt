@@ -21,7 +21,7 @@ import org.robok.engine.templates.CodeTemplate
 
 open class JavaClassTemplate: CodeTemplate() {
 
-    override var code: String? = 
+    override var code: String = 
         """
         package ${getCodeClassPackageName()};
         
@@ -30,7 +30,7 @@ open class JavaClassTemplate: CodeTemplate() {
         }
         """.trimIndent()
     
-    override var name: String? = "Java Class"
-    override var packageName: String? = "org.robok.empty"
-    override var extension: String? = ".java"
+    override var name: String = "Java Class"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".java"
 }
