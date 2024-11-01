@@ -32,6 +32,7 @@ import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
 import org.robok.engine.feature.treeview.provider.FileWrapper
+import java.io.File
 
 @Composable
 fun FileTree(
