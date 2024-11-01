@@ -205,6 +205,7 @@ class EditorActivity :
 
     private fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
+        binding.toolbar.setTitle(projectManager.getProjectName())
         binding.toolbar.setNavigationOnClickListener {
             if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
                 binding.drawerLayout.closeDrawer(GravityCompat.START)
