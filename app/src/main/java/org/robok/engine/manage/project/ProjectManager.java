@@ -30,7 +30,7 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import org.robok.engine.models.project.ProjectTemplate;
-import org.robok.engine.templates.ui.ScreenLogicTemplate;
+import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 import org.robok.engine.core.utils.ZipUtilsKt;
 
