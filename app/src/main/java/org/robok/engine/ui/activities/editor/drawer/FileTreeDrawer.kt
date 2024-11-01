@@ -35,7 +35,8 @@ fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
     Text(
       text = stringResource(id = Strings.common_word_files),
       style = Typography.titleMedium,
-      textSize= 18.sp,
+      fontSize = 20.sp,
+      color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(start = 18.dp),
     )
     FileTree(
