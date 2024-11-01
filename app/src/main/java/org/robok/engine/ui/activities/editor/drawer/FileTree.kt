@@ -34,7 +34,7 @@ import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
 import org.robok.engine.feature.treeview.provider.FileWrapper
 
 @Composable
-private fun FileTree(
+fun FileTree(
     path: String,
     onClick: (Node<FileObject>) -> Unit
 ) {
