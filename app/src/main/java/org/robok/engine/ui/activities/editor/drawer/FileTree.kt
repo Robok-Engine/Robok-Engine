@@ -36,7 +36,7 @@ import org.robok.engine.feature.treeview.provider.FileWrapper
 @Composable
 private fun FileTree(
     path: String,
-    onClick: (Node<FileObject>)
+    onClick: (Node<FileObject>) -> Unit
 ) {
     AndroidView(
         factory = { context ->
