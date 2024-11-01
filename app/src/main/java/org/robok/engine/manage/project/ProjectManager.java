@@ -262,7 +262,7 @@ public class ProjectManager {
      * Method to get AndroidManifest File
      * @return A File instance of AndroidManifest File
      */
-    private File getAndroidManifestFile() {
+    public File getAndroidManifestFile() {
         var path = new File(context.getFilesDir(), getProjectName() + "/xml/AndroidManifest.xml");
         return path;
     }
@@ -271,7 +271,7 @@ public class ProjectManager {
      * Method to get Android Res file path
      * @return A File instance of Android Res path
      */
-    private File getAndroidResPath() {
+    public File getAndroidResPath() {
         var path = new File(context.getFilesDir(), getProjectName() + "/xml/res/");
         return path;
     }
