@@ -60,10 +60,9 @@ import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokActivity
-import org.robok.engine.ui.activities.editor.diagnostic.DiagnosticFragment
 import org.robok.engine.ui.activities.editor.event.EditorEvent
-import org.robok.engine.ui.activities.editor.logs.LogsFragment
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
+import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 
@@ -206,44 +205,6 @@ class EditorActivity :
         binding.save.setOnClickListener { editorViewModel.saveFile() }
     }
 
-    private fun configureTabLayout() {
-        binding.tabLayout.addOnTabSelectedListener(
-            object : TabLayout.OnTabSelectedListener {
-                override fun onTabSelected(tab: TabLayout.Tab?) {
-                    tab?.let {
-                        when (it.text) {
-                            getString(Strings.text_logs) -> {
-                                supportFragmentManager
-                                    .beginTransaction()
-                                    .replace(
-                                        Ids.drawer_editor_right_fragment_container,
-                                        LogsFragment(),
-                                    )
-                                    .commit()
-                            }
-
-                            getString(Strings.text_diagnostic) -> {
-                                supportFragmentManager
-                                    .beginTransaction()
-                                    .replace(
-                                        Ids.drawer_editor_right_fragment_container,
-                                        DiagnosticFragment(),
-                                    )
-                                    .commit()
-                            }
-
-                            else -> {}
-                        }
-                    }
-                }
-
-                override fun onTabReselected(tab: TabLayout.Tab?) {}
-
-                override fun onTabUnselected(tab: TabLayout.Tab?) {}
-            }
-        )
-    }
-
     private fun configureToolbar() {
         binding.diagnosticStatusDotProgress.startAnimation()
         binding.toolbar.setNavigationOnClickListener {
@@ -259,7 +220,6 @@ class EditorActivity :
             } else {
                 binding.drawerLayout.openDrawer(GravityCompat.END)
             }
-            binding.tabLayout.getTabAt(1)?.select()
         }
     }
 
@@ -297,6 +257,10 @@ class EditorActivity :
                 override fun onDrawerStateChanged(newState: Int) {}
             }
         )
+        
+        binding.drawerEditorRightComposeView.setContent {
+            ProjectInfoDrawer()
+        }
     }
 
     private fun configureEditor() {

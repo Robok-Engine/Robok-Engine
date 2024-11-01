@@ -207,25 +207,8 @@
             android:clickable="true"
             android:orientation="vertical">
 
-            <com.google.android.material.tabs.TabLayout
-                android:id="@+id/tab_layout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_logs"  />
-
-                <com.google.android.material.tabs.TabItem
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/text_diagnostic" />
-
-            </com.google.android.material.tabs.TabLayout>
-
-            <FrameLayout
-                android:id="@+id/drawer_editor_right_fragment_container"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/drawer_editor_right_compose_view"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
 
