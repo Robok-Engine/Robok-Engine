@@ -41,7 +41,7 @@ private fun FileTree(
     AndroidView(
         factory = { context ->
             val fileObject = FileWrapper(File(path))
-            FileTreeView.apply {
+            FileTreeView(context).apply {
                 loadFiles(fileObject)
                 setOnFileClickListener(object : FileClickListener {
                     override fun onClick(node: Node<FileObject>) {
