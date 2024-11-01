@@ -24,14 +24,14 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.strings.Strings
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
+import org.robok.engine.strings.Strings
 
 @Composable
 fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
-    Column {
-        Text(text = stringResource(id = Strings.common_word_files))
-        FileTree(path = path, onClick = onClick)
-    }
+  Column {
+    Text(text = stringResource(id = Strings.common_word_files))
+    FileTree(path = path, onClick = onClick)
+  }
 }

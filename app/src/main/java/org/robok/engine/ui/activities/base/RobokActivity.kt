@@ -43,90 +43,84 @@ import org.robok.engine.ui.theme.XMLThemeManager
 
 open class RobokActivity : AppCompatActivity() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        val themeManager = XMLThemeManager()
-        runBlocking { themeManager.apply(this@RobokActivity) }
-        super.onCreate(savedInstanceState)
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    val themeManager = XMLThemeManager()
+    runBlocking { themeManager.apply(this@RobokActivity) }
+    super.onCreate(savedInstanceState)
+  }
 
-    fun handleInsetts(rootView: View) {
-        Insetter.builder().padding(WindowInsetsCompat.Type.navigationBars()).applyToView(rootView)
-    }
+  fun handleInsetts(rootView: View) {
+    Insetter.builder().padding(WindowInsetsCompat.Type.navigationBars()).applyToView(rootView)
+  }
 
-    open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
-    }
+  open fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
+    toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
+  }
 
-    open fun isDarkMode(): Boolean {
-        val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-        return currentNightMode == Configuration.UI_MODE_NIGHT_YES
-    }
+  open fun isDarkMode(): Boolean {
+    val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    return currentNightMode == Configuration.UI_MODE_NIGHT_YES
+  }
 }
 
 open class RobokComposeActivity : RobokActivity(), PermissionListener {
-    private var showPermissionDialog by mutableStateOf(false)
-    private var permissionDialogText by mutableStateOf("")
-    private var onAllowClick: (() -> Unit)? = null
-    private var onDenyClick: (() -> Unit)? = null
+  private var showPermissionDialog by mutableStateOf(false)
+  private var permissionDialogText by mutableStateOf("")
+  private var onAllowClick: (() -> Unit)? = null
+  private var onDenyClick: (() -> Unit)? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        enableEdgeToEdge()
-        super.onCreate(savedInstanceState)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    enableEdgeToEdge()
+    super.onCreate(savedInstanceState)
+  }
+
+  @Composable
+  fun configurePermission() {
+    CheckPermissions()
+    if (showPermissionDialog) {
+      PermissionDialog(
+        icon = Icons.Default.Folder,
+        dialogText = permissionDialogText,
+        onAllowClicked = {
+          onAllowClick?.invoke()
+          showPermissionDialog = false
+        },
+        onDenyClicked = {
+          onDenyClick?.invoke()
+          showPermissionDialog = false
+        },
+        onDismissRequest = { showPermissionDialog = false },
+      )
     }
+  }
 
-    @Composable
-    fun configurePermission() {
-        CheckPermissions()
-        if (showPermissionDialog) {
-            PermissionDialog(
-                icon = Icons.Default.Folder,
-                dialogText = permissionDialogText,
-                onAllowClicked = {
-                    onAllowClick?.invoke()
-                    showPermissionDialog = false
-                },
-                onDenyClicked = {
-                    onDenyClick?.invoke()
-                    showPermissionDialog = false
-                },
-                onDismissRequest = { showPermissionDialog = false },
-            )
+  @Composable
+  private fun CheckPermissions() {
+    if (!getStoragePermStatus(this)) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        permissionDialogText = getString(Strings.warning_all_files_perm_message)
+        onAllowClick = {
+          requestAllFilesAccessPermission(this@RobokComposeActivity, this@RobokComposeActivity)
         }
-    }
-
-    @Composable
-    private fun CheckPermissions() {
-        if (!getStoragePermStatus(this)) {
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-                permissionDialogText = getString(Strings.warning_all_files_perm_message)
-                onAllowClick = {
-                    requestAllFilesAccessPermission(
-                        this@RobokComposeActivity,
-                        this@RobokComposeActivity,
-                    )
-                }
-            } else {
-                permissionDialogText = getString(Strings.warning_storage_perm_message)
-                onAllowClick = {
-                    requestReadWritePermissions(
-                        this@RobokComposeActivity,
-                        this@RobokComposeActivity,
-                    )
-                }
-            }
-            onDenyClick = { finish() }
-            showPermissionDialog = true
+      } else {
+        permissionDialogText = getString(Strings.warning_storage_perm_message)
+        onAllowClick = {
+          requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity)
         }
+      }
+      onDenyClick = { finish() }
+      showPermissionDialog = true
     }
+  }
 
-    override fun onReceive(status: Boolean) {
-        if (!status) {
-            showPermissionDialog = true
-            permissionDialogText = getString(Strings.error_storage_perm_message)
-            onAllowClick = {
-                requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity)
-            }
-            onDenyClick = { finish() }
-        }
+  override fun onReceive(status: Boolean) {
+    if (!status) {
+      showPermissionDialog = true
+      permissionDialogText = getString(Strings.error_storage_perm_message)
+      onAllowClick = {
+        requestReadWritePermissions(this@RobokComposeActivity, this@RobokComposeActivity)
+      }
+      onDenyClick = { finish() }
     }
+  }
 }

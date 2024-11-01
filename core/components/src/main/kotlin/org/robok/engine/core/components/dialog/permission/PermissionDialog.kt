@@ -35,66 +35,66 @@ import org.robok.engine.strings.Strings
 
 @Composable
 fun PermissionDialog(
-    icon: ImageVector,
-    dialogText: String,
-    onAllowClicked: () -> Unit,
-    onDenyClicked: () -> Unit,
-    onDismissRequest: () -> Unit,
+  icon: ImageVector,
+  dialogText: String,
+  onAllowClicked: () -> Unit,
+  onDenyClicked: () -> Unit,
+  onDismissRequest: () -> Unit,
 ) {
-    Dialog(onDismissRequest = {}) {
-        Box(
-            modifier =
-                Modifier.fillMaxWidth()
-                    .background(
-                        MaterialTheme.colorScheme.surfaceContainerHigh,
-                        shape = RoundedCornerShape(28.dp),
-                    )
-                    .padding(10.dp),
-            contentAlignment = Alignment.Center,
+  Dialog(onDismissRequest = {}) {
+    Box(
+      modifier =
+        Modifier.fillMaxWidth()
+          .background(
+            MaterialTheme.colorScheme.surfaceContainerHigh,
+            shape = RoundedCornerShape(28.dp),
+          )
+          .padding(10.dp),
+      contentAlignment = Alignment.Center,
+    ) {
+      Column(horizontalAlignment = Alignment.CenterHorizontally) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null,
+          tint = MaterialTheme.colorScheme.primary,
+          modifier = Modifier.size(80.dp).padding(top = 20.dp),
+        )
+
+        Text(
+          text = dialogText,
+          style = MaterialTheme.typography.titleLarge,
+          color = MaterialTheme.colorScheme.onSurface,
+          textAlign = TextAlign.Center,
+          modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp),
+        )
+
+        Button(
+          onClick = onAllowClicked,
+          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.primary,
-                    modifier = Modifier.size(80.dp).padding(top = 20.dp),
-                )
-
-                Text(
-                    text = dialogText,
-                    style = MaterialTheme.typography.titleLarge,
-                    color = MaterialTheme.colorScheme.onSurface,
-                    textAlign = TextAlign.Center,
-                    modifier = Modifier.padding(vertical = 20.dp, horizontal = 40.dp),
-                )
-
-                Button(
-                    onClick = onAllowClicked,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
-                ) {
-                    Text(
-                        text = stringResource(id = Strings.common_word_allow),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-
-                Spacer(modifier = Modifier.height(8.dp))
-
-                Button(
-                    onClick = onDenyClicked,
-                    modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
-                ) {
-                    Text(
-                        text = stringResource(id = Strings.common_word_deny),
-                        color = MaterialTheme.colorScheme.onPrimary,
-                        fontSize = 12.sp,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-                Spacer(modifier = Modifier.height(8.dp))
-            }
+          Text(
+            text = stringResource(id = Strings.common_word_allow),
+            color = MaterialTheme.colorScheme.onPrimary,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+          )
         }
+
+        Spacer(modifier = Modifier.height(8.dp))
+
+        Button(
+          onClick = onDenyClicked,
+          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
+        ) {
+          Text(
+            text = stringResource(id = Strings.common_word_deny),
+            color = MaterialTheme.colorScheme.onPrimary,
+            fontSize = 12.sp,
+            fontWeight = FontWeight.Bold,
+          )
+        }
+        Spacer(modifier = Modifier.height(8.dp))
+      }
     }
+  }
 }

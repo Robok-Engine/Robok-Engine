@@ -34,29 +34,29 @@ import org.robok.engine.strings.Strings
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun LibrariesScreen() {
-    val context = LocalContext.current
-    Screen(label = stringResource(id = Strings.settings_libraries_title)) {
-        PreferenceGroup { Screen(context) }
-    }
+  val context = LocalContext.current
+  Screen(label = stringResource(id = Strings.settings_libraries_title)) {
+    PreferenceGroup { Screen(context) }
+  }
 }
 
 @Composable
 private fun Screen(context: Context) {
-    val uriHandler = LocalUriHandler.current
-    val libs = remember { mutableStateOf<Libs?>(null) }
-    libs.value = Libs.Builder().withContext(context).build()
-    val libraries = libs.value!!.libraries
+  val uriHandler = LocalUriHandler.current
+  val libs = remember { mutableStateOf<Libs?>(null) }
+  libs.value = Libs.Builder().withContext(context).build()
+  val libraries = libs.value!!.libraries
 
-    libraries.forEach { library ->
-        LibraryItem(
-            library = library,
-            onClick = {
-                library.website?.let {
-                    if (it.isNotEmpty()) {
-                        // dont open for now uriHandler.openUri(it)
-                    }
-                }
-            },
-        )
-    }
+  libraries.forEach { library ->
+    LibraryItem(
+      library = library,
+      onClick = {
+        library.website?.let {
+          if (it.isNotEmpty()) {
+            // dont open for now uriHandler.openUri(it)
+          }
+        }
+      },
+    )
+  }
 }

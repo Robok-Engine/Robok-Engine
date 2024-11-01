@@ -23,36 +23,36 @@ import org.robok.engine.feature.treeview.interfaces.FileObject
 // wrapper for java.io.File
 class FileWrapper(val file: File) : FileObject {
 
-    override fun listFiles(): List<FileObject> {
-        val list = file.listFiles()
-        if (list.isNullOrEmpty()) {
-            return emptyList()
-        }
-
-        return list.map { f -> FileWrapper(f) }
+  override fun listFiles(): List<FileObject> {
+    val list = file.listFiles()
+    if (list.isNullOrEmpty()) {
+      return emptyList()
     }
 
-    fun getNativeFile(): File {
-        return file
-    }
+    return list.map { f -> FileWrapper(f) }
+  }
 
-    override fun isDirectory(): Boolean {
-        return file.isDirectory
-    }
+  fun getNativeFile(): File {
+    return file
+  }
 
-    override fun isFile(): Boolean {
-        return file.isFile
-    }
+  override fun isDirectory(): Boolean {
+    return file.isDirectory
+  }
 
-    override fun getName(): String {
-        return file.name
-    }
+  override fun isFile(): Boolean {
+    return file.isFile
+  }
 
-    override fun getParentFile(): FileObject? {
-        return file.parentFile?.let { FileWrapper(it) }
-    }
+  override fun getName(): String {
+    return file.name
+  }
 
-    override fun getAbsolutePath(): String {
-        return file.absolutePath
-    }
+  override fun getParentFile(): FileObject? {
+    return file.parentFile?.let { FileWrapper(it) }
+  }
+
+  override fun getAbsolutePath(): String {
+    return file.absolutePath
+  }
 }

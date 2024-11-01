@@ -25,91 +25,91 @@ import androidx.recyclerview.widget.RecyclerView
 
 class Logger {
 
-    private lateinit var adapter: LogAdapter
-    private lateinit var layoutManager: LinearLayoutManager
-    private val data: MutableList<Log> = mutableListOf()
+  private lateinit var adapter: LogAdapter
+  private lateinit var layoutManager: LinearLayoutManager
+  private val data: MutableList<Log> = mutableListOf()
 
-    private var mRecyclerView: RecyclerView? = null
+  private var mRecyclerView: RecyclerView? = null
 
-    fun attach(view: RecyclerView) {
-        mRecyclerView = view
-        init()
+  fun attach(view: RecyclerView) {
+    mRecyclerView = view
+    init()
+  }
+
+  private fun init() {
+    adapter = LogAdapter(data)
+    layoutManager = LinearLayoutManager(mRecyclerView?.context).apply { stackFromEnd = true }
+    mRecyclerView?.layoutManager = layoutManager
+    mRecyclerView?.adapter = adapter
+  }
+
+  fun d(tag: String, message: String) {
+    mRecyclerView?.post {
+      data.add(Log("", message))
+      adapter.notifyItemInserted(data.size)
+      scroll()
     }
+  }
 
-    private fun init() {
-        adapter = LogAdapter(data)
-        layoutManager = LinearLayoutManager(mRecyclerView?.context).apply { stackFromEnd = true }
-        mRecyclerView?.layoutManager = layoutManager
-        mRecyclerView?.adapter = adapter
-    }
-
-    fun d(tag: String, message: String) {
-        mRecyclerView?.post {
-            data.add(Log("", message))
-            adapter.notifyItemInserted(data.size)
-            scroll()
+  fun e(tagg: String, message: String) {
+    val tag = "" // "[$tagg]"
+    mRecyclerView?.post {
+      val messageSpan =
+        SpannableString(message).apply {
+          setSpan(
+            ForegroundColorSpan(0xffff0000.toInt()),
+            0,
+            message.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+          )
         }
-    }
 
-    fun e(tagg: String, message: String) {
-        val tag = "" // "[$tagg]"
-        mRecyclerView?.post {
-            val messageSpan =
-                SpannableString(message).apply {
-                    setSpan(
-                        ForegroundColorSpan(0xffff0000.toInt()),
-                        0,
-                        message.length,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-                    )
-                }
-
-            val tagSpan =
-                SpannableString(tag).apply {
-                    setSpan(
-                        ForegroundColorSpan(0xffff0000.toInt()),
-                        0,
-                        tag.length,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-                    )
-                }
-
-            data.add(Log(tagSpan, messageSpan))
-            adapter.notifyItemInserted(data.size)
-            scroll()
+      val tagSpan =
+        SpannableString(tag).apply {
+          setSpan(
+            ForegroundColorSpan(0xffff0000.toInt()),
+            0,
+            tag.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+          )
         }
+
+      data.add(Log(tagSpan, messageSpan))
+      adapter.notifyItemInserted(data.size)
+      scroll()
     }
+  }
 
-    fun w(tagg: String, message: String) {
-        val tag = "" // "[$tagg]"
-        mRecyclerView?.post {
-            val messageSpan =
-                SpannableString(message).apply {
-                    setSpan(
-                        ForegroundColorSpan(0xffff7043.toInt()),
-                        0,
-                        message.length,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-                    )
-                }
-
-            val tagSpan =
-                SpannableString(tag).apply {
-                    setSpan(
-                        ForegroundColorSpan(0xffff7043.toInt()),
-                        0,
-                        tag.length,
-                        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-                    )
-                }
-
-            data.add(Log(tagSpan, messageSpan))
-            adapter.notifyItemInserted(data.size)
-            scroll()
+  fun w(tagg: String, message: String) {
+    val tag = "" // "[$tagg]"
+    mRecyclerView?.post {
+      val messageSpan =
+        SpannableString(message).apply {
+          setSpan(
+            ForegroundColorSpan(0xffff7043.toInt()),
+            0,
+            message.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+          )
         }
-    }
 
-    private fun scroll() {
-        mRecyclerView?.smoothScrollToPosition(data.size - 1)
+      val tagSpan =
+        SpannableString(tag).apply {
+          setSpan(
+            ForegroundColorSpan(0xffff7043.toInt()),
+            0,
+            tag.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+          )
+        }
+
+      data.add(Log(tagSpan, messageSpan))
+      adapter.notifyItemInserted(data.size)
+      scroll()
     }
+  }
+
+  private fun scroll() {
+    mRecyclerView?.smoothScrollToPosition(data.size - 1)
+  }
 }

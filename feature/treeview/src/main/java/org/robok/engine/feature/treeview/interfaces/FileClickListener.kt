@@ -20,9 +20,9 @@ package org.robok.engine.feature.treeview.interfaces
 import org.robok.engine.feature.treeview.model.Node
 
 interface FileClickListener {
-    fun onClick(node: Node<FileObject>)
+  fun onClick(node: Node<FileObject>)
 }
 
 interface FileLongClickListener {
-    fun onLongClick(node: Node<FileObject>)
+  fun onLongClick(node: Node<FileObject>)
 }

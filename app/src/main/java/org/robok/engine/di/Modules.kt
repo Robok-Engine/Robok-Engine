@@ -36,22 +36,20 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 const val APP_PREFERENCES = "app_preferences"
 
 val appModule = module {
-    viewModel { (projectManager: ProjectManager) -> CreateProjectViewModel(projectManager) }
+  viewModel { (projectManager: ProjectManager) -> CreateProjectViewModel(projectManager) }
 
-    viewModelOf(::ManageProjectsViewModel)
+  viewModelOf(::ManageProjectsViewModel)
 
-    viewModelOf(::EditorViewModel)
+  viewModelOf(::EditorViewModel)
 
-    viewModel { (context: Context) -> SettingsRDKViewModel(context) }
+  viewModel { (context: Context) -> SettingsRDKViewModel(context) }
 }
 
 val appPreferencesModule = module {
-    singleOf(::AppPreferencesRepository)
-    viewModelOf(::AppPreferencesViewModel)
+  singleOf(::AppPreferencesRepository)
+  viewModelOf(::AppPreferencesViewModel)
 
-    single {
-        PreferenceDataStoreFactory.create {
-            androidContext().preferencesDataStoreFile(APP_PREFERENCES)
-        }
-    }
+  single {
+    PreferenceDataStoreFactory.create { androidContext().preferencesDataStoreFile(APP_PREFERENCES) }
+  }
 }

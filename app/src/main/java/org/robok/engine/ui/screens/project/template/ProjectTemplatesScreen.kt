@@ -62,74 +62,66 @@ import org.robok.engine.strings.Strings
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
-    val navController = LocalMainNavController.current
+  val navController = LocalMainNavController.current
 
-    val templates = remember { mutableStateListOf<ProjectTemplate>() }
+  val templates = remember { mutableStateListOf<ProjectTemplate>() }
 
-    LaunchedEffect(Unit) { templates.add(DefaultTemplate()) }
+  LaunchedEffect(Unit) { templates.add(DefaultTemplate()) }
 
-    val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
 
-    Scaffold(
-        modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            LargeTopAppBar(
-                title = { Text(stringResource(Strings.common_word_templates)) },
-                navigationIcon = {
-                    IconButton(onClick = navController::navigateUp) {
-                        Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = null)
-                    }
-                },
-                scrollBehavior = scrollBehavior,
-            )
+  Scaffold(
+    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+    topBar = {
+      LargeTopAppBar(
+        title = { Text(stringResource(Strings.common_word_templates)) },
+        navigationIcon = {
+          IconButton(onClick = navController::navigateUp) {
+            Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = null)
+          }
         },
-    ) { innerPadding ->
-        Box(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
-            LazyVerticalGrid(columns = GridCells.Fixed(2)) {
-                items(templates) {
-                    Card(
-                        modifier = Modifier.heightIn(max = 250.dp),
-                        colors =
-                            CardDefaults.cardColors()
-                                .copy(
-                                    containerColor =
-                                        MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)
-                                ),
-                        shape = MaterialTheme.shapes.medium,
-                        onClick = { onTemplateClick(it) },
-                    ) {
-                        Box(
-                            modifier = Modifier.fillMaxHeight().weight(1f),
-                            contentAlignment = Alignment.Center,
-                        ) {
-                            Image(
-                                painter = painterResource(id = Drawables.splash_bg),
-                                contentScale = ContentScale.Crop,
-                                contentDescription = null,
-                            )
+        scrollBehavior = scrollBehavior,
+      )
+    },
+  ) { innerPadding ->
+    Box(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
+      LazyVerticalGrid(columns = GridCells.Fixed(2)) {
+        items(templates) {
+          Card(
+            modifier = Modifier.heightIn(max = 250.dp),
+            colors =
+              CardDefaults.cardColors()
+                .copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
+            shape = MaterialTheme.shapes.medium,
+            onClick = { onTemplateClick(it) },
+          ) {
+            Box(
+              modifier = Modifier.fillMaxHeight().weight(1f),
+              contentAlignment = Alignment.Center,
+            ) {
+              Image(
+                painter = painterResource(id = Drawables.splash_bg),
+                contentScale = ContentScale.Crop,
+                contentDescription = null,
+              )
 
-                            Image(
-                                painter = painterResource(id = Drawables.ic_robok),
-                                contentDescription = null,
-                            )
-                        }
-
-                        ListItem(
-                            overlineContent = {
-                                Text(
-                                    text =
-                                        if (it.javaSupport) "Java"
-                                        else if (it.kotlinSupport) "Kotlin" else "",
-                                    fontWeight = FontWeight.Bold,
-                                )
-                            },
-                            headlineContent = { Text(it.name) },
-                            supportingContent = { Text(it.packageName) },
-                            colors = ListItemDefaults.colors(containerColor = Color.Transparent),
-                        )
-                    }
-                }
+              Image(painter = painterResource(id = Drawables.ic_robok), contentDescription = null)
             }
+
+            ListItem(
+              overlineContent = {
+                Text(
+                  text = if (it.javaSupport) "Java" else if (it.kotlinSupport) "Kotlin" else "",
+                  fontWeight = FontWeight.Bold,
+                )
+              },
+              headlineContent = { Text(it.name) },
+              supportingContent = { Text(it.packageName) },
+              colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+            )
+          }
         }
+      }
     }
+  }
 }

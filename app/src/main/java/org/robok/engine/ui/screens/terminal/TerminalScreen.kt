@@ -43,84 +43,84 @@ private var terminalView: TerminalView? = null
 
 @Composable
 fun TerminalScreen(path: String? = null) {
-    val activity = LocalContext.current as? Activity
-    val navController = LocalMainNavController.current
+  val activity = LocalContext.current as? Activity
+  val navController = LocalMainNavController.current
 
-    cwd =
-        path?.let { path ->
-            if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
-        } ?: RobokApplication.instance.filesDir.absolutePath
+  cwd =
+    path?.let { path ->
+      if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
+    } ?: RobokApplication.instance.filesDir.absolutePath
+  activity?.let {
+    it.window.setNavigationBarColor(AndroidColor.BLACK)
+    it.window.setStatusBarColor(AndroidColor.BLACK)
+  }
+  BackHandler {
     activity?.let {
-        it.window.setNavigationBarColor(AndroidColor.BLACK)
-        it.window.setStatusBarColor(AndroidColor.BLACK)
+      it.window.setNavigationBarColor(AndroidColor.TRANSPARENT)
+      it.window.setStatusBarColor(AndroidColor.TRANSPARENT)
     }
-    BackHandler {
-        activity?.let {
-            it.window.setNavigationBarColor(AndroidColor.TRANSPARENT)
-            it.window.setStatusBarColor(AndroidColor.TRANSPARENT)
-        }
-        navController.popBackStack()
-    }
-    Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
+    navController.popBackStack()
+  }
+  Column(Modifier.padding(top = 40.dp).background(Color.Black)) { TerminalView() }
 }
 
 @Composable
 private fun TerminalView(modifier: Modifier = Modifier) {
-    AndroidView(
-        factory = { context ->
-            TerminalView(context, null).apply {
-                setTextSize(24)
-                session = createSession()
-                attachSession(session)
-                val viewClient =
-                    RTerminalViewClient(
-                        onSingleTap = {
-                            val kUtil = KeyboardUtil(RobokApplication.instance)
-                            kUtil.showSoftInput(this)
-                        },
-                        onKeyEventEnter = {
-                            // finish()
-                        },
-                    )
-                setTerminalViewClient(viewClient)
-                terminalView = this
-            }
-        },
-        modifier = modifier,
-        update = { terminalView -> onScreenChanged() },
-    )
+  AndroidView(
+    factory = { context ->
+      TerminalView(context, null).apply {
+        setTextSize(24)
+        session = createSession()
+        attachSession(session)
+        val viewClient =
+          RTerminalViewClient(
+            onSingleTap = {
+              val kUtil = KeyboardUtil(RobokApplication.instance)
+              kUtil.showSoftInput(this)
+            },
+            onKeyEventEnter = {
+              // finish()
+            },
+          )
+        setTerminalViewClient(viewClient)
+        terminalView = this
+      }
+    },
+    modifier = modifier,
+    update = { terminalView -> onScreenChanged() },
+  )
 }
 
 private fun onScreenChanged() {
-    terminalView?.onScreenUpdated()
+  terminalView?.onScreenUpdated()
 }
 
 private fun createSession(): TerminalSession {
-    val workingDir = cwd
-    val tmpDir = File(RobokApplication.instance.filesDir.parentFile, "tmp")
+  val workingDir = cwd
+  val tmpDir = File(RobokApplication.instance.filesDir.parentFile, "tmp")
 
-    if (tmpDir.exists()) {
-        tmpDir.deleteRecursively()
-    }
-    tmpDir.mkdirs()
+  if (tmpDir.exists()) {
+    tmpDir.deleteRecursively()
+  }
+  tmpDir.mkdirs()
 
-    val env =
-        arrayOf(
-            "TMP_DIR=${tmpDir.absolutePath}",
-            "HOME=${RobokApplication.instance.filesDir.absolutePath}",
-            "PUBLIC_HOME=${RobokApplication.instance.getExternalFilesDir(null)?.absolutePath}",
-            "COLORTERM=truecolor",
-            "TERM=xterm-256color",
-        )
-
-    val shell = "/system/bin/sh"
-    val sessionClient = RTerminalSessionClient(onTextChange = { onScreenChanged() })
-    return TerminalSession(
-        shell,
-        workingDir,
-        arrayOf(""),
-        env,
-        TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
-        sessionClient,
+  val env =
+    arrayOf(
+      "TMP_DIR=${tmpDir.absolutePath}",
+      "HOME=${RobokApplication.instance.filesDir.absolutePath}",
+      "PUBLIC_HOME=${RobokApplication.instance.getExternalFilesDir(null)?.absolutePath}",
+      "COLORTERM=truecolor",
+      "TERM=xterm-256color",
     )
+
+  val shell = "/system/bin/sh"
+  val sessionClient = RTerminalSessionClient(onTextChange = { onScreenChanged() })
+  return TerminalSession(
+    shell,
+    workingDir,
+    arrayOf(""),
+    env,
+    TerminalEmulator.DEFAULT_TERMINAL_TRANSCRIPT_ROWS,
+    sessionClient,
+  )
 }

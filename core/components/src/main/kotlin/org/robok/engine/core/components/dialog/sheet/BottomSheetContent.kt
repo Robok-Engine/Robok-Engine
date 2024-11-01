@@ -38,40 +38,37 @@ import androidx.compose.ui.unit.dp
 
 @Composable
 fun BottomSheetContent(
-    buttons: @Composable RowScope.() -> Unit,
-    modifier: Modifier = Modifier,
-    title: (@Composable () -> Unit)? = null,
-    text: @Composable (() -> Unit)? = null,
-    content: @Composable (() -> Unit)? = null,
+  buttons: @Composable RowScope.() -> Unit,
+  modifier: Modifier = Modifier,
+  title: (@Composable () -> Unit)? = null,
+  text: @Composable (() -> Unit)? = null,
+  content: @Composable (() -> Unit)? = null,
 ) {
-    val contentPadding = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
+  val contentPadding = Modifier.padding(start = 16.dp, top = 16.dp, end = 16.dp)
 
-    Column(modifier = modifier.fillMaxWidth().safeDrawingPadding()) {
-        title?.let {
-            Box(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
-                val textStyle = MaterialTheme.typography.titleLarge
-                ProvideTextStyle(textStyle, title)
-            }
-        }
-        text?.let {
-            Box(modifier = contentPadding) {
-                val textStyle = MaterialTheme.typography.bodyMedium
-                ProvideTextStyle(textStyle, text)
-            }
-        }
-        content?.let {
-            Box(
-                modifier =
-                    Modifier.padding(top = if (title != null || text != null) 16.dp else 0.dp)
-            ) {
-                content()
-            }
-        }
-        Row(
-            horizontalArrangement = Arrangement.End,
-            modifier = Modifier.padding(16.dp).fillMaxWidth(),
-        ) {
-            buttons()
-        }
+  Column(modifier = modifier.fillMaxWidth().safeDrawingPadding()) {
+    title?.let {
+      Box(modifier = Modifier.padding(start = 16.dp, end = 16.dp)) {
+        val textStyle = MaterialTheme.typography.titleLarge
+        ProvideTextStyle(textStyle, title)
+      }
     }
+    text?.let {
+      Box(modifier = contentPadding) {
+        val textStyle = MaterialTheme.typography.bodyMedium
+        ProvideTextStyle(textStyle, text)
+      }
+    }
+    content?.let {
+      Box(modifier = Modifier.padding(top = if (title != null || text != null) 16.dp else 0.dp)) {
+        content()
+      }
+    }
+    Row(
+      horizontalArrangement = Arrangement.End,
+      modifier = Modifier.padding(16.dp).fillMaxWidth(),
+    ) {
+      buttons()
+    }
+  }
 }

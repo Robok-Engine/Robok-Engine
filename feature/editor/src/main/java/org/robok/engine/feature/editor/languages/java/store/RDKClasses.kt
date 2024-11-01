@@ -33,45 +33,45 @@ import org.robok.engine.feature.editor.languages.java.store.models.ClassItem
 
 class RDKClasses {
 
-    companion object {
-        private const val TAG = "RDKClasses"
-        private const val RDK_VERSION = "RDK-1"
-        private const val URL =
-            "https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/$RDK_VERSION/classes.json"
-    }
+  companion object {
+    private const val TAG = "RDKClasses"
+    private const val RDK_VERSION = "RDK-1"
+    private const val URL =
+      "https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/$RDK_VERSION/classes.json"
+  }
 
-    private val client = OkHttpClient()
+  private val client = OkHttpClient()
 
-    private suspend fun fetchClasses(): List<ClassItem> =
-        withContext(Dispatchers.IO) {
-            val request = Request.Builder().url(URL).build()
-            try {
-                client.newCall(request).execute().use { response ->
-                    if (response.isSuccessful) {
-                        val jsonString = response.body?.string()
-                        Log.d(TAG, "JSON Received: $jsonString")
-                        jsonString?.let {
-                            return@withContext Json.decodeFromString<List<ClassItem>>(it)
-                        }
-                    } else {
-                        Log.e(TAG, "Error: ${response.message}")
-                    }
-                }
-            } catch (e: Exception) {
-                Log.e(TAG, "Error:", e)
+  private suspend fun fetchClasses(): List<ClassItem> =
+    withContext(Dispatchers.IO) {
+      val request = Request.Builder().url(URL).build()
+      try {
+        client.newCall(request).execute().use { response ->
+          if (response.isSuccessful) {
+            val jsonString = response.body?.string()
+            Log.d(TAG, "JSON Received: $jsonString")
+            jsonString?.let {
+              return@withContext Json.decodeFromString<List<ClassItem>>(it)
             }
-            emptyList()
+          } else {
+            Log.e(TAG, "Error: ${response.message}")
+          }
         }
-
-    suspend fun getClasses(): HashMap<String, String> {
-        val classes = fetchClasses()
-        return classes.associate { it.className to it.classPackageName } as HashMap<String, String>
+      } catch (e: Exception) {
+        Log.e(TAG, "Error:", e)
+      }
+      emptyList()
     }
+
+  suspend fun getClasses(): HashMap<String, String> {
+    val classes = fetchClasses()
+    return classes.associate { it.className to it.classPackageName } as HashMap<String, String>
+  }
 }
 
 object RDKClassesHelper {
-    @JvmStatic
-    fun getClasses(): HashMap<String, String> {
-        return runBlocking { RDKClasses().getClasses() }
-    }
+  @JvmStatic
+  fun getClasses(): HashMap<String, String> {
+    return runBlocking { RDKClasses().getClasses() }
+  }
 }

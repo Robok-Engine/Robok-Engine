@@ -26,34 +26,34 @@ import androidx.recyclerview.widget.RecyclerView
 
 class LogAdapter(private val mData: List<Log>) : RecyclerView.Adapter<LogAdapter.ViewHolder>() {
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        return ViewHolder(FrameLayout(parent.context))
-    }
+  override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+    return ViewHolder(FrameLayout(parent.context))
+  }
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val log = mData[position]
+  override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+    val log = mData[position]
 
-        val sb =
-            SpannableStringBuilder().apply {
-                // append("[")
-                append(log.tag)
-                // append("]")
-                append(" ")
-                append(log.message)
-            }
+    val sb =
+      SpannableStringBuilder().apply {
+        // append("[")
+        append(log.tag)
+        // append("]")
+        append(" ")
+        append(log.message)
+      }
 
-        holder.mText.text = sb
-    }
+    holder.mText.text = sb
+  }
 
-    override fun getItemCount(): Int {
-        return mData.size
-    }
+  override fun getItemCount(): Int {
+    return mData.size
+  }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val mText: TextView =
-            TextView(view.context).apply {
-                setTextIsSelectable(true)
-                (view as ViewGroup).addView(this)
-            }
-    }
+  class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    val mText: TextView =
+      TextView(view.context).apply {
+        setTextIsSelectable(true)
+        (view as ViewGroup).addView(this)
+      }
+  }
 }

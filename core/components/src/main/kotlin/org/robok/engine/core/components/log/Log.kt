@@ -29,37 +29,37 @@ import org.robok.engine.core.components.R
 
 class Log : AppCompatTextView {
 
-    constructor(context: Context) : super(context) {
-        init(context, null, "")
-    }
+  constructor(context: Context) : super(context) {
+    init(context, null, "")
+  }
 
-    constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
-        init(context, attrs, "")
-    }
+  constructor(context: Context, attrs: AttributeSet?) : super(context, attrs) {
+    init(context, attrs, "")
+  }
 
-    constructor(
-        context: Context,
-        attrs: AttributeSet?,
-        defStyleAttr: Int,
-    ) : super(context, attrs, defStyleAttr) {
-        init(context, attrs, "")
-    }
+  constructor(
+    context: Context,
+    attrs: AttributeSet?,
+    defStyleAttr: Int,
+  ) : super(context, attrs, defStyleAttr) {
+    init(context, attrs, "")
+  }
 
-    constructor(context: Context, text: String) : super(context) {
-        init(context, null, text)
-    }
+  constructor(context: Context, text: String) : super(context) {
+    init(context, null, text)
+  }
 
-    private fun init(context: Context, attrs: AttributeSet?, text: String) {
-        setText(text)
-        textSize = 12f
+  private fun init(context: Context, attrs: AttributeSet?, text: String) {
+    setText(text)
+    textSize = 12f
 
-        val paddingInPx = resources.getDimensionPixelSize(R.dimen.log_padding)
-        setPadding(paddingInPx, 0, paddingInPx, 0)
-        /*
-           left = paddingInPx,
-           top = 0,
-           right = paddingInPx,
-           bottom = 0
-        */
-    }
+    val paddingInPx = resources.getDimensionPixelSize(R.dimen.log_padding)
+    setPadding(paddingInPx, 0, paddingInPx, 0)
+    /*
+       left = paddingInPx,
+       top = 0,
+       right = paddingInPx,
+       bottom = 0
+    */
+  }
 }

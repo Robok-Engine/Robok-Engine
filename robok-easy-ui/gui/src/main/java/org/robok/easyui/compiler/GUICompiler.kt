@@ -33,26 +33,26 @@ import org.robok.easyui.compiler.listener.GUIParserListener
 
 class GUICompiler(guiBuilder: GUIBuilder, code: String) {
 
-    init {
-        val th = Thread {
-            try {
-                val input = CharStreams.fromString(code)
-                val lexer = GUILexer(input)
-                val tokens = CommonTokenStream(lexer)
-                val parser = GUIParser(tokens)
+  init {
+    val th = Thread {
+      try {
+        val input = CharStreams.fromString(code)
+        val lexer = GUILexer(input)
+        val tokens = CommonTokenStream(lexer)
+        val parser = GUIParser(tokens)
 
-                parser.interpreter.predictionMode = PredictionMode.SLL
+        parser.interpreter.predictionMode = PredictionMode.SLL
 
-                val compilationUnitContext = parser.guiFile()
+        val compilationUnitContext = parser.guiFile()
 
-                val compiler = GUIParserListener(guiBuilder)
-                val walker = ParseTreeWalker.DEFAULT
-                walker.walk(compiler, compilationUnitContext)
-            } catch (e: Exception) {
-                guiBuilder.onError(e.toString())
-            }
-        }
-        th.priority = Thread.MIN_PRIORITY
-        th.start()
+        val compiler = GUIParserListener(guiBuilder)
+        val walker = ParseTreeWalker.DEFAULT
+        walker.walk(compiler, compilationUnitContext)
+      } catch (e: Exception) {
+        guiBuilder.onError(e.toString())
+      }
     }
+    th.priority = Thread.MIN_PRIORITY
+    th.start()
+  }
 }

@@ -25,11 +25,11 @@ import androidx.compose.animation.slideOutHorizontally
 
 object NavigationAnimationTransitions {
 
-    val enterTransition = fadeIn(tween(250)) + slideInHorizontally { it / 2 }
+  val enterTransition = fadeIn(tween(250)) + slideInHorizontally { it / 2 }
 
-    val exitTransition = fadeOut(tween(200)) + slideOutHorizontally { -it / 2 }
+  val exitTransition = fadeOut(tween(200)) + slideOutHorizontally { -it / 2 }
 
-    val popEnterTransition = fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
+  val popEnterTransition = fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
 
-    val popExitTransition = fadeOut(tween(200)) + slideOutHorizontally { it / 2 }
+  val popExitTransition = fadeOut(tween(200)) + slideOutHorizontally { it / 2 }
 }

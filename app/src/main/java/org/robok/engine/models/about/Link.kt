@@ -20,8 +20,8 @@ package org.robok.engine.models.about
 import androidx.annotation.DrawableRes
 
 data class Link(
-    val name: String,
-    val description: String,
-    @DrawableRes val imageResId: Int,
-    val url: String,
+  val name: String,
+  val description: String,
+  @DrawableRes val imageResId: Int,
+  val url: String,
 )

@@ -35,43 +35,41 @@ private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_w
 
 class AppPreferencesRepository(private val dataStore: DataStore<Preferences>) {
 
-    val installedRDKVersion =
-        dataStore.data.map {
-            it[installedRDKVersionPreference] ?: DefaultValues.INSTALLED_RDK_VERSION
-        }
-    val appIsUseMonet =
-        dataStore.data.map { it[appIsUseMonetPreference] ?: DefaultValues.IS_USE_MONET }
-    val appIsUseAmoled =
-        dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.IS_USE_AMOLED }
-    val editorTheme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.EDITOR_THEME }
-    val editorTypeface =
-        dataStore.data.map { it[editorTypefacePreference] ?: DefaultValues.EDITOR_TYPEFACE }
-    val editorIsUseWordWrap =
-        dataStore.data.map {
-            it[editorIsUseWordWrapPreference] ?: DefaultValues.EDITOR_IS_USE_WORD_WRAP
-        }
-
-    suspend fun changeInstalledRDK(value: String) {
-        dataStore.edit { preferences -> preferences[installedRDKVersionPreference] = value }
+  val installedRDKVersion =
+    dataStore.data.map { it[installedRDKVersionPreference] ?: DefaultValues.INSTALLED_RDK_VERSION }
+  val appIsUseMonet =
+    dataStore.data.map { it[appIsUseMonetPreference] ?: DefaultValues.IS_USE_MONET }
+  val appIsUseAmoled =
+    dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.IS_USE_AMOLED }
+  val editorTheme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.EDITOR_THEME }
+  val editorTypeface =
+    dataStore.data.map { it[editorTypefacePreference] ?: DefaultValues.EDITOR_TYPEFACE }
+  val editorIsUseWordWrap =
+    dataStore.data.map {
+      it[editorIsUseWordWrapPreference] ?: DefaultValues.EDITOR_IS_USE_WORD_WRAP
     }
 
-    suspend fun enableMonet(value: Boolean) {
-        dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
-    }
+  suspend fun changeInstalledRDK(value: String) {
+    dataStore.edit { preferences -> preferences[installedRDKVersionPreference] = value }
+  }
 
-    suspend fun enableAmoled(value: Boolean) {
-        dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
-    }
+  suspend fun enableMonet(value: Boolean) {
+    dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
+  }
 
-    suspend fun changeEditorTheme(value: Int) {
-        dataStore.edit { preferences -> preferences[editorThemePreference] = value }
-    }
+  suspend fun enableAmoled(value: Boolean) {
+    dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
+  }
 
-    suspend fun changeEditorTypeface(value: Int) {
-        dataStore.edit { preferences -> preferences[editorTypefacePreference] = value }
-    }
+  suspend fun changeEditorTheme(value: Int) {
+    dataStore.edit { preferences -> preferences[editorThemePreference] = value }
+  }
 
-    suspend fun enableEditorWordWrap(value: Boolean) {
-        dataStore.edit { preferences -> preferences[editorIsUseWordWrapPreference] = value }
-    }
+  suspend fun changeEditorTypeface(value: Int) {
+    dataStore.edit { preferences -> preferences[editorTypefacePreference] = value }
+  }
+
+  suspend fun enableEditorWordWrap(value: Boolean) {
+    dataStore.edit { preferences -> preferences[editorIsUseWordWrapPreference] = value }
+  }
 }

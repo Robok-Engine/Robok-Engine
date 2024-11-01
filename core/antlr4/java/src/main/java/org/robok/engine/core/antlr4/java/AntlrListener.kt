@@ -18,7 +18,7 @@ package org.robok.engine.core.antlr4.java
  */
 
 interface AntlrListener {
-    fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String)
+  fun onDiagnosticReceive(line: Int, positionStart: Int, positionEnd: Int, msg: String)
 
-    fun onDiagnosticStatusReceive(isError: Boolean)
+  fun onDiagnosticStatusReceive(isError: Boolean)
 }

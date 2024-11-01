@@ -30,19 +30,19 @@ import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 
 fun extractZipFromAssets(context: Context, assetFileName: String, outputDir: File) {
-    val inputStream: InputStream = context.assets.open(assetFileName)
-    ZipInputStream(inputStream).use { zipInputStream ->
-        var zipEntry: ZipEntry? = zipInputStream.nextEntry
-        while (zipEntry != null) {
-            val newFile = File(outputDir, zipEntry.name)
-            if (zipEntry.isDirectory) {
-                newFile.mkdirs()
-            } else {
-                newFile.parentFile.mkdirs()
-                FileOutputStream(newFile).use { fos -> zipInputStream.copyTo(fos) }
-            }
-            zipInputStream.closeEntry()
-            zipEntry = zipInputStream.nextEntry
-        }
+  val inputStream: InputStream = context.assets.open(assetFileName)
+  ZipInputStream(inputStream).use { zipInputStream ->
+    var zipEntry: ZipEntry? = zipInputStream.nextEntry
+    while (zipEntry != null) {
+      val newFile = File(outputDir, zipEntry.name)
+      if (zipEntry.isDirectory) {
+        newFile.mkdirs()
+      } else {
+        newFile.parentFile.mkdirs()
+        FileOutputStream(newFile).use { fos -> zipInputStream.copyTo(fos) }
+      }
+      zipInputStream.closeEntry()
+      zipEntry = zipInputStream.nextEntry
     }
+  }
 }

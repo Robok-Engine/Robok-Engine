@@ -50,33 +50,33 @@ import org.robok.engine.core.components.spacer.BottomSpacer
  */
 @Composable
 fun Screen(
-    label: String,
-    modifier: Modifier = Modifier,
-    backArrowVisible: Boolean = true,
-    isExpandedScreen: Boolean = LocalIsExpandedScreen.current,
-    verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    scrollState: ScrollState? = rememberScrollState(),
-    actions: @Composable RowScope.() -> Unit = {},
-    bottomBar: @Composable () -> Unit = { BottomSpacer() },
-    content: @Composable ColumnScope.(PaddingValues) -> Unit,
+  label: String,
+  modifier: Modifier = Modifier,
+  backArrowVisible: Boolean = true,
+  isExpandedScreen: Boolean = LocalIsExpandedScreen.current,
+  verticalArrangement: Arrangement.Vertical = Arrangement.spacedBy(8.dp),
+  horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+  scrollState: ScrollState? = rememberScrollState(),
+  actions: @Composable RowScope.() -> Unit = {},
+  bottomBar: @Composable () -> Unit = { BottomSpacer() },
+  content: @Composable ColumnScope.(PaddingValues) -> Unit,
 ) {
-    ScreenScaffold(
-        modifier = modifier,
-        backArrowVisible = backArrowVisible,
-        label = label,
-        isExpandedScreen = isExpandedScreen,
-        actions = actions,
-        bottomBar = bottomBar,
-    ) {
-        ScreenColumn(
-            contentPadding = it,
-            verticalArrangement = verticalArrangement,
-            horizontalAlignment = horizontalAlignment,
-            scrollState = scrollState,
-            content = { content(it) },
-        )
-    }
+  ScreenScaffold(
+    modifier = modifier,
+    backArrowVisible = backArrowVisible,
+    label = label,
+    isExpandedScreen = isExpandedScreen,
+    actions = actions,
+    bottomBar = bottomBar,
+  ) {
+    ScreenColumn(
+      contentPadding = it,
+      verticalArrangement = verticalArrangement,
+      horizontalAlignment = horizontalAlignment,
+      scrollState = scrollState,
+      content = { content(it) },
+    )
+  }
 }
 
 /**
@@ -97,29 +97,29 @@ fun Screen(
  */
 @Composable
 fun ScreenLazyColumn(
-    label: String,
-    modifier: Modifier = Modifier,
-    isExpandedScreen: Boolean = LocalIsExpandedScreen.current,
-    enabled: Boolean = true,
-    backArrowVisible: Boolean = true,
-    state: LazyListState = rememberLazyListState(),
-    actions: @Composable RowScope.() -> Unit = {},
-    content: LazyListScope.(PaddingValues) -> Unit,
+  label: String,
+  modifier: Modifier = Modifier,
+  isExpandedScreen: Boolean = LocalIsExpandedScreen.current,
+  enabled: Boolean = true,
+  backArrowVisible: Boolean = true,
+  state: LazyListState = rememberLazyListState(),
+  actions: @Composable RowScope.() -> Unit = {},
+  content: LazyListScope.(PaddingValues) -> Unit,
 ) {
-    ScreenScaffold(
-        backArrowVisible = backArrowVisible,
-        label = label,
-        isExpandedScreen = isExpandedScreen,
-        actions = actions,
-    ) {
-        ScreenLazyColumn(
-            contentPadding = it,
-            modifier = modifier,
-            enabled = enabled,
-            state = state,
-            content = { content(it) },
-        )
-    }
+  ScreenScaffold(
+    backArrowVisible = backArrowVisible,
+    label = label,
+    isExpandedScreen = isExpandedScreen,
+    actions = actions,
+  ) {
+    ScreenLazyColumn(
+      contentPadding = it,
+      modifier = modifier,
+      enabled = enabled,
+      state = state,
+      content = { content(it) },
+    )
+  }
 }
 
 val LocalIsExpandedScreen = compositionLocalOf { false }

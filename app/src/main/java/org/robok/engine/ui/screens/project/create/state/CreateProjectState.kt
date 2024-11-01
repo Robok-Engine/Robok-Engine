@@ -18,8 +18,8 @@ package org.robok.engine.ui.screens.project.create.state
  */
 
 data class CreateProjectState(
-    val projectName: String = "",
-    val packageName: String = "",
-    val isLoading: Boolean = false,
-    val errorMessage: String? = null,
+  val projectName: String = "",
+  val packageName: String = "",
+  val isLoading: Boolean = false,
+  val errorMessage: String? = null,
 )

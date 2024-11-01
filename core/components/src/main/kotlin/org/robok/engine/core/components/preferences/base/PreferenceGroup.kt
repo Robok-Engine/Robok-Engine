@@ -38,72 +38,72 @@ import org.robok.engine.core.components.divider.DividerColumn
 
 @Composable
 fun PreferenceGroup(
-    modifier: Modifier = Modifier,
-    heading: String? = null,
-    description: String? = null,
-    showDescription: Boolean = true,
-    showDividers: Boolean = true,
-    dividerStartIndent: Dp = 0.dp,
-    dividerEndIndent: Dp = 0.dp,
-    dividersToSkip: Int = 0,
-    content: @Composable () -> Unit,
+  modifier: Modifier = Modifier,
+  heading: String? = null,
+  description: String? = null,
+  showDescription: Boolean = true,
+  showDividers: Boolean = true,
+  dividerStartIndent: Dp = 0.dp,
+  dividerEndIndent: Dp = 0.dp,
+  dividersToSkip: Int = 0,
+  content: @Composable () -> Unit,
 ) {
-    Column(modifier = modifier) {
-        PreferenceGroupHeading(heading)
-        Surface(
-            modifier = Modifier.padding(horizontal = 16.dp),
-            shape = MaterialTheme.shapes.large,
-            tonalElevation = 1.dp,
-        ) {
-            if (showDividers) {
-                DividerColumn(
-                    startIndent = dividerStartIndent,
-                    endIndent = dividerEndIndent,
-                    content = content,
-                    dividersToSkip = dividersToSkip,
-                )
-            } else {
-                Column { content() }
-            }
-        }
-        PreferenceGroupDescription(description = description, showDescription = showDescription)
+  Column(modifier = modifier) {
+    PreferenceGroupHeading(heading)
+    Surface(
+      modifier = Modifier.padding(horizontal = 16.dp),
+      shape = MaterialTheme.shapes.large,
+      tonalElevation = 1.dp,
+    ) {
+      if (showDividers) {
+        DividerColumn(
+          startIndent = dividerStartIndent,
+          endIndent = dividerEndIndent,
+          content = content,
+          dividersToSkip = dividersToSkip,
+        )
+      } else {
+        Column { content() }
+      }
     }
+    PreferenceGroupDescription(description = description, showDescription = showDescription)
+  }
 }
 
 @Composable
 fun PreferenceGroupHeading(heading: String?, modifier: Modifier = Modifier) {
-    if (heading != null) {
-        Column(
-            verticalArrangement = Arrangement.Center,
-            modifier = modifier.height(48.dp).padding(horizontal = 32.dp).fillMaxWidth(),
-        ) {
-            Text(
-                text = heading,
-                style = MaterialTheme.typography.titleSmall,
-                color = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.semantics { this.heading() },
-            )
-        }
-    } else {
-        Spacer(modifier = modifier.requiredHeight(8.dp))
+  if (heading != null) {
+    Column(
+      verticalArrangement = Arrangement.Center,
+      modifier = modifier.height(48.dp).padding(horizontal = 32.dp).fillMaxWidth(),
+    ) {
+      Text(
+        text = heading,
+        style = MaterialTheme.typography.titleSmall,
+        color = MaterialTheme.colorScheme.primary,
+        modifier = Modifier.semantics { this.heading() },
+      )
     }
+  } else {
+    Spacer(modifier = modifier.requiredHeight(8.dp))
+  }
 }
 
 @Composable
 fun PreferenceGroupDescription(
-    modifier: Modifier = Modifier,
-    description: String? = null,
-    showDescription: Boolean = true,
+  modifier: Modifier = Modifier,
+  description: String? = null,
+  showDescription: Boolean = true,
 ) {
-    description?.let {
-        ExpandAndShrink(modifier = modifier, visible = showDescription) {
-            Row(modifier = Modifier.padding(start = 32.dp, end = 32.dp, top = 16.dp)) {
-                Text(
-                    text = it,
-                    style = MaterialTheme.typography.bodyMedium,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-            }
-        }
+  description?.let {
+    ExpandAndShrink(modifier = modifier, visible = showDescription) {
+      Row(modifier = Modifier.padding(start = 32.dp, end = 32.dp, top = 16.dp)) {
+        Text(
+          text = it,
+          style = MaterialTheme.typography.bodyMedium,
+          color = MaterialTheme.colorScheme.onSurfaceVariant,
+        )
+      }
     }
+  }
 }

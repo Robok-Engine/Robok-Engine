@@ -33,44 +33,44 @@ import org.robok.engine.core.components.icons.ClickableIcon
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(
-    backArrowVisible: Boolean,
-    label: String,
-    isExpandedScreen: Boolean,
-    modifier: Modifier = Modifier,
-    scrollBehavior: TopAppBarScrollBehavior? = null,
-    actions: @Composable RowScope.() -> Unit = {},
+  backArrowVisible: Boolean,
+  label: String,
+  isExpandedScreen: Boolean,
+  modifier: Modifier = Modifier,
+  scrollBehavior: TopAppBarScrollBehavior? = null,
+  actions: @Composable RowScope.() -> Unit = {},
 ) {
-    val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
+  val backDispatcher = LocalOnBackPressedDispatcherOwner.current?.onBackPressedDispatcher
 
-    if (isExpandedScreen) {
-        TopAppBar(
-            modifier = modifier,
-            title = { Text(text = label, maxLines = 1, overflow = TextOverflow.Ellipsis) },
-            actions = actions,
-            navigationIcon = {
-                if (backArrowVisible) {
-                    ClickableIcon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        onClick = { backDispatcher?.onBackPressed() },
-                    )
-                }
-            },
-            scrollBehavior = scrollBehavior,
-        )
-    } else {
-        LargeTopAppBar(
-            modifier = modifier,
-            title = { Text(text = label) },
-            actions = actions,
-            navigationIcon = {
-                if (backArrowVisible) {
-                    ClickableIcon(
-                        imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
-                        onClick = { backDispatcher?.onBackPressed() },
-                    )
-                }
-            },
-            scrollBehavior = scrollBehavior,
-        )
-    }
+  if (isExpandedScreen) {
+    TopAppBar(
+      modifier = modifier,
+      title = { Text(text = label, maxLines = 1, overflow = TextOverflow.Ellipsis) },
+      actions = actions,
+      navigationIcon = {
+        if (backArrowVisible) {
+          ClickableIcon(
+            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+            onClick = { backDispatcher?.onBackPressed() },
+          )
+        }
+      },
+      scrollBehavior = scrollBehavior,
+    )
+  } else {
+    LargeTopAppBar(
+      modifier = modifier,
+      title = { Text(text = label) },
+      actions = actions,
+      navigationIcon = {
+        if (backArrowVisible) {
+          ClickableIcon(
+            imageVector = Icons.AutoMirrored.Rounded.ArrowBack,
+            onClick = { backDispatcher?.onBackPressed() },
+          )
+        }
+      },
+      scrollBehavior = scrollBehavior,
+    )
+  }
 }

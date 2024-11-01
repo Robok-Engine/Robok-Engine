@@ -27,34 +27,33 @@ import org.robok.engine.core.utils.ZipDownloader
 
 class SettingsRDKViewModel(private val context: Context) : ViewModel() {
 
-    private val zipDownloader = ZipDownloader(context)
+  private val zipDownloader = ZipDownloader(context)
 
-    private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.NotStarted)
-    val downloadState: StateFlow<DownloadState> = _downloadState
+  private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.NotStarted)
+  val downloadState: StateFlow<DownloadState> = _downloadState
 
-    fun startDownload(zipUrl: String, outputDirName: String) {
-        _downloadState.value = DownloadState.Loading
+  fun startDownload(zipUrl: String, outputDirName: String) {
+    _downloadState.value = DownloadState.Loading
 
-        viewModelScope.launch {
-            val result = zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
+    viewModelScope.launch {
+      val result = zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
 
-            if (result) {
-                _downloadState.value =
-                    DownloadState.Success("Download e extração concluídos com sucesso!")
-            } else {
-                _downloadState.value =
-                    DownloadState.Error("Erro durante o download ou extração do arquivo.")
-            }
-        }
+      if (result) {
+        _downloadState.value = DownloadState.Success("Download e extração concluídos com sucesso!")
+      } else {
+        _downloadState.value =
+          DownloadState.Error("Erro durante o download ou extração do arquivo.")
+      }
     }
+  }
 
-    sealed class DownloadState {
-        object NotStarted : DownloadState()
+  sealed class DownloadState {
+    object NotStarted : DownloadState()
 
-        object Loading : DownloadState()
+    object Loading : DownloadState()
 
-        data class Success(val message: String) : DownloadState()
+    data class Success(val message: String) : DownloadState()
 
-        data class Error(val error: String) : DownloadState()
-    }
+    data class Error(val error: String) : DownloadState()
+  }
 }

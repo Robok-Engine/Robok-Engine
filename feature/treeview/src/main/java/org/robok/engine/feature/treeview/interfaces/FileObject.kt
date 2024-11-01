@@ -20,15 +20,15 @@ package org.robok.engine.feature.treeview.interfaces
 import java.io.Serializable
 
 interface FileObject : Serializable {
-    fun listFiles(): List<FileObject>
+  fun listFiles(): List<FileObject>
 
-    fun isDirectory(): Boolean
+  fun isDirectory(): Boolean
 
-    fun isFile(): Boolean
+  fun isFile(): Boolean
 
-    fun getName(): String
+  fun getName(): String
 
-    fun getParentFile(): FileObject?
+  fun getParentFile(): FileObject?
 
-    fun getAbsolutePath(): String
+  fun getAbsolutePath(): String
 }

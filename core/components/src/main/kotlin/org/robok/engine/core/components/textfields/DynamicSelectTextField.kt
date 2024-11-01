@@ -44,40 +44,40 @@ import androidx.compose.ui.unit.dp
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun DynamicSelectTextField(
-    selectedValue: String,
-    options: List<String>,
-    label: String,
-    onValueChangedEvent: (String) -> Unit,
-    modifier: Modifier = Modifier,
+  selectedValue: String,
+  options: List<String>,
+  label: String,
+  onValueChangedEvent: (String) -> Unit,
+  modifier: Modifier = Modifier,
 ) {
-    var expanded by remember { mutableStateOf(false) }
+  var expanded by remember { mutableStateOf(false) }
 
-    ExposedDropdownMenuBox(
-        expanded = expanded,
-        onExpandedChange = { expanded = !expanded },
-        modifier = modifier,
-    ) {
-        OutlinedTextField(
-            readOnly = true,
-            value = selectedValue,
-            onValueChange = {},
-            label = { Text(text = label) },
-            shape = RoundedCornerShape(12.dp),
-            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
-            colors = OutlinedTextFieldDefaults.colors(),
-            modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryEditable).fillMaxWidth(),
+  ExposedDropdownMenuBox(
+    expanded = expanded,
+    onExpandedChange = { expanded = !expanded },
+    modifier = modifier,
+  ) {
+    OutlinedTextField(
+      readOnly = true,
+      value = selectedValue,
+      onValueChange = {},
+      label = { Text(text = label) },
+      shape = RoundedCornerShape(12.dp),
+      trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+      colors = OutlinedTextFieldDefaults.colors(),
+      modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryEditable).fillMaxWidth(),
+    )
+
+    ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
+      options.forEach { option: String ->
+        DropdownMenuItem(
+          text = { Text(text = option) },
+          onClick = {
+            expanded = false
+            onValueChangedEvent(option)
+          },
         )
-
-        ExposedDropdownMenu(expanded = expanded, onDismissRequest = { expanded = false }) {
-            options.forEach { option: String ->
-                DropdownMenuItem(
-                    text = { Text(text = option) },
-                    onClick = {
-                        expanded = false
-                        onValueChangedEvent(option)
-                    },
-                )
-            }
-        }
+      }
     }
+  }
 }

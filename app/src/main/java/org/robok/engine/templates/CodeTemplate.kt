@@ -21,8 +21,8 @@ package org.robok.engine.templates
  * Base Template class
  */
 abstract class CodeTemplate {
-    abstract var name: String
-    abstract var packageName: String
-    abstract var code: String
-    abstract var extension: String
+  abstract var name: String
+  abstract var packageName: String
+  abstract var code: String
+  abstract var extension: String
 }

@@ -20,7 +20,7 @@ package org.robok.engine.feature.modeling
 import com.badlogic.gdx.Game
 
 class MyGame : Game() {
-    override fun create() {
-        // Initialize your game here
-    }
+  override fun create() {
+    // Initialize your game here
+  }
 }

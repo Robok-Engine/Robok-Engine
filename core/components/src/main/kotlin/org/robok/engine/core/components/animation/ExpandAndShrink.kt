@@ -34,15 +34,15 @@ import androidx.compose.ui.Modifier
  */
 @Composable
 fun ExpandAndShrink(
-    visible: Boolean,
-    modifier: Modifier = Modifier,
-    content: @Composable AnimatedVisibilityScope.() -> Unit,
+  visible: Boolean,
+  modifier: Modifier = Modifier,
+  content: @Composable AnimatedVisibilityScope.() -> Unit,
 ) {
-    AnimatedVisibility(
-        visible = visible,
-        enter = expandVertically() + fadeIn(),
-        exit = shrinkVertically() + fadeOut(),
-        content = content,
-        modifier = modifier,
-    )
+  AnimatedVisibility(
+    visible = visible,
+    enter = expandVertically() + fadeIn(),
+    exit = shrinkVertically() + fadeOut(),
+    content = content,
+    modifier = modifier,
+  )
 }

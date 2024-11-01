@@ -40,85 +40,81 @@ import org.robok.engine.ui.theme.RobokTheme
 @OptIn(ExperimentalMaterial3Api::class)
 class AppFailureActivity : RobokComposeActivity() {
 
-    private val exceptionType =
-        listOf(
-            "StringIndexOutOfBoundsException",
-            "IndexOutOfBoundsException",
-            "ArithmeticException",
-            "NumberFormatException",
-            "ActivityNotFoundException",
+  private val exceptionType =
+    listOf(
+      "StringIndexOutOfBoundsException",
+      "IndexOutOfBoundsException",
+      "ArithmeticException",
+      "NumberFormatException",
+      "ActivityNotFoundException",
+    )
+
+  private val errMessage =
+    listOf(
+      "Invalid string operation\n",
+      "Invalid list operation\n",
+      "Invalid arithmetical operation\n",
+      "Invalid toNumber block operation\n",
+      "Invalid intent operation",
+    )
+
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    setContent { RobokTheme { DebugScreen(intent.getStringExtra("error") ?: "") } }
+  }
+
+  @Composable
+  fun DebugScreen(errorMessage: String) {
+    var madeErrMsg by remember { mutableStateOf("") }
+    var showDialog by remember { mutableStateOf(true) }
+
+    LaunchedEffect(errorMessage) { madeErrMsg = processErrorMessage(errorMessage) }
+
+    Screen(label = stringResource(id = Strings.title_un_error_ocurred), backArrowVisible = false) {
+      PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
+        ErrorCard(madeErrMsg)
+      }
+    }
+
+    if (showDialog) {
+      RobokDialog(
+        title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
+        text = { ErrorCard(madeErrMsg) },
+        onConfirmation = { showDialog = false },
+        onDismissRequest = { showDialog = false },
+        confirmButton = { Text(stringResource(id = Strings.common_word_end)) },
+      )
+    }
+  }
+
+  @Composable
+  fun ErrorCard(madeErrMsg: String) {
+    Card(
+      modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)),
+      colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
+      shape = RoundedCornerShape(18.dp),
+    ) {
+      SelectionContainer {
+        Text(
+          text = madeErrMsg,
+          modifier = Modifier.padding(16.dp),
+          color = MaterialTheme.colorScheme.onErrorContainer,
         )
-
-    private val errMessage =
-        listOf(
-            "Invalid string operation\n",
-            "Invalid list operation\n",
-            "Invalid arithmetical operation\n",
-            "Invalid toNumber block operation\n",
-            "Invalid intent operation",
-        )
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContent { RobokTheme { DebugScreen(intent.getStringExtra("error") ?: "") } }
+      }
     }
+  }
 
-    @Composable
-    fun DebugScreen(errorMessage: String) {
-        var madeErrMsg by remember { mutableStateOf("") }
-        var showDialog by remember { mutableStateOf(true) }
-
-        LaunchedEffect(errorMessage) { madeErrMsg = processErrorMessage(errorMessage) }
-
-        Screen(
-            label = stringResource(id = Strings.title_un_error_ocurred),
-            backArrowVisible = false,
-        ) {
-            PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
-                ErrorCard(madeErrMsg)
-            }
-        }
-
-        if (showDialog) {
-            RobokDialog(
-                title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
-                text = { ErrorCard(madeErrMsg) },
-                onConfirmation = { showDialog = false },
-                onDismissRequest = { showDialog = false },
-                confirmButton = { Text(stringResource(id = Strings.common_word_end)) },
-            )
-        }
+  private fun processErrorMessage(errMsg: String): String {
+    val splitMessage = errMsg.split("\n")
+    if (splitMessage.isEmpty() || splitMessage[0].isEmpty()) {
+      return errMsg
     }
-
-    @Composable
-    fun ErrorCard(madeErrMsg: String) {
-        Card(
-            modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)),
-            colors =
-                CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
-            shape = RoundedCornerShape(18.dp),
-        ) {
-            SelectionContainer {
-                Text(
-                    text = madeErrMsg,
-                    modifier = Modifier.padding(16.dp),
-                    color = MaterialTheme.colorScheme.onErrorContainer,
-                )
-            }
-        }
+    for (i in exceptionType.indices) {
+      if (splitMessage[0].contains(exceptionType[i])) {
+        val additionalInfo = splitMessage[0].substringAfter(exceptionType[i])
+        return errMessage[i] + additionalInfo
+      }
     }
-
-    private fun processErrorMessage(errMsg: String): String {
-        val splitMessage = errMsg.split("\n")
-        if (splitMessage.isEmpty() || splitMessage[0].isEmpty()) {
-            return errMsg
-        }
-        for (i in exceptionType.indices) {
-            if (splitMessage[0].contains(exceptionType[i])) {
-                val additionalInfo = splitMessage[0].substringAfter(exceptionType[i])
-                return errMessage[i] + additionalInfo
-            }
-        }
-        return errMsg
-    }
+    return errMsg
+  }
 }

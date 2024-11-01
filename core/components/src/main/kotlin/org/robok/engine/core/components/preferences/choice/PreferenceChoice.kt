@@ -40,59 +40,59 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
  */
 @Composable
 fun PreferenceChoice(
-    label: String,
-    title: String = label,
-    disabled: Boolean = false,
-    pref: Int,
-    options: List<Int>,
-    excludedOptions: List<Int> = emptyList(),
-    labelFactory: (Int) -> String = { it.toString() },
-    onPrefChange: (Int) -> Unit,
-    modifier: Modifier = Modifier,
+  label: String,
+  title: String = label,
+  disabled: Boolean = false,
+  pref: Int,
+  options: List<Int>,
+  excludedOptions: List<Int> = emptyList(),
+  labelFactory: (Int) -> String = { it.toString() },
+  onPrefChange: (Int) -> Unit,
+  modifier: Modifier = Modifier,
 ) {
-    val choiceLabel = labelFactory(pref)
-    val (opened, setOpened) = remember { mutableStateOf(false) }
-    val interactionSource = remember { MutableInteractionSource() }
+  val choiceLabel = labelFactory(pref)
+  val (opened, setOpened) = remember { mutableStateOf(false) }
+  val interactionSource = remember { MutableInteractionSource() }
 
-    PreferenceTemplate(
-        modifier =
-            modifier.clickable(
-                enabled = !disabled,
-                indication = ripple(),
-                interactionSource = interactionSource,
-            ) {
-                setOpened(true)
-            },
-        contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-        title = { Text(fontWeight = FontWeight.Bold, text = label) },
-        endWidget = {
-            if (!disabled) {
-                FilledTonalButton(
-                    modifier = Modifier.padding(horizontal = 16.dp),
-                    onClick = { setOpened(true) },
-                    enabled = !disabled,
-                ) {
-                    Text(choiceLabel)
-                }
-            }
-        },
+  PreferenceTemplate(
+    modifier =
+      modifier.clickable(
         enabled = !disabled,
-        applyPaddings = false,
-    )
+        indication = ripple(),
+        interactionSource = interactionSource,
+      ) {
+        setOpened(true)
+      },
+    contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
+    title = { Text(fontWeight = FontWeight.Bold, text = label) },
+    endWidget = {
+      if (!disabled) {
+        FilledTonalButton(
+          modifier = Modifier.padding(horizontal = 16.dp),
+          onClick = { setOpened(true) },
+          enabled = !disabled,
+        ) {
+          Text(choiceLabel)
+        }
+      }
+    },
+    enabled = !disabled,
+    applyPaddings = false,
+  )
 
-    if (opened) {
-        ChoiceBottomSheet(
-            visible = opened,
-            title = { Text(fontWeight = FontWeight.Bold, text = title) },
-            default = pref,
-            options = options,
-            labelFactory = labelFactory,
-            excludedOptions = excludedOptions,
-            onRequestClose = { setOpened(false) },
-            onChoice = {
-                setOpened(false)
-                onPrefChange(it)
-            },
-        )
-    }
+  if (opened) {
+    ChoiceBottomSheet(
+      visible = opened,
+      title = { Text(fontWeight = FontWeight.Bold, text = title) },
+      default = pref,
+      options = options,
+      labelFactory = labelFactory,
+      excludedOptions = excludedOptions,
+      onRequestClose = { setOpened(false) },
+      onChoice = {
+        setOpened(false)
+        onPrefChange(it)
+      },
+    )
+  }
 }

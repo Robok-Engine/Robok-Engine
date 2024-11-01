@@ -21,14 +21,14 @@ import org.robok.engine.templates.CodeTemplate
 
 open class AndroidManifestTemplate : CodeTemplate() {
 
-    override var name: String = "AndroidManifest"
-    override var packageName: String = "org.robok.empty"
-    override var extension: String = ".xml"
+  override var name: String = "AndroidManifest"
+  override var packageName: String = "org.robok.empty"
+  override var extension: String = ".xml"
 
-    var mainActivityPackage = packageName + ".MainScreen"
+  var mainActivityPackage = packageName + ".MainScreen"
 
-    override var code: String =
-        """
+  override var code: String =
+    """
         <?xml version="1.0" encoding="utf-8"?>
         <manifest 
             xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,5 +53,5 @@ open class AndroidManifestTemplate : CodeTemplate() {
             </application>
         </manifest>
         """
-            .trimIndent()
+      .trimIndent()
 }

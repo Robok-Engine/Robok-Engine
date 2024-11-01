@@ -18,5 +18,5 @@ package org.robok.easyui.internal
  */
 
 internal object Utils {
-    @JvmStatic fun comment(cmmt: String): String = "<!-- ${cmmt} -->"
+  @JvmStatic fun comment(cmmt: String): String = "<!-- ${cmmt} -->"
 }

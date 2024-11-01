@@ -27,101 +27,41 @@ import androidx.compose.ui.unit.sp
 import org.robok.engine.Fonts
 
 val NunitoFontFamily =
-    FontFamily(
-        Font(Fonts.nunito_regular, FontWeight.Normal, FontStyle.Normal),
-        Font(Fonts.nunito_bold, FontWeight.Bold, FontStyle.Normal),
-    )
+  FontFamily(
+    Font(Fonts.nunito_regular, FontWeight.Normal, FontStyle.Normal),
+    Font(Fonts.nunito_bold, FontWeight.Bold, FontStyle.Normal),
+  )
 
 val Typography =
-    Typography(
-        displayLarge =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 57.sp,
-            ),
-        displayMedium =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 45.sp,
-            ),
-        displaySmall =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 36.sp,
-            ),
-        headlineLarge =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 32.sp,
-            ),
-        headlineMedium =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 28.sp,
-            ),
-        headlineSmall =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 24.sp,
-            ),
-        titleLarge =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 22.sp,
-            ),
-        titleMedium =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 16.sp,
-            ),
-        titleSmall =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-            ),
-        bodyLarge =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 16.sp,
-            ),
-        bodyMedium =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 14.sp,
-            ),
-        bodySmall =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Normal,
-                fontSize = 12.sp,
-            ),
-        labelLarge =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 14.sp,
-            ),
-        labelMedium =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 12.sp,
-            ),
-        labelSmall =
-            TextStyle(
-                fontFamily = NunitoFontFamily,
-                fontWeight = FontWeight.Medium,
-                fontSize = 11.sp,
-            ),
-    )
+  Typography(
+    displayLarge =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 57.sp),
+    displayMedium =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 45.sp),
+    displaySmall =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 36.sp),
+    headlineLarge =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 32.sp),
+    headlineMedium =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 28.sp),
+    headlineSmall =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 24.sp),
+    titleLarge =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 22.sp),
+    titleMedium =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Medium, fontSize = 16.sp),
+    titleSmall =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Medium, fontSize = 14.sp),
+    bodyLarge =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 16.sp),
+    bodyMedium =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 14.sp),
+    bodySmall =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Normal, fontSize = 12.sp),
+    labelLarge =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Medium, fontSize = 14.sp),
+    labelMedium =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Medium, fontSize = 12.sp),
+    labelSmall =
+      TextStyle(fontFamily = NunitoFontFamily, fontWeight = FontWeight.Medium, fontSize = 11.sp),
+  )

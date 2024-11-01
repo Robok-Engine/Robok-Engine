@@ -12,14 +12,14 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun LibraryItem(library: Library, onClick: () -> Unit) {
-    PreferenceTemplate(
-        modifier = Modifier.clickable(onClick = onClick).padding(8.dp),
-        title = { LibraryItemTitle(library.name) },
-    )
+  PreferenceTemplate(
+    modifier = Modifier.clickable(onClick = onClick).padding(8.dp),
+    title = { LibraryItemTitle(library.name) },
+  )
 }
 
 @Composable
 fun LibraryItemTitle(title: String?) {
-    title?.let { Text(text = it, color = MaterialTheme.colorScheme.onSurface) }
-        ?: Text(text = "No Title Available", color = MaterialTheme.colorScheme.onSurface)
+  title?.let { Text(text = it, color = MaterialTheme.colorScheme.onSurface) }
+    ?: Text(text = "No Title Available", color = MaterialTheme.colorScheme.onSurface)
 }

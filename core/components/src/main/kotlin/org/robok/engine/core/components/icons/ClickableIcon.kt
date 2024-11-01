@@ -30,32 +30,32 @@ import androidx.compose.ui.graphics.vector.rememberVectorPainter
 
 @Composable
 fun ClickableIcon(
-    painter: Painter,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    tint: Color = LocalContentColor.current,
+  painter: Painter,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true,
+  tint: Color = LocalContentColor.current,
 ) {
-    IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
-        val contentAlpha = if (enabled) tint.alpha else 0.38f
-        val alpha by animateFloatAsState(targetValue = contentAlpha, label = "")
-        Icon(painter = painter, contentDescription = null, tint = tint.copy(alpha = alpha))
-    }
+  IconButton(onClick = onClick, modifier = modifier, enabled = enabled) {
+    val contentAlpha = if (enabled) tint.alpha else 0.38f
+    val alpha by animateFloatAsState(targetValue = contentAlpha, label = "")
+    Icon(painter = painter, contentDescription = null, tint = tint.copy(alpha = alpha))
+  }
 }
 
 @Composable
 fun ClickableIcon(
-    imageVector: ImageVector,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    tint: Color = LocalContentColor.current,
+  imageVector: ImageVector,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true,
+  tint: Color = LocalContentColor.current,
 ) {
-    ClickableIcon(
-        painter = rememberVectorPainter(image = imageVector),
-        onClick = onClick,
-        modifier = modifier,
-        enabled = enabled,
-        tint = tint,
-    )
+  ClickableIcon(
+    painter = rememberVectorPainter(image = imageVector),
+    onClick = onClick,
+    modifier = modifier,
+    enabled = enabled,
+    tint = tint,
+  )
 }

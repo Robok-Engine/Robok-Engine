@@ -21,11 +21,11 @@ import java.io.File
 
 class JavaFile(pathname: String) : File(pathname) {
 
-    override fun equals(other: Any?): Boolean {
-        return if (other is JavaFile) {
-            other.name == this.name
-        } else {
-            false
-        }
+  override fun equals(other: Any?): Boolean {
+    return if (other is JavaFile) {
+      other.name == this.name
+    } else {
+      false
     }
+  }
 }

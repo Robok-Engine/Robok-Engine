@@ -46,61 +46,57 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.D
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsRDKScreen() {
-    val context = LocalContext.current
-    val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
-    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
-    val installedRDKVersion by
-        appPrefsViewModel.installedRDKVersion.collectAsState(
-            initial = DefaultValues.INSTALLED_RDK_VERSION
-        )
+  val context = LocalContext.current
+  val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
+  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val installedRDKVersion by
+    appPrefsViewModel.installedRDKVersion.collectAsState(
+      initial = DefaultValues.INSTALLED_RDK_VERSION
+    )
 
-    var rdkVersions = listOf("RDK-1")
-    val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
-    val scope = rememberCoroutineScope()
-    LaunchedEffect(Unit) {
-        scope.launch {
-            rdkVersions = fetchVersions()
-            rdkVersionsState.value = rdkVersions
-        }
+  var rdkVersions = listOf("RDK-1")
+  val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
+  val scope = rememberCoroutineScope()
+  LaunchedEffect(Unit) {
+    scope.launch {
+      rdkVersions = fetchVersions()
+      rdkVersionsState.value = rdkVersions
     }
-    var version by remember { mutableStateOf(installedRDKVersion) }
+  }
+  var version by remember { mutableStateOf(installedRDKVersion) }
 
-    val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
+  val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
 
-    val downloadState by viewModel.downloadState.collectAsState()
-    val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
-    Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
-        PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
-            DynamicSelectTextField(
-                modifier = modifir,
-                selectedValue = version,
-                options = rdkVersions,
-                label = stringResource(id = Strings.settings_configure_rdk_version),
-                onValueChangedEvent = { selectedVersion -> version = selectedVersion },
-            )
-            Button(
-                modifier = modifir.fillMaxWidth(),
-                onClick = {
-                    appPrefsViewModel.changeInstalledRDK(version)
-                    viewModel.startDownload(zipUrl, version)
-                },
-            ) {
-                Text(text = stringResource(id = Strings.common_word_save))
-            }
-            when (downloadState) {
-                is DownloadState.NotStarted ->
-                    Text(modifier = modifir, text = "Download não iniciado")
-                is DownloadState.Loading -> CircularProgressIndicator(modifier = modifir)
-                is DownloadState.Success ->
-                    Text(
-                        modifier = modifir,
-                        text = (downloadState as DownloadState.Success).message,
-                    )
-                is DownloadState.Error ->
-                    Text(modifier = modifir, text = (downloadState as DownloadState.Error).error)
-            }
-        }
+  val downloadState by viewModel.downloadState.collectAsState()
+  val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
+  Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
+    PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
+      DynamicSelectTextField(
+        modifier = modifir,
+        selectedValue = version,
+        options = rdkVersions,
+        label = stringResource(id = Strings.settings_configure_rdk_version),
+        onValueChangedEvent = { selectedVersion -> version = selectedVersion },
+      )
+      Button(
+        modifier = modifir.fillMaxWidth(),
+        onClick = {
+          appPrefsViewModel.changeInstalledRDK(version)
+          viewModel.startDownload(zipUrl, version)
+        },
+      ) {
+        Text(text = stringResource(id = Strings.common_word_save))
+      }
+      when (downloadState) {
+        is DownloadState.NotStarted -> Text(modifier = modifir, text = "Download não iniciado")
+        is DownloadState.Loading -> CircularProgressIndicator(modifier = modifir)
+        is DownloadState.Success ->
+          Text(modifier = modifir, text = (downloadState as DownloadState.Success).message)
+        is DownloadState.Error ->
+          Text(modifier = modifir, text = (downloadState as DownloadState.Error).error)
+      }
     }
+  }
 }
 
 @Serializable data class VersionInfo(val version: String)
@@ -108,26 +104,26 @@ fun SettingsRDKScreen() {
 val client = OkHttpClient()
 
 suspend fun fetchVersions(): List<String> {
-    val request =
-        Request.Builder()
-            .url("https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/versions.json")
-            .build()
+  val request =
+    Request.Builder()
+      .url("https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/versions.json")
+      .build()
 
-    return withContext(Dispatchers.IO) {
-        try {
-            client.newCall(request).execute().use { response ->
-                if (response.isSuccessful) {
-                    val jsonString = response.body?.string()
-                    jsonString?.let {
-                        val versions = Json.decodeFromString<List<VersionInfo>>(it)
-                        versions.map { versionInfo -> versionInfo.version }
-                    } ?: emptyList()
-                } else {
-                    emptyList()
-                }
-            }
-        } catch (e: Exception) {
-            emptyList()
+  return withContext(Dispatchers.IO) {
+    try {
+      client.newCall(request).execute().use { response ->
+        if (response.isSuccessful) {
+          val jsonString = response.body?.string()
+          jsonString?.let {
+            val versions = Json.decodeFromString<List<VersionInfo>>(it)
+            versions.map { versionInfo -> versionInfo.version }
+          } ?: emptyList()
+        } else {
+          emptyList()
         }
+      }
+    } catch (e: Exception) {
+      emptyList()
     }
+  }
 }

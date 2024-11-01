@@ -38,65 +38,65 @@ import org.robok.engine.ui.activities.debug.AppFailureActivity
  */
 class RobokApplication : Application() {
 
-    companion object {
-        // Do not place Android context classes in static fields (static reference to
-        // RobokApplication which has field robokContext pointing to Context); this is a memory leak
-        lateinit var instance: RobokApplication /* Instance of this class  */
-        const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
-    }
+  companion object {
+    // Do not place Android context classes in static fields (static reference to
+    // RobokApplication which has field robokContext pointing to Context); this is a memory leak
+    lateinit var instance: RobokApplication /* Instance of this class  */
+    const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
+  }
 
-    private lateinit var appPrefsViewModel: AppPreferencesViewModel
+  private lateinit var appPrefsViewModel: AppPreferencesViewModel
 
-    override fun onCreate() {
-        super.onCreate()
-        instance = this
-        configureKoin()
-        configureCrashHandler()
-    }
+  override fun onCreate() {
+    super.onCreate()
+    instance = this
+    configureKoin()
+    configureCrashHandler()
+  }
 
-    /*
-     * Function that configures the error manager.
-     */
-    fun configureCrashHandler() {
-        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
-            val intent =
-                Intent(applicationContext, AppFailureActivity::class.java).apply {
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-                    putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
-                }
-            startActivity(intent)
-            Process.killProcess(Process.myPid())
-            exitProcess(1)
+  /*
+   * Function that configures the error manager.
+   */
+  fun configureCrashHandler() {
+    Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+      val intent =
+        Intent(applicationContext, AppFailureActivity::class.java).apply {
+          flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+          putExtra(ERROR_TAG, Log.getStackTraceString(throwable))
         }
+      startActivity(intent)
+      Process.killProcess(Process.myPid())
+      exitProcess(1)
     }
+  }
 
-    /*
-     * Function that configures Koin for Dependency Injection.
-     */
-    fun configureKoin() {
-        startKoin {
-            androidLogger()
-            androidContext(this@RobokApplication)
-            modules(appModule, appPreferencesModule)
-        }
+  /*
+   * Function that configures Koin for Dependency Injection.
+   */
+  fun configureKoin() {
+    startKoin {
+      androidLogger()
+      androidContext(this@RobokApplication)
+      modules(appModule, appPreferencesModule)
     }
+  }
 
-    /*
-     * Function to get the stack trace.
-     */
-    fun getStackTrace(cause: Throwable?): String {
-        val result: Writer = StringWriter()
-        PrintWriter(result).use { printWriter ->
-            var throwable: Throwable? = cause
-            while (throwable != null) {
-                throwable.printStackTrace(printWriter)
-                throwable = throwable.cause
-            }
-        }
-        return result.toString()
+  /*
+   * Function to get the stack trace.
+   */
+  fun getStackTrace(cause: Throwable?): String {
+    val result: Writer = StringWriter()
+    PrintWriter(result).use { printWriter ->
+      var throwable: Throwable? = cause
+      while (throwable != null) {
+        throwable.printStackTrace(printWriter)
+        throwable = throwable.cause
+      }
     }
+    return result.toString()
+  }
 }
 
 internal fun noLocalProvidedFor(name: String): Nothing {
-    error("CompositionLocal $name not present")
+  error("CompositionLocal $name not present")
 }

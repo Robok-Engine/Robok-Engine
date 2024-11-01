@@ -30,27 +30,27 @@ import org.robok.engine.core.components.log.Log
 
 open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
 
-    val binding: LayoutBottomsheetTerminalBinding =
-        LayoutBottomsheetTerminalBinding.inflate(LayoutInflater.from(context))
+  val binding: LayoutBottomsheetTerminalBinding =
+    LayoutBottomsheetTerminalBinding.inflate(LayoutInflater.from(context))
 
-    val terminal = binding.terminal
-    val terminalTitle = binding.terminalTitle
+  val terminal = binding.terminal
+  val terminalTitle = binding.terminalTitle
 
-    init {
-        setContentView(binding.root)
-        setCancelable(true)
-    }
+  init {
+    setContentView(binding.root)
+    setCancelable(true)
+  }
 
-    open fun addLog(value: String) {
-        val log = Log(context, value)
-        terminal.addView(log)
-    }
+  open fun addLog(value: String) {
+    val log = Log(context, value)
+    terminal.addView(log)
+  }
 
-    open fun setTerminalTitle(title: String) {
-        terminalTitle.text = title
-    }
+  open fun setTerminalTitle(title: String) {
+    terminalTitle.text = title
+  }
 
-    open fun getTerminalTitle(): String {
-        return terminalTitle.text.toString()
-    }
+  open fun getTerminalTitle(): String {
+    return terminalTitle.text.toString()
+  }
 }

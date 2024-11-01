@@ -25,31 +25,31 @@ import org.robok.engine.feature.compiler.logger.Logger
 
 object SystemLogPrinter {
 
-    @JvmStatic
-    fun start(glbContext: Context, logger: Logger) {
-        // Reset the log file
-        FileUtil.writeFile("${glbContext.getExternalFilesDir(null)}/logs.txt", "")
+  @JvmStatic
+  fun start(glbContext: Context, logger: Logger) {
+    // Reset the log file
+    FileUtil.writeFile("${glbContext.getExternalFilesDir(null)}/logs.txt", "")
 
-        val ps =
-            PrintStream(
-                object : OutputStream() {
-                    private var cache: String? = null
+    val ps =
+      PrintStream(
+        object : OutputStream() {
+          private var cache: String? = null
 
-                    override fun write(b: Int) {
-                        if (cache == null) cache = ""
+          override fun write(b: Int) {
+            if (cache == null) cache = ""
 
-                        if (b.toChar() == '\n') {
-                            // Write each line printed to the specified path
-                            logger.d("System.out", cache ?: "")
-                            cache = ""
-                        } else {
-                            cache += b.toChar()
-                        }
-                    }
-                }
-            )
+            if (b.toChar() == '\n') {
+              // Write each line printed to the specified path
+              logger.d("System.out", cache ?: "")
+              cache = ""
+            } else {
+              cache += b.toChar()
+            }
+          }
+        }
+      )
 
-        System.setOut(ps)
-        System.setErr(ps)
-    }
+    System.setOut(ps)
+    System.setErr(ps)
+  }
 }

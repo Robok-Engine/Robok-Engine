@@ -26,85 +26,85 @@ import org.robok.engine.ui.activities.editor.state.EditorState
 
 class EditorViewModel : ViewModel() {
 
-    private val _editorState = MutableLiveData(EditorState(-1, null))
-    private val _editorEvent = MutableLiveData<EditorEvent>()
-    private val _files = MutableLiveData(mutableListOf<File>())
+  private val _editorState = MutableLiveData(EditorState(-1, null))
+  private val _editorEvent = MutableLiveData<EditorEvent>()
+  private val _files = MutableLiveData(mutableListOf<File>())
 
-    val editorState: LiveData<EditorState>
-        get() = _editorState
+  val editorState: LiveData<EditorState>
+    get() = _editorState
 
-    val editorEvent: LiveData<EditorEvent>
-        get() = _editorEvent
+  val editorEvent: LiveData<EditorEvent>
+    get() = _editorEvent
 
-    val files: LiveData<MutableList<File>>
-        get() = _files
+  val files: LiveData<MutableList<File>>
+    get() = _files
 
-    val openedFiles: List<File>
-        get() = files.value ?: listOf()
+  val openedFiles: List<File>
+    get() = files.value ?: listOf()
 
-    val fileCount: Int
-        get() = files.value?.size ?: 0
+  val fileCount: Int
+    get() = files.value?.size ?: 0
 
-    val currentFileIndex: Int
-        get() = editorState.value?.currentIndex ?: -1
+  val currentFileIndex: Int
+    get() = editorState.value?.currentIndex ?: -1
 
-    val currentFile: File?
-        get() = editorState.value?.currentFile
+  val currentFile: File?
+    get() = editorState.value?.currentFile
 
-    fun openFile(file: File) {
-        _editorEvent.value = EditorEvent.OpenFile(file)
+  fun openFile(file: File) {
+    _editorEvent.value = EditorEvent.OpenFile(file)
+  }
+
+  fun closeFile(index: Int) {
+    _editorEvent.value = EditorEvent.CloseFile(index)
+  }
+
+  fun closeOthers() {
+    _editorEvent.value = EditorEvent.CloseOthers
+  }
+
+  fun closeAll() {
+    _editorEvent.value = EditorEvent.CloseAll
+  }
+
+  fun saveFile() {
+    _editorEvent.value = EditorEvent.SaveFile
+  }
+
+  fun saveAllFiles() {
+    _editorEvent.value = EditorEvent.SaveAllFiles
+  }
+
+  fun setCurrentFile(index: Int) {
+    _editorState.value =
+      _editorState.value!!.copy(currentIndex = index, currentFile = openedFiles[index])
+  }
+
+  fun addFile(file: File) {
+    val files = _files.value!!
+    files.add(file)
+    _files.value = files
+  }
+
+  fun removeFile(index: Int) {
+    val files = _files.value!!
+    files.removeAt(index)
+    _files.value = files
+  }
+
+  fun removeAllFiles() {
+    val files = _files.value!!
+    files.clear()
+    _files.value = files
+  }
+
+  fun indexOfFile(file: File): Int {
+    val files = this.openedFiles
+    for (i in files.indices) {
+      if (files[i] == file) {
+        return i
+      }
     }
-
-    fun closeFile(index: Int) {
-        _editorEvent.value = EditorEvent.CloseFile(index)
-    }
-
-    fun closeOthers() {
-        _editorEvent.value = EditorEvent.CloseOthers
-    }
-
-    fun closeAll() {
-        _editorEvent.value = EditorEvent.CloseAll
-    }
-
-    fun saveFile() {
-        _editorEvent.value = EditorEvent.SaveFile
-    }
-
-    fun saveAllFiles() {
-        _editorEvent.value = EditorEvent.SaveAllFiles
-    }
-
-    fun setCurrentFile(index: Int) {
-        _editorState.value =
-            _editorState.value!!.copy(currentIndex = index, currentFile = openedFiles[index])
-    }
-
-    fun addFile(file: File) {
-        val files = _files.value!!
-        files.add(file)
-        _files.value = files
-    }
-
-    fun removeFile(index: Int) {
-        val files = _files.value!!
-        files.removeAt(index)
-        _files.value = files
-    }
-
-    fun removeAllFiles() {
-        val files = _files.value!!
-        files.clear()
-        _files.value = files
-    }
-
-    fun indexOfFile(file: File): Int {
-        val files = this.openedFiles
-        for (i in files.indices) {
-            if (files[i] == file) {
-                return i
-            }
-        }
-        return -1
-    }
+    return -1
+  }
 }

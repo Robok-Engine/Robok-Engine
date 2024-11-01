@@ -33,33 +33,33 @@ import org.robok.engine.feature.modeling.view.Model3DView
 
 @Composable
 fun ModelingScreen(model3dView: Model3DView?) {
-    var isOptionsOpen by remember { mutableStateOf(false) }
+  var isOptionsOpen by remember { mutableStateOf(false) }
 
-    Box(modifier = Modifier.fillMaxSize()) {
-        Column(modifier = Modifier.fillMaxSize()) { /* screen content */ }
+  Box(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = Modifier.fillMaxSize()) { /* screen content */ }
 
-        Image(
-            painter = painterResource(id = Drawables.ic_robok),
-            contentDescription = "Open 3D Options",
-            modifier =
-                Modifier.align(Alignment.TopEnd).padding(16.dp).size(50.dp).clickable {
-                    isOptionsOpen = !isOptionsOpen
-                },
-        )
+    Image(
+      painter = painterResource(id = Drawables.ic_robok),
+      contentDescription = "Open 3D Options",
+      modifier =
+        Modifier.align(Alignment.TopEnd).padding(16.dp).size(50.dp).clickable {
+          isOptionsOpen = !isOptionsOpen
+        },
+    )
 
-        ExpandAndShrink(
-            visible = isOptionsOpen,
-            modifier =
-                Modifier.align(Alignment.TopEnd)
-                    .padding(16.dp)
-                    .size(width = 200.dp, height = 400.dp)
-                    .background(MaterialTheme.colorScheme.surfaceContainerHigh),
-        ) {
-            Box(modifier = Modifier.padding(16.dp)) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
-            }
+    ExpandAndShrink(
+      visible = isOptionsOpen,
+      modifier =
+        Modifier.align(Alignment.TopEnd)
+          .padding(16.dp)
+          .size(width = 200.dp, height = 400.dp)
+          .background(MaterialTheme.colorScheme.surfaceContainerHigh),
+    ) {
+      Box(modifier = Modifier.padding(16.dp)) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+          Spacer(modifier = Modifier.height(8.dp))
         }
+      }
     }
+  }
 }

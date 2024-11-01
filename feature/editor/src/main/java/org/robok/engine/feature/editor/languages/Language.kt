@@ -27,15 +27,15 @@ import org.robok.engine.feature.editor.EditorListener
  */
 
 interface Language : io.github.rosemoe.sora.lang.Language {
-    /*
-     * Set the listener of editor
-     * @link EditorListener.kt
-     */
-    fun setEditorListener(editorListener: EditorListener)
+  /*
+   * Set the listener of editor
+   * @link EditorListener.kt
+   */
+  fun setEditorListener(editorListener: EditorListener)
 
-    /*
-     * Set the listener of editor
-     * @link AntlrListener, module robok:robok:antlr4
-     */
-    fun setAntlrListener(antlrListener: AntlrListener)
+  /*
+   * Set the listener of editor
+   * @link AntlrListener, module robok:robok:antlr4
+   */
+  fun setAntlrListener(antlrListener: AntlrListener)
 }

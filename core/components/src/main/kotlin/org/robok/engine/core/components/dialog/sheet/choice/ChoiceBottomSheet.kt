@@ -31,57 +31,57 @@ import org.robok.engine.strings.Strings
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ChoiceBottomSheet(
-    visible: Boolean,
-    title: @Composable () -> Unit,
-    default: Int,
-    options: List<Int>,
-    labelFactory: (Int) -> String,
-    excludedOptions: List<Int>,
-    onRequestClose: () -> Unit,
-    onChoice: (Int) -> Unit,
+  visible: Boolean,
+  title: @Composable () -> Unit,
+  default: Int,
+  options: List<Int>,
+  labelFactory: (Int) -> String,
+  excludedOptions: List<Int>,
+  onRequestClose: () -> Unit,
+  onChoice: (Int) -> Unit,
 ) {
-    var tempSelectedOption by remember { mutableStateOf(default) }
-    val btmSheetState = rememberModalBottomSheetState()
-    val btmSheetScope = rememberCoroutineScope()
+  var tempSelectedOption by remember { mutableStateOf(default) }
+  val btmSheetState = rememberModalBottomSheetState()
+  val btmSheetScope = rememberCoroutineScope()
 
-    if (visible) {
-        ModalBottomSheet(onDismissRequest = { onRequestClose() }, sheetState = btmSheetState) {
-            BottomSheetContent(
-                title = title,
-                buttons = {
-                    OutlinedButton(
-                        modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-                        onClick = {
-                            btmSheetScope.launch {
-                                btmSheetState.hide()
-                                onRequestClose()
-                            }
-                        },
-                    ) {
-                        Text(stringResource(id = Strings.common_word_cancel))
-                    }
-                    Button(
-                        modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-                        onClick = {
-                            btmSheetScope.launch {
-                                btmSheetState.hide()
-                                onChoice(tempSelectedOption)
-                                onRequestClose()
-                            }
-                        },
-                    ) {
-                        Text(stringResource(id = Strings.common_word_save))
-                    }
-                },
-            ) {
-                IntRadioController(
-                    default = tempSelectedOption,
-                    options = options,
-                    excludedOptions = excludedOptions,
-                    labelFactory = labelFactory,
-                    onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
-                )
-            }
-        }
+  if (visible) {
+    ModalBottomSheet(onDismissRequest = { onRequestClose() }, sheetState = btmSheetState) {
+      BottomSheetContent(
+        title = title,
+        buttons = {
+          OutlinedButton(
+            modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+            onClick = {
+              btmSheetScope.launch {
+                btmSheetState.hide()
+                onRequestClose()
+              }
+            },
+          ) {
+            Text(stringResource(id = Strings.common_word_cancel))
+          }
+          Button(
+            modifier = Modifier.padding(start = 4.dp, end = 4.dp),
+            onClick = {
+              btmSheetScope.launch {
+                btmSheetState.hide()
+                onChoice(tempSelectedOption)
+                onRequestClose()
+              }
+            },
+          ) {
+            Text(stringResource(id = Strings.common_word_save))
+          }
+        },
+      ) {
+        IntRadioController(
+          default = tempSelectedOption,
+          options = options,
+          excludedOptions = excludedOptions,
+          labelFactory = labelFactory,
+          onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
+        )
+      }
     }
+  }
 }

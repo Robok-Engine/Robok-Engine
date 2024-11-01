@@ -30,30 +30,30 @@ import org.robok.engine.core.components.spacer.BottomSpacer
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ScreenScaffold(
-    label: String,
-    isExpandedScreen: Boolean,
-    modifier: Modifier = Modifier,
-    backArrowVisible: Boolean = true,
-    actions: @Composable RowScope.() -> Unit = {},
-    bottomBar: @Composable () -> Unit = { BottomSpacer() },
-    content: @Composable (PaddingValues) -> Unit,
+  label: String,
+  isExpandedScreen: Boolean,
+  modifier: Modifier = Modifier,
+  backArrowVisible: Boolean = true,
+  actions: @Composable RowScope.() -> Unit = {},
+  bottomBar: @Composable () -> Unit = { BottomSpacer() },
+  content: @Composable (PaddingValues) -> Unit,
 ) {
-    val scrollBehavior =
-        if (isExpandedScreen) TopAppBarDefaults.pinnedScrollBehavior()
-        else TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-    Scaffold(
-        modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-        topBar = {
-            TopBar(
-                backArrowVisible = backArrowVisible,
-                label = label,
-                isExpandedScreen = isExpandedScreen,
-                actions = actions,
-                scrollBehavior = scrollBehavior,
-            )
-        },
-        bottomBar = bottomBar,
-    ) {
-        content(it)
-    }
+  val scrollBehavior =
+    if (isExpandedScreen) TopAppBarDefaults.pinnedScrollBehavior()
+    else TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+  Scaffold(
+    modifier = modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
+    topBar = {
+      TopBar(
+        backArrowVisible = backArrowVisible,
+        label = label,
+        isExpandedScreen = isExpandedScreen,
+        actions = actions,
+        scrollBehavior = scrollBehavior,
+      )
+    },
+    bottomBar = bottomBar,
+  ) {
+    content(it)
+  }
 }

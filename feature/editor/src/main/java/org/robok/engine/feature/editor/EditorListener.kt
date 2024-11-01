@@ -18,5 +18,5 @@ package org.robok.engine.feature.editor
  */
 
 interface EditorListener {
-    fun onEditorTextChange()
+  fun onEditorTextChange()
 }

@@ -33,29 +33,29 @@ import org.robok.engine.strings.Strings
  */
 @Composable
 fun InputDialog(
-    title: String,
-    inputLabel: String,
-    inputValue: String,
-    onInputValueChange: (String) -> Unit,
-    onConfirm: () -> Unit,
-    onDismiss: () -> Unit,
+  title: String,
+  inputLabel: String,
+  inputValue: String,
+  onInputValueChange: (String) -> Unit,
+  onConfirm: () -> Unit,
+  onDismiss: () -> Unit,
 ) {
-    RobokDialog(
-        onDismissRequest = onDismiss,
-        title = { Text(text = title) },
-        text = {
-            Column {
-                OutlinedTextField(
-                    value = inputValue,
-                    onValueChange = onInputValueChange,
-                    label = { Text(inputLabel) },
-                    modifier = Modifier.fillMaxWidth(),
-                    shape = RoundedCornerShape(12.dp),
-                )
-            }
-        },
-        confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
-        onConfirmation = onConfirm,
-        dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
-    )
+  RobokDialog(
+    onDismissRequest = onDismiss,
+    title = { Text(text = title) },
+    text = {
+      Column {
+        OutlinedTextField(
+          value = inputValue,
+          onValueChange = onInputValueChange,
+          label = { Text(inputLabel) },
+          modifier = Modifier.fillMaxWidth(),
+          shape = RoundedCornerShape(12.dp),
+        )
+      }
+    },
+    confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
+    onConfirmation = onConfirm,
+    dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
+  )
 }

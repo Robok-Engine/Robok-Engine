@@ -23,14 +23,13 @@ package org.robok.easyui.internal
  */
 
 internal object DefaultValues {
-    private const val XMLNS_ANDROID =
-        "\txmlns:android=\"http://schemas.android.com/apk/res/android\""
-    private const val XMLNS_APP = "\txmlns:app=\"http://schemas.android.com/apk/res-auto\""
-    private const val XMLNS_TOOLS = "\txmlns:tools=\"http://schemas.android.com/tools\""
-    const val NO_ID = ""
-    const val LAYOUT_HEIGHT = "\tandroid:layout_height=\"wrap_content\""
-    const val LAYOUT_WIDTH = "\tandroid:layout_width=\"match_parent\""
+  private const val XMLNS_ANDROID = "\txmlns:android=\"http://schemas.android.com/apk/res/android\""
+  private const val XMLNS_APP = "\txmlns:app=\"http://schemas.android.com/apk/res-auto\""
+  private const val XMLNS_TOOLS = "\txmlns:tools=\"http://schemas.android.com/tools\""
+  const val NO_ID = ""
+  const val LAYOUT_HEIGHT = "\tandroid:layout_height=\"wrap_content\""
+  const val LAYOUT_WIDTH = "\tandroid:layout_width=\"match_parent\""
 
-    fun XMLNS(indent: String): String =
-        "${indent}${XMLNS_ANDROID}\n${indent}${XMLNS_APP}\n${indent}${XMLNS_TOOLS}"
+  fun XMLNS(indent: String): String =
+    "${indent}${XMLNS_ANDROID}\n${indent}${XMLNS_APP}\n${indent}${XMLNS_TOOLS}"
 }

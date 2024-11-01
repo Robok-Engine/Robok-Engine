@@ -32,75 +32,72 @@ import android.widget.EditText
 
 class KeyboardUtil(private val applicationClass: Application) {
 
-    fun showSoftInput() {
-        val imm =
-            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.showSoftInput(null, InputMethodManager.SHOW_IMPLICIT)
-    }
+  fun showSoftInput() {
+    val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    imm?.showSoftInput(null, InputMethodManager.SHOW_IMPLICIT)
+  }
 
-    fun showSoftInput(activity: Activity?) {
-        if (activity != null && !isSoftInputVisible(activity)) {
-            showSoftInput()
-        }
+  fun showSoftInput(activity: Activity?) {
+    if (activity != null && !isSoftInputVisible(activity)) {
+      showSoftInput()
     }
+  }
 
-    fun showSoftInput(view: View) {
-        showSoftInput(view, 0)
-    }
+  fun showSoftInput(view: View) {
+    showSoftInput(view, 0)
+  }
 
-    fun showSoftInput(view: View, flags: Int) {
-        val imm =
-            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.let {
-            view.isFocusable = true
-            view.isFocusableInTouchMode = true
-            view.requestFocus()
-            it.showSoftInput(
-                view,
-                flags,
-                object : ResultReceiver(Handler(Looper.getMainLooper())) {
-                    override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
-                        if (
-                            resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN ||
-                                resultCode == InputMethodManager.RESULT_HIDDEN
-                        ) {
-                            showSoftInput()
-                        }
-                    }
-                },
-            )
-        }
-    }
-
-    fun hideSoftInput(activity: Activity?) {
-        activity?.let { hideSoftInput(it.window) }
-    }
-
-    fun hideSoftInput(window: Window?) {
-        window?.let {
-            var view = it.currentFocus
-            if (view == null) {
-                val decorView = it.decorView
-                val focusView = decorView.findViewWithTag<View>("keyboardTagView")
-                view =
-                    focusView
-                        ?: EditText(window.context).apply {
-                            tag = "keyboardTagView"
-                            (decorView as ViewGroup).addView(this, 0, 0)
-                        }
-                view.requestFocus()
+  fun showSoftInput(view: View, flags: Int) {
+    val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    imm?.let {
+      view.isFocusable = true
+      view.isFocusableInTouchMode = true
+      view.requestFocus()
+      it.showSoftInput(
+        view,
+        flags,
+        object : ResultReceiver(Handler(Looper.getMainLooper())) {
+          override fun onReceiveResult(resultCode: Int, resultData: Bundle?) {
+            if (
+              resultCode == InputMethodManager.RESULT_UNCHANGED_HIDDEN ||
+                resultCode == InputMethodManager.RESULT_HIDDEN
+            ) {
+              showSoftInput()
             }
-            hideSoftInput(view)
-        }
+          }
+        },
+      )
     }
+  }
 
-    fun hideSoftInput(view: View) {
-        val imm =
-            applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
-        imm?.hideSoftInputFromWindow(view.windowToken, 0)
-    }
+  fun hideSoftInput(activity: Activity?) {
+    activity?.let { hideSoftInput(it.window) }
+  }
 
-    fun isSoftInputVisible(act: Activity): Boolean {
-        return false
+  fun hideSoftInput(window: Window?) {
+    window?.let {
+      var view = it.currentFocus
+      if (view == null) {
+        val decorView = it.decorView
+        val focusView = decorView.findViewWithTag<View>("keyboardTagView")
+        view =
+          focusView
+            ?: EditText(window.context).apply {
+              tag = "keyboardTagView"
+              (decorView as ViewGroup).addView(this, 0, 0)
+            }
+        view.requestFocus()
+      }
+      hideSoftInput(view)
     }
+  }
+
+  fun hideSoftInput(view: View) {
+    val imm = applicationClass.getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
+    imm?.hideSoftInputFromWindow(view.windowToken, 0)
+  }
+
+  fun isSoftInputVisible(act: Activity): Boolean {
+    return false
+  }
 }

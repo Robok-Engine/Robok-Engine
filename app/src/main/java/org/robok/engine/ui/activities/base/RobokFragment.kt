@@ -29,29 +29,29 @@ import org.robok.engine.core.utils.getBackPressedClickListener
 
 open class RobokFragment() : Fragment() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
-    }
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    enterTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+    returnTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+    exitTransition = MaterialSharedAxis(MaterialSharedAxis.X, true)
+    reenterTransition = MaterialSharedAxis(MaterialSharedAxis.X, false)
+  }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
-    }
+  override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    super.onViewCreated(view, savedInstanceState)
+    view.setBackgroundColor(MaterialColors.getColor(view, android.R.attr.colorBackground))
+  }
 
-    fun openFragment(@IdRes idRes: Int, fragment: Fragment) {
-        parentFragmentManager.beginTransaction().apply {
-            replace(idRes, fragment)
-            addToBackStack(null)
-            commit()
-        }
+  fun openFragment(@IdRes idRes: Int, fragment: Fragment) {
+    parentFragmentManager.beginTransaction().apply {
+      replace(idRes, fragment)
+      addToBackStack(null)
+      commit()
     }
+  }
 
-    fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-        val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
-        toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
-    }
+  fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
+    val onBackPressedDispatcher = requireActivity().onBackPressedDispatcher
+    toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
+  }
 }

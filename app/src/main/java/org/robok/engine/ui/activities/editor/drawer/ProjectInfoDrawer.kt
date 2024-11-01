@@ -28,38 +28,33 @@ import org.robok.engine.strings.Strings
 
 @Composable
 fun ProjectInfoDrawer() {
-    var selectedTabIndex by remember { mutableStateOf(0) }
-    val tabTitles =
-        listOf(
-            stringResource(id = Strings.common_word_logs),
-            stringResource(id = Strings.text_diagnostic),
-        )
+  var selectedTabIndex by remember { mutableStateOf(0) }
+  val tabTitles =
+    listOf(
+      stringResource(id = Strings.common_word_logs),
+      stringResource(id = Strings.text_diagnostic),
+    )
 
-    Column {
-        TabRow(selectedTabIndex = selectedTabIndex) {
-            tabTitles.forEachIndexed { index, title ->
-                Tab(
-                    selected = selectedTabIndex == index,
-                    onClick = { selectedTabIndex = index },
-                    text = { Text(title) },
-                )
-            }
-        }
-        when (selectedTabIndex) {
-            0 -> DrawerContent(text = stringResource(id = Strings.common_word_logs))
-            1 -> DrawerContent(text = stringResource(id = Strings.text_diagnostic))
-        }
+  Column {
+    TabRow(selectedTabIndex = selectedTabIndex) {
+      tabTitles.forEachIndexed { index, title ->
+        Tab(
+          selected = selectedTabIndex == index,
+          onClick = { selectedTabIndex = index },
+          text = { Text(title) },
+        )
+      }
     }
+    when (selectedTabIndex) {
+      0 -> DrawerContent(text = stringResource(id = Strings.common_word_logs))
+      1 -> DrawerContent(text = stringResource(id = Strings.text_diagnostic))
+    }
+  }
 }
 
 @Composable
 private fun DrawerContent(text: String) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Text(text = text, fontSize = 24.sp)
-    }
+  Column(modifier = Modifier.fillMaxSize().padding(16.dp), contentAlignment = Alignment.Center) {
+    Text(text = text, fontSize = 24.sp)
+  }
 }

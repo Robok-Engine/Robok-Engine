@@ -31,27 +31,27 @@ import org.robok.engine.core.components.databinding.LayoutBottomsheetTerminalWit
 
 open class RobokTerminalWithRecycler(context: Context) : BottomSheetDialog(context) {
 
-    val binding: LayoutBottomsheetTerminalWithRecyclerBinding =
-        LayoutBottomsheetTerminalWithRecyclerBinding.inflate(LayoutInflater.from(context))
+  val binding: LayoutBottomsheetTerminalWithRecyclerBinding =
+    LayoutBottomsheetTerminalWithRecyclerBinding.inflate(LayoutInflater.from(context))
 
-    val recycler = binding.recycler
-    val terminalTitle = binding.terminalTitle
+  val recycler = binding.recycler
+  val terminalTitle = binding.terminalTitle
 
-    open fun getRecyclerView(): RecyclerView {
-        return recycler
-    }
+  open fun getRecyclerView(): RecyclerView {
+    return recycler
+  }
 
-    init {
-        setContentView(binding.root)
-        setCancelable(true)
-        binding.recycler.layoutManager = LinearLayoutManager(context)
-    }
+  init {
+    setContentView(binding.root)
+    setCancelable(true)
+    binding.recycler.layoutManager = LinearLayoutManager(context)
+  }
 
-    open fun setTerminalTitle(title: String) {
-        terminalTitle.text = title
-    }
+  open fun setTerminalTitle(title: String) {
+    terminalTitle.text = title
+  }
 
-    open fun getTerminalTitle(): String {
-        return terminalTitle.text.toString()
-    }
+  open fun getTerminalTitle(): String {
+    return terminalTitle.text.toString()
+  }
 }

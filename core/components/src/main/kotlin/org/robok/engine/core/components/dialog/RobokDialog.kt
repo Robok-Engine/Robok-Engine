@@ -24,25 +24,25 @@ import androidx.compose.runtime.*
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun RobokDialog(
-    onDismissRequest: () -> Unit,
-    onConfirmation: () -> Unit,
-    title: @Composable () -> Unit,
-    text: @Composable () -> Unit,
-    confirmButton: @Composable () -> Unit,
-    dismissButton: @Composable (() -> Unit)? = null,
-    icon: @Composable (() -> Unit)? = null,
-    iconDescription: String = "Icon",
+  onDismissRequest: () -> Unit,
+  onConfirmation: () -> Unit,
+  title: @Composable () -> Unit,
+  text: @Composable () -> Unit,
+  confirmButton: @Composable () -> Unit,
+  dismissButton: @Composable (() -> Unit)? = null,
+  icon: @Composable (() -> Unit)? = null,
+  iconDescription: String = "Icon",
 ) {
-    AlertDialog(
-        icon = { icon?.let { it() } },
-        title = { title() },
-        text = { text() },
-        onDismissRequest = { onDismissRequest() },
-        confirmButton = { Button(onClick = { onConfirmation() }) { confirmButton() } },
-        dismissButton = {
-            dismissButton?.let { dismissText ->
-                OutlinedButton(onClick = { onDismissRequest() }) { dismissText() }
-            }
-        },
-    )
+  AlertDialog(
+    icon = { icon?.let { it() } },
+    title = { title() },
+    text = { text() },
+    onDismissRequest = { onDismissRequest() },
+    confirmButton = { Button(onClick = { onConfirmation() }) { confirmButton() } },
+    dismissButton = {
+      dismissButton?.let { dismissText ->
+        OutlinedButton(onClick = { onDismissRequest() }) { dismissText() }
+      }
+    },
+  )
 }

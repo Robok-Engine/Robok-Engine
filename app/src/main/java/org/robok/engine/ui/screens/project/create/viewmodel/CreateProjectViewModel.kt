@@ -29,47 +29,47 @@ import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 
 class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
-    var state by mutableStateOf(CreateProjectState())
+  var state by mutableStateOf(CreateProjectState())
 
-    fun updateProjectName(name: String) {
-        state = state.copy(projectName = name)
+  fun updateProjectName(name: String) {
+    state = state.copy(projectName = name)
+  }
+
+  fun updatePackageName(name: String) {
+    state = state.copy(packageName = name)
+  }
+
+  fun updateErrorMessage(message: String?) {
+    state = state.copy(errorMessage = message ?: "Null Message")
+  }
+
+  fun setProjectPath(file: File) {
+    projectManager.projectPath = file
+  }
+
+  fun getProjectPath(): File = projectManager.projectPath
+
+  fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
+    if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
+      state = state.copy(errorMessage = "Project name and package name cannot be empty.")
+      return
     }
 
-    fun updatePackageName(name: String) {
-        state = state.copy(packageName = name)
-    }
+    viewModelScope.launch {
+      state = state.copy(isLoading = true, errorMessage = null)
+      val projectCreationListener =
+        object : ProjectManager.CreationListener {
+          override fun onProjectCreate() {
+            onSuccess()
+            state = state.copy(isLoading = false)
+          }
 
-    fun updateErrorMessage(message: String?) {
-        state = state.copy(errorMessage = message ?: "Null Message")
-    }
-
-    fun setProjectPath(file: File) {
-        projectManager.projectPath = file
-    }
-
-    fun getProjectPath(): File = projectManager.projectPath
-
-    fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
-        if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
-            state = state.copy(errorMessage = "Project name and package name cannot be empty.")
-            return
+          override fun onProjectCreateError(error: String) {
+            onError(error)
+          }
         }
-
-        viewModelScope.launch {
-            state = state.copy(isLoading = true, errorMessage = null)
-            val projectCreationListener =
-                object : ProjectManager.CreationListener {
-                    override fun onProjectCreate() {
-                        onSuccess()
-                        state = state.copy(isLoading = false)
-                    }
-
-                    override fun onProjectCreateError(error: String) {
-                        onError(error)
-                    }
-                }
-            projectManager.setListener(projectCreationListener)
-            projectManager.create(state.projectName, state.packageName, template)
-        }
+      projectManager.setListener(projectCreationListener)
+      projectManager.create(state.projectName, state.packageName, template)
     }
+  }
 }

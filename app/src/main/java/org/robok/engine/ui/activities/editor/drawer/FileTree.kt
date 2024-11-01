@@ -35,20 +35,20 @@ import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
 
 @Composable
 fun FileTree(path: String, onClick: (Node<FileObject>) -> Unit) {
-    AndroidView(
-        factory = { context ->
-            val fileObject = FileWrapper(File(path))
-            FileTreeView(context).apply {
-                loadFiles(fileObject)
-                setOnFileClickListener(
-                    object : FileClickListener {
-                        override fun onClick(node: Node<FileObject>) {
-                            onClick(node)
-                        }
-                    }
-                )
-                setIconProvider(DefaultFileIconProvider(context))
+  AndroidView(
+    factory = { context ->
+      val fileObject = FileWrapper(File(path))
+      FileTreeView(context).apply {
+        loadFiles(fileObject)
+        setOnFileClickListener(
+          object : FileClickListener {
+            override fun onClick(node: Node<FileObject>) {
+              onClick(node)
             }
-        }
-    )
+          }
+        )
+        setIconProvider(DefaultFileIconProvider(context))
+      }
+    }
+  )
 }

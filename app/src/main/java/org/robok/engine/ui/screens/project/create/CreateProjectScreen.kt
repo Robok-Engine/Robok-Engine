@@ -61,107 +61,103 @@ import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewMod
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
-    val context = LocalContext.current
+  val context = LocalContext.current
 
-    val projectManager = ProjectManager(context)
-    val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
-    val state = viewModel.state
+  val projectManager = ProjectManager(context)
+  val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
+  val state = viewModel.state
 
-    LaunchedEffect(template) {
-        viewModel.updateProjectName(template.name)
-        viewModel.updatePackageName(template.packageName)
+  LaunchedEffect(template) {
+    viewModel.updateProjectName(template.name)
+    viewModel.updatePackageName(template.packageName)
+  }
+
+  Screen(label = stringResource(id = Strings.title_create_project)) {
+    PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
+      Screen(state = state, viewModel = viewModel, template = template, context = context)
     }
+  }
 
-    Screen(label = stringResource(id = Strings.title_create_project)) {
-        PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
-            Screen(state = state, viewModel = viewModel, template = template, context = context)
-        }
+  if (state.errorMessage != null) {
+    LaunchedEffect(state.errorMessage) {
+      Toast.makeText(context, state.errorMessage, Toast.LENGTH_SHORT).show()
+      viewModel.updateErrorMessage(null)
     }
-
-    if (state.errorMessage != null) {
-        LaunchedEffect(state.errorMessage) {
-            Toast.makeText(context, state.errorMessage, Toast.LENGTH_SHORT).show()
-            viewModel.updateErrorMessage(null)
-        }
-    }
+  }
 }
 
 @Composable
 private fun Screen(
-    state: CreateProjectState,
-    viewModel: CreateProjectViewModel,
-    template: ProjectTemplate,
-    context: android.content.Context,
-    modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
+  state: CreateProjectState,
+  viewModel: CreateProjectViewModel,
+  template: ProjectTemplate,
+  context: android.content.Context,
+  modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
 ) {
-    val navController = LocalMainNavController.current
+  val navController = LocalMainNavController.current
 
-    OutlinedTextField(
-        value = state.projectName,
-        onValueChange = { viewModel.updateProjectName(it) },
-        label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
-        shape = RoundedCornerShape(12.dp),
-        modifier = modifier.fillMaxWidth(),
-    )
-    OutlinedTextField(
-        value = state.packageName,
-        onValueChange = { viewModel.updatePackageName(it) },
-        label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
-        shape = RoundedCornerShape(12.dp),
-        modifier = modifier.fillMaxWidth(),
-    )
+  OutlinedTextField(
+    value = state.projectName,
+    onValueChange = { viewModel.updateProjectName(it) },
+    label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
+    shape = RoundedCornerShape(12.dp),
+    modifier = modifier.fillMaxWidth(),
+  )
+  OutlinedTextField(
+    value = state.packageName,
+    onValueChange = { viewModel.updatePackageName(it) },
+    label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
+    shape = RoundedCornerShape(12.dp),
+    modifier = modifier.fillMaxWidth(),
+  )
 
-    var isShowDialog = remember { mutableStateOf(false) }
-    var title by remember { mutableStateOf("") }
-    var message by remember { mutableStateOf("") }
+  var isShowDialog = remember { mutableStateOf(false) }
+  var title by remember { mutableStateOf("") }
+  var message by remember { mutableStateOf("") }
 
-    Row(horizontalArrangement = Arrangement.spacedBy(16.dp), modifier = modifier.fillMaxWidth()) {
-        OutlinedButton(modifier = Modifier.weight(1f), onClick = { navController.popBackStack() }) {
-            Text(text = stringResource(id = Strings.common_word_cancel))
-        }
-        Button(
-            modifier = Modifier.weight(1f),
-            onClick = {
-                viewModel.setProjectPath(File(ProjectManager.getProjectsPath(), state.projectName))
-                viewModel.createProject(
-                    template,
-                    onSuccess = {
-                        val bundle =
-                            android.os.Bundle().apply {
-                                putString(
-                                    ExtraKeys.Project.PATH,
-                                    viewModel.getProjectPath().absolutePath,
-                                )
-                            }
-                        val intent =
-                            Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
-                        context.startActivity(intent)
-                    },
-                    onError = { error ->
-                        isShowDialog.value = true
-                        title = "An error occurred"
-                        message = error
-                    },
-                )
-            },
-        ) {
-            Text(text = stringResource(id = Strings.title_create_project))
-        }
-        ShowVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
+  Row(horizontalArrangement = Arrangement.spacedBy(16.dp), modifier = modifier.fillMaxWidth()) {
+    OutlinedButton(modifier = Modifier.weight(1f), onClick = { navController.popBackStack() }) {
+      Text(text = stringResource(id = Strings.common_word_cancel))
     }
+    Button(
+      modifier = Modifier.weight(1f),
+      onClick = {
+        viewModel.setProjectPath(File(ProjectManager.getProjectsPath(), state.projectName))
+        viewModel.createProject(
+          template,
+          onSuccess = {
+            val bundle =
+              android.os.Bundle().apply {
+                putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
+              }
+            val intent = Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
+            context.startActivity(intent)
+          },
+          onError = { error ->
+            isShowDialog.value = true
+            title = "An error occurred"
+            message = error
+          },
+        )
+      },
+    ) {
+      Text(text = stringResource(id = Strings.title_create_project))
+    }
+    ShowVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
+  }
 }
 
 @Composable
 fun ShowVeryBasicDialog(title: String, message: String, isShowDialog: MutableState<Boolean>) {
-    if (isShowDialog.value) {
-        RobokDialog(
-            onDismissRequest = { isShowDialog.value = false },
-            onConfirmation = { isShowDialog.value = false },
-            title = { Text(text = title, fontSize = 24.sp) },
-            text = { Text(text = message) },
-            confirmButton = { Text(stringResource(id = Strings.common_word_ok)) },
-            dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
-            icon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon") },
-        )
-    }
+  if (isShowDialog.value) {
+    RobokDialog(
+      onDismissRequest = { isShowDialog.value = false },
+      onConfirmation = { isShowDialog.value = false },
+      title = { Text(text = title, fontSize = 24.sp) },
+      text = { Text(text = message) },
+      confirmButton = { Text(stringResource(id = Strings.common_word_ok)) },
+      dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
+      icon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon") },
+    )
+  }
 }

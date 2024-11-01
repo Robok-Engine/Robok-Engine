@@ -27,29 +27,27 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun IntRadioController(
-    default: Int,
-    options: List<Int>,
-    excludedOptions: List<Int> = emptyList(),
-    labelFactory: (Int) -> String = { it.toString() },
-    onChoiceSelected: (Int) -> Unit,
+  default: Int,
+  options: List<Int>,
+  excludedOptions: List<Int> = emptyList(),
+  labelFactory: (Int) -> String = { it.toString() },
+  onChoiceSelected: (Int) -> Unit,
 ) {
-    var selectedChoice by remember { mutableStateOf(default) }
+  var selectedChoice by remember { mutableStateOf(default) }
 
-    Column {
-        options
-            .filterNot { it in excludedOptions }
-            .forEach { option ->
-                PreferenceTemplate(
-                    title = { Text(text = labelFactory(option)) },
-                    modifier =
-                        Modifier.clickable {
-                            selectedChoice = option
-                            onChoiceSelected(option)
-                        },
-                    startWidget = {
-                        RadioButton(selected = option == selectedChoice, onClick = null)
-                    },
-                )
-            }
-    }
+  Column {
+    options
+      .filterNot { it in excludedOptions }
+      .forEach { option ->
+        PreferenceTemplate(
+          title = { Text(text = labelFactory(option)) },
+          modifier =
+            Modifier.clickable {
+              selectedChoice = option
+              onChoiceSelected(option)
+            },
+          startWidget = { RadioButton(selected = option == selectedChoice, onClick = null) },
+        )
+      }
+  }
 }

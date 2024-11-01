@@ -21,23 +21,23 @@ package org.robok.easyui.internal
  * Add new line on MutableList.
  */
 internal fun MutableList<String>.newLine(text: String) {
-    if (text.isNotEmpty()) {
-        this.add("$text")
-    }
+  if (text.isNotEmpty()) {
+    this.add("$text")
+  }
 }
 
 /*
  * Add new line with \n in MutableList.
  */
 internal fun MutableList<String>.newLineBroken(text: String) {
-    if (text.isNotEmpty()) {
-        this.add("$text\n")
-    }
+  if (text.isNotEmpty()) {
+    this.add("$text\n")
+  }
 }
 
 /*
  * Add Empty Line in List
  */
 internal fun MutableList<String>.newEmptyLine() {
-    this.add("\n")
+  this.add("\n")
 }

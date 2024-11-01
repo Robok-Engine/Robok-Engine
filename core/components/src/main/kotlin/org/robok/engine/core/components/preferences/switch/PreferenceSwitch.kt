@@ -43,51 +43,51 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
  */
 @Composable
 fun PreferenceSwitch(
-    checked: Boolean,
-    onCheckedChange: (Boolean) -> Unit,
-    label: String,
-    modifier: Modifier = Modifier,
-    description: String? = null,
-    enabled: Boolean = true,
-    onClick: (() -> Unit)? = null,
+  checked: Boolean,
+  onCheckedChange: (Boolean) -> Unit,
+  label: String,
+  modifier: Modifier = Modifier,
+  description: String? = null,
+  enabled: Boolean = true,
+  onClick: (() -> Unit)? = null,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
+  val interactionSource = remember { MutableInteractionSource() }
 
-    PreferenceTemplate(
-        modifier =
-            modifier.clickable(
-                enabled = enabled,
-                indication = ripple(),
-                interactionSource = interactionSource,
-            ) {
-                if (onClick != null) {
-                    onClick()
-                } else {
-                    onCheckedChange(!checked)
-                }
-            },
-        contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-        title = { Text(fontWeight = FontWeight.Bold, text = label) },
-        description = { description?.let { Text(text = it) } },
-        endWidget = {
-            if (onClick != null) {
-                Spacer(
-                    modifier =
-                        Modifier.height(32.dp)
-                            .width(1.dp)
-                            .fillMaxHeight()
-                            .background(MaterialTheme.colorScheme.outlineVariant)
-                )
-            }
-            Switch(
-                modifier = Modifier.padding(all = 16.dp).height(24.dp),
-                checked = checked,
-                onCheckedChange = onCheckedChange,
-                enabled = enabled,
-                interactionSource = interactionSource,
-            )
-        },
+  PreferenceTemplate(
+    modifier =
+      modifier.clickable(
         enabled = enabled,
-        applyPaddings = false,
-    )
+        indication = ripple(),
+        interactionSource = interactionSource,
+      ) {
+        if (onClick != null) {
+          onClick()
+        } else {
+          onCheckedChange(!checked)
+        }
+      },
+    contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
+    title = { Text(fontWeight = FontWeight.Bold, text = label) },
+    description = { description?.let { Text(text = it) } },
+    endWidget = {
+      if (onClick != null) {
+        Spacer(
+          modifier =
+            Modifier.height(32.dp)
+              .width(1.dp)
+              .fillMaxHeight()
+              .background(MaterialTheme.colorScheme.outlineVariant)
+        )
+      }
+      Switch(
+        modifier = Modifier.padding(all = 16.dp).height(24.dp),
+        checked = checked,
+        onCheckedChange = onCheckedChange,
+        enabled = enabled,
+        interactionSource = interactionSource,
+      )
+    },
+    enabled = enabled,
+    applyPaddings = false,
+  )
 }

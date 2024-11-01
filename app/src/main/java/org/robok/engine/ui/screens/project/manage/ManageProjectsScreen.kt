@@ -58,72 +58,68 @@ val projectPath = ProjectManager.getProjectsPath()
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManageProjectsScreen() {
-    val projectViewModel = koinViewModel<ManageProjectsViewModel>()
-    val projects by projectViewModel.projects.collectAsState()
+  val projectViewModel = koinViewModel<ManageProjectsViewModel>()
+  val projects by projectViewModel.projects.collectAsState()
 
-    LaunchedEffect(Unit) {
-        withContext(Dispatchers.IO) {
-            projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
-        }
+  LaunchedEffect(Unit) {
+    withContext(Dispatchers.IO) {
+      projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
     }
-    Screen(label = stringResource(id = Strings.title_projects)) {
-        PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
-            if (projects.isEmpty().not()) {
-                projects.forEach { project -> ProjectItem(projectFile = project) }
-            } else {
-                EmptyContentItem()
-            }
-        }
+  }
+  Screen(label = stringResource(id = Strings.title_projects)) {
+    PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
+      if (projects.isEmpty().not()) {
+        projects.forEach { project -> ProjectItem(projectFile = project) }
+      } else {
+        EmptyContentItem()
+      }
     }
+  }
 }
 
 @Composable
 fun ProjectItem(projectFile: File) {
-    val context = LocalContext.current
-    PreferenceTemplate(
-        title = { Text(text = projectFile.name, style = MaterialTheme.typography.titleMedium) },
-        description = {
-            Text(text = projectFile.path, style = MaterialTheme.typography.titleSmall)
-        },
-        modifier =
-            Modifier.fillMaxWidth()
-                .clickable(
-                    onClick = {
-                        context.startActivity(
-                            Intent(context, EditorActivity::class.java).apply {
-                                putExtras(
-                                    android.os.Bundle().apply {
-                                        putString(ExtraKeys.Project.PATH, projectFile.absolutePath)
-                                    }
-                                )
-                            }
-                        )
-                    }
-                ),
-    )
+  val context = LocalContext.current
+  PreferenceTemplate(
+    title = { Text(text = projectFile.name, style = MaterialTheme.typography.titleMedium) },
+    description = { Text(text = projectFile.path, style = MaterialTheme.typography.titleSmall) },
+    modifier =
+      Modifier.fillMaxWidth()
+        .clickable(
+          onClick = {
+            context.startActivity(
+              Intent(context, EditorActivity::class.java).apply {
+                putExtras(
+                  android.os.Bundle().apply {
+                    putString(ExtraKeys.Project.PATH, projectFile.absolutePath)
+                  }
+                )
+              }
+            )
+          }
+        ),
+  )
 }
 
 @Composable
 fun EmptyContentItem() {
-    val navController = LocalMainNavController.current
+  val navController = LocalMainNavController.current
 
-    PreferenceTemplate(
-        title = {
-            Text(
-                text = stringResource(id = Strings.warning_no_projects),
-                style = MaterialTheme.typography.titleMedium,
-            )
-        },
-        startWidget = {
-            Image(
-                painter = painterResource(id = Drawables.ic_warning_24),
-                contentDescription = null,
-                modifier = Modifier.size(32.dp).clip(CircleShape),
-            )
-        },
-        modifier =
-            Modifier.fillMaxWidth().clickable {
-                navController.navigateSingleTop(route = TemplatesRoute)
-            },
-    )
+  PreferenceTemplate(
+    title = {
+      Text(
+        text = stringResource(id = Strings.warning_no_projects),
+        style = MaterialTheme.typography.titleMedium,
+      )
+    },
+    startWidget = {
+      Image(
+        painter = painterResource(id = Drawables.ic_warning_24),
+        contentDescription = null,
+        modifier = Modifier.size(32.dp).clip(CircleShape),
+      )
+    },
+    modifier =
+      Modifier.fillMaxWidth().clickable { navController.navigateSingleTop(route = TemplatesRoute) },
+  )
 }

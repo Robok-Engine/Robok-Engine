@@ -25,20 +25,19 @@ import kotlinx.coroutines.flow.update
 
 class ManageProjectsViewModel : ViewModel() {
 
-    private val _projects = MutableStateFlow<Array<File>>(emptyArray())
+  private val _projects = MutableStateFlow<Array<File>>(emptyArray())
 
-    val projects: StateFlow<Array<File>> = _projects
+  val projects: StateFlow<Array<File>> = _projects
 
-    /*
-     * Update projects list
-     */
-    fun updateProjects(projects: Array<File>) {
-        _projects.update { projects.filter { isProject(it) }.toTypedArray() }
-    }
+  /*
+   * Update projects list
+   */
+  fun updateProjects(projects: Array<File>) {
+    _projects.update { projects.filter { isProject(it) }.toTypedArray() }
+  }
 
-    /*
-     * Check if is project or not.
-     */
-    fun isProject(file: File): Boolean =
-        file.isDirectory and (file.listFiles().isNullOrEmpty().not())
+  /*
+   * Check if is project or not.
+   */
+  fun isProject(file: File): Boolean = file.isDirectory and (file.listFiles().isNullOrEmpty().not())
 }

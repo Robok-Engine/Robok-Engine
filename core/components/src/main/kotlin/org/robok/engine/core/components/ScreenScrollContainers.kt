@@ -41,47 +41,47 @@ import org.robok.engine.core.components.utils.addIf
 
 @Composable
 fun ScreenColumn(
-    contentPadding: PaddingValues,
-    modifier: Modifier = Modifier,
-    verticalArrangement: Arrangement.Vertical = Arrangement.Top,
-    horizontalAlignment: Alignment.Horizontal = Alignment.Start,
-    scrollState: ScrollState? = rememberScrollState(),
-    content: @Composable ColumnScope.() -> Unit,
+  contentPadding: PaddingValues,
+  modifier: Modifier = Modifier,
+  verticalArrangement: Arrangement.Vertical = Arrangement.Top,
+  horizontalAlignment: Alignment.Horizontal = Alignment.Start,
+  scrollState: ScrollState? = rememberScrollState(),
+  content: @Composable ColumnScope.() -> Unit,
 ) {
-    NestedScrollStretch(modifier = modifier) {
-        Column(
-            verticalArrangement = verticalArrangement,
-            horizontalAlignment = horizontalAlignment,
-            modifier =
-                Modifier.fillMaxHeight()
-                    .addIf(scrollState != null) { this.verticalScroll(scrollState!!) }
-                    .padding(contentPadding)
-                    .padding(top = 8.dp, bottom = 16.dp),
-            content = content,
-        )
-    }
+  NestedScrollStretch(modifier = modifier) {
+    Column(
+      verticalArrangement = verticalArrangement,
+      horizontalAlignment = horizontalAlignment,
+      modifier =
+        Modifier.fillMaxHeight()
+          .addIf(scrollState != null) { this.verticalScroll(scrollState!!) }
+          .padding(contentPadding)
+          .padding(top = 8.dp, bottom = 16.dp),
+      content = content,
+    )
+  }
 }
 
 @Composable
 fun ScreenLazyColumn(
-    contentPadding: PaddingValues,
-    modifier: Modifier = Modifier,
-    enabled: Boolean = true,
-    isChild: Boolean = false,
-    state: LazyListState = rememberLazyListState(),
-    content: LazyListScope.() -> Unit,
+  contentPadding: PaddingValues,
+  modifier: Modifier = Modifier,
+  enabled: Boolean = true,
+  isChild: Boolean = false,
+  state: LazyListState = rememberLazyListState(),
+  content: LazyListScope.() -> Unit,
 ) {
-    if (!enabled) {
-        LaunchedEffect(key1 = null) {
-            state.scroll(scrollPriority = MutatePriority.PreventUserInput) { awaitCancellation() }
-        }
+  if (!enabled) {
+    LaunchedEffect(key1 = null) {
+      state.scroll(scrollPriority = MutatePriority.PreventUserInput) { awaitCancellation() }
     }
-    NestedScrollStretch(modifier = modifier) {
-        LazyColumn(
-            modifier = Modifier.addIf(!isChild) { fillMaxHeight() },
-            contentPadding = contentPadding,
-            state = state,
-            content = content,
-        )
-    }
+  }
+  NestedScrollStretch(modifier = modifier) {
+    LazyColumn(
+      modifier = Modifier.addIf(!isChild) { fillMaxHeight() },
+      contentPadding = contentPadding,
+      state = state,
+      content = content,
+    )
+  }
 }

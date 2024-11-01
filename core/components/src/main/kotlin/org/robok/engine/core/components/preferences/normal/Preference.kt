@@ -37,42 +37,42 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun Preference(
-    modifier: Modifier = Modifier,
-    icon: @Composable (() -> Unit)? = null,
-    text: @Composable () -> Unit,
-    secondaryText: @Composable (() -> Unit) = {},
-    trailing: @Composable (() -> Unit) = {},
-    onClick: (() -> Unit)? = null,
+  modifier: Modifier = Modifier,
+  icon: @Composable (() -> Unit)? = null,
+  text: @Composable () -> Unit,
+  secondaryText: @Composable (() -> Unit) = {},
+  trailing: @Composable (() -> Unit) = {},
+  onClick: (() -> Unit)? = null,
 ) {
-    val interactionSource = remember { MutableInteractionSource() }
+  val interactionSource = remember { MutableInteractionSource() }
 
-    PreferenceTemplate(
-        modifier =
-            modifier.clickable(
-                indication = ripple(),
-                interactionSource = interactionSource,
-                onClick = { onClick?.invoke() },
-            ),
-        contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-        title = {
-            ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { text() }
-        },
-        description = {
-            ProvideTextStyle(
-                MaterialTheme.typography.bodyMedium.copy(
-                    color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
-                )
-            ) {
-                secondaryText()
-            }
-        },
-        endWidget = {
-            if (icon != null) {
-                Box(modifier = Modifier.padding(8.dp)) { icon() }
-            }
-            trailing()
-        },
-        enabled = true,
-        applyPaddings = false,
-    )
+  PreferenceTemplate(
+    modifier =
+      modifier.clickable(
+        indication = ripple(),
+        interactionSource = interactionSource,
+        onClick = { onClick?.invoke() },
+      ),
+    contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
+    title = {
+      ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { text() }
+    },
+    description = {
+      ProvideTextStyle(
+        MaterialTheme.typography.bodyMedium.copy(
+          color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        )
+      ) {
+        secondaryText()
+      }
+    },
+    endWidget = {
+      if (icon != null) {
+        Box(modifier = Modifier.padding(8.dp)) { icon() }
+      }
+      trailing()
+    },
+    enabled = true,
+    applyPaddings = false,
+  )
 }

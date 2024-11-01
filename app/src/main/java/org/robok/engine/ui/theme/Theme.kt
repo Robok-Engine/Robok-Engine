@@ -39,52 +39,51 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 
 @Composable
 fun RobokTheme(
-    darkTheme: Boolean = isSystemInDarkTheme(),
-    isActivity: Boolean = true,
-    content: @Composable () -> Unit,
+  darkTheme: Boolean = isSystemInDarkTheme(),
+  isActivity: Boolean = true,
+  content: @Composable () -> Unit,
 ) {
-    val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 
-    val dynamicColor by
-        appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+  val dynamicColor by
+    appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
 
-    val highContrastDarkTheme by
-        appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
+  val highContrastDarkTheme by
+    appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
 
-    val colorScheme =
+  val colorScheme =
+    when {
+      dynamicColor && supportsDynamicTheming() -> {
+        val context = LocalContext.current
         when {
-            dynamicColor && supportsDynamicTheming() -> {
-                val context = LocalContext.current
-                when {
-                    darkTheme && highContrastDarkTheme ->
-                        dynamicDarkColorScheme(context)
-                            .copy(background = Color.Black, surface = Color.Black)
-                    darkTheme -> dynamicDarkColorScheme(context)
-                    else -> dynamicLightColorScheme(context)
-                }
-            }
-
-            darkTheme && highContrastDarkTheme ->
-                DarkColorScheme.copy(background = Color.Black, surface = Color.Black)
-            darkTheme -> DarkColorScheme
-            else -> LightColorScheme
+          darkTheme && highContrastDarkTheme ->
+            dynamicDarkColorScheme(context).copy(background = Color.Black, surface = Color.Black)
+          darkTheme -> dynamicDarkColorScheme(context)
+          else -> dynamicLightColorScheme(context)
         }
+      }
 
-    val view = LocalView.current
-    if (!view.isInEditMode) {
-        SideEffect {
-            if (isActivity) {
-                (view.context as Activity).apply {
-                    WindowCompat.getInsetsController(window, window.decorView).apply {
-                        isAppearanceLightStatusBars = !darkTheme
-                        isAppearanceLightNavigationBars = !darkTheme
-                    }
-                }
-            }
-        }
+      darkTheme && highContrastDarkTheme ->
+        DarkColorScheme.copy(background = Color.Black, surface = Color.Black)
+      darkTheme -> DarkColorScheme
+      else -> LightColorScheme
     }
 
-    MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
+  val view = LocalView.current
+  if (!view.isInEditMode) {
+    SideEffect {
+      if (isActivity) {
+        (view.context as Activity).apply {
+          WindowCompat.getInsetsController(window, window.decorView).apply {
+            isAppearanceLightStatusBars = !darkTheme
+            isAppearanceLightNavigationBars = !darkTheme
+          }
+        }
+      }
+    }
+  }
+
+  MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
 }
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)

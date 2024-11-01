@@ -36,50 +36,50 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun PreferenceCategory(
-    label: String,
-    icon: ImageVector,
-    onClick: () -> Unit,
-    modifier: Modifier = Modifier,
-    isSelected: Boolean = false,
-    description: String? = null,
-    endWidget: (@Composable () -> Unit)? = null,
-    enabled: Boolean = true,
+  label: String,
+  icon: ImageVector,
+  onClick: () -> Unit,
+  modifier: Modifier = Modifier,
+  isSelected: Boolean = false,
+  description: String? = null,
+  endWidget: (@Composable () -> Unit)? = null,
+  enabled: Boolean = true,
 ) {
-    PreferenceTemplate(
-        modifier =
-            modifier
-                .padding(horizontal = 16.dp)
-                .clip(MaterialTheme.shapes.large)
-                .clickable { onClick() }
-                .background(
-                    if (isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp)
-                    else Color.Transparent
-                ),
-        verticalPadding = 14.dp,
-        title = {
-            Text(
-                text = label,
-                color =
-                    if (isSelected) MaterialTheme.colorScheme.primary
-                    else MaterialTheme.colorScheme.onBackground,
-            )
-        },
-        description = {
-            if (description != null) {
-                Text(text = description)
-            }
-        },
-        startWidget = {
-            Box(contentAlignment = Alignment.Center, modifier = Modifier.size(32.dp)) {
-                Icon(
-                    imageVector = icon,
-                    contentDescription = null,
-                    modifier = Modifier.size(24.dp),
-                    tint = MaterialTheme.colorScheme.primary,
-                )
-            }
-        },
-        endWidget = { endWidget?.let { it() } },
-        enabled = enabled,
-    )
+  PreferenceTemplate(
+    modifier =
+      modifier
+        .padding(horizontal = 16.dp)
+        .clip(MaterialTheme.shapes.large)
+        .clickable { onClick() }
+        .background(
+          if (isSelected) MaterialTheme.colorScheme.surfaceColorAtElevation(4.dp)
+          else Color.Transparent
+        ),
+    verticalPadding = 14.dp,
+    title = {
+      Text(
+        text = label,
+        color =
+          if (isSelected) MaterialTheme.colorScheme.primary
+          else MaterialTheme.colorScheme.onBackground,
+      )
+    },
+    description = {
+      if (description != null) {
+        Text(text = description)
+      }
+    },
+    startWidget = {
+      Box(contentAlignment = Alignment.Center, modifier = Modifier.size(32.dp)) {
+        Icon(
+          imageVector = icon,
+          contentDescription = null,
+          modifier = Modifier.size(24.dp),
+          tint = MaterialTheme.colorScheme.primary,
+        )
+      }
+    },
+    endWidget = { endWidget?.let { it() } },
+    enabled = enabled,
+  )
 }

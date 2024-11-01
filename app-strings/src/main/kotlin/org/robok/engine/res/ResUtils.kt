@@ -24,15 +24,15 @@ import androidx.core.content.ContextCompat
 
 class ResUtils(val context: Context) {
 
-    fun getAttrColor(@AttrRes attrResID: Int): Int {
-        val typedValue = TypedValue()
-        context.theme.resolveAttribute(attrResID, typedValue, true)
-        return if (typedValue.resourceId != 0) {
-            ContextCompat.getColor(context, typedValue.resourceId)
-        } else {
-            typedValue.data
-        }
+  fun getAttrColor(@AttrRes attrResID: Int): Int {
+    val typedValue = TypedValue()
+    context.theme.resolveAttribute(attrResID, typedValue, true)
+    return if (typedValue.resourceId != 0) {
+      ContextCompat.getColor(context, typedValue.resourceId)
+    } else {
+      typedValue.data
     }
+  }
 
-    fun getColor(@AttrRes attrResID: Int): Int = ContextCompat.getColor(context, attrResID)
+  fun getColor(@AttrRes attrResID: Int): Int = ContextCompat.getColor(context, attrResID)
 }
