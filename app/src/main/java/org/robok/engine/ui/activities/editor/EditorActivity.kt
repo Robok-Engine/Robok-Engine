@@ -283,8 +283,11 @@ class EditorActivity :
                     FileTreeDrawer(
                         path = projectPath!!,
                         onClick = { node -> 
-                            if (node.value.isDirectory()) return@onClick
-                            handleNodeFileExtension(node)
+                            if (node.value.isDirectory()) {
+                                // do nothing
+                            } else {
+                                handleNodeFileExtension(node)
+                            }
                         },
                     )
                 },
