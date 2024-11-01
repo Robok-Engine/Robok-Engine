@@ -40,8 +40,8 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 @Composable
 fun RobokTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
-    content: @Composable () -> Unit,
-    isActivity: Boolean = true
+    isActivity: Boolean = true,
+    content: @Composable () -> Unit
 ) {
     val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
 

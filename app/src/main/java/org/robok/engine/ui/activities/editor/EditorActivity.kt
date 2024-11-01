@@ -260,10 +260,11 @@ class EditorActivity :
 
         binding.drawerEditorRightComposeView.setContent {
             RobokTheme(
-                isActivity = false
-            ) {
-                ProjectInfoDrawer()
-            }
+                isActivity = false,
+                content = {
+                    ProjectInfoDrawer()
+                }
+            )
         }
     }
 
