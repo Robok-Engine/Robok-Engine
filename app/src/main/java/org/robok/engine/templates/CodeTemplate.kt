@@ -17,10 +17,9 @@ package org.robok.engine.templates
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 /*
-* Base Template class
-*/
+ * Base Template class
+ */
 abstract class CodeTemplate {
     abstract var name: String
     abstract var packageName: String

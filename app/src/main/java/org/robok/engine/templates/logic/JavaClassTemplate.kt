@@ -16,21 +16,22 @@ package org.robok.engine.templates.logic
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import org.robok.engine.templates.CodeTemplate
 
-open class JavaClassTemplate: CodeTemplate() {
-    
+open class JavaClassTemplate : CodeTemplate() {
+
     override var name: String = "Java Class"
     override var packageName: String = "org.robok.empty"
     override var extension: String = ".java"
-    
-    override var code: String = 
+
+    override var code: String =
         """
         package ${packageName};
         
         public class ${name} {
             
         }
-        """.trimIndent()
+        """
+            .trimIndent()
 }
