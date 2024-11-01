@@ -127,7 +127,7 @@ fun EmptyContentItem() {
         modifier = Modifier
             .fillMaxWidth()
             .clickable {
-                navController.navigateSingleTop(TemplatesRoute())
+                navController.navigateSingleTop(route = TemplatesRoute)
             }
     )
 }
