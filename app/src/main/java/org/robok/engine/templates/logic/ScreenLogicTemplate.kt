@@ -18,7 +18,7 @@ package org.robok.engine.templates.logic
  */
 
 
-open class ScreenLogicTemplate: JavaClassTemplate {
+open class ScreenLogicTemplate: JavaClassTemplate() {
 
     override var code: String? =
         """

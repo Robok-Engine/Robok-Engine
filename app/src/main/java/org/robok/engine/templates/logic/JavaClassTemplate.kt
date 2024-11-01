@@ -19,7 +19,7 @@ package org.robok.engine.templates.logic
  
 import org.robok.engine.templates.CodeTemplate
 
-open class JavaClassTemplate: CodeTemplate {
+open class JavaClassTemplate: CodeTemplate() {
 
     override var code: String? = 
         """

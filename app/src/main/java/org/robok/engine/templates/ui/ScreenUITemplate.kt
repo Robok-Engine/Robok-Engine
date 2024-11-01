@@ -19,7 +19,7 @@ package org.robok.engine.templates.ui
 
 import org.robok.engine.templates.CodeTemplate
 
-class ScreenUITemplate: CodeTemplate {
+class ScreenUITemplate: CodeTemplate() {
 
     override var code: String? = 
         """
