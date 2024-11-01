@@ -178,16 +178,10 @@
             android:clickable="true"
             android:orientation="vertical">
 
-            <FrameLayout
-                android:id="@+id/drawer_editor_left_fragment_container"
+            <androidx.compose.ui.platform.ComposeView
+                android:id="@+id/drawer_editor_left_compose_view"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" >
-                
-                <org.robok.engine.feature.treeview.widget.FileTree
-                     android:id="@+id/file_tree"
-                     android:layout_width="match_parent"
-                     android:layout_height="match_parent" />
-            </FrameLayout>
+                android:layout_height="match_parent" />
         </LinearLayout>
 
     </com.google.android.material.navigation.NavigationView>

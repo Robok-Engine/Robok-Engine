@@ -51,16 +51,14 @@ import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
 import org.robok.engine.feature.editor.RobokCodeEditor
-import org.robok.engine.feature.treeview.interfaces.FileClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
-import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
-import org.robok.engine.feature.treeview.provider.FileWrapper
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
+import org.robok.engine.ui.activities.editor.drawer.FileTreeDrawer
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
@@ -283,17 +281,19 @@ class EditorActivity :
     }
 
     private fun configureFileTree() {
-        val fileObject = FileWrapper(File(projectPath!!))
-        binding.fileTree.loadFiles(fileObject)
-        binding.fileTree.setOnFileClickListener(
-            object : FileClickListener {
-                override fun onClick(node: Node<FileObject>) {
-                    if (node.value.isDirectory()) return
-                    handleNodeFileExtension(node)
+        binding.drawerEditorLeftComposeView.setContent {
+            RobokTheme(
+                isActivity = false,
+                content = {
+                    FileTreeDrawer(
+                        path = projectPath!!,
+                        onClick = { node ->
+                            handleNodeFileExtension(node)
+                        }
+                    )
                 }
-            }
-        )
-        binding.fileTree.setIconProvider(DefaultFileIconProvider(this))
+            )
+        }
     }
 
     private fun handleNodeFileExtension(node: Node<FileObject>) {
