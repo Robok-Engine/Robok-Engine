@@ -34,7 +34,7 @@ import org.robok.engine.feature.treeview.provider.FileWrapper
 import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
 
 @Composable
-fun FileTree(path: String, onClick: (Node<FileObject>) -> Unit, , modifier: Modifier = Modifier) {
+fun FileTree(path: String, onClick: (Node<FileObject>) -> Unit, modifier: Modifier = Modifier) {
   AndroidView(
     factory = { context ->
       val fileObject = FileWrapper(File(path))
