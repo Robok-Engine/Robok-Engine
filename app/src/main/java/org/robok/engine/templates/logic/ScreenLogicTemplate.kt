@@ -20,6 +20,10 @@ package org.robok.engine.templates.logic
 
 open class ScreenLogicTemplate: JavaClassTemplate() {
 
+    override var name: String = "Screen Logic"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".java"
+    
     override var code: String =
         """
         package ${packageName};
@@ -34,9 +38,4 @@ open class ScreenLogicTemplate: JavaClassTemplate() {
             }
         }
         """.trimIndent()
-        
-    
-    override var name: String = "Screen Logic"
-    override var packageName: String = "org.robok.empty"
-    override var extension: String = ".java"
 }

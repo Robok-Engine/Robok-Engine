@@ -21,6 +21,10 @@ import org.robok.engine.templates.CodeTemplate
 
 class ScreenUITemplate: CodeTemplate() {
 
+    override var name: String = "Screen UI"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".gui"
+    
     override var code: String = 
         """
         config(
@@ -38,8 +42,4 @@ class ScreenUITemplate: CodeTemplate() {
             )
         }
         """.trimIndent()
-    
-    override var name: String = "Screen UI"
-    override var packageName: String = "org.robok.empty"
-    override var extension: String = ".gui"
 }

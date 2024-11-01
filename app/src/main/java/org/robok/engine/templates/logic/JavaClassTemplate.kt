@@ -20,17 +20,17 @@ package org.robok.engine.templates.logic
 import org.robok.engine.templates.CodeTemplate
 
 open class JavaClassTemplate: CodeTemplate() {
-
-    override var code: String = 
-        """
-        package ${getCodeClassPackageName()};
-        
-        public class ${getCodeClassName()} {
-            
-        }
-        """.trimIndent()
     
     override var name: String = "Java Class"
     override var packageName: String = "org.robok.empty"
     override var extension: String = ".java"
+    
+    override var code: String = 
+        """
+        package ${packageName};
+        
+        public class ${name} {
+            
+        }
+        """.trimIndent()
 }
