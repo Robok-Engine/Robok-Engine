@@ -50,6 +50,9 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
+import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.routes.TemplatesRoute
 
 val projectPath = ProjectManager.getProjectsPath()
 
@@ -103,6 +106,8 @@ fun ProjectItem(projectFile: File) {
 
 @Composable
 fun EmptyContentItem() {
+    val navController = LocalMainNavController.current
+    
     PreferenceTemplate(
         title = {
             Text(
@@ -119,7 +124,10 @@ fun EmptyContentItem() {
                         .clip(CircleShape)
             )
         },
-        modifier =
-            Modifier.fillMaxWidth().clickable(onClick = { /* TO-DO: go to CreateProjectScreen */ }),
+        modifier = Modifier
+            .fillMaxWidth()
+            .clickable {
+                navController.navigateSingleTop(TemplatesRoute())
+            }
     )
 }
