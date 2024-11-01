@@ -154,7 +154,7 @@ public class ProjectManager {
     private void createAndroidManifest(String packageName) {
         var androidManifest = new AndroidManifestTemplate();
         androidManifest.setPackageName(packageName);
-        FileUtil.writeFile(getAndroidManifestPath().getAbsolutePath() + "AndroidManifest.xml", androidManifest.getCode());
+        FileUtil.writeFile(getAndroidManifestPath().getAbsolutePath() + "/AndroidManifest.xml", androidManifest.getCode());
     }
     
     /*
@@ -193,7 +193,7 @@ public class ProjectManager {
             project.setResourcesFile(getAndroidResPath());
             project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
             project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
-            project.setManifestFile(new File(getAndroidManifestPath().getAbsolutePath() + "AndroidManifest.xml"));
+            project.setManifestFile(new File(getAndroidManifestPath().getAbsolutePath() + "/AndroidManifest.xml"));
             project.setLogger(logger);
             project.setMinSdk(Config.MIN_SDK);
             project.setTargetSdk(Config.TARGET_SDK);
