@@ -31,8 +31,10 @@ import java.util.zip.ZipInputStream;
 
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
+import org.robok.engine.templates.xml.AndroidManifestTemplate;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 import org.robok.engine.core.utils.ZipUtilsKt;
+import org.robok.engine.core.utils.FileUtil;
 
 import org.robok.engine.feature.compiler.CompilerTask;
 import org.robok.engine.feature.compiler.model.Project;
@@ -98,29 +100,28 @@ public class ProjectManager {
                 zipInputStream.closeEntry();
             }
 
-            createJavaClass(projectName, packageName);
+            createMainScreen(projectName, packageName);
+            createAndroidManifest(packageName);
             extractLibs(projectName);
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
             notifyCreationError(e, "create");
         } catch (IOException e) {
-            e.printStackTrace();
             notifyCreationError(e, "create");
         }
     }
     
     /*
-     * Create Java Classes .
+     * Create Main Screen .
      * @param projectName, Name of actually project.
      * @parsm packageName, Package Name of actually project.
      */
-    private void createJavaClass(
+    private void createMainScreen(
         String projectName, 
         String packageName
     ) {
         if (projectPath == null) {
-            notifyCreationError("projectPath has not been initialized.", "createJavaClass");
+            notifyCreationError("projectPath has not been initialized.", "createMainScreen");
         }
 
         try {
@@ -140,12 +141,20 @@ public class ProjectManager {
             }
 
         } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            notifyCreationError(e, "createJavaClass");
+            notifyCreationError(e, "createMainScreen");
         } catch (IOException e) {
-            e.printStackTrace();
-            notifyCreationError(e, "createJavaClass");
+            notifyCreationError(e, "createMainScreen");
         }
+    }
+    
+    /*
+     * Create AndroidManifest.xml
+     * @param packageName A Package Name of Current Project 
+     */
+    private void createAndroidManifest(String packageName) {
+        var androidManifest = new AndroidManifestTemplate();
+        androidManifest.setPackageName(packageName);
+        FileUtil.writeFile(getAndroidManifestPath().getAbsolutePath() + "AndroidManifest.xml", androidManifest.getCode());
     }
     
     /*
@@ -181,13 +190,13 @@ public class ProjectManager {
             
             Project project = new Project();
             project.setLibraries(Library.fromFile(getLibsPath()));
-            project.setResourcesFile(new File(getProjectPath().getAbsolutePath() + "/game/res/"));
+            project.setResourcesFile(getAndroidResPath());
             project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
             project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
-            project.setManifestFile(new File(getProjectPath().getAbsolutePath() + "/game/AndroidManifest.xml"));
+            project.setManifestFile(new File(getAndroidManifestPath().getAbsolutePath() + "AndroidManifest.xml"));
             project.setLogger(logger);
-            project.setMinSdk(21);
-            project.setTargetSdk(28);
+            project.setMinSdk(Config.MIN_SDK);
+            project.setTargetSdk(Config.TARGET_SDK);
 
             CompilerTask task = new CompilerTask(context, result);
             task.execute(project);
@@ -195,7 +204,6 @@ public class ProjectManager {
             terminal.show();
 
         } catch (Exception e) {
-            e.printStackTrace();
             notifyCreationError(e, "build");
         }
     }
@@ -251,6 +259,24 @@ public class ProjectManager {
     }
     
     /*
+     * Method to get AndroidManifest file path
+     * @return A File instance of AndroidManifest path
+     */
+    private File getAndroidManifestPath() {
+        var path = new File(context.getFilesDir(), getProjectName() + "/xml/");
+        return path;
+    }
+    
+    /*
+     * Method to get Android Res file path
+     * @return A File instance of Android Res path
+     */
+    private File getAndroidResPath() {
+        var path = new File(context.getFilesDir(), getProjectName() + "/xml/res/");
+        return path;
+    }
+    
+    /*
      * Notify Error method to CreateProjectScreen 
      * @param value A Message of Error
      */
@@ -291,5 +317,10 @@ public class ProjectManager {
     public interface CreationListener {
         void onProjectCreate();
         void onProjectCreateError(String error);
+    }
+    
+    public static final class Config {
+        public static final int MIN_SDK = 21;
+        public static final int TARGET_SDK = 28;
     }
 }
