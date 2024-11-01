@@ -116,8 +116,16 @@ class EditorActivity :
         _binding = null
     }
 
-    // remove this deprecated method
+    // TODO: use new onBackPressedDispatcher
     override fun onBackPressed() {
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.START)
+            return
+        }
+        if (binding.drawerLayout.isDrawerOpen(GravityCompat.END)) {
+            binding.drawerLayout.closeDrawer(GravityCompat.END)
+            return 
+        }
         MaterialAlertDialogBuilder(this)
             .setTitle(getString(Strings.warning_exit_project_title))
             .setMessage(getString(Strings.warning_exit_project_message))
