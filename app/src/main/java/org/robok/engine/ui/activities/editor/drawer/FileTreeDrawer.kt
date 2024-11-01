@@ -31,7 +31,11 @@ import org.robok.engine.strings.Strings
 @Composable
 fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
   Column {
-    Text(text = stringResource(id = Strings.common_word_files))
+    Text(
+        text = stringResource(id = Strings.common_word_files),
+        style = Typography.titleMedium,
+        modifier = Modifier.padding(start = 5.dp),
+    )
     FileTree(path = path, onClick = onClick)
   }
 }
