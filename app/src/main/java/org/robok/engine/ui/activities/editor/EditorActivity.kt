@@ -330,7 +330,7 @@ class EditorActivity :
             else -> editorViewModel.openFile(fileToOpen) // open file on editor
         }
     }
-    
+
     private fun File.getFileExtension(): String = this.getName().substringAfterLast(".")
 
     private fun updateUndoRedo() {
@@ -413,7 +413,7 @@ class EditorActivity :
                             editorViewModel.saveFile()
                             compileGuiCode(
                                 code = editor.getText().toString(),
-                                fileName = editor.getFile().nameWithoutExtension
+                                fileName = editor.getFile().nameWithoutExtension,
                             )
                         }
                     }
@@ -423,12 +423,8 @@ class EditorActivity :
             popm.show()
         }
     }
-    
 
-    private fun compileGuiCode(
-        code: String,
-        fileName: String
-    ) {
+    private fun compileGuiCode(code: String, fileName: String) {
         val guiBuilder =
             GUIBuilder(
                 context = this,
@@ -441,21 +437,18 @@ class EditorActivity :
                         }
                     startActivity(intent)
                     Log.d(GUI_COMPILER_TAG, code)
-                    saveGuiResultXmlCode(
-                        code = code,
-                        fileName = fileName
-                    )
+                    saveGuiResultXmlCode(code = code, fileName = fileName)
                 },
                 onError = { Log.e(GUI_COMPILER_TAG, it) },
             )
         val guiCompiler = GUICompiler(guiBuilder = guiBuilder, code = code)
     }
-    
-    private fun saveGuiResultXmlCode(
-        code: String,
-        fileName: String
-    )  {
-        FileUtil.writeFile(projectManager.getAndroidResPath().absolutePath + "/layout/${fileName}.xml", code)
+
+    private fun saveGuiResultXmlCode(code: String, fileName: String) {
+        FileUtil.writeFile(
+            projectManager.getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+            code,
+        )
         Toast.makeText(this, getString(Strings.text_saved), Toast.LENGTH_SHORT).show()
     }
 

@@ -19,7 +19,6 @@ package org.robok.engine.ui.screens.project.manage
 
 import android.content.Intent
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
@@ -45,14 +44,14 @@ import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
-import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.routes.TemplatesRoute
 
 val projectPath = ProjectManager.getProjectsPath()
 
@@ -107,7 +106,7 @@ fun ProjectItem(projectFile: File) {
 @Composable
 fun EmptyContentItem() {
     val navController = LocalMainNavController.current
-    
+
     PreferenceTemplate(
         title = {
             Text(
@@ -119,15 +118,12 @@ fun EmptyContentItem() {
             Image(
                 painter = painterResource(id = Drawables.ic_warning_24),
                 contentDescription = null,
-                modifier =
-                    Modifier.size(32.dp)
-                        .clip(CircleShape)
+                modifier = Modifier.size(32.dp).clip(CircleShape),
             )
         },
-        modifier = Modifier
-            .fillMaxWidth()
-            .clickable {
+        modifier =
+            Modifier.fillMaxWidth().clickable {
                 navController.navigateSingleTop(route = TemplatesRoute)
-            }
+            },
     )
 }

@@ -16,7 +16,7 @@ package org.robok.engine.templates.xml
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import org.robok.engine.templates.CodeTemplate
 
 open class AndroidManifestTemplate : CodeTemplate() {
@@ -24,7 +24,7 @@ open class AndroidManifestTemplate : CodeTemplate() {
     override var name: String = "AndroidManifest"
     override var packageName: String = "org.robok.empty"
     override var extension: String = ".xml"
-    
+
     var mainActivityPackage = packageName + ".MainScreen"
 
     override var code: String =
