@@ -258,7 +258,13 @@ class EditorActivity :
             }
         )
 
-        binding.drawerEditorRightComposeView.setContent { RobokTheme { ProjectInfoDrawer() } }
+        binding.drawerEditorRightComposeView.setContent {
+            RobokTheme(
+                isActivity = false
+            ) {
+                ProjectInfoDrawer()
+            }
+        }
     }
 
     private fun configureEditor() {
