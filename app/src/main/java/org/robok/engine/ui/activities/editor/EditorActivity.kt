@@ -57,8 +57,8 @@ import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokActivity
-import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.drawer.FileTreeDrawer
+import org.robok.engine.ui.activities.editor.drawer.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
@@ -257,12 +257,7 @@ class EditorActivity :
         )
 
         binding.drawerEditorRightComposeView.setContent {
-            RobokTheme(
-                isActivity = false,
-                content = {
-                    ProjectInfoDrawer()
-                }
-            )
+            RobokTheme(isActivity = false, content = { ProjectInfoDrawer() })
         }
     }
 
@@ -287,11 +282,9 @@ class EditorActivity :
                 content = {
                     FileTreeDrawer(
                         path = projectPath!!,
-                        onClick = { node ->
-                            handleNodeFileExtension(node)
-                        }
+                        onClick = { node -> handleNodeFileExtension(node) },
                     )
-                }
+                },
             )
         }
     }

@@ -19,36 +19,34 @@ package org.robok.engine.ui.activities.editor.drawer
 
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
-import androidx.compose.ui.viewinterop.AndroidView
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.strings.Strings
-import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
+import androidx.compose.ui.viewinterop.AndroidView
+import java.io.File
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
 import org.robok.engine.feature.treeview.provider.FileWrapper
-import java.io.File
+import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
 
 @Composable
-fun FileTree(
-    path: String,
-    onClick: (Node<FileObject>) -> Unit
-) {
+fun FileTree(path: String, onClick: (Node<FileObject>) -> Unit) {
     AndroidView(
         factory = { context ->
             val fileObject = FileWrapper(File(path))
             FileTreeView(context).apply {
                 loadFiles(fileObject)
-                setOnFileClickListener(object : FileClickListener {
-                    override fun onClick(node: Node<FileObject>) {
-                        onClick(node)
+                setOnFileClickListener(
+                    object : FileClickListener {
+                        override fun onClick(node: Node<FileObject>) {
+                            onClick(node)
+                        }
                     }
-                })
+                )
                 setIconProvider(DefaultFileIconProvider(context))
             }
         }
