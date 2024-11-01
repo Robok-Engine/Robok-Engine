@@ -50,6 +50,6 @@ fun FileTree(path: String, onClick: (Node<FileObject>) -> Unit, modifier: Modifi
         setIconProvider(DefaultFileIconProvider(context))
       }
     },
-    modifier = modifier
+    modifier = modifier,
   )
 }
