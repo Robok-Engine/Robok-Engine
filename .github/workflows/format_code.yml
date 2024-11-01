@@ -54,7 +54,7 @@ jobs:
           
       - name: Download Google Java Format
         run: |
-          wget https://github.com/google/google-java-format/releases/download/google-java-format-1.11.0/google-java-format-1.11.0-all-deps.jar -O google-java-format.jar
+          wget https://github.com/google/google-java-format/releases/download/v1.24.0/google-java-format-1.24.0-all-deps.jar -O google-java-format.jar
 
       - name: Run Google Java Format in Java files
         run: |
