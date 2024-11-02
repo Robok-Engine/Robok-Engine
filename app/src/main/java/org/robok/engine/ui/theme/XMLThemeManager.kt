@@ -66,7 +66,7 @@ class XMLThemeManager(
 
   /** Initialize ViewModel. */
   private fun init() {
-    appPrefsViewModel = RobokApplication.instance.getKoin().get()
+    appPrefsViewModel = RobokApplication.getInstance().getKoin().get()
   }
 
   /**
