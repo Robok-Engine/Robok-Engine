@@ -18,37 +18,35 @@ package org.robok.engine.feature.editor.languages.java.store
  */
 
 /**
- * JavaClasses
- * Object used to store Java classes
- * Only those necessary for development with Robok.
+ * JavaClasses Object used to store Java classes Only those necessary for development with Robok.
+ *
  * @author ThDev-Only, Aquiles Trindade (trindadedev).
  */
-
 object JavaClasses {
 
-    @JvmStatic
-    val classes: HashMap<String, String> by lazy {
-        hashMapOf(
-            "String" to "java.lang.String", 
-            "Integer" to "java.lang.Integer", 
-            "Float" to "java.lang.Float",
-            "Double" to "java.lang.Double",
-            "Boolean" to "java.lang.Boolean", 
-            "Character" to "java.lang.Character", 
-            "Long" to "java.lang.Long", 
-            "Byte" to "java.lang.Byte", 
-            "Short" to "java.lang.Short", 
-            "Math" to "java.lang.Math",
-            "Random" to "java.util.Random", 
-            "ArrayList" to "java.util.ArrayList", 
-            "HashMap" to "java.util.HashMap", 
-            "LinkedList" to "java.util.LinkedList",
-            "HashSet" to "java.util.HashSet", 
-            "TreeMap" to "java.util.TreeMap", 
-            "LinkedHashMap" to "java.util.LinkedHashMap",
-            "Arrays" to "java.util.Arrays", 
-            "Date" to "java.util.Date", 
-            "Calendar" to "java.util.Calendar"
-        )
-    }
+  @JvmStatic
+  val classes: HashMap<String, String> by lazy {
+    hashMapOf(
+      "String" to "java.lang.String",
+      "Integer" to "java.lang.Integer",
+      "Float" to "java.lang.Float",
+      "Double" to "java.lang.Double",
+      "Boolean" to "java.lang.Boolean",
+      "Character" to "java.lang.Character",
+      "Long" to "java.lang.Long",
+      "Byte" to "java.lang.Byte",
+      "Short" to "java.lang.Short",
+      "Math" to "java.lang.Math",
+      "Random" to "java.util.Random",
+      "ArrayList" to "java.util.ArrayList",
+      "HashMap" to "java.util.HashMap",
+      "LinkedList" to "java.util.LinkedList",
+      "HashSet" to "java.util.HashSet",
+      "TreeMap" to "java.util.TreeMap",
+      "LinkedHashMap" to "java.util.LinkedHashMap",
+      "Arrays" to "java.util.Arrays",
+      "Date" to "java.util.Date",
+      "Calendar" to "java.util.Calendar",
+    )
+  }
 }
