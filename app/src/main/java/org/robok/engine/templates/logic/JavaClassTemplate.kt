@@ -21,23 +21,24 @@ import org.robok.engine.templates.CodeTemplate
 
 open class JavaClassTemplate : CodeTemplate() {
 
-    override var name: String = "JavaClass"
-    override var packageName: String = "org.robok.empty"
-    override var extension: String = ".java"
+  override var name: String = "JavaClass"
+  override var packageName: String = "org.robok.empty"
+  override var extension: String = ".java"
 
-    override var code: String = generateCode()
+  override var code: String = generateCode()
 
-    override fun regenerate() {
-        code = generateCode()
-    }
+  override fun regenerate() {
+    code = generateCode()
+  }
 
-    private fun generateCode(): String {
-        return """
+  private fun generateCode(): String {
+    return """
             package $packageName;
             
             public class $name {
                 
             }
-        """.trimIndent()
-    }
+        """
+      .trimIndent()
+  }
 }

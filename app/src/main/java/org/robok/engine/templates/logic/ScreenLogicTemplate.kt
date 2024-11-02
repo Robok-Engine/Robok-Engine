@@ -19,18 +19,18 @@ package org.robok.engine.templates.logic
 
 open class ScreenLogicTemplate : JavaClassTemplate() {
 
-    override var name: String = "ScreenLogic"
-    override var packageName: String = "org.robok.empty"
-    override var extension: String = ".java"
+  override var name: String = "ScreenLogic"
+  override var packageName: String = "org.robok.empty"
+  override var extension: String = ".java"
 
-    override var code: String = generateCode()
+  override var code: String = generateCode()
 
-    override fun regenerate() {
-        code = generateCode()
-    }
+  override fun regenerate() {
+    code = generateCode()
+  }
 
-    private fun generateCode(): String {
-        return """
+  private fun generateCode(): String {
+    return """
             package $packageName;
             
             import robok.game.screen.GameScreen;
@@ -42,6 +42,7 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
                     // Initialization logic here
                 }
             }
-        """.trimIndent()
-    }
+        """
+      .trimIndent()
+  }
 }

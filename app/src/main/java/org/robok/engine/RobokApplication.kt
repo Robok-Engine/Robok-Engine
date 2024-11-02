@@ -30,7 +30,6 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.robok.engine.di.appModule
 import org.robok.engine.di.appPreferencesModule
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
@@ -52,7 +51,7 @@ class RobokApplication : Application() {
       return instance!!
     }
   }
-  
+
   override fun onCreate() {
     super.onCreate()
     instance = this

@@ -39,9 +39,6 @@ fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp),
     )
-    FileTree(
-      path = path,
-      onClick = onClick
-    )
+    FileTree(path = path, onClick = onClick)
   }
 }

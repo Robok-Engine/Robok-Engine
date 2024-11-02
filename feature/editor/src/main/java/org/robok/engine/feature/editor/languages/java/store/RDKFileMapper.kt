@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.languages.java.store;
+package org.robok.engine.feature.editor.languages.java.store
 
 /*
  *  This file is part of Robok © 2024.
@@ -24,47 +24,47 @@ import java.net.URLClassLoader
 
 class RDKFileMapper(private val context: Context) {
 
-    private val robokClasses: HashMap<String, String> = HashMap()
-    private val actuallyRdk = "RDK-1"
-    private val rdkDirectory: File = File(context.filesDir, "$actuallyRdk/rdk/")
+  private val robokClasses: HashMap<String, String> = HashMap()
+  private val actuallyRdk = "RDK-1"
+  private val rdkDirectory: File = File(context.filesDir, "$actuallyRdk/rdk/")
 
-    init {
-        mapRdkClasses()
+  init {
+    mapRdkClasses()
+  }
+
+  fun getClasses(): HashMap<String, String> {
+    return robokClasses
+  }
+
+  private fun mapRdkClasses() {
+    val rdkFolder = rdkDirectory
+
+    if (rdkFolder.exists() && rdkFolder.isDirectory) {
+      mapClassesRecursively(rdkFolder, "")
+    } else {
+      robokClasses["RDKNotExistsException"] = "robok.rdk.RDKNotExistsException"
     }
+  }
 
-    fun getClasses(): HashMap<String, String> {
-        return robokClasses
+  private fun mapClassesRecursively(folder: File, packageName: String) {
+    val files = folder.listFiles() ?: return
+
+    for (file in files) {
+      if (file.isDirectory) {
+        val newPackageName = if (packageName.isEmpty()) file.name else "$packageName.${file.name}"
+        mapClassesRecursively(file, newPackageName)
+      } else if (file.name.endsWith(".class")) {
+        val className = file.name.removeSuffix(".class")
+        val classPath = "$packageName.$className"
+        robokClasses[className] = classPath
+      }
     }
+  }
 
-    private fun mapRdkClasses() {
-        val rdkFolder = rdkDirectory
+  fun getClassLoader(): URLClassLoader {
+    val url: URL = rdkDirectory.toURI().toURL()
+    val urls = arrayOf(url)
 
-        if (rdkFolder.exists() && rdkFolder.isDirectory) {
-            mapClassesRecursively(rdkFolder, "")
-        } else {
-            robokClasses["RDKNotExistsException"] = "robok.rdk.RDKNotExistsException"
-        }
-    }
-
-    private fun mapClassesRecursively(folder: File, packageName: String) {
-        val files = folder.listFiles() ?: return
-
-        for (file in files) {
-            if (file.isDirectory) {
-                val newPackageName = if (packageName.isEmpty()) file.name else "$packageName.${file.name}"
-                mapClassesRecursively(file, newPackageName)
-            } else if (file.name.endsWith(".class")) {
-                val className = file.name.removeSuffix(".class")
-                val classPath = "$packageName.$className"
-                robokClasses[className] = classPath
-            }
-        }
-    }
-
-    fun getClassLoader(): URLClassLoader {
-        val url: URL = rdkDirectory.toURI().toURL()
-        val urls = arrayOf(url)
-
-        return URLClassLoader(urls)
-    }
+    return URLClassLoader(urls)
+  }
 }
