@@ -48,8 +48,8 @@ fun TerminalScreen(path: String? = null) {
 
   cwd =
     path?.let { path ->
-      if (File(path).exists()) path else RobokApplication.instance.filesDir.absolutePath
-    } ?: RobokApplication.instance.filesDir.absolutePath
+      if (File(path).exists()) path else RobokApplication.getInstance().filesDir.absolutePath
+    } ?: RobokApplication.getInstance().filesDir.absolutePath
   activity?.let {
     it.window.setNavigationBarColor(AndroidColor.BLACK)
     it.window.setStatusBarColor(AndroidColor.BLACK)
@@ -75,7 +75,7 @@ private fun TerminalView(modifier: Modifier = Modifier) {
         val viewClient =
           RTerminalViewClient(
             onSingleTap = {
-              val kUtil = KeyboardUtil(RobokApplication.instance)
+              val kUtil = KeyboardUtil(RobokApplication.getInstance())
               kUtil.showSoftInput(this)
             },
             onKeyEventEnter = {
@@ -97,7 +97,7 @@ private fun onScreenChanged() {
 
 private fun createSession(): TerminalSession {
   val workingDir = cwd
-  val tmpDir = File(RobokApplication.instance.filesDir.parentFile, "tmp")
+  val tmpDir = File(RobokApplication.getInstance().filesDir.parentFile, "tmp")
 
   if (tmpDir.exists()) {
     tmpDir.deleteRecursively()
@@ -107,8 +107,8 @@ private fun createSession(): TerminalSession {
   val env =
     arrayOf(
       "TMP_DIR=${tmpDir.absolutePath}",
-      "HOME=${RobokApplication.instance.filesDir.absolutePath}",
-      "PUBLIC_HOME=${RobokApplication.instance.getExternalFilesDir(null)?.absolutePath}",
+      "HOME=${RobokApplication.getInstance().filesDir.absolutePath}",
+      "PUBLIC_HOME=${RobokApplication.getInstance().getExternalFilesDir(null)?.absolutePath}",
       "COLORTERM=truecolor",
       "TERM=xterm-256color",
     )

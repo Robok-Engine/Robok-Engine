@@ -39,14 +39,20 @@ import org.robok.engine.ui.activities.debug.AppFailureActivity
 class RobokApplication : Application() {
 
   companion object {
-    // Do not place Android context classes in static fields (static reference to
-    // RobokApplication which has field robokContext pointing to Context); this is a memory leak
-    lateinit var instance: RobokApplication /* Instance of this class  */
     const val ERROR_TAG = "error" /* a tag for send error to DebugScreen */
+    private var instance: RobokApplication? = null
+
+    @JvmStatic
+    @Synchronized
+    fun getInstance(): RobokApplication {
+      if (instance == null) {
+        instance = RobokApplication()
+      }
+
+      return instance!!
+    }
   }
-
-  private lateinit var appPrefsViewModel: AppPreferencesViewModel
-
+  
   override fun onCreate() {
     super.onCreate()
     instance = this
