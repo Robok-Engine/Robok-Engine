@@ -41,5 +41,5 @@ dependencies {
     implementation(libs.navigation.compose)
     implementation(libs.viewmodel.compose)
     
-    implementation(project(":app-strings"))
+    implementation(projects.appStrings)
 }

@@ -141,20 +141,20 @@ dependencies {
     
     // projects
     
-    implementation(project(":app-strings"))
+    implementation(projects.appStrings)
     
-    implementation(project(":feature:treeview"))
-    implementation(project(":feature:editor"))
-    implementation(project(":feature:modeling"))
-    implementation(project(":feature:xmlviewer"))
-    implementation(project(":feature:compiler"))
-    implementation(project(":feature:settings"))
-   
-    implementation(project(":core:components"))
-    implementation(project(":core:utils"))
-    implementation(project(":core:antlr4:java"))
+    implementation(projects.feature.treeview)
+    implementation(projects.feature.editor)
+    implementation(projects.feature.modeling)
+    implementation(projects.feature.xmlviewer)
+    implementation(projects.feature.compiler)
+    implementation(projects.feature.settings)
     
-    implementation(project(":robok-easy-ui:gui"))
+    implementation(projects.core.components)
+    implementation(projects.core.utils)
+    implementation(projects.core.antlr4.java)
+    
+    implementation(projects.robokEasyUi.gui)
 }
 
 fun execAndGetOutput(vararg command: String): String {

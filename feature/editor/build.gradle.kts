@@ -48,8 +48,8 @@ dependencies {
     implementation(libs.antlr)
     implementation(libs.antlr.runtime)
     
-    implementation(project(":app-strings"))
-    implementation(project(":feature:settings"))
-    implementation(project(":core:utils"))
-    implementation(project(":core:antlr4:java"))
+    implementation(projects.appStrings)
+    implementation(projects.feature.settings)
+    implementation(projects.core.utils)
+    implementation(projects.core.antlr4.java)
 }

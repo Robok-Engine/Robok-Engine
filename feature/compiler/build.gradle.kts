@@ -40,6 +40,6 @@ dependencies {
     
     implementation(libs.gson)
     
-    implementation(project(":feature:apksigner"))
-    implementation(project(":core:utils"))
+    implementation(projects.feature.apksigner)
+    implementation(projects.core.utils)
 }
