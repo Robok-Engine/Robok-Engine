@@ -124,4 +124,5 @@
     <string name="title_libraries">Програмне забезпечення сторонніх виробників</string>
     <string name="text_open_contributor_github">Відкрийте -name- профіль GitHub у браузері</string>
     <string name="text_libraries">Бібліотеки, якими ми користувалися</string>
+    <string name="common_word_files">Файли</string>
 </resources>
