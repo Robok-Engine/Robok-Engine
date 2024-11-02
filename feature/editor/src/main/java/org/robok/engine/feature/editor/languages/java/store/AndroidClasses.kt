@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.languages.java.store;
+package org.robok.engine.feature.editor.languages.java.store
 
 /*
  *  This file is part of Robok © 2024.
@@ -24,17 +24,15 @@ package org.robok.engine.feature.editor.languages.java.store;
  * @author Aquiles Trindade
  */
 
-import java.util.HashMap;
+object AndroidClasses {
 
-public final class AndroidClasses {
-
-  public static final HashMap<String, String> getClasses() {
-    HashMap<String, String> classes = new HashMap<>();
-    classes.put(
-        "Context",
-        "android.content.Context"); // Context class for Android application context access
-    classes.put("View", "android.view.View"); // View class for Android UI elements
-    classes.put("Log", "android.util.Log"); // Log class to Store Logs in LogCat
-    return classes;
+  @JvmStatic
+  val classes: HashMap<String, String> by lazy {
+    hashMapOf(
+      "Context" to "android.content.Context",
+      "View" to "android.view.View",
+      "Log" to "android.util.Log",
+      "Bundle" to "android.os.Bundle"
+    )
   }
 }
