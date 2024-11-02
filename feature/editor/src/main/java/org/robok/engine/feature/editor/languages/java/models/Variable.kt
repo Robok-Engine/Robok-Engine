@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.languages.java.object;
+package org.robok.engine.feature.editor.languages.java.models
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,19 +17,18 @@ package org.robok.engine.feature.editor.languages.java.object;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-public enum ModifierAccess {
-  DEFAULT("default"),
-  PUBLIC("public"),
-  PROTECTED("protected"),
-  PRIVATE("private");
+import org.robok.engine.feature.editor.languages.java.object.ModifierAccess
 
-  private String s;
-
-  ModifierAccess(String s) {
-    this.s = s;
-  }
-
-  public String toString() {
-    return this.s;
-  }
-}
+/*
+ * Data class to store variable information.
+ * because the identifier storage system did not store the types, access reasons and not.
+ * @author ThDev-only
+ */
+data class Variavle(
+  val createIn: String,
+  val acessModifier: ModifierAccess,
+  val importPackage: String,
+  val type: String,
+  val name: String,
+  val value: String
+)

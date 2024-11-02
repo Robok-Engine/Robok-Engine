@@ -123,7 +123,6 @@ public enum Tokens {
   THROW,
   THROWS,
   AT,
-
   TRUE,
   FALSE,
   NULL,
