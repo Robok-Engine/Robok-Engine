@@ -21,37 +21,44 @@ import org.robok.engine.templates.CodeTemplate
 
 open class AndroidManifestTemplate : CodeTemplate() {
 
-  override var name: String = "AndroidManifest"
-  override var packageName: String = "org.robok.empty"
-  override var extension: String = ".xml"
+    override var name: String = "AndroidManifest"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".xml"
 
-  var mainActivityPackage = packageName + ".MainScreen"
+    private var mainActivityPackage = "$packageName.MainScreen"
 
-  override var code: String =
-    """
-        <?xml version="1.0" encoding="utf-8"?>
-        <manifest 
-            xmlns:android="http://schemas.android.com/apk/res/android"
-            package="${packageName}">
-            
-            <application 
-                android:icon="@mipmap/ic_launcher" 
-                android:roundIcon="@mipmap/ic_launcher" 
-                android:label="@string/app_name" 
-                android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+    override var code: String = generateCode()
+
+    override fun regenerate() {
+        mainActivityPackage = "$packageName.MainScreen"
+        code = generateCode()
+    }
+
+    private fun generateCode(): String {
+        return """
+            <?xml version="1.0" encoding="utf-8"?>
+            <manifest 
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                package="$packageName">
                 
-                <activity 
-                    android:name="${mainActivityPackage}" 
-                    android:exported="true">
-                    <intent-filter>
-                        <action 
-                            android:name="android.intent.action.MAIN" />
-                        <category 
-                            android:name="android.intent.category.LAUNCHER" />
-                    </intent-filter>
-                </activity>
-            </application>
-        </manifest>
-        """
-      .trimIndent()
+                <application 
+                    android:icon="@mipmap/ic_launcher" 
+                    android:roundIcon="@mipmap/ic_launcher" 
+                    android:label="@string/app_name" 
+                    android:theme="@style/Theme.Material3.DayNight.NoActionBar">
+                    
+                    <activity 
+                        android:name="$mainActivityPackage" 
+                        android:exported="true">
+                        <intent-filter>
+                            <action 
+                                android:name="android.intent.action.MAIN" />
+                            <category 
+                                android:name="android.intent.category.LAUNCHER" />
+                        </intent-filter>
+                    </activity>
+                </application>
+            </manifest>
+        """.trimIndent()
+    }
 }

@@ -19,28 +19,34 @@ package org.robok.engine.templates.ui
 
 import org.robok.engine.templates.CodeTemplate
 
-class ScreenUITemplate : CodeTemplate() {
+open class ScreenUITemplate : CodeTemplate() {
 
-  override var name: String = "Screen UI"
-  override var packageName: String = "org.robok.empty"
-  override var extension: String = ".gui"
+    override var name: String = "ScreenUII"
+    override var packageName: String = "org.robok.empty"
+    override var extension: String = ".gui"
 
-  override var code: String =
-    """
-        config(
-            orientation = "horizontal"
-        )
-        Column(
-            width = "match_parent",
-            height = "match_parent"
-        ) {
-            Button(
-                id = "shoot_button",
-                text = "Shoot",
-                width = "wrap_content",
-                height = "wrap_content"
+    override var code: String = generateCode()
+
+    override fun regenerate() {
+        code = generateCode()
+    }
+
+    private fun generateCode(): String {
+        return """
+            config(
+                orientation = "horizontal"
             )
-        }
-        """
-      .trimIndent()
+            Column(
+                width = "match_parent",
+                height = "match_parent"
+            ) {
+                Button(
+                    id = "shoot_button",
+                    text = "Shoot",
+                    width = "wrap_content",
+                    height = "wrap_content"
+                )
+            }
+        """.trimIndent()
+    }
 }

@@ -25,4 +25,5 @@ abstract class CodeTemplate {
   abstract var packageName: String
   abstract var code: String
   abstract var extension: String
+  abstract fun regenerate()
 }
