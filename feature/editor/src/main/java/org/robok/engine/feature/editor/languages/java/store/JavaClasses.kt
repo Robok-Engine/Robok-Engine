@@ -26,8 +26,8 @@ package org.robok.engine.feature.editor.languages.java.store
 
 object JavaClasses {
 
-    val classes: Map<String, String> by lazy {
-        mapOf(
+    val classes: HashMap<String, String> by lazy {
+        hashMapOf(
             "String" to "java.lang.String", 
             "Integer" to "java.lang.Integer", 
             "Float" to "java.lang.Float",
