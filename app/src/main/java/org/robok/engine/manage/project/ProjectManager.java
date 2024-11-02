@@ -125,6 +125,7 @@ public class ProjectManager {
       ScreenLogicTemplate template = new ScreenLogicTemplate();
       template.setName("MainScreen");
       template.setPackageName(packageName);
+      template.regenerate();
 
       String classFilePath =
           "game/logic/" + packageName.replace('.', '/') + "/" + template.getName() + ".java";
