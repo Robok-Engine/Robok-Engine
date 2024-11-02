@@ -26,6 +26,7 @@ package org.robok.engine.feature.editor.languages.java.store
 
 object JavaClasses {
 
+    @JvmStatic
     val classes: HashMap<String, String> by lazy {
         hashMapOf(
             "String" to "java.lang.String", 
