@@ -31,9 +31,9 @@ jobs:
           git config --global user.name "trindadedev13"
           git config --global user.email "devsuay@gmail.com"
           git fetch origin dev:temp
-          git rebase temp
           git add .
           git commit -m "chore: Format Kotlin Code" -m "format code with ktfmt in github actions"
+          git rebase temp
           git branch -M dev
           git push origin dev
         env:
@@ -67,9 +67,9 @@ jobs:
           git config --global user.name "trindadedev13"
           git config --global user.email "devsuay@gmail.com"
           git fetch origin dev:temp
-          git rebase temp
           git add .
           git commit -m "chore: Format Java Code" -m "format code with google java format in github actions"
+          git rebase temp
           git branch -M dev
           git push origin dev
         env:
