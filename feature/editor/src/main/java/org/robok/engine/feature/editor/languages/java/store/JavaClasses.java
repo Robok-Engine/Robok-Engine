@@ -58,7 +58,7 @@ public final class JavaClasses {
     classes.put(
         "Date",
         "java.util.Date"); // Date class for working with dates (legacy class, use java.time package
-                           // for new code)
+    // for new code)
     classes.put("Calendar", "java.util.Calendar"); // Calendar class for working with date and time
     return classes;
   }

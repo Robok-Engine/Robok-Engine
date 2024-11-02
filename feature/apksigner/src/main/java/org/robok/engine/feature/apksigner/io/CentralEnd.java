@@ -29,7 +29,7 @@ public class CentralEnd {
   public int centralDirectorySize; // size of the central directory   4 bytes
   public int
       centralStartOffset; // offset of start of central directory with respect to the starting disk
-                          // number        4 bytes
+  // number        4 bytes
   public String fileComment; // .ZIP file comment       (variable size)
 
   public static CentralEnd read(ZipInput input) throws IOException {
