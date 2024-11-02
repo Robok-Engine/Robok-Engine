@@ -17,14 +17,13 @@ package org.robok.engine.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.engine.feature.editor.languages.java.object.ModifierAccess
 
 /*
  * Data class to store variable information.
  * because the identifier storage system did not store the types, access reasons and not.
  * @author ThDev-only
  */
-data class Variavle(
+data class Variable(
   val createIn: String,
   val acessModifier: ModifierAccess,
   val importPackage: String,

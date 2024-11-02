@@ -76,7 +76,7 @@ import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAut
 import org.robok.engine.feature.editor.languages.java.models.Method;
 import org.robok.engine.feature.editor.languages.java.models.Tokens;
 import org.robok.engine.feature.editor.languages.java.models.Variable;
-import org.robok.engine.feature.editor.languages.java.object.ModifierAccess;
+import org.robok.engine.feature.editor.languages.java.models.ModifierAccess;
 import org.robok.engine.feature.editor.languages.java.store.JavaClasses;
 
 /**
