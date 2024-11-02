@@ -17,7 +17,7 @@ package org.robok.engine.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-enum ModifierAccess(val key: String) {
+enum class ModifierAccess(val key: String) {
   DEFAULT(key = "default")
   PUBLIC(key = "public")
   PROTECTED(key = "protected")
