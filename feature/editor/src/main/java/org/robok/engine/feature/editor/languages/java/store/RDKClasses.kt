@@ -37,7 +37,7 @@ class RDKClasses {
     private const val TAG = "RDKClasses"
     private const val RDK_VERSION = "RDK-1"
     private const val URL =
-      "https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/$RDK_VERSION/classes.json"
+      "https://raw.githubusercontent.com/Robok-Engine/Robok-SDK/dev/versions/$RDK_VERSION/classes.json"
   }
 
   private val client = OkHttpClient()
