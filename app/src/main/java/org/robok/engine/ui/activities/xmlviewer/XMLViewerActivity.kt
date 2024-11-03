@@ -57,13 +57,13 @@ class XMLViewerActivity : RobokActivity() {
         clearResources()
 
         try {
-            parseXmlAndBuildTree(nodes.toList(), treeNodeStack)
+            parseXmlAndBuildTree(ArrayList(nodes), treeNodeStack)
         } catch (e: Exception) {
             e.printStackTrace()
         }
 
         binding.xmlViewer.setHoldOutline(false)
-        setupOutlineClickListener(nodes)
+        setupOutlineClickListener(ArrayList(nodes))
         configureToolbar()
         loadGuiConfig()
 
@@ -121,7 +121,7 @@ class XMLViewerActivity : RobokActivity() {
         }
     }
 
-    private fun parseXmlAndBuildTree(nodes: MutableList<TreeNode<ViewBean>>, treeNodeStack: Stack<TreeNode<ViewBean>>) {
+    private fun parseXmlAndBuildTree(nodes: ArrayList<TreeNode<ViewBean>>, treeNodeStack: Stack<TreeNode<ViewBean>>) {
         AndroidXmlParser.with(binding.xmlViewer)
             .setOnParseListener(object : AndroidXmlParser.OnParseListener {
                 override fun onAddChildView(v: View, parser: ReadOnlyParser) {
@@ -168,7 +168,7 @@ class XMLViewerActivity : RobokActivity() {
             .parse(intent.getStringExtra(ExtraKeys.Gui.CODE))
     }
 
-    private fun setupOutlineClickListener(nodes: List<TreeNode<ViewBean>>) {
+    private fun setupOutlineClickListener(nodes: ArrayList<TreeNode<ViewBean>>) {
         binding.xmlViewer.setOutlineClickListener(object : OutlineView.OnOutlineClickListener {
             override fun onDown(v: View, displayType: Int) {
                 if (!isEditMode) {
@@ -182,7 +182,7 @@ class XMLViewerActivity : RobokActivity() {
 
             override fun onClick(v: View, displayType: Int) {
                 if (isEditMode) {
-                    findBeanByView(nodes, v)?.let { bean ->
+                    findBeanByView(ArrayList(nodes), v)?.let { bean ->
                         val sb = StringBuilder()
                         bean.infoList.forEach { info ->
                             sb.append("${info.attributeName}=${info.attributeValue}\n")
@@ -194,13 +194,13 @@ class XMLViewerActivity : RobokActivity() {
         })
     }
 
-    private fun findBeanByView(nodes: List<TreeNode<ViewBean>>, v: View): ViewBean? {
+    private fun findBeanByView(nodes: ArrayList<TreeNode<ViewBean>>, v: View): ViewBean? {
         for (node in nodes) {
             val bean = node.content
             if (bean.view == v) {
                 return bean
             } else {
-                findBeanByView(node.childList, v)?.let { return it }
+                findBeanByView(ArrayList(node.childList), v)?.let { return it }
             }
         }
         return null
