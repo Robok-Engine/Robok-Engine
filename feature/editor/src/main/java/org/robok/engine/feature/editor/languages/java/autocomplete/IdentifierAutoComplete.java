@@ -411,7 +411,7 @@ public class IdentifierAutoComplete {
 
         for (MethodOrField is : dest) {
           // Verificar se a classe é Field
-          if (is.result.equalsIgnoreCase("field")) {
+          if (is.getResult().equalsIgnoreCase("field")) {
 
             Field field = is.getField();
 
@@ -422,7 +422,7 @@ public class IdentifierAutoComplete {
           }
 
           // Verificar se a classe é Method
-          if (is.result.equalsIgnoreCase("method")) {
+          if (is.getResult().equalsIgnoreCase("method")) {
 
             java.lang.reflect.Method method = is.getMethod();
 
