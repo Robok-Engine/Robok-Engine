@@ -200,7 +200,7 @@ class XMLViewerActivity : RobokActivity() {
             if (bean.view == v) {
                 return bean
             } else {
-                findBeanByView(ArrayList(node.childList), v)?.let { return it }
+                findBeanByView(node.childList, v)?.let { return it }
             }
         }
         return null
