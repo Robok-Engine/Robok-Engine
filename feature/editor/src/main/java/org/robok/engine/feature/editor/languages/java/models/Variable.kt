@@ -24,10 +24,12 @@ package org.robok.engine.feature.editor.languages.java.models
  * @author ThDev-only
  */
 data class Variable(
-  val createIn: String,
+  val createdIn: String,
   val acessModifier: ModifierAccess,
   val importPackage: String,
   val type: String,
   val name: String,
   val value: String
-)
+) {
+  fun getCode(): String = name
+}
