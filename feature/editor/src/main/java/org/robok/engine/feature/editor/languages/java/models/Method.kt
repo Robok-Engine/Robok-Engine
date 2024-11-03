@@ -17,8 +17,8 @@ package org.robok.engine.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.engine.core.antlr4.java.Java8Parser.MethodModifierContext
 import java.util.List
+import org.robok.engine.core.antlr4.java.Java8Parser.MethodModifierContext
 
 /*
  * Data class to store method information.
@@ -29,5 +29,5 @@ data class Method(
   var modifiers: List<MethodModifierContext>,
   var returnType: String,
   var name: String,
-  var parameters: List<String>
+  var parameters: List<String>,
 )

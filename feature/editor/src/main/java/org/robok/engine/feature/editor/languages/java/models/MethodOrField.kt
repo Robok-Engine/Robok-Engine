@@ -19,11 +19,8 @@ package org.robok.engine.feature.editor.languages.java.models
 import java.lang.reflect.Field
 import java.lang.reflect.Method
 
-data class MethodOrField(
-  val result: String,
-  val field: Field? = null,
-  val method: Method? = null
-) {
+data class MethodOrField(val result: String, val field: Field? = null, val method: Method? = null) {
   constructor(result: String, field: Field) : this(result, field, null)
+
   constructor(result: String, method: Method) : this(result, null, method)
 }

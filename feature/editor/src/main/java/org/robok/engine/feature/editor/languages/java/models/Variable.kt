@@ -17,7 +17,6 @@ package org.robok.engine.feature.editor.languages.java.models
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-
 /*
  * Data class to store variable information.
  * because the identifier storage system did not store the types, access reasons and not.
@@ -29,7 +28,7 @@ data class Variable(
   val importPackage: String,
   val type: String,
   val name: String,
-  val value: String
+  val value: String,
 ) {
   fun getCode(): String = name
 }

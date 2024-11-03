@@ -32,7 +32,7 @@ object AndroidClasses {
       "Context" to "android.content.Context",
       "View" to "android.view.View",
       "Log" to "android.util.Log",
-      "Bundle" to "android.os.Bundle"
+      "Bundle" to "android.os.Bundle",
     )
   }
 }
