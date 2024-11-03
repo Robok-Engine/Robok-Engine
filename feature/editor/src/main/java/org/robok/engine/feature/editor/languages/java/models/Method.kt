@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.languages.java.models;
+package org.robok.engine.feature.editor.languages.java.models
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,30 +17,17 @@ package org.robok.engine.feature.editor.languages.java.models;
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
+import org.robok.engine.core.antlr4.java.Java8Parser.MethodModifierContext
+import java.util.List
 
-public class MethodOrField {
-
-  public String result;
-  public Field field;
-  public Method method;
-
-  public MethodOrField(String result, Field field) {
-    this.result = result;
-    this.field = field;
-  }
-
-  public MethodOrField(String result, Method method) {
-    this.result = result;
-    this.method = method;
-  }
-
-  public Field getField() {
-    return this.field;
-  }
-
-  public Method getMethod() {
-    return this.method;
-  }
-}
+/*
+ * Data class to store method information.
+ * because the identifier storage system did not store the types, access reasons and not.
+ * @author ThDev-only
+ */
+data class Method(
+  var modifiers: List<MethodModifierContext>,
+  var returnType: String,
+  var name: String,
+  var parameters: List<String>
+)
