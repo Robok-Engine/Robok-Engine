@@ -23,7 +23,7 @@ enum class ModifierAccess(
   DEFAULT(key = "default"),
   PUBLIC(key = "public"),
   PROTECTED(key = "protected"),
-  PRIVATE(key = "private")
+  PRIVATE(key = "private"),
   
-  fun toString(): String = key
+  override fun toString(): String = key
 }
