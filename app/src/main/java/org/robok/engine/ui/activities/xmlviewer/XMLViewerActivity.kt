@@ -195,14 +195,14 @@ class XMLViewerActivity : RobokActivity() {
     }
 
     private fun findBeanByView(nodes: ArrayList<TreeNode<ViewBean>>, v: View): ViewBean? {
-        for (node in nodes) {
-            val bean = node.content
-            if (bean.view == v) {
-                return bean
-            } else {
-                findBeanByView(node.childList, v)?.let { return it }
-            }
+    for (node in nodes) {
+        val bean = node.content
+        if (bean.view == v) {
+            return bean
+        } else {
+            findBeanByView(node.childList as ArrayList<TreeNode<ViewBean>>, v)?.let { return it }
         }
-        return null
     }
+    return null
+}
 }
