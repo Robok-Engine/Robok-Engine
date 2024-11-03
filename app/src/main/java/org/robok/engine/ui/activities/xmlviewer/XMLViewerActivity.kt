@@ -37,7 +37,6 @@ import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.ui.activities.base.RobokActivity
-import java.util.List
 
 class XMLViewerActivity : RobokActivity() {
     private var isEditMode = true
