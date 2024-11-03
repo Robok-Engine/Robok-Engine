@@ -74,9 +74,9 @@ import org.robok.engine.feature.editor.RobokCodeEditor;
 import org.robok.engine.feature.editor.languages.Language;
 import org.robok.engine.feature.editor.languages.java.autocomplete.IdentifierAutoComplete;
 import org.robok.engine.feature.editor.languages.java.models.Method;
+import org.robok.engine.feature.editor.languages.java.models.ModifierAccess;
 import org.robok.engine.feature.editor.languages.java.models.Tokens;
 import org.robok.engine.feature.editor.languages.java.models.Variable;
-import org.robok.engine.feature.editor.languages.java.models.ModifierAccess;
 import org.robok.engine.feature.editor.languages.java.store.JavaClasses;
 
 /**
