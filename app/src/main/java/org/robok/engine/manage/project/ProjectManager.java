@@ -35,6 +35,7 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter;
 import org.robok.engine.feature.compiler.android.logger.Logger;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
+import org.robok.engine.feature.conpiler.robok.AssetsCompiler;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.templates.xml.AndroidManifestTemplate;
@@ -66,7 +67,7 @@ public class ProjectManager {
       notifyCreationError("projectPath has not been initialized.", "create");
     }
 
-    try (InputStream zipFileInputStream = context.getAssets().open(template.getZipFileName());
+    try (InputStream zipFileInputStream = getContext().getAssets().open(template.getZipFileName());
         ZipInputStream zipInputStream =
             new ZipInputStream(new BufferedInputStream(zipFileInputStream))) {
 
@@ -163,7 +164,7 @@ public class ProjectManager {
    *  When the user imports a project outside of robok, the libs will not be found.
    */
   private void extractLibs(String projectName) {
-    ZipUtilsKt.extractZipFromAssets(context, "libs.zip", getLibsPath());
+    ZipUtilsKt.extractZipFromAssets(getContext(), "libs.zip", getLibsPath());
 
     if (creationListener != null) {
       creationListener.onProjectCreate();
@@ -182,10 +183,10 @@ public class ProjectManager {
     }
 
     try {
-      RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(context);
+      RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(getContext());
       Logger logger = new Logger();
       logger.attach(terminal.getRecyclerView());
-      SystemLogPrinter.start(context, logger);
+      SystemLogPrinter.start(getContext(), logger);
 
       Project project = new Project();
       project.setLibraries(Library.fromFile(getLibsPath()));
@@ -196,8 +197,20 @@ public class ProjectManager {
       project.setLogger(logger);
       project.setMinSdk(Config.MIN_SDK);
       project.setTargetSdk(Config.TARGET_SDK);
-
-      CompilerTask task = new CompilerTask(context, result);
+      
+      /*
+       * compile /sdcard/Robok/projects/$projectName/assets
+       * to android structure in private dir
+       */
+      var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
+      assetsCompiler.compileAll();
+      assetsCompiler.setCompileListener(logs -> {
+        for (String log : logs) {
+          logger.d(log)
+        }
+      });
+     
+      CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
 
       terminal.show();
@@ -248,7 +261,7 @@ public class ProjectManager {
    * @return File instance of ProjectLibsPath.
    */
   public File getLibsPath() {
-    var path = new File(context.getFilesDir(), getProjectName() + "/libs/");
+    var path = new File(getContext().getFilesDir(), getProjectName() + "/libs/");
     return path;
   }
 
@@ -265,7 +278,7 @@ public class ProjectManager {
    * @return A File instance of AndroidManifest File
    */
   public File getAndroidManifestFile() {
-    var path = new File(context.getFilesDir(), getProjectName() + "/xml/AndroidManifest.xml");
+    var path = new File(getContext().getFilesDir(), getProjectName() + "/xml/AndroidManifest.xml");
     return path;
   }
 
@@ -274,8 +287,15 @@ public class ProjectManager {
    * @return A File instance of Android Res path
    */
   public File getAndroidResPath() {
-    var path = new File(context.getFilesDir(), getProjectName() + "/xml/res/");
+    var path = new File(getContext().getFilesDir(), getProjectName() + "/xml/res/");
     return path;
+  }
+  
+  /*
+   * Internal method to get current context.
+   */
+  private Context getContext() {
+    return context;
   }
 
   /*
