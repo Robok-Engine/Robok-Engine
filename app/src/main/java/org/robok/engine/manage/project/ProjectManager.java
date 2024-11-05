@@ -206,7 +206,7 @@ public class ProjectManager {
       assetsCompiler.compileAll();
       assetsCompiler.setCompileListener(logs -> {
         for (String log : logs) {
-          logger.d(log)
+          logger.d(log);
         }
       });
      
