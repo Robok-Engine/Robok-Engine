@@ -203,6 +203,7 @@ public class ProjectManager {
        * compile /sdcard/Robok/projects/$projectName/assets
        * to android structure in private dir
        */
+      /* disabled because it doesn't work, and I'm sleepy.
       var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
       assetsCompiler.compileAll();
       assetsCompiler.setCompileListener(logs -> {
@@ -210,6 +211,7 @@ public class ProjectManager {
           logger.d("AssetsCompiler", log);
         }
       });
+      */
      
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
