@@ -27,11 +27,11 @@ open class BasicXML : CodeTemplate() {
   override var code: String = generateCode()
 
   private val items = mutableListOf<String>()
-
-  lateinit var type: String
-
+  
   val sb = StringBuilder()
-
+  
+  var type: String = "item"
+  
   private fun generateCode(): String {
     items.forEach { value -> sb.append(" <${type}>${value}</${type}>\n") }
 
