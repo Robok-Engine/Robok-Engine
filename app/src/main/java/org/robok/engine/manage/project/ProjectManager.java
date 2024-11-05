@@ -162,7 +162,7 @@ public class ProjectManager {
     stringsFile.regenerate();
     RobokLog.d(TAG, stringsFile.getCode());
     FileUtil.writeFile(
-        getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
+        getProjectPath().getAbsolutePath() + "/game/assets/texts/strings.xml", stringsFile.getCode());
   }
 
   /*
