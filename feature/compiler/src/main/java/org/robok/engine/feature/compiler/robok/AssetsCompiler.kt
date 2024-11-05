@@ -20,12 +20,17 @@ package org.robok.engine.feature.compiler.robok
 import android.content.Context
 import java.io.File
 import org.robok.engine.core.utils.FileUtil
+import org.robok.engine.core.utils.RobokLog
 
 class AssetsCompiler(val context: Context, val projectPath: File) {
 
   lateinit var projectName: String
   lateinit var logs: MutableList<String>
   lateinit var compileListener: CompileListener
+  
+  companion object {
+    private const val TAG = "AssetsCompiler"
+  }
 
   @FunctionalInterface
   interface CompileListener {
@@ -42,9 +47,11 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   private fun compileTextsToString() {
     val list = arrayListOf<String>()
-    FileUtil.listDir(projectPath.absolutePath + "/assets/texts/", list)
+    FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
+    RobokLog.d(TAG, "Line 51")
     list.forEach {
       val file = File(it)
+      RobokLog.d(TAG, "inside forEach 54 Item Name ${file.getName()}")
       val start = file.getName().indexOf("strings-") + "strings-".length
       val end = file.getName().indexOf(".xml")
       val countryCode = file.getName().substring(start, end)
