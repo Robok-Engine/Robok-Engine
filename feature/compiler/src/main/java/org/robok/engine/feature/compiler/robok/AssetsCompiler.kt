@@ -52,7 +52,7 @@ class AssetsCompiler(
       val end = file.getName().indexOf(".xml")
       val countryCode = file.getName().substring(start, end)
       FileUtil.writeFile(context.filesDir.absolutePath + projectName + "/xml/res/", FileUtil.readFile(file.absolutePath))
-      logs.add("Compiling ${contryCode} language...")
+      logs.add("Compiling ${countryCode} language...")
     }
     logs.add("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
