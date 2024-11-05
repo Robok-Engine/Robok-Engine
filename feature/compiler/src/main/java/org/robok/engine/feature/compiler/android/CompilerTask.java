@@ -35,6 +35,7 @@ import org.robok.engine.feature.compiler.android.incremental.IncrementalD8Compil
 import org.robok.engine.feature.compiler.android.incremental.IncrementalECJCompiler;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
+import org.robok.engine.feature.compiler.robok.AssetsCompiler;
 
 public class CompilerTask {
 
@@ -88,13 +89,17 @@ public class CompilerTask {
 
       if (startAaptCompiler()) {
         compilationSteps.add(true);
-
-        if (startEcjCompiler()) {
+        
+        if(startAssetsCompiler()) {
           compilationSteps.add(true);
-
-          if (startD8Compiler()) {
+          
+          if (startEcjCompiler()) {
             compilationSteps.add(true);
-            startApkBuilder();
+            
+            if (startD8Compiler()) {
+              compilationSteps.add(true);
+              startApkBuilder();
+            }
           }
         }
       }
@@ -105,7 +110,7 @@ public class CompilerTask {
       File signApk = signFile(genApk);
 
       long time = System.currentTimeMillis() - startTime;
-      if (compilationSteps.size() == 3) {
+      if (compilationSteps.size() == 4) {
         project.getLogger().d("APK Builder", "Build success, took " + time + "ms");
         compilerResult = new CompilerResult("Success", false, signApk);
       } else {
@@ -127,6 +132,22 @@ public class CompilerTask {
     aapt2Compiler.run();
 
     return aapt2Compiler.getIsCompilationSuccessful();
+  }
+  
+  /*
+   * compile /sdcard/Robok/projects/$projectName/assets
+   * to android structure in private dir
+   * @param buildLogger A Terminal Logger instante 
+   */
+  private boolean startAssetsCompiler() {
+    var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
+    assetsCompiler.compileAll();
+    assetsCompiler.setCompileListener(logs -> {
+      for (String log : logs) {
+        publishProgress("AssetsCompiler", log);
+      }
+    });
+    return true;
   }
 
   private boolean startEcjCompiler() throws Exception {

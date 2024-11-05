@@ -36,7 +36,6 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter;
 import org.robok.engine.feature.compiler.android.logger.Logger;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
-import org.robok.engine.feature.compiler.robok.AssetsCompiler;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.templates.xml.AndroidManifestTemplate;
@@ -219,29 +218,16 @@ public class ProjectManager {
       project.setLogger(buildLogger);
       project.setMinSdk(Config.MIN_SDK);
       project.setTargetSdk(Config.TARGET_SDK);
-
-      /*
-       * compile /sdcard/Robok/projects/$projectName/assets
-       * to android structure in private dir
-       */
-      var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
-      assetsCompiler.compileAll();
-      assetsCompiler.setCompileListener(logs -> {
-        for (String log : logs) {
-          buildLogger.d("AssetsCompiler", log);
-        }
-      });
-
+      project.setRootPath(getProjectPath());
+      
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
-
-      
 
     } catch (Exception e) {
       notifyBuildError(e, "build");
     }
   }
-
+  
   /*
    * Define listener for creationListener
    * @param instance of CreationListener interface
