@@ -35,7 +35,6 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter;
 import org.robok.engine.feature.compiler.android.logger.Logger;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
-import org.robok.engine.feature.compiler.robok.AssetsCompiler;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.templates.xml.AndroidManifestTemplate;
@@ -51,7 +50,7 @@ public class ProjectManager {
   private File projectPath;
   private CreationListener creationListener;
   private ErrorListener errorListener;
-  
+
   public ProjectManager() {}
 
   public ProjectManager(Context context) {
@@ -107,7 +106,7 @@ public class ProjectManager {
       createAndroidManifest(packageName);
       createStringsDemoFile(projectName);
       extractLibs(projectName);
-      
+
     } catch (FileNotFoundException e) {
       notifyCreationError(e, "create");
     } catch (IOException e) {
@@ -149,7 +148,7 @@ public class ProjectManager {
       notifyCreationError(e, "createMainScreen");
     }
   }
-  
+
   /*
    * Create Strings File.
    * @param projectName A Name of Current Project
@@ -159,7 +158,8 @@ public class ProjectManager {
     stringsFile.setName(projectName);
     stringsFile.setType("string");
     stringsFile.add(projectName);
-    FileUtil.writeFile(getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
+    FileUtil.writeFile(
+        getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
   }
 
   /*
@@ -212,7 +212,7 @@ public class ProjectManager {
       project.setLogger(logger);
       project.setMinSdk(Config.MIN_SDK);
       project.setTargetSdk(Config.TARGET_SDK);
-      
+
       /*
        * compile /sdcard/Robok/projects/$projectName/assets
        * to android structure in private dir
@@ -226,7 +226,7 @@ public class ProjectManager {
         }
       });
       */
-     
+
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
 
@@ -244,7 +244,7 @@ public class ProjectManager {
   public void setCreationListener(CreationListener creationListener) {
     this.creationListener = creationListener;
   }
-  
+
   /*
    * Define listener for errorListener
    * @param instance of ErrorListener interface
@@ -315,7 +315,7 @@ public class ProjectManager {
     var path = new File(getContext().getFilesDir(), getProjectName() + "/xml/res/");
     return path;
   }
-  
+
   /*
    * Internal method to get current context.
    */
@@ -354,7 +354,7 @@ public class ProjectManager {
       creationListener.onProjectCreateError(e.toString() + " Method: " + methodName);
     }
   }
-  
+
   /*
    * Notify Error method to EditorActivity
    * @param value A Message of Error
@@ -392,7 +392,7 @@ public class ProjectManager {
 
     void onProjectCreateError(String error);
   }
-  
+
   @FunctionalInterface
   public interface ErrorListener {
     void onBuildError(String error);
