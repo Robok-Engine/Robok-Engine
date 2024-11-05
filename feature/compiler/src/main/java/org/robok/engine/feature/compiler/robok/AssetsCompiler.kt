@@ -19,6 +19,8 @@ package org.robok.engine.feature.compiler.robok
 
 import android.content.Context
 import java.io.File
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.delay
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 
@@ -30,6 +32,8 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   
   companion object {
     private const val TAG = "AssetsCompiler"
+    private const val FAKE_DELAY_1 = 200
+    private const val FAKE_DELAY_2 = 5000
   }
 
   @FunctionalInterface
@@ -42,11 +46,14 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   }
 
   fun compileAll() {
-    logs.add("Starting Assets Compiler...")
-    compileTextsToString()
+    runBlocking {
+      logs.add("Starting Assets Compiler...")
+      delay(FAKE_DELAY_2)
+      compileTextsToString()
+    }
   }
 
-  private fun compileTextsToString() {
+  private suspend fun compileTextsToString() {
     val list = arrayListOf<String>()
     var pathToSave = ""
     
@@ -67,8 +74,9 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         pathToSave + "/strings.xml",
         FileUtil.readFile(file.absolutePath),
       )
-      
+      delay(FAKE_DELAY_1)
     }
+    delay(FAKE_DELAY_1)
     logs.add("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
   }
