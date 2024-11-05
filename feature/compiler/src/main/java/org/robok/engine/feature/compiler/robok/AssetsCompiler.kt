@@ -47,8 +47,10 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   fun compileAll() {
     runBlocking {
-      newLog("Starting Assets Compiler...")
+      newBuildLog("Starting Assets Compiler...")
       delay(FAKE_DELAY_2)
+      newLog("Path: ${projectPath}")
+      newLog("Name: ${projectName}")
       compileTextsToString()
     }
   }
@@ -65,10 +67,10 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         val end = file.getName().indexOf(".xml")
         val countryCode = file.getName().substring(start, end)
         pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values-" + countryCode)
-        newLog("Compiling ${countryCode} language...")
+        newBuildLog("Compiling ${countryCode} language...")
       } else {
         pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
-        newLog("Compiling default language...")
+        newBuildLog("Compiling default language...")
       }
       FileUtil.writeFile(
         pathToSave.absolutePath + "/strings.xml",
@@ -77,12 +79,16 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
       delay(FAKE_DELAY_1)
     }
     delay(FAKE_DELAY_1)
-    newLog("Assets Texts Compiled Successfully!")
+    newBuildLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
   }
   
-  private fun newLog(log: String) {
-    RobokLog.d(tag = "AssetsCompiler", message = log)
+  private fun newBuildLog(log: String) {
+    RobokLog.d(tag = TAG, message = log)
     logs.add(log)
+  }
+  
+  private fun newLog(log: String) {
+    RobokLog.d(tag = TAG, message = log)
   }
 }
