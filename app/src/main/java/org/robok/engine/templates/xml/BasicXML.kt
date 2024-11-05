@@ -25,23 +25,22 @@ open class BasicXML : CodeTemplate() {
   override var packageName: String = "org.robok.empty"
   override var extension: String = ".xml"
   override var code: String = generateCode()
-  
+
   private val items = mutableListOf<String>()
-  
+
   lateinit var type: String
-  
+
   val sb = StringBuilder()
 
   private fun generateCode(): String {
-    items.forEach { value ->
-      sb.append(" <${type}>${value}</${type}>\n")
-    }
-    
+    items.forEach { value -> sb.append(" <${type}>${value}</${type}>\n") }
+
     return """
       <resources>
         ${sb.toString()}
       </resources>
-      """.trimIndent()
+      """
+      .trimIndent()
   }
 
   override fun regenerate() {
@@ -50,6 +49,6 @@ open class BasicXML : CodeTemplate() {
 
   fun add(value: String) {
     items.add(value)
-    regenerate() 
+    regenerate()
   }
 }

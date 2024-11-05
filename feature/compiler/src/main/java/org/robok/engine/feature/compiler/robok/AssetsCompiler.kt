@@ -18,31 +18,28 @@ package org.robok.engine.feature.compiler.robok
  */
 
 import android.content.Context
-import org.robok.engine.core.utils.FileUtil
 import java.io.File
+import org.robok.engine.core.utils.FileUtil
 
-class AssetsCompiler(
-  val context: Context,
-  val projectPath: File,
-) {
+class AssetsCompiler(val context: Context, val projectPath: File) {
 
   lateinit var projectName: String
   lateinit var logs: MutableList<String>
   lateinit var compileListener: CompileListener
-  
+
   @FunctionalInterface
   interface CompileListener {
     fun whenFinish(logs: List<String>)
   }
-  
+
   init {
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
   }
-  
+
   fun compileAll() {
     compileTextsToString()
   }
-  
+
   private fun compileTextsToString() {
     val list = arrayListOf<String>()
     FileUtil.listDir(projectPath.absolutePath + "/assets/texts/", list)
@@ -51,7 +48,10 @@ class AssetsCompiler(
       val start = file.getName().indexOf("strings-") + "strings-".length
       val end = file.getName().indexOf(".xml")
       val countryCode = file.getName().substring(start, end)
-      FileUtil.writeFile(context.filesDir.absolutePath + projectName + "/xml/res/", FileUtil.readFile(file.absolutePath))
+      FileUtil.writeFile(
+        context.filesDir.absolutePath + projectName + "/xml/res/",
+        FileUtil.readFile(file.absolutePath),
+      )
       logs.add("Compiling ${countryCode} language...")
     }
     logs.add("Assets Texts Compiled Successfully!")

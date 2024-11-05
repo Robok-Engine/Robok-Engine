@@ -103,11 +103,9 @@ class EditorActivity :
     if (extras != null) {
       projectPath = extras.getString(ExtraKeys.Project.PATH)
       projectManager = ProjectManager(this@EditorActivity)
-      projectPath?.let {
-        projectManager.projectPath = File(it) 
-      }
+      projectPath?.let { projectManager.projectPath = File(it) }
     }
-    
+
     // only for collet possible errors
     projectManager.setErrorListener { error ->
       MaterialAlertDialogBuilder(this)
