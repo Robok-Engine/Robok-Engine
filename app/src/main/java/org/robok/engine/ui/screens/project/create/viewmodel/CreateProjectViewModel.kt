@@ -68,7 +68,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
             onError(error)
           }
         }
-      projectManager.setListener(projectCreationListener)
+      projectManager.setCreationListener(projectCreationListener)
       projectManager.create(state.projectName, state.packageName, template)
     }
   }
