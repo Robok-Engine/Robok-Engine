@@ -16,31 +16,22 @@ package org.robok.engine.core.utils
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import android.util.Log
- 
+
 object RobokLog {
   @JvmStatic
-  fun d(
-    tag: String = "RobokLog",
-    message: String
-  ) {
+  fun d(tag: String = "RobokLog", message: String) {
     Log.d(tag, message)
   }
-  
+
   @JvmStatic
-  fun e(
-    tag: String = "RobokLog",
-    message: String
-  ) {
+  fun e(tag: String = "RobokLog", message: String) {
     Log.e(tag, message)
   }
-  
+
   @JvmStatic
-  fun i(
-    tag: String = "RobokLog",
-    message: String
-  ) {
+  fun i(tag: String = "RobokLog", message: String) {
     Log.i(tag, message)
   }
 }

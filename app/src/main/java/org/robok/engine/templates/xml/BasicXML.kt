@@ -32,15 +32,14 @@ open class BasicXML : CodeTemplate() {
 
   private fun generateCode(): String {
     sb.clear()
-    items?.forEach { value ->
-      sb.append(" <$type>$value</$type>\n")
-    }
+    items?.forEach { value -> sb.append(" <$type>$value</$type>\n") }
 
     return """
       <resources>
         ${sb.toString()}
       </resources>
-      """.trimIndent()
+      """
+      .trimIndent()
   }
 
   override fun regenerate() {
