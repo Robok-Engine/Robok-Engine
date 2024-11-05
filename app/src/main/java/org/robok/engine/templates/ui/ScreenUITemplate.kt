@@ -34,18 +34,18 @@ open class ScreenUITemplate : CodeTemplate() {
   private fun generateCode(): String {
     return """
             config(
-                orientation = "horizontal"
+              orientation = "horizontal"
             )
             Column(
-                width = "match_parent",
-                height = "match_parent"
+              width = "match_parent",
+              height = "match_parent"
             ) {
-                Button(
-                    id = "shoot_button",
-                    text = "Shoot",
-                    width = "wrap_content",
-                    height = "wrap_content"
-                )
+              Button(
+                id = "shoot_button",
+                text = "Shoot",
+                width = "wrap_content",
+                height = "wrap_content"
+              )
             }
         """
       .trimIndent()

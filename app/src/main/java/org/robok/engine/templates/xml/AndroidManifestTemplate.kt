@@ -38,26 +38,27 @@ open class AndroidManifestTemplate : CodeTemplate() {
     return """
             <?xml version="1.0" encoding="utf-8"?>
             <manifest 
-                xmlns:android="http://schemas.android.com/apk/res/android"
-                package="$packageName">
+              xmlns:android="http://schemas.android.com/apk/res/android"
+              package="$packageName">
+              
+              <application 
+                android:icon="@mipmap/ic_launcher" 
+                android:roundIcon="@mipmap/ic_launcher" 
+                android:label="@string/app_name" 
+                android:theme="@style/Theme.Material3.DayNight.NoActionBar">
                 
-                <application 
-                    android:icon="@mipmap/ic_launcher" 
-                    android:roundIcon="@mipmap/ic_launcher" 
-                    android:label="@string/app_name" 
-                    android:theme="@style/Theme.Material3.DayNight.NoActionBar">
-                    
-                    <activity 
-                        android:name="$mainActivityPackage" 
-                        android:exported="true">
-                        <intent-filter>
-                            <action 
-                                android:name="android.intent.action.MAIN" />
-                            <category 
-                                android:name="android.intent.category.LAUNCHER" />
-                        </intent-filter>
-                    </activity>
-                </application>
+                <activity 
+                  android:name="$mainActivityPackage" 
+                  android:exported="true">
+                  
+                  <intent-filter>
+                    <action 
+                      android:name="android.intent.action.MAIN" />
+                    <category 
+                      android:name="android.intent.category.LAUNCHER" />
+                  </intent-filter>
+                </activity>
+              </application>
             </manifest>
         """
       .trimIndent()

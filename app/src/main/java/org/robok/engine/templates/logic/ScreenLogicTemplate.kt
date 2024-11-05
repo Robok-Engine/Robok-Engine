@@ -36,11 +36,10 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
             import robok.game.screen.GameScreen;
             
             public class $name extends GameScreen {
-            
-                @Override
-                public void onScreenCreated() {
-                    // Initialization logic here
-                }
+              @Override
+              public void onScreenCreated() {
+                // Initialization logic here
+              }
             }
         """
       .trimIndent()

@@ -36,7 +36,7 @@ open class JavaClassTemplate : CodeTemplate() {
             package $packageName;
             
             public class $name {
-                
+              // your logic
             }
         """
       .trimIndent()
