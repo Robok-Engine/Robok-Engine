@@ -47,16 +47,21 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   private fun compileTextsToString() {
     val list = arrayListOf<String>()
+    var pathToSave = ""
+    
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
-    RobokLog.d(TAG, "Line 51")
     list.forEach {
       val file = File(it)
-      RobokLog.d(TAG, "inside forEach 54 Item Name ${file.getName()}")
-      val start = file.getName().indexOf("strings-") + "strings-".length
-      val end = file.getName().indexOf(".xml")
-      val countryCode = file.getName().substring(start, end)
+      if (!file.getName().equals("strings.xml")) { 
+        val start = file.getName().indexOf("strings-") + "strings-".length
+        val end = file.getName().indexOf(".xml")
+        val countryCode = file.getName().substring(start, end)
+        pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values-" + countryCode
+      } else {
+        pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values"
+      }
       FileUtil.writeFile(
-        context.filesDir.absolutePath + projectName + "/xml/res/",
+        pathToSave + "/strings.xml",
         FileUtil.readFile(file.absolutePath),
       )
       logs.add("Compiling ${countryCode} language...")
