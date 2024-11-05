@@ -45,7 +45,7 @@ public class Project {
 
   private Logger mLogger;
   
-  private String mRootPath;
+  private File mRootPath;
 
   public Project() {}
 
@@ -137,11 +137,11 @@ public class Project {
     mLogger = logger;
   }
   
-  public String getRootPath() {
+  public File getRootPath() {
     return mRootPath;
   }
   
-  public void setRootPath(String rootPath) {
+  public void setRootPath(File rootPath) {
     mRootPath = rootPath;
   }
 }
