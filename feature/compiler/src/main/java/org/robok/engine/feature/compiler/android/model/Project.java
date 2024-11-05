@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler.model;
+package org.robok.engine.feature.compiler.android.model;
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,7 +19,7 @@ package org.robok.engine.feature.compiler.model;
 
 import java.io.File;
 import java.util.List;
-import org.robok.engine.feature.compiler.logger.Logger;
+import org.robok.engine.feature.compiler.android.logger.Logger;
 
 public class Project {
 

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler.logger
+package org.robok.engine.feature.compiler.android.exception
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,4 +17,4 @@ package org.robok.engine.feature.compiler.logger
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-data class Log(val tag: CharSequence, val message: CharSequence)
+open class AAPT2CompileException(private val vv: String) : CompilerException(vv)

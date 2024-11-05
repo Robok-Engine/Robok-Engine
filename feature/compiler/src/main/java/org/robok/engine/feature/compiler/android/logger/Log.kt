@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler.incremental.file
+package org.robok.engine.feature.compiler.android.logger
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,15 +17,4 @@ package org.robok.engine.feature.compiler.incremental.file
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.io.File
-
-class JavaFile(pathname: String) : File(pathname) {
-
-  override fun equals(other: Any?): Boolean {
-    return if (other is JavaFile) {
-      other.name == this.name
-    } else {
-      false
-    }
-  }
-}
+data class Log(val tag: CharSequence, val message: CharSequence)

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler
+package org.robok.engine.feature.compiler.android
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,7 +21,7 @@ import android.content.Context
 import java.io.OutputStream
 import java.io.PrintStream
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.feature.compiler.logger.Logger
+import org.robok.engine.feature.compiler.android.logger.Logger
 
 object SystemLogPrinter {
 

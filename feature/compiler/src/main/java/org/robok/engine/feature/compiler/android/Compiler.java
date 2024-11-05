@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler;
+package org.robok.engine.feature.compiler.android;
 
 /*
  *  This file is part of Robok © 2024.
@@ -20,8 +20,8 @@ package org.robok.engine.feature.compiler;
 import android.content.Context;
 import java.io.File;
 import java.io.IOException;
-import org.robok.engine.feature.compiler.exception.CompilerException;
-import org.robok.engine.feature.compiler.util.Decompress;
+import org.robok.engine.feature.compiler.android.exception.CompilerException;
+import org.robok.engine.feature.compiler.android.util.Decompress;
 
 public class Compiler {
 

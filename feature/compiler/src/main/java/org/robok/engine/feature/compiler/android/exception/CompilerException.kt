@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler
+package org.robok.engine.feature.compiler.android.exception
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,7 +16,4 @@ package org.robok.engine.feature.compiler
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import java.io.File
-
-data class CompilerResult(val message: String, val isError: Boolean, val signApk: File? = null)
+open class CompilerException(private val v: String) : Exception(v)
