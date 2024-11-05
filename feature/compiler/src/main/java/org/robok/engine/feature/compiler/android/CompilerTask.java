@@ -87,10 +87,10 @@ public class CompilerTask {
     try {
       this.project = project;
 
-      if (startAaptCompiler()) {
+      if (startAssetsCompiler()) {
         compilationSteps.add(true);
         
-        if(startAssetsCompiler()) {
+        if(startAaptCompiler()) {
           compilationSteps.add(true);
           
           if (startEcjCompiler()) {
