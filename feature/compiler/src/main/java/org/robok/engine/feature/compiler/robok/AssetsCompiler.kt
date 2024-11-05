@@ -42,6 +42,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   }
 
   fun compileAll() {
+    logs.add("Starting Assets Compiler...")
     compileTextsToString()
   }
 
@@ -57,14 +58,16 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         val end = file.getName().indexOf(".xml")
         val countryCode = file.getName().substring(start, end)
         pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values-" + countryCode
+        logs.add("Compiling ${countryCode} language...")
       } else {
         pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values"
+        logs.add("Compiling default language...")
       }
       FileUtil.writeFile(
         pathToSave + "/strings.xml",
         FileUtil.readFile(file.absolutePath),
       )
-      logs.add("Compiling ${countryCode} language...")
+      
     }
     logs.add("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
