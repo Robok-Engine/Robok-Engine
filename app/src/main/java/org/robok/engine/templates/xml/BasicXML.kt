@@ -49,6 +49,5 @@ open class BasicXML : CodeTemplate() {
 
   fun add(value: String) {
     items.add(value)
-    regenerate()
   }
 }

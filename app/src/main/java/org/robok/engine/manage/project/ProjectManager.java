@@ -158,6 +158,7 @@ public class ProjectManager {
     stringsFile.setName(projectName);
     stringsFile.setType("string");
     stringsFile.add(projectName);
+    stringsFile.regenerate()
     FileUtil.writeFile(
         getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
   }
