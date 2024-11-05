@@ -32,8 +32,8 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   
   companion object {
     private const val TAG = "AssetsCompiler"
-    private const val FAKE_DELAY_1 = 200
-    private const val FAKE_DELAY_2 = 5000
+    private const val FAKE_DELAY_1 = 200L
+    private const val FAKE_DELAY_2 = 5000L
   }
 
   @FunctionalInterface
