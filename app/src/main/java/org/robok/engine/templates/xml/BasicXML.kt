@@ -21,26 +21,26 @@ import org.robok.engine.templates.CodeTemplate
 
 open class BasicXML : CodeTemplate() {
 
+  private var items: MutableList<String>? = null
+  var type: String = "item"
+  val sb = StringBuilder()
+
   override var name: String = "BasicXML"
   override var packageName: String = "org.robok.empty"
   override var extension: String = ".xml"
   override var code: String = generateCode()
 
-  private val items = mutableListOf<String>()
-  
-  val sb = StringBuilder()
-  
-  var type: String = "item"
-  
   private fun generateCode(): String {
-    items.forEach { value -> sb.append(" <${type}>${value}</${type}>\n") }
+    sb.clear()
+    items?.forEach { value ->
+      sb.append(" <$type>$value</$type>\n")
+    }
 
     return """
       <resources>
         ${sb.toString()}
       </resources>
-      """
-      .trimIndent()
+      """.trimIndent()
   }
 
   override fun regenerate() {
@@ -48,6 +48,9 @@ open class BasicXML : CodeTemplate() {
   }
 
   fun add(value: String) {
-    items.add(value)
+    if (items == null) {
+      items = mutableListOf()
+    }
+    items?.add(value)
   }
 }
