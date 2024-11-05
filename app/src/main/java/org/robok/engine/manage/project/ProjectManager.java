@@ -22,7 +22,7 @@ import android.os.Environment;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
+import java.io.FileOutputStream;  
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
@@ -30,6 +30,7 @@ import java.util.zip.ZipInputStream;
 import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 import org.robok.engine.core.utils.FileUtil;
 import org.robok.engine.core.utils.ZipUtilsKt;
+import org.robok.engine.core.utils.RobokLog;
 import org.robok.engine.feature.compiler.android.CompilerTask;
 import org.robok.engine.feature.compiler.android.SystemLogPrinter;
 import org.robok.engine.feature.compiler.android.logger.Logger;
@@ -159,6 +160,7 @@ public class ProjectManager {
     stringsFile.setType("string");
     stringsFile.add(projectName);
     stringsFile.regenerate();
+    RobokLog.d(TAG, stringsFile.getCode());
     FileUtil.writeFile(
         getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
   }
