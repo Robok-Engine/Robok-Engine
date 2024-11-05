@@ -26,9 +26,9 @@ import org.robok.engine.core.utils.RobokLog
 class AssetsCompiler(val context: Context, val projectPath: File) {
 
   lateinit var projectName: String
-  lateinit var logs: MutableList<String>
+  var logs: MutableList<String>? = null
   lateinit var compileListener: CompileListener
-  
+
   companion object {
     private const val TAG = "AssetsCompiler"
   }
@@ -39,6 +39,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   }
   
   fun compileAll() {
+    logs = mutableListOf()
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
     newBuildLog("Starting Assets Compiler...")
     newLog("Path: ${projectPath}")
@@ -49,7 +50,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   private fun compileTextsToString() {
     val list = arrayListOf<String>()
     var pathToSave = File("")
-    
+
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
     list.forEach {
       val file = File(it)
@@ -69,12 +70,12 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
       )
     }
     newBuildLog("Assets Texts Compiled Successfully!")
-    compileListener.whenFinish(logs.toList())
+    compileListener.whenFinish(logs?.toList() ?: listOf())
   }
   
   private fun newBuildLog(log: String) {
     RobokLog.d(tag = TAG, message = log)
-    logs.add(log)
+    logs?.add(log)
   }
   
   private fun newLog(log: String) {

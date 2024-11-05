@@ -224,11 +224,13 @@ public class ProjectManager {
        */
       var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
       assetsCompiler.compileAll();
+      /*
       assetsCompiler.setCompileListener(logs -> {
         for (String log : logs) {
           buildLogger.d("AssetsCompiler", log);
         }
       });
+      */
 
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
