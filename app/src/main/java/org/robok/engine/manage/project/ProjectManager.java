@@ -204,6 +204,8 @@ public class ProjectManager {
 
     try {
       RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(getContext());
+      terminal.show();
+      
       Logger buildLogger = new Logger();
       buildLogger.attach(terminal.getRecyclerView());
       SystemLogPrinter.start(getContext(), buildLogger);
@@ -224,18 +226,16 @@ public class ProjectManager {
        */
       var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
       assetsCompiler.compileAll();
-      /*
       assetsCompiler.setCompileListener(logs -> {
         for (String log : logs) {
           buildLogger.d("AssetsCompiler", log);
         }
       });
-      */
 
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
 
-      terminal.show();
+      
 
     } catch (Exception e) {
       notifyBuildError(e, "build");
