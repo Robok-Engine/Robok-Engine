@@ -55,13 +55,21 @@ fun ProjectInfoDrawer() {
 @Composable
 private fun LogsDrawer() {
   Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-    Text(text = stringResource(id = Strings.common_word_logs), fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
+    Text(
+      text = stringResource(id = Strings.common_word_logs),
+      fontSize = 24.sp,
+      color = MaterialTheme.colorScheme.onSurface,
+    )
   }
 }
 
 @Composable
 private fun DiagnosticDrawer() {
   Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-    Text(text = stringResource(id = Strings.text_diagnostic), fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
+    Text(
+      text = stringResource(id = Strings.text_diagnostic),
+      fontSize = 24.sp,
+      color = MaterialTheme.colorScheme.onSurface,
+    )
   }
 }

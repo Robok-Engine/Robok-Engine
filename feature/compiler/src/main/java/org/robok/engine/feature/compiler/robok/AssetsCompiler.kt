@@ -19,7 +19,6 @@ package org.robok.engine.feature.compiler.robok
 
 import android.content.Context
 import java.io.File
-import kotlinx.coroutines.runBlocking
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 
@@ -37,7 +36,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   interface CompileListener {
     fun whenFinish(logs: List<String>)
   }
-  
+
   fun compileAll() {
     logs = mutableListOf()
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
@@ -54,11 +53,12 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
     list.forEach {
       val file = File(it)
-      if (!file.name.equals("strings.xml")) { 
+      if (!file.name.equals("strings.xml")) {
         val start = file.name.indexOf("strings-") + "strings-".length
         val end = file.name.indexOf(".xml")
         val countryCode = file.name.substring(start, end)
-        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values-$countryCode")
+        pathToSave =
+          File(context.filesDir.absolutePath, projectName + "/xml/res/values-$countryCode")
         newBuildLog("Compiling ${countryCode} language...")
       } else {
         pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
@@ -72,12 +72,12 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
     newBuildLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs?.toList() ?: listOf())
   }
-  
+
   private fun newBuildLog(log: String) {
     RobokLog.d(tag = TAG, message = log)
     logs?.add(log)
   }
-  
+
   private fun newLog(log: String) {
     RobokLog.d(tag = TAG, message = log)
   }

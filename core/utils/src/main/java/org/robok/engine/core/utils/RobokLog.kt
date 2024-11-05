@@ -21,12 +21,9 @@ import android.util.Log
 
 object RobokLog {
 
-  @JvmStatic
-  fun d(tag: String = "RobokLog", message: String) = Log.d(tag, message)
+  @JvmStatic fun d(tag: String = "RobokLog", message: String) = Log.d(tag, message)
 
-  @JvmStatic
-  fun e(tag: String = "RobokLog", message: String) = Log.e(tag, message)
+  @JvmStatic fun e(tag: String = "RobokLog", message: String) = Log.e(tag, message)
 
-  @JvmStatic
-  fun i(tag: String = "RobokLog", message: String) = Log.i(tag, message)
+  @JvmStatic fun i(tag: String = "RobokLog", message: String) = Log.i(tag, message)
 }
