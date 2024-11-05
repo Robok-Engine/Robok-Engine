@@ -49,7 +49,8 @@ public class ProjectManager {
   private Context context;
   private File projectPath;
   private CreationListener creationListener;
-
+  private ErrorListener errorListener;
+  
   public ProjectManager() {}
 
   public ProjectManager(Context context) {
@@ -216,7 +217,7 @@ public class ProjectManager {
       terminal.show();
 
     } catch (Exception e) {
-      notifyCreationError(e, "build");
+      notifyBuildError(e, "build");
     }
   }
 
@@ -224,8 +225,16 @@ public class ProjectManager {
    * Define listener for creationListener
    * @param instance of CreationListener interface
    */
-  public void setListener(CreationListener creationListener) {
+  public void setCreationListener(CreationListener creationListener) {
     this.creationListener = creationListener;
+  }
+  
+  /*
+   * Define listener for errorListener
+   * @param instance of ErrorListener interface
+   */
+  public void setErrorListener(ErrorListener errorListener) {
+    this.errorListener = errorListener;
   }
 
   /*
@@ -329,11 +338,48 @@ public class ProjectManager {
       creationListener.onProjectCreateError(e.toString() + " Method: " + methodName);
     }
   }
+  
+  /*
+   * Notify Error method to EditorActivity
+   * @param value A Message of Error
+   */
+  private void notifyBuildError(String value) {
+    if (creationListener != null) {
+      creationListener.onProjectCreateError(value);
+    }
+  }
+
+  /*
+   * Notify Error method to EditorActivity
+   * @param value A Message of Error
+   * @param methodName Name of the method where the error occurred
+   */
+  private void notifyBuildError(String value, String methodName) {
+    if (creationListener != null) {
+      creationListener.onProjectCreateError(value + " Method: " + methodName);
+    }
+  }
+
+  /*
+   * Notify Error method to EditorActivity
+   * @param e, A Exeception of error
+   * @param methodName Name of the method where the error occurred
+   */
+  private void notifyBuildError(Exception e, String methodName) {
+    if (creationListener != null) {
+      creationListener.onProjectCreateError(e.toString() + " Method: " + methodName);
+    }
+  }
 
   public interface CreationListener {
     void onProjectCreate();
 
     void onProjectCreateError(String error);
+  }
+  
+  @FunctionalInterface
+  public interface ErrorListener {
+    void onBuildError(String error);
   }
 
   public static final class Config {
