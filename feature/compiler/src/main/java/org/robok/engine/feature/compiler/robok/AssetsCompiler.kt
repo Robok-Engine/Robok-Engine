@@ -55,7 +55,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   private suspend fun compileTextsToString() {
     val list = arrayListOf<String>()
-    var pathToSave = File()
+    var pathToSave = File("")
     
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
     list.forEach {
