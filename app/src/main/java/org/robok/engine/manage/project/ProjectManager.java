@@ -104,7 +104,7 @@ public class ProjectManager {
 
       createMainScreen(projectName, packageName);
       createAndroidManifest(packageName);
-      createStringsDemoFile(projectName);
+      createBasicStringsFile(projectName);
       extractLibs(projectName);
 
     } catch (FileNotFoundException e) {
@@ -150,15 +150,15 @@ public class ProjectManager {
   }
 
   /*
-   * Create Strings File.
+   * Create Basic Strings File.
    * @param projectName A Name of Current Project
    */
-  private void createStringsDemoFile(String projectName) {
+  private void createBasicStringsFile(String projectName) {
     var stringsFile = new BasicXML();
     stringsFile.setName(projectName);
     stringsFile.setType("string");
     stringsFile.add(projectName);
-    stringsFile.regenerate()
+    stringsFile.regenerate();
     FileUtil.writeFile(
         getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
   }
