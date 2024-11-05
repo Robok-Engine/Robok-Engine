@@ -203,9 +203,9 @@ public class ProjectManager {
 
     try {
       RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(getContext());
-      Logger logger = new Logger();
-      logger.attach(terminal.getRecyclerView());
-      SystemLogPrinter.start(getContext(), logger);
+      Logger buildLogger = new Logger();
+      buildLogger.attach(terminal.getRecyclerView());
+      SystemLogPrinter.start(getContext(), buildLogger);
 
       Project project = new Project();
       project.setLibraries(Library.fromFile(getLibsPath()));
@@ -213,7 +213,7 @@ public class ProjectManager {
       project.setOutputFile(new File(getProjectPath().getAbsolutePath() + "/build/"));
       project.setJavaFile(new File(getProjectPath().getAbsolutePath() + "/game/logic/"));
       project.setManifestFile(new File(getAndroidManifestFile().getAbsolutePath()));
-      project.setLogger(logger);
+      project.setLogger(buildLogger);
       project.setMinSdk(Config.MIN_SDK);
       project.setTargetSdk(Config.TARGET_SDK);
 
@@ -221,15 +221,13 @@ public class ProjectManager {
        * compile /sdcard/Robok/projects/$projectName/assets
        * to android structure in private dir
        */
-      /* disabled because it doesn't work, and I'm sleepy.
       var assetsCompiler = new AssetsCompiler(getContext(), getProjectPath());
       assetsCompiler.compileAll();
       assetsCompiler.setCompileListener(logs -> {
         for (String log : logs) {
-          logger.d("AssetsCompiler", log);
+          buildLogger.d("AssetsCompiler", log);
         }
       });
-      */
 
       CompilerTask task = new CompilerTask(getContext(), result);
       task.execute(project);
