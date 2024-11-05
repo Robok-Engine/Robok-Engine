@@ -140,7 +140,7 @@ public class CompilerTask {
    * @param buildLogger A Terminal Logger instante 
    */
   private boolean startAssetsCompiler() {
-    var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
+    var assetsCompiler = new AssetsCompiler(mContext.get(), new File(project.getRootPath()));
     assetsCompiler.compileAll();
     assetsCompiler.setCompileListener(logs -> {
       for (String log : logs) {
