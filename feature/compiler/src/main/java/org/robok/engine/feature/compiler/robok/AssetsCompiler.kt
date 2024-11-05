@@ -47,7 +47,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   fun compileAll() {
     runBlocking {
-      logs.add("Starting Assets Compiler...")
+      newLog("Starting Assets Compiler...")
       delay(FAKE_DELAY_2)
       compileTextsToString()
     }
@@ -55,7 +55,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   private suspend fun compileTextsToString() {
     val list = arrayListOf<String>()
-    var pathToSave = ""
+    var pathToSave = File()
     
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
     list.forEach {
@@ -64,20 +64,25 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         val start = file.getName().indexOf("strings-") + "strings-".length
         val end = file.getName().indexOf(".xml")
         val countryCode = file.getName().substring(start, end)
-        pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values-" + countryCode
-        logs.add("Compiling ${countryCode} language...")
+        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values-" + countryCode)
+        newLog("Compiling ${countryCode} language...")
       } else {
-        pathToSave = context.filesDir.absolutePath + projectName + "/xml/res/values"
-        logs.add("Compiling default language...")
+        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
+        newLog("Compiling default language...")
       }
       FileUtil.writeFile(
-        pathToSave + "/strings.xml",
+        pathToSave.absolutePath + "/strings.xml",
         FileUtil.readFile(file.absolutePath),
       )
       delay(FAKE_DELAY_1)
     }
     delay(FAKE_DELAY_1)
-    logs.add("Assets Texts Compiled Successfully!")
+    newLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
+  }
+  
+  private fun newLog(log: String) {
+    RobokLog.d(tag = "AssetsCompiler", message = log)
+    newLog(log)
   }
 }
