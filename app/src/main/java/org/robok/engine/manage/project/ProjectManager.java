@@ -39,6 +39,7 @@ import org.robok.engine.feature.compiler.robok.AssetsCompiler;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.templates.xml.AndroidManifestTemplate;
+import org.robok.engine.templates.xml.BasicXML;
 
 public class ProjectManager {
 
@@ -104,8 +105,9 @@ public class ProjectManager {
 
       createMainScreen(projectName, packageName);
       createAndroidManifest(packageName);
+      createStringsDemoFile(projectName);
       extractLibs(projectName);
-
+      
     } catch (FileNotFoundException e) {
       notifyCreationError(e, "create");
     } catch (IOException e) {
@@ -146,6 +148,18 @@ public class ProjectManager {
     } catch (IOException e) {
       notifyCreationError(e, "createMainScreen");
     }
+  }
+  
+  /*
+   * Create Strings File.
+   * @param projectName A Name of Current Project
+   */
+  private void createStringsDemoFile(String projectName) {
+    var stringsFile = new BasicXML();
+    stringsFile.setName(projectName);
+    stringsFile.setType("string");
+    stringsFile.add(projectName);
+    FileUtil.writeFile(getProjectPath().getAbsolutePath() + "/assets/texts/strings.xml", stringsFile.getCode());
   }
 
   /*
