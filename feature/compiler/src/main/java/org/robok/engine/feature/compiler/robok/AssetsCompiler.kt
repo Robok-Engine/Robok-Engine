@@ -20,7 +20,6 @@ package org.robok.engine.feature.compiler.robok
 import android.content.Context
 import java.io.File
 import kotlinx.coroutines.runBlocking
-import kotlinx.coroutines.delay
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 
@@ -32,41 +31,33 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   
   companion object {
     private const val TAG = "AssetsCompiler"
-    private const val FAKE_DELAY_1 = 200L
-    private const val FAKE_DELAY_2 = 5000L
   }
 
   @FunctionalInterface
   interface CompileListener {
     fun whenFinish(logs: List<String>)
   }
-
-  init {
-    projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
-  }
-
+  
   fun compileAll() {
-    runBlocking {
-      newBuildLog("Starting Assets Compiler...")
-      delay(FAKE_DELAY_2)
-      newLog("Path: ${projectPath}")
-      newLog("Name: ${projectName}")
-      compileTextsToString()
-    }
+    projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
+    newBuildLog("Starting Assets Compiler...")
+    newLog("Path: ${projectPath}")
+    newLog("Name: ${projectName}")
+    compileTextsToString()
   }
 
-  private suspend fun compileTextsToString() {
+  private fun compileTextsToString() {
     val list = arrayListOf<String>()
     var pathToSave = File("")
     
     FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
     list.forEach {
       val file = File(it)
-      if (!file.getName().equals("strings.xml")) { 
-        val start = file.getName().indexOf("strings-") + "strings-".length
-        val end = file.getName().indexOf(".xml")
-        val countryCode = file.getName().substring(start, end)
-        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values-" + countryCode)
+      if (!file.name.equals("strings.xml")) { 
+        val start = file.name.indexOf("strings-") + "strings-".length
+        val end = file.name.indexOf(".xml")
+        val countryCode = file.name.substring(start, end)
+        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values-$countryCode")
         newBuildLog("Compiling ${countryCode} language...")
       } else {
         pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
@@ -76,9 +67,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         pathToSave.absolutePath + "/strings.xml",
         FileUtil.readFile(file.absolutePath),
       )
-      delay(FAKE_DELAY_1)
     }
-    delay(FAKE_DELAY_1)
     newBuildLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs.toList())
   }
