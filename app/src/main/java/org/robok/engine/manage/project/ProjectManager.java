@@ -35,7 +35,7 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter;
 import org.robok.engine.feature.compiler.android.logger.Logger;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
-import org.robok.engine.feature.conpiler.robok.AssetsCompiler;
+import org.robok.engine.feature.compiler.robok.AssetsCompiler;
 import org.robok.engine.models.project.ProjectTemplate;
 import org.robok.engine.templates.logic.ScreenLogicTemplate;
 import org.robok.engine.templates.xml.AndroidManifestTemplate;
