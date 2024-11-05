@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.editor.drawer
+package org.robok.engine.ui.activities.editor.drawer.info
 
 /*
  *  This file is part of Robok © 2024.
@@ -46,15 +46,22 @@ fun ProjectInfoDrawer() {
       }
     }
     when (selectedTabIndex) {
-      0 -> DrawerContent(text = stringResource(id = Strings.common_word_logs))
-      1 -> DrawerContent(text = stringResource(id = Strings.text_diagnostic))
+      0 -> LogsDrawer()
+      1 -> DiagnosticDrawer()
     }
   }
 }
 
 @Composable
-private fun DrawerContent(text: String) {
+private fun LogsDrawer() {
   Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-    Text(text = text, fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
+    Text(text = stringResource(id = Strings.common_word_logs), fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
+  }
+}
+
+@Composable
+private fun DiagnosticDrawer() {
+  Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
+    Text(text = stringResource(id = Strings.text_diagnostic), fontSize = 24.sp, color = MaterialTheme.colorScheme.onSurface)
   }
 }
