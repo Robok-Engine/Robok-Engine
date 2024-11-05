@@ -83,6 +83,6 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   
   private fun newLog(log: String) {
     RobokLog.d(tag = "AssetsCompiler", message = log)
-    newLog(log)
+    logs.add(log)
   }
 }
