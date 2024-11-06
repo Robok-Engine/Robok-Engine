@@ -197,13 +197,13 @@ public class ProjectManager {
    * See {@link feature/compiler module}
    * @param result A Instance of CompilerTask.OnCompileResult, that returns apk.
    */
-  public void build(CompilerTask.OnCompileResult result) {
+  public void build(RobokTerminalWithRecycler terminal, CompilerTask.OnCompileResult result) {
     if (projectPath == null) {
       notifyCreationError("projectPath has not been initialized.", "build");
     }
 
     try {
-      RobokTerminalWithRecycler terminal = new RobokTerminalWithRecycler(getContext());
+      terminal.setCancelable(false);
       terminal.show();
       
       Logger buildLogger = new Logger();

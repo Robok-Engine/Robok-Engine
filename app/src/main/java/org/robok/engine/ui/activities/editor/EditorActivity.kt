@@ -71,26 +71,24 @@ class EditorActivity :
   companion object {
     const val GUI_COMPILER_TAG = "GUICompiler"
   }
-
-  private lateinit var projectManager: ProjectManager
+  
   private var projectPath: String? = null
-
   private var _binding: ActivityEditorBinding? = null
   private val binding
     get() = _binding!!
+  
+  private lateinit var projectManager: ProjectManager
+  private lateinit var antlrListener: AntlrListener
+  private lateinit var editorViewModel: EditorViewModel
+  private lateinit var buildTerminal: RobokTerminalWithRecycler
 
   private val handler = Handler(Looper.getMainLooper())
+  private val diagnosticStandTime: Long = 800
   private val diagnosticTimeoutRunnable = Runnable {
     binding.diagnosticStatusImage.setBackgroundResource(Drawables.ic_success_24)
     binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
     binding.diagnosticStatusImage.visibility = View.VISIBLE
   }
-
-  private val diagnosticStandTime: Long = 800
-
-  private lateinit var antlrListener: AntlrListener
-
-  private lateinit var editorViewModel: EditorViewModel
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -169,6 +167,7 @@ class EditorActivity :
   override fun onTabUnselected(tab: TabLayout.Tab) {}
 
   override fun onCompileSuccess(signApk: File) {
+    buildTerminal.dismiss()
     val apkUri: Uri =
       FileProvider.getUriForFile(this@EditorActivity, "${packageName}.provider", signApk)
     val intent =
@@ -201,7 +200,11 @@ class EditorActivity :
   }
 
   private fun configureButtons() {
-    binding.runButton.setOnClickListener { projectManager.build(this) }
+    buildTerminal = RobokTerminalWithRecycler(this);
+    binding.runButton.setOnClickListener {
+      editorViewModel.saveAllFiles()
+      projectManager.build(buildTerminal, this)
+    }
 
     binding.openFilesButton.setOnClickListener {
       binding.drawerLayout.openDrawer(GravityCompat.START)
