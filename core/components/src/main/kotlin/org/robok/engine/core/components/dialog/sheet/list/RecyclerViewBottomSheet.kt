@@ -34,7 +34,7 @@ open class RecyclerViewBottomSheet(context: Context) : BottomSheetDialog(context
   private val binding: LayoutRecyclerViewBottomSheetBinding =
     LayoutRecyclerViewBottomSheetBinding.inflate(LayoutInflater.from(context))
 
-  var recycler = binding.recycler
+  var recyclerView = binding.recycler
     private set
 
   var title: String = "trindadedev is goat🐐"
@@ -45,6 +45,6 @@ open class RecyclerViewBottomSheet(context: Context) : BottomSheetDialog(context
   
   init {
     setContentView(binding.root)
-    recycler.layoutManager = LinearLayoutManager(context)
+    recyclerView.layoutManager = LinearLayoutManager(context)
   }
 }
