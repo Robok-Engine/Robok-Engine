@@ -158,7 +158,8 @@ public class ProjectManager {
     var stringsFile = new BasicXML();
     stringsFile.setName(projectName);
     stringsFile.setType("string");
-    stringsFile.add(projectName);
+    stringsFile.setKey("name");
+    stringsFile.add("app_name", projectName);
     stringsFile.regenerate();
     RobokLog.d(TAG, stringsFile.getCode());
     FileUtil.writeFile(

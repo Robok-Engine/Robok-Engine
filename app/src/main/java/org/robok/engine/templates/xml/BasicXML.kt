@@ -21,8 +21,9 @@ import org.robok.engine.templates.CodeTemplate
 
 open class BasicXML : CodeTemplate() {
 
-  private var items: MutableList<String>? = null
+  private var items: MutableList<Pair<String, String>>? = null
   var type: String = "item"
+  var key: String = "name"
   val sb = StringBuilder()
 
   override var name: String = "BasicXML"
@@ -32,7 +33,9 @@ open class BasicXML : CodeTemplate() {
 
   private fun generateCode(): String {
     sb.clear()
-    items?.forEach { value -> sb.append(" <$type>$value</$type>\n") }
+    items?.forEach { (keya, value) -> 
+      sb.append(" <$type $key=\"$keya\">$value</$type>\n") 
+    }
 
     return """
       <resources>
@@ -46,10 +49,10 @@ open class BasicXML : CodeTemplate() {
     code = generateCode()
   }
 
-  fun add(value: String) {
+  fun add(keyValue: String, value: String) {
     if (items == null) {
       items = mutableListOf()
     }
-    items?.add(value)
+    items?.add(Pair(keyValue, value))
   }
 }
