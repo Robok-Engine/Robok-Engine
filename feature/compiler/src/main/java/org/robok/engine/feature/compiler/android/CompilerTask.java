@@ -141,12 +141,12 @@ public class CompilerTask {
    */
   private boolean startAssetsCompiler() {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    assetsCompiler.compileAll();
     assetsCompiler.setCompileListener(logs -> {
       for (String log : logs) {
         publishProgress("AssetsCompiler", log);
       }
     });
+    assetsCompiler.compileAll();
     return true;
   }
 
