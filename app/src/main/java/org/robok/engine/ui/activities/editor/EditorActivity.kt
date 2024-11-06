@@ -47,6 +47,7 @@ import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.UniqueNameBuilder
+import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
