@@ -1,4 +1,4 @@
-package org.robok.engine.core.components.terminal
+package org.robok.engine.core.components.dialog.sheet.list
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,38 +19,32 @@ package org.robok.engine.core.components.terminal
 
 import android.content.Context
 import android.view.LayoutInflater
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import org.robok.engine.core.components.databinding.LayoutBottomsheetTerminalBinding
-import org.robok.engine.core.components.log.Log
+import org.robok.engine.core.components.databinding.LayoutRecyclerViewBottomSheetBinding
 
 /*
- * A Basic BottomSheet for Logs.
+ * A basic bottom sheet with RecyclerView
  * @author Aquiles Trindade (trindadedev).
  */
 
-open class RobokTerminal(context: Context) : BottomSheetDialog(context) {
+open class RecyclerViewBottomSheet(context: Context) : BottomSheetDialog(context) {
 
-  val binding: LayoutBottomsheetTerminalBinding =
-    LayoutBottomsheetTerminalBinding.inflate(LayoutInflater.from(context))
+  private val binding: LayoutRecyclerViewBottomSheetBinding =
+    LayoutRecyclerViewBottomSheetBinding.inflate(LayoutInflater.from(context))
 
-  val terminal = binding.terminal
-  val terminalTitle = binding.terminalTitle
+  var recycler = binding.recycler
+    private set
 
+  var title: String = "trindadedev is goat🐐"
+    set(value) {
+      field = value
+      binding.title.text = value
+    }
+  
   init {
     setContentView(binding.root)
-    setCancelable(true)
-  }
-
-  open fun addLog(value: String) {
-    val log = Log(context, value)
-    terminal.addView(log)
-  }
-
-  open fun setTerminalTitle(title: String) {
-    terminalTitle.text = title
-  }
-
-  open fun getTerminalTitle(): String {
-    return terminalTitle.text.toString()
+    recycler.layoutManager = LinearLayoutManager(context)
   }
 }

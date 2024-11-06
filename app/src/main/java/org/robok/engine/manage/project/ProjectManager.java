@@ -27,7 +27,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
-import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
+import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet;
 import org.robok.engine.core.utils.FileUtil;
 import org.robok.engine.core.utils.RobokLog;
 import org.robok.engine.core.utils.ZipUtilsKt;
@@ -197,7 +197,7 @@ public class ProjectManager {
    * See {@link feature/compiler module}
    * @param result A Instance of CompilerTask.OnCompileResult, that returns apk.
    */
-  public void build(RobokTerminalWithRecycler terminal, CompilerTask.OnCompileResult result) {
+  public void build(RecyclerViewBottomSheet terminal, CompilerTask.OnCompileResult result) {
     if (projectPath == null) {
       notifyCreationError("projectPath has not been initialized.", "build");
     }

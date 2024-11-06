@@ -47,7 +47,7 @@ import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.UniqueNameBuilder
-import org.robok.engine.core.components.terminal.RobokTerminalWithRecycler;
+import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
@@ -81,7 +81,7 @@ class EditorActivity :
   private lateinit var projectManager: ProjectManager
   private lateinit var antlrListener: AntlrListener
   private lateinit var editorViewModel: EditorViewModel
-  private lateinit var buildTerminal: RobokTerminalWithRecycler
+  private lateinit var buildTerminal: RecyclerViewBottomSheet
 
   private val handler = Handler(Looper.getMainLooper())
   private val diagnosticStandTime: Long = 800
@@ -201,7 +201,7 @@ class EditorActivity :
   }
 
   private fun configureButtons() {
-    buildTerminal = RobokTerminalWithRecycler(this);
+    buildTerminal = RecyclerViewBottomSheet(this)
     binding.runButton.setOnClickListener {
       editorViewModel.saveAllFiles()
       projectManager.build(buildTerminal, this)
