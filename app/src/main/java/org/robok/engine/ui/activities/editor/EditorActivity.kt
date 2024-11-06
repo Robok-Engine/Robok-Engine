@@ -168,7 +168,7 @@ class EditorActivity :
   override fun onTabUnselected(tab: TabLayout.Tab) {}
 
   override fun onCompileSuccess(signApk: File) {
-    buildTerminal.dismiss()
+    buildTerminal.setCancelable(true)
     val apkUri: Uri =
       FileProvider.getUriForFile(this@EditorActivity, "${packageName}.provider", signApk)
     val intent =
@@ -188,7 +188,9 @@ class EditorActivity :
     }
   }
 
-  override fun onCompileError(error: String) {}
+  override fun onCompileError(error: String) {
+    buildTerminal.setCancelable(true)
+  }
 
   private fun configureScreen() {
     configureToolbar()
