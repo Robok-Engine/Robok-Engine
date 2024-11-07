@@ -29,6 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.atomic.AtomicBoolean;
 import org.robok.engine.core.utils.FileUtil;
 import org.robok.engine.feature.apksigner.Main;
 import org.robok.engine.feature.compiler.android.incremental.IncrementalD8Compiler;
@@ -134,20 +135,22 @@ public class CompilerTask {
    */
   private boolean startAssetsCompiler() {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    var hasError = false;
+    var hasError = new AtomicBoolean(false);
+
     assetsCompiler.setCompileListener(logs -> {
       for (Log log : logs) {
         if (log.getType() == LogType.NORMAL) {
           publishProgress("AssetsCompiler", log.getText());
-          hasError = false;
+          hasError.set(false);
         } else {
           project.getLogger().e("AssetsCompiler", log.getText());
-          hasError = true;
+          hasError.set(true);
         }
       }
     });
+
     assetsCompiler.compileAll();
-    return !hasError;
+    return !hasError.get();
   }
 
   private boolean startAaptCompiler() throws Exception {
