@@ -136,7 +136,7 @@ public class CompilerTask {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
     assetsCompiler.setCompileListener(logs -> {
       for (Log log : logs) {
-        if (log.getType()) == LogType.NORMAL) {
+        if (log.getType() == LogType.NORMAL) {
           publishProgress("AssetsCompiler", log.getText());
         } else {
           project.getLogger().e("AssetsCompiler", log.getText());
