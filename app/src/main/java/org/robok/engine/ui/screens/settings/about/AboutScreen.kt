@@ -37,6 +37,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -258,7 +259,7 @@ fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<B
         }
       },
       dismissButton = {
-        Button(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
+        OutlinedButton(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_cancel))
         }
       }

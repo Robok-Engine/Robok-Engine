@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.shape.ButtonShape
 
 @Composable
 fun PermissionDialog(
@@ -71,6 +72,7 @@ fun PermissionDialog(
         Button(
           onClick = onAllowClicked,
           modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
+          shape = ButtonShape(),
         ) {
           Text(
             text = stringResource(id = Strings.common_word_allow),
@@ -85,6 +87,7 @@ fun PermissionDialog(
         Button(
           onClick = onDenyClicked,
           modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
+          shape = ButtonShape(),
         ) {
           Text(
             text = stringResource(id = Strings.common_word_deny),

@@ -145,12 +145,12 @@ private fun Screen(
     ) {
       Text(text = stringResource(id = Strings.title_create_project))
     }
-    ShowVeryBasicDialog(title = title, message = message, isShowDialog = isShowDialog)
+    ShowNoticeDialog(title = title, message = message, isShowDialog = isShowDialog)
   }
 }
 
 @Composable
-fun ShowVeryBasicDialog(title: String, message: String, isShowDialog: MutableState<Boolean>) {
+fun ShowNoticeDialog(title: String, message: String, isShowDialog: MutableState<Boolean>) {
   if (isShowDialog.value) {
     AlertDialog(
       onDismissRequest = { isShowDialog.value = false },
@@ -162,7 +162,7 @@ fun ShowVeryBasicDialog(title: String, message: String, isShowDialog: MutableSta
         }
       },
       dismissButton = {
-        Button(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
+        OutlinedButton(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_cancel))
         }
       },

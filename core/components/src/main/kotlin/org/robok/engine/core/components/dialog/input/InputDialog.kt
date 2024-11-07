@@ -24,7 +24,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.robok.engine.core.components.dialog.RobokDialog
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.strings.Strings
 
 /*
@@ -40,7 +40,7 @@ fun InputDialog(
   onConfirm: () -> Unit,
   onDismiss: () -> Unit,
 ) {
-  RobokDialog(
+  AlertDialog(
     onDismissRequest = onDismiss,
     title = { Text(text = title) },
     text = {
@@ -54,8 +54,21 @@ fun InputDialog(
         )
       }
     },
-    confirmButton = { Text(stringResource(id = Strings.common_word_save)) },
-    onConfirmation = onConfirm,
-    dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
+    confirmButton = {
+      Button(
+        onClick = onConfirm,
+        shape = ButtonShape()
+      ) {
+        Text(text = stringResource(id = Strings.common_word_save))
+      }
+    },
+    dismissButton = {
+      OutlinedButton(
+        onClick = onDismiss,
+        shape = ButtonShape()
+      ) {
+        Text(text = stringResource(id = Strings.common_word_cancel))
+      }
+    }
   )
 }
