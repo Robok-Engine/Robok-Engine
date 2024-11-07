@@ -73,24 +73,3 @@ jobs:
         env:
           TOKEN: ${{ secrets.SUPER_TOKEN }}
         continue-on-error: true
-        
-  format-xml:
-    name: Format XML Code with xml-formatter
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '16' 
-
-      - name: Install xml-formatter
-        run: |
-          npm install -g xml-formatter
-
-      - name: Run xml-formatter on XML files
-        run: |
-          find . -name "*.xml" -exec xml-formatter {} -o {} +
