@@ -45,9 +45,9 @@ import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
+import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.UniqueNameBuilder
-import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
@@ -72,12 +72,12 @@ class EditorActivity :
   companion object {
     const val GUI_COMPILER_TAG = "GUICompiler"
   }
-  
+
   private var projectPath: String? = null
   private var _binding: ActivityEditorBinding? = null
   private val binding
     get() = _binding!!
-  
+
   private lateinit var projectManager: ProjectManager
   private lateinit var antlrListener: AntlrListener
   private lateinit var editorViewModel: EditorViewModel
@@ -90,7 +90,7 @@ class EditorActivity :
     binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
     binding.diagnosticStatusImage.visibility = View.VISIBLE
   }
-  
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     _binding = ActivityEditorBinding.inflate(layoutInflater)

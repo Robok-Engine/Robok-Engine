@@ -20,7 +20,6 @@ package org.robok.engine.core.components.dialog.sheet.list
 import android.content.Context
 import android.view.LayoutInflater
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import org.robok.engine.core.components.databinding.LayoutRecyclerViewBottomSheetBinding
 
@@ -42,7 +41,7 @@ open class RecyclerViewBottomSheet(context: Context) : BottomSheetDialog(context
       field = value
       binding.title.text = value
     }
-  
+
   init {
     setContentView(binding.root)
     recyclerView.layoutManager = LinearLayoutManager(context)

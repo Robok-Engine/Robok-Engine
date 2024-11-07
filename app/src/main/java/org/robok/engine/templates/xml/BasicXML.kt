@@ -33,9 +33,7 @@ open class BasicXML : CodeTemplate() {
 
   private fun generateCode(): String {
     sb.clear()
-    items?.forEach { (keya, value) -> 
-      sb.append(" <$type $key=\"$keya\">$value</$type>\n") 
-    }
+    items?.forEach { (keya, value) -> sb.append(" <$type $key=\"$keya\">$value</$type>\n") }
 
     return """
       <resources>

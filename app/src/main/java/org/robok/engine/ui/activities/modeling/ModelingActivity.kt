@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.modeling;
+package org.robok.engine.ui.activities.modeling
 
 /*
  *  This file is part of Robok © 2024.
@@ -33,68 +33,59 @@ import org.robok.engine.ui.activities.base.RobokComposeActivity
 
 class ModelingActivity : RobokComposeActivity(), AndroidFragmentApplication.Callbacks {
 
-    private var binding: Activity3dModelBinding? = null
-    private var model3dView: Model3DView? = null
+  private var binding: Activity3dModelBinding? = null
+  private var model3dView: Model3DView? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        binding = Activity3dModelBinding.inflate(layoutInflater)
-        setContentView(binding?.root)
+  override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    binding = Activity3dModelBinding.inflate(layoutInflater)
+    setContentView(binding?.root)
 
-        val libGDXFragment = LibGDXFragment()
-        val fragmentManager: FragmentManager = supportFragmentManager
-        val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-        fragmentTransaction.replace(binding?.frameLibGdx?.id ?: 0, libGDXFragment)
-        fragmentTransaction.commit()
+    val libGDXFragment = LibGDXFragment()
+    val fragmentManager: FragmentManager = supportFragmentManager
+    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
+    fragmentTransaction.replace(binding?.frameLibGdx?.id ?: 0, libGDXFragment)
+    fragmentTransaction.commit()
 
-        fragmentManager.executePendingTransactions()
-        model3dView = Model3DView.clazz
+    fragmentManager.executePendingTransactions()
+    model3dView = Model3DView.clazz
 
-        val activityHelper = ModelingActivityHelper(this, model3dView)
-        val composeUI: ComposeView = activityHelper.createComposeView()
+    val activityHelper = ModelingActivityHelper(this, model3dView)
+    val composeUI: ComposeView = activityHelper.createComposeView()
 
-        binding?.layoutParent?.addView(composeUI)
-        hideSystemUI()
+    binding?.layoutParent?.addView(composeUI)
+    hideSystemUI()
+  }
+
+  /** Check if the game is null to prevent errors. */
+  private fun verifyIfMy3dGameIsNull() {
+    if (model3dView != null) return
+    model3dView = Model3DView.clazz
+  }
+
+  /** Hide phone ui to better experience */
+  private fun hideSystemUI() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      window.setDecorFitsSystemWindows(false)
+      window.insetsController?.let { controller ->
+        controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+        controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+      }
+    } else {
+      @Suppress("DEPRECATION")
+      window.decorView.systemUiVisibility =
+        (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
     }
+  }
 
-    /**
-     * Check if the game is null to prevent errors.
-     */
-    private fun verifyIfMy3dGameIsNull() {
-        if (model3dView != null) return
-        model3dView = Model3DView.clazz
-    }
+  /** Implementation of the exit() method of the AndroidFragmentApplication.Callbacks interface */
+  override fun exit() {
+    finish()
+  }
 
-    /**
-     * Hide phone ui to better experience
-     */
-    private fun hideSystemUI() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-            window.setDecorFitsSystemWindows(false)
-            window.insetsController?.let { controller ->
-                controller.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
-                controller.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
-            }
-        } else {
-            @Suppress("DEPRECATION")
-            window.decorView.systemUiVisibility = (View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                    or View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY)
-        }
-    }
-
-    /**
-     * Implementation of the exit() method of the AndroidFragmentApplication.Callbacks interface
-     */
-    override fun exit() {
-        finish()
-    }
-
-    /**
-     * Set binding to null if the activity is destroyed.
-     */
-    override fun onDestroy() {
-        binding = null
-        super.onDestroy()
-    }
+  /** Set binding to null if the activity is destroyed. */
+  override fun onDestroy() {
+    binding = null
+    super.onDestroy()
+  }
 }
-

@@ -24,7 +24,6 @@ import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileOutputStream
 import java.io.IOException
-import java.io.InputStream
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
@@ -43,187 +42,188 @@ import org.robok.engine.templates.xml.BasicXML
 
 class ProjectManager(private var context: Context) {
 
-    companion object {
-      private const val TAG = "ProjectManager"
-      val PROJECTS_PATH = File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
-    }
-    
-    lateinit var projectPath: File
-    lateinit var creationListener: CreationListener
+  companion object {
+    private const val TAG = "ProjectManager"
+    val PROJECTS_PATH =
+      File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
+  }
 
-    fun create(projectName: String, packageName: String, template: ProjectTemplate) {
-        try {
-            context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
-                ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
-                    if (!projectPath.exists()) {
-                        projectPath.mkdirs()
-                    }
+  lateinit var projectPath: File
+  lateinit var creationListener: CreationListener
 
-                    var zipEntry: ZipEntry?
-                    while (zipInputStream.nextEntry.also { zipEntry = it } != null) {
-                        if (!zipEntry!!.isDirectory) {
-                            val entryName = zipEntry!!.name
-                            val outputFileName = entryName
-                                .replace(template.name, projectName)
-                                .replace("game/logic/\$pkgName", "game/logic/${packageName.replace('.', '/')}")
-                            val outputFile = File(projectPath, outputFileName)
+  fun create(projectName: String, packageName: String, template: ProjectTemplate) {
+    try {
+      context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
+        ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
+          if (!projectPath.exists()) {
+            projectPath.mkdirs()
+          }
 
-                            if (outputFile?.parentFile?.exists()?.not()) {
-                                outputFile?.parentFile?.mkdirs()
-                            }
+          var zipEntry: ZipEntry?
+          while (zipInputStream.nextEntry.also { zipEntry = it } != null) {
+            if (!zipEntry!!.isDirectory) {
+              val entryName = zipEntry!!.name
+              val outputFileName =
+                entryName
+                  .replace(template.name, projectName)
+                  .replace("game/logic/\$pkgName", "game/logic/${packageName.replace('.', '/')}")
+              val outputFile = File(projectPath, outputFileName)
 
-                            FileOutputStream(outputFile).use { fos ->
-                                val buffer = ByteArray(1024)
-                                var length: Int
-                                while (zipInputStream.read(buffer).also { length = it } > 0) {
-                                    fos.write(buffer, 0, length)
-                                }
-                            }
-                        }
-                        zipInputStream.closeEntry()
-                    }
+              if (outputFile?.parentFile?.exists()?.not()) {
+                outputFile?.parentFile?.mkdirs()
+              }
 
-                    createMainScreen(projectName, packageName)
-                    createAndroidManifest(packageName)
-                    createBasicStringsFile(projectName)
-                    extractLibs(projectName)
+              FileOutputStream(outputFile).use { fos ->
+                val buffer = ByteArray(1024)
+                var length: Int
+                while (zipInputStream.read(buffer).also { length = it } > 0) {
+                  fos.write(buffer, 0, length)
                 }
+              }
             }
-        } catch (e: FileNotFoundException) {
-            notifyCreationError(e, "create")
-        } catch (e: IOException) {
-            notifyCreationError(e, "create")
+            zipInputStream.closeEntry()
+          }
+
+          createMainScreen(projectName, packageName)
+          createAndroidManifest(packageName)
+          createBasicStringsFile(projectName)
+          extractLibs(projectName)
         }
+      }
+    } catch (e: FileNotFoundException) {
+      notifyCreationError(e, "create")
+    } catch (e: IOException) {
+      notifyCreationError(e, "create")
     }
+  }
 
-    private fun createMainScreen(projectName: String, packageName: String) {
-        try {
-            val template = ScreenLogicTemplate().apply {
-                name = "MainScreen"
-                this.packageName = packageName
-                regenerate()
-            }
-
-            val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.java"
-            val javaFile = File(projectPath, classFilePath)
-
-            if (javaFile?.parentFile?.exists()?.not()) {
-                javaFile?.parentFile?.mkdirs()
-            }
-
-            FileOutputStream(javaFile).use { fos ->
-                fos.write(template.code.toByteArray())
-            }
-        } catch (e: FileNotFoundException) {
-            notifyCreationError(e, "createMainScreen")
-        } catch (e: IOException) {
-            notifyCreationError(e, "createMainScreen")
+  private fun createMainScreen(projectName: String, packageName: String) {
+    try {
+      val template =
+        ScreenLogicTemplate().apply {
+          name = "MainScreen"
+          this.packageName = packageName
+          regenerate()
         }
-    }
 
-    private fun createBasicStringsFile(projectName: String) {
-        val stringsFile = BasicXML().apply {
-            name = projectName
-            type = "string"
-            key = "name"
-            add("app_name", projectName)
-            regenerate()
+      val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.java"
+      val javaFile = File(projectPath, classFilePath)
+
+      if (javaFile?.parentFile?.exists()?.not()) {
+        javaFile?.parentFile?.mkdirs()
+      }
+
+      FileOutputStream(javaFile).use { fos -> fos.write(template.code.toByteArray()) }
+    } catch (e: FileNotFoundException) {
+      notifyCreationError(e, "createMainScreen")
+    } catch (e: IOException) {
+      notifyCreationError(e, "createMainScreen")
+    }
+  }
+
+  private fun createBasicStringsFile(projectName: String) {
+    val stringsFile =
+      BasicXML().apply {
+        name = projectName
+        type = "string"
+        key = "name"
+        add("app_name", projectName)
+        regenerate()
+      }
+    RobokLog.d(TAG, stringsFile.code)
+    FileUtil.writeFile(
+      "${projectPath.absolutePath}/game/assets/texts/strings.xml",
+      stringsFile.code,
+    )
+  }
+
+  private fun createAndroidManifest(packageName: String) {
+    val androidManifest = AndroidManifestTemplate().apply { this.packageName = packageName }
+    FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
+  }
+
+  private fun extractLibs(projectName: String) {
+    extractZipFromAssets(context, "libs.zip", getLibsPath())
+
+    creationListener.onProjectCreate()
+  }
+
+  fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
+    try {
+      terminal.setCancelable(false)
+      terminal.show()
+
+      val buildLogger = Logger().apply { attach(terminal.recyclerView) }
+      SystemLogPrinter.start(context, buildLogger)
+
+      val project =
+        Project().apply {
+          libraries = Library.fromFile(getLibsPath())
+          resourcesFile = getAndroidResPath()
+          outputFile = File("${projectPath.absolutePath}/build/")
+          javaFile = File("${projectPath.absolutePath}/game/logic/")
+          manifestFile = File(getAndroidManifestFile().absolutePath)
+          logger = buildLogger
+          minSdk = Config.MIN_SDK
+          targetSdk = Config.TARGET_SDK
+          rootPath = projectPath
         }
-        RobokLog.d(TAG, stringsFile.code)
-        FileUtil.writeFile("${projectPath.absolutePath}/game/assets/texts/strings.xml", stringsFile.code)
+
+      val task = CompilerTask(context, result)
+      task.execute(project)
+    } catch (e: Exception) {
+      notifyBuildError(e, "build")
     }
+  }
 
-    private fun createAndroidManifest(packageName: String) {
-        val androidManifest = AndroidManifestTemplate().apply {
-            this.packageName = packageName
-        }
-        FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
-    }
+  fun getProjectName(): String {
+    return projectPath.absolutePath.substringAfterLast("/")
+  }
 
-    private fun extractLibs(projectName: String) {
-        extractZipFromAssets(context, "libs.zip", getLibsPath())
+  fun getLibsPath(): File {
+    return File(context.filesDir, "${getProjectName()}/libs/")
+  }
 
-        creationListener.onProjectCreate()
-    }
+  fun getAndroidManifestFile(): File {
+    return File(context.filesDir, "${getProjectName()}/xml/AndroidManifest.xml")
+  }
 
-    fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
-        try {
-            terminal.setCancelable(false)
-            terminal.show()
+  fun getAndroidResPath(): File {
+    return File(context.filesDir, "${getProjectName()}/xml/res/")
+  }
 
-            val buildLogger = Logger().apply {
-                attach(terminal.recyclerView)
-            }
-            SystemLogPrinter.start(context, buildLogger)
+  private fun notifyCreationError(value: String) {
+    creationListener.onProjectCreateError(value)
+  }
 
-            val project = Project().apply {
-                libraries = Library.fromFile(getLibsPath())
-                resourcesFile = getAndroidResPath()
-                outputFile = File("${projectPath.absolutePath}/build/")
-                javaFile = File("${projectPath.absolutePath}/game/logic/")
-                manifestFile = File(getAndroidManifestFile().absolutePath)
-                logger = buildLogger
-                minSdk = Config.MIN_SDK
-                targetSdk = Config.TARGET_SDK
-                rootPath = projectPath
-            }
+  private fun notifyCreationError(value: String, methodName: String) {
+    creationListener.onProjectCreateError("$value Method: $methodName")
+  }
 
-            val task = CompilerTask(context, result)
-            task.execute(project)
+  private fun notifyCreationError(e: Exception, methodName: String) {
+    creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
+  }
 
-        } catch (e: Exception) {
-            notifyBuildError(e, "build")
-        }
-    }
+  private fun notifyBuildError(value: String) {
+    creationListener.onProjectCreateError(value)
+  }
 
-    fun getProjectName(): String {
-        return projectPath.absolutePath.substringAfterLast("/")
-    }
+  private fun notifyBuildError(value: String, methodName: String) {
+    creationListener.onProjectCreateError("$value Method: $methodName")
+  }
 
-    fun getLibsPath(): File {
-        return File(context.filesDir, "${getProjectName()}/libs/")
-    }
+  private fun notifyBuildError(e: Exception, methodName: String) {
+    creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
+  }
 
-    fun getAndroidManifestFile(): File {
-        return File(context.filesDir, "${getProjectName()}/xml/AndroidManifest.xml")
-    }
+  interface CreationListener {
+    fun onProjectCreate()
 
-    fun getAndroidResPath(): File {
-        return File(context.filesDir, "${getProjectName()}/xml/res/")
-    }
+    fun onProjectCreateError(error: String)
+  }
 
-    private fun notifyCreationError(value: String) {
-        creationListener.onProjectCreateError(value)
-    }
-
-    private fun notifyCreationError(value: String, methodName: String) {
-        creationListener.onProjectCreateError("$value Method: $methodName")
-    }
-
-    private fun notifyCreationError(e: Exception, methodName: String) {
-        creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
-    }
-
-    private fun notifyBuildError(value: String) {
-        creationListener.onProjectCreateError(value)
-    }
-
-    private fun notifyBuildError(value: String, methodName: String) {
-        creationListener.onProjectCreateError("$value Method: $methodName")
-    }
-
-    private fun notifyBuildError(e: Exception, methodName: String) {
-        creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
-    }
-
-    interface CreationListener {
-        fun onProjectCreate()
-        fun onProjectCreateError(error: String)
-    }
-
-    object Config {
-        const val MIN_SDK = 21
-        const val TARGET_SDK = 28
-    }
+  object Config {
+    const val MIN_SDK = 21
+    const val TARGET_SDK = 28
+  }
 }
-

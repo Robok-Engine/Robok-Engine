@@ -61,7 +61,9 @@ fun ManageProjectsScreen() {
 
   LaunchedEffect(Unit) {
     withContext(Dispatchers.IO) {
-      projectViewModel.updateProjects(ProjectManager.PROJECTS_PATH.listFiles() ?: emptyArray<File>())
+      projectViewModel.updateProjects(
+        ProjectManager.PROJECTS_PATH.listFiles() ?: emptyArray<File>()
+      )
     }
   }
   Screen(label = stringResource(id = Strings.title_projects)) {
