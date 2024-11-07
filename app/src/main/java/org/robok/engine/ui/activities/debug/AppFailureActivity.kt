@@ -31,8 +31,8 @@ import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.utils.addIf
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.theme.RobokTheme
@@ -72,25 +72,42 @@ class AppFailureActivity : RobokComposeActivity() {
 
     Screen(label = stringResource(id = Strings.title_un_error_ocurred), backArrowVisible = false) {
       PreferenceGroup(heading = stringResource(id = Strings.text_error_info)) {
-        ErrorCard(madeErrMsg)
+        ErrorCard(madeErrMsg, false)
       }
     }
 
     if (showDialog) {
-      RobokDialog(
+      AlertDialog(
+        onDismissRequest = { showDialog = false },
         title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
         text = { ErrorCard(madeErrMsg) },
-        onConfirmation = { showDialog = false },
-        onDismissRequest = { showDialog = false },
-        confirmButton = { Text(stringResource(id = Strings.common_word_end)) },
+        confirmButton = {
+          Button(
+            onClick = {
+              showDialog = false
+              finish()
+            }
+          ) {
+            Text(stringResource(id = Strings.common_word_end))
+          }
+        }
       )
     }
   }
 
   @Composable
-  fun ErrorCard(madeErrMsg: String) {
+  fun ErrorCard(
+    madeErrMsg: String,
+    scrollable: Boolean = true
+  ) {
+    val scrollState = rememberScrollState()
     Card(
-      modifier = Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)),
+      modifier = Modifier
+        .fillMaxWidth()
+        .clip(RoundedCornerShape(18.dp))
+        .addIf(scrollable) {
+          verticalScroll(scrollState)
+        },
       colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),
       shape = RoundedCornerShape(18.dp),
     ) {
