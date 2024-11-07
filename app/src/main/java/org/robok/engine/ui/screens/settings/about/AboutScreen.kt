@@ -36,6 +36,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -260,8 +261,7 @@ fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<B
         Button(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_cancel))
         }
-      },
-      icon = { Icon(Icons.Outlined.Github, contentDescription = "GitHub Icon") },
+      }
     )
   }
 }
