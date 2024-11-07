@@ -1,4 +1,4 @@
-package org.robok.engine.manage.project;
+package org.robok.engine.manage.project
 
 /*
  *  This file is part of Robok © 2024.
@@ -30,7 +30,7 @@ import java.util.zip.ZipInputStream
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
-import org.robok.engine.core.utils.ZipUtilsKt
+import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -48,18 +48,15 @@ class ProjectManager(private var context: Context) {
       val PROJECTS_PATH = File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
     }
     
-    var projectPath: File? = null
-    var creationListener: CreationListener? = null
-    var errorListener: ErrorListener? = null
+    lateinit var projectPath: File
+    lateinit var creationListener: CreationListener
 
     fun create(projectName: String, packageName: String, template: ProjectTemplate) {
-        projectPath ?: notifyCreationError("projectPath has not been initialized.", "create")
-
         try {
             context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
                 ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
-                    if (!projectPath!!.exists()) {
-                        projectPath!!.mkdirs()
+                    if (!projectPath.exists()) {
+                        projectPath.mkdirs()
                     }
 
                     var zipEntry: ZipEntry?
@@ -100,12 +97,10 @@ class ProjectManager(private var context: Context) {
     }
 
     private fun createMainScreen(projectName: String, packageName: String) {
-        projectPath ?: notifyCreationError("projectPath has not been initialized.", "createMainScreen")
-
         try {
             val template = ScreenLogicTemplate().apply {
                 name = "MainScreen"
-                packageName = packageName
+                this.packageName = packageName
                 regenerate()
             }
 
@@ -135,27 +130,25 @@ class ProjectManager(private var context: Context) {
             regenerate()
         }
         RobokLog.d(TAG, stringsFile.code)
-        FileUtil.writeFile("${projectPath!!.absolutePath}/game/assets/texts/strings.xml", stringsFile.code)
+        FileUtil.writeFile("${projectPath.absolutePath}/game/assets/texts/strings.xml", stringsFile.code)
     }
 
     private fun createAndroidManifest(packageName: String) {
         val androidManifest = AndroidManifestTemplate().apply {
             this.packageName = packageName
         }
-        FileUtil.writeFile(androidManifestFile.absolutePath, androidManifest.code)
+        FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
     }
 
     private fun extractLibs(projectName: String) {
-        ZipUtilsKt.extractZipFromAssets(context, "libs.zip", libsPath)
+        extractZipFromAssets(context, "libs.zip", getLibsPath())
 
-        creationListener?.onProjectCreate()
+        creationListener.onProjectCreate()
     }
 
     fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
-        projectPath ?: notifyCreationError("projectPath has not been initialized.", "build")
-
         try {
-            terminal.isCancelable = false
+            terminal.setCancelable(false)
             terminal.show()
 
             val buildLogger = Logger().apply {
@@ -164,11 +157,11 @@ class ProjectManager(private var context: Context) {
             SystemLogPrinter.start(context, buildLogger)
 
             val project = Project().apply {
-                libraries = Library.fromFile(libsPath)
-                resourcesFile = androidResPath
-                outputFile = File("${projectPath!!.absolutePath}/build/")
-                javaFile = File("${projectPath!!.absolutePath}/game/logic/")
-                manifestFile = File(androidManifestFile.absolutePath)
+                libraries = Library.fromFile(getLibsPath())
+                resourcesFile = getAndroidResPath()
+                outputFile = File("${projectPath.absolutePath}/build/")
+                javaFile = File("${projectPath.absolutePath}/game/logic/")
+                manifestFile = File(getAndroidManifestFile().absolutePath)
                 logger = buildLogger
                 minSdk = Config.MIN_SDK
                 targetSdk = Config.TARGET_SDK
@@ -183,24 +176,8 @@ class ProjectManager(private var context: Context) {
         }
     }
 
-    fun setCreationListener(creationListener: CreationListener) {
-        this.creationListener = creationListener
-    }
-
-    fun setErrorListener(errorListener: ErrorListener) {
-        this.errorListener = errorListener
-    }
-
-    fun setProjectPath(value: File) {
-        projectPath = value
-    }
-
-    fun getProjectPath(): File? {
-        return projectPath
-    }
-
     fun getProjectName(): String {
-        return projectPath!!.absolutePath.substringAfterLast("/")
+        return projectPath.absolutePath.substringAfterLast("/")
     }
 
     fun getLibsPath(): File {
@@ -216,27 +193,27 @@ class ProjectManager(private var context: Context) {
     }
 
     private fun notifyCreationError(value: String) {
-        creationListener?.onProjectCreateError(value)
+        creationListener.onProjectCreateError(value)
     }
 
     private fun notifyCreationError(value: String, methodName: String) {
-        creationListener?.onProjectCreateError("$value Method: $methodName")
+        creationListener.onProjectCreateError("$value Method: $methodName")
     }
 
     private fun notifyCreationError(e: Exception, methodName: String) {
-        creationListener?.onProjectCreateError("${e.toString()} Method: $methodName")
+        creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
     }
 
     private fun notifyBuildError(value: String) {
-        creationListener?.onProjectCreateError(value)
+        creationListener.onProjectCreateError(value)
     }
 
     private fun notifyBuildError(value: String, methodName: String) {
-        creationListener?.onProjectCreateError("$value Method: $methodName")
+        creationListener.onProjectCreateError("$value Method: $methodName")
     }
 
     private fun notifyBuildError(e: Exception, methodName: String) {
-        creationListener?.onProjectCreateError("${e.toString()} Method: $methodName")
+        creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
     }
 
     interface CreationListener {
@@ -244,14 +221,9 @@ class ProjectManager(private var context: Context) {
         fun onProjectCreateError(error: String)
     }
 
-    interface ErrorListener {
-        fun onBuildError(error: String)
-    }
-
     object Config {
         const val MIN_SDK = 21
         const val TARGET_SDK = 28
-        val PROJECTS_PATH = File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
     }
 }
 

@@ -53,8 +53,6 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 
-val projectPath = ProjectManager.getProjectsPath()
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun ManageProjectsScreen() {
@@ -63,7 +61,7 @@ fun ManageProjectsScreen() {
 
   LaunchedEffect(Unit) {
     withContext(Dispatchers.IO) {
-      projectViewModel.updateProjects(projectPath.listFiles() ?: emptyArray<File>())
+      projectViewModel.updateProjects(ProjectManager.PROJECTS_PATH.listFiles() ?: emptyArray<File>())
     }
   }
   Screen(label = stringResource(id = Strings.title_projects)) {
