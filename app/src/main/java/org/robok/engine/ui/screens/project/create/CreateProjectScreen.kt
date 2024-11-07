@@ -31,6 +31,7 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
+import androidx.compose.material3.AlertDialog
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
@@ -55,9 +56,11 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.core.components.shape.ButtonShape
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
@@ -121,6 +124,7 @@ private fun Screen(
     }
     Button(
       modifier = Modifier.weight(1f),
+      shape = ButtonShape(),
       onClick = {
         viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, state.projectName))
         viewModel.createProject(
@@ -150,14 +154,27 @@ private fun Screen(
 @Composable
 fun ShowVeryBasicDialog(title: String, message: String, isShowDialog: MutableState<Boolean>) {
   if (isShowDialog.value) {
-    RobokDialog(
+    AlertDialog(
       onDismissRequest = { isShowDialog.value = false },
-      onConfirmation = { isShowDialog.value = false },
       title = { Text(text = title, fontSize = 24.sp) },
       text = { Text(text = message) },
-      confirmButton = { Text(stringResource(id = Strings.common_word_ok)) },
-      dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
-      icon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon") },
+      confirmButton = {
+        Button(
+          onClick = { isShowDialog.value = false },
+          shape = ButtonShape()
+        ){
+          Text(stringResource(id = Strings.common_word_ok))
+        }
+      },
+      dismissButton = {
+        Button(
+          onClick = { isShowDialog.value = false },
+          shape = ButtonShape()
+        ) {
+          Text(stringResource(id = Strings.common_word_cancel))
+        }
+      },
+      icon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon") }
     )
   }
 }

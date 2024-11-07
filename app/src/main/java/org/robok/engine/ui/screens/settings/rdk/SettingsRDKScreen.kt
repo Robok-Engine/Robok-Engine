@@ -40,6 +40,7 @@ import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.DownloadState
 
@@ -80,6 +81,7 @@ fun SettingsRDKScreen() {
       )
       Button(
         modifier = modifir.fillMaxWidth(),
+        shape = ButtonShape(),
         onClick = {
           appPrefsViewModel.changeInstalledRDK(version)
           viewModel.startDownload(zipUrl, version)

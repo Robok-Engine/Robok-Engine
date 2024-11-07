@@ -30,6 +30,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.dialog.sheet.choice.ChoiceBottomSheet
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
@@ -70,6 +71,7 @@ fun PreferenceChoice(
         FilledTonalButton(
           modifier = Modifier.padding(horizontal = 16.dp),
           onClick = { setOpened(true) },
+          shape = ButtonShape(),
           enabled = !disabled,
         ) {
           Text(choiceLabel)

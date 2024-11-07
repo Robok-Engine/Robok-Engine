@@ -68,6 +68,7 @@ import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.shape.ButtonShape
 
 var contributors = DefaultContributors()
 
@@ -234,12 +235,8 @@ fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<B
     enter = fadeIn(tween(250)) + slideInVertically { it / 2 },
     exit = fadeOut(tween(200)) + slideOutVertically { -it / 2 },
   ) {
-    RobokDialog(
+    AlertDialog(
       onDismissRequest = { isShowDialog.value = false },
-      onConfirmation = {
-        isShowDialog.value = false
-        uriHandler.openUri(contributor.html_url)
-      },
       title = { Text(text = stringResource(Strings.title_open_contributor_github)) },
       text = {
         Text(
@@ -248,8 +245,26 @@ fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<B
               .replace("-name-", contributor.login)
         )
       },
-      confirmButton = { Text(stringResource(id = Strings.common_word_open)) },
-      dismissButton = { Text(stringResource(id = Strings.common_word_cancel)) },
+      confirmButton = {
+        Button(
+          onClick = {
+            isShowDialog.value = false
+            uriHandler.openUri(contributor.html_url)
+          },
+          shape = ButtonShape()
+        ) {
+          Text(stringResource(id = Strings.common_word_open))
+        }
+      },
+      dismissButton = {
+        Button(
+          onClick = { isShowDialog.value = false },
+          shape = ButtonShape()
+        ) {
+          Text(stringResource(id = Strings.common_word_cancel))
+        }
+      },
+      icon = { Icon(Icons.Outlined.Github, contentDescription = "GitHub Icon") }
     )
   }
 }
