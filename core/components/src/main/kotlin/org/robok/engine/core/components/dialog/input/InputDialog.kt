@@ -55,20 +55,14 @@ fun InputDialog(
       }
     },
     confirmButton = {
-      Button(
-        onClick = onConfirm,
-        shape = ButtonShape()
-      ) {
+      Button(onClick = onConfirm, shape = ButtonShape()) {
         Text(text = stringResource(id = Strings.common_word_save))
       }
     },
     dismissButton = {
-      OutlinedButton(
-        onClick = onDismiss,
-        shape = ButtonShape()
-      ) {
+      OutlinedButton(onClick = onDismiss, shape = ButtonShape()) {
         Text(text = stringResource(id = Strings.common_word_cancel))
       }
-    }
+    },
   )
 }

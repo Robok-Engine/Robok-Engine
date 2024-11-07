@@ -31,8 +31,8 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import org.robok.engine.strings.Strings
 import org.robok.engine.core.components.shape.ButtonShape
+import org.robok.engine.strings.Strings
 
 @Composable
 fun PermissionDialog(

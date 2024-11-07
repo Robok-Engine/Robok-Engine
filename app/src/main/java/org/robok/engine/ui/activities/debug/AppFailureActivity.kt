@@ -90,22 +90,17 @@ class AppFailureActivity : RobokComposeActivity() {
           ) {
             Text(stringResource(id = Strings.common_word_end))
           }
-        }
+        },
       )
     }
   }
 
   @Composable
-  fun ErrorCard(
-    madeErrMsg: String,
-    scrollable: Boolean = true
-  ) {
+  fun ErrorCard(madeErrMsg: String, scrollable: Boolean = true) {
     val scrollState = rememberScrollState()
     Card(
-      modifier = Modifier
-        .fillMaxWidth()
-        .clip(RoundedCornerShape(18.dp))
-        .addIf(scrollable) {
+      modifier =
+        Modifier.fillMaxWidth().clip(RoundedCornerShape(18.dp)).addIf(scrollable) {
           verticalScroll(scrollState)
         },
       colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.errorContainer),

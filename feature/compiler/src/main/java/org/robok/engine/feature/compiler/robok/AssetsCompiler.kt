@@ -20,7 +20,6 @@ package org.robok.engine.feature.compiler.robok
 import android.content.Context
 import java.io.File
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.core.utils.RobokLog
 
 class AssetsCompiler(val context: Context, val projectPath: File) {
 
@@ -52,7 +51,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
       FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
       list.forEach {
         val file = File(it)
-      
+
         if (!file.name.equals("strings.xml")) {
           val start = file.name.indexOf("strings-") + "strings-".length
           val end = file.name.indexOf(".xml")
@@ -64,7 +63,7 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
           pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
           newCompileLog("Compiling default language...")
         }
-      
+
         FileUtil.writeFile(
           pathToSave.absolutePath + "/strings.xml",
           FileUtil.readFile(file.absolutePath),
@@ -80,10 +79,13 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
   }
 
   private fun newCompileLog(log: String) = logs?.add(Log(LogType.NORMAL, log))
+
   private fun newCompileError(log: String) = logs?.add(Log(LogType.ERROR, log))
+
   data class Log(val type: LogType, val text: String)
+
   enum class LogType {
     NORMAL,
-    ERROR;
+    ERROR,
   }
 }
