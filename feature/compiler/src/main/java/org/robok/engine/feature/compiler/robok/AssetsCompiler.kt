@@ -69,13 +69,13 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
           pathToSave.absolutePath + "/strings.xml",
           FileUtil.readFile(file.absolutePath),
         )
-        true
       }
+      newCompileLog("Assets Texts Compiled Successfully!")
+      true
     } catch (e: Exception) {
       newCompileError(e.toString())
       false
     }
-    newCompileLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs?.toList() ?: listOf())
   }
 
