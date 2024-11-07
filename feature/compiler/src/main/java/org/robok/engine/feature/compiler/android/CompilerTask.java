@@ -36,6 +36,8 @@ import org.robok.engine.feature.compiler.android.incremental.IncrementalECJCompi
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
 import org.robok.engine.feature.compiler.robok.AssetsCompiler;
+import org.robok.engine.feature.compiler.robok.AssetsCompiler.Log;
+import org.robok.engine.feature.compiler.robok.AssetsCompiler.LogType;
 
 public class CompilerTask {
 
@@ -124,6 +126,26 @@ public class CompilerTask {
 
     return compilerResult;
   }
+  
+  /*
+   * compile /sdcard/Robok/projects/$projectName/assets
+   * to android structure in private dir
+   * @param buildLogger A Terminal Logger instante
+   */
+  private boolean startAssetsCompiler() {
+    var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
+    assetsCompiler.setCompileListener(logs -> {
+      for (Log log : logs) {
+        if (log.getType()) == LogType.NORMAL) {
+          publishProgress("AssetsCompiler", log.getText());
+        } else {
+          project.getLogger().e("AssetsCompiler", log.getText());
+        }
+      }
+    });
+    var result = assetsCompiler.compileAll();
+    return result;
+  }
 
   private boolean startAaptCompiler() throws Exception {
     Compiler aapt2Compiler = new AAPT2Compiler(mContext.get(), project);
@@ -132,23 +154,6 @@ public class CompilerTask {
     aapt2Compiler.run();
 
     return aapt2Compiler.getIsCompilationSuccessful();
-  }
-
-  /*
-   * compile /sdcard/Robok/projects/$projectName/assets
-   * to android structure in private dir
-   * @param buildLogger A Terminal Logger instante
-   */
-  private boolean startAssetsCompiler() {
-    var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    assetsCompiler.setCompileListener(
-        logs -> {
-          for (String log : logs) {
-            publishProgress("AssetsCompiler", log);
-          }
-        });
-    assetsCompiler.compileAll();
-    return true;
   }
 
   private boolean startEcjCompiler() throws Exception {

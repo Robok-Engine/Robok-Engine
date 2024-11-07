@@ -25,7 +25,7 @@ import org.robok.engine.core.utils.RobokLog
 class AssetsCompiler(val context: Context, val projectPath: File) {
 
   lateinit var projectName: String
-  var logs: MutableList<String>? = null
+  var logs: MutableList<Log>? = null
   lateinit var compileListener: CompileListener
 
   companion object {
@@ -34,51 +34,56 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
 
   @FunctionalInterface
   interface CompileListener {
-    fun whenFinish(logs: List<String>)
+    fun whenFinish(logs: List<Log>)
   }
 
   fun compileAll() {
     logs = mutableListOf()
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
-    newBuildLog("Starting Assets Compiler...")
-    newLog("Path: ${projectPath}")
-    newLog("Name: ${projectName}")
+    newCompileLog("Starting Assets Compiler...")
     compileTextsToString()
   }
 
-  private fun compileTextsToString() {
-    val list = arrayListOf<String>()
-    var pathToSave = File("")
+  private fun compileTextsToString(): Boolean {
+    return try {
+      val list = arrayListOf<String>()
+      var pathToSave = File("")
 
-    FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
-    list.forEach {
-      val file = File(it)
-      if (!file.name.equals("strings.xml")) {
-        val start = file.name.indexOf("strings-") + "strings-".length
-        val end = file.name.indexOf(".xml")
-        val countryCode = file.name.substring(start, end)
-        pathToSave =
-          File(context.filesDir.absolutePath, projectName + "/xml/res/values-$countryCode")
-        newBuildLog("Compiling ${countryCode} language...")
-      } else {
-        pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
-        newBuildLog("Compiling default language...")
+      FileUtil.listDir(projectPath.absolutePath + "/game/assets/texts/", list)
+      list.forEach {
+        val file = File(it)
+      
+        if (!file.name.equals("strings.xml")) {
+          val start = file.name.indexOf("strings-") + "strings-".length
+          val end = file.name.indexOf(".xml")
+          val countryCode = file.name.substring(start, end)
+          pathToSave =
+            File(context.filesDir.absolutePath, projectName + "/xml/res/values-$countryCode")
+          newCompileLog("Compiling ${countryCode} language...")
+        } else {
+          pathToSave = File(context.filesDir.absolutePath, projectName + "/xml/res/values")
+          newCompileLog("Compiling default language...")
+        }
+      
+        FileUtil.writeFile(
+          pathToSave.absolutePath + "/strings.xml",
+          FileUtil.readFile(file.absolutePath),
+        )
+        true
+      } catch (e: Exception) {
+        newCompileError(e.toString())
+        false
       }
-      FileUtil.writeFile(
-        pathToSave.absolutePath + "/strings.xml",
-        FileUtil.readFile(file.absolutePath),
-      )
     }
-    newBuildLog("Assets Texts Compiled Successfully!")
+    newCompileLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs?.toList() ?: listOf())
   }
 
-  private fun newBuildLog(log: String) {
-    RobokLog.d(tag = TAG, message = log)
-    logs?.add(log)
-  }
-
-  private fun newLog(log: String) {
-    RobokLog.d(tag = TAG, message = log)
+  private fun newCompileLog(log: String) = logs?.add(Log(LogType.NORMAL, log))
+  private fun newCompileError(log: String) = logs?.add(Log(LogType.ERROR, log))
+  data class Log(val type: LogType, val text: String)
+  enum class LogType {
+    NORMAL,
+    ERROR;
   }
 }
