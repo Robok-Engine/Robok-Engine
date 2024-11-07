@@ -36,15 +36,15 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
     fun whenFinish(logs: List<Log>)
   }
 
-  fun compileAll(): Boolean {
+  fun compileAll() {
     logs = mutableListOf()
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
     newCompileLog("Starting Assets Compiler...")
-    return compileTextsToString()
+    compileTextsToString()
   }
 
-  private fun compileTextsToString(): Boolean {
-    return try {
+  private fun compileTextsToString() {
+    try {
       val list = arrayListOf<String>()
       var pathToSave = File("")
 
@@ -70,10 +70,8 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
         )
       }
       newCompileLog("Assets Texts Compiled Successfully!")
-      true
     } catch (e: Exception) {
       newCompileError(e.toString())
-      false
     }
     compileListener.whenFinish(logs?.toList() ?: listOf())
   }

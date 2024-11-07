@@ -134,18 +134,20 @@ public class CompilerTask {
    */
   private boolean startAssetsCompiler() {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    assetsCompiler.setCompileListener(
-        logs -> {
-          for (Log log : logs) {
-            if (log.getType() == LogType.NORMAL) {
-              publishProgress("AssetsCompiler", log.getText());
-            } else {
-              project.getLogger().e("AssetsCompiler", log.getText());
-            }
-          }
-        });
-    var result = assetsCompiler.compileAll();
-    return result;
+    var hasError = false;
+    assetsCompiler.setCompileListener(logs -> {
+      for (Log log : logs) {
+        if (log.getType() == LogType.NORMAL) {
+          publishProgress("AssetsCompiler", log.getText());
+          hasError = false;
+        } else {
+          project.getLogger().e("AssetsCompiler", log.getText());
+          hasError = true;
+        }
+      }
+    });
+    assetsCompiler.compileAll();
+    return !hasError;
   }
 
   private boolean startAaptCompiler() throws Exception {
