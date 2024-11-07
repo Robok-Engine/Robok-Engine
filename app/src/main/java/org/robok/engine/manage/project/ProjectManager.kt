@@ -68,8 +68,8 @@ class ProjectManager(private var context: Context) {
                                 .replace("game/logic/\$pkgName", "game/logic/${packageName.replace('.', '/')}")
                             val outputFile = File(projectPath, outputFileName)
 
-                            if (!outputFile.parentFile.exists()) {
-                                outputFile.parentFile.mkdirs()
+                            if (!outputFile?.parentFile?.exists()) {
+                                outputFile?.parentFile?.mkdirs()
                             }
 
                             FileOutputStream(outputFile).use { fos ->
@@ -107,8 +107,8 @@ class ProjectManager(private var context: Context) {
             val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.java"
             val javaFile = File(projectPath, classFilePath)
 
-            if (!javaFile.parentFile.exists()) {
-                javaFile.parentFile.mkdirs()
+            if (!javaFile?.parentFile?.exists()) {
+                javaFile?.parentFile?.mkdirs()
             }
 
             FileOutputStream(javaFile).use { fos ->

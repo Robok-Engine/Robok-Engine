@@ -90,7 +90,7 @@ class EditorActivity :
     binding.diagnosticStatusDotProgress.visibility = View.INVISIBLE
     binding.diagnosticStatusImage.visibility = View.VISIBLE
   }
-
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     _binding = ActivityEditorBinding.inflate(layoutInflater)
