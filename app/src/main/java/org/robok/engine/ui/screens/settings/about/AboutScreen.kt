@@ -60,15 +60,14 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.BuildConfig
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.dialog.RobokDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
 import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
-import org.robok.engine.core.components.shape.ButtonShape
 
 var contributors = DefaultContributors()
 
@@ -251,20 +250,17 @@ fun OpenContributorDialog(contributor: Contributor, isShowDialog: MutableState<B
             isShowDialog.value = false
             uriHandler.openUri(contributor.html_url)
           },
-          shape = ButtonShape()
+          shape = ButtonShape(),
         ) {
           Text(stringResource(id = Strings.common_word_open))
         }
       },
       dismissButton = {
-        Button(
-          onClick = { isShowDialog.value = false },
-          shape = ButtonShape()
-        ) {
+        Button(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_cancel))
         }
       },
-      icon = { Icon(Icons.Outlined.Github, contentDescription = "GitHub Icon") }
+      icon = { Icon(Icons.Outlined.Github, contentDescription = "GitHub Icon") },
     )
   }
 }

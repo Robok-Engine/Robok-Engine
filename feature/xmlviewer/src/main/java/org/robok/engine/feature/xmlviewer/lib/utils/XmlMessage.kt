@@ -6,7 +6,7 @@ class XmlMessage {
     const val TYPE_ERROR = 1
     const val TYPE_WARN = 2
   }
-  
+
   var type: Int = TYPE_DEBUG
   var message: String? = null
 }

@@ -20,31 +20,33 @@ import android.content.Context
 import android.graphics.Canvas
 import android.os.Handler
 import android.os.Looper
-import android.os.Message
 import android.util.AttributeSet
 import android.widget.FrameLayout
 
-class BlinkLayout @JvmOverloads constructor(
-  context: Context, attrs: AttributeSet? = null
-) : FrameLayout(context, attrs) {
+class BlinkLayout @JvmOverloads constructor(context: Context, attrs: AttributeSet? = null) :
+  FrameLayout(context, attrs) {
 
   private val mHandler: Handler
   private var mBlink = false
   private var mBlinkState = false
 
   init {
-    mHandler = Handler(Looper.getMainLooper(), Handler.Callback { msg ->
-      if (msg.what == MESSAGE_BLINK) {
-        if (mBlink) {
-          mBlinkState = !mBlinkState
-          makeBlink()
-        }
-        invalidate()
-        true
-      } else {
-        false
-      }
-    })
+    mHandler =
+      Handler(
+        Looper.getMainLooper(),
+        Handler.Callback { msg ->
+          if (msg.what == MESSAGE_BLINK) {
+            if (mBlink) {
+              mBlinkState = !mBlinkState
+              makeBlink()
+            }
+            invalidate()
+            true
+          } else {
+            false
+          }
+        },
+      )
   }
 
   private fun makeBlink() {

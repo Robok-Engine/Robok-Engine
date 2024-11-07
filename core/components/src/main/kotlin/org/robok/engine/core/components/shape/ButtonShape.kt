@@ -16,12 +16,11 @@ package org.robok.engine.core.components
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.Dp
-import androidx.compose.foundation.shape.Shape
-import androidx.compose.foundation.shape.CornerSize
+
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.shape.Shape
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun ButtonShape(
@@ -29,12 +28,12 @@ fun ButtonShape(
   topEnd: Dp = 20.dp,
   bottomEnd: Dp = 20.dp,
   bottomStart: Dp = 20.dp,
-): Shape = RoundedCornerShape(
-  topStart = topStart,
-  topEnd = topEnd,
-  bottomEnd = bottomEnd,
-  bottomStart = bottomStart
-)
-  
-@Composable
-fun ButtonShape(all: Dp) : Shape = ButtonShape(all, all, all, all)
+): Shape =
+  RoundedCornerShape(
+    topStart = topStart,
+    topEnd = topEnd,
+    bottomEnd = bottomEnd,
+    bottomStart = bottomStart,
+  )
+
+@Composable fun ButtonShape(all: Dp): Shape = ButtonShape(all, all, all, all)

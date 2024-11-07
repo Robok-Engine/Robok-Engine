@@ -34,11 +34,9 @@ enum class Tokens {
   NEWLINE,
   UNKNOWN,
   EOF,
-
   LONG_COMMENT_COMPLETE,
   LONG_COMMENT_INCOMPLETE,
   LINE_COMMENT,
-
   DIV,
   MULT,
   IDENTIFIER,
@@ -68,7 +66,6 @@ enum class Tokens {
   XOR,
   MOD,
   FLOATING_POINT_LITERAL,
-
   VAR,
   SEALED,
   PERMITS,
@@ -126,5 +123,5 @@ enum class Tokens {
   TRUE,
   FALSE,
   NULL,
-  CLASS_NAME;
+  CLASS_NAME,
 }
