@@ -89,13 +89,13 @@ public class CompilerTask {
 
       if (startAssetsCompiler()) {
         compilationSteps.add(true);
-        
-        if(startAaptCompiler()) {
+
+        if (startAaptCompiler()) {
           compilationSteps.add(true);
-          
+
           if (startEcjCompiler()) {
             compilationSteps.add(true);
-            
+
             if (startD8Compiler()) {
               compilationSteps.add(true);
               startApkBuilder();
@@ -133,19 +133,20 @@ public class CompilerTask {
 
     return aapt2Compiler.getIsCompilationSuccessful();
   }
-  
+
   /*
    * compile /sdcard/Robok/projects/$projectName/assets
    * to android structure in private dir
-   * @param buildLogger A Terminal Logger instante 
+   * @param buildLogger A Terminal Logger instante
    */
   private boolean startAssetsCompiler() {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    assetsCompiler.setCompileListener(logs -> {
-      for (String log : logs) {
-        publishProgress("AssetsCompiler", log);
-      }
-    });
+    assetsCompiler.setCompileListener(
+        logs -> {
+          for (String log : logs) {
+            publishProgress("AssetsCompiler", log);
+          }
+        });
     assetsCompiler.compileAll();
     return true;
   }

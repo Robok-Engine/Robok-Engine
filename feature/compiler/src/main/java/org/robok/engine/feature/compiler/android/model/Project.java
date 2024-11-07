@@ -44,7 +44,7 @@ public class Project {
   private File mAssetsFile;
 
   private Logger mLogger;
-  
+
   private File mRootPath;
 
   public Project() {}
@@ -136,11 +136,11 @@ public class Project {
   public void setLogger(Logger logger) {
     mLogger = logger;
   }
-  
+
   public File getRootPath() {
     return mRootPath;
   }
-  
+
   public void setRootPath(File rootPath) {
     mRootPath = rootPath;
   }
