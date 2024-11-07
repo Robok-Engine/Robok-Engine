@@ -70,10 +70,10 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
           FileUtil.readFile(file.absolutePath),
         )
         true
-      } catch (e: Exception) {
-        newCompileError(e.toString())
-        false
       }
+    } catch (e: Exception) {
+      newCompileError(e.toString())
+      false
     }
     newCompileLog("Assets Texts Compiled Successfully!")
     compileListener.whenFinish(logs?.toList() ?: listOf())
