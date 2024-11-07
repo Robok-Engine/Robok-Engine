@@ -19,22 +19,7 @@ package org.robok.engine.core.components.shape
  
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.Dp
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Shape
 import androidx.compose.foundation.shape.RoundedCornerShape
 
-@Composable
-fun ButtonShape(
-  topStart: Dp = 20.dp,
-  topEnd: Dp = 20.dp,
-  bottomEnd: Dp = 20.dp,
-  bottomStart: Dp = 20.dp,
-): Shape =
-  RoundedCornerShape(
-    topStart = topStart,
-    topEnd = topEnd,
-    bottomEnd = bottomEnd,
-    bottomStart = bottomStart,
-  )
-
-@Composable fun ButtonShape(all: Dp): Shape = ButtonShape(all, all, all, all)
+fun ButtonShape(shape: Dp = 50.dp): Shape = RoundedCornerShape(shape)
