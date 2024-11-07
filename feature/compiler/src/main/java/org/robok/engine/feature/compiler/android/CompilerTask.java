@@ -126,7 +126,7 @@ public class CompilerTask {
 
     return compilerResult;
   }
-  
+
   /*
    * compile /sdcard/Robok/projects/$projectName/assets
    * to android structure in private dir
@@ -134,15 +134,16 @@ public class CompilerTask {
    */
   private boolean startAssetsCompiler() {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
-    assetsCompiler.setCompileListener(logs -> {
-      for (Log log : logs) {
-        if (log.getType() == LogType.NORMAL) {
-          publishProgress("AssetsCompiler", log.getText());
-        } else {
-          project.getLogger().e("AssetsCompiler", log.getText());
-        }
-      }
-    });
+    assetsCompiler.setCompileListener(
+        logs -> {
+          for (Log log : logs) {
+            if (log.getType() == LogType.NORMAL) {
+              publishProgress("AssetsCompiler", log.getText());
+            } else {
+              project.getLogger().e("AssetsCompiler", log.getText());
+            }
+          }
+        });
     var result = assetsCompiler.compileAll();
     return result;
   }
