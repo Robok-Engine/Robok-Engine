@@ -21,15 +21,15 @@
  *     Please contact Rosemoe by email 2073412493@qq.com if you need
  *     additional information or have any questions
  */
-package org.robok.engine.feature.editor.languages.java.models;
+package org.robok.engine.feature.editor.languages.java.models
 
 /**
  * Tokens for Java
  *
- * @author Rose
+ * @author Rose, Aquiles Trindade (trindadedev).
  */
 @SuppressWarnings("SpellCheckingInspection")
-public enum Tokens {
+enum class Tokens {
   WHITESPACE,
   NEWLINE,
   UNKNOWN,
@@ -126,5 +126,5 @@ public enum Tokens {
   TRUE,
   FALSE,
   NULL,
-  CLASS_NAME,
+  CLASS_NAME;
 }
