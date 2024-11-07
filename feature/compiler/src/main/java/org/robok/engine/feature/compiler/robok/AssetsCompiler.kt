@@ -37,11 +37,11 @@ class AssetsCompiler(val context: Context, val projectPath: File) {
     fun whenFinish(logs: List<Log>)
   }
 
-  fun compileAll() {
+  fun compileAll(): Boolean {
     logs = mutableListOf()
     projectName = projectPath.absolutePath.split("/").filter { it.isNotEmpty() }.last()
     newCompileLog("Starting Assets Compiler...")
-    compileTextsToString()
+    return compileTextsToString()
   }
 
   private fun compileTextsToString(): Boolean {
