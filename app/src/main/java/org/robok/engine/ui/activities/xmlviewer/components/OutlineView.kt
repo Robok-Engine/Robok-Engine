@@ -77,6 +77,7 @@ fun OutlineView(
           treeNodeStack = treeNodeStack,
           view = this,
           xml = xml
+        )
       }
     }
   )
