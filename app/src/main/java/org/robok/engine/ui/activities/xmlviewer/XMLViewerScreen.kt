@@ -35,6 +35,9 @@ fun XMLViewerScreen(
   viewModel: XMLViewerViewModel,
   onToggleFullScreen: () -> Unit,
   onOutlineClick: (View) -> Unit,
+  nodes: List<TreeNode<ViewBean>>,
+  treeNodeStack: List<TreeNode<ViewBean>>,
+  xml: String
 ) {
   var isFullScreen by remember { viewModel.isFullScreen }
 
@@ -56,7 +59,9 @@ fun XMLViewerScreen(
         OutlineView(
           modifier = Modifier.fillMaxSize().padding(8.dp),
           onOutlineClick = onOutlineClick,
-          nodes = emptyList()
+          nodes = nodes,
+          treeNodeStack = treeNodeStack,
+          xml= xml
         )
         FloatingActionButton(
           onClick = onToggleFullScreen,

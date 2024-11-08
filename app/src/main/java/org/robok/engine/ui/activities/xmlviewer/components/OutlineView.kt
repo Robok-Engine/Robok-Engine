@@ -17,7 +17,8 @@ package org.robok.engine.ui.activities.xmlviewer.components
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.view.View
+import android.view.View 
+import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -38,7 +39,9 @@ import org.robok.engine.strings.Strings
 fun OutlineView(
   modifier: Modifier = Modifier,
   nodes: List<TreeNode<ViewBean>>,
-  onOutlineClick: (View) -> Unit = {}
+  treeNodeStack: List<TreeNode<ViewBean>>,
+  onOutlineClick: (View) -> Unit = {},
+  xml: String
 ) {
   AndroidView(
     modifier = modifier,
@@ -69,10 +72,59 @@ fun OutlineView(
             }
           }
         )
+        parseXmlAndBuildTree(
+          nodes = nodes,
+          treeNodeStack = treeNodeStack,
+          view = this,
+          xml = xml
       }
     }
   )
 }
+
+private fun parseXmlAndBuildTree(
+  nodes: ArrayList<TreeNode<ViewBean>>,
+  treeNodeStack: Stack<TreeNode<ViewBean>>,
+  view: AndroidOutlineView,
+  xml: String
+) {
+  AndroidXmlParser.with(view)
+    .setOnParseListener(
+      object : AndroidXmlParser.OnParseListener {
+        override fun onAddChildView(v: View, parser: ReadOnlyParser) {
+          val bean = ViewBean(v, parser).apply { isViewGroup = v is ViewGroup }
+          val child = TreeNode(bean)
+          if (treeNodeStack.isEmpty()) {
+            nodes.add(child)
+          } else {
+            treeNodeStack.peek().addChild(child)
+          }
+        }
+
+        override fun onJoin(viewGroup: ViewGroup, parser: ReadOnlyParser) {
+          val bean = ViewBean(viewGroup, parser).apply { isViewGroup = true }
+          val child = TreeNode(bean)
+          if (treeNodeStack.isEmpty()) {
+            treeNodeStack.push(child)
+          } else {
+            treeNodeStack.peek().addChild(child)
+            treeNodeStack.push(child)
+          }
+        }
+
+        override fun onRevert(viewGroup: ViewGroup, parser: ReadOnlyParser) {
+          val node = treeNodeStack.pop()
+          if (treeNodeStack.isEmpty()) {
+            node.expand()
+            nodes.add(node)
+          }
+        }
+        override fun onFinish() { /* No additional logic needed for now */}
+        override fun onStart() { /* No additional logic needed for now */ }
+      }
+    )
+    .parse(xml)
+  }
 
 fun findBeanByView(nodes: List<TreeNode<ViewBean>>, v: View): ViewBean? {
   for (node in nodes) {

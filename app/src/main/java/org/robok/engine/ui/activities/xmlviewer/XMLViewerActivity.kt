@@ -29,6 +29,10 @@ import org.robok.easyui.config.Config
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
+import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
+import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
+import org.robok.engine.feature.xmlviewer.TreeNode
 
 class XMLViewerActivity : AppCompatActivity() {
   private val viewModel: XMLViewerViewModel by viewModels()
@@ -45,17 +49,41 @@ class XMLViewerActivity : AppCompatActivity() {
         "vertical" -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
       }
     }
+    
+    val nodes = mutableListOf<TreeNode<ViewBean>>()
+    val treeNodeStack = Stack<TreeNode<ViewBean>>()
 
+    ProxyResources.init(this)
+
+    clearResources()
+    
+    try {
+      parseXmlAndBuildTree(ArrayList(nodes), treeNodeStack)
+    } catch (e: Exception) {
+      e.printStackTrace()
+    }
+    
+    val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     setContent {
       RobokTheme {
         XMLViewerScreen(
           viewModel = viewModel,
           onToggleFullScreen = { viewModel.toggleFullScreen() },
+          treeNodeStack = treeNodeStack,
+          xml = xml,
           onOutlineClick = { view ->
             // do nothing for now
           },
         )
       }
+    }
+  }
+  
+  private fun clearResources() {
+    try {
+      ProxyResources.getInstance().viewIdMap.takeIf { it.isNotEmpty() }?.clear()
+      MessageArray.getInstanse().clear()
+    } catch (e: Exception) {
     }
   }
 }
