@@ -30,7 +30,7 @@ koin = "4.0.0"
 termux = "0.118.1"
 easy-ui = "1.0.0-Alpha01"
 gson = "2.11.0"
-ksp = "2.0.21-1.0.26"
+ksp = "2.0.21-1.0.27"
 
 [plugins]
 # Android Gradle Plugin
