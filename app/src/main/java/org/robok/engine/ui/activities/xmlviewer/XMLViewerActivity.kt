@@ -19,63 +19,29 @@ package org.robok.engine.ui.activities.xmlviewer
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle
-import android.view.View
-import android.view.ViewGroup
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import java.util.ArrayList
-import java.util.Stack
+import androidx.activity.compose.setContent
+import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.layout.*
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
 import org.robok.easyui.config.Config
-import org.robok.engine.R
-import org.robok.engine.databinding.ActivityXmlViewerBinding
-import org.robok.engine.feature.xmlviewer.TreeNode
-import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
-import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
+import org.robok.engine.keys.ExtraKeys
+import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.activities.base.RobokComposeActivity
+import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
-import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.keys.ExtraKeys
-import org.robok.engine.ui.activities.base.RobokActivity
+import org.robok.engine.feature.xmlviewer.TreeNode
+import java.util.Stack
 
-class XMLViewerActivity : RobokActivity() {
-  private var isEditMode = true
-  private lateinit var binding: ActivityXmlViewerBinding
-  private var expanded = true
+class XMLViewerActivity : RobokComposeActivity() {
+  private val viewModel: XMLViewerViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = ActivityXmlViewerBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-    handleInsetts(binding.root)
 
-    val nodes = mutableListOf<TreeNode<ViewBean>>()
-    val treeNodeStack = Stack<TreeNode<ViewBean>>()
-
-    ProxyResources.init(this)
-
-    clearResources()
-
-    try {
-      parseXmlAndBuildTree(ArrayList(nodes), treeNodeStack)
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
-
-    binding.xmlViewer.setHoldOutline(false)
-    setupOutlineClickListener(ArrayList(nodes))
-    configureToolbar()
-    loadGuiConfig()
-
-    binding.fullScreen.setOnClickListener { v ->
-      if (binding.appBarLayout.visibility == View.GONE) {
-        binding.appBarLayout.visibility = View.VISIBLE
-        return@setOnClickListener
-      }
-      binding.appBarLayout.visibility = View.GONE
-    }
-  }
-
-  private fun loadGuiConfig() {
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
     config?.let {
       when (it.orientation) {
@@ -85,131 +51,36 @@ class XMLViewerActivity : RobokActivity() {
         "vertical" -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
       }
     }
-  }
+    
+    val nodes = mutableListOf<TreeNode<ViewBean>>()
+    val treeNodeStack = Stack<TreeNode<ViewBean>>()
 
-  private fun configureToolbar() {
-    binding.toolbar.setOnMenuItemClickListener { item ->
-      when (item.itemId) {
-        R.id.item_see_code -> {
-          MaterialAlertDialogBuilder(this)
-            .setTitle(getString(org.robok.engine.strings.R.string.text_see_code))
-            .setMessage(intent.getStringExtra(ExtraKeys.Gui.CODE))
-            .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok)) { d, _
-              ->
-              d.dismiss()
-            }
-            .create()
-            .show()
-          true
-        }
-        else -> false
+    ProxyResources.init(this)
+
+    clearResources()
+    
+    val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
+    setContent {
+      RobokTheme {
+        XMLViewerScreen(
+          viewModel = viewModel,
+          onToggleFullScreen = { viewModel.toggleFullScreen() },
+          nodes = nodes,
+          treeNodeStack = treeNodeStack,
+          xml = xml!!,
+          onOutlineClick = { view ->
+            // do nothing for now
+          },
+        )
       }
     }
   }
-
+  
   private fun clearResources() {
     try {
       ProxyResources.getInstance().viewIdMap.takeIf { it.isNotEmpty() }?.clear()
       MessageArray.getInstanse().clear()
     } catch (e: Exception) {
-      MaterialAlertDialogBuilder(this)
-        .setTitle(getString(org.robok.engine.strings.R.string.title_un_error_ocurred))
-        .setMessage(e.toString())
-        .setPositiveButton(getString(org.robok.engine.strings.R.string.common_word_ok)) { d, _ ->
-          d.dismiss()
-        }
-        .create()
-        .show()
     }
-  }
-
-  private fun parseXmlAndBuildTree(
-    nodes: ArrayList<TreeNode<ViewBean>>,
-    treeNodeStack: Stack<TreeNode<ViewBean>>,
-  ) {
-    AndroidXmlParser.with(binding.xmlViewer)
-      .setOnParseListener(
-        object : AndroidXmlParser.OnParseListener {
-          override fun onAddChildView(v: View, parser: ReadOnlyParser) {
-            val bean = ViewBean(v, parser).apply { isViewGroup = v is ViewGroup }
-            val child = TreeNode(bean)
-            if (treeNodeStack.isEmpty()) {
-              nodes.add(child)
-            } else {
-              treeNodeStack.peek().addChild(child)
-            }
-          }
-
-          override fun onJoin(viewGroup: ViewGroup, parser: ReadOnlyParser) {
-            val bean = ViewBean(viewGroup, parser).apply { isViewGroup = true }
-            val child = TreeNode(bean)
-            if (treeNodeStack.isEmpty()) {
-              treeNodeStack.push(child)
-            } else {
-              treeNodeStack.peek().addChild(child)
-              treeNodeStack.push(child)
-            }
-          }
-
-          override fun onRevert(viewGroup: ViewGroup, parser: ReadOnlyParser) {
-            val node = treeNodeStack.pop()
-            if (treeNodeStack.isEmpty()) {
-              node.expand()
-              nodes.add(node)
-            }
-          }
-
-          override fun onFinish() {
-            // No additional logic needed for now
-          }
-
-          override fun onStart() {
-            // No additional logic needed for now
-          }
-        }
-      )
-      .parse(intent.getStringExtra(ExtraKeys.Gui.CODE))
-  }
-
-  private fun setupOutlineClickListener(nodes: ArrayList<TreeNode<ViewBean>>) {
-    binding.xmlViewer.setOutlineClickListener(
-      object : OutlineView.OnOutlineClickListener {
-        override fun onDown(v: View, displayType: Int) {
-          if (!isEditMode) {
-            // Handle onDown event in non-edit mode
-          }
-        }
-
-        override fun onCancel(v: View, displayType: Int) {
-          // Handle cancel event
-        }
-
-        override fun onClick(v: View, displayType: Int) {
-          if (isEditMode) {
-            findBeanByView(ArrayList(nodes), v)?.let { bean ->
-              val sb = StringBuilder()
-              bean.infoList.forEach { info ->
-                sb.append("${info.attributeName}=${info.attributeValue}\n")
-              }
-              MaterialAlertDialogBuilder(this@XMLViewerActivity).setMessage(sb).show()
-            }
-          }
-        }
-      }
-    )
-  }
-
-  private fun findBeanByView(nodes: ArrayList<TreeNode<ViewBean>>, v: View): ViewBean? {
-    for (node in nodes) {
-      val bean = node.content
-      if (bean.view == v) {
-        return bean
-      } else {
-        findBeanByView(node.childList as ArrayList<TreeNode<ViewBean>>, v)?.let {
-          return it
-        }
-      }
-    }
-    return null
   }
 }
