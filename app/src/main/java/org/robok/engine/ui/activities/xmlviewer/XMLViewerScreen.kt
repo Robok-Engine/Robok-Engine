@@ -27,10 +27,12 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.*
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.feature.xmlviewer.TreeNode
+import org.robok.engine.core.components.shape.ButtonShape
 import java.util.Stack
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -76,4 +78,27 @@ fun XMLViewerScreen(
       }
     },
   )
+  if (viewModel.isShowCodeDialog) {
+    AlertDialog(
+      onDismissRequest = {
+        viewModel.setShowCodeDialog(false)
+      },
+      title = { Text(text = stringResource(Strings.text_see_code)) },
+      text = {
+        Text(
+          text = xml
+        )
+      },
+      confirmButton = {
+        Button(
+          onClick = {
+            viewModel.setShowCodeDialog(false)
+          },
+          shape = ButtonShape(),
+        ) {
+          Text(stringResource(id = Strings.common_word_ok))
+        }
+      }
+    )
+  }
 }
