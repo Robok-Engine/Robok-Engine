@@ -28,7 +28,7 @@ class XMLViewerViewModel : ViewModel() {
     isFullScreen.value = !isFullScreen.value
   }
 
-  fun setShowCodeDialog(newValue: Boolean) {
-    isShowCodeDialog.value = newValue
+  fun onToggleShowCode() {
+    isShowCodeDialog.value = !isShowCodeDialog.value
   }
 }

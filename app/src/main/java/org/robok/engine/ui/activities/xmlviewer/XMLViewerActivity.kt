@@ -64,6 +64,7 @@ class XMLViewerActivity : RobokComposeActivity() {
         XMLViewerScreen(
           viewModel = viewModel,
           onToggleFullScreen = { viewModel.toggleFullScreen() },
+          onToggleShowCode = { viewModel.onToggleShowCode() },
           nodes = nodes,
           treeNodeStack = treeNodeStack,
           xml = xml!!,

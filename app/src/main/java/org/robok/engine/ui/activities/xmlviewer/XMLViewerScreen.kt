@@ -41,6 +41,7 @@ import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 fun XMLViewerScreen(
   viewModel: XMLViewerViewModel,
   onToggleFullScreen: () -> Unit,
+  onToggleShowCode: () -> Unit,
   onOutlineClick: (View) -> Unit,
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
@@ -55,7 +56,7 @@ fun XMLViewerScreen(
         TopAppBar(
           title = { Text("Viewer") },
           actions = {
-            IconButton(onClick = { viewModel.setShowCodeDialog(true) }) {
+            IconButton(onClick = { onToggleShowCode() }) {
               Icon(Icons.Default.Code, contentDescription = null)
             }
           },
@@ -82,11 +83,11 @@ fun XMLViewerScreen(
   )
   if (isShowCodeDialog) {
     AlertDialog(
-      onDismissRequest = { viewModel.setShowCodeDialog(false) },
+      onDismissRequest = { onToggleShowCode() },
       title = { Text(text = stringResource(Strings.text_see_code)) },
       text = { Text(text = xml) },
       confirmButton = {
-        Button(onClick = { viewModel.setShowCodeDialog(false) }, shape = ButtonShape()) {
+        Button(onClick = { onToggleShowCode }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_ok))
         }
       },
