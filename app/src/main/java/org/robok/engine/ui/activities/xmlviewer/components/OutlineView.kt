@@ -32,7 +32,6 @@ import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
-import org.robok.engine.feature.xmlviewer.lib.utils.TreeNode
 import org.robok.engine.strings.Strings
 
 @Composable
