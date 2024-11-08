@@ -137,17 +137,18 @@ public class CompilerTask {
     var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
     var hasError = new AtomicBoolean(false);
 
-    assetsCompiler.setCompileListener(logs -> {
-      for (Log log : logs) {
-        if (log.getType() == LogType.NORMAL) {
-          publishProgress("AssetsCompiler", log.getText());
-          hasError.set(false);
-        } else {
-          project.getLogger().e("AssetsCompiler", log.getText());
-          hasError.set(true);
-        }
-      }
-    });
+    assetsCompiler.setCompileListener(
+        logs -> {
+          for (Log log : logs) {
+            if (log.getType() == LogType.NORMAL) {
+              publishProgress("AssetsCompiler", log.getText());
+              hasError.set(false);
+            } else {
+              project.getLogger().e("AssetsCompiler", log.getText());
+              hasError.set(true);
+            }
+          }
+        });
 
     assetsCompiler.compileAll();
     return !hasError.get();
