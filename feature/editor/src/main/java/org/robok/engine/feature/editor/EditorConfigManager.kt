@@ -22,11 +22,11 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 
 class EditorConfigManager : KoinComponent {
 
-  private val appPreferencesViewModel: AppPreferencesViewModel by inject()
+  private val appPreferencesViewModel: PreferencesViewModel by inject()
 
   val editorTheme: Flow<Int>
     get() = appPreferencesViewModel.editorTheme
