@@ -74,7 +74,7 @@ fun OutlineView(
           }
         )
         parseXmlAndBuildTree(
-          nodes = nodes,
+          nodes = ArrayList(nodes),
           treeNodeStack = treeNodeStack,
           view = this,
           xml = xml

@@ -29,6 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
+import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
+import org.robok.engine.feature.xmlviewer.TreeNode
 import java.util.Stack
 
 @OptIn(ExperimentalMaterial3Api::class)

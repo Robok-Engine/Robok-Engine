@@ -58,20 +58,15 @@ class XMLViewerActivity : AppCompatActivity() {
 
     clearResources()
     
-    try {
-      parseXmlAndBuildTree(ArrayList(nodes), treeNodeStack)
-    } catch (e: Exception) {
-      e.printStackTrace()
-    }
-    
     val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     setContent {
       RobokTheme {
         XMLViewerScreen(
           viewModel = viewModel,
           onToggleFullScreen = { viewModel.toggleFullScreen() },
+          nodes = nodes,
           treeNodeStack = treeNodeStack,
-          xml = xml,
+          xml = xml!!,
           onOutlineClick = { view ->
             // do nothing for now
           },
