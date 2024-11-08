@@ -12,15 +12,6 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
     }
     
-    buildTypes {
-        release {
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
-            )
-            isMinifyEnabled = true
-        }
-    }
-    
     compileOptions {
         sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
         targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
