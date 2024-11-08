@@ -31,10 +31,6 @@
     <string name="title_templates">Modèles</string>
     <!-- end section -->
 	
-	<!-- messages section -->
-	<string name="message_compiled">Votre code a été compilé!</string>
-    <!-- end section -->
-	
 	<!-- go to section -->
 	<string name="go_to_outputs">Accéder aux sorties</string>
     <!-- end section -->

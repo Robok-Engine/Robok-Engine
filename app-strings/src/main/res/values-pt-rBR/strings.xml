@@ -28,11 +28,7 @@
     <string name="title_select_theme">Selecionar tema</string>
     <string name="title_select_folder">Selecionar pasta</string>
     <!-- end section -->
-    
-    <!-- messages section -->
-    <string name="message_compiled">Seu código foi compilado!</string>
-    <!-- end section -->
-    
+   
     <!-- go to section -->
     <string name="go_to_outputs">Ir para saída</string>
     <!-- end section -->

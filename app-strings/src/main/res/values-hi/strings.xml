@@ -34,8 +34,6 @@
 
     <!-- messages section -->
     <string name="title_your_projects">आपके प्रोजेक्ट</string>
-    <string name="message_compiled">आपका कोड कंपाइल हो गया है!</string>
-    <!-- end section -->
 
     <!-- go to section -->
     <string name="go_to_outputs">आउटपुट पर जाएं</string>

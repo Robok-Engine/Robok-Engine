@@ -15,7 +15,6 @@
     <string name="title_open_editor">Відкрити редактор</string>
     <string name="title_select_theme">Вибрати тему</string>
     <string name="title_templates">Шаблони</string>
-    <string name="message_compiled">Ваш код скомпільовано!</string>
     <string name="go_to_outputs">Перейти до результатів</string>
     <string name="hint_package_name">Назва пакета</string>
     <string name="common_word_back">Назад</string>
