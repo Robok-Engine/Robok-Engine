@@ -48,7 +48,7 @@ fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
   LaunchedEffect(Unit) { templates.add(DefaultTemplate()) }
 
   Screen(label = stringResource(id = Strings.common_word_templates)) { innerPadding ->
-    Box(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
+    Box(modifier = Modifier.padding(16.dp)) {
       Column {
         templates.chunked(2).forEach { rowItems ->
           Row(
