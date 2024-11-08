@@ -30,7 +30,7 @@ data class Library(
   constructor(path: String) : this(File(path))
 
   companion object {
-    fun fromFile(file: File): List<Library> {
+    fun fromFile(file: File): MutableList<Library> {
       val libraries = mutableListOf<Library>()
 
       if (!file.exists()) return libraries
