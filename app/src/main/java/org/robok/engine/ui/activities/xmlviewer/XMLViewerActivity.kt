@@ -41,8 +41,6 @@ class XMLViewerActivity : RobokComposeActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     
-    val viewModel = koinViewModel<XMLViewerViewModel>()
-    
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
     config?.let {
       when (it.orientation) {
@@ -62,6 +60,7 @@ class XMLViewerActivity : RobokComposeActivity() {
 
     val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     setContent {
+      val viewModel = koinViewModel<XMLViewerViewModel>()
       RobokTheme {
         XMLViewerScreen(
           viewModel = viewModel,

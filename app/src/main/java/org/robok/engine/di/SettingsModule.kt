@@ -18,6 +18,7 @@ package org.robok.engine.di
  */
  
 import android.content.Context
+import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 
