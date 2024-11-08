@@ -67,7 +67,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
@@ -76,7 +76,7 @@ var contributors = DefaultContributors()
 
 @Composable
 fun AboutScreen() {
-  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
   val contributorsState = remember { mutableStateOf(contributors) }
   val scope = rememberCoroutineScope()

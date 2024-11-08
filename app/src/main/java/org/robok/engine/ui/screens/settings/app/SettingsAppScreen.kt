@@ -27,13 +27,13 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsAppScreen() {
-  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
   Screen(label = stringResource(id = Strings.settings_app_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
       appearancePrefs(appPrefsViewModel)
@@ -42,7 +42,7 @@ fun SettingsAppScreen() {
 }
 
 @Composable
-fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
+fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
   val appIsUseMonet by
     appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
   val appIsUseAmoled by

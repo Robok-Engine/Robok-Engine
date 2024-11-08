@@ -33,7 +33,7 @@ private val editorThemePreference = intPreferencesKey("editor_theme")
 private val editorTypefacePreference = intPreferencesKey("editor_typeface")
 private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
 
-class AppPreferencesRepository(private val dataStore: DataStore<Preferences>) {
+class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
 
   val installedRDKVersion =
     dataStore.data.map { it[installedRDKVersionPreference] ?: DefaultValues.INSTALLED_RDK_VERSION }

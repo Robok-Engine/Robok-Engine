@@ -22,14 +22,14 @@ import androidx.datastore.preferences.preferencesDataStoreFile
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.dsl.module
-import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.repositories.PreferencesRepository
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 
 const val APP_PREFERENCES = "app_preferences"
 
 val preferencesModule = module {
-  singleOf(::AppPreferencesRepository)
-  viewModelOf(::AppPreferencesViewModel)
+  singleOf(::PreferencesRepository)
+  viewModelOf(::PreferencesViewModel)
 
   single {
     PreferenceDataStoreFactory.create { androidContext().preferencesDataStoreFile(APP_PREFERENCES) }

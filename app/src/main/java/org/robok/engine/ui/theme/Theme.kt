@@ -35,7 +35,7 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.feature.settings.DefaultValues
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 
 @Composable
 fun RobokTheme(
@@ -43,7 +43,7 @@ fun RobokTheme(
   isActivity: Boolean = true,
   content: @Composable () -> Unit,
 ) {
-  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
   val dynamicColor by
     appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)

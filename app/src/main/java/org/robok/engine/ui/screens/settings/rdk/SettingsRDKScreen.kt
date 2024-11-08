@@ -39,7 +39,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.DownloadState
@@ -49,7 +49,7 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.D
 fun SettingsRDKScreen() {
   val context = LocalContext.current
   val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
-  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
   val installedRDKVersion by
     appPrefsViewModel.installedRDKVersion.collectAsState(
       initial = DefaultValues.INSTALLED_RDK_VERSION

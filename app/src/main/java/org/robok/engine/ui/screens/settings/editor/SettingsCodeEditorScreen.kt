@@ -28,13 +28,13 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.choice.PreferenceChoice
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.feature.settings.DefaultValues
-import org.robok.engine.feature.settings.viewmodels.AppPreferencesViewModel
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsCodeEditorScreen() {
-  val appPrefsViewModel = koinViewModel<AppPreferencesViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
   Screen(label = stringResource(id = Strings.settings_code_editor_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
@@ -47,7 +47,7 @@ fun SettingsCodeEditorScreen() {
 }
 
 @Composable
-fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
+fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
   val context = LocalContext.current
   val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) // ints/positions
   val editorThemeLabels =
@@ -97,7 +97,7 @@ fun appearancePrefs(appPrefsViewModel: AppPreferencesViewModel) {
 }
 
 @Composable
-fun formattingPrefs(appPrefsViewModel: AppPreferencesViewModel) {
+fun formattingPrefs(appPrefsViewModel: PreferencesViewModel) {
   val editorIsUseWordWrap by
     appPrefsViewModel.editorIsUseWordWrap.collectAsState(
       initial = DefaultValues.EDITOR_IS_USE_WORD_WRAP

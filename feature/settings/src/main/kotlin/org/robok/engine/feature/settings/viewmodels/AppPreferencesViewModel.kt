@@ -20,9 +20,9 @@ package org.robok.engine.feature.settings.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.robok.engine.feature.settings.repositories.AppPreferencesRepository
+import org.robok.engine.feature.settings.repositories.PreferencesRepository
 
-class AppPreferencesViewModel(private val repo: AppPreferencesRepository) : ViewModel() {
+class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel() {
   val installedRDKVersion = repo.installedRDKVersion
   val appIsUseMonet = repo.appIsUseMonet
   val appIsUseAmoled = repo.appIsUseAmoled
