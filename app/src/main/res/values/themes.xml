@@ -3,8 +3,10 @@
         <!-- Bars -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
-
+        
         <!-- Components -->
         <item name="textInputStyle">@style/Theme.Robok.TextInputLayoutStyle</item>
         <item name="collapsingToolbarLayoutLargeStyle">@style/CollapsingToolbarLarge</item>
@@ -78,22 +80,19 @@
         <item name="colorSurfaceContainerHigh">@color/md_theme_surfaceContainerHigh</item>
         <item name="colorSurfaceContainerHighest">@color/md_theme_surfaceContainerHighest</item>
         <item name="colorIcon">?colorControlNormal</item>
-        
-        <item name="android:statusBarColor">?colorSurface</item>
-        <item name="android:navigationBarColor">?colorSurface</item>
     </style>
     
     <style name="Theme.Robok.Amoled" parent="Theme.Robok">
         <item name="android:colorBackground">@color/black</item>
         <item name="colorSurface">@color/black</item>
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:navigationBarColor">@color/black</item>
     </style>
     
     <style name="Base.Theme.Robok.Monet" parent="Theme.Material3.DynamicColors.Light">
         <!-- Bars -->
         <item name="android:windowLightStatusBar">true</item>
         <item name="android:windowLightNavigationBar">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLayoutInDisplayCutoutMode">shortEdges</item>
         <item name="windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
@@ -121,7 +120,5 @@
     <style name="Theme.Robok.Amoled.Monet" parent="Base.Theme.Robok.Monet">
         <item name="android:colorBackground">@color/black</item>
         <item name="colorSurface">@color/black</item>
-        <item name="android:statusBarColor">@color/black</item>
-        <item name="android:navigationBarColor">@color/black</item>
     </style>
 </resources>
