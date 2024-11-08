@@ -38,7 +38,7 @@ fun OutlineView(
   modifier: Modifier = Modifier,
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
-  onOutlineClick: (View, ViewBean) -> Unit = {},
+  onOutlineClick: (View, ViewBean) -> Unit,
   xml: String,
 ) {
   AndroidView(
