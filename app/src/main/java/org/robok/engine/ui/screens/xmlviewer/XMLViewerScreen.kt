@@ -42,7 +42,7 @@ fun XMLViewerScreen(
   viewModel: XMLViewerViewModel,
   onToggleFullScreen: () -> Unit,
   onToggleShowCode: () -> Unit,
-  onOutlineClick: (View) -> Unit,
+  onOutlineClick: (View, ViewBean) -> Unit,
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
   xml: String,
