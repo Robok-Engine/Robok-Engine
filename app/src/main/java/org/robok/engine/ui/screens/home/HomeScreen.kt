@@ -50,7 +50,6 @@ import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.theme.Typography
-import org.robok.engine.BuildConfig
 
 @Composable
 fun HomeScreen() {
@@ -73,7 +72,7 @@ fun HomeScreen() {
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       )
       Text(
-        text = BuildConfig.APPLICATION_NAME,
+        text = stringResource(Strings.app_name),
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         color = MaterialTheme.colorScheme.onSurface,
