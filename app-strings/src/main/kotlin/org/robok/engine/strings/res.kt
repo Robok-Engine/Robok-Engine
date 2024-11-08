@@ -18,5 +18,3 @@ package org.robok.engine.strings
  */
 
 typealias Strings = org.robok.engine.strings.R.string
-
-typealias AndroidAttr = android.R.attr
