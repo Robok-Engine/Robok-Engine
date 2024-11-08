@@ -30,6 +30,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import java.util.Stack
 import org.robok.engine.core.components.shape.ButtonShape
+import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
@@ -52,12 +53,16 @@ fun XMLViewerScreen(
 
   Scaffold(
     topBar = {
-      if (!isFullScreen) {
+      ExpandAndShrink(!isFullScreen) {
         TopAppBar(
-          title = { Text("Viewer") },
+          title = {
+            Text(text = stringResource(Strings.title_gui_viewer))
+          },
           actions = {
-            IconButton(onClick = { onToggleShowCode() }) {
-              Icon(Icons.Default.Code, contentDescription = null)
+            IconButton(
+              onClick = { onToggleShowCode() }
+            ) {
+              Icon(Icons.Default.Code, contentDescription = "See Code")
             }
           },
         )
@@ -76,7 +81,7 @@ fun XMLViewerScreen(
           onClick = onToggleFullScreen,
           modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
         ) {
-          Icon(Icons.Default.Fullscreen, contentDescription = "Fullscreen")
+          Icon(Icons.Default.Fullscreen, contentDescription = "Full Screen")
         }
       }
     },
