@@ -72,15 +72,5 @@
     <string name="terminal_warning_update_packages">Apakah Anda ingin memperbarui paket?</string>
     <string name="template_name_empty_game">Game Kosong</string>
     <string name="slogan">Java Menjadi Game dalam Sekejap</string>
-    <string name="item_telegram_title">Telegram</string>
-    <string name="item_telegram_description">Komunitas Telegram Kami</string>
-    <string name="item_whatsapp_title">Ada apa</string>
-    <string name="item_whatsapp_description">Grup WhatsApp kami.</string>
-    <string name="item_github_title">Bahasa Indonesia: GitHub</string>
-    <string name="item_github_description">Repositori GitHub</string>
     <string name="text_contributors">Kontributor</string>
-    <string name="item_contribute_title">Menyumbang</string>
-    <string name="item_contribute_description">Lihat Bagaimana Anda Dapat Berkontribusi Bersama Kami</string>
-    <string name="item_libraries_title">Perangkat Lunak Pihak Ketiga</string>
-    <string name="item_libraries_description">Perpustakaan yang kami gunakan</string>
 </resources>

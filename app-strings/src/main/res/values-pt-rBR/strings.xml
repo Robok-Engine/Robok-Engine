@@ -101,21 +101,11 @@
     <!-- about section -->
     <string name="slogan">Java para jogo em um piscar de olhos</string>
     <string name="text_seeus">Veja-nos</string>
-    <string name="item_telegram_title">Telegram</string>
-    <string name="item_telegram_description">Nossa Comunidade Telegram</string>
-    <string name="item_github_title">GitHub</string>
-    <string name="item_github_description">Repositório GitHub</string>
     <string name="text_contributors">Contribuidores</string>
-    <string name="item_contribute_title">Contribuir</string>
-    <string name="item_contribute_description">Veja como você pode contribuir conosco</string>
-    <string name="item_libraries_title">Softwares de terceiros</string>
-    <string name="item_libraries_description">As bibliotecas que usamos</string>
     <!--end section-->
     
     <string name="title_templates">Templates</string>
     <string name="template_name_empty_game">Jogo vazio</string>
-    <string name="item_whatsapp_description">Ou grupo do whatsapp.</string>
-    <string name="item_whatsapp_title">WhatsApp</string>
     <string name="text_basic_info">Informações básicas</string>
     <string name="settings_app_description">Algumas configurações relacionadas ao aplicativo.</string>
     <string name="settings_app_use_monet_description">Use o tema do dispositivo no aplicativo.</string>

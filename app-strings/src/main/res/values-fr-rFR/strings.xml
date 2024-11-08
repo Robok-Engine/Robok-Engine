@@ -104,21 +104,8 @@
 	<string name="template_name_empty_game">Jeu vide</string>
     <!-- end section -->
 	
-	<!-- about section -->
     <string name="slogan">Du Java au Jeux dans un clin d\'œil</string>
     <string name="text_seeus">Contacter nous </string>
-    <string name="item_telegram_title">Telegram</string>
-    <string name="item_telegram_description">Notre Communauté Telegram</string>
-    <string name="item_github_title">GitHub</string>
-    <string name="item_github_description">Dépôt GitHub</string>
-    <string name="text_contributors">Contributeurs</string>
-    <string name="item_contribute_title">Contribuer</string>
-    <string name="item_contribute_description">Découvrez comment Vous pouvez Contribuer avec nous</string>
-    <string name="item_libraries_title">Logiciel tiers</string>
-    <string name="item_libraries_description">Les Bibliothèques que nous avons utilisées</string>
-    <!--end section-->
-<string name="item_whatsapp_title">WhatsApp</string>
-    <string name="item_whatsapp_description">Notre groupe Whatsapp.</string>
     <string name="settings_app_use_monet_title">Couleurs Dynamiques</string>
     <string name="settings_app_title">Paramètres d\'application</string>
     <string name="settings_app_description">Quelques Paramètres en relation avec l\'appli.</string>

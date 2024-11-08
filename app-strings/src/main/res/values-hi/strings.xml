@@ -117,18 +117,8 @@
     <!-- about section -->
     <string name="slogan">जावा से गेम तक चुटकी में</string>
     <string name="text_seeus">हमें देखें</string>
-    <string name="item_telegram_title">टेलीग्राम</string>
-    <string name="item_telegram_description">हमारा टेलीग्राम समुदाय</string>
-    <string name="item_whatsapp_title">व्हाट्सएप</string>
-    <string name="item_whatsapp_description">हमारा व्हाट्सएप समूह</string>
-    <string name="item_github_title">गिटहब</string>
-    <string name="item_github_description">गिटहब रिपॉजिटरी</string>
     <string name="text_contributors">योगदानकर्ता</string>
-    <string name="item_contribute_title">योगदान करें</string>
-    <string name="item_contribute_description">जानें कि आप हमारे साथ कैसे योगदान कर सकते हैं</string>
-    <string name="item_libraries_title">थर्ड-पार्टी सॉफ़्टवेयर</string>
-    <string name="item_libraries_description">जो लाइब्रेरीज़ हमने उपयोग कीं</string>
-    <!-- end section -->
+
 <string name="warning_project_installer_not_found">कोई पैकेज इंस्टॉलर नहीं मिला</string>
     <string name="common_word_close">बंद करें</string>
     <string name="common_word_close_others">दुसरे बंद करें</string>

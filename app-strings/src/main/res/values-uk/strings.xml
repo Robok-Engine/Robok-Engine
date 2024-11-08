@@ -55,13 +55,7 @@
     <string name="template_name_empty_game">Пуста гра</string>
     <string name="slogan">Від Java до гри в одну мить</string>
     <string name="text_seeus">Завітайте до нас</string>
-    <string name="item_telegram_title">Telegram</string>
-    <string name="item_whatsapp_description">Наша група у WhatsApp.</string>
-    <string name="item_github_description">Репозиторій на Github</string>
     <string name="text_contributors">Вкладники</string>
-    <string name="item_contribute_title">Зробити внесок</string>
-    <string name="item_contribute_description">Дізнайтеся, як ви можете зробити свій внесок разом з нами</string>
-    <string name="item_libraries_description">Бібліотеки, які ми використали</string>
     <string name="settings_code_editor_title">Налаштування редактора коду</string>
     <string name="settings_code_editor_description">Деякі налаштування редактора коду.</string>
     <string name="settings_libraries_title">Бібліотеки</string>
@@ -79,10 +73,6 @@
     <string name="warning_project_created_title">Проєкт успішно створено!</string>
     <string name="error_storage_perm_title">Помилка дозволу на зберігання</string>
     <string name="error_load_fail">Помилка завантаження.</string>
-    <string name="item_whatsapp_title">WhatsApp</string>
-    <string name="item_github_title">GitHub</string>
-    <string name="item_telegram_description">Наша спільнота в Telegram</string>
-    <string name="item_libraries_title">Стороннє програмне забезпечення</string>
     <string name="text_basic_info">Базова інформація</string>
     <string name="settings_app_title">Налаштування застосунку</string>
     <string name="settings_app_description">Деякі налаштування, пов\'язані із застосунком.</string>
