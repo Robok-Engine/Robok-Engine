@@ -63,7 +63,7 @@ import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
-import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
+import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivityOld
 import org.robok.engine.ui.theme.RobokTheme
 
 class EditorActivity :
@@ -412,7 +412,7 @@ class EditorActivity :
         codeComments = false,
         onGenerateCode = { code, config ->
           val intent =
-            Intent(this, XMLViewerActivity::class.java).apply {
+            Intent(this, XMLViewerActivityOld::class.java).apply {
               putExtra(ExtraKeys.Gui.CODE, code)
               putExtra(ExtraKeys.Gui.CONFIG, config)
             }

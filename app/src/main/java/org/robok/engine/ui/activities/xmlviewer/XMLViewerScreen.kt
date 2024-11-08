@@ -56,6 +56,7 @@ fun XMLViewerScreen(
         OutlineView(
           modifier = Modifier.fillMaxSize().padding(8.dp),
           onOutlineClick = onOutlineClick,
+          nodes = emptyList()
         )
         FloatingActionButton(
           onClick = onToggleFullScreen,

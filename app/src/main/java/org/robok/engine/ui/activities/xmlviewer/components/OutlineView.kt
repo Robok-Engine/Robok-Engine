@@ -25,13 +25,15 @@ import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView as OutlineView
+import org.robok.engine.feature.xmlviewer.TreeNode
+import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView as AndroidOutlineView
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
 import org.robok.engine.feature.xmlviewer.lib.utils.TreeNode
+import org.robok.engine.strings.Strings
 
 @Composable
 fun OutlineView(
