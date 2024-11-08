@@ -29,13 +29,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import java.util.Stack
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.animation.ExpandAndShrink
+import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,13 +55,9 @@ fun XMLViewerScreen(
     topBar = {
       ExpandAndShrink(!isFullScreen) {
         TopAppBar(
-          title = {
-            Text(text = stringResource(Strings.title_gui_viewer))
-          },
+          title = { Text(text = stringResource(Strings.title_gui_viewer)) },
           actions = {
-            IconButton(
-              onClick = { onToggleShowCode() }
-            ) {
+            IconButton(onClick = { onToggleShowCode() }) {
               Icon(Icons.Default.Code, contentDescription = "See Code")
             }
           },
@@ -92,10 +88,7 @@ fun XMLViewerScreen(
       title = { Text(text = stringResource(Strings.text_see_code)) },
       text = { Text(text = xml) },
       confirmButton = {
-        Button(
-          onClick = onToggleShowCode,
-          shape = ButtonShape()
-        ) {
+        Button(onClick = onToggleShowCode, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_ok))
         }
       },

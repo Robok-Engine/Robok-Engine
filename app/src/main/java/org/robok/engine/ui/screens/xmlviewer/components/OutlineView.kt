@@ -31,7 +31,6 @@ import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
 import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView as AndroidOutlineView
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.strings.Strings
 
 @Composable
 fun OutlineView(

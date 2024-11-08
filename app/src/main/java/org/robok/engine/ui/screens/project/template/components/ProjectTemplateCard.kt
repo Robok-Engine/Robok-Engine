@@ -20,8 +20,6 @@ package org.robok.engine.ui.screens.project.template.components
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -32,25 +30,19 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.Drawables
-import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.strings.Strings
 
 @Composable
 fun ProjectTemplateCard(template: ProjectTemplate, onTemplateClick: (ProjectTemplate) -> Unit) {
   Card(
-    modifier = Modifier
-      .heightIn(max = 250.dp)
-      .widthIn(max = 215.dp),
-    colors = CardDefaults.cardColors().copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
+    modifier = Modifier.heightIn(max = 250.dp).widthIn(max = 215.dp),
+    colors =
+      CardDefaults.cardColors()
+        .copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
     shape = MaterialTheme.shapes.medium,
     onClick = { onTemplateClick(template) },
   ) {
-    Box(
-      modifier = Modifier.fillMaxHeight().weight(1f),
-      contentAlignment = Alignment.Center,
-    ) {
+    Box(modifier = Modifier.fillMaxHeight().weight(1f), contentAlignment = Alignment.Center) {
       Image(
         painter = painterResource(id = Drawables.splash_bg),
         contentScale = ContentScale.Crop,

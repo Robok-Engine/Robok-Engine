@@ -32,5 +32,5 @@ data class Project(
   var libraries: MutableList<Library>? = null,
   var assetsFile: File? = null,
   var logger: Logger? = null,
-  var rootPath: File? = null
+  var rootPath: File? = null,
 )

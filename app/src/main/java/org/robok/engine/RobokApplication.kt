@@ -83,11 +83,7 @@ class RobokApplication : Application() {
     startKoin {
       androidLogger()
       androidContext(this@RobokApplication)
-      modules(
-        generalModule, 
-        preferencesModule,
-        settingsModule
-      )
+      modules(generalModule, preferencesModule, settingsModule)
     }
   }
 

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler.android.model;
+package org.robok.engine.feature.compiler.android.model
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,9 +21,7 @@ import java.io.File
 import java.util.regex.Pattern
 import org.robok.engine.core.utils.FileUtil
 
-data class Library(
-  private val path: File
-) {
+data class Library(private val path: File) {
   private val libraryName: String = path.name
   private val packagePattern = Pattern.compile("(package\\=\".*\")")
 

@@ -20,8 +20,6 @@ package org.robok.engine.ui.screens.project.template
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.automirrored.filled.ArrowBack
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
@@ -31,12 +29,11 @@ import androidx.compose.ui.layout.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.Drawables
+import org.robok.engine.core.components.Screen
 import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.strings.Strings
-import org.robok.engine.core.components.Screen
 import org.robok.engine.ui.screens.project.template.components.ProjectTemplateCard
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -54,11 +51,9 @@ fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
         templates.chunked(2).forEach { rowItems ->
           Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
+            horizontalArrangement = Arrangement.spacedBy(16.dp),
           ) {
-            rowItems.forEach { template ->
-              ProjectTemplateCard(template, onTemplateClick)
-            }
+            rowItems.forEach { template -> ProjectTemplateCard(template, onTemplateClick) }
           }
         }
       }

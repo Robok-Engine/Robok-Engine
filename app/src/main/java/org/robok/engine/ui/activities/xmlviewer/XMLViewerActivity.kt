@@ -20,7 +20,6 @@ package org.robok.engine.ui.activities.xmlviewer
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -40,7 +39,7 @@ import org.robok.engine.ui.theme.RobokTheme
 class XMLViewerActivity : RobokComposeActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    
+
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
     config?.let {
       when (it.orientation) {
