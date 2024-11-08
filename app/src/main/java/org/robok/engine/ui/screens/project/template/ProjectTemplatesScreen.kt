@@ -36,6 +36,7 @@ import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.strings.Strings
+import org.robok.engine.core.components.Screen
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,22 +47,7 @@ fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
 
   LaunchedEffect(Unit) { templates.add(DefaultTemplate()) }
 
-  val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
-
-  Scaffold(
-    modifier = Modifier.nestedScroll(scrollBehavior.nestedScrollConnection),
-    topBar = {
-      LargeTopAppBar(
-        title = { Text(stringResource(Strings.common_word_templates)) },
-        navigationIcon = {
-          IconButton(onClick = navController::navigateUp) {
-            Icon(Icons.AutoMirrored.Default.ArrowBack, contentDescription = null)
-          }
-        },
-        scrollBehavior = scrollBehavior,
-      )
-    },
-  ) { innerPadding ->
+  Screen(label = stringResource(id = Strings.common_word_templates)) { innerPadding ->
     Box(modifier = Modifier.padding(innerPadding).padding(16.dp)) {
       Column {
         templates.chunked(2).forEach { rowItems ->
