@@ -34,12 +34,13 @@ import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
 import org.robok.engine.strings.Strings
+import java.util.Stack
 
 @Composable
 fun OutlineView(
   modifier: Modifier = Modifier,
   nodes: List<TreeNode<ViewBean>>,
-  treeNodeStack: List<TreeNode<ViewBean>>,
+  treeNodeStack: Stack<TreeNode<ViewBean>>,
   onOutlineClick: (View) -> Unit = {},
   xml: String
 ) {

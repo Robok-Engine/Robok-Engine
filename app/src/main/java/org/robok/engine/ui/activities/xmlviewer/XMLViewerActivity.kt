@@ -33,6 +33,7 @@ import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.feature.xmlviewer.TreeNode
+import java.util.Stack
 
 class XMLViewerActivity : AppCompatActivity() {
   private val viewModel: XMLViewerViewModel by viewModels()

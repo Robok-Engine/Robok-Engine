@@ -29,6 +29,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
+import java.util.Stack
+
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun XMLViewerScreen(
@@ -36,7 +38,7 @@ fun XMLViewerScreen(
   onToggleFullScreen: () -> Unit,
   onOutlineClick: (View) -> Unit,
   nodes: List<TreeNode<ViewBean>>,
-  treeNodeStack: List<TreeNode<ViewBean>>,
+  treeNodeStack: Stack<TreeNode<ViewBean>>,
   xml: String
 ) {
   var isFullScreen by remember { viewModel.isFullScreen }
