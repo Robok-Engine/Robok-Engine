@@ -50,6 +50,7 @@ import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.theme.Typography
+import org.robok.engine.BuildConfig
 
 @Composable
 fun HomeScreen() {
