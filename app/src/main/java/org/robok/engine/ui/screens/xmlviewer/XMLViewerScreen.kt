@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.xmlviewer
+package org.robok.engine.ui.screens.xmlviewer
 
 /*
  *  This file is part of Robok © 2024.
@@ -33,7 +33,7 @@ import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
+import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

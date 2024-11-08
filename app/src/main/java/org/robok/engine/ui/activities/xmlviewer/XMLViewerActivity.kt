@@ -33,6 +33,7 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
 import org.robok.engine.ui.theme.RobokTheme
 
 class XMLViewerActivity : RobokComposeActivity() {
@@ -64,7 +65,7 @@ class XMLViewerActivity : RobokComposeActivity() {
         XMLViewerScreen(
           viewModel = viewModel,
           onToggleFullScreen = { viewModel.toggleFullScreen() },
-          onToggleShowCode = { viewModel.onToggleShowCode() },
+          onToggleShowCode = { viewModel.toggleShowCode() },
           nodes = nodes,
           treeNodeStack = treeNodeStack,
           xml = xml!!,

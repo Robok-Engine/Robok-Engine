@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.xmlviewer.components
+package org.robok.engine.ui.screens.xmlviewer.components
 
 /*
  *  This file is part of Robok © 2024.
