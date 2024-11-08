@@ -67,8 +67,8 @@ class XMLViewerActivity : RobokComposeActivity() {
           nodes = nodes,
           treeNodeStack = treeNodeStack,
           xml = xml!!,
-          onOutlineClick = { view ->
-            // do nothing for now
+          onOutlineClick = { view, bean ->
+            // handle click
           },
         )
       }

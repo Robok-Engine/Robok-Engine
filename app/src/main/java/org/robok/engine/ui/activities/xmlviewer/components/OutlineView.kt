@@ -25,7 +25,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.util.Stack
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
@@ -39,7 +38,7 @@ fun OutlineView(
   modifier: Modifier = Modifier,
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
-  onOutlineClick: (View) -> Unit = {},
+  onOutlineClick: (View, ViewBean) -> Unit = {},
   xml: String,
 ) {
   AndroidView(
@@ -54,19 +53,12 @@ fun OutlineView(
 
             override fun onClick(v: View, displayType: Int) {
               val bean = findBeanByView(nodes, v)
-              bean?.let {
+              bean?.let { bn ->
                 val sb = StringBuilder()
-                it.infoList.forEach { info ->
+                bn.infoList.forEach { info ->
                   sb.append("${info.attributeName}=${info.attributeValue}\n")
                 }
-                MaterialAlertDialogBuilder(context)
-                  .setTitle(context.getString(Strings.text_see_code))
-                  .setMessage(sb.toString())
-                  .setPositiveButton(context.getString(Strings.common_word_ok)) { dialog, _ ->
-                    dialog.dismiss()
-                  }
-                  .create()
-                  .show()
+                onOutlineClick(v, bn)
               }
             }
           }
