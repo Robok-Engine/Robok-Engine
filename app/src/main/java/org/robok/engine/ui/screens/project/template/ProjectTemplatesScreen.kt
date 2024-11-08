@@ -70,7 +70,7 @@ fun ProjectTemplateCard(template: ProjectTemplate, onTemplateClick: (ProjectTemp
   Card(
     modifier = Modifier
       .heightIn(max = 250.dp)
-      .widthIn(max = 250.dp),
+      .widthIn(max = 225.dp),
     colors = CardDefaults.cardColors().copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
     shape = MaterialTheme.shapes.medium,
     onClick = { onTemplateClick(template) },
