@@ -83,11 +83,14 @@ fun XMLViewerScreen(
   )
   if (isShowCodeDialog) {
     AlertDialog(
-      onDismissRequest = { onToggleShowCode() },
+      onDismissRequest = onToggleShowCode(),
       title = { Text(text = stringResource(Strings.text_see_code)) },
       text = { Text(text = xml) },
       confirmButton = {
-        Button(onClick = { onToggleShowCode }, shape = ButtonShape()) {
+        Button(
+          onClick = onToggleShowCode,
+          shape = ButtonShape()
+        ) {
           Text(stringResource(id = Strings.common_word_ok))
         }
       },
