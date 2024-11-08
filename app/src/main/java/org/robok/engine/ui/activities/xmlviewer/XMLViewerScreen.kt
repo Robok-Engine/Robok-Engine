@@ -33,6 +33,7 @@ import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.core.components.shape.ButtonShape
+import org.robok.engine.strings.Strings
 import java.util.Stack
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -46,14 +47,19 @@ fun XMLViewerScreen(
   xml: String
 ) {
   var isFullScreen by remember { viewModel.isFullScreen }
-
+  var isShowCodeDialog by remember { viewModel.isShowCodeDialog }
+  
   Scaffold(
     topBar = {
       if (!isFullScreen) {
         TopAppBar(
           title = { Text("Viewer") },
           actions = {
-            IconButton(onClick = { /* TODO */ }) {
+            IconButton(
+              onClick = {
+                 viewModel.setShowCodeDialog(true)
+              }
+            ) {
               Icon(Icons.Default.Code, contentDescription = null)
             }
           },
@@ -78,7 +84,7 @@ fun XMLViewerScreen(
       }
     },
   )
-  if (viewModel.isShowCodeDialog) {
+  if (isShowCodeDialog) {
     AlertDialog(
       onDismissRequest = {
         viewModel.setShowCodeDialog(false)
