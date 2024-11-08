@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import java.util.Stack
+import org.koin.androidx.compose.koinViewModel
 import org.robok.easyui.config.Config
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
@@ -37,11 +38,11 @@ import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
 import org.robok.engine.ui.theme.RobokTheme
 
 class XMLViewerActivity : RobokComposeActivity() {
-  private val viewModel: XMLViewerViewModel by viewModels()
-
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
+    
+    val viewModel = koinViewModel<XMLViewerViewModel>()
+    
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
     config?.let {
       when (it.orientation) {
