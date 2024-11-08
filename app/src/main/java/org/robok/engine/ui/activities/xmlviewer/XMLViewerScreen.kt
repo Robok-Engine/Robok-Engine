@@ -26,15 +26,15 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.res.*
-import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
-import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
-import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.feature.xmlviewer.TreeNode
-import org.robok.engine.core.components.shape.ButtonShape
-import org.robok.engine.strings.Strings
+import androidx.compose.ui.unit.dp
 import java.util.Stack
+import org.robok.engine.core.components.shape.ButtonShape
+import org.robok.engine.feature.xmlviewer.TreeNode
+import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
+import org.robok.engine.strings.Strings
+import org.robok.engine.ui.activities.xmlviewer.components.OutlineView
+import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,22 +44,18 @@ fun XMLViewerScreen(
   onOutlineClick: (View) -> Unit,
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
-  xml: String
+  xml: String,
 ) {
   var isFullScreen by remember { viewModel.isFullScreen }
   var isShowCodeDialog by remember { viewModel.isShowCodeDialog }
-  
+
   Scaffold(
     topBar = {
       if (!isFullScreen) {
         TopAppBar(
           title = { Text("Viewer") },
           actions = {
-            IconButton(
-              onClick = {
-                 viewModel.setShowCodeDialog(true)
-              }
-            ) {
+            IconButton(onClick = { viewModel.setShowCodeDialog(true) }) {
               Icon(Icons.Default.Code, contentDescription = null)
             }
           },
@@ -73,7 +69,7 @@ fun XMLViewerScreen(
           onOutlineClick = onOutlineClick,
           nodes = nodes,
           treeNodeStack = treeNodeStack,
-          xml= xml
+          xml = xml,
         )
         FloatingActionButton(
           onClick = onToggleFullScreen,
@@ -86,25 +82,14 @@ fun XMLViewerScreen(
   )
   if (isShowCodeDialog) {
     AlertDialog(
-      onDismissRequest = {
-        viewModel.setShowCodeDialog(false)
-      },
+      onDismissRequest = { viewModel.setShowCodeDialog(false) },
       title = { Text(text = stringResource(Strings.text_see_code)) },
-      text = {
-        Text(
-          text = xml
-        )
-      },
+      text = { Text(text = xml) },
       confirmButton = {
-        Button(
-          onClick = {
-            viewModel.setShowCodeDialog(false)
-          },
-          shape = ButtonShape(),
-        ) {
+        Button(onClick = { viewModel.setShowCodeDialog(false) }, shape = ButtonShape()) {
           Text(stringResource(id = Strings.common_word_ok))
         }
-      }
+      },
     )
   }
 }

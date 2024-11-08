@@ -22,12 +22,12 @@ import androidx.lifecycle.ViewModel
 
 class XMLViewerViewModel : ViewModel() {
   val isFullScreen = mutableStateOf(false)
-  val isShowCodeDialog = mutableStateOf(false) 
+  val isShowCodeDialog = mutableStateOf(false)
 
   fun toggleFullScreen() {
     isFullScreen.value = !isFullScreen.value
   }
-  
+
   fun setShowCodeDialog(newValue: Boolean) {
     isShowCodeDialog.value = newValue
   }

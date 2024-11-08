@@ -21,20 +21,19 @@ import android.content.pm.ActivityInfo
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import java.util.Stack
 import org.robok.easyui.config.Config
-import org.robok.engine.keys.ExtraKeys
-import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
-import org.robok.engine.ui.activities.base.RobokComposeActivity
-import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.feature.xmlviewer.TreeNode
-import java.util.Stack
+import org.robok.engine.keys.ExtraKeys
+import org.robok.engine.ui.activities.base.RobokComposeActivity
+import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.theme.RobokTheme
 
 class XMLViewerActivity : RobokComposeActivity() {
   private val viewModel: XMLViewerViewModel by viewModels()
@@ -51,14 +50,14 @@ class XMLViewerActivity : RobokComposeActivity() {
         "vertical" -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
       }
     }
-    
+
     val nodes = mutableListOf<TreeNode<ViewBean>>()
     val treeNodeStack = Stack<TreeNode<ViewBean>>()
 
     ProxyResources.init(this)
 
     clearResources()
-    
+
     val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     setContent {
       RobokTheme {
@@ -75,12 +74,11 @@ class XMLViewerActivity : RobokComposeActivity() {
       }
     }
   }
-  
+
   private fun clearResources() {
     try {
       ProxyResources.getInstance().viewIdMap.takeIf { it.isNotEmpty() }?.clear()
       MessageArray.getInstanse().clear()
-    } catch (e: Exception) {
-    }
+    } catch (e: Exception) {}
   }
 }

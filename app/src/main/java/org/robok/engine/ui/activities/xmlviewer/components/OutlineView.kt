@@ -17,7 +17,7 @@ package org.robok.engine.ui.activities.xmlviewer.components
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.view.View 
+import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -26,15 +26,13 @@ import androidx.compose.ui.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import java.util.Stack
 import org.robok.engine.feature.xmlviewer.TreeNode
-import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView as AndroidOutlineView
-import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
-import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
+import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView as AndroidOutlineView
+import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
-import java.util.Stack
 
 @Composable
 fun OutlineView(
@@ -42,7 +40,7 @@ fun OutlineView(
   nodes: List<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
   onOutlineClick: (View) -> Unit = {},
-  xml: String
+  xml: String,
 ) {
   AndroidView(
     modifier = modifier,
@@ -50,11 +48,9 @@ fun OutlineView(
       AndroidOutlineView(context).apply {
         setOutlineClickListener(
           object : AndroidOutlineView.OnOutlineClickListener {
-            override fun onDown(v: View, displayType: Int) {
-            }
+            override fun onDown(v: View, displayType: Int) {}
 
-            override fun onCancel(v: View, displayType: Int) {
-            }
+            override fun onCancel(v: View, displayType: Int) {}
 
             override fun onClick(v: View, displayType: Int) {
               val bean = findBeanByView(nodes, v)
@@ -66,7 +62,9 @@ fun OutlineView(
                 MaterialAlertDialogBuilder(context)
                   .setTitle(context.getString(Strings.text_see_code))
                   .setMessage(sb.toString())
-                  .setPositiveButton(context.getString(Strings.common_word_ok)) { dialog, _ -> dialog.dismiss() }
+                  .setPositiveButton(context.getString(Strings.common_word_ok)) { dialog, _ ->
+                    dialog.dismiss()
+                  }
                   .create()
                   .show()
               }
@@ -78,10 +76,10 @@ fun OutlineView(
           nodes = ArrayList(nodes),
           treeNodeStack = treeNodeStack,
           view = this,
-          xml = xml
+          xml = xml,
         )
       }
-    }
+    },
   )
 }
 
@@ -89,7 +87,7 @@ private fun parseXmlAndBuildTree(
   nodes: ArrayList<TreeNode<ViewBean>>,
   treeNodeStack: Stack<TreeNode<ViewBean>>,
   view: AndroidOutlineView,
-  xml: String
+  xml: String,
 ) {
   AndroidXmlParser.with(view)
     .setOnParseListener(
@@ -122,12 +120,18 @@ private fun parseXmlAndBuildTree(
             nodes.add(node)
           }
         }
-        override fun onFinish() { /* No additional logic needed for now */}
-        override fun onStart() { /* No additional logic needed for now */ }
+
+        override fun onFinish() {
+          /* No additional logic needed for now */
+        }
+
+        override fun onStart() {
+          /* No additional logic needed for now */
+        }
       }
     )
     .parse(xml)
-  }
+}
 
 fun findBeanByView(nodes: List<TreeNode<ViewBean>>, v: View): ViewBean? {
   for (node in nodes) {

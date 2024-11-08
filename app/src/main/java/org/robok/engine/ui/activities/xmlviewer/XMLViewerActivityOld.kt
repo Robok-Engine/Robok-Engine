@@ -27,13 +27,13 @@ import java.util.Stack
 import org.robok.easyui.config.Config
 import org.robok.engine.R
 import org.robok.engine.databinding.ActivityXmlViewerBinding
+import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.lib.parser.AndroidXmlParser
 import org.robok.engine.feature.xmlviewer.lib.parser.ReadOnlyParser
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.ui.OutlineView
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.ui.activities.base.RobokActivity
 
