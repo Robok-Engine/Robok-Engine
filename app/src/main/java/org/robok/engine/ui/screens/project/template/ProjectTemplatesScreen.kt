@@ -82,7 +82,9 @@ fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
 @Composable
 fun ProjectTemplateCard(template: ProjectTemplate, onTemplateClick: (ProjectTemplate) -> Unit) {
   Card(
-    modifier = Modifier.heightIn(max = 250.dp),
+    modifier = Modifier
+      .heightIn(max = 250.dp)
+      .widthIn(max = 250.dp),
     colors = CardDefaults.cardColors().copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
     shape = MaterialTheme.shapes.medium,
     onClick = { onTemplateClick(template) },
