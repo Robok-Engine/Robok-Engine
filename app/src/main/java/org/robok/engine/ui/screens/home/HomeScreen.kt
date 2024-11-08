@@ -73,7 +73,7 @@ fun HomeScreen() {
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       )
       Text(
-        text = BuildConfig.APP_NAME,
+        text = BuildConfig.APPLICATION_NAME,
         fontWeight = FontWeight.Bold,
         fontSize = 24.sp,
         color = MaterialTheme.colorScheme.onSurface,
