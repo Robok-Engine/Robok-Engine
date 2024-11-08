@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.template
+package org.robok.engine.ui.screens.project.template.components
 
 /*
  * This file is part of Robok © 2024.
@@ -36,32 +36,40 @@ import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.strings.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.ui.screens.project.template.components.ProjectTemplateCard
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ProjectTemplatesScreen(onTemplateClick: (ProjectTemplate) -> Unit) {
-  val navController = LocalMainNavController.current
+fun ProjectTemplateCard(template: ProjectTemplate, onTemplateClick: (ProjectTemplate) -> Unit) {
+  Card(
+    modifier = Modifier
+      .heightIn(max = 250.dp)
+      .widthIn(max = 215.dp),
+    colors = CardDefaults.cardColors().copy(containerColor = MaterialTheme.colorScheme.surfaceColorAtElevation(3.dp)),
+    shape = MaterialTheme.shapes.medium,
+    onClick = { onTemplateClick(template) },
+  ) {
+    Box(
+      modifier = Modifier.fillMaxHeight().weight(1f),
+      contentAlignment = Alignment.Center,
+    ) {
+      Image(
+        painter = painterResource(id = Drawables.splash_bg),
+        contentScale = ContentScale.Crop,
+        contentDescription = null,
+      )
 
-  val templates = remember { mutableStateListOf<ProjectTemplate>() }
-
-  LaunchedEffect(Unit) { templates.add(DefaultTemplate()) }
-
-  Screen(label = stringResource(id = Strings.common_word_templates)) { innerPadding ->
-    Box(modifier = Modifier.padding(16.dp)) {
-      Column {
-        templates.chunked(2).forEach { rowItems ->
-          Row(
-            modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.spacedBy(16.dp)
-          ) {
-            rowItems.forEach { template ->
-              ProjectTemplateCard(template, onTemplateClick)
-            }
-          }
-        }
-      }
+      Image(painter = painterResource(id = Drawables.ic_robok), contentDescription = null)
     }
+
+    ListItem(
+      overlineContent = {
+        Text(
+          text = if (template.javaSupport) "Java" else if (template.kotlinSupport) "Kotlin" else "",
+          fontWeight = FontWeight.Bold,
+        )
+      },
+      headlineContent = { Text(template.name) },
+      supportingContent = { Text(template.packageName) },
+      colors = ListItemDefaults.colors(containerColor = Color.Transparent),
+    )
   }
 }
