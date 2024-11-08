@@ -14,28 +14,24 @@
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import org.robok.engine.build.BuildConfig
-import java.io.ByteArrayOutputStream
 
-plugins {
-  alias(libs.plugins.robok.library)
-}
+dependencyResolutionManagement {
+  repositories {
+    google()
+    mavenCentral()
+  }
 
-android {
-  namespace = "${BuildConfig.packageName}.strings"
-  
-  buildTypes {
-    getByName("release") {
-      resValue("string", "app_name", "Robok")
-    }
-    getByName("debug") {
-      resValue("string", "app_name", "Robok Debug")
+  versionCatalogs {
+    create("libs") {
+      from(files("../gradle/libs.versions.toml"))
     }
   }
 }
 
-dependencies { 
-  implementation(libs.material)
-  implementation(libs.appcompat)
-}
+rootProject.name = "build-logic"
+
+include(
+  ":root",
+  ":common",
+  ":convention"
+)

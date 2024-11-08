@@ -2,20 +2,21 @@
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        google()
-        mavenCentral()
-    }
+  repositories {
+    includeBuild("build-logic")
+    gradlePluginPortal()
+    google()
+    mavenCentral()
+  }
 }
 
 dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        maven(url = "https://jitpack.io")
-    }
+  repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+  repositories {
+    google()
+    mavenCentral()
+    maven(url = "https://jitpack.io")
+  }
 }
 
 rootProject.name = "Robok-Engine"
@@ -34,7 +35,6 @@ include(":feature:compiler")
 
 include(":core:components")
 include(":core:utils")
-include(":core:theme")
 include(":core:antlr4:java")
 
 include(":robok-easy-ui:antlr4")

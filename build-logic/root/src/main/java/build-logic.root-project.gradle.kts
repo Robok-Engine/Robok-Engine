@@ -14,28 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import org.robok.engine.build.BuildConfig
-import java.io.ByteArrayOutputStream
 
-plugins {
-  alias(libs.plugins.robok.library)
-}
-
-android {
-  namespace = "${BuildConfig.packageName}.strings"
-  
-  buildTypes {
-    getByName("release") {
-      resValue("string", "app_name", "Robok")
-    }
-    getByName("debug") {
-      resValue("string", "app_name", "Robok Debug")
-    }
-  }
-}
-
-dependencies { 
-  implementation(libs.material)
-  implementation(libs.appcompat)
+require(project == rootProject) {
+  "This script must be apply to the root project." 
 }

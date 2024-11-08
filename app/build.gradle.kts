@@ -1,93 +1,74 @@
+/*
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import java.io.ByteArrayOutputStream
+import org.robok.engine.build.BuildConfig
+import org.robok.engine.build.CI
 
 plugins {
-    alias(libs.plugins.agp.app)
-    alias(libs.plugins.kotlin)
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.about.libraries.plugin)
-    id("kotlin-kapt")
-    id("kotlin-parcelize")
+  alias(libs.plugins.robok.application)
+  alias(libs.plugins.robok.compose)
+  alias(libs.plugins.kotlin.serialization)
+  alias(libs.plugins.about.libraries.plugin)
+  id("kotlin-kapt")
+  id("kotlin-parcelize")
 }
-
-val app_version = "0.0.1"
 
 android {
-    namespace = "org.robok.engine"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+  namespace = BuildConfig.packageName
+  
+  defaultConfig {
+    applicationId = BuildConfig.packageName
+    vectorDrawables.useSupportLibrary = true
+  }
     
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        targetSdk = libs.versions.android.targetSdk.get().toInt()
-        applicationId = "org.robok.engine"
-        versionCode = 1
-        versionName = app_version
-        
-        vectorDrawables {
-            useSupportLibrary = true
-        }
-    }
+  packaging {
+    jniLibs.useLegacyPackaging = true
+  }
     
-    packaging {
-        jniLibs {
-            useLegacyPackaging = true
-        }
+  sourceSets {
+    getByName("main") {
+      jniLibs.srcDirs("src/main/jniLibs")
     }
-    
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDirs("src/main/jniLibs")
-        }
-    }
+  }
+  
+  compileOptions {
+    isCoreLibraryDesugaringEnabled = true
+  }
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
-        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
-        isCoreLibraryDesugaringEnabled = true
+  buildTypes {
+    getByName("release") {
+      isMinifyEnabled = true
+      proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
     }
-    
-    kotlinOptions {
-        jvmTarget = libs.versions.android.jvm.get()
+    getByName("debug") {
+      versionNameSuffix = "@${CI.commitHash}"
     }
-
-    buildTypes {
-        getByName("release") {
-            isMinifyEnabled = true
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
-        }
-        getByName("debug") {
-            applicationIdSuffix = ".debug"
-            versionNameSuffix = "@${getShortGitHash()}"
-        }
+  }
+  
+  signingConfigs {
+    getByName("debug") {
+      storeFile = file(layout.buildDirectory.dir("../testkey.keystore"))
+      storePassword = "testkey"
+      keyAlias = "testkey"
+      keyPassword = "testkey"
     }
-
-    buildFeatures {
-        buildConfig = true
-        viewBinding = true
-        compose = true
-    }
-
-    /* disabled because not work in old versions 
-    androidResources {
-        generateLocaleConfig = true
-    }
-    */
-
-    signingConfigs {
-        getByName("debug") {
-            storeFile = file(layout.buildDirectory.dir("../testkey.keystore"))
-            storePassword = "testkey"
-            keyAlias = "testkey"
-            keyPassword = "testkey"
-        }
-    }
-}
-
-tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-    compilerOptions {
-        jvmTarget = JvmTarget.JVM_17
-    }
+  }
 }
 
 dependencies {
@@ -156,14 +137,3 @@ dependencies {
     
     implementation(projects.robokEasyUi.gui)
 }
-
-fun execAndGetOutput(vararg command: String): String {
-    val stdout = ByteArrayOutputStream()
-    exec {
-        commandLine(*command)
-        standardOutput = stdout
-    }
-    return stdout.toString().trim()
-}
-
-fun getShortGitHash() = execAndGetOutput("git", "rev-parse", "--short", "HEAD")

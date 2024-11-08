@@ -14,28 +14,21 @@
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import org.robok.engine.build.BuildConfig
-import java.io.ByteArrayOutputStream
+
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-  alias(libs.plugins.robok.library)
+  id("java-library")
+  alias(libs.plugins.kotlin.jvm)
 }
 
-android {
-  namespace = "${BuildConfig.packageName}.strings"
-  
-  buildTypes {
-    getByName("release") {
-      resValue("string", "app_name", "Robok")
-    }
-    getByName("debug") {
-      resValue("string", "app_name", "Robok Debug")
-    }
+tasks.withType<KotlinCompile>().configureEach {
+  compilerOptions {
+    jvmTarget.set(JvmTarget.JVM_21)
   }
 }
 
-dependencies { 
-  implementation(libs.material)
-  implementation(libs.appcompat)
+dependencies {
+  api(gradleApi())
 }

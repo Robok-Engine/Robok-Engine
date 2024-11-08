@@ -30,6 +30,7 @@ koin = "4.0.0"
 termux = "0.118.1"
 easy-ui = "1.0.0-Alpha01"
 gson = "2.11.0"
+ksp = "2.0.21-1.0.26"
 
 [plugins]
 # Android Gradle Plugin
@@ -46,6 +47,12 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 
 # AboutLibraries
 about-libraries-plugin = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
+
+# Us
+robok-application = { id = "robok.application", version = "unspecified" }
+robok-library = { id = "robok.library", version = "unspecified" }
+robok-compose = { id = "robok.compose", version = "unspecified" }
+
 
 [libraries]
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
@@ -116,3 +123,8 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version = "2.7.0" 
 insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version = "0.6.1" }
 gson = { group = "com.google.code.gson", name = "gson", version.ref ="gson" }
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+
+android-gradle = { module = "com.android.tools.build:gradle", version.ref = "agp" }
+compose-gradle = { module = "org.jetbrains.kotlin:compose-compiler-gradle-plugin", version.ref = "kotlin" }
+kotlin-gradle = { module = "org.jetbrains.kotlin:kotlin-gradle-plugin", version.ref = "kotlin" }
+ksp-gradle = { module = "com.google.devtools.ksp:com.google.devtools.ksp.gradle.plugin", version.ref = "ksp" }
