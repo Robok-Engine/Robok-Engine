@@ -20,7 +20,7 @@ jobs:
           
       - name: Download ktfmt
         run: |
-          wget https://github.com/trindadedev13/ktfmt/releases/download/1.0.0/ktfmt-0.54-SNAPSHOT-jar-with-dependencies.jar -O ktfmt.jar
+          wget https://github.com/maybetrindadedev/ktfmt/releases/download/1.0.0/ktfmt-0.54-SNAPSHOT-jar-with-dependencies.jar -O ktfmt.jar
 
       - name: Run ktfmt on Kotlin files
         run: |
