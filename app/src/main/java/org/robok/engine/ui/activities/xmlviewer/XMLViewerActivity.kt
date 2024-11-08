@@ -28,6 +28,7 @@ import androidx.compose.runtime.*
 import org.robok.easyui.config.Config
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
@@ -35,7 +36,7 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.feature.xmlviewer.TreeNode
 import java.util.Stack
 
-class XMLViewerActivity : AppCompatActivity() {
+class XMLViewerActivity : RobokComposeActivity() {
   private val viewModel: XMLViewerViewModel by viewModels()
 
   override fun onCreate(savedInstanceState: Bundle?) {
