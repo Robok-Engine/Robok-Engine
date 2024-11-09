@@ -18,7 +18,7 @@ import org.robok.engine.build.BuildConfig
 
 plugins {
   alias(libs.plugins.robok.library)
-  alias(libs.plugins.robok.library.compose)
+  alias(libs.plugins.compose.compiler)
 }
 
 android {

@@ -42,10 +42,5 @@ gradlePlugin {
       id = "robok.compose"
       implementationClass = "ComposeConventionPlugin"
     }
-    
-    register("robok.library.compose") {
-      id = "robok.compose"
-      implementationClass = "LibraryComposeConventionPlugin"
-    }
   }
 }
