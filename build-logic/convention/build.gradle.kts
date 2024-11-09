@@ -15,27 +15,32 @@
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
  
-import org.robok.engine.build.BuildConfig
-import java.io.ByteArrayOutputStream
-
 plugins {
-  alias(libs.plugins.robok.library)
+  `kotlin-dsl`
 }
 
-android {
-  namespace = "${BuildConfig.packageName}.strings"
-  
-  buildTypes {
-    getByName("release") {
-      resValue("string", "app_name", "Robok")
+dependencies {
+  compileOnly(libs.android.gradle)
+  compileOnly(libs.compose.gradle)
+  compileOnly(libs.kotlin.gradle)
+  compileOnly(libs.ksp.gradle)
+}
+
+gradlePlugin {
+  plugins {
+    register("robok.application") {
+      id = "robok.application"
+      implementationClass = "ApplicationConventionPlugin"
     }
-    getByName("debug") {
-      resValue("string", "app_name", "Robok Debug")
+    
+    register("robok.library") {
+      id = "robok.library"
+      implementationClass = "LibraryConventionPlugin"
+    }
+    
+    register("robok.compose") {
+      id = "robok.compose"
+      implementationClass = "ComposeConventionPlugin"
     }
   }
-}
-
-dependencies { 
-  implementation(libs.material)
-  implementation(libs.appcompat)
 }
