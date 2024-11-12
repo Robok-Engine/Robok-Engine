@@ -4,7 +4,6 @@
 | ThDev-only | 203 | Founder |
 | renovate[bot] | 138 | Bot |
 | gampiot-bot | 35 | Bot |
-| SyntaxSpin | 18 | Development |
 | RohitKushvaha01 | 16 | Development |
 | github-actions[bot] | 10 | Bot |
 | OSilvaDev | 9 | Development |
