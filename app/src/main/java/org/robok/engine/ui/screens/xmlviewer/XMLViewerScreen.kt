@@ -36,6 +36,8 @@ import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
+import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
+import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,13 +46,16 @@ fun XMLViewerScreen(
   onToggleFullScreen: () -> Unit,
   onToggleShowCode: () -> Unit,
   onOutlineClick: (View, ViewBean) -> Unit,
-  nodes: List<TreeNode<ViewBean>>,
-  treeNodeStack: Stack<TreeNode<ViewBean>>,
   xml: String,
 ) {
+  val nodes = mutableListOf<TreeNode<ViewBean>>()
+  val treeNodeStack = Stack<TreeNode<ViewBean>>()
   var isFullScreen by remember { viewModel.isFullScreen }
   var isShowCodeDialog by remember { viewModel.isShowCodeDialog }
-
+  ProxyResources.init(this)
+  
+  clearResources()
+  
   Scaffold(
     topBar = {
       ExpandAndShrink(!isFullScreen) {
@@ -93,5 +98,15 @@ fun XMLViewerScreen(
         }
       },
     )
+  }
+}
+private fun clearResources() {
+  try {
+    ProxyResources.getInstance().viewIdMap.takeIf {
+      it.isNotEmpty() 
+    }?.clear()
+    MessageArray.getInstanse().clear()
+  } catch (_: Exception) {
+  
   }
 }

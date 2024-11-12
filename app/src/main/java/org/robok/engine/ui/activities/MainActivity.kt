@@ -39,14 +39,14 @@ class MainActivity : RobokComposeActivity() {
       RobokTheme {
         configurePermission()
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideMainCompositionLocals { MainNavHost() }
+          ProvideCompositionLocals { MainNavHost() }
         }
       }
     }
   }
 
   @Composable
-  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     val navController = rememberNavController()
 
     CompositionLocalProvider(LocalMainNavController provides navController, content = content)

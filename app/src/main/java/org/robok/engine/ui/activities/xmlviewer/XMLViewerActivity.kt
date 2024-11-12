@@ -23,6 +23,7 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
+import androidx.navigation.compose.rememberNavController
 import java.util.Stack
 import org.koin.androidx.compose.koinViewModel
 import org.robok.easyui.config.Config
@@ -35,12 +36,16 @@ import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
 import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.platform.LocalXMLViewerNavController
+import org.robok.engine.navigation.XMLViewerNavHost
 
 class XMLViewerActivity : RobokComposeActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-
+    
+    val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
+    
     config?.let {
       when (it.orientation) {
         "landscape",
@@ -49,37 +54,23 @@ class XMLViewerActivity : RobokComposeActivity() {
         "vertical" -> requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
       }
     }
-
-    val nodes = mutableListOf<TreeNode<ViewBean>>()
-    val treeNodeStack = Stack<TreeNode<ViewBean>>()
-
-    ProxyResources.init(this)
-
-    clearResources()
-
-    val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
+    
     setContent {
-      val viewModel = koinViewModel<XMLViewerViewModel>()
       RobokTheme {
-        XMLViewerScreen(
-          viewModel = viewModel,
-          onToggleFullScreen = { viewModel.toggleFullScreen() },
-          onToggleShowCode = { viewModel.toggleShowCode() },
-          nodes = nodes,
-          treeNodeStack = treeNodeStack,
-          xml = xml!!,
-          onOutlineClick = { view, bean ->
-            // handle click
-          },
-        )
+        ProvideCompositionLocals {
+          XMLViewerNavHost(xml!!)
+        }
       }
     }
   }
+  
+  @Composable
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val navController = rememberNavController()
 
-  private fun clearResources() {
-    try {
-      ProxyResources.getInstance().viewIdMap.takeIf { it.isNotEmpty() }?.clear()
-      MessageArray.getInstanse().clear()
-    } catch (e: Exception) {}
+    CompositionLocalProvider(
+      LocalXMLViewerNavController provides navController,
+      content = content
+    )
   }
 }
