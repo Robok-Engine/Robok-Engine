@@ -43,10 +43,10 @@ fun ProjectTemplateCard(template: ProjectTemplate, onTemplateClick: (ProjectTemp
     onClick = { onTemplateClick(template) },
   ) {
     Box(modifier = Modifier.fillMaxHeight().weight(1f), contentAlignment = Alignment.Center) {
-      Image(
-        painter = painterResource(id = Drawables.splash_bg),
-        contentScale = ContentScale.Crop,
-        contentDescription = null,
+      Box(
+        modifier = Modifier
+          .fillMaxSize()
+          .background(Color.Black)
       )
 
       Image(painter = painterResource(id = Drawables.ic_robok), contentDescription = null)
