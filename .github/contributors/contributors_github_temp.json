@@ -88,28 +88,6 @@
     "contributions": 35
   },
   {
-    "login": "SyntaxSpin",
-    "id": 86142168,
-    "node_id": "MDQ6VXNlcjg2MTQyMTY4",
-    "avatar_url": "https://avatars.githubusercontent.com/u/86142168?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/SyntaxSpin",
-    "html_url": "https://github.com/SyntaxSpin",
-    "followers_url": "https://api.github.com/users/SyntaxSpin/followers",
-    "following_url": "https://api.github.com/users/SyntaxSpin/following{/other_user}",
-    "gists_url": "https://api.github.com/users/SyntaxSpin/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/SyntaxSpin/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/SyntaxSpin/subscriptions",
-    "organizations_url": "https://api.github.com/users/SyntaxSpin/orgs",
-    "repos_url": "https://api.github.com/users/SyntaxSpin/repos",
-    "events_url": "https://api.github.com/users/SyntaxSpin/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/SyntaxSpin/received_events",
-    "type": "User",
-    "user_view_type": "public",
-    "site_admin": false,
-    "contributions": 18
-  },
-  {
     "login": "RohitKushvaha01",
     "id": 99863818,
     "node_id": "U_kgDOBfPNCg",
