@@ -14,4 +14,4 @@
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
 | weblate | 1 | Bot |
-| ScriptWrap | 18 | N/A |
+| ScriptWrap | 18 | Bot |
