@@ -22,13 +22,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.routes.XMLViewerCodeRoute
 import org.robok.engine.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
-import org.robok.engine.ui.screens.xmlviewer.XMLViewerCodeScreen
+import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 
 @Composable
 fun XMLViewerNavHost(xml: String) {
@@ -53,9 +54,6 @@ fun XMLViewerNavHost(xml: String) {
       )
     }
     composable<XMLViewerCodeRoute> {
-      Column {
-        // todo screen
-      }
     }
   }
 }

@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.platform.LocalContext
 import java.util.Stack
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.shape.ButtonShape
@@ -52,7 +53,8 @@ fun XMLViewerScreen(
   val treeNodeStack = Stack<TreeNode<ViewBean>>()
   var isFullScreen by remember { viewModel.isFullScreen }
   var isShowCodeDialog by remember { viewModel.isShowCodeDialog }
-  ProxyResources.init(this)
+  val context = LocalContext.current
+  ProxyResources.init(context)
   
   clearResources()
   
