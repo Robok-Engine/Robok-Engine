@@ -30,6 +30,8 @@ koin = "4.0.0"
 termux = "0.118.1"
 easy-ui = "1.0.0-Alpha01"
 gson = "2.11.0"
+ktor = "3.0.1"
+slf4j = "1.7.36"
 
 [plugins]
 # Android Gradle Plugin
@@ -105,6 +107,13 @@ sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor", versio
 sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp", version.ref = "sora-editor" }
 sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java", version.ref = "sora-editor" }
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
+
+# Ktor
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
+ktor-serialization-kotlix-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
+
+slf4j = { group = "org.slf4j", name = "slf4j-android", version.ref = "slf4j" }
 
 # Robok Easy UI
 # easy-ui-gui = { group = "com.github.robok-engine.robok-easy-ui", name = "robok-gui", version.ref = "easy-ui" }

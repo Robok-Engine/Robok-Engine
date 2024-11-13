@@ -134,6 +134,11 @@ dependencies {
 
     implementation(libs.gson)
     
+    implementation(libs.ktor.client.android)
+    implementation(libs.ktor.client.content.negotiation)
+    implementation(libs.ktor.serialization.kotlix.json)
+    implementation(libs.slf4j)
+    
     implementation(libs.about.libraries.core)
     implementation(libs.about.libraries.compose)
     implementation(libs.about.libraries.compose.m3)

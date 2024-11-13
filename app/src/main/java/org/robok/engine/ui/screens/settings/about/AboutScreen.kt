@@ -57,14 +57,6 @@ fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
   val aboutViewModel = koinViewModel<AboutViewModel>()
   
-  var contributorsState = rememberContributorsState()
-  val scope = rememberCoroutineScope()
-
-  LaunchedEffect(Unit) {
-    contributors = fetchContributors()
-    contributorsState.value = if (contributors.isEmpty()) DefaultContributors() else contributors
-  }
-
   Screen(
     label = stringResource(id = Strings.settings_about_title),
     modifier = Modifier,
@@ -93,8 +85,8 @@ fun AboutScreen() {
       Spacer(modifier = Modifier.requiredHeight(16.dp))
     }
 
-    if (contributorsState.value.isNotEmpty()) {
-      val roles = contributorsState.value.groupBy { it.role }
+    if (aboutViewModel.contributors.isNotEmpty()) {
+      val roles = aboutViewModel.contributors.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
         PreferenceGroup(heading = role) {
           contributorsList.forEach {
@@ -147,38 +139,4 @@ private fun getLinksList(): List<Link> {
       url = stringResource(id = Strings.link_whatsapp),
     ),
   )
-}
-
-val client = OkHttpClient()
-
-suspend fun fetchContributors(): List<Contributor> {
-  val request =
-    Request.Builder()
-      .url(
-        "https://raw.githubusercontent.com/robok-inc/Robok-Engine/host/.github/contributors/contributors_github.json"
-      )
-      .build()
-
-  return withContext(Dispatchers.IO) {
-    try {
-      client.newCall(request).execute().use { response ->
-        if (response.isSuccessful) {
-          val jsonString = response.body?.string()
-          jsonString?.let {
-            val contributors = Json.decodeFromString<List<Contributor>>(it)
-
-            contributors.filter { contributor ->
-              contributor.type != "Bot" &&
-                contributor.role != "Bot" &&
-                contributor.user_view_type != "private"
-            }
-          } ?: emptyList()
-        } else {
-          emptyList()
-        }
-      }
-    } catch (e: Exception) {
-      emptyList()
-    }
-  }
 }
