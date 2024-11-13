@@ -3,6 +3,7 @@ package org.robok.engine.ui.screens.settings.about.repository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import org.robok.engine.models.about.Contributor
 
 class ContributorsRepository(
   val client: HttpClient
