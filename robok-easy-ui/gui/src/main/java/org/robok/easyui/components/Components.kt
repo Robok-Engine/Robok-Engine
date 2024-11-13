@@ -1,8 +1,26 @@
 package org.robok.easyui.components
 
+/*
+ *  This file is part of Robok © 2024.
+ *
+ *  Robok is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  Robok is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ */
+
 import org.robok.easyui.config.Config
-import org.robok.easyui.internal.DefaultValues
+import org.robok.easyui.internal.AttributeDefaults
 import org.robok.easyui.internal.Utils.comment
+import org.robok.easyui.internal.Utils.convertStyleToFileName
 import org.robok.easyui.internal.newLine
 import org.robok.easyui.internal.newLineBroken
 
@@ -24,9 +42,9 @@ class Components(
     xmlCodeList.newLineBroken("""<?xml version="1.0" encoding="utf-8"?>""")
     xmlCodeList.newLineBroken("<LinearLayout")
     indentLevel++
-    xmlCodeList.newLineBroken(DefaultValues.XMLNS(indent))
-    xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_HEIGHT}")
-    xmlCodeList.newLineBroken("${indent}${DefaultValues.LAYOUT_WIDTH}")
+    xmlCodeList.newLineBroken(AttributeDefaults.XMLNS(indent))
+    xmlCodeList.newLineBroken("${indent}${AttributeDefaults.LAYOUT_HEIGHT}")
+    xmlCodeList.newLineBroken("${indent}${AttributeDefaults.LAYOUT_WIDTH}")
     if (verticalRoot) xmlCodeList.newLineBroken("${indent}\tandroid:orientation=\"vertical\"")
     xmlCodeList.newLine("${indent}\tandroid:id=\"@+id/root_view\"")
     xmlCodeList.newLineBroken(">")
@@ -68,7 +86,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "Text") +
+        convertStyleToFileName(config.style + "Text") +
         "\""
     )
     closingTagLayoutList.newLine("Text:/>")
@@ -80,7 +98,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "Image") +
+        convertStyleToFileName(config.style + "Image") +
         "\""
     )
     closingTagLayoutList.newLine("Image:/>")
@@ -92,7 +110,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "CircleProgress") +
+        convertStyleToFileName(config.style + "CircleProgress") +
         "\""
     )
     closingTagLayoutList.newLine("CircleProgress:/>")
@@ -104,7 +122,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "BarProgress") +
+        convertStyleToFileName(config.style + "BarProgress") +
         "\""
     )
 
@@ -119,7 +137,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "Switch") +
+        convertStyleToFileName(config.style + "Switch") +
         "\""
     )
     closingTagLayoutList.newLine("Switch:/>")
@@ -131,7 +149,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "CheckBox") +
+        convertStyleToFileName(config.style + "CheckBox") +
         "\""
     )
     closingTagLayoutList.newLine("CheckBox:/>")
@@ -143,7 +161,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "RadioGroup") +
+        convertStyleToFileName(config.style + "RadioGroup") +
         "\""
     )
     closingTagLayoutList.newLine("RadioGroup:/>")
@@ -155,7 +173,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "RadioButton") +
+        convertStyleToFileName(config.style + "RadioButton") +
         "\""
     )
     closingTagLayoutList.newLine("RadioButton:/>")
@@ -167,7 +185,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "Slider") +
+        convertStyleToFileName(config.style + "Slider") +
         "\""
     )
     closingTagLayoutList.newLine("Slider:/>")
@@ -179,7 +197,7 @@ class Components(
     indentLevel++
     xmlCodeList.newLineBroken(
       "${indent}android:background=\"@drawable/" +
-        config.convertStyleToFileName(config.style + "Button") +
+        convertStyleToFileName(config.style + "Button") +
         "\""
     )
     closingTagLayoutList.newLine("Button:/>")

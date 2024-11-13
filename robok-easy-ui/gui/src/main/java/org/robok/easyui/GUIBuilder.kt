@@ -65,14 +65,6 @@ class GUIBuilder(
     }
 
     if (components.closingTagLayoutList.isNotEmpty()) {
-      /* if (components.closingTagLayoutList.last().equals(Config.getName())) {
-          components.xmlCodeList.newLineBroken(comment("It's here"))
-          config = Config(orientation = orientation, style = style)
-          components.closingTagLayoutList.removeAt(components.closingTagLayoutList.size - 1)
-          return
-      }else{
-          components.xmlCodeList.newLineBroken(comment("last is: " + components.closingTagLayoutList.last()))
-      }*/
       val tags = components.closingTagLayoutList.last().split(":")
 
       if (tags.size >= 2) {
@@ -153,9 +145,6 @@ class GUIBuilder(
     var attribute = ""
 
     if (methodName.equals(Config.getName())) {
-      /*if (!components.closingTagLayoutList.last().equals(methodName))
-      components.closingTagLayoutList.newLine(methodName)*/
-
       when (key) {
         "orientation" -> orientation = value
         "style" -> style = value

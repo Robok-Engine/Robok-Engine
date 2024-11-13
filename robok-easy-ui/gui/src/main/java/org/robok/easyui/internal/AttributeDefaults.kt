@@ -22,14 +22,17 @@ package org.robok.easyui.internal
  * @author Aquiles Trindade (trindadedev).
  */
 
-internal object DefaultValues {
+internal object AttributeDefaults {
   private const val XMLNS_ANDROID = "\txmlns:android=\"http://schemas.android.com/apk/res/android\""
   private const val XMLNS_APP = "\txmlns:app=\"http://schemas.android.com/apk/res-auto\""
   private const val XMLNS_TOOLS = "\txmlns:tools=\"http://schemas.android.com/tools\""
-  const val NO_ID = ""
+
   const val LAYOUT_HEIGHT = "\tandroid:layout_height=\"wrap_content\""
   const val LAYOUT_WIDTH = "\tandroid:layout_width=\"match_parent\""
 
   fun XMLNS(indent: String): String =
     "${indent}${XMLNS_ANDROID}\n${indent}${XMLNS_APP}\n${indent}${XMLNS_TOOLS}"
+
+  const val DEFAULT_KEY = "id"
+  const val DEFAULT_VALUE = "@+id/robok_no_id_view"
 }

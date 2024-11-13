@@ -24,6 +24,7 @@ import static org.robok.easyui.antlr4.GUIParser.GuiFileContext;
 
 import org.robok.easyui.GUIBuilder;
 import org.robok.easyui.antlr4.GUIBaseListener;
+import org.robok.easyui.internal.AttributeDefaults;
 
 /*
  * Class that identifies the code and uses the { @link GUIBuilder } to generate de the.
@@ -39,55 +40,75 @@ public class GUIParserListener extends GUIBaseListener {
     this.guiBuilder = guiBuilder;
   }
 
+  /*
+   * When finish the code
+   */
   @Override
   public void exitGuiFile(GuiFileContext ctx) {
     guiBuilder.finish();
     super.exitGuiFile(ctx);
   }
 
-  // Detecta o início de um layout (ex: Column {)
+  /*
+   * Detects the start of a layout (example: Column {)
+   */
   @Override
   public void enterComponent(ComponentContext ctx) {
-    String componentName = ctx.IDENTIFIER().getText();
-    this.componentName = componentName;
+    this.componentName = ctx.IDENTIFIER().getText();
     guiBuilder.runMethod(componentName);
   }
 
-  // Detecta o fechamento de um layout (ex: })
+  /*
+   * Detects the closing of a layout (example:  })
+   */
   @Override
   public void exitComponent(ComponentContext ctx) {
     if (ctx.getText().endsWith("}")) {
       guiBuilder.closeBlockLayout();
-    } else guiBuilder.closeBlockComponent();
+      return;
+    }
+    guiBuilder.closeBlockComponent();
   }
 
-  // Ao entrar em uma lista de argumentos (ex: Button(text = "Click here"))
+  /*
+   * When entering a list of arguments (example: Button(text = "Click here"))
+   */
   @Override
   public void enterArgumentList(ArgumentListContext ctx) {
     String componentName = ctx.getParent().getChild(0).getText();
-    // runMethodWithParams("runMethodArguments", componentName);
   }
 
+  /*
+   * When enter new argument (example text = "")
+   */
   @Override
   public void enterArgument(ArgumentContext ctx) {
-    String key;
+    String key = AttributeDefaults.DEFAULT_KEY;
+
     if (ctx.IDENTIFIER() != null) {
       key = ctx.IDENTIFIER().getText();
     } else {
       key = ctx.IDENTIFIER_COLON().getText();
     }
-    String value = getValue(ctx);
+
+    String value = getAttributeValue(ctx);
+
     if (value.startsWith("\"") && value.endsWith("\"")) {
       value = value.substring(1, value.length() - 1);
     }
+
     if (value.contains("\\\"")) {
       value = value.replaceAll("\\\"", "&quot;");
     }
+
     guiBuilder.runMethodWithParameters("addAttribute", componentName, key, value);
   }
 
-  public String getValue(ArgumentContext ctx) {
-    String value = "null";
+  /*
+   * Returns the attribute value (example: text = "A", this méthod will return A)
+   */
+  private String getAttributeValue(ArgumentContext ctx) {
+    String value = AttributeDefaults.DEFAULT_VALUE;
 
     if (ctx.value().STRING() != null) {
       value = ctx.value().STRING().getText();

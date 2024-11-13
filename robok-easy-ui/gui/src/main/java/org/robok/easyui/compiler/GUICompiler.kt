@@ -31,7 +31,7 @@ import org.robok.easyui.compiler.listener.GUIParserListener
  * @author Thiarley Rocha (ThDev-only).
  */
 
-class GUICompiler(guiBuilder: GUIBuilder, code: String) {
+class GUICompiler(private val guiBuilder: GUIBuilder, private val code: String) {
 
   init {
     val th = Thread {
