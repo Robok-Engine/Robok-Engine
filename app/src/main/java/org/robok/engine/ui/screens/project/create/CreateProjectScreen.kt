@@ -85,7 +85,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
 
   if (state.errorMessage != null) {
     LaunchedEffect(state.errorMessage) {
-      toastHostState.showToast(message = state.errorMessage, icon = Icons.Rounded.Error)
+      toastHostState.showToast(message = state.errorMessage, icon = Icons.Outlined.Error)
       viewModel.updateErrorMessage(null)
     }
   }
