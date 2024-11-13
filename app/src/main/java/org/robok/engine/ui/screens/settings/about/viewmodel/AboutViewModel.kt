@@ -57,6 +57,6 @@ class AboutViewModel(
   }
   
   private suspend fun fetchCommits() {
-    _contributors = repo.fetchContributors()
+    _contributors = repository.fetchContributors()
   }
 }
