@@ -55,7 +55,7 @@ var contributors = DefaultContributors()
 @Composable
 fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
-  val aboutViewModel = koinViewMoodel<AboutViewModel>()
+  val aboutViewModel = koinViewModel<AboutViewModel>()
   
   var contributorsState = rememberContributorsState()
   val scope = rememberCoroutineScope()
