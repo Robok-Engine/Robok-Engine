@@ -47,7 +47,15 @@ class XMLViewerActivity : RobokComposeActivity() {
       }
     }
 
-    setContent { RobokTheme { ProvideCompositionLocals { XMLViewerNavHost(xml!!) } } }
+    setContent {
+      RobokTheme {
+        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+          ProvideCompositionLocals {
+            XMLViewerNavHost(xml!!) 
+          }
+        }
+      }
+    }
   }
 
   @Composable
