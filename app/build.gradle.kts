@@ -125,6 +125,7 @@ dependencies {
     implementation(libs.libgdx.backend.android)
     
     implementation(libs.sora.editor)
+    implementation(libs.sora.editor.language.textmate)
     
     implementation(libs.termux.terminal.view)
     implementation(libs.termux.terminal.emulator)
