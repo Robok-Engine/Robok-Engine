@@ -20,7 +20,7 @@ package org.robok.engine.platform
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
 import org.robok.engine.noLocalProvidedFor
-import org.robok.engine.core.components.ToastHostState
+import org.robok.engine.core.components.toast.ToastHostState
 
 val LocalMainNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalMainNavController") }

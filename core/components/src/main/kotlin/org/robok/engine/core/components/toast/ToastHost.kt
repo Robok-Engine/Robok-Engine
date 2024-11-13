@@ -1,20 +1,19 @@
-package org.robok.engine.core.utils
-
+package org.robok.engine.core.components.toast
 /*
- *  This file is part of LayoutEditorX © 2024.
+ *  This file is part of T8RIN © 2023.
  *
- *  LayoutEditorX is free software: you can redistribute it and/or modify
- *  it under the terms of the MIT License as published by
+ *  T8RIN is free software: you can redistribute it and/or modify
+ *  it under the terms of the Apache-2.0 License as published by
  *  the Open Source Initiative, either version [Version] of the License, or
  *  (at your option) any later version.
  *
- *  LayoutEditorX is distributed in the hope that it will be useful,
+ *  T8RIN is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- *  MIT License for more details.
+ *  Apache-2.0 License for more details.
  *
- *  You should have received a copy of the MIT License
- *  along with LayoutEditorX. If not, see <https://opensource.org/licenses/MIT>.
+ *  You should have received a copy of the Apache-2.0 License
+ *  along with T8RIN. If not, see <https://opensource.org/licenses/Apache-2.0>.
  */
 
 import androidx.annotation.FloatRange

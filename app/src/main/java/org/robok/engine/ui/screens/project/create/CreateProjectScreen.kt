@@ -51,9 +51,9 @@ import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.shape.ButtonShape
-import org.robok.engine.core.components.ToastHost
-import org.robok.engine.core.components.ToastHostState
-import org.robok.engine.core.components.rememberToastHostState
+import org.robok.engine.core.components.toast.ToastHost
+import org.robok.engine.core.components.toast.ToastHostState
+import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
