@@ -30,10 +30,13 @@
 -keep class sun.security.** { *; }
 
 # Robok
+# Engine
 -keep class org.robok.engine.core.components.edges.StretchEdgeEffect { *; }
 -keep class org.robok.engine.feature.modeling.** { *; }
+# Easy UI
 -keep class org.robok.easyui.GUIBuilder { *; }
 -keep class org.robok.easyui.components.Components { *; }
+-keep class org.robok.easyui.config.Config { *; }
 
 # LibGDX
 -keep class com.badlogic.gdx.** { *; }
