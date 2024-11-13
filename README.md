@@ -92,6 +92,11 @@ Help translate Robok-Engine! Visit [Weblate](https://hosted.weblate.org/engage/r
 
 ---
 
+# Thanks!
+- See [Thanks Readme](https://github.com/Robok-Engine/Robok-Engine/tree/dev/THANKS.md)
+
+---
+
 <div align="center">
   <img src="https://ziadoua.github.io/m3-Markdown-Badges/badges/LicenceGPLv3/licencegplv32.svg" alt="GPLv3 License">
 </div>
