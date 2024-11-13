@@ -20,7 +20,7 @@ package org.robok.easyui.config
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class Config(val orientation: String, val style: String) {
+data class Config(val orientation: String, val style: String): java.io.Serializable {
   companion object {
     fun getName(): String = "config"
   }
