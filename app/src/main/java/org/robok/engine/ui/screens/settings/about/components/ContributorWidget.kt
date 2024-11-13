@@ -31,6 +31,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.models.about.Contributor
 
 @Composable
 fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
