@@ -30,7 +30,7 @@ class AboutViewModel: ViewModel() {
  
   private var _currentContributor by mutableStateOf<Contributor?>(null)
   val currentContributor: Contributor
-    get() = _currentContributor
+    get() = _currentContributor!!
     
   fun setShowContributorDialog(value: Boolean) {
     _isShowContributorDialog = value

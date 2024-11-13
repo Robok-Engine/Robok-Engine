@@ -117,7 +117,7 @@ fun AboutScreen() {
 
   if (aboutViewModel.isShowContributorDialog) {
     ContributorDialog(
-      contributor = aboutViewModel.currentContributor!!,
+      contributor = aboutViewModel.currentContributor,
       onDismissRequest = { aboutViewModel.setShowContributorDialog(false) },
     )
   }
