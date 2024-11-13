@@ -225,7 +225,7 @@
   @com.google.gson.annotations.Until <fields>;
 }
 
--keep class com.google.gson.TypeAdapter { *; }
+-keep class com.google.gson.** { *; }
 
 # Keep no-args constructor of classes which can be used with @JsonAdapter
 # By default their no-args constructor is invoked to create an adapter instance
