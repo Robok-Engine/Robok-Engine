@@ -18,13 +18,13 @@ package org.robok.engine.ui.screens.project.create
  */
 
 import android.content.Intent
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
@@ -51,6 +51,9 @@ import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.shape.ButtonShape
+import org.robok.engine.core.components.ToastHost
+import org.robok.engine.core.components.ToastHostState
+import org.robok.engine.core.components.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
@@ -67,7 +70,8 @@ fun CreateProjectScreen(template: ProjectTemplate) {
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
   val state = viewModel.state
-
+  val toastHostState = rememberToastHostState()
+  
   LaunchedEffect(template) {
     viewModel.updateProjectName(template.name)
     viewModel.updatePackageName(template.packageName)
@@ -76,12 +80,16 @@ fun CreateProjectScreen(template: ProjectTemplate) {
   Screen(label = stringResource(id = Strings.title_create_project)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
       Screen(state = state, viewModel = viewModel, template = template, context = context)
+      ToastHost(hostState = toastHostState)
     }
   }
 
   if (state.errorMessage != null) {
     LaunchedEffect(state.errorMessage) {
-      Toast.makeText(context, state.errorMessage, Toast.LENGTH_SHORT).show()
+      toastHostState.showToast(
+        message = state.errorMessage,
+        icon = Icons.Rounded.Error
+      )
       viewModel.updateErrorMessage(null)
     }
   }
