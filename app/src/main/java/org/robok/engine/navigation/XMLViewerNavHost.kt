@@ -50,6 +50,6 @@ fun XMLViewerNavHost(xml: String) {
         onOutlineClick = { view, bean -> },
       )
     }
-    composable<XMLViewerCodeRoute> { XMLViewerScreen(xml = xml) }
+    composable<XMLViewerCodeRoute> { XMLViewerCodeScreen(xml = xml) }
   }
 }
