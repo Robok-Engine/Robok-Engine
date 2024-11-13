@@ -62,15 +62,16 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.platform.LocalToastHostState
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
   val context = LocalContext.current
-
+  val toastHostState = LocalToastHostState.current
+  
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
   val state = viewModel.state
-  val toastHostState = rememberToastHostState()
   
   LaunchedEffect(template) {
     viewModel.updateProjectName(template.name)
