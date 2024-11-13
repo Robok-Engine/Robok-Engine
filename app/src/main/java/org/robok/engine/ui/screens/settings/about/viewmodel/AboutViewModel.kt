@@ -27,9 +27,9 @@ import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.ui.screens.settings.about.repository.ContributorsRepository
 import kotlinx.coroutines.launch
 
-class AboutViewModel: ViewModel(
+class AboutViewModel(
   private val repository: ContributorsRepository
-) {
+): ViewModel() {
   private var _isShowContributorDialog by mutableStateOf(false)
   val isShowContributorDialog: Boolean
     get() = _isShowContributorDialog
