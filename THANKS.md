@@ -6,5 +6,6 @@
 - Tyron for the android compiler
 - Ken Ellinwood for the ApkSigner
 - Rosemoe Sora Editor for the Sora Code Editor
-- Vivek for the XMLViewer Code Editor (Editor of see code Activity) and ToastHost
+- Vivek for the XMLViewer Code Editor (Editor of see code Activity)
+- T8RIN for the ToastHost
 - Thanks for All!!!!
