@@ -32,7 +32,7 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 
 @Composable
-private fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
+fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
   val uriHandler = LocalUriHandler.current
   AlertDialog(
     onDismissRequest = onDismissRequest,

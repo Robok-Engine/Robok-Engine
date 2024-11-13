@@ -34,7 +34,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.models.about.Link
 
 @Composable
-private fun LinkWidget(model: Link) {
+fun LinkWidget(model: Link) {
   val uriHandler = LocalUriHandler.current
 
   PreferenceTemplate(
