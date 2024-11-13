@@ -17,8 +17,10 @@ package org.robok.easyui.config
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
+@Keep
 @Serializable
 data class Config(val orientation: String, val style: String) : java.io.Serializable {
   companion object {

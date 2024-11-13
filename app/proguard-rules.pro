@@ -37,6 +37,10 @@
 -keep class org.robok.easyui.GUIBuilder { *; }
 -keep class org.robok.easyui.components.Components { *; }
 -keep class org.robok.easyui.config.Config { *; }
+# Keep the no-args constructor of the deserialized class
+-keepclassmembers class org.robok.easyui.config.Config {
+  <init>();
+}
 
 # LibGDX
 -keep class com.badlogic.gdx.** { *; }
