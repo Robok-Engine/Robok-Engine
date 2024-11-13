@@ -18,7 +18,7 @@ class ContributorsRepository(
         client.get("https://raw.githubusercontent.com/robok-engine/Robok-Engine/host/.github/contributors/contributors_github.json")
 
       if (response.status.value in 200..299) {
-        val body: String = response.bodyAsText()
+        val body: String = response.readText()
         val contributors: List<Contributor> = Json.decodeFromString(responseBody)
         val contributorsFiltered = contributors.filter { contributor ->
           contributor.type != "Bot" &&
