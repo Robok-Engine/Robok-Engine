@@ -104,7 +104,9 @@ private fun setCodeEditorFactory(
     
     val resUtils = ResUtils(context)
     colorScheme.setColor(EditorColorScheme.WHOLE_BACKGROUND, resUtils.getAttrColor(MaterialR.attr.colorSurface))
-
+    colorScheme.setColor(EditorColorScheme.LINE_NUMBER_PANEL, resUtils.getAttrColor(MaterialR.attr.colorSurface))
+    colorScheme.setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, resUtils.getAttrColor(MaterialR.attr.colorSurface))
+    
     val language = TextMateLanguage.create("text.xml", true)
     setEditorLanguage(language)
   }
