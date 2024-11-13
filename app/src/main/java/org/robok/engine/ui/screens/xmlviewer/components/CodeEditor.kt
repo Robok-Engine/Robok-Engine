@@ -45,42 +45,25 @@ import org.eclipse.tm4e.core.registry.IThemeSource
  */
 
 @Composable
-fun rememberCodeEditorState(
-  initialContent: Content = Content()
-) = remember {
-  CodeEditorState(
-    initialContent = initialContent
-  )
+fun rememberCodeEditorState(initialContent: Content = Content()) = remember {
+  CodeEditorState(initialContent = initialContent)
 }
 
 @Composable
-fun CodeEditor(
-  modifier: Modifier = Modifier,
-  state: CodeEditorState
-) {
+fun CodeEditor(modifier: Modifier = Modifier, state: CodeEditorState) {
   val context = LocalContext.current
   val dark = isSystemInDarkTheme()
 
   val editor = remember {
-    setCodeEditorFactory(
-      isDarkMode = dark,
-      context = context,
-      state = state
-    )
+    setCodeEditorFactory(isDarkMode = dark, context = context, state = state)
   }
-  AndroidView(
-    factory = { editor },
-    modifier = modifier,
-    onRelease = {
-      it.release()
-    }
-  )
+  AndroidView(factory = { editor }, modifier = modifier, onRelease = { it.release() })
 }
 
 private fun setCodeEditorFactory(
   isDarkMode: Boolean = true,
   context: Context,
-  state: CodeEditorState
+  state: CodeEditorState,
 ): CodeEditor {
   val editor = CodeEditor(context)
   val typeface = Typeface.createFromAsset(context.assets, "JetBrainsMono-Regular.ttf")
@@ -98,8 +81,11 @@ private fun setCodeEditorFactory(
     themeRegistry.loadTheme(
       ThemeModel(
         IThemeSource.fromInputStream(
-          FileProviderRegistry.getInstance().tryGetInputStream(path), path, null
-        ), theme
+          FileProviderRegistry.getInstance().tryGetInputStream(path),
+          path,
+          null,
+        ),
+        theme,
       )
     )
 
@@ -122,7 +108,7 @@ private fun setCodeEditorFactory(
 
 data class CodeEditorState(
   var editor: CodeEditor? = null,
-  val initialContent: Content = Content()
+  val initialContent: Content = Content(),
 ) {
   var content by mutableStateOf(initialContent)
 }

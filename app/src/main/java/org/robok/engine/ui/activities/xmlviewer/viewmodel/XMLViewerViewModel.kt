@@ -22,7 +22,7 @@ import androidx.lifecycle.ViewModel
 
 class XMLViewerViewModel : ViewModel() {
   val isFullScreen = mutableStateOf(false)
-  
+
   fun toggleFullScreen() {
     isFullScreen.value = !isFullScreen.value
   }

@@ -17,10 +17,6 @@ package org.robok.engine.ui.screens.home
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Context
-import android.content.Intent
-import android.net.Uri
-import android.os.Bundle
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.*
@@ -37,10 +33,7 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import java.io.File
 import org.robok.engine.Drawables
-import org.robok.engine.core.utils.PathUtils
-import org.robok.engine.core.utils.getDefaultPath
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.ManageProjectsRoute
@@ -48,7 +41,6 @@ import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.theme.Typography
 
 @Composable
@@ -129,12 +121,10 @@ fun HomeScreen() {
 @Composable
 fun HomeCardItem(icon: ImageVector, title: String, onClick: () -> Unit) {
   Card(
-    modifier =Modifier
-      .padding(8.dp)
-      .height(100.dp),
+    modifier = Modifier.padding(8.dp).height(100.dp),
     shape = MaterialTheme.shapes.medium,
     elevation = CardDefaults.cardElevation(0.dp),
-    onClick = onClick
+    onClick = onClick,
   ) {
     Column(
       modifier = Modifier.padding(11.dp).fillMaxSize(),
