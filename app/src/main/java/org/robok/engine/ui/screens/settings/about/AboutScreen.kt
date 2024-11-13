@@ -93,7 +93,6 @@ fun AboutScreen() {
       Spacer(modifier = Modifier.requiredHeight(16.dp))
     }
 
-    var viewModel.isShowContributorDialog by remember { mutableStateOf(false) }
     if (contributorsState.value.isNotEmpty()) {
       val roles = contributorsState.value.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
