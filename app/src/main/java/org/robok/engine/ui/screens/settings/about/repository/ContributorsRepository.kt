@@ -13,7 +13,7 @@ class ContributorsRepository(
   suspend fun fetchContributors(): List<Contributor> {
     return try {
       val response =
-        client.get("https://raw.githubusercontent.com/robok-inc/Robok-Engine/host/.github/contributors/contributors_github.json")
+        client.get("https://raw.githubusercontent.com/robok-engine/Robok-Engine/host/.github/contributors/contributors_github.json")
 
       if (response.status.value in 200..299) {
         val contributors: List<Contributor> = response.body()
