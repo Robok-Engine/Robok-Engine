@@ -48,13 +48,15 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
 import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
 import org.robok.engine.ui.screens.settings.about.components.LinkWidget
+import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 
 var contributors = DefaultContributors()
 
 @Composable
 fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
-
+  val aboutViewModel = koinViewMoodel<AboutViewModel>()
+  
   var contributorsState = rememberContributorsState()
   val scope = rememberCoroutineScope()
 
@@ -67,7 +69,7 @@ fun AboutScreen() {
     label = stringResource(id = Strings.settings_about_title),
     modifier = Modifier,
     horizontalAlignment = Alignment.CenterHorizontally,
-  ) {
+  ) { innerPadding ->
     Column(
       modifier = Modifier.padding(top = 8.dp),
       horizontalAlignment = Alignment.CenterHorizontally,
@@ -91,8 +93,7 @@ fun AboutScreen() {
       Spacer(modifier = Modifier.requiredHeight(16.dp))
     }
 
-    var currentContributor by remember { mutableStateOf<Contributor>(Contributor()) }
-    var isShowContributorDialog by remember { mutableStateOf(false) }
+    var viewModel.isShowContributorDialog by remember { mutableStateOf(false) }
     if (contributorsState.value.isNotEmpty()) {
       val roles = contributorsState.value.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
@@ -101,8 +102,8 @@ fun AboutScreen() {
             ContributorWidget(
               model = it,
               onClick = { contributor ->
-                isShowContributorDialog = true
-                currentContributor = contributor
+                viewModel.setShowContributorDialog(true)
+                viewModel.setCurrentContributor(contributor)
               },
             )
           }
@@ -115,10 +116,10 @@ fun AboutScreen() {
     }
   }
 
-  if (isShowContributorDialog) {
+  if (viewModel.isShowContributorDialog) {
     ContributorDialog(
-      contributor = currentContributor,
-      onDismissRequest = { isShowContributorDialog = false },
+      contributor = viewModel.currentContributor,
+      onDismissRequest = { viewModel.setShowContributorDialog(false) },
     )
   }
 }
