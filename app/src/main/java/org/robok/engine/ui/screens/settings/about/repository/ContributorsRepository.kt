@@ -9,7 +9,7 @@ class ContributorsRepository(
   val client: HttpClient
 ) {
   
-  suspend fun getContributors(): List<Contributor> {
+  suspend fun fetchContributors(): List<Contributor> {
     return try {
       val response =
         client.get("https://raw.githubusercontent.com/robok-inc/Robok-Engine/host/.github/contributors/contributors_github.json")
