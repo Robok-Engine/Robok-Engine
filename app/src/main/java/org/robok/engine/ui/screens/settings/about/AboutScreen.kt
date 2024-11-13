@@ -125,6 +125,7 @@ fun AboutScreen() {
 
 @Composable private fun rememberContributorsState() = remember { mutableStateOf(contributors) }
 
+@Composable
 private fun getLinksList(): List<Link> {
   return listOf(
     Link(
