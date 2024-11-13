@@ -101,8 +101,8 @@ fun AboutScreen() {
             ContributorWidget(
               model = it,
               onClick = { contributor ->
-                viewModel.setShowContributorDialog(true)
-                viewModel.setCurrentContributor(contributor)
+                aboutViewModel.setShowContributorDialog(true)
+                aboutViewModel.setCurrentContributor(contributor)
               },
             )
           }
@@ -115,10 +115,10 @@ fun AboutScreen() {
     }
   }
 
-  if (viewModel.isShowContributorDialog) {
+  if (aboutViewModel.isShowContributorDialog) {
     ContributorDialog(
-      contributor = viewModel.currentContributor,
-      onDismissRequest = { viewModel.setShowContributorDialog(false) },
+      contributor = aboutViewModel.currentContributor,
+      onDismissRequest = { aboutViewModel.setShowContributorDialog(false) },
     )
   }
 }
