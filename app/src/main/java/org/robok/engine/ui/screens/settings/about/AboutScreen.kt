@@ -111,7 +111,7 @@ fun AboutScreen() {
     }
 
     PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
-      getLinks().forEach { LinkWidget(model = it) }
+      getLinksList().forEach { LinkWidget(model = it) }
     }
   }
 
