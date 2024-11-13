@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.xmlviewer.viewmodel
+package org.robok.engine.ui.screens.xmlviewer.viewmodel
 
 /*
  *  This file is part of Robok © 2024.

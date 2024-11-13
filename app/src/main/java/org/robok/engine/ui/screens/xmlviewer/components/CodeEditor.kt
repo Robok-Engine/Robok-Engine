@@ -38,6 +38,8 @@ import io.github.rosemoe.sora.langs.textmate.registry.provider.AssetsFileResolve
 import io.github.rosemoe.sora.text.Content
 import io.github.rosemoe.sora.widget.CodeEditor
 import org.eclipse.tm4e.core.registry.IThemeSource
+import org.robok.engine.res.ResUtils
+import com.google.android.material.R as MaterialR
 
 /*
  * A Sora Code Editor Implementation to use with compose
@@ -98,6 +100,9 @@ private fun setCodeEditorFactory(
       colorScheme = TextMateColorScheme.create(ThemeRegistry.getInstance())
       colorScheme = colorScheme
     }
+    
+    val resUtils = ResUtils(context)
+    colorScheme.setColor(EditorColorScheme.WHOLE_BACKGROUND, resUtils.getAttrColor(MaterialR.attr.colorSurface))
 
     val language = TextMateLanguage.create("text.xml", true)
     setEditorLanguage(language)

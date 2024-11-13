@@ -36,7 +36,7 @@ import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
 
 @OptIn(ExperimentalMaterial3Api::class)
