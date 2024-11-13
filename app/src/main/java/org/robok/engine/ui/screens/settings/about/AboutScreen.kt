@@ -55,12 +55,12 @@ var contributors = DefaultContributors()
 fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
-  val contributorsState by rememberContributorsState()
+  var contributorsState = rememberContributorsState()
   val scope = rememberCoroutineScope()
 
   LaunchedEffect(Unit) {
     contributors = fetchContributors()
-    contributorsState = if (contributors.isEmpty()) DefaultContributors() else contributors
+    contributorsState.value = if (contributors.isEmpty()) DefaultContributors() else contributors
   }
 
   Screen(
@@ -93,8 +93,8 @@ fun AboutScreen() {
 
     var currentContributor by remember { mutableStateOf<Contributor>(Contributor()) }
     var isShowContributorDialog by remember { mutableStateOf(false) }
-    if (contributorsState.isNotEmpty()) {
-      val roles = contributorsState.groupBy { it.role }
+    if (contributorsState.value.isNotEmpty()) {
+      val roles = contributorsState.value.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
         PreferenceGroup(heading = role) {
           contributorsList.forEach {
