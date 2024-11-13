@@ -24,11 +24,11 @@ import androidx.lifecycle.ViewModel
 import org.robok.engine.models.about.Contributor
 
 class AboutViewModel: ViewModel() {
-  private var _isShowContributorDialog = mutableStateOf(false)
+  private var _isShowContributorDialog by mutableStateOf(false)
   val isShowContributorDialog: Boolean
     get() = _isShowContributorDialog
  
-  private var _currentContributor = mutableStateOf<Contributor?>(null)
+  private var _currentContributor by mutableStateOf<Contributor?>(null)
   val currentContributor: Contributor
     get() = _currentContributor
     
