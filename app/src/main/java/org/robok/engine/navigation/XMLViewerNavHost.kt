@@ -27,6 +27,7 @@ import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
+import org.robok.engine.ui.screens.xmlviewer.XMLViewerCodeScreen
 
 @Composable
 fun XMLViewerNavHost(xml: String) {
