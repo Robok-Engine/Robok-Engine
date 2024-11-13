@@ -29,6 +29,7 @@ import org.robok.engine.routes.XMLViewerCodeRoute
 import org.robok.engine.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
+import org.robok.engine.ui.screens.xmlviewer.XMLViewerCodeScreen
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
 
 @Composable
@@ -48,12 +49,15 @@ fun XMLViewerNavHost(xml: String) {
       XMLViewerScreen(
         viewModel = viewModel,
         onToggleFullScreen = { viewModel.toggleFullScreen() },
-        onToggleShowCode = { viewModel.toggleShowCode() },
+        onShowCodeClick = { 
+          navController.navigate(XMLViewerCodeRoute)
+        },
         xml = xml,
         onOutlineClick = { view, bean -> },
       )
     }
     composable<XMLViewerCodeRoute> {
+      XMLViewerScreen(xml = xml)
     }
   }
 }

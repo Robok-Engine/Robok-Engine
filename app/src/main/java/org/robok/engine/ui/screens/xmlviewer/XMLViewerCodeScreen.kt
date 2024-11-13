@@ -36,68 +36,35 @@ import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.xmlviewer.viewmodel.XMLViewerViewModel
-import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
+import org.robok.engine.ui.screens.xmlviewer.components.CodeViewer
+import org.robok.engine.ui.screens.xmlviewer.components.rememberCodeEditorState
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
+import io.github.rosemoe.sora.text.Content
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun XMLViewerScreen(
-  viewModel: XMLViewerViewModel,
-  onToggleFullScreen: () -> Unit,
-  onOutlineClick: (View, ViewBean) -> Unit,
-  onShowCodeClick: () -> Unit,
+fun XMLViewerCodeScreen(
   xml: String,
 ) {
-  val nodes = mutableListOf<TreeNode<ViewBean>>()
-  val treeNodeStack = Stack<TreeNode<ViewBean>>()
-  
-  var isFullScreen by remember { viewModel.isFullScreen }
-  
-  val context = LocalContext.current
-  ProxyResources.init(context)
-  
-  clearResources()
-  
   Scaffold(
     topBar = {
-      ExpandAndShrink(!isFullScreen) {
-        TopAppBar(
-          title = { Text(text = stringResource(Strings.title_gui_viewer)) },
-          actions = {
-            IconButton(onClick = onShowCodeClick) {
-              Icon(Icons.Default.Code, contentDescription = "See Code")
-            }
-          },
-        )
-      }
+      TopAppBar(
+        title = { 
+          Text(text = stringResource(Strings.text_see_code)) 
+        }
+      )
     },
     content = { padding ->
-      Box(modifier = Modifier.padding(padding)) {
-        OutlineView(
-          modifier = Modifier.fillMaxSize().padding(8.dp),
-          onOutlineClick = onOutlineClick,
-          nodes = nodes,
-          treeNodeStack = treeNodeStack,
-          xml = xml,
-        )
-        FloatingActionButton(
-          onClick = onToggleFullScreen,
-          modifier = Modifier.align(Alignment.BottomEnd).padding(16.dp),
-        ) {
-          Icon(Icons.Default.Fullscreen, contentDescription = "Full Screen")
-        }
-      }
-    },
+      val editorState = rememberCodeEditorState(
+        initialContent = Content(xml)
+      )
+      CodeEditor(
+        modifier = Modifier
+          .padding(innerPadding)
+          .fillMaxSize(),
+        state = editorState,
+      )
+    }
   )
-}
-private fun clearResources() {
-  try {
-    ProxyResources.getInstance().viewIdMap.takeIf {
-      it.isNotEmpty() 
-    }?.clear()
-    MessageArray.getInstanse().clear()
-  } catch (_: Exception) {
-  
-  }
 }
