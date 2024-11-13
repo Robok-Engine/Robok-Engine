@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.strings.Strings
 import org.robok.engine.models.about.Contributor
+import org.robok.engine.core.components.shape.ButtonShape
 
 @Composable
 fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
