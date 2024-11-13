@@ -28,7 +28,7 @@ import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 
 const val APP_PREFERENCES = "app_preferences"
 
-val preferencesModule = module {
+val PreferencesModule = module {
   singleOf(::PreferencesRepository)
   viewModelOf(::PreferencesViewModel)
 

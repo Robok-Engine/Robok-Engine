@@ -22,4 +22,4 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 
-val settingsModule = module { viewModel { (context: Context) -> SettingsRDKViewModel(context) } }
+val SettingsModule = module { viewModel { (context: Context) -> SettingsRDKViewModel(context) } }

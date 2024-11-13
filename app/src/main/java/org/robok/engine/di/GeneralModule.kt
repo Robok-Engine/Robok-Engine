@@ -26,7 +26,7 @@ import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewMod
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 
-val generalModule = module {
+val GeneralModule = module {
   viewModel { (projectManager: ProjectManager) -> CreateProjectViewModel(projectManager) }
   viewModelOf(::ManageProjectsViewModel)
   viewModelOf(::EditorViewModel)

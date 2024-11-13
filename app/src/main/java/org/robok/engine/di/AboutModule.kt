@@ -22,6 +22,6 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 
-val aboutModule = module {
+val AboutModule = module {
   viewModelOf(::AboutViewModel)
 }

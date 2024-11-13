@@ -28,10 +28,10 @@ import kotlin.system.exitProcess
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
-import org.robok.engine.di.generalModule
-import org.robok.engine.di.preferencesModule
-import org.robok.engine.di.settingsModule
-import org.robok.engine.di.aboutModule
+import org.robok.engine.di.GeneralModule
+import org.robok.engine.di.PreferencesModule
+import org.robok.engine.di.SettingsModule
+import org.robok.engine.di.AboutModule
 import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
@@ -85,10 +85,10 @@ class RobokApplication : Application() {
       androidLogger()
       androidContext(this@RobokApplication)
       modules(
-        generalModule,
-        preferencesModule,
-        settingsModule,
-        aboutModule
+        GeneralModule,
+        PreferencesModule,
+        SettingsModule,
+        AboutModule
       )
     }
   }
