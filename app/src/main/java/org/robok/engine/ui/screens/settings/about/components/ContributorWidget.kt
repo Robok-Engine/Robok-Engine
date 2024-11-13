@@ -30,7 +30,7 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import coil3.compose.AsyncImage
+import coil.compose.AsyncImage
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.models.about.Contributor
