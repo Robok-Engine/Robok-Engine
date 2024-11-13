@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.agp.lib)
     alias(libs.plugins.kotlin)
+    alias(libs.plugins.compose.compiler)
 }
 
 android {
@@ -29,4 +30,8 @@ android {
 dependencies {
     implementation(libs.material)
     implementation(libs.appcompat)
+    
+    implementation(platform(libs.compose.bom))
+    implementation(libs.material3.compose)
+    implementation(libs.ui.compose)
 }
