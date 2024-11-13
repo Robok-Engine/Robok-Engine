@@ -34,10 +34,7 @@ fun XMLViewerCodeScreen(xml: String) {
     topBar = { TopAppBar(title = { Text(text = stringResource(Strings.text_see_code)) }) },
     content = { innerPadding ->
       val editorState = rememberCodeEditorState(initialContent = Content(xml))
-      CodeEditor(
-        modifier = Modifier.padding(innerPadding).fillMaxSize(),
-        state = editorState
-      )
+      CodeEditor(modifier = Modifier.padding(innerPadding).fillMaxSize(), state = editorState)
     },
   )
 }

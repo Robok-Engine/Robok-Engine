@@ -30,24 +30,17 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.models.about.Link
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
-private fun ContributorDialog(
-  contributor: Contributor,
-  onDismissRequest: () -> Unit
-) {
+private fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
   val uriHandler = LocalUriHandler.current
   AlertDialog(
     onDismissRequest = onDismissRequest,
-    title = {
-      Text(text = stringResource(Strings.title_open_contributor_github)) 
-    },
+    title = { Text(text = stringResource(Strings.title_open_contributor_github)) },
     text = {
       Text(
-        text = stringResource(Strings.text_open_contributor_github)
-          .replace("-name-", contributor.login)
+        text =
+          stringResource(Strings.text_open_contributor_github).replace("-name-", contributor.login)
       )
     },
     confirmButton = {
@@ -58,19 +51,12 @@ private fun ContributorDialog(
         },
         shape = ButtonShape(),
       ) {
-        Text(
-          text = stringResource(id = Strings.common_word_open)
-        )
+        Text(text = stringResource(id = Strings.common_word_open))
       }
     },
     dismissButton = {
-      OutlinedButton(
-        onClick = onDismissRequest,
-        shape = ButtonShape()
-      ) {
-        Text(
-          text = stringResource(id = Strings.common_word_cancel)
-        )
+      OutlinedButton(onClick = onDismissRequest, shape = ButtonShape()) {
+        Text(text = stringResource(id = Strings.common_word_cancel))
       }
     },
   )

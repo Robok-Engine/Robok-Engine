@@ -25,7 +25,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Icon
@@ -52,27 +51,25 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.toast.ToastHost
-import org.robok.engine.core.components.toast.ToastHostState
-import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
-import org.robok.engine.platform.LocalToastHostState
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
   val context = LocalContext.current
   val toastHostState = LocalToastHostState.current
-  
+
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
   val state = viewModel.state
-  
+
   LaunchedEffect(template) {
     viewModel.updateProjectName(template.name)
     viewModel.updatePackageName(template.packageName)
@@ -87,10 +84,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
 
   if (state.errorMessage != null) {
     LaunchedEffect(state.errorMessage) {
-      toastHostState.showToast(
-        message = state.errorMessage,
-        icon = Icons.Rounded.Error
-      )
+      toastHostState.showToast(message = state.errorMessage, icon = Icons.Rounded.Error)
       viewModel.updateErrorMessage(null)
     }
   }

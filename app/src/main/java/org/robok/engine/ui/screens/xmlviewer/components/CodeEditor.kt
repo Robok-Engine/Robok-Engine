@@ -28,6 +28,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.viewinterop.AndroidView
+import com.google.android.material.R as MaterialR
 import io.github.rosemoe.sora.langs.textmate.TextMateColorScheme
 import io.github.rosemoe.sora.langs.textmate.TextMateLanguage
 import io.github.rosemoe.sora.langs.textmate.registry.FileProviderRegistry
@@ -40,7 +41,6 @@ import io.github.rosemoe.sora.widget.CodeEditor
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import org.eclipse.tm4e.core.registry.IThemeSource
 import org.robok.engine.res.ResUtils
-import com.google.android.material.R as MaterialR
 
 /*
  * A Sora Code Editor Implementation to use with compose
@@ -101,12 +101,21 @@ private fun setCodeEditorFactory(
       colorScheme = TextMateColorScheme.create(ThemeRegistry.getInstance())
       colorScheme = colorScheme
     }
-    
+
     val resUtils = ResUtils(context)
-    colorScheme.setColor(EditorColorScheme.WHOLE_BACKGROUND, resUtils.getAttrColor(MaterialR.attr.colorSurface))
-    colorScheme.setColor(EditorColorScheme.LINE_NUMBER_PANEL, resUtils.getAttrColor(MaterialR.attr.colorSurface))
-    colorScheme.setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, resUtils.getAttrColor(MaterialR.attr.colorSurface))
-    
+    colorScheme.setColor(
+      EditorColorScheme.WHOLE_BACKGROUND,
+      resUtils.getAttrColor(MaterialR.attr.colorSurface),
+    )
+    colorScheme.setColor(
+      EditorColorScheme.LINE_NUMBER_PANEL,
+      resUtils.getAttrColor(MaterialR.attr.colorSurface),
+    )
+    colorScheme.setColor(
+      EditorColorScheme.LINE_NUMBER_BACKGROUND,
+      resUtils.getAttrColor(MaterialR.attr.colorSurface),
+    )
+
     val language = TextMateLanguage.create("text.xml", true)
     setEditorLanguage(language)
   }

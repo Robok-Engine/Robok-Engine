@@ -26,12 +26,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import org.robok.engine.core.components.rememberToastHostState
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.theme.RobokTheme
-import org.robok.engine.core.components.rememberToastHostState
 
 class MainActivity : RobokComposeActivity() {
 
@@ -51,11 +51,11 @@ class MainActivity : RobokComposeActivity() {
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     val navController = rememberNavController()
     val toastHostState = rememberToastHostState()
-    
+
     CompositionLocalProvider(
       LocalMainNavController provides navController,
       LocalToastHostState provides toastHostState,
-      content = content
+      content = content,
     )
   }
 }

@@ -51,9 +51,7 @@ class XMLViewerActivity : RobokComposeActivity() {
     setContent {
       RobokTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideCompositionLocals {
-            XMLViewerNavHost(xml!!) 
-          }
+          ProvideCompositionLocals { XMLViewerNavHost(xml!!) }
         }
       }
     }

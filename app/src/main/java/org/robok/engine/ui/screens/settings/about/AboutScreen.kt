@@ -30,9 +30,7 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import coil.compose.AsyncImage
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient
@@ -42,16 +40,14 @@ import org.robok.engine.BuildConfig
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.settings.about.components.LinkWidget
-import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
+import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
+import org.robok.engine.ui.screens.settings.about.components.LinkWidget
 
 var contributors = DefaultContributors()
 
@@ -94,24 +90,20 @@ fun AboutScreen() {
       )
       Spacer(modifier = Modifier.requiredHeight(16.dp))
     }
-    
-    var currentContributor by remember {
-      mutableStateOf<Contributor>(Contributor())
-    }
-    var isShowContributorDialog by remember {
-      mutableStateOf(false)
-    }
+
+    var currentContributor by remember { mutableStateOf<Contributor>(Contributor()) }
+    var isShowContributorDialog by remember { mutableStateOf(false) }
     if (contributorsState.isNotEmpty()) {
       val roles = contributorsState.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
         PreferenceGroup(heading = role) {
-          contributorsList.forEach { 
+          contributorsList.forEach {
             ContributorWidget(
               model = it,
               onClick = { contributor ->
                 isShowContributorDialog = true
                 currentContributor = contributor
-              }
+              },
             )
           }
         }
@@ -119,26 +111,19 @@ fun AboutScreen() {
     }
 
     PreferenceGroup(heading = stringResource(id = Strings.text_seeus)) {
-      getLinks().forEach {
-        LinkWidget(model = it) 
-      }
+      getLinks().forEach { LinkWidget(model = it) }
     }
   }
-  
+
   if (isShowContributorDialog) {
     ContributorDialog(
       contributor = currentContributor,
-      onDismissRequest = {
-        isShowContributorDialog = false
-      }
+      onDismissRequest = { isShowContributorDialog = false },
     )
   }
 }
 
-@Composable
-private fun rememberContributorsState() = remember {
-  mutableStateOf(contributors)
-}
+@Composable private fun rememberContributorsState() = remember { mutableStateOf(contributors) }
 
 private fun getLinksList(): List<Link> {
   return listOf(

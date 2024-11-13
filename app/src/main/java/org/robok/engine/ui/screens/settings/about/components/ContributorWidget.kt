@@ -30,30 +30,16 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.models.about.Link
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
-fun ContributorWidget(
-  model: Contributor,
-  onClick: (Contributor) -> Unit = { }
-) {
+fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
   PreferenceTemplate(
-    title = {
-      Text(
-        fontWeight = FontWeight.Bold, 
-        text = model.login
-      ) 
-    },
-    description = {
-      Text(text = model.role) 
-    },
-    modifier = Modifier.clickable {
-      onClick(model)
-    },
+    title = { Text(fontWeight = FontWeight.Bold, text = model.login) },
+    description = { Text(text = model.role) },
+    modifier = Modifier.clickable { onClick(model) },
     startWidget = {
-      val avatarUrl =
-        if (model.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else model.avatar_url
+      val avatarUrl = if (model.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else model.avatar_url
       AsyncImage(
         model = avatarUrl,
         contentDescription = null,

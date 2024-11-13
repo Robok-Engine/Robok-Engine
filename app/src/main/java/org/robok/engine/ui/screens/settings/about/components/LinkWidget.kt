@@ -30,34 +30,23 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.models.about.Link
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.models.about.Link
 
 @Composable
 private fun LinkWidget(model: Link) {
   val uriHandler = LocalUriHandler.current
 
   PreferenceTemplate(
-    modifier = Modifier.clickable {
-      uriHandler.openUri(model.url)
-    },
-    title = {
-      Text(
-        fontWeight = FontWeight.Bold,
-        text = model.name
-      )
-    },
-    description = {
-      Text(text = model.description) 
-    },
+    modifier = Modifier.clickable { uriHandler.openUri(model.url) },
+    title = { Text(fontWeight = FontWeight.Bold, text = model.name) },
+    description = { Text(text = model.description) },
     startWidget = {
       Image(
         painter = painterResource(id = model.imageResId),
         contentDescription = null,
-        modifier = Modifier
-          .size(32.dp)
-          .clip(CircleShape),
+        modifier = Modifier.size(32.dp).clip(CircleShape),
       )
-    }
+    },
   )
 }
