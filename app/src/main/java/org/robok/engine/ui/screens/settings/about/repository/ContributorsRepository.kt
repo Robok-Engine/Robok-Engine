@@ -3,6 +3,7 @@ package org.robok.engine.ui.screens.settings.about.repository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.client.statement.bodyAsText
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.models.about.Contributor
 import kotlinx.serialization.decodeFromString
@@ -18,8 +19,8 @@ class ContributorsRepository(
         client.get("https://raw.githubusercontent.com/robok-engine/Robok-Engine/host/.github/contributors/contributors_github.json")
 
       if (response.status.value in 200..299) {
-        val body: String = response.readText()
-        val contributors: List<Contributor> = Json.decodeFromString(responseBody)
+        val body: String = response.bodyAsText()()
+        val contributors: List<Contributor> = Json.decodeFromString(body)
         val contributorsFiltered = contributors.filter { contributor ->
           contributor.type != "Bot" &&
           contributor.role != "Bot" &&
