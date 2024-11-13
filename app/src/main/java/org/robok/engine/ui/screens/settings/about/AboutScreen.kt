@@ -136,7 +136,7 @@ fun AboutScreen() {
 }
 
 @Composable
-private fun rememberContributorsState = remember {
+private fun rememberContributorsState() = remember {
   mutableStateOf(contributors)
 }
 
