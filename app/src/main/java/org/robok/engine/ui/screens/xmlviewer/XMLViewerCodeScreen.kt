@@ -24,6 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.*
 import io.github.rosemoe.sora.text.Content
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.screens.xmlviewer.components.CodeEditor
 import org.robok.engine.ui.screens.xmlviewer.components.rememberCodeEditorState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -31,9 +32,12 @@ import org.robok.engine.ui.screens.xmlviewer.components.rememberCodeEditorState
 fun XMLViewerCodeScreen(xml: String) {
   Scaffold(
     topBar = { TopAppBar(title = { Text(text = stringResource(Strings.text_see_code)) }) },
-    content = { padding ->
+    content = { innerPadding ->
       val editorState = rememberCodeEditorState(initialContent = Content(xml))
-      CodeEditor(modifier = Modifier.padding(innerPadding).fillMaxSize(), state = editorState)
+      CodeEditor(
+        modifier = Modifier.padding(innerPadding).fillMaxSize(),
+        state = editorState
+      )
     },
   )
 }
