@@ -29,8 +29,8 @@ android {
 dependencies {
     implementation(fileTree("libs") { include("*.jar") })
     
-    implementation(libs.appcompat)
-    implementation(libs.material)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.google.material)
     
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)
@@ -39,7 +39,7 @@ dependencies {
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86")
     implementation("com.badlogicgames.gdx:gdx-platform:1.9.14:natives-x86_64")
 
-    implementation(libs.gson)
+    implementation(libs.google.gson)
     
     implementation(projects.core.utils)
 }

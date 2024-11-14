@@ -29,17 +29,17 @@ android {
 }
 
 dependencies {
-    implementation(libs.material)
-    implementation(libs.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.appcompat)
     
     implementation(platform(libs.compose.bom))
-    implementation(libs.material3.compose)
-    implementation(libs.material.compose)
-    implementation(libs.ui.compose)
-    implementation(libs.ui.graphics.compose)
-    implementation(libs.activity.compose)
-    implementation(libs.navigation.compose)
-    implementation(libs.viewmodel.compose)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
+    implementation(libs.compose.ui.graphics)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.viewmodel)
     
     implementation(projects.appStrings)
 }

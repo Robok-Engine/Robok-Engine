@@ -34,7 +34,6 @@ include(":feature:compiler")
 
 include(":core:components")
 include(":core:utils")
-include(":core:theme")
 include(":core:antlr4:java")
 
 include(":robok-easy-ui:antlr4")

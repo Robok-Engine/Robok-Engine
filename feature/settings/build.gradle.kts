@@ -27,8 +27,8 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.datastore.preferences)
-    implementation(libs.material)
-    implementation(libs.lifecycle.runtime.ktx)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.datastore.preferences)
+    implementation(libs.google.material)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
 }

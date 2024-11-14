@@ -18,11 +18,10 @@ package org.robok.easyui.config
  */
 
 import androidx.annotation.Keep
-import kotlinx.serialization.Serializable
+import java.io.Serializable
 
 @Keep
-@Serializable
-data class Config(val orientation: String, val style: String) : java.io.Serializable {
+data class Config(val orientation: String, val style: String) : Serializable {
   companion object {
     fun getName(): String = "config"
   }

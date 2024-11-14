@@ -35,10 +35,10 @@ android {
 dependencies {
     implementation(fileTree("libs") { include("*.jar") })
     
-    implementation(libs.material)
-    implementation(libs.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.appcompat)
     
-    implementation(libs.gson)
+    implementation(libs.google.gson)
     
     implementation(projects.feature.apksigner)
     implementation(projects.core.utils)

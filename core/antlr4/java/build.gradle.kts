@@ -24,7 +24,7 @@ android {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.antlr) // Dependency on ANTLR for code generation
-    implementation(libs.antlr.runtime) // ANTLR runtime dependency
+    implementation(libs.androidx.appcompat)
+    implementation(libs.antlr4) // Dependency on ANTLR for code generation
+    implementation(libs.antlr4.runtime) // ANTLR runtime dependency
 }

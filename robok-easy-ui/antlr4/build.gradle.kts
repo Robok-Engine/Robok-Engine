@@ -24,6 +24,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.antlr)
-    implementation(libs.antlr.runtime)
+    implementation(libs.antlr4)
+    implementation(libs.antlr4.runtime)
 }

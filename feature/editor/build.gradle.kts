@@ -28,13 +28,13 @@ android {
 }
 
 dependencies {
-    implementation(libs.material)
-    implementation(libs.appcompat) 
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.datastore.preferences)
+    implementation(libs.google.material)
+    implementation(libs.androidx.appcompat) 
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.datastore.preferences)
     
-    implementation(libs.coroutines.android)
-    implementation(libs.serialization.json)
+    implementation(libs.ktx.coroutines.android)
+    implementation(libs.ktx.serialization.json)
     
     implementation(platform(libs.okhttp.bom))
     implementation("com.squareup.okhttp3:okhttp")
@@ -45,8 +45,8 @@ dependencies {
     implementation(libs.sora.editor.language.java)
     implementation(libs.sora.editor.language.textmate)
     
-    implementation(libs.antlr)
-    implementation(libs.antlr.runtime)
+    implementation(libs.antlr4)
+    implementation(libs.antlr4.runtime)
     
     implementation(projects.appStrings)
     implementation(projects.feature.settings)

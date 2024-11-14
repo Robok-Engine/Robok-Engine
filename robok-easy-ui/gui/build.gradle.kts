@@ -23,8 +23,9 @@ android {
 }
 
 dependencies {
-  implementation(libs.antlr)
-  implementation(libs.antlr.runtime)
-  implementation(libs.serialization.json)
+  implementation(libs.androidx.appcompat)
+  implementation(libs.antlr4)
+  implementation(libs.antlr4.runtime)
+  implementation(libs.ktx.serialization.json)
   implementation(projects.robokEasyUi.antlr4)
 }

@@ -46,8 +46,8 @@ android {
 }
 
 dependencies { 
-    implementation(libs.material)
-    implementation(libs.appcompat)
+    implementation(libs.google.material)
+    implementation(libs.androidx.appcompat)
 }
 
 fun execAndGetOutput(vararg command: String): String {

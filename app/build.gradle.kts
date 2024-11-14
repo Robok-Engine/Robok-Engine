@@ -91,16 +91,16 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-    implementation(libs.appcompat)
-    implementation(libs.lifecycle.runtime.ktx)
-    implementation(libs.core.ktx)
-    implementation(libs.fragment.ktx)
-    implementation(libs.splashscreen)
-    implementation(libs.datastore.preferences)
+    implementation(libs.androidx.appcompat)
+    implementation(libs.androidx.lifecycle.runtime.ktx)
+    implementation(libs.androidx.core.ktx)
+    implementation(libs.androidx.fragment.ktx)
+    implementation(libs.androidx.splashscreen)
+    implementation(libs.androidx.datastore.preferences)
 
-    implementation(libs.coroutines.core)
-    implementation(libs.coroutines.android)
-    implementation(libs.serialization.json)
+    implementation(libs.ktx.coroutines.core)
+    implementation(libs.ktx.coroutines.android)
+    implementation(libs.ktx.serialization.json)
     
     implementation(libs.koin.android)
     implementation(libs.koin.androidx.compose)
@@ -110,16 +110,16 @@ dependencies {
 
     implementation(libs.glide)
     
-    implementation(libs.material)
+    implementation(libs.google.material)
 
     coreLibraryDesugaring(libs.desugar.jdk.libs)
 
     implementation(platform(libs.compose.bom))
-    implementation(libs.material3.compose)
-    implementation(libs.activity.compose)
-    implementation(libs.navigation.compose)
-    implementation(libs.material.motion.compose.core)
-    implementation(libs.material.icons.extended)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.navigation)
+    implementation(libs.compose.material.motion.core)
+    implementation(libs.compose.material.icons)
     
     implementation(libs.libgdx)
     implementation(libs.libgdx.backend.android)
@@ -132,7 +132,7 @@ dependencies {
     
     implementation(libs.coil.compose)
 
-    implementation(libs.gson)
+    implementation(libs.google.gson)
     
     implementation(libs.ktor.client.android)
     implementation(libs.ktor.client.content.negotiation)
