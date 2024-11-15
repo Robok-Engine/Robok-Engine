@@ -45,11 +45,11 @@ import org.robok.engine.feature.modeling.objects.SceneObject;
 
 public class Model3DView extends ApplicationAdapter {
 
-  public static Model3DView clazz;
+  public static Model3DView instance;
 
   private PerspectiveCamera camera;
   private ModelBatch modelBatch;
-  private ModelInstance instance;
+  private ModelInstance modelInstance;
   private CameraInputController2 camController;
 
   // bordas
@@ -68,7 +68,7 @@ public class Model3DView extends ApplicationAdapter {
   private boolean isDragging = false;
 
   public Model3DView() {
-    clazz = this;
+    instance = this;
     SceneObject.sceneObjects = new ArrayList<>();
   }
 
@@ -107,10 +107,10 @@ public class Model3DView extends ApplicationAdapter {
             new Material(ColorAttribute.createDiffuse(Color.GREEN)))
         .box(4f, 4f, 4f);
     Model modelB = modelBuilder.end();
-    instance = new ModelInstance(modelB);
-    instance.transform.setToTranslation(0f, 0f, 0f);
+    modelInstance = new ModelInstance(modelB);
+    modelInstance.transform.setToTranslation(0f, 0f, 0f);
 
-    SceneObject.sceneObjects.add(new SceneObject(instance.model, size, instance));
+    SceneObject.sceneObjects.add(new SceneObject(modelInstance.model, size, modelInstance));
 
     /*criar plano */
 
@@ -168,7 +168,7 @@ public class Model3DView extends ApplicationAdapter {
     shapeRenderer.begin(ShapeRenderer.ShapeType.Line);
 
     camController.updateRenderer(shapeRenderer);
-    // drawGridAroundModel(instance);
+    // drawGridAroundModel(modelInstance);
     // drawCubeEdges2(4f, 4f, 4f, 0f, 0f, 0f);
     // shapeRenderer.setColor(Color.GRAY);
     drawGrid3D(0, 0, 0, 200, 200, 1, 0.1f); // Ajuste as dimensões conforme necessário
@@ -266,8 +266,8 @@ public class Model3DView extends ApplicationAdapter {
   private void invokeObject(String objectCommand) {
     try {
       ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.sceneObjects);
-      Class<?> clazz = createObjects.getClass();
-      Method method = clazz.getDeclaredMethod(objectCommand);
+      Class<?> instance = createObjects.getClass();
+      Method method = instance.getDeclaredMethod(objectCommand);
       method.invoke(createObjects);
       // sceneObjects = createObjects.get();
 

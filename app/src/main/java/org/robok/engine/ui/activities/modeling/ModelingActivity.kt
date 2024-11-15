@@ -21,8 +21,8 @@ import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
-import android.view.WindowInsetsController
 import androidx.compose.ui.platform.ComposeView
+import android.view.WindowInsetsController
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
@@ -30,39 +30,46 @@ import org.robok.engine.databinding.Activity3dModelBinding
 import org.robok.engine.feature.modeling.fragment.LibGDXFragment
 import org.robok.engine.feature.modeling.view.Model3DView
 import org.robok.engine.ui.activities.base.RobokComposeActivity
+import org.robok.engine.ui.screens.modeling.ModelingScreen
+import org.robok.engine.ui.theme.RobokTheme
 
 class ModelingActivity : RobokComposeActivity(), AndroidFragmentApplication.Callbacks {
 
-  private var binding: Activity3dModelBinding? = null
-  private var model3dView: Model3DView? = null
-
+  private var _binding: Activity3dModelBinding? = null
+  private val binding: Activity3dModelBinding
+    get() = _binding!!
+  
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
-    binding = Activity3dModelBinding.inflate(layoutInflater)
-    setContentView(binding?.root)
+    _binding = Activity3dModelBinding.inflate(layoutInflater)
+    setContentView(binding.root)
 
+    configureScreen()
+  }
+  
+  private fun configureScreen() {
+    configureGDXFragment()
+    binding.modelingCompose.configureModelingScreen()
+    hideSystemUI()
+  }
+  
+  private fun configureGDXFragment() {
     val libGDXFragment = LibGDXFragment()
     val fragmentManager: FragmentManager = supportFragmentManager
     val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-    fragmentTransaction.replace(binding?.frameLibGdx?.id ?: 0, libGDXFragment)
+    fragmentTransaction.replace(binding.frameLibGdx?.id ?: 0, libGDXFragment)
     fragmentTransaction.commit()
-
     fragmentManager.executePendingTransactions()
-    model3dView = Model3DView.clazz
-
-    val activityHelper = ModelingActivityHelper(this, model3dView)
-    val composeUI: ComposeView = activityHelper.createComposeView()
-
-    binding?.layoutParent?.addView(composeUI)
-    hideSystemUI()
   }
-
-  /** Check if the game is null to prevent errors. */
-  private fun verifyIfMy3dGameIsNull() {
-    if (model3dView != null) return
-    model3dView = Model3DView.clazz
+  
+  private fun ComposeView.configureModelingScreen() {
+    setContent {
+      RobokTheme {
+        ModelingScreen()
+      }
+    }
   }
-
+  
   /** Hide phone ui to better experience */
   private fun hideSystemUI() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -85,7 +92,7 @@ class ModelingActivity : RobokComposeActivity(), AndroidFragmentApplication.Call
 
   /** Set binding to null if the activity is destroyed. */
   override fun onDestroy() {
-    binding = null
+    _binding = null
     super.onDestroy()
   }
 }
