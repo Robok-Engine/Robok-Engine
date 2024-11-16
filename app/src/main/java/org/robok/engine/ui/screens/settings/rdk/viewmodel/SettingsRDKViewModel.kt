@@ -23,6 +23,7 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import org.robok.engine.strings.Strings
 import org.robok.engine.core.utils.ZipDownloader
 
 class SettingsRDKViewModel(private val context: Context) : ViewModel() {
@@ -39,21 +40,11 @@ class SettingsRDKViewModel(private val context: Context) : ViewModel() {
       val result = zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
 
       if (result) {
-        _downloadState.value = DownloadState.Success("Download e extração concluídos com sucesso!")
+        _downloadState.value = DownloadState.Success(context.getString(Strings.settings_configure_rdk_version_success))
       } else {
         _downloadState.value =
-          DownloadState.Error("Erro durante o download ou extração do arquivo.")
+          DownloadState.Error(context.getString(Strings.settings_configure_rdk_version_error))
       }
     }
-  }
-
-  sealed class DownloadState {
-    object NotStarted : DownloadState()
-
-    object Loading : DownloadState()
-
-    data class Success(val message: String) : DownloadState()
-
-    data class Error(val error: String) : DownloadState()
   }
 }

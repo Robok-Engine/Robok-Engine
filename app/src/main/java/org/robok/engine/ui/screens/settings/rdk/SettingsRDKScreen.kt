@@ -42,7 +42,7 @@ import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel.DownloadState
+import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -69,33 +69,34 @@ fun SettingsRDKScreen() {
   val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
 
   val downloadState by viewModel.downloadState.collectAsState()
-  val modifir = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
+  val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
   Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
       DynamicSelectTextField(
-        modifier = modifir,
+        modifier = modifier,
         selectedValue = version,
         options = rdkVersions,
         label = stringResource(id = Strings.settings_configure_rdk_version),
         onValueChangedEvent = { selectedVersion -> version = selectedVersion },
       )
-      Button(
-        modifier = modifir.fillMaxWidth(),
-        shape = ButtonShape(),
-        onClick = {
-          appPrefsViewModel.changeInstalledRDK(version)
-          viewModel.startDownload(zipUrl, version)
-        },
-      ) {
-        Text(text = stringResource(id = Strings.common_word_save))
-      }
       when (downloadState) {
-        is DownloadState.NotStarted -> Text(modifier = modifir, text = "Download não iniciado")
-        is DownloadState.Loading -> CircularProgressIndicator(modifier = modifir)
+        is DownloadState.NotStarted -> {
+          Button(
+            modifier = modifier.fillMaxWidth(),
+            shape = ButtonShape(),
+            onClick = {
+              appPrefsViewModel.changeInstalledRDK(version)
+              viewModel.startDownload(zipUrl, version)
+            },
+          ) {
+            Text(text = stringResource(id = Strings.common_word_save))
+          }
+        }
+        is DownloadState.Loading -> CircularProgressIndicator(modifier = modifier)
         is DownloadState.Success ->
-          Text(modifier = modifir, text = (downloadState as DownloadState.Success).message)
+          Text(modifier = modifier, text = (downloadState as DownloadState.Success).message)
         is DownloadState.Error ->
-          Text(modifier = modifir, text = (downloadState as DownloadState.Error).error)
+          Text(modifier = modifier, text = (downloadState as DownloadState.Error).error)
       }
     }
   }
