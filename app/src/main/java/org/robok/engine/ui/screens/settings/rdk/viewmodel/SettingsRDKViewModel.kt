@@ -38,7 +38,7 @@ class SettingsRDKViewModel(
     
   private var _versions by mutableStateOf<List<String>>(emptyList())
   val versions: List<String>
-    get() = versions
+    get() = _versions
   
   init {
     viewModelScope.launch {
