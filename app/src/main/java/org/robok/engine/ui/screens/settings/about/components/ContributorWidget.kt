@@ -64,3 +64,11 @@ private fun handleRole(role: String): String = when {
   Role.DEVELOPER -> stringResource(id = Strings.role_developer)
   else -> stringResource(id = Strings.role_developer)
 }
+
+@Composable
+private fun handleRolePlural(role: String): String = when {
+  Role.FOUNDER -> stringResource(id = Strings.role_founders)
+  Role.TRANSLATOR -> stringResource(id = Strings.role_translators)
+  Role.DEVELOPER -> stringResource(id = Strings.role_developers)
+  else -> stringResource(id = Strings.role_developers)
+}

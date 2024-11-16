@@ -42,6 +42,7 @@ import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
 import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
 import org.robok.engine.ui.screens.settings.about.components.Role
 import org.robok.engine.ui.screens.settings.about.components.LinkWidget
+import org.robok.engine.ui.screens.settings.about.components.handleRolePlural
 import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 import org.robok.engine.ui.screens.settings.about.models.Link
 
@@ -83,7 +84,7 @@ fun AboutScreen() {
     if (aboutViewModel.contributors.isNotEmpty()) {
       val roles = aboutViewModel.contributors.groupBy { it.role }
       roles.forEach { (role, contributorsList) ->
-        PreferenceGroup(heading = handleRole(role)) {
+        PreferenceGroup(heading = handleRolePlural(role)) {
           contributorsList.forEach {
             ContributorWidget(
               model = it,
@@ -108,14 +109,6 @@ fun AboutScreen() {
       onDismissRequest = { aboutViewModel.setShowContributorDialog(false) },
     )
   }
-}
-
-@Composable
-private fun handleRole(role: String): String = when {
-  Role.FOUNDER -> stringResource(id = Strings.role_founders)
-  Role.TRANSLATOR -> stringResource(id = Strings.role_translators)
-  Role.DEVELOPER -> stringResource(id = Strings.role_developers)
-  else -> stringResource(id = Strings.role_developers)
 }
 
 @Composable private fun rememberContributorsState() = remember { mutableStateOf(contributors) }
