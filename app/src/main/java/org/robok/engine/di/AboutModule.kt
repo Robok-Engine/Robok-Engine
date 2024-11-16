@@ -17,31 +17,20 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Context
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.android.Android
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 import org.robok.engine.ui.screens.settings.about.repository.ContributorsRepository
-import kotlinx.serialization.json.Json
+import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 
 val AboutModule = module {
   viewModelOf(::AboutViewModel)
+  single { ContributorsRepository(get()) }
   single {
-    ContributorsRepository(get())
-  }
-  single {
-    HttpClient(Android) {
-      install(ContentNegotiation) {
-        json(
-          Json {
-            ignoreUnknownKeys = true 
-          }
-        )
-      }
-    }
+    HttpClient(Android) { install(ContentNegotiation) { json(Json { ignoreUnknownKeys = true }) } }
   }
 }

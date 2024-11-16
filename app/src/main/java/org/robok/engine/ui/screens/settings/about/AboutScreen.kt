@@ -30,11 +30,6 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.json.Json
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.BuildConfig
 import org.robok.engine.Drawables
@@ -42,7 +37,6 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
-import org.robok.engine.models.about.Contributor
 import org.robok.engine.models.about.Link
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
@@ -56,7 +50,7 @@ var contributors = DefaultContributors()
 fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
   val aboutViewModel = koinViewModel<AboutViewModel>()
-  
+
   Screen(
     label = stringResource(id = Strings.settings_about_title),
     modifier = Modifier,

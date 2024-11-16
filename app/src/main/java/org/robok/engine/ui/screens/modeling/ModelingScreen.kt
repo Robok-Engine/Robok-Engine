@@ -29,7 +29,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.Drawables
 import org.robok.engine.core.components.animation.ExpandAndShrink
-import org.robok.engine.feature.modeling.view.Model3DView
 
 @Composable
 fun ModelingScreen() {

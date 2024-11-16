@@ -22,40 +22,36 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import org.robok.engine.models.about.Contributor
-import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.ui.screens.settings.about.repository.ContributorsRepository
 import kotlinx.coroutines.launch
+import org.robok.engine.defaults.DefaultContributors
+import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.repository.ContributorsRepository
 
-class AboutViewModel(
-  private val repository: ContributorsRepository
-): ViewModel() {
+class AboutViewModel(private val repository: ContributorsRepository) : ViewModel() {
   private var _isShowContributorDialog by mutableStateOf(false)
   val isShowContributorDialog: Boolean
     get() = _isShowContributorDialog
- 
+
   private var _currentContributor by mutableStateOf<Contributor?>(null)
   val currentContributor: Contributor
     get() = _currentContributor!!
-    
+
   private var _contributors by mutableStateOf<List<Contributor>>(DefaultContributors())
   val contributors: List<Contributor>
     get() = _contributors
-    
+
   init {
-    viewModelScope.launch {
-      fetchCommits()
-    }
+    viewModelScope.launch { fetchCommits() }
   }
-    
+
   fun setShowContributorDialog(value: Boolean) {
     _isShowContributorDialog = value
   }
-  
+
   fun setCurrentContributor(value: Contributor) {
     _currentContributor = value
   }
-  
+
   private suspend fun fetchCommits() {
     _contributors = repository.fetchContributors()
   }
