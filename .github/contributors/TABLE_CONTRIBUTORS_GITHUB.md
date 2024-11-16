@@ -1,8 +1,8 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1372 | Founder |
+| trindadedev13 | 1414 | Founder |
 | ThDev-only | 203 | Founder |
-| renovate[bot] | 139 | Bot |
+| renovate[bot] | 142 | Bot |
 | gampiot-bot | 35 | Bot |
 | RohitKushvaha01 | 16 | Development |
 | github-actions[bot] | 10 | Bot |
@@ -14,4 +14,5 @@
 | Paxsenix0 | 2 | Translation |
 | Xori71 | 1 | Translation |
 | weblate | 1 | Bot |
-| ScriptWrap | 18 | Bot |
+| ScriptWrap | 18 | Development |
+| ElPerro | 18 | Translation |
