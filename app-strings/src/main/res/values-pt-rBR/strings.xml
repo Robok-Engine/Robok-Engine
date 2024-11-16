@@ -144,4 +144,10 @@
     <string name="text_telegram">Nossa Comunidade Telegram</string>
     <string name="text_exit_without_save">Sair sem Salvar</string>
     <string name="common_word_files">Arquivos</string>
+    <string name="role_founder">Fundador</string>
+    <string name="role_translator">Tradutor</string>
+    <string name="role_founders">Fundadores</string>
+    <string name="role_developer">Desenvolvedor</string>
+    <string name="role_developers">Desenvolvedores</string>
+    <string name="role_translators">Tradutores</string>
 </resources>
