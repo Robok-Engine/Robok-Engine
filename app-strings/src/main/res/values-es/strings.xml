@@ -114,4 +114,10 @@
     <string name="text_diagnostic">Diagnóstico</string>
     <string name="text_contributors">Contribuidores</string>
     <string name="warning_storage_perm_title">Permiso de almacenamiento</string>
+    <string name="role_translator">Traductor(a)</string>
+    <string name="role_founder">Fundador(a)</string>
+    <string name="role_founders">Fundadores</string>
+    <string name="role_developer">Desarrollador(a)</string>
+    <string name="role_developers">Desarrolladores</string>
+    <string name="role_translators">Traductores</string>
 </resources>
