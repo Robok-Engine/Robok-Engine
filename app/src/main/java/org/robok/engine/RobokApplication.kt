@@ -32,6 +32,7 @@ import org.robok.engine.di.AboutModule
 import org.robok.engine.di.GeneralModule
 import org.robok.engine.di.PreferencesModule
 import org.robok.engine.di.SettingsModule
+import org.robok.engine.di.SettingsRDKModule
 import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
@@ -84,7 +85,7 @@ class RobokApplication : Application() {
     startKoin {
       androidLogger()
       androidContext(this@RobokApplication)
-      modules(GeneralModule, PreferencesModule, SettingsModule, AboutModule)
+      modules(GeneralModule, PreferencesModule, SettingsModule, SettingsRDKModule, AboutModule)
     }
   }
 

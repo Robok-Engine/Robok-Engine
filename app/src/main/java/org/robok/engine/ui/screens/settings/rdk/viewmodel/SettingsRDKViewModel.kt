@@ -20,31 +20,50 @@ package org.robok.engine.ui.screens.settings.rdk.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import kotlinx.coroutines.launch
 import org.robok.engine.strings.Strings
 import org.robok.engine.core.utils.ZipDownloader
+import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
 
-class SettingsRDKViewModel(private val context: Context) : ViewModel() {
+class SettingsRDKViewModel(
+  private val context: Context,
+  private val repository: SettingsRDKRepository
+) : ViewModel() {
 
   private val zipDownloader = ZipDownloader(context)
 
-  private val _downloadState = MutableStateFlow<DownloadState>(DownloadState.NotStarted)
-  val downloadState: StateFlow<DownloadState> = _downloadState
-
+  private var _downloadState by mutableStateOf<DownloadState>(DownloadState.NotStarted)
+  val downloadState: DownloadState
+    get() = _downloadState
+    
+  private var _versions by mutableStateOf<List<String>>(emptyList())
+  val versions: List<String>
+    get() = versions
+  
+  init {
+    viewModelScope.launch {
+      getVersions()
+    }
+  }
+  
   fun startDownload(zipUrl: String, outputDirName: String) {
-    _downloadState.value = DownloadState.Loading
+    _downloadState = DownloadState.Loading
 
     viewModelScope.launch {
       val result = zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
 
-      if (result) {
-        _downloadState.value = DownloadState.Success(context.getString(Strings.settings_configure_rdk_version_success))
+      _downloadState = if (result) {
+        DownloadState.Success(context.getString(Strings.settings_configure_rdk_version_success))
       } else {
-        _downloadState.value =
-          DownloadState.Error(context.getString(Strings.settings_configure_rdk_version_error))
+        DownloadState.Error(context.getString(Strings.settings_configure_rdk_version_error))
       }
     }
+  }
+  
+  private suspend fun getVersions() {
+    repository.getVersions()
   }
 }

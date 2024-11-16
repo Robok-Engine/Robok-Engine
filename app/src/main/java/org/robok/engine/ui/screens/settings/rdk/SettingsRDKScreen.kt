@@ -50,26 +50,22 @@ fun SettingsRDKScreen() {
   val context = LocalContext.current
   val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
-  val installedRDKVersion by
-    appPrefsViewModel.installedRDKVersion.collectAsState(
-      initial = DefaultValues.INSTALLED_RDK_VERSION
-    )
 
-  var rdkVersions = listOf("RDK-1")
-  val rdkVersionsState = remember { mutableStateOf<List<String>>(rdkVersions) }
-  val scope = rememberCoroutineScope()
-  LaunchedEffect(Unit) {
-    scope.launch {
-      rdkVersions = fetchVersions()
-      rdkVersionsState.value = rdkVersions
-    }
-  }
+  val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(
+    initial = DefaultValues.INSTALLED_RDK_VERSION
+  )
+
+  var rdkVersions by remember { mutableStateOf(listOf("RDK-1")) }
   var version by remember { mutableStateOf(installedRDKVersion) }
 
   val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
-
-  val downloadState by viewModel.downloadState.collectAsState()
+  val downloadState = viewModel.downloadState
   val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
+
+  LaunchedEffect(Unit) {
+    rdkVersions = fetchVersions()
+  }
+
   Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
       DynamicSelectTextField(
@@ -79,54 +75,38 @@ fun SettingsRDKScreen() {
         label = stringResource(id = Strings.settings_configure_rdk_version),
         onValueChangedEvent = { selectedVersion -> version = selectedVersion },
       )
-      when (downloadState) {
-        is DownloadState.NotStarted -> {
-          Button(
-            modifier = modifier.fillMaxWidth(),
-            shape = ButtonShape(),
-            onClick = {
-              appPrefsViewModel.changeInstalledRDK(version)
-              viewModel.startDownload(zipUrl, version)
-            },
-          ) {
-            Text(text = stringResource(id = Strings.common_word_save))
-          }
+      DownloadStateContent(
+        modifier = modifier,
+        downloadState = downloadState,
+        onSaveClick = {
+          appPrefsViewModel.changeInstalledRDK(version)
+          viewModel.startDownload(zipUrl, version)
         }
-        is DownloadState.Loading -> CircularProgressIndicator(modifier = modifier)
-        is DownloadState.Success ->
-          Text(modifier = modifier, text = (downloadState as DownloadState.Success).message)
-        is DownloadState.Error ->
-          Text(modifier = modifier, text = (downloadState as DownloadState.Error).error)
-      }
+      )
     }
   }
 }
 
-@Serializable data class VersionInfo(val version: String)
-
-val client = OkHttpClient()
-
-suspend fun fetchVersions(): List<String> {
-  val request =
-    Request.Builder()
-      .url("https://raw.githubusercontent.com/robok-inc/Robok-SDK/dev/versions/versions.json")
-      .build()
-
-  return withContext(Dispatchers.IO) {
-    try {
-      client.newCall(request).execute().use { response ->
-        if (response.isSuccessful) {
-          val jsonString = response.body?.string()
-          jsonString?.let {
-            val versions = Json.decodeFromString<List<VersionInfo>>(it)
-            versions.map { versionInfo -> versionInfo.version }
-          } ?: emptyList()
-        } else {
-          emptyList()
-        }
+@Composable
+private fun DownloadStateContent(
+  modifier: Modifier,
+  downloadState: DownloadState,
+  onSaveClick: () -> Unit
+) {
+  when (downloadState) {
+    is DownloadState.NotStarted -> {
+      Button(
+        modifier = modifier.fillMaxWidth(),
+        shape = ButtonShape(),
+        onClick = onSaveClick,
+      ) {
+        Text(text = stringResource(id = Strings.common_word_save))
       }
-    } catch (e: Exception) {
-      emptyList()
     }
+    is DownloadState.Loading -> CircularProgressIndicator(modifier = modifier)
+    is DownloadState.Success ->
+      Text(modifier = modifier, text = (downloadState as DownloadState.Success).message)
+    is DownloadState.Error ->
+      Text(modifier = modifier, text = (downloadState as DownloadState.Error).error)
   }
 }

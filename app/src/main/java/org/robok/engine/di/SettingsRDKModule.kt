@@ -18,8 +18,32 @@ package org.robok.engine.di
  */
 
 import android.content.Context
+import io.ktor.client.HttpClient
+import io.ktor.client.engine.android.Android
+import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
+import io.ktor.serialization.kotlinx.json.json
+import kotlinx.serialization.json.Json
 import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
+import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
 
-val SettingsModule = module { /**/ }
+val SettingsRDKModule = module {
+  viewModel { (context: Context, repository: SettingsRDKRepository) -> 
+    SettingsRDKViewModel(context = context, repository = repository)
+  } 
+  single {
+    SettingsRDKRepository(get())
+  }
+  single {
+    HttpClient(Android) {
+      install(ContentNegotiation) {
+        json(
+          Json {
+            ignoreUnknownKeys = true
+          }
+        ) 
+      } 
+    }
+  }
+}
