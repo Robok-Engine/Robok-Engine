@@ -7,7 +7,7 @@ import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import org.robok.engine.core.utils.RobokLog
-import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 class ContributorsRepository(val client: HttpClient) {
 

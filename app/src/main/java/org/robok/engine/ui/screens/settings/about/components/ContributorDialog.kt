@@ -31,7 +31,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.core.components.shape.ButtonShape
-import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.models.Contributor
 import org.robok.engine.strings.Strings
 
 @Composable

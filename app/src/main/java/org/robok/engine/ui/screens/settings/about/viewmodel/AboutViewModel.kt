@@ -24,7 +24,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
 import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.models.Contributor
 import org.robok.engine.ui.screens.settings.about.repository.ContributorsRepository
 
 class AboutViewModel(private val repository: ContributorsRepository) : ViewModel() {

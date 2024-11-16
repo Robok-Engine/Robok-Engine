@@ -17,7 +17,7 @@ package org.robok.engine.defaults
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 fun DefaultContributors(): List<Contributor> {
   return listOf(

@@ -154,4 +154,13 @@
   <!-- templates section -->
   <string name="template_name_empty_game">Empty Game</string>
   <!-- end section -->
+  
+  <!-- roles section -->
+  <string name="role_founder">Founder</string>
+  <string name="role_founders">Founders</string>
+  <string name="role_developer">Developer</string>
+  <string name="role_developers">Developers</string>
+  <string name="role_translator">Translator</string>
+  <string name="role_translators">Translators</string>
+  <!-- end section -->
 </resources>

@@ -1,4 +1,4 @@
-package org.robok.engine.models.about
+package org.robok.engine.ui.screens.settings.about.models
 
 /*
  *  This file is part of Robok © 2024.

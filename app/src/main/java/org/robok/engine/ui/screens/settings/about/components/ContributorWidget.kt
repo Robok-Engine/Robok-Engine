@@ -32,14 +32,15 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import coil.compose.AsyncImage
 import org.robok.engine.Drawables
+import org.robok.engone.strings.Strings
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.models.about.Contributor
+import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 @Composable
 fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
   PreferenceTemplate(
     title = { Text(fontWeight = FontWeight.Bold, text = model.login) },
-    description = { Text(text = model.role) },
+    description = { Text(text = handleRole(model.role)) },
     modifier = Modifier.clickable { onClick(model) },
     startWidget = {
       val avatarUrl = if (model.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else model.avatar_url
@@ -54,4 +55,12 @@ fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
       )
     },
   )
+}
+
+@Composable
+private fun handleRole(role: String): String = when {
+  Role.FOUNDER -> stringResource(id = Strings.role_founder)
+  Role.TRANSLATOR -> stringResource(id = Strings.role_translator)
+  Role.DEVELOPER -> stringResource(id = Strings.role_developer)
+  else -> stringResource(id = Strings.role_developer)
 }
