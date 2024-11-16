@@ -120,4 +120,6 @@
     <string name="role_developer">Desarrollador(a)</string>
     <string name="role_developers">Desarrolladores</string>
     <string name="role_translators">Traductores</string>
+    <string name="settings_configure_rdk_version_error">Ha ocurrido un error</string>
+    <string name="settings_configure_rdk_version_success">Descarga completada satisfactoriamente.</string>
 </resources>
