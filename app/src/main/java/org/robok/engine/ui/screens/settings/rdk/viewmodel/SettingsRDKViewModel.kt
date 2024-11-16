@@ -62,6 +62,6 @@ class SettingsRDKViewModel(
   }
   
   private suspend fun getVersions() {
-    repository.getVersions()
+    _versions = repository.getVersions()
   }
 }
