@@ -1,2 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources></resources>
+<resources>
+    <string name="common_word_result">Resultado</string>
+    <string name="common_word_code">Código</string>
+    <string name="common_word_logs">Registros</string>
+    <string name="common_word_end">Final</string>
+    <string name="common_word_confirm">Confirmar</string>
+    <string name="common_word_undo">Deshacer</string>
+    <string name="common_word_redo">Rehacer</string>
+    <string name="common_word_allow">Permitir</string>
+    <string name="common_word_deny">Denegar</string>
+    <string name="common_word_normal">Normal</string>
+    <string name="common_word_retry">Reintentar</string>
+    <string name="common_word_save">Guardar</string>
+    <string name="common_word_close">Cerrar</string>
+    <string name="common_word_close_others">Cerrar otros</string>
+    <string name="common_word_close_all">Cerrar todo</string>
+    <string name="title_open_project">Abrir proyecto</string>
+    <string name="title_open_editor">Abrir editor</string>
+    <string name="title_un_error_ocurred">Ha ocurrido un error</string>
+    <string name="title_select_theme">Seleccionar tema</string>
+    <string name="title_select_folder">Seleccione una carpeta</string>
+    <string name="title_templates">Plantillas</string>
+    <string name="title_projects">Proyectos</string>
+    <string name="title_your_projects">Tus proyectos</string>
+    <string name="title_open_contributor_github">Colaborador abierto de GitHub</string>
+    <string name="title_telegram">Telegram</string>
+    <string name="title_whatsapp">WhatsApp</string>
+    <string name="title_github">GitHub</string>
+    <string name="slogan">Juego de Java en un instante</string>
+    <string name="common_word_back">Atrás</string>
+    <string name="common_word_output">Salida</string>
+    <string name="common_word_settings">Configuración</string>
+    <string name="common_word_cancel">Cancelar</string>
+    <string name="common_word_next">Siguiente</string>
+    <string name="title_create_project">Crear proyecto</string>
+    <string name="title_gui_viewer">Visor de GUI</string>
+    <string name="common_word_templates">Plantillas</string>
+    <string name="common_word_open">Abrir</string>
+    <string name="common_word_files">Archivos</string>
+</resources>
