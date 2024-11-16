@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.robok.engine.core.components.dialog.sheet.BottomSheetContent
 import org.robok.engine.core.components.radio.IntRadioController
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.strings.Strings
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -52,7 +51,6 @@ fun ChoiceBottomSheet(
         buttons = {
           OutlinedButton(
             modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-            shape = ButtonShape(),
             onClick = {
               btmSheetScope.launch {
                 btmSheetState.hide()
@@ -64,7 +62,6 @@ fun ChoiceBottomSheet(
           }
           Button(
             modifier = Modifier.padding(start = 4.dp, end = 4.dp),
-            shape = ButtonShape(),
             onClick = {
               btmSheetScope.launch {
                 btmSheetState.hide()

@@ -24,7 +24,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.strings.Strings
 
 /*
@@ -49,18 +48,17 @@ fun InputDialog(
           value = inputValue,
           onValueChange = onInputValueChange,
           label = { Text(inputLabel) },
-          modifier = Modifier.fillMaxWidth(),
-          shape = RoundedCornerShape(12.dp),
+          modifier = Modifier.fillMaxWidth()
         )
       }
     },
     confirmButton = {
-      Button(onClick = onConfirm, shape = ButtonShape()) {
+      Button(onClick = onConfirm) {
         Text(text = stringResource(id = Strings.common_word_save))
       }
     },
     dismissButton = {
-      OutlinedButton(onClick = onDismiss, shape = ButtonShape()) {
+      OutlinedButton(onClick = onDismiss) {
         Text(text = stringResource(id = Strings.common_word_cancel))
       }
     },

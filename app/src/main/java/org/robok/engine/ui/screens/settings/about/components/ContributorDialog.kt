@@ -30,7 +30,6 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
@@ -52,13 +51,12 @@ fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
           onDismissRequest()
           uriHandler.openUri(contributor.html_url)
         },
-        shape = ButtonShape(),
       ) {
         Text(text = stringResource(id = Strings.common_word_open))
       }
     },
     dismissButton = {
-      OutlinedButton(onClick = onDismissRequest, shape = ButtonShape()) {
+      OutlinedButton(onClick = onDismissRequest) {
         Text(text = stringResource(id = Strings.common_word_cancel))
       }
     },

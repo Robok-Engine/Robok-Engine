@@ -50,7 +50,6 @@ import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.toast.ToastHost
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
@@ -126,7 +125,6 @@ private fun Screen(
     }
     Button(
       modifier = Modifier.weight(1f),
-      shape = ButtonShape(),
       onClick = {
         viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, state.projectName))
         viewModel.createProject(
@@ -161,12 +159,12 @@ fun ShowNoticeDialog(title: String, message: String, isShowDialog: MutableState<
       title = { Text(text = title, fontSize = 24.sp) },
       text = { Text(text = message) },
       confirmButton = {
-        Button(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
+        Button(onClick = { isShowDialog.value = false }) {
           Text(stringResource(id = Strings.common_word_ok))
         }
       },
       dismissButton = {
-        OutlinedButton(onClick = { isShowDialog.value = false }, shape = ButtonShape()) {
+        OutlinedButton(onClick = { isShowDialog.value = false }) {
           Text(stringResource(id = Strings.common_word_cancel))
         }
       },

@@ -27,7 +27,6 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.shape.ButtonShape
 import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
@@ -82,7 +81,7 @@ private fun DownloadStateContent(
 ) {
   when (downloadState) {
     is DownloadState.NotStarted -> {
-      Button(modifier = modifier.fillMaxWidth(), shape = ButtonShape(), onClick = onSaveClick) {
+      Button(modifier = modifier.fillMaxWidth(), onClick = onSaveClick) {
         Text(text = stringResource(id = Strings.common_word_save))
       }
     }
