@@ -3,7 +3,7 @@
     <string name="common_word_result">Resultado</string>
     <string name="common_word_code">Código</string>
     <string name="common_word_logs">Registros</string>
-    <string name="common_word_end">Final</string>
+    <string name="common_word_end">Cerrar</string>
     <string name="common_word_confirm">Confirmar</string>
     <string name="common_word_undo">Deshacer</string>
     <string name="common_word_redo">Rehacer</string>
@@ -42,13 +42,13 @@
     <string name="title_contribute">Contribuir</string>
     <string name="hint_project_name">Nombre del proyecto</string>
     <string name="hint_package_name">Nombre del paquete</string>
-    <string name="settings_app_title">Configuración de la aplicación</string>
+    <string name="settings_app_title">Aplicación</string>
     <string name="settings_app_description">Algunas configuraciones relacionadas con la aplicación.</string>
     <string name="settings_app_use_monet_title">Colores dinámicos</string>
     <string name="settings_app_use_monet_description">Usar tema del dispositivo en la aplicación.</string>
     <string name="settings_app_use_amoled_title">Tema Amoled</string>
     <string name="settings_app_use_amoled_description">Usar tema Amoled en la aplicación.</string>
-    <string name="settings_code_editor_title">Configuración del editor de código</string>
+    <string name="settings_code_editor_title">Editor de código</string>
     <string name="settings_code_editor_description">Algunas configuraciones del editor de código.</string>
     <string name="settings_code_editor_theme_title">Tema del editor de código</string>
     <string name="settings_code_editor_theme_description">Cambiar tema del editor de código.</string>
