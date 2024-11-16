@@ -55,23 +55,18 @@ fun SettingsRDKScreen() {
     initial = DefaultValues.INSTALLED_RDK_VERSION
   )
 
-  var rdkVersions by remember { mutableStateOf(listOf("RDK-1")) }
   var version by remember { mutableStateOf(installedRDKVersion) }
 
   val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
   val downloadState = viewModel.downloadState
   val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 
-  LaunchedEffect(Unit) {
-    rdkVersions = fetchVersions()
-  }
-
   Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
       DynamicSelectTextField(
         modifier = modifier,
         selectedValue = version,
-        options = rdkVersions,
+        options = viewModel.versions,
         label = stringResource(id = Strings.settings_configure_rdk_version),
         onValueChangedEvent = { selectedVersion -> version = selectedVersion },
       )
