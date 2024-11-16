@@ -58,7 +58,7 @@ fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
 }
 
 @Composable
-fun handleRole(role: String): String = when {
+fun handleRole(role: String): String = when(role) {
   Role.FOUNDER -> stringResource(id = Strings.role_founder)
   Role.TRANSLATOR -> stringResource(id = Strings.role_translator)
   Role.DEVELOPER -> stringResource(id = Strings.role_developer)
@@ -66,7 +66,7 @@ fun handleRole(role: String): String = when {
 }
 
 @Composable
-fun handleRolePlural(role: String): String = when {
+fun handleRolePlural(role: String): String = when(role) {
   Role.FOUNDER -> stringResource(id = Strings.role_founders)
   Role.TRANSLATOR -> stringResource(id = Strings.role_translators)
   Role.DEVELOPER -> stringResource(id = Strings.role_developers)
