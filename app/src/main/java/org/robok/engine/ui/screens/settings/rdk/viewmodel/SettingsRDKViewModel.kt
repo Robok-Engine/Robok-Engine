@@ -32,8 +32,6 @@ class SettingsRDKViewModel(
   private val repository: SettingsRDKRepository
 ) : ViewModel() {
 
-  private val zipDownloader = ZipDownloader(context)
-
   private var _downloadState by mutableStateOf<DownloadState>(DownloadState.NotStarted)
   val downloadState: DownloadState
     get() = _downloadState
@@ -49,6 +47,7 @@ class SettingsRDKViewModel(
   }
   
   fun startDownload(context: Context, zipUrl: String, outputDirName: String) {
+    val zipDownloader = ZipDownloader(context)
     _downloadState = DownloadState.Loading
 
     viewModelScope.launch {
