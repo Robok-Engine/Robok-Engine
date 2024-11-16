@@ -40,11 +40,10 @@ import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
 import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
-import org.robok.engine.ui.screens.settings.about.components.Role
 import org.robok.engine.ui.screens.settings.about.components.LinkWidget
 import org.robok.engine.ui.screens.settings.about.components.handleRolePlural
-import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 import org.robok.engine.ui.screens.settings.about.models.Link
+import org.robok.engine.ui.screens.settings.about.viewmodel.AboutViewModel
 
 var contributors = DefaultContributors()
 

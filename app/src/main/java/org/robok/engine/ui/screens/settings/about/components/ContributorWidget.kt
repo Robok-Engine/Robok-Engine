@@ -32,8 +32,8 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import coil.compose.AsyncImage
 import org.robok.engine.Drawables
-import org.robok.engine.strings.Strings
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 @Composable
@@ -58,17 +58,19 @@ fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
 }
 
 @Composable
-fun handleRole(role: String): String = when(role) {
-  Role.FOUNDER -> stringResource(id = Strings.role_founder)
-  Role.TRANSLATOR -> stringResource(id = Strings.role_translator)
-  Role.DEVELOPER -> stringResource(id = Strings.role_developer)
-  else -> stringResource(id = Strings.role_developer)
-}
+fun handleRole(role: String): String =
+  when (role) {
+    Role.FOUNDER -> stringResource(id = Strings.role_founder)
+    Role.TRANSLATOR -> stringResource(id = Strings.role_translator)
+    Role.DEVELOPER -> stringResource(id = Strings.role_developer)
+    else -> stringResource(id = Strings.role_developer)
+  }
 
 @Composable
-fun handleRolePlural(role: String): String = when(role) {
-  Role.FOUNDER -> stringResource(id = Strings.role_founders)
-  Role.TRANSLATOR -> stringResource(id = Strings.role_translators)
-  Role.DEVELOPER -> stringResource(id = Strings.role_developers)
-  else -> stringResource(id = Strings.role_developers)
-}
+fun handleRolePlural(role: String): String =
+  when (role) {
+    Role.FOUNDER -> stringResource(id = Strings.role_founders)
+    Role.TRANSLATOR -> stringResource(id = Strings.role_translators)
+    Role.DEVELOPER -> stringResource(id = Strings.role_developers)
+    else -> stringResource(id = Strings.role_developers)
+  }

@@ -19,7 +19,10 @@ package org.robok.engine.ui.screens.settings.rdk.viewmodel
 
 sealed class DownloadState {
   object NotStarted : DownloadState()
+
   object Loading : DownloadState()
+
   data class Success(val message: String) : DownloadState()
+
   data class Error(val error: String) : DownloadState()
 }

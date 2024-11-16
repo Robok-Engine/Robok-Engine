@@ -24,16 +24,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import kotlinx.serialization.Serializable
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.json.Json
-import okhttp3.OkHttpClient
-import okhttp3.Request
 import org.koin.androidx.compose.koinViewModel
-import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.shape.ButtonShape
@@ -41,8 +32,8 @@ import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.feature.settings.DefaultValues
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
+import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -51,9 +42,10 @@ fun SettingsRDKScreen() {
   val viewModel = koinViewModel<SettingsRDKViewModel>()
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
-  val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(
-    initial = DefaultValues.INSTALLED_RDK_VERSION
-  )
+  val installedRDKVersion by
+    appPrefsViewModel.installedRDKVersion.collectAsState(
+      initial = DefaultValues.INSTALLED_RDK_VERSION
+    )
 
   var version by remember { mutableStateOf(installedRDKVersion) }
 
@@ -76,7 +68,7 @@ fun SettingsRDKScreen() {
         onSaveClick = {
           appPrefsViewModel.changeInstalledRDK(version)
           viewModel.startDownload(context, zipUrl, version)
-        }
+        },
       )
     }
   }
@@ -86,15 +78,11 @@ fun SettingsRDKScreen() {
 private fun DownloadStateContent(
   modifier: Modifier,
   downloadState: DownloadState,
-  onSaveClick: () -> Unit
+  onSaveClick: () -> Unit,
 ) {
   when (downloadState) {
     is DownloadState.NotStarted -> {
-      Button(
-        modifier = modifier.fillMaxWidth(),
-        shape = ButtonShape(),
-        onClick = onSaveClick,
-      ) {
+      Button(modifier = modifier.fillMaxWidth(), shape = ButtonShape(), onClick = onSaveClick) {
         Text(text = stringResource(id = Strings.common_word_save))
       }
     }

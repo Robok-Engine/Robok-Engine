@@ -17,9 +17,6 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Context
-import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 
 val SettingsModule = module { /**/ }
