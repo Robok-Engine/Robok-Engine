@@ -34,7 +34,7 @@ async def progress(current, total):
     print(f"{progress_percentage:.2f}% uploaded - {uploaded_size_readable}/{total_size_readable}", end='\r')
 
 
-async def send_file(file_path, version):
+async def send_file(file_path):
     if not os.path.exists(file_path):
         print("File not found", file_path)
         return
@@ -59,7 +59,7 @@ async def send_file(file_path, version):
 
 try:
     with client:
-        client.loop.run_until_complete(send_file(apk_to_send, 21))
+        client.loop.run_until_complete(send_file(apk_to_send))
 finally:
     if client.is_connected():
         client.loop.run_until_complete(client.disconnect())
