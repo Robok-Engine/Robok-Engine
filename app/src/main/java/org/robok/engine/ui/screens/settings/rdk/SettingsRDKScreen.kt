@@ -48,7 +48,7 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
 @Composable
 fun SettingsRDKScreen() {
   val context = LocalContext.current
-  val viewModel: SettingsRDKViewModel = koinViewModel { parametersOf(context) }
+  val viewModel = koinViewModel<SettingsRDKViewModel>()
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
 
   val installedRDKVersion by appPrefsViewModel.installedRDKVersion.collectAsState(
@@ -75,7 +75,7 @@ fun SettingsRDKScreen() {
         downloadState = downloadState,
         onSaveClick = {
           appPrefsViewModel.changeInstalledRDK(version)
-          viewModel.startDownload(zipUrl, version)
+          viewModel.startDownload(context, zipUrl, version)
         }
       )
     }

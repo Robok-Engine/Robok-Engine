@@ -29,7 +29,6 @@ import org.robok.engine.core.utils.ZipDownloader
 import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
 
 class SettingsRDKViewModel(
-  private val context: Context,
   private val repository: SettingsRDKRepository
 ) : ViewModel() {
 
@@ -49,7 +48,7 @@ class SettingsRDKViewModel(
     }
   }
   
-  fun startDownload(zipUrl: String, outputDirName: String) {
+  fun startDownload(context: Context, zipUrl: String, outputDirName: String) {
     _downloadState = DownloadState.Loading
 
     viewModelScope.launch {

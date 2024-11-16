@@ -29,9 +29,7 @@ import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
 
 val SettingsRDKModule = module {
-  viewModel { (context: Context, repository: SettingsRDKRepository) -> 
-    SettingsRDKViewModel(context = context, repository = repository)
-  } 
+  viewModelOf(::SettingsRDKViewModel)
   single {
     SettingsRDKRepository(get())
   }
