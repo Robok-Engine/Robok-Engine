@@ -66,7 +66,7 @@ class EditorConfigManager : KoinComponent {
    * @param value A Int of new theme index
    */
   fun setEditorTheme(value: Int) {
-    appPreferencesViewModel.changeEditorTheme(value)
+    appPreferencesViewModel.setEditorTheme(value)
   }
 
   /*
@@ -74,14 +74,14 @@ class EditorConfigManager : KoinComponent {
    * @param value A Int of new theme index
    */
   fun setEditorTypeface(value: Int) {
-    appPreferencesViewModel.changeEditorTypeface(value)
+    appPreferencesViewModel.setEditorTypeface(value)
   }
 
   /*
    * Method to set if editor will use WordWrap
    * @param value A Boolean to enable or disable
    */
-  fun setEditorIsUseWordWrap(value: Boolean) {
-    appPreferencesViewModel.enableEditorWordWrap(value)
+  fun setEditorWordWrapEnable(value: Boolean) {
+    appPreferencesViewModel.setEditorWordWrapEnable(value)
   }
 }
