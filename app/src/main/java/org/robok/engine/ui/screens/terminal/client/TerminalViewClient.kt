@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.terminal
+package org.robok.engine.ui.screens.terminal.client
 
 /*
  *  This file is part of Robok © 2024.
@@ -20,12 +20,11 @@ package org.robok.engine.ui.screens.terminal
 import android.view.KeyEvent
 import android.view.MotionEvent
 import com.termux.terminal.TerminalSession
-import com.termux.view.TerminalViewClient
 
-class RTerminalViewClient(
+class TerminalViewClient(
   private val onSingleTap: () -> Unit,
   private val onKeyEventEnter: () -> Unit,
-) : TerminalViewClient {
+) : com.termux.view.TerminalViewClient {
   override fun onScale(scale: Float): Float {
     return 1f
   }

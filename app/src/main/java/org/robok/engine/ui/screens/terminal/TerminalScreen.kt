@@ -36,6 +36,8 @@ import java.io.File
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.ui.screens.terminal.client.TerminalViewClient
+import org.robok.engine.ui.screens.terminal.client.TerminalSessionClient
 
 private var cwd: String? = null
 private var session: TerminalSession? = null
@@ -73,7 +75,7 @@ private fun TerminalView(modifier: Modifier = Modifier) {
         session = createSession()
         attachSession(session)
         val viewClient =
-          RTerminalViewClient(
+          TerminalViewClient(
             onSingleTap = {
               val kUtil = KeyboardUtil(RobokApplication.getInstance())
               kUtil.showSoftInput(this)
@@ -114,7 +116,7 @@ private fun createSession(): TerminalSession {
     )
 
   val shell = "/system/bin/sh"
-  val sessionClient = RTerminalSessionClient(onTextChange = { onScreenChanged() })
+  val sessionClient = TerminalSessionClient(onTextChange = { onScreenChanged() })
   return TerminalSession(
     shell,
     workingDir,

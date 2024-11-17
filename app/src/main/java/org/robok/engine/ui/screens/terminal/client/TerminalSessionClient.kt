@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.terminal
+package org.robok.engine.ui.screens.terminal.client
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,9 +19,8 @@ package org.robok.engine.ui.screens.terminal
 
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
-import com.termux.terminal.TerminalSessionClient
 
-class RTerminalSessionClient(private val onTextChange: () -> Unit) : TerminalSessionClient {
+class TerminalSessionClient(private val onTextChange: () -> Unit) : com.termux.terminal.TerminalSessionClient {
 
   private var cwd: String? = null
 
