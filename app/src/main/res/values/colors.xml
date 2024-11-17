@@ -50,11 +50,11 @@
 
   <color name="rbk_theme_green">#4CAF50</color>
   <color name="rbk_theme_red">#F44336</color>
-  <color name="color_splash_bg">#FFFFFF</color>
+  <color name="color_splash_bg">#FFFFFFFF</color>
 
   <color name="black">#FF000000</color>
   <color name="blue">#2196f3</color>
 
   <color name="ic_launcher_tint">@android:color/system_accent1_600</color>
-  <color name="ic_launcher_background">@android:color/system_accent1_0</color>
+  <color name="ic_launcher_background">#FF000000</color>
 </resources>
