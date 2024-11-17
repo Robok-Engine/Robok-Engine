@@ -589,6 +589,7 @@ public class IdentifierAutoComplete {
           Class<?> clazz = rdkClasses.getDexClassLoader().loadClass(classes.get(s));
           dest.add(clazz);
         } catch (Exception e) {
+          dest.add(String.class);
           e.printStackTrace();
         }
       }
