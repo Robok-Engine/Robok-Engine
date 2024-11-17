@@ -47,6 +47,7 @@ fun FileTree(
       context = context,
       path = path,
       onClick = onClick,
+      state = state
     )
   }
   AndroidView(
