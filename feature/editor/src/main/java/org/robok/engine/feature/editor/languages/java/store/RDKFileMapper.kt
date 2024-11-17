@@ -27,8 +27,7 @@ class RDKFileMapper(private val context: Context) {
   private val robokClasses: HashMap<String, String> = HashMap()
   private val actuallyRdk = "RDK-1"
 
-  // Diretório contendo o arquivo .dex ou .jar
-  private val rdkDirectory: File = File(context.filesDir, "$actuallyRdk/dex/")
+  private val rdkDexDir: File = File(context.filesDir, "$actuallyRdk/dex/")
 
   init {
     mapRdkClasses()
@@ -39,20 +38,17 @@ class RDKFileMapper(private val context: Context) {
   }
 
   private fun mapRdkClasses() {
-    val rdkFolder = rdkDirectory
-    val dexFile = File(rdkFolder, "classes.dex") // Ou o caminho para seu arquivo .dex
+    val dexFile = File(rdkDexDir, "classes.dex")
 
     if (dexFile.exists()) {
       try {
         val dex = DexFile(dexFile.absolutePath)
         val entries = dex.entries()
 
-        // Preenche o HashMap com as classes encontradas no arquivo .dex
         while (entries.hasMoreElements()) {
           val className = entries.nextElement()
           val simpleName = className.substringAfterLast(".")
           robokClasses[simpleName] = className
-          // robokClasses[className] = className
         }
       } catch (e: Exception) {
         println("Error reading dex file: ${e.message}")
@@ -63,21 +59,18 @@ class RDKFileMapper(private val context: Context) {
   }
 
   fun getDexClassLoader(): DexClassLoader {
-    // Arquivo .dex ou .jar que será carregado
-    val dexFile = File(rdkDirectory, "classes.dex") // ou um .jar compilado
+    val dexFile = File(rdkDexDir, "classes.dex")
     if (!dexFile.exists()) {
       throw IllegalStateException("Dex file not found: ${dexFile.absolutePath}")
     }
 
-    // Diretório para arquivos temporários de otimização
     val optimizedDir = context.getDir("dex_opt", Context.MODE_PRIVATE)
 
-    // Inicializa o DexClassLoader
     return DexClassLoader(
-      dexFile.absolutePath, // Caminho do arquivo .dex ou .jar
-      optimizedDir.absolutePath, // Caminho para arquivos otimizados
-      null, // Caminho para bibliotecas nativas, se necessário
-      context.classLoader, // ClassLoader pai
+      dexFile.absolutePath,
+      optimizedDir.absolutePath,
+      null, // native libs dir, if needed
+      context.classLoader,
     )
   }
 
