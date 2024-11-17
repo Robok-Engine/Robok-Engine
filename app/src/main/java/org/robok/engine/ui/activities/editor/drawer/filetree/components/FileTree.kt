@@ -76,6 +76,7 @@ private fun setFileTreeFactory(
     setIconProvider(DefaultFileIconProvider(context))
   }
   state.fileTreeView = fileTree
+  return fileTree
 }
 
 data class FileTreeState(
