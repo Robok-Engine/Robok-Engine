@@ -114,4 +114,12 @@
     <string name="text_open_contributor_github">Відкрийте -name- профіль GitHub у браузері</string>
     <string name="text_libraries">Бібліотеки, якими ми користувалися</string>
     <string name="common_word_files">Файли</string>
+    <string name="role_founders">Засновники</string>
+    <string name="role_founder">Засновник</string>
+    <string name="role_developer">Розробник</string>
+    <string name="settings_configure_rdk_version_error">Виникла помилка</string>
+    <string name="role_developers">Розробники</string>
+    <string name="role_translator">Перекладач</string>
+    <string name="role_translators">Перекладачі</string>
+    <string name="settings_configure_rdk_version_success">Завантаження успішно завершено.</string>
 </resources>
