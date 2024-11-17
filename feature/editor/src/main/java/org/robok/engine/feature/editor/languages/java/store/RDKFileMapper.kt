@@ -32,7 +32,7 @@ class RDKFileMapper(private val context: Context) {
 
     // Diretório contendo o arquivo .dex ou .jar
     private val rdkDirectory: File = File(
-        Environment.getExternalStorageDirectory(), "$actuallyRdk/dex/"
+        context.filesDir, "$actuallyRdk/dex/"
     )
 
     init {
