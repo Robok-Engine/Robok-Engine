@@ -148,7 +148,7 @@
     <string name="role_developers">المطورون</string>
     <string name="role_translator">مترجم</string>
     <string name="role_translators">المترجمون</string>
-    <string name="text_open_contributor_github">فتح مشارك الجيتهب</string>
+    <string name="text_open_contributor_github">فتح حساب مشارك الجيتهب -name-</string>
     <string name="text_whatsapp">مجموعة الواتساب.</string>
     <string name="text_libraries">المكتبات المستعملة</string>
 </resources>
