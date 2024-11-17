@@ -41,7 +41,7 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
                 // Initialization logic here
               }
             }
-        """13
+        """
       .trimIndent()
   }
 }
