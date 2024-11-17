@@ -135,4 +135,20 @@
     <string name="title_contribute">شارك</string>
     <string name="title_libraries">برامج الطرف الثالث</string>
     <string name="text_see_code">انظر الكود</string>
+    <string name="text_exit_without_save">خروج دون حفظ</string>
+    <string name="text_telegram">مجتمع التلجرام الخاص بنا</string>
+    <string name="text_github">مستودع الجيتهاب</string>
+    <string name="text_contributors">المشاركون</string>
+    <string name="text_contribute">انظر كيف يمكنك المشاركة</string>
+    <string name="warning_exit_project_title">الخروج من المشروع</string>
+    <string name="warning_exit_project_message">هل انت متأكد من الخروج من الأرشيف( جميع الملفات ستحفظ)</string>
+    <string name="role_founder">المؤسس</string>
+    <string name="role_founders">المؤسسون</string>
+    <string name="role_developer">مطور</string>
+    <string name="role_developers">المطورون</string>
+    <string name="role_translator">مترجم</string>
+    <string name="role_translators">المترجمون</string>
+    <string name="text_open_contributor_github">فتح مشارك الجيتهب</string>
+    <string name="text_whatsapp">مجموعة الواتساب.</string>
+    <string name="text_libraries">المكتبات المستعملة</string>
 </resources>
