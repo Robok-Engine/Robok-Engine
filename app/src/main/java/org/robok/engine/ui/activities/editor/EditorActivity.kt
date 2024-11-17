@@ -65,6 +65,7 @@ import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
 
 class EditorActivity :
   RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -82,6 +83,7 @@ class EditorActivity :
   private lateinit var antlrListener: AntlrListener
   private lateinit var editorViewModel: EditorViewModel
   private lateinit var buildTerminal: RecyclerViewBottomSheet
+  private lateinit var projectInfoViewModel: ProjectInfoDrawerViewModel
 
   private val handler = Handler(Looper.getMainLooper())
   private val diagnosticStandTime: Long = 800
@@ -97,6 +99,7 @@ class EditorActivity :
     setContentView(binding.root)
 
     editorViewModel = getKoin().get()
+    projectInfoViewModel = getKoin().get()
 
     val extras = intent.extras
     if (extras != null) {
@@ -260,9 +263,11 @@ class EditorActivity :
         override fun onDrawerStateChanged(newState: Int) {}
       }
     )
-
+    
     binding.drawerEditorRightComposeView.setContent {
-      RobokTheme(isActivity = false, content = { ProjectInfoDrawer() })
+      RobokTheme(isActivity = false) {
+        ProjectInfoDrawer(viewModel = projectInfoViewModel)
+      }
     }
   }
 
@@ -284,19 +289,18 @@ class EditorActivity :
     binding.drawerEditorLeftComposeView.setContent {
       RobokTheme(
         isActivity = false,
-        content = {
-          FileTreeDrawer(
-            path = projectPath!!,
-            onClick = { node ->
-              if (node.value.isDirectory()) {
-                // do nothing
-              } else {
-                handleNodeFileExtension(node)
-              }
-            },
-          )
-        },
-      )
+      ) {
+        FileTreeDrawer(
+          path = projectPath!!,
+          onClick = { node ->
+            if (node.value.isDirectory()) {
+              // do nothing
+            } else {
+              handleNodeFileExtension(node)
+            }
+          },
+        )
+      }
     }
   }
 

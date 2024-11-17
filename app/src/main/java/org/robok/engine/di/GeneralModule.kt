@@ -22,6 +22,7 @@ import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
@@ -31,4 +32,5 @@ val GeneralModule = module {
   viewModelOf(::ManageProjectsViewModel)
   viewModelOf(::EditorViewModel)
   viewModelOf(::XMLViewerViewModel)
+  viewModelOf(::ProjectInfoDrawerViewModel)
 }

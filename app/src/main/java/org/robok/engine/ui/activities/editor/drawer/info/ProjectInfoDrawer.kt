@@ -25,10 +25,12 @@ import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
 
 @Composable
-fun ProjectInfoDrawer() {
-  var selectedTabIndex by remember { mutableStateOf(0) }
+fun ProjectInfoDrawer(
+  viewModel: ProjectInfoDrawerViewModel
+) {
   val tabTitles =
     listOf(
       stringResource(id = Strings.common_word_logs),
@@ -36,16 +38,16 @@ fun ProjectInfoDrawer() {
     )
 
   Column {
-    TabRow(selectedTabIndex = selectedTabIndex) {
+    TabRow(selectedTabIndex = viewModel.currentTabIndex) {
       tabTitles.forEachIndexed { index, title ->
         Tab(
-          selected = selectedTabIndex == index,
-          onClick = { selectedTabIndex = index },
+          selected = viewModel.currentTabIndex == index,
+          onClick = { viewModel.setCurrentTabIndex(index) },
           text = { Text(title) },
         )
       }
     }
-    when (selectedTabIndex) {
+    when (viewModel.currentTabIndex) {
       0 -> LogsDrawer()
       1 -> DiagnosticDrawer()
     }
