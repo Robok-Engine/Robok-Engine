@@ -50,14 +50,14 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
 
   PreferenceSwitch(
     checked = appIsUseMonet,
-    onCheckedChange = { newValue -> appPrefsViewModel.enableMonet(newValue) },
+    onCheckedChange = { newValue -> appPrefsViewModel.setMonetEnable(newValue) },
     label = stringResource(id = Strings.settings_app_use_monet_title),
     description = stringResource(id = Strings.settings_app_use_monet_description),
     enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
   )
   PreferenceSwitch(
     checked = appIsUseAmoled,
-    onCheckedChange = { newValue -> appPrefsViewModel.enableAmoled(newValue) },
+    onCheckedChange = { newValue -> appPrefsViewModel.setAmoledEnable(newValue) },
     label = stringResource(id = Strings.settings_app_use_amoled_title),
     description = stringResource(id = Strings.settings_app_use_amoled_description),
   )

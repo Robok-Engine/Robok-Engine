@@ -49,27 +49,27 @@ class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
       it[editorIsUseWordWrapPreference] ?: DefaultValues.EDITOR_IS_USE_WORD_WRAP
     }
 
-  suspend fun changeInstalledRDK(value: String) {
+  suspend fun setInstalledRDKVersion(value: String) {
     dataStore.edit { preferences -> preferences[installedRDKVersionPreference] = value }
   }
 
-  suspend fun enableMonet(value: Boolean) {
+  suspend fun setMonetEnable(value: Boolean) {
     dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
   }
 
-  suspend fun enableAmoled(value: Boolean) {
+  suspend fun setAmoledEnable(value: Boolean) {
     dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
   }
 
-  suspend fun changeEditorTheme(value: Int) {
+  suspend fun setEditorTheme(value: Int) {
     dataStore.edit { preferences -> preferences[editorThemePreference] = value }
   }
 
-  suspend fun changeEditorTypeface(value: Int) {
+  suspend fun setEditorTypeface(value: Int) {
     dataStore.edit { preferences -> preferences[editorTypefacePreference] = value }
   }
 
-  suspend fun enableEditorWordWrap(value: Boolean) {
+  suspend fun setEditorWordWrapEnable(value: Boolean) {
     dataStore.edit { preferences -> preferences[editorIsUseWordWrapPreference] = value }
   }
 }

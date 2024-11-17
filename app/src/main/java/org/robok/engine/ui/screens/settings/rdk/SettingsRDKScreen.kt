@@ -48,8 +48,9 @@ fun SettingsRDKScreen() {
 
   var version by remember { mutableStateOf(installedRDKVersion) }
 
-  val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/$version.zip"
+  val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/files.zip"
   val downloadState = viewModel.downloadState
+  
   val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 
   Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
@@ -65,7 +66,7 @@ fun SettingsRDKScreen() {
         modifier = modifier,
         downloadState = downloadState,
         onSaveClick = {
-          appPrefsViewModel.changeInstalledRDK(version)
+          appPrefsViewModel.setInstalledRDKVersion(version)
           viewModel.startDownload(context, zipUrl, version)
         },
       )

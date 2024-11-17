@@ -30,27 +30,27 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   val editorTypeface = repo.editorTypeface
   val editorIsUseWordWrap = repo.editorIsUseWordWrap
 
-  fun changeInstalledRDK(value: String) {
-    viewModelScope.launch { repo.changeInstalledRDK(value) }
+  fun setInstalledRDKVersion(value: String) {
+    viewModelScope.launch { repo.setInstalledRDKVersion(value) }
   }
 
-  fun enableMonet(value: Boolean) {
-    viewModelScope.launch { repo.enableMonet(value) }
+  fun setMonetEnable(value: Boolean) {
+    viewModelScope.launch { repo.setMonetEnable(value) }
   }
 
-  fun enableAmoled(value: Boolean) {
-    viewModelScope.launch { repo.enableAmoled(value) }
+  fun setAmoledEnable(value: Boolean) {
+    viewModelScope.launch { repo.setAmoledEnable(value) }
   }
 
-  fun changeEditorTheme(value: Int) {
-    viewModelScope.launch { repo.changeEditorTheme(value) }
+  fun setEditorTheme(value: Int) {
+    viewModelScope.launch { repo.setEditorTheme(value) }
   }
 
-  fun changeEditorTypeface(value: Int) {
-    viewModelScope.launch { repo.changeEditorTypeface(value) }
+  fun setEditorTypeface(value: Int) {
+    viewModelScope.launch { repo.setEditorTypeface(value) }
   }
 
-  fun enableEditorWordWrap(value: Boolean) {
-    viewModelScope.launch { repo.enableEditorWordWrap(value) }
+  fun setEditorWordWrapEnable(value: Boolean) {
+    viewModelScope.launch { repo.setEditorWordWrapEnable(value) }
   }
 }

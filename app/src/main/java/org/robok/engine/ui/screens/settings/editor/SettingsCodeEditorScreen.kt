@@ -82,7 +82,7 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
     options = editorThemes,
     excludedOptions = emptyList(),
     labelFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
-    onPrefChange = { newTheme -> appPrefsViewModel.changeEditorTheme(newTheme) },
+    onPrefChange = { newTheme -> appPrefsViewModel.setEditorTheme(newTheme) },
   )
 
   PreferenceChoice(
@@ -92,7 +92,7 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
     options = editorTypefaces,
     excludedOptions = emptyList(),
     labelFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
-    onPrefChange = { newTypeface -> appPrefsViewModel.changeEditorTypeface(newTypeface) },
+    onPrefChange = { newTypeface -> appPrefsViewModel.setEditorTypeface(newTypeface) },
   )
 }
 
@@ -104,7 +104,7 @@ fun formattingPrefs(appPrefsViewModel: PreferencesViewModel) {
     )
   PreferenceSwitch(
     checked = editorIsUseWordWrap,
-    onCheckedChange = { newValue -> appPrefsViewModel.enableEditorWordWrap(newValue) },
+    onCheckedChange = { newValue -> appPrefsViewModel.setEditorWordWrapEnable(newValue) },
     label = stringResource(id = Strings.settings_code_editor_word_wrap_title),
     description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
   )
