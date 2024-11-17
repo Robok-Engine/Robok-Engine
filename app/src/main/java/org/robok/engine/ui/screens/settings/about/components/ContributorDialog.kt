@@ -38,11 +38,10 @@ fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
   val uriHandler = LocalUriHandler.current
   AlertDialog(
     onDismissRequest = onDismissRequest,
-    title = { Text(text = stringResource(Strings.title_open_contributor_github)) },
+    title = { Text(text = stringResource(Strings.title_open_contributor_profile)) },
     text = {
       Text(
-        text =
-          stringResource(Strings.text_open_contributor_github).replace("-name-", contributor.login)
+        text = stringResource(Strings.text_open_contributor_profile, contributor.login)
       )
     },
     confirmButton = {

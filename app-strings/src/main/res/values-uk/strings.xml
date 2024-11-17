@@ -100,7 +100,6 @@
     <string name="warning_exit_project_message">Ви впевнені, що хочете вийти з архіву? (всі файли будуть збережені)</string>
     <string name="text_see_code">Побачити код</string>
     <string name="common_word_open">Відкрито</string>
-    <string name="title_open_contributor_github">Відкрийте Contributor GitHub</string>
     <string name="title_telegram">Телеграм</string>
     <string name="title_whatsapp">Whats App</string>
     <string name="title_github">GitHub</string>
@@ -111,7 +110,6 @@
     <string name="text_exit_without_save">Вийти без збереження</string>
     <string name="text_telegram">Наша Telegram спільнота</string>
     <string name="title_libraries">Програмне забезпечення сторонніх виробників</string>
-    <string name="text_open_contributor_github">Відкрийте -name- профіль GitHub у браузері</string>
     <string name="text_libraries">Бібліотеки, якими ми користувалися</string>
     <string name="common_word_files">Файли</string>
     <string name="role_founders">Засновники</string>

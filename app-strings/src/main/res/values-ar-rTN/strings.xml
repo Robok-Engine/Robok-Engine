@@ -128,7 +128,6 @@
     <string name="settings_configure_rdk_version_success">تم التحميل بنجاح</string>
     <string name="settings_configure_rdk_version_error">هناك خطأ</string>
     <string name="common_word_files">الملفات</string>
-    <string name="title_open_contributor_github">فتح ملف المشاركة جيتهب</string>
     <string name="title_telegram">تلجرام</string>
     <string name="title_whatsapp">واتساب</string>
     <string name="title_github">جيتهب</string>
@@ -148,7 +147,6 @@
     <string name="role_developers">المطورون</string>
     <string name="role_translator">مترجم</string>
     <string name="role_translators">المترجمون</string>
-    <string name="text_open_contributor_github">فتح حساب مشارك الجيتهب -name-</string>
     <string name="text_whatsapp">مجموعة الواتساب.</string>
     <string name="text_libraries">المكتبات المستعملة</string>
 </resources>

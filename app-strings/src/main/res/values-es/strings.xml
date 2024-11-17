@@ -23,7 +23,6 @@
     <string name="title_templates">Plantillas</string>
     <string name="title_projects">Proyectos</string>
     <string name="title_your_projects">Sus proyectos</string>
-    <string name="title_open_contributor_github">Colaborador abierto de GitHub</string>
     <string name="title_telegram">Telegram</string>
     <string name="title_whatsapp">WhatsApp</string>
     <string name="title_github">GitHub</string>
@@ -74,7 +73,6 @@
     <string name="text_saved">¡Guardado!</string>
     <string name="text_saved_all">Se guardó la información reciente</string>
     <string name="text_see_code">Ver código</string>
-    <string name="text_open_contributor_github">Abrir en navegador el perfil de -name- en GitHub</string>
     <string name="text_telegram">Nuestra comunidad en Telegram.</string>
     <string name="text_github">Repositorio en GitHub.</string>
     <string name="text_contribute">Mira cómo puedes contribuir con nosotros</string>

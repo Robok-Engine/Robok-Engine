@@ -126,7 +126,7 @@
     <string name="title_gui_viewer">Visionneur de IGU</string>
     <string name="common_word_open">Ouvrir</string>
     <string name="common_word_files">Fichiers</string>
-    <string name="title_open_contributor_github">Ouvrir Le contributeur Github</string>
+    
     <string name="title_telegram">Telegram</string>
     <string name="title_whatsapp">WhatsApp</string>
     <string name="title_github">Github</string>
@@ -140,7 +140,7 @@
     <string name="warning_exit_project_message">Voulez-Vous Quitter l\'archive (Tous Sont enregistrés)</string>
     <string name="text_telegram">Notre Communaté Telegram</string>
     <string name="text_whatsapp">Notre Group WhatsApp.</string>
-    <string name="text_open_contributor_github">Ouvrir Le Profil github de -name- dans Navigateur</string>
+    
     <string name="text_contribute">Voici Comment vous voulez participer avec nous</string>
     <string name="text_libraries">Les Bibliothèques Utilisés</string>
     <string name="role_translator">Traducteur(rice)</string>
