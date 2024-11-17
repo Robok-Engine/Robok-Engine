@@ -37,7 +37,7 @@ import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
 @Composable
 fun FileTree(
   path: String,
-  onClick: (Node<FileObject>,) -> Unit,
+  onClick: (Node<FileObject>) -> Unit,
   modifier: Modifier = Modifier,
   state: FileTreeState
 ) {
