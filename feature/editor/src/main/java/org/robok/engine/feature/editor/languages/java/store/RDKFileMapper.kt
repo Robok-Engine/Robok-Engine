@@ -21,50 +21,88 @@ import android.content.Context
 import java.io.File
 import java.net.URL
 import java.net.URLClassLoader
+import android.os.Environment
+import dalvik.system.DexFile
+import dalvik.system.DexClassLoader
 
 class RDKFileMapper(private val context: Context) {
 
-  private val robokClasses: HashMap<String, String> = HashMap()
-  private val actuallyRdk = "RDK-1"
-  private val rdkDirectory: File = File(context.filesDir, "$actuallyRdk/rdk/")
+    private val robokClasses: HashMap<String, String> = HashMap()
+    private val actuallyRdk = "RDK-1"
 
-  init {
-    mapRdkClasses()
-  }
+    // Diretório contendo o arquivo .dex ou .jar
+    private val rdkDirectory: File = File(
+        context.filesDir, "$actuallyRdk/dex/"
+    )
 
-  fun getClasses(): HashMap<String, String> {
-    return robokClasses
-  }
+    init {
+        mapRdkClasses()
+    }
 
-  private fun mapRdkClasses() {
+    fun getClasses(): HashMap<String, String> {
+        return robokClasses
+    }
+
+    
+
+private fun mapRdkClasses() {
     val rdkFolder = rdkDirectory
+    val dexFile = File(rdkFolder, "classes.dex") // Ou o caminho para seu arquivo .dex
 
-    if (rdkFolder.exists() && rdkFolder.isDirectory) {
-      mapClassesRecursively(rdkFolder, "")
+    if (dexFile.exists()) {
+        try {
+            val dex = DexFile(dexFile.absolutePath)
+            val entries = dex.entries()
+
+            // Preenche o HashMap com as classes encontradas no arquivo .dex
+            while (entries.hasMoreElements()) {
+                val className = entries.nextElement()
+                val simpleName = className.substringAfterLast(".")
+                robokClasses[simpleName] = className
+                //robokClasses[className] = className
+            }
+        } catch (e: Exception) {
+            println("Error reading dex file: ${e.message}")
+        }
     } else {
-      robokClasses["RDKNotExistsException"] = "robok.rdk.RDKNotExistsException"
+        robokClasses["RDKNotExistsException"] = "robok.rdk.RDKNotExistsException"
     }
-  }
+}
 
-  private fun mapClassesRecursively(folder: File, packageName: String) {
-    val files = folder.listFiles() ?: return
+    fun getDexClassLoader(): DexClassLoader {
+        // Arquivo .dex ou .jar que será carregado
+        val dexFile = File(rdkDirectory, "classes.dex") // ou um .jar compilado
+        if (!dexFile.exists()) {
+            throw IllegalStateException("Dex file not found: ${dexFile.absolutePath}")
+        }
 
-    for (file in files) {
-      if (file.isDirectory) {
-        val newPackageName = if (packageName.isEmpty()) file.name else "$packageName.${file.name}"
-        mapClassesRecursively(file, newPackageName)
-      } else if (file.name.endsWith(".class")) {
-        val className = file.name.removeSuffix(".class")
-        val classPath = "$packageName.$className"
-        robokClasses[className] = classPath
-      }
+        // Diretório para arquivos temporários de otimização
+        val optimizedDir = context.getDir("dex_opt", Context.MODE_PRIVATE)
+
+        // Inicializa o DexClassLoader
+        return DexClassLoader(
+            dexFile.absolutePath, // Caminho do arquivo .dex ou .jar
+            optimizedDir.absolutePath, // Caminho para arquivos otimizados
+            null, // Caminho para bibliotecas nativas, se necessário
+            context.classLoader // ClassLoader pai
+        )
     }
-  }
 
-  fun getClassLoader(): URLClassLoader {
-    val url: URL = rdkDirectory.toURI().toURL()
-    val urls = arrayOf(url)
+    fun loadAllClasses(): HashMap<String, Class<*>> {
+        val loadedClasses = HashMap<String, Class<*>>()
+        val classLoader = getDexClassLoader()
 
-    return URLClassLoader(urls)
-  }
+        for ((simpleName, fullName) in robokClasses) {
+            try {
+                val clazz = classLoader.loadClass(fullName)
+                loadedClasses[simpleName] = clazz
+            } catch (e: ClassNotFoundException) {
+                println("Class not found: $fullName")
+            } catch (e: Exception) {
+                println("Error loading class: $fullName - ${e.message}")
+            }
+        }
+
+        return loadedClasses
+    }
 }
