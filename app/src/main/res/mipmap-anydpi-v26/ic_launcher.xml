@@ -4,7 +4,7 @@
         android:drawable="@color/ic_launcher_background" />
     
     <foreground
-        android:drawable="@mipmap/ic_launcher_foreground" />
+        android:drawable="@mipmap/ic_launcher_foreground_tinted" />
     
     <monochrome
         android:drawable="@mipmap/ic_launcher_monochrome" />
