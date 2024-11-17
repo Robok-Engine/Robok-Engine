@@ -296,7 +296,10 @@ class EditorActivity :
           path = projectPath!!,
           onClick = { node ->
             if (node.value.isDirectory()) {
-              // do nothing
+              val fileList = fileObject.listFiles()
+              if (fileList.size == 1 && fileList[0].isDirectory) {
+                openFolder(fileList[0])
+              }
             } else {
               handleNodeFileExtension(node)
             }

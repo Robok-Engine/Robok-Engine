@@ -28,9 +28,12 @@ import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.theme.Typography
+import org.robok.engine.ui.activities.editor.drawer.filetree.components.FileTree
+import org.robok.engine.ui.activities.editor.drawer.filetree.components.rememberFileTreeState
 
 @Composable
 fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
+  val fileTreeState = rememberFileTreeState()
   Column {
     Text(
       text = stringResource(id = Strings.common_word_files),
@@ -39,6 +42,6 @@ fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp),
     )
-    FileTree(path = path, onClick = onClick)
+    FileTree(path = path, onClick = onClick, state = fileTreeState)
   }
 }
