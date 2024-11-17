@@ -139,7 +139,6 @@
     <string name="title_github">GitHub</string>
     <string name="title_contribute">Contribuir</string>
     <string name="text_libraries">As bibliotecas que usamos</string>
-    
     <string name="text_telegram">Nossa Comunidade Telegram</string>
     <string name="text_exit_without_save">Sair sem Salvar</string>
     <string name="common_word_files">Arquivos</string>
@@ -151,4 +150,6 @@
     <string name="role_translators">Tradutores</string>
     <string name="settings_configure_rdk_version_success">Download completado com sucesso.</string>
     <string name="settings_configure_rdk_version_error">Algum erro ocorreu</string>
+    <string name="title_open_contributor_profile">Abrir perfil do contribuidor</string>
+    <string name="text_open_contributor_profile">Abrir perfil de %s no navegador</string>
 </resources>
