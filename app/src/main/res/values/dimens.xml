@@ -1,5 +1,5 @@
 <resources>
-    <dimen name="toolbar_icon_width">30dp</dimen>
-    <dimen name="toolbar_icon_height">30dp</dimen>
-    <dimen name="m3_alert_dialog_elevation">0dp</dimen>
+  <dimen name="toolbar_icon_width">30dp</dimen>
+  <dimen name="toolbar_icon_height">30dp</dimen>
+  <dimen name="m3_alert_dialog_elevation">0dp</dimen>
 </resources>
