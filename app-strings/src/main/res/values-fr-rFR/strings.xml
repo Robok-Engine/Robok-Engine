@@ -123,4 +123,7 @@
     <string name="settings_app_use_amoled_title">Thème Amoled</string>
     <string name="settings_app_use_amoled_description">Utiliser L\'Amoled dans l\'appli.</string>
     <string name="warning_no_projects">Il n\'y a pas de projets.</string>
+    <string name="title_gui_viewer">Visionneur de IGU</string>
+    <string name="common_word_open">Ouvrir</string>
+    <string name="common_word_files">Fichiers</string>
 </resources>
