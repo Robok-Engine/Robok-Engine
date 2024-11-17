@@ -33,7 +33,7 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
     return """
             package $packageName;
             
-            import robok.game.screen.GameScreen;
+            import org.robok.game.screen.GameScreen;
             
             public class $name extends GameScreen {
               @Override
@@ -41,7 +41,7 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
                 // Initialization logic here
               }
             }
-        """
+        """13
       .trimIndent()
   }
 }
