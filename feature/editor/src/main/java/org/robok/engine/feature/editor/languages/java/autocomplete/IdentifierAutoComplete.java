@@ -586,7 +586,7 @@ public class IdentifierAutoComplete {
               && !(prefix.length() == s.length() && TextUtils.startsWith(prefix, s, false))
           || (prefix.equalsIgnoreCase(s))) {
         try {
-          Class<?> clazz = rdkClasses.getClassLoader().loadClass(classes.get(s));
+          Class<?> clazz = rdkClasses.getDexClassLoader().loadClass(classes.get(s));
           dest.add(clazz);
         } catch (Exception e) {
           e.printStackTrace();
