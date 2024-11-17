@@ -112,7 +112,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 16,
-    "role": "Development"
+    "role": "Developer"
   },
   {
     "login": "github-actions[bot]",
@@ -158,7 +158,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 9,
-    "role": "Development"
+    "role": "Developer"
   },
   {
     "login": "Kefir2105",
@@ -181,7 +181,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 9,
-    "role": "Translation"
+    "role": "Translator"
   },
   {
     "login": "teixeira0x",
@@ -204,7 +204,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 6,
-    "role": "Development"
+    "role": "Developer"
   },
   {
     "login": "Yamenher",
@@ -227,7 +227,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 6,
-    "role": "Translation"
+    "role": "Translator"
   },
   {
     "login": "itsvks19",
@@ -250,7 +250,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 3,
-    "role": "Development"
+    "role": "Developer"
   },
   {
     "login": "Paxsenix0",
@@ -273,7 +273,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 2,
-    "role": "Translation"
+    "role": "Translator"
   },
   {
     "login": "Xori71",
@@ -296,7 +296,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 1,
-    "role": "Translation"
+    "role": "Translator"
   },
   {
     "login": "weblate",
@@ -322,29 +322,6 @@
     "role": "Bot"
   },
   {
-    "login": "ScriptWrap",
-    "id": 86142168,
-    "node_id": "MDQ6VXNlcjg2MTQyMTY4",
-    "avatar_url": "https://avatars.githubusercontent.com/u/86142168?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/ScriptWrap",
-    "html_url": "https://github.com/ScriptWrap",
-    "followers_url": "https://api.github.com/users/ScriptWrap/followers",
-    "following_url": "https://api.github.com/users/ScriptWrap/following{/other_user}",
-    "gists_url": "https://api.github.com/users/ScriptWrap/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/ScriptWrap/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/ScriptWrap/subscriptions",
-    "organizations_url": "https://api.github.com/users/ScriptWrap/orgs",
-    "repos_url": "https://api.github.com/users/ScriptWrap/repos",
-    "events_url": "https://api.github.com/users/ScriptWrap/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/ScriptWrap/received_events",
-    "type": "User",
-    "user_view_type": "public",
-    "site_admin": false,
-    "contributions": 18,
-    "role": "Development"
-  },
-  {
     "login": "ElPerro",
     "id": 86142168,
     "node_id": "MDQ6VXNlcjg2MTQyMTY4",
@@ -365,7 +342,7 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 18,
-    "role": "Translation"
+    "role": "Translator"
   },
   {
     "login": "SyntaxSpins",
@@ -387,6 +364,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 24
+    "contributions": 24,
+    "role": "Developer"
   }
 ]
