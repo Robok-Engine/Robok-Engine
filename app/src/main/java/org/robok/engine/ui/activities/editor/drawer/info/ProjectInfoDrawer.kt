@@ -48,8 +48,8 @@ fun ProjectInfoDrawer(
       }
     }
     when (viewModel.currentTabIndex) {
-      0 -> LogsDrawer()
-      1 -> DiagnosticDrawer()
+      ProjectInfoDrawerIndexs.LOGS -> LogsDrawer()
+      ProjectInfoDrawerIndexs.DIAGNOSTIC -> DiagnosticDrawer()
     }
   }
 }

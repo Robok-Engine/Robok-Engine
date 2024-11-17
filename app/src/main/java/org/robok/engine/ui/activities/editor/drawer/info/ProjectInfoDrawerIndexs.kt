@@ -16,19 +16,8 @@ package org.robok.engine.ui.activities.editor.drawer.info
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
-
-class ProjectInfoDrawerViewModel : ViewModel() {
-  private var _currentTabIndex by mutableStateOf(ProjectInfoDrawerIndexs.LOGS)
-  val currentTabIndex: Int
-    get() = _currentTabIndex
-
-  fun setCurrentTabIndex(value: Int) {
-    _currentTabIndex = value
-  }
+ 
+object ProjectInfoDrawerIndexs {
+  const val LOGS = 0
+  const val DIAGNOSTIC = 1
 }

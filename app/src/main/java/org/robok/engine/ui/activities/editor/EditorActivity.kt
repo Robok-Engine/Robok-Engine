@@ -66,6 +66,7 @@ import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
 
 class EditorActivity :
   RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -226,6 +227,7 @@ class EditorActivity :
       } else {
         binding.drawerLayout.openDrawer(GravityCompat.END)
       }
+      projectInfoViewModel.setCurrentTabIndex(ProjectInfoDrawerIndexs.DIAGNOSTIC)
     }
   }
 
