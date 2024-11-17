@@ -126,4 +126,10 @@
     <string name="title_gui_viewer">Visionneur de IGU</string>
     <string name="common_word_open">Ouvrir</string>
     <string name="common_word_files">Fichiers</string>
+    <string name="title_open_contributor_github">Ouvrir Le contributeur Github</string>
+    <string name="title_telegram">Telegram</string>
+    <string name="title_whatsapp">WhatsApp</string>
+    <string name="title_github">Github</string>
+    <string name="title_contribute">Contribuer</string>
+    <string name="title_libraries">Logicels Tiers</string>
 </resources>
