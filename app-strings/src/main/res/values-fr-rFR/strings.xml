@@ -132,4 +132,5 @@
     <string name="title_github">Github</string>
     <string name="title_contribute">Contribuer</string>
     <string name="title_libraries">Logicels Tiers</string>
+    <string name="settings_configure_rdk_version_success">Téléchargé avec Succès.</string>
 </resources>
