@@ -2,7 +2,7 @@
 <adaptive-icon xmlns:android="http://schemas.android.com/apk/res/android">
   <background android:drawable="@color/ic_launcher_background" />
 
-  <foreground android:drawable="@mipmap/ic_launcher_foreground_tinted" />
+  <foreground android:drawable="@drawable/ic_launcher_foreground_tinted" />
 
   <monochrome android:drawable="@mipmap/ic_launcher_monochrome" />
 </adaptive-icon>
