@@ -133,4 +133,24 @@
     <string name="title_contribute">Contribuer</string>
     <string name="title_libraries">Logicels Tiers</string>
     <string name="settings_configure_rdk_version_success">Téléchargé avec Succès.</string>
+    <string name="text_saved">enregistré !</string>
+    <string name="text_saved_all">Tout enregistré !</string>
+    <string name="text_see_code">Voir Code</string>
+    <string name="warning_exit_project_title">Quitter le projet</string>
+    <string name="warning_exit_project_message">Voulez-Vous Quitter l\'archive (Tous Sont enregistrés)</string>
+    <string name="text_telegram">Notre Communaté Telegram</string>
+    <string name="text_whatsapp">Notre Group WhatsApp.</string>
+    <string name="text_open_contributor_github">Ouvrir Le Profil github de -name- dans Navigateur</string>
+    <string name="text_contribute">Voici Comment vous voulez participer avec nous</string>
+    <string name="text_libraries">Les Bibliothèques Utilisés</string>
+    <string name="role_translator">Traducteur(rice)</string>
+    <string name="role_translators">Traducteurs</string>
+    <string name="role_developers">Developpeurs</string>
+    <string name="settings_configure_rdk_version_error">une erreur s\'est produite</string>
+    <string name="text_exit_without_save">Quitter sans Sauvgarder</string>
+    <string name="role_founders">Fondateurs</string>
+    <string name="role_developer">Developpeur(euse)</string>
+    <string name="role_founder">Fondateur</string>
+    <string name="text_github">Depôt Github</string>
+    <string name="text_contributors">Contributeurs</string>
 </resources>
