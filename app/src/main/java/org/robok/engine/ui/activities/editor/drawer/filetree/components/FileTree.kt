@@ -44,7 +44,7 @@ fun FileTree(
   val context = LocalContext.current
   val fileTreeFactory = remember {
     setFileTreeFactory(
-      context = context
+      context = context,
       path = path,
       onClick = onClick,
     )
