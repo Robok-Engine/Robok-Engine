@@ -70,7 +70,7 @@ fun PermissionDialog(
 
         Button(
           onClick = onAllowClicked,
-          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp)
+          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
         ) {
           Text(
             text = stringResource(id = Strings.common_word_allow),
@@ -84,7 +84,7 @@ fun PermissionDialog(
 
         Button(
           onClick = onDenyClicked,
-          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp)
+          modifier = Modifier.fillMaxWidth().padding(horizontal = 20.dp, vertical = 2.dp),
         ) {
           Text(
             text = stringResource(id = Strings.common_word_deny),

@@ -16,8 +16,8 @@ package org.robok.engine.ui.screens.settings.about.models
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-import org.robok.engine.ui.screens.settings.about.components.Role
 import kotlinx.serialization.Serializable
+import org.robok.engine.ui.screens.settings.about.components.Role
 
 @Serializable
 data class Contributor(

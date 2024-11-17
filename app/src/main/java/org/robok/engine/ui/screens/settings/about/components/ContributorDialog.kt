@@ -50,7 +50,7 @@ fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
         onClick = {
           onDismissRequest()
           uriHandler.openUri(contributor.html_url)
-        },
+        }
       ) {
         Text(text = stringResource(id = Strings.common_word_open))
       }

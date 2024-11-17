@@ -18,12 +18,10 @@ package org.robok.engine.core.components.dialog.input
  */
 
 import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.unit.dp
 import org.robok.engine.strings.Strings
 
 /*
@@ -48,14 +46,12 @@ fun InputDialog(
           value = inputValue,
           onValueChange = onInputValueChange,
           label = { Text(inputLabel) },
-          modifier = Modifier.fillMaxWidth()
+          modifier = Modifier.fillMaxWidth(),
         )
       }
     },
     confirmButton = {
-      Button(onClick = onConfirm) {
-        Text(text = stringResource(id = Strings.common_word_save))
-      }
+      Button(onClick = onConfirm) { Text(text = stringResource(id = Strings.common_word_save)) }
     },
     dismissButton = {
       OutlinedButton(onClick = onDismiss) {
