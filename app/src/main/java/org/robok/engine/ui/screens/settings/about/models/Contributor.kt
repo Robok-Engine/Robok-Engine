@@ -16,7 +16,7 @@ package org.robok.engine.ui.screens.settings.about.models
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
+import org.robok.engine.ui.screens.settings.about.components.Role
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -40,6 +40,6 @@ data class Contributor(
   val type: String = "User",
   val site_admin: Boolean = false,
   val contributions: Int = 0,
-  val role: String = "Contributor",
+  val role: String = Role.DEVELOPER,
   val user_view_type: String = "public",
 )
