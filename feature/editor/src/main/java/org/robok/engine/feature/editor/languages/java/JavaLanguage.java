@@ -202,7 +202,7 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
             if (diagnostics.onSuccess) {
               diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
             }
-          //  handler.postDelayed(this, 1000);
+            //  handler.postDelayed(this, 1000);
           }
         };
     handler.postDelayed(runnable, 1000);
@@ -284,10 +284,10 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
               "Snippet - Clipboard contents",
               new SnippetDescription(prefix.length(), CLIPBOARD_SNIPPET, true)));
     }
-        
+
     if (diagnostics.onSuccess) {
-        start();
-     }
+      start();
+    }
   }
 
   @Override

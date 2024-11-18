@@ -590,7 +590,7 @@ public class IdentifierAutoComplete {
           dest.add(clazz);
         } catch (Exception e) {
           dest.add(String.class);
-          e.printStackTrace(); 
+          e.printStackTrace();
         }
       }
     }
