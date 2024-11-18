@@ -40,9 +40,7 @@ fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
     onDismissRequest = onDismissRequest,
     title = { Text(text = stringResource(Strings.title_open_contributor_profile)) },
     text = {
-      Text(
-        text = stringResource(Strings.text_open_contributor_profile, contributor.login)
-      )
+      Text(text = stringResource(Strings.text_open_contributor_profile, contributor.login))
     },
     confirmButton = {
       Button(

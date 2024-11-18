@@ -25,12 +25,9 @@ import androidx.compose.ui.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
 
 @Composable
-fun ProjectInfoDrawer(
-  viewModel: ProjectInfoDrawerViewModel
-) {
+fun ProjectInfoDrawer(viewModel: ProjectInfoDrawerViewModel) {
   val tabTitles =
     listOf(
       stringResource(id = Strings.common_word_logs),

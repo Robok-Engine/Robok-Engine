@@ -20,7 +20,8 @@ package org.robok.engine.ui.screens.terminal.client
 import com.termux.terminal.TerminalEmulator
 import com.termux.terminal.TerminalSession
 
-class TerminalSessionClient(private val onTextChange: () -> Unit) : com.termux.terminal.TerminalSessionClient {
+class TerminalSessionClient(private val onTextChange: () -> Unit) :
+  com.termux.terminal.TerminalSessionClient {
 
   private var cwd: String? = null
 

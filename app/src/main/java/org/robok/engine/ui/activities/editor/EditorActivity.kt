@@ -60,13 +60,13 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawer
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
+import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 import org.robok.engine.ui.theme.RobokTheme
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
 
 class EditorActivity :
   RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
@@ -265,11 +265,9 @@ class EditorActivity :
         override fun onDrawerStateChanged(newState: Int) {}
       }
     )
-    
+
     binding.drawerEditorRightComposeView.setContent {
-      RobokTheme(isActivity = false) {
-        ProjectInfoDrawer(viewModel = projectInfoViewModel)
-      }
+      RobokTheme(isActivity = false) { ProjectInfoDrawer(viewModel = projectInfoViewModel) }
     }
   }
 
@@ -289,9 +287,7 @@ class EditorActivity :
 
   private fun configureFileTree() {
     binding.drawerEditorLeftComposeView.setContent {
-      RobokTheme(
-        isActivity = false,
-      ) {
+      RobokTheme(isActivity = false) {
         FileTreeDrawer(
           path = projectPath!!,
           onClick = { node ->

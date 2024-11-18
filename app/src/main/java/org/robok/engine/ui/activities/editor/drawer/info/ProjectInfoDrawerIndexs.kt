@@ -16,7 +16,7 @@ package org.robok.engine.ui.activities.editor.drawer.info
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 object ProjectInfoDrawerIndexs {
   const val LOGS = 0
   const val DIAGNOSTIC = 1

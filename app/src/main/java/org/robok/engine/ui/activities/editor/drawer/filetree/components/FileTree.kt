@@ -23,10 +23,10 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.*
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.compose.ui.platform.LocalContext
 import java.io.File
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
@@ -40,50 +40,38 @@ fun FileTree(
   path: String,
   onClick: (Node<FileObject>) -> Unit,
   modifier: Modifier = Modifier,
-  state: FileTreeState
+  state: FileTreeState,
 ) {
   val context = LocalContext.current
   val fileTreeFactory = remember {
-    setFileTreeFactory(
-      context = context,
-      path = path,
-      onClick = onClick,
-      state = state
-    )
+    setFileTreeFactory(context = context, path = path, onClick = onClick, state = state)
   }
-  AndroidView(
-    factory = { fileTreeFactory },
-    modifier = modifier,
-  )
+  AndroidView(factory = { fileTreeFactory }, modifier = modifier)
 }
 
 private fun setFileTreeFactory(
   context: Context,
   path: String,
-  onClick: (Node<FileObject>,) -> Unit,
-  state: FileTreeState
+  onClick: (Node<FileObject>) -> Unit,
+  state: FileTreeState,
 ): FileTreeView {
   val fileObject = FileWrapper(File(path))
-  val fileTree = FileTreeView(context).apply {
-    loadFiles(fileObject)
-    setOnFileClickListener(
-      object : FileClickListener {
-        override fun onClick(node: Node<FileObject>) {
-          onClick(node)
+  val fileTree =
+    FileTreeView(context).apply {
+      loadFiles(fileObject)
+      setOnFileClickListener(
+        object : FileClickListener {
+          override fun onClick(node: Node<FileObject>) {
+            onClick(node)
+          }
         }
-      }
-    )
-    setIconProvider(DefaultFileIconProvider(context))
-  }
+      )
+      setIconProvider(DefaultFileIconProvider(context))
+    }
   state.fileTreeView = fileTree
   return fileTree
 }
 
-data class FileTreeState(
-  var fileTreeView: FileTreeView? = null
-)
+data class FileTreeState(var fileTreeView: FileTreeView? = null)
 
-@Composable
-fun rememberFileTreeState() = remember {
-  FileTreeState()
-}
+@Composable fun rememberFileTreeState() = remember { FileTreeState() }

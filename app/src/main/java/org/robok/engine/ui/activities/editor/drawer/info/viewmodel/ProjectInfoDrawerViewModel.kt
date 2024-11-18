@@ -17,11 +17,10 @@ package org.robok.engine.ui.activities.editor.drawer.info
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
 
 class ProjectInfoDrawerViewModel : ViewModel() {
   private var _currentTabIndex by mutableStateOf(ProjectInfoDrawerIndexs.LOGS)

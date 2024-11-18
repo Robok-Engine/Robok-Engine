@@ -16,5 +16,5 @@ package org.robok.engine.defaults
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 typealias DoNothing = Unit
