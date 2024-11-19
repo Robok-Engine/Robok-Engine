@@ -31,7 +31,8 @@ import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomShee
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.utils.extractZipFromAssets
-import org.robok.engine.core.utils.json
+import org.robok.engine.core.utils.json.json
+import org.robok.engine.core.utils.json.toStringFormatted
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -158,7 +159,7 @@ class ProjectManager(private var context: Context) {
     }
     FileUtil.writeFile(
       getConfigFile().absolutePath,
-      content.toString()
+      content.toStringFormatted()
     )
   }
 

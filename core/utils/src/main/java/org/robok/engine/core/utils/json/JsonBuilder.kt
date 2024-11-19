@@ -1,4 +1,4 @@
-package org.robok.engine.core.utils
+package org.robok.engine.core.utils.json
 
 /*
  *  This file is part of Robok © 2024.
@@ -73,3 +73,7 @@ class JsonArrayBuilder {
 fun json(init: JsonBuilder.() -> Unit): JsonObject {
   return JsonBuilder().apply(init).build()
 }
+
+fun JsonObject.toStringFormatted(): String = Json {
+  prettyPrint = true
+}.encodeToString(JsonObject.serializer(), this)
