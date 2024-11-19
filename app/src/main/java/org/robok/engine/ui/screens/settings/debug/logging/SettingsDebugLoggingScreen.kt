@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.settings.debug.logginh
+package org.robok.engine.ui.screens.settings.debug.logging
 
 /*
  *  This file is part of Robok © 2024.
