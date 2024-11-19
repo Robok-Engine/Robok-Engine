@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.Image
@@ -37,20 +38,35 @@ import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import androidx.compose.runtime.LaunchedEffect
+import kotlinx.coroutines.flow.collect
 
 @Composable
 fun SettingsDebugLoggingScreen() {
-  val logs by rememberLogs()
+  var logs by remember { mutableStateOf<List<String>>(emptyList()) }
+  var isLoading by remember { mutableStateOf(true) }
+
+  LaunchedEffect(Unit) {
+    try {
+      RobokLog.getLogs().collect { retrievedLogs ->
+        logs = retrievedLogs
+        isLoading = false
+      }
+    } catch (e: Exception) {
+      isLoading = false
+    }
+  }
+
   Screen(label = stringResource(id = Strings.text_logging)) {
-    PreferenceGroup(heading = stringResource(id = Strings.text_all_logs)) { 
-      if (logs.isEmpty().not()) {
-        logs.forEach { log ->
-          Text(
-            text = log
-          )
-        }
-      } else {
+    PreferenceGroup(heading = stringResource(id = Strings.text_all_logs)) {
+      if (isLoading) {
+        Text(text = stringResource(id = Strings.loading_logs))
+      } else if (logs.isEmpty()) {
         EmptyContentItem()
+      } else {
+        logs.forEach { log ->
+          Text(text = log)
+        }
       }
     }
   }
@@ -74,10 +90,4 @@ private fun EmptyContentItem() {
     },
     modifier = Modifier.fillMaxWidth()
   )
-}
-
-
-@Composable
-private fun rememberLogs() = remember {
-  RobokLog.getLogs()
 }
