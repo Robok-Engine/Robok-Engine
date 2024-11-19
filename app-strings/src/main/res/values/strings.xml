@@ -158,6 +158,10 @@
   <string name="warning_exit_project_message">Are you sure you want to exit the archive? (all files will be saved)</string>
   <string name="warning_no_logs">No logs.</string>
   <!-- end section -->
+  
+  <!-- loading section -->
+  <string name="loading_logs">Loading Logs...</string>
+  <!-- end section -->
 
   <!-- errors section -->
   <string name="error_storage_perm_title">Storage permission error</string>

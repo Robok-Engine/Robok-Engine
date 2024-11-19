@@ -48,7 +48,7 @@ fun SettingsDebugLoggingScreen() {
 
   LaunchedEffect(Unit) {
     try {
-      RobokLog.getLogs().collect { retrievedLogs ->
+      RobokLog.getLogs().collect { retrievedLogs: List<String> ->
         logs = retrievedLogs
         isLoading = false
       }
