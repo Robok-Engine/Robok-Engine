@@ -104,7 +104,7 @@ fun MainNavHost() {
     composable<TerminalRoute> { TerminalScreen() }
     
     composable<SettingsDebugRoute> {
-      SettingsDebugScreen<T: Any>(
+      SettingsDebugScreen(
         onNavigate = { route ->
           navController.navigate(route)
         }

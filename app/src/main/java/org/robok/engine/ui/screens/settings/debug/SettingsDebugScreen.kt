@@ -20,14 +20,15 @@ package org.robok.engine.ui.screens.settings.debug
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import org.robok.engine.strings.Strings
+import org.robok.engine.routes.Route
 import org.robok.engine.routes.SettingsDebugLoggingRoute
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.normal.Preference
 
 @Composable
-fun <T: Any> SettingsDebugScreen(
-  onNavigate: (T) -> Unit
+fun SettingsDebugScreen(
+  onNavigate: (Route) -> Unit
 ) {
   Screen(label = stringResource(id = Strings.settings_debug_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_logging)) {

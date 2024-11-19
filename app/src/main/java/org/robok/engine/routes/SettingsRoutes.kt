@@ -18,18 +18,18 @@ package org.robok.engine.routes
  */
 import kotlinx.serialization.Serializable
 
-@Serializable object SettingsRoute
+@Serializable object SettingsRoute: Route
 
-@Serializable object SettingsAppRoute
+@Serializable object SettingsAppRoute: Route
 
-@Serializable object SettingsCodeEditorRoute
+@Serializable object SettingsCodeEditorRoute: Route
 
-@Serializable object SettingsRDKRoute
+@Serializable object SettingsRDKRoute: Route
 
-@Serializable object AboutRoute
+@Serializable object AboutRoute: Route
 
-@Serializable object AboutLibrariesRoute
+@Serializable object AboutLibrariesRoute: Route
 
-@Serializable object SettingsDebugRoute
+@Serializable object SettingsDebugRoute: Route
 
-@Serializable object SettingsDebugLoggingRoute
+@Serializable object SettingsDebugLoggingRoute: Route
