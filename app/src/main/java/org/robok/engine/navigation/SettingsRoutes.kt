@@ -17,7 +17,7 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
  
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.robok.engine.routes.SettingsAppRoute
@@ -37,7 +37,7 @@ import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
 import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 
-fun NavGraphBuilder.SettingsRoutes(navController: NavController) {
+fun NavGraphBuilder.SettingsRoutes(navController: NavHostController) {
   composable<SettingsRoute> { SettingsScreen() }
   
   composable<SettingsAppRoute> { SettingsAppScreen() }

@@ -17,7 +17,7 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
  
-import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.robok.engine.extensions.navigation.navigateSingleTop
@@ -29,7 +29,7 @@ import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
 
-fun NavGraphBuilder.ProjectRoutes(navController: NavController) {
+fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
   composable<TemplatesRoute> {
     ProjectTemplatesScreen(
       onTemplateClick = { template ->
