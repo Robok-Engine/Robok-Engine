@@ -120,4 +120,14 @@
     <string name="role_translators">Traductores</string>
     <string name="settings_configure_rdk_version_error">Ha ocurrido un error</string>
     <string name="settings_configure_rdk_version_success">Descarga completada satisfactoriamente.</string>
+    <string name="title_open_contributor_profile">Perfil de colaborador abierto</string>
+    <string name="settings_debug_title">Configuraciones de depuración</string>
+    <string name="settings_debug_description">Configuraciones experimentales</string>
+    <string name="settings_debug_see_logs_title">Ver registros de Robok</string>
+    <string name="text_logging">Explotación florestal</string>
+    <string name="warning_no_logs">Sin registros.</string>
+    <string name="loading_logs">Cargando registros...</string>
+    <string name="settings_debug_see_logs_description">Ver lista de todos los registros de Robok</string>
+    <string name="text_all_logs">Todos los registros</string>
+    <string name="text_open_contributor_profile">Abrir el perfil de %s en el navegador</string>
 </resources>
