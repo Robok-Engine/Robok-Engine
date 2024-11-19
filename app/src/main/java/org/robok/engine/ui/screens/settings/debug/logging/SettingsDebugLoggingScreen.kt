@@ -40,7 +40,6 @@ import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import kotlinx.coroutines.flow.collect
 
 @Composable
 fun SettingsDebugLoggingScreen() {
@@ -49,10 +48,9 @@ fun SettingsDebugLoggingScreen() {
 
   LaunchedEffect(Unit) {
     try {
-      RobokLog.getLogs().collect { retrievedLogs: List<String> ->
-        logs = retrievedLogs
-        isLoading = false
-      }
+      val retrievedLogs = RobokLog.getLogs()
+      logs = retrievedLogs
+      isLoading = false
     } catch (e: Exception) {
       isLoading = false
     }
