@@ -75,14 +75,14 @@
     <string name="warning_storage_perm_title">Permissão de Armazenamento</string>
     <string name="warning_storage_perm_message">Robok precisa de permissão de armazenamento para criar projetos, abrir projetos e muito mais</string>
     <string name="warning_all_files_perm_message">no Android 11+, para que o Robok funcione corretamente, ele precisa de permissão para acessar todos os arquivos.</string>
-    <string name="warning_project_created_title">Project Created Successfully!</string>
-    <string name="warning_project_created_message">Your project has been created successfully!</string>
+    <string name="warning_project_created_title">Projeto Criado com Sucesso!</string>
+    <string name="warning_project_created_message">Seu projeto foi criado com sucesso!</string>
     <!-- end section -->
     
     <!-- errors section -->
     <string name="error_storage_perm_title">Erro na permissão de armazenamento</string>
     <string name="error_storage_perm_message">Você não aceitou a permissão de armazenamento, ela é necessária para que a Robok funcione.</string>
-    <string name="error_invalid_name">Invalid name</string>
+    <string name="error_invalid_name">Nome inválido</string>
     <string name="error_load_fail">Falha no carregamento.</string>
     <!-- end section -->
     
@@ -90,8 +90,8 @@
     <string name="terminal_options">Options</string>
     <string name="terminal_install_package">Install Package</string>
     <string name="terminal_install_package_hint">Type Package Name</string>
-    <string name="terminal_update_packages">Update Packages</string>
-    <string name="terminal_warning_update_packages">Do you want to update the packages?</string>
+    <string name="terminal_update_packages">Atualizar pacotes</string>
+    <string name="terminal_warning_update_packages">Você quer atualizar os pacotes?</string>
     <!-- end section -->
     
     <!-- about section -->
@@ -118,7 +118,7 @@
     <string name="warning_file_already_opened">Arquivo já aberto no editor.</string>
     <string name="title_your_projects">Seus Projetos</string>
     <string name="title_projects">Projetos</string>
-    <string name="warning_no_projects">Nenhum projeto.</string>
+    <string name="warning_no_projects">Sem projetos.</string>
     <string name="common_word_templates">Exemplos</string>
     <string name="settings_app_use_amoled_title">Tema Amoled</string>
     <string name="settings_app_use_amoled_description">Use o tema AMOLED no aplicativo.</string>
@@ -158,4 +158,6 @@
     <string name="settings_debug_description">Configuração experimentais/teste</string>
     <string name="text_logging">Registro</string>
     <string name="text_all_logs">Todos os Registros</string>
+    <string name="loading_logs">Carregando registros...</string>
+    <string name="warning_no_logs">Sem registros.</string>
 </resources>
