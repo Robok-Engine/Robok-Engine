@@ -19,9 +19,8 @@ package org.robok.engine.ui.screens.settings.debug.logging
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.Image
@@ -38,7 +37,6 @@ import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import androidx.compose.runtime.LaunchedEffect
 import kotlinx.coroutines.flow.collect
 
 @Composable
