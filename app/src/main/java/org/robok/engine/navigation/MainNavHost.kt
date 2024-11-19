@@ -25,17 +25,9 @@ import kotlin.reflect.typeOf
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.routes.AboutLibrariesRoute
-import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.CreateProjectRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.ManageProjectsRoute
-import org.robok.engine.routes.SettingsAppRoute
-import org.robok.engine.routes.SettingsCodeEditorRoute
-import org.robok.engine.routes.SettingsRDKRoute
-import org.robok.engine.routes.SettingsRoute
-import org.robok.engine.routes.SettingsDebugRoute
-import org.robok.engine.routes.SettingsDebugLoggingRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
@@ -43,14 +35,6 @@ import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
-import org.robok.engine.ui.screens.settings.SettingsScreen
-import org.robok.engine.ui.screens.settings.about.AboutScreen
-import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
-import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
-import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
-import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
-import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
-import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
 @Composable
@@ -88,29 +72,9 @@ fun MainNavHost() {
     }
 
     composable<ManageProjectsRoute> { ManageProjectsScreen() }
-
-    composable<SettingsRoute> { SettingsScreen() }
-
-    composable<SettingsAppRoute> { SettingsAppScreen() }
-
-    composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
-
-    composable<SettingsRDKRoute> { SettingsRDKScreen() }
-
-    composable<AboutLibrariesRoute> { LibrariesScreen() }
-
-    composable<AboutRoute> { AboutScreen() }
-
+    
     composable<TerminalRoute> { TerminalScreen() }
     
-    composable<SettingsDebugRoute> {
-      SettingsDebugScreen(
-        onNavigate = { route ->
-          navController.navigate(route)
-        }
-      ) 
-    }
-    
-    composable<SettingsDebugLoggingRoute> { SettingsDebugLoggingScreen() }
+    SettingsRoutes(navController)
   }
 }
