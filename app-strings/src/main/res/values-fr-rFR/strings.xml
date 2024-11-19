@@ -122,7 +122,7 @@
     <string name="common_word_templates">Modèles</string>
     <string name="settings_app_use_amoled_title">Thème Amoled</string>
     <string name="settings_app_use_amoled_description">Utiliser L\'Amoled dans l\'appli.</string>
-    <string name="warning_no_projects">Il n\'y a pas de projets.</string>
+    <string name="warning_no_projects">Il n\'y a pas de projets .</string>
     <string name="title_gui_viewer">Visionneur de IGU</string>
     <string name="common_word_open">Ouvrir</string>
     <string name="common_word_files">Fichiers</string>
@@ -151,4 +151,14 @@
     <string name="role_founder">Fondateur</string>
     <string name="text_github">Depôt Github</string>
     <string name="text_contributors">Contributeurs</string>
+    <string name="title_open_contributor_profile">Ouvrir le profil du contributeur</string>
+    <string name="settings_debug_description">Experimentale/Paramètres de tests</string>
+    <string name="settings_debug_see_logs_title">Voir Journaux Robok</string>
+    <string name="settings_debug_see_logs_description">Voir Liste de tout les journaux robok</string>
+    <string name="text_logging">Enregistrement</string>
+    <string name="text_all_logs">Tous les Journaux</string>
+    <string name="loading_logs">Chargements des Journaux...</string>
+    <string name="settings_debug_title">Paramètres Débogage</string>
+    <string name="text_open_contributor_profile">Ouvrir profil de %s dans le navigateur</string>
+    <string name="warning_no_logs">Ils n\'existent aucuns journaux.</string>
 </resources>
