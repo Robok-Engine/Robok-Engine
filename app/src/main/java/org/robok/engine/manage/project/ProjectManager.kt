@@ -89,6 +89,7 @@ class ProjectManager(private var context: Context) {
           createMainScreen(projectName, packageName)
           createAndroidManifest(packageName)
           createStringsFile(projectName)
+          createConfigFile()
           extractLibs(projectName)
         }
       }
