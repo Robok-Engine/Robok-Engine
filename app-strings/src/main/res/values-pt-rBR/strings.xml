@@ -152,4 +152,10 @@
     <string name="settings_configure_rdk_version_error">Algum erro ocorreu</string>
     <string name="title_open_contributor_profile">Abrir perfil do contribuidor</string>
     <string name="text_open_contributor_profile">Abrir perfil de %s no navegador</string>
+    <string name="settings_debug_see_logs_description">Ver lista de todos os registros da robok</string>
+    <string name="settings_debug_see_logs_title">Ver registros da robok</string>
+    <string name="settings_debug_title">Configuração de Depuração</string>
+    <string name="settings_debug_description">Configuração experimentais/teste</string>
+    <string name="text_logging">Registro</string>
+    <string name="text_all_logs">Todos os Registros</string>
 </resources>
