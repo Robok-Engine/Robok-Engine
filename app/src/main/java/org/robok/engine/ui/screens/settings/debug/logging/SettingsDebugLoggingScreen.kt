@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.ui.screens.settings.debug.logginh
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,20 +16,24 @@ package org.robok.engine.routes
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-import kotlinx.serialization.Serializable
 
-@Serializable object SettingsRoute
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import androidx.compose.material3.Text
+import org.robok.engine.strings.Strings
+import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.preferences.base.PreferenceGroup
 
-@Serializable object SettingsAppRoute
-
-@Serializable object SettingsCodeEditorRoute
-
-@Serializable object SettingsRDKRoute
-
-@Serializable object AboutRoute
-
-@Serializable object AboutLibrariesRoute
-
-@Serializable object SettingsDebugRoute
-
-@Serializable object SettingsDebugLoggingRoute
+@Composable
+fun SettingsDebugLoggingScreen() {
+  Screen(label = stringResource(id = Strings.text_logging)) {
+    PreferenceGroup(heading = stringResource(id = Strings.text_all_logs)) {
+      RobokLog.getLogs().forEach { log ->
+        Text(
+          text = log
+        )
+      }
+    }
+  }
+}

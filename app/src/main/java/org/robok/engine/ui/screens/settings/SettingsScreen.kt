@@ -22,6 +22,7 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import org.robok.engine.BuildConfig
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.extensions.navigation.navigateSingleTop
@@ -31,20 +32,22 @@ import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
+import org.robok.engine.routes.SettingsDebugRoute
 import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsScreen() {
   val navController = LocalMainNavController.current
   Screen(label = stringResource(id = Strings.common_word_settings)) {
-    GeneralPreferences(navController)
-    BuildPreferences(navController)
-    AboutPreferences(navController)
+    GeneralCategories(navController)
+    BuildCategories(navController)
+    AboutCategories(navController)
+    DebugOnlyCategories(navController)
   }
 }
 
 @Composable
-fun GeneralPreferences(navController: NavHostController) {
+fun GeneralCategories(navController: NavHostController) {
   PreferenceCategory(
     label = stringResource(id = Strings.settings_app_title),
     description = stringResource(id = Strings.settings_app_description),
@@ -60,20 +63,20 @@ fun GeneralPreferences(navController: NavHostController) {
 }
 
 @Composable
-fun BuildPreferences(navController: NavHostController) {
+fun BuildCategories(navController: NavHostController) {
   PreferenceCategory(
     label = stringResource(id = Strings.settings_configure_rdk_title),
-    description = stringResource(Strings.settings_configure_rdk_description),
+    description = stringResource(id = Strings.settings_configure_rdk_description),
     icon = Icons.Rounded.DeveloperMode,
     onClick = { navController.navigateSingleTop(route = SettingsRDKRoute) },
   )
 }
 
 @Composable
-fun AboutPreferences(navController: NavHostController) {
+fun AboutCategories(navController: NavHostController) {
   PreferenceCategory(
     label = stringResource(id = Strings.settings_libraries_title),
-    description = stringResource(Strings.settings_libraries_description),
+    description = stringResource(id = Strings.settings_libraries_description),
     icon = Icons.Rounded.Book,
     onClick = { navController.navigateSingleTop(route = AboutLibrariesRoute) },
   )
@@ -83,4 +86,17 @@ fun AboutPreferences(navController: NavHostController) {
     icon = Icons.Rounded.Info,
     onClick = { navController.navigateSingleTop(route = AboutRoute) },
   )
+}
+
+
+@Composable
+fun DebugOnlyCategories(navController: NavHostController) {
+  if (BuildConfig.DEBUG) {
+    PreferenceCategory(
+      label = stringResource(id = Strings.settings_debug_title),
+      description = stringResource(id = Strings.settings_debug_description),
+      icon = Icons.Rounded.BuildCircle,
+      onClick = { navController.navigateSingleTop(route = SettingsDebugRoute) },
+    )
+  }
 }

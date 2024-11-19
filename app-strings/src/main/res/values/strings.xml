@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="MissingTranslation">
+<resources xmlns:tools="http://schemas.android.com/tools"
+  tools:ignore="MissingTranslation">
 
   <string name="slogan">Java to Game in a Snap</string>
 
@@ -12,7 +13,9 @@
   <string name="common_word_output">Output</string>
   <string name="common_word_end">End</string>
   <string name="common_word_settings">Settings</string>
-  <string name="common_word_ok" translatable="false">OK</string>
+  <string
+    name="common_word_ok"
+    translatable="false">OK</string>
   <string name="common_word_confirm">Confirm</string>
   <string name="common_word_cancel">Cancel</string>
   <string name="common_word_next">Next</string>
@@ -32,18 +35,29 @@
   <!-- end section -->
 
   <!-- links section -->
-  <string name="link_github" translatable="false">https://github.com/Robok-Engine/Robok-Engine</string>
-  <string name="link_telegram" translatable="false">https://t.me/robokengine</string>
-  <string name="link_contributors" translatable="false">https://raw.githubusercontent.com/Robok-Engine/Robok-Engine/host/.github/contributors/contributors_github.json</string>
-  <string name="link_whatsapp" translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
+  <string
+    name="link_github"
+    translatable="false">https://github.com/Robok-Engine/Robok-Engine</string>
+  <string
+    name="link_telegram"
+    translatable="false">https://t.me/robokengine</string>
+  <string
+    name="link_contributors"
+    translatable="false">https://raw.githubusercontent.com/Robok-Engine/Robok-Engine/host/.github/contributors/contributors_github.json</string>
+  <string
+    name="link_whatsapp"
+    translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
   <!-- end section -->
 
   <!-- titles section -->
   <string name="title_create_project">Create project</string>
   <string name="title_open_project">Open project</string>
-  <string name="title_terminal" translatable="false">Terminal</string>
+  <string
+    name="title_terminal"
+    translatable="false">Terminal</string>
   <string name="title_open_editor">Open editor</string>
-  <string name="title_un_error_ocurred">An error occurred</string> <!-- Corrigido aqui -->
+  <string name="title_un_error_ocurred">An error occurred</string>
+  <!-- Corrigido aqui -->
   <string name="title_select_theme">Select theme</string>
   <string name="title_select_folder">Select folder</string>
   <string name="title_templates">Templates</string>
@@ -96,6 +110,10 @@
   <string name="settings_formatting_title">Formatting</string>
   <string name="settings_appearance_title">Appearance</string>
   <string name="settings_general_title">General</string>
+  <string name="settings_debug_title">Settings Debug</string>
+  <string name="settings_debug_description">Experimental/Testing settings</string>
+  <string name="settings_debug_see_logs_title">See Robok Logs</string>
+  <string name="settings_debug_see_logs_description">See List of All Robok Logs</string>
   <!-- end section -->
 
   <!-- texts section -->
@@ -120,15 +138,18 @@
   <string name="text_whatsapp">Our WhatsApp group.</string>
   <string name="text_github">GitHub Repository</string>
   <string name="text_contributors">Contributors</string>
-  <string name="text_contribute">See how you can contribute with us</string> 
+  <string name="text_contribute">See how you can contribute with us</string>
   <string name="text_libraries">The libraries we used</string>
   <string name="text_exit_without_save">Exit without Save</string>
+  <string name="text_logging">Logging</string>
+  <string name="text_all_logs">All Logs</string>
   <!-- end section -->
 
   <!-- warnings section -->
   <string name="warning_storage_perm_title">Storage permission</string>
   <string name="warning_storage_perm_message">Robok needs storage permission to create projects, open projects, and more</string>
-  <string name="warning_all_files_perm_message">In Android 11+, for Robok to work properly, it needs permission to access all files.</string> <!-- Corrigido aqui -->
+  <string name="warning_all_files_perm_message">In Android 11+, for Robok to work properly, it needs permission to access all files.</string>
+  <!-- Corrigido aqui -->
   <string name="warning_project_created_title">Project Created Successfully!</string>
   <string name="warning_project_created_message">Your project has been created successfully!</string>
   <string name="warning_project_installer_not_found">No package installer found.</string>
@@ -156,7 +177,7 @@
   <!-- templates section -->
   <string name="template_name_empty_game">Empty Game</string>
   <!-- end section -->
-  
+
   <!-- roles section -->
   <string name="role_founder">Founder</string>
   <string name="role_founders">Founders</string>

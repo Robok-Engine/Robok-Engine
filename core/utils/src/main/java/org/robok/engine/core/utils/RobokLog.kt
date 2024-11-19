@@ -20,10 +20,29 @@ package org.robok.engine.core.utils
 import android.util.Log
 
 object RobokLog {
+  private val logs: MutableList<String> = mutableListOf()
 
-  @JvmStatic fun d(tag: String = "RobokLog", message: String) = Log.d(tag, message)
+  @JvmStatic
+  fun d(tag: String = "RobokLog", message: String) {
+    val logMessage = "DEBUG: [$tag] $message"
+    logs.add(logMessage)
+    Log.d(tag, message)
+  }
 
-  @JvmStatic fun e(tag: String = "RobokLog", message: String) = Log.e(tag, message)
+  @JvmStatic
+  fun e(tag: String = "RobokLog", message: String) {
+    val logMessage = "ERROR: [$tag] $message"
+    logs.add(logMessage)
+    Log.e(tag, message)
+  }
 
-  @JvmStatic fun i(tag: String = "RobokLog", message: String) = Log.i(tag, message)
+  @JvmStatic
+  fun i(tag: String = "RobokLog", message: String) {
+    val logMessage = "INFO: [$tag] $message"
+    logs.add(logMessage)
+    Log.i(tag, message)
+  }
+
+  @JvmStatic
+  fun getLogs(): List<String> = logs
 }

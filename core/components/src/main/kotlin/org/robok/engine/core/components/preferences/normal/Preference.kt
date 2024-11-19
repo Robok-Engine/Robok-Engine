@@ -39,8 +39,8 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 fun Preference(
   modifier: Modifier = Modifier,
   icon: @Composable (() -> Unit)? = null,
-  text: @Composable () -> Unit,
-  secondaryText: @Composable (() -> Unit) = {},
+  title: @Composable () -> Unit,
+  description: @Composable (() -> Unit) = {},
   trailing: @Composable (() -> Unit) = {},
   onClick: (() -> Unit)? = null,
 ) {
@@ -55,7 +55,7 @@ fun Preference(
       ),
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
     title = {
-      ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { text() }
+      ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() }
     },
     description = {
       ProvideTextStyle(
@@ -63,7 +63,7 @@ fun Preference(
           color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
         )
       ) {
-        secondaryText()
+        description()
       }
     },
     endWidget = {

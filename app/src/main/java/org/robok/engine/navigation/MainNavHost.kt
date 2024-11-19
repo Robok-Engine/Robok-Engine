@@ -34,6 +34,8 @@ import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.SettingsRoute
+import org.robok.engine.routes.SettingsDebugRoute
+import org.robok.engine.routes.SettingsDebugLoggingRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
@@ -47,6 +49,8 @@ import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
+import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
+import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
 @Composable
@@ -98,5 +102,15 @@ fun MainNavHost() {
     composable<AboutRoute> { AboutScreen() }
 
     composable<TerminalRoute> { TerminalScreen() }
+    
+    composable<SettingsDebugRoute> {
+      SettingsDebugScreen(
+        onNavigate = { route ->
+          navController.navigate(route)
+        }
+      ) 
+    }
+    
+    composable<SettingsDebugLoggingRoute> { SettingsDebugLoggingScreen() }
   }
 }
