@@ -19,6 +19,6 @@ package org.robok.engine.routes
 
 import kotlinx.serialization.Serializable
 
-@Serializable object XMLViewerRoute: Route
+@Serializable object XMLViewerRoute : Route
 
-@Serializable object XMLViewerCodeRoute: Route
+@Serializable object XMLViewerCodeRoute : Route

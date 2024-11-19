@@ -20,8 +20,8 @@ package org.robok.engine.routes
 import kotlinx.serialization.Serializable
 import org.robok.engine.models.project.ProjectTemplate
 
-@Serializable data class CreateProjectRoute(val template: ProjectTemplate): Route
+@Serializable data class CreateProjectRoute(val template: ProjectTemplate) : Route
 
-@Serializable object ManageProjectsRoute: Route
+@Serializable object ManageProjectsRoute : Route
 
-@Serializable object TemplatesRoute: Route
+@Serializable object TemplatesRoute : Route

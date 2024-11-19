@@ -16,46 +16,42 @@ package org.robok.engine.navigation
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import androidx.navigation.NavHostController
+
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import org.robok.engine.routes.SettingsAppRoute
-import org.robok.engine.routes.SettingsCodeEditorRoute
-import org.robok.engine.routes.SettingsRDKRoute
-import org.robok.engine.routes.SettingsRoute
-import org.robok.engine.routes.SettingsDebugRoute
-import org.robok.engine.routes.SettingsDebugLoggingRoute
 import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.routes.AboutRoute
+import org.robok.engine.routes.SettingsAppRoute
+import org.robok.engine.routes.SettingsCodeEditorRoute
+import org.robok.engine.routes.SettingsDebugLoggingRoute
+import org.robok.engine.routes.SettingsDebugRoute
+import org.robok.engine.routes.SettingsRDKRoute
+import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.ui.screens.settings.SettingsScreen
 import org.robok.engine.ui.screens.settings.about.AboutScreen
 import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
+import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
+import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
-import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
-import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 
 fun NavGraphBuilder.SettingsRoutes(navController: NavHostController) {
   composable<SettingsRoute> { SettingsScreen() }
-  
+
   composable<SettingsAppRoute> { SettingsAppScreen() }
 
   composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
 
   composable<SettingsRDKRoute> { SettingsRDKScreen() }
-  
+
   composable<SettingsDebugRoute> {
-    SettingsDebugScreen(
-      onNavigate = { route ->
-        navController.navigate(route)
-      }
-    ) 
+    SettingsDebugScreen(onNavigate = { route -> navController.navigate(route) })
   }
-    
+
   composable<SettingsDebugLoggingRoute> { SettingsDebugLoggingScreen() }
-    
+
   composable<AboutLibrariesRoute> { LibrariesScreen() }
 
   composable<AboutRoute> { AboutScreen() }

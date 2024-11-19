@@ -16,31 +16,27 @@ package org.robok.engine.ui.screens.settings.debug
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import androidx.compose.material3.Text
-import org.robok.engine.strings.Strings
-import org.robok.engine.routes.Route
-import org.robok.engine.routes.SettingsDebugLoggingRoute
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.normal.Preference
+import org.robok.engine.routes.Route
+import org.robok.engine.routes.SettingsDebugLoggingRoute
+import org.robok.engine.strings.Strings
 
 @Composable
-fun SettingsDebugScreen(
-  onNavigate: (Route) -> Unit
-) {
+fun SettingsDebugScreen(onNavigate: (Route) -> Unit) {
   Screen(label = stringResource(id = Strings.settings_debug_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_logging)) {
       Preference(
-        title = {
-          Text(text = stringResource(id = Strings.settings_debug_see_logs_title))
-        },
+        title = { Text(text = stringResource(id = Strings.settings_debug_see_logs_title)) },
         description = {
           Text(text = stringResource(id = Strings.settings_debug_see_logs_description))
         },
-        onClick = { onNavigate(SettingsDebugLoggingRoute) }
+        onClick = { onNavigate(SettingsDebugLoggingRoute) },
       )
     }
   }

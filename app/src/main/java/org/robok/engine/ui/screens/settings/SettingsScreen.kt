@@ -31,8 +31,8 @@ import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
-import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.routes.SettingsDebugRoute
+import org.robok.engine.routes.SettingsRDKRoute
 import org.robok.engine.strings.Strings
 
 @Composable
@@ -87,7 +87,6 @@ fun AboutCategories(navController: NavHostController) {
     onClick = { navController.navigateSingleTop(route = AboutRoute) },
   )
 }
-
 
 @Composable
 fun DebugOnlyCategories(navController: NavHostController) {

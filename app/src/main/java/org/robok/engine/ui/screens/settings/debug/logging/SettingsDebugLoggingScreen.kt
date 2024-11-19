@@ -17,29 +17,29 @@ package org.robok.engine.ui.screens.settings.debug.logging
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.setValue
-import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.Image
-import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.unit.dp
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.material3.Text
-import androidx.compose.material3.MaterialTheme
-import org.robok.engine.strings.Strings
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
 import org.robok.engine.Drawables
-import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.strings.Strings
 
 @Composable
 fun SettingsDebugLoggingScreen() {
@@ -63,9 +63,7 @@ fun SettingsDebugLoggingScreen() {
       } else if (logs.isEmpty()) {
         EmptyContentItem()
       } else {
-        logs.forEach { log ->
-          Text(text = log)
-        }
+        logs.forEach { log -> Text(text = log) }
       }
     }
   }
@@ -84,9 +82,9 @@ private fun EmptyContentItem() {
       Image(
         painter = painterResource(id = Drawables.ic_warning_24),
         contentDescription = null,
-        modifier = Modifier.size(32.dp).clip(CircleShape)
+        modifier = Modifier.size(32.dp).clip(CircleShape),
       )
     },
-    modifier = Modifier.fillMaxWidth()
+    modifier = Modifier.fillMaxWidth(),
   )
 }

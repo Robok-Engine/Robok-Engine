@@ -43,6 +43,5 @@ object RobokLog {
     Log.i(tag, message)
   }
 
-  @JvmStatic
-  fun getLogs(): List<String> = logs
+  @JvmStatic fun getLogs(): List<String> = logs
 }

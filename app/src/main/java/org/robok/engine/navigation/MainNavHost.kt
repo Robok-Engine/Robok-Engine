@@ -20,7 +20,6 @@ package org.robok.engine.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.toRoute
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
@@ -43,7 +42,7 @@ fun MainNavHost() {
     composable<HomeRoute> { HomeScreen() }
 
     composable<TerminalRoute> { TerminalScreen() }
-    
+
     ProjectRoutes(navController)
     SettingsRoutes(navController)
   }
