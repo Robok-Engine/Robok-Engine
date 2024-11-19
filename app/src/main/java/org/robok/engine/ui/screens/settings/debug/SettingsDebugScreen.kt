@@ -19,6 +19,7 @@ package org.robok.engine.ui.screens.settings.debug
  
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.material3.Text
 import org.robok.engine.strings.Strings
 import org.robok.engine.routes.Route
 import org.robok.engine.routes.SettingsDebugLoggingRoute
