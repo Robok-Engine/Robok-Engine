@@ -34,7 +34,6 @@
 
     <!-- messages section -->
     <string name="title_your_projects">आपके प्रोजेक्ट</string>
-
     <!-- go to section -->
     <string name="go_to_outputs">आउटपुट पर जाएं</string>
     <!-- end section -->
@@ -116,8 +115,7 @@
     <string name="slogan">जावा से गेम तक चुटकी में</string>
     <string name="text_seeus">हमें देखें</string>
     <string name="text_contributors">योगदानकर्ता</string>
-
-<string name="warning_project_installer_not_found">कोई पैकेज इंस्टॉलर नहीं मिला</string>
+    <string name="warning_project_installer_not_found">कोई पैकेज इंस्टॉलर नहीं मिला</string>
     <string name="common_word_close">बंद करें</string>
     <string name="common_word_close_others">दुसरे बंद करें</string>
     <string name="common_word_close_all">सभी बंद करें</string>
