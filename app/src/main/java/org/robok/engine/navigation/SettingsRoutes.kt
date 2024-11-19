@@ -17,8 +17,8 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
  
-import androidx.navigation.NavHostController
-import androidx.navigation.NavGraphBuilder
+import androidx.navigation.compose.NavHostController
+import androidx.navigation.compose.NavGraphBuilder
 import androidx.navigation.compose.composable
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
