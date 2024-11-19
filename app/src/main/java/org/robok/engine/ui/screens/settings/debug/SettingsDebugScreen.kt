@@ -32,8 +32,12 @@ fun <T: Any> SettingsDebugScreen(
   Screen(label = stringResource(id = Strings.settings_debug_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_logging)) {
       Preference(
-        title = stringResource(id = Strings.settings_debug_see_logs_title),
-        description = stringResource(id = Strings.settings_debug_see_logs_description),
+        title = {
+          Text(text = stringResource(id = Strings.settings_debug_see_logs_title))
+        },
+        description = {
+          Text(text = stringResource(id = Strings.settings_debug_see_logs_description))
+        },
         onClick = { onNavigate(SettingsDebugLoggingRoute) }
       )
     }
