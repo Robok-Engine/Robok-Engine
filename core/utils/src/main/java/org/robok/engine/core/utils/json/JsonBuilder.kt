@@ -74,6 +74,5 @@ fun json(init: JsonBuilder.() -> Unit): JsonObject {
   return JsonBuilder().apply(init).build()
 }
 
-fun JsonObject.toStringFormatted(): String = Json {
-  prettyPrint = true
-}.encodeToString(JsonObject.serializer(), this)
+fun JsonObject.toStringFormatted(): String =
+  Json { prettyPrint = true }.encodeToString(JsonObject.serializer(), this)

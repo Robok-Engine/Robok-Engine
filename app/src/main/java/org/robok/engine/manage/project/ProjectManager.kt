@@ -26,7 +26,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
-import org.robok.engine.manage.project.tokens.ConfigKeys
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
@@ -38,6 +37,7 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
+import org.robok.engine.manage.project.tokens.ConfigKeys
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
 import org.robok.engine.templates.xml.AndroidManifestTemplate
@@ -145,22 +145,13 @@ class ProjectManager(private var context: Context) {
     val androidManifest = AndroidManifestTemplate().apply { this.packageName = packageName }
     FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
   }
-  
+
   private fun createConfigFile() {
     val content = json {
-      property(
-        key = ConfigKeys.GAME_ICON,
-        value = "game/assets/images/game_icon.png"
-      )
-      property(
-        key = ConfigKeys.MAIN_CLASS_NAME,
-        value = "MainScreen"
-      )
+      property(key = ConfigKeys.GAME_ICON, value = "game/assets/images/game_icon.png")
+      property(key = ConfigKeys.MAIN_CLASS_NAME, value = "MainScreen")
     }
-    FileUtil.writeFile(
-      getConfigFile().absolutePath,
-      content.toStringFormatted()
-    )
+    FileUtil.writeFile(getConfigFile().absolutePath, content.toStringFormatted())
   }
 
   private fun extractLibs(projectName: String) {
@@ -212,7 +203,7 @@ class ProjectManager(private var context: Context) {
   fun getAndroidResPath(): File {
     return File(context.filesDir, "${getProjectName()}/xml/res/")
   }
-  
+
   fun getConfigFile(): File {
     return File(projectPath, "config.json")
   }

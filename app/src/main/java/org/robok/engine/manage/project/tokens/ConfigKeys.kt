@@ -16,8 +16,8 @@ package org.robok.engine.manage.project.tokens
  *  You should have received a copy of the GNU General Public License
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 internal object ConfigKeys {
- const val GAME_ICON = "game_icon"
- const val MAIN_CLASS_NAME = "main_class_name"
+  const val GAME_ICON = "game_icon"
+  const val MAIN_CLASS_NAME = "main_class_name"
 }
