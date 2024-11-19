@@ -17,6 +17,4 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
-
-@Serializable interface Route
+interface Route
