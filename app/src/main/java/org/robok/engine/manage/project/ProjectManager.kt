@@ -26,10 +26,12 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
+import org.robok.engine.manage.project.tokens.ConfigKeys
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.utils.extractZipFromAssets
+import org.robok.engine.core.utils.json
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -86,7 +88,7 @@ class ProjectManager(private var context: Context) {
 
           createMainScreen(projectName, packageName)
           createAndroidManifest(packageName)
-          createBasicStringsFile(projectName)
+          createStringsFile(projectName)
           extractLibs(projectName)
         }
       }
@@ -121,7 +123,7 @@ class ProjectManager(private var context: Context) {
     }
   }
 
-  private fun createBasicStringsFile(projectName: String) {
+  private fun createStringsFile(projectName: String) {
     val stringsFile =
       BasicXML().apply {
         name = projectName
@@ -140,6 +142,23 @@ class ProjectManager(private var context: Context) {
   private fun createAndroidManifest(packageName: String) {
     val androidManifest = AndroidManifestTemplate().apply { this.packageName = packageName }
     FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
+  }
+  
+  private fun createConfigFile() {
+    val content = json {
+      property(
+        key = ConfigKeys.GAME_ICON,
+        value = "game/assets/images/game_icon.png"
+      )
+      property(
+        key = ConfigKeys.MAIN_CLASS_NAME,
+        value = "MainScreen"
+      )
+    }
+    FileUtil.writeFile(
+      getConfigFile().absolutePath,
+      content.toString()
+    )
   }
 
   private fun extractLibs(projectName: String) {
@@ -190,6 +209,10 @@ class ProjectManager(private var context: Context) {
 
   fun getAndroidResPath(): File {
     return File(context.filesDir, "${getProjectName()}/xml/res/")
+  }
+  
+  fun getConfigPath(): File {
+    return File(projectPath, "config.json")
   }
 
   private fun notifyCreationError(value: String) {
