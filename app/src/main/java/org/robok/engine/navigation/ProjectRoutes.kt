@@ -20,6 +20,7 @@ package org.robok.engine.navigation
 import androidx.navigation.NavHostController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import androidx.navigation.toRoute
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.routes.CreateProjectRoute
@@ -28,6 +29,7 @@ import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
+import kotlin.reflect.typeOf
 
 fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
   composable<TemplatesRoute> {
@@ -39,11 +41,7 @@ fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
   }
 
   composable<CreateProjectRoute>(
-    typeMap =
-      mapOf(
-        typeOf<ProjectTemplate>() to
-          CustomNavType(ProjectTemplate::class.java, ProjectTemplate.serializer())
-        )
+    typeMap = mapOf(typeOf<ProjectTemplate>() to CustomNavType(ProjectTemplate::class.java, ProjectTemplate.serializer()))
   ) {
     val route: CreateProjectRoute = it.toRoute()
     CreateProjectScreen(template = route.template)
