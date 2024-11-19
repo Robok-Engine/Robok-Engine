@@ -19,7 +19,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1485,
+    "contributions": 1500,
     "role": "Founder"
   },
   {
@@ -318,7 +318,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1,
+    "contributions": 3,
     "role": "Bot"
   },
   {
@@ -364,7 +364,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 26,
+    "contributions": 28,
     "role": "Developer"
   }
 ]

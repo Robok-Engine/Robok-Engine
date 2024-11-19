@@ -19,7 +19,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1485
+    "contributions": 1500
   },
   {
     "login": "ThDev-only",
@@ -107,7 +107,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 26
+    "contributions": 28
   },
   {
     "login": "RohitKushvaha01",
@@ -242,6 +242,28 @@
     "contributions": 6
   },
   {
+    "login": "weblate",
+    "id": 1607653,
+    "node_id": "MDQ6VXNlcjE2MDc2NTM=",
+    "avatar_url": "https://avatars.githubusercontent.com/u/1607653?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/weblate",
+    "html_url": "https://github.com/weblate",
+    "followers_url": "https://api.github.com/users/weblate/followers",
+    "following_url": "https://api.github.com/users/weblate/following{/other_user}",
+    "gists_url": "https://api.github.com/users/weblate/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/weblate/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/weblate/subscriptions",
+    "organizations_url": "https://api.github.com/users/weblate/orgs",
+    "repos_url": "https://api.github.com/users/weblate/repos",
+    "events_url": "https://api.github.com/users/weblate/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/weblate/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 3
+  },
+  {
     "login": "itsvks19",
     "id": 102840735,
     "node_id": "U_kgDOBiE5nw",
@@ -302,28 +324,6 @@
     "repos_url": "https://api.github.com/users/Xori71/repos",
     "events_url": "https://api.github.com/users/Xori71/events{/privacy}",
     "received_events_url": "https://api.github.com/users/Xori71/received_events",
-    "type": "User",
-    "user_view_type": "public",
-    "site_admin": false,
-    "contributions": 1
-  },
-  {
-    "login": "weblate",
-    "id": 1607653,
-    "node_id": "MDQ6VXNlcjE2MDc2NTM=",
-    "avatar_url": "https://avatars.githubusercontent.com/u/1607653?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/weblate",
-    "html_url": "https://github.com/weblate",
-    "followers_url": "https://api.github.com/users/weblate/followers",
-    "following_url": "https://api.github.com/users/weblate/following{/other_user}",
-    "gists_url": "https://api.github.com/users/weblate/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/weblate/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/weblate/subscriptions",
-    "organizations_url": "https://api.github.com/users/weblate/orgs",
-    "repos_url": "https://api.github.com/users/weblate/repos",
-    "events_url": "https://api.github.com/users/weblate/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/weblate/received_events",
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
