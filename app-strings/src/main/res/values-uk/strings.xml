@@ -88,7 +88,7 @@
     <string name="text_no_files_open">Немає файлів для відкриття.</string>
     <string name="text_click_here_to_open_files">Натисніть тут, щоби відкрити файл</string>
     <string name="warning_file_already_opened">Файл вже відкрито в редакторі.</string>
-    <string name="warning_no_projects">Немає проєкту.</string>
+    <string name="warning_no_projects">Жодних проектів.</string>
     <string name="common_word_templates">Шаблони</string>
     <string name="settings_app_use_amoled_title">Чорна тема</string>
     <string name="settings_app_use_amoled_description">Використовуйте чорну тему в застосунку.</string>
@@ -122,4 +122,12 @@
     <string name="settings_configure_rdk_version_success">Завантаження успішно завершено.</string>
     <string name="title_open_contributor_profile">Відкрийте профіль учасника</string>
     <string name="text_open_contributor_profile">Відкрийте профіль %s у браузері</string>
+    <string name="settings_debug_title">Параметри Налагодження</string>
+    <string name="settings_debug_description">Експериментальні/тестові налаштування</string>
+    <string name="settings_debug_see_logs_description">Перегляньте список усіх журналів Robok</string>
+    <string name="text_logging">Лісозаготівля</string>
+    <string name="text_all_logs">Усі журнали</string>
+    <string name="warning_no_logs">Без журналів.</string>
+    <string name="loading_logs">Завантаження журналів...</string>
+    <string name="settings_debug_see_logs_title">Дивіться журнали Робок</string>
 </resources>
