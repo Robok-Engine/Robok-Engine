@@ -1,7 +1,7 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1445 | Founder |
-| ThDev-only | 203 | Founder |
+| trindadedev13 | 1485 | Founder |
+| ThDev-only | 210 | Founder |
 | renovate[bot] | 142 | Bot |
 | gampiot-bot | 35 | Bot |
 | RohitKushvaha01 | 16 | Developer |
