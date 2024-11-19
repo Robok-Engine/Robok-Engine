@@ -211,7 +211,7 @@ class ProjectManager(private var context: Context) {
     return File(context.filesDir, "${getProjectName()}/xml/res/")
   }
   
-  fun getConfigPath(): File {
+  fun getConfigFile(): File {
     return File(projectPath, "config.json")
   }
 
