@@ -118,7 +118,7 @@
     <string name="text_no_files_open">لا ملفات مفتوحة.</string>
     <string name="warning_project_installer_not_found">لم يتم العثور على أي مثبت حزم.</string>
     <string name="warning_file_already_opened">الملف مفتوح بالفعل في المحرر.</string>
-    <string name="warning_no_projects">لا مشاريع.</string>
+    <string name="warning_no_projects">لا مشاريع هنا .</string>
     <string name="text_view_layout">إظهار واجهة المستخدم</string>
     <string name="common_word_templates">القوالب</string>
     <string name="text_saved">تم الحفظ!</string>
@@ -149,4 +149,14 @@
     <string name="role_translators">المترجمون</string>
     <string name="text_whatsapp">مجموعة الواتساب.</string>
     <string name="text_libraries">المكتبات المستعملة</string>
+    <string name="title_open_contributor_profile">فتح حساب المشارك</string>
+    <string name="settings_debug_description">إعدادت التجارب</string>
+    <string name="settings_debug_see_logs_description">جميع سجلات روبوك</string>
+    <string name="text_open_contributor_profile">فتح حساب %s في المتصفح</string>
+    <string name="text_logging">تسجيل</string>
+    <string name="text_all_logs">جميع السجلات</string>
+    <string name="warning_no_logs">لا سجلات هنا.</string>
+    <string name="loading_logs">يجري تحميل السجلات ...</string>
+    <string name="settings_debug_title">اعدادت تصحيح الأخطاء</string>
+    <string name="settings_debug_see_logs_title">رؤية سجلات روبوك</string>
 </resources>
