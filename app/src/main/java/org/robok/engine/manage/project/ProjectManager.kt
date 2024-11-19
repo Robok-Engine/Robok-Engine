@@ -51,13 +51,9 @@ class ProjectManager(private var context: Context) {
   }
 
   lateinit var projectPath: File
-  lateinit var projectName: String
-  lateinit var packageName: String
   lateinit var creationListener: CreationListener
 
   fun create(projectName: String, packageName: String, template: ProjectTemplate) {
-    this.projectName = projectName
-    this.packageName = packageName
     try {
       context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
         ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
@@ -90,11 +86,10 @@ class ProjectManager(private var context: Context) {
             zipInputStream.closeEntry()
           }
 
-          createMainScreen()
-          createAndroidManifest()
-          createStringsFile()
-          createConfigFile()
-          extractLibs()
+          createMainScreen(projectName, packageName)
+          createAndroidManifest(packageName)
+          createStringsFile(projectName)
+          extractLibs(projectName)
         }
       }
     } catch (e: FileNotFoundException) {
@@ -222,36 +217,26 @@ class ProjectManager(private var context: Context) {
 
   private fun notifyCreationError(value: String) {
     creationListener.onProjectCreateError(value)
-    RobokLog.e(TAG, log)
   }
 
   private fun notifyCreationError(value: String, methodName: String) {
-    val log = "$value Method: $methodName"
-    creationListener.onProjectCreateError(log)
-    RobokLog.e(TAG, log)
+    creationListener.onProjectCreateError("$value Method: $methodName")
   }
 
   private fun notifyCreationError(e: Exception, methodName: String) {
-    val log = "${e.toString()} Method: $methodName"
-    creationListener.onProjectCreateError(log)
-    RobokLog.e(TAG, log)
+    creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
   }
 
   private fun notifyBuildError(value: String) {
     creationListener.onProjectCreateError(value)
-    RobokLog.e(TAG, value)
   }
 
   private fun notifyBuildError(value: String, methodName: String) {
-    val log = "$value Method: $methodName"
-    creationListener.onProjectCreateError(log)
-    RobokLog.e(TAG, log)
+    creationListener.onProjectCreateError("$value Method: $methodName")
   }
 
   private fun notifyBuildError(e: Exception, methodName: String) {
-    val log = "${e.toString()} Method: $methodName"
-    creationListener.onProjectCreateError(log)
-    RobokLog.e(TAG, log)
+    creationListener.onProjectCreateError("${e.toString()} Method: $methodName")
   }
 
   interface CreationListener {
