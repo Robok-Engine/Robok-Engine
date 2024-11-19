@@ -29,7 +29,7 @@ import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
 
-private fun NavGraphBuilder.ProjectRoutes(navController: NavController) {
+fun NavGraphBuilder.ProjectRoutes(navController: NavController) {
   composable<TemplatesRoute> {
     ProjectTemplatesScreen(
       onTemplateClick = { template ->

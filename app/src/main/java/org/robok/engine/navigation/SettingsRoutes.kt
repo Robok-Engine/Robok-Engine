@@ -37,7 +37,7 @@ import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
 import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 
-private fun NavGraphBuilder.SettingsRoutes(navController: NavController) {
+fun NavGraphBuilder.SettingsRoutes(navController: NavController) {
   composable<SettingsRoute> { SettingsScreen() }
   
   composable<SettingsAppRoute> { SettingsAppScreen() }
