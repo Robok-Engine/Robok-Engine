@@ -173,7 +173,7 @@ class ProjectManager(private var context: Context) {
     creationListener.onProjectCreate()
   }
   
-  val rdkVersionFlow: Flow<Int>
+  val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
 
   fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
