@@ -29,6 +29,7 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   val editorTheme = repo.editorTheme
   val editorTypeface = repo.editorTypeface
   val editorIsUseWordWrap = repo.editorIsUseWordWrap
+  val editorFont = repo.editorFont
 
   fun setInstalledRDKVersion(value: String) {
     viewModelScope.launch { repo.setInstalledRDKVersion(value) }
@@ -52,5 +53,9 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
 
   fun setEditorWordWrapEnable(value: Boolean) {
     viewModelScope.launch { repo.setEditorWordWrapEnable(value) }
+  }
+  
+  fun setEditorFont(value: Int) {
+    viewModelScope.launch { repo.setEditorFont(value) }
   }
 }

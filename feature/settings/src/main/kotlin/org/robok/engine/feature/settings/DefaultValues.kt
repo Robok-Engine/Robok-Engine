@@ -10,4 +10,5 @@ object DefaultValues {
   const val EDITOR_THEME = 0
   const val EDITOR_TYPEFACE = 0
   const val EDITOR_IS_USE_WORD_WRAP = false
+  const val EDITOR_FONT = 0
 }

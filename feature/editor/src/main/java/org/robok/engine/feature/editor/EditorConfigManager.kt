@@ -28,60 +28,63 @@ class EditorConfigManager : KoinComponent {
 
   private val appPreferencesViewModel: PreferencesViewModel by inject()
 
-  val editorTheme: Flow<Int>
+  private val editorTheme: Flow<Int>
     get() = appPreferencesViewModel.editorTheme
 
-  val editorTypeface: Flow<Int>
+  private val editorTypeface: Flow<Int>
     get() = appPreferencesViewModel.editorTypeface
 
-  val editorIsUseWordWrap: Flow<Boolean>
+  private val editorIsUseWordWrap: Flow<Boolean>
     get() = appPreferencesViewModel.editorIsUseWordWrap
+    
+  private val editorFont: Flow<Int>
+    get() = appPreferencesViewModel.editorFont
 
   /*
    * Method to get Editor theme index
    * @return Return a Int (0..6) with theme index
    */
-  fun getEditorThemePreference(): Int {
-    return runBlocking { editorTheme.first() }
-  }
+  fun getEditorTheme(): Int = runBlocking { editorTheme.first() }
 
   /*
    * Method to get Editor theme index
    * @return Return a Int (0..6) with theme index
    */
-  fun getEditorTypefacePreference(): Int {
-    return runBlocking { editorTypeface.first() }
-  }
+  fun getEditorTypeface(): Int = runBlocking { editorTypeface.first() }
 
   /*
    * Method to get if is to use Word Wrap on editor
    * @return Return true or false
    */
-  fun isUseWordWrap(): Boolean {
-    return runBlocking { editorIsUseWordWrap.first() }
-  }
+  fun getEditorIsUseWordWrap(): Boolean = runBlocking { editorIsUseWordWrap.first() }
+  
+  /*
+   * Method to get if is to use Word Wrap on editor
+   * @return Return true or false
+   */
+  fun getEditorFont(): Int = runBlocking { editorFont.first() }
 
   /*
    * Method to set Editor theme index
    * @param value A Int of new theme index
    */
-  fun setEditorTheme(value: Int) {
-    appPreferencesViewModel.setEditorTheme(value)
-  }
+  fun setEditorTheme(value: Int) = appPreferencesViewModel.setEditorTheme(value)
 
   /*
    * Method to set Editor theme index
    * @param value A Int of new theme index
    */
-  fun setEditorTypeface(value: Int) {
-    appPreferencesViewModel.setEditorTypeface(value)
-  }
-
+  fun setEditorTypeface(value: Int) = appPreferencesViewModel.setEditorTypeface(value)
+  
   /*
    * Method to set if editor will use WordWrap
    * @param value A Boolean to enable or disable
    */
-  fun setEditorWordWrapEnable(value: Boolean) {
-    appPreferencesViewModel.setEditorWordWrapEnable(value)
-  }
+  fun setEditorWordWrapEnable(value: Boolean) = appPreferencesViewModel.setEditorWordWrapEnable(value)
+  
+  /*
+   * Method to set editor font
+   * @param value A font number index
+   */
+  fun setEditorFont(value: Int) = appPreferencesViewModel.setEditorFont(value)
 }

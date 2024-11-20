@@ -84,9 +84,9 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     getSoraCodeEditor()
         .setTypefaceText(
-            AppearanceManager.getTypeface(editorConfigManager.getEditorTypefacePreference()));
+            AppearanceManager.getTypeface(getContext(), editorConfigManager.getEditorFont(), editorConfigManager.getEditorTypeface()));
     getSoraCodeEditor().setTextSize(16);
-    getSoraCodeEditor().setWordwrap(editorConfigManager.isUseWordWrap());
+    getSoraCodeEditor().setWordwrap(editorConfigManager.getEditorIsUseWordWrap());
 
     if (getFileExtension().equals("java")) {
       getSoraCodeEditor().setEditorLanguage(new JavaLanguage(this, diagnostics));
@@ -98,7 +98,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     getSoraCodeEditor()
         .setColorScheme(
-            AppearanceManager.getTheme(this, editorConfigManager.getEditorThemePreference()));
+            AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme)));
 
     if (getFileExtension().equals("java")) reloadListeners();
   }
@@ -318,36 +318,53 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     /**
      * Method to choose editor font typeface.
      *
-     * @param typefaceIndex number of theme 0...4
-     * @return Return a TypeFace to use on editor
+     * @param context      Application context to load assets
+     * @param fontIndex    Number of font (0 = JetBrains, 1...4 = system fonts)
+     * @param typefaceIndex Number of style (0 = Default, 1 = Bold, 2 = Monospace, 3 = Sans-serif, 4 = Serif)
+     * @return Return a Typeface to use on editor
      */
-    public static Typeface getTypeface(int typefaceIndex) {
-      return switch (typefaceIndex) {
-        case 1 -> Typeface.DEFAULT_BOLD;
-        case 2 -> Typeface.MONOSPACE;
-        case 3 -> Typeface.SANS_SERIF;
-        case 4 -> Typeface.SERIF;
+    public static Typeface getTypeface(Context context, int fontIndex, int typefaceIndex) {
+      Typeface baseTypeface;
+      
+      baseTypeface = switch (fontIndex) {
+        case 0 -> Typeface.createFromAsset(context.getAssets(), "JetBrainsMono-Regular.ttf");
         default -> Typeface.DEFAULT;
+      }
+
+      return switch (typefaceIndex) {
+        case 1 -> Typeface.create(baseTypeface, Typeface.DEFAULT_BOLD);
+        case 2 -> Typeface.create(baseTypeface, Typeface.MONOSPACE);
+        case 3 -> Typeface.create(baseTypeface, Typeface.SANS_SERIF);
+        case 4 -> Typeface.create(baseTypeface, Typeface.SERIF);
+        default -> baseTypeface;
       };
     }
 
     /**
      * Method to choose editor theme.
      *
-     * @param themeIndex number of theme 0...6
-     * @return Return a EditorColorScheme instance
+     * @param rcd An Instance of RobokCodeEditor
+     * @param themeIndex Number of theme 0...6
+     * @return Return an EditorColorScheme instance
      */
     public static EditorColorScheme getTheme(RobokCodeEditor rcd, int themeIndex) {
       var ctx = rcd.getSoraCodeEditor().getContext();
-      return switch (themeIndex) {
-        case 1 -> new SchemeRobokTH(ctx);
-        case 2 -> new SchemeGitHub();
-        case 3 -> new SchemeEclipse();
-        case 4 -> new SchemeDarcula();
-        case 5 -> new SchemeVS2019();
-        case 6 -> new SchemeNotepadXX();
-        default -> new SchemeRobok(ctx);
-      };
+      switch (themeIndex) {
+        case 1:
+          return new SchemeRobokTH(ctx);
+        case 2:
+          return new SchemeGitHub();
+        case 3:
+          return new SchemeEclipse();
+        case 4:
+          return new SchemeDarcula();
+        case 5:
+          return new SchemeVS2019();
+        case 6:
+          return new SchemeNotepadXX();
+        default:
+          return new SchemeRobok(ctx);
+      }
     }
   }
 }
