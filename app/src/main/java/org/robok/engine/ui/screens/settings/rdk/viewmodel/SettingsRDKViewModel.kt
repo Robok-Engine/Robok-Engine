@@ -42,12 +42,14 @@ class SettingsRDKViewModel(private val repository: SettingsRDKRepository) : View
     viewModelScope.launch { getVersions() }
   }
 
-  fun startDownload(context: Context, zipUrl: String, outputDirName: String) {
+  fun startDownload(context: Context, zipUrl: String, version: String) {
     val zipDownloader = ZipDownloader(context)
     _downloadState = DownloadState.Loading
-
+    
+    val dir = File(context.filesDir, version)
+    
     viewModelScope.launch {
-      val result = zipDownloader.downloadAndExtractZip(zipUrl, outputDirName)
+      val result = zipDownloader.downloadAndExtractZip(zipUrl, dir)
 
       _downloadState =
         if (result) {

@@ -29,19 +29,18 @@ import kotlinx.coroutines.withContext
 
 class ZipDownloader(private val context: Context) {
 
-  suspend fun downloadAndExtractZip(zipUrl: String, outputDirName: String): Boolean =
+  suspend fun downloadAndExtractZip(zipUrl: String, outputDir: File): Boolean =
     withContext(Dispatchers.IO) {
       val url = URL(zipUrl)
       val connection = url.openConnection() as HttpURLConnection
 
       try {
         connection.inputStream.use { inputStream ->
-          val outputDir = File(context.filesDir, outputDirName)
           if (!outputDir.exists()) {
             outputDir.mkdirs()
           }
 
-          val zipFile = File(context.filesDir, "$outputDirName.zip")
+          val zipFile = File(context.filesDir, "temp.zip")
           FileOutputStream(zipFile).use { fileOutputStream -> inputStream.copyTo(fileOutputStream) }
 
           extractZipFile(zipFile, outputDir)
