@@ -24,6 +24,7 @@ package org.robok.engine.feature.editor.schemes
 import android.content.Context
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
+import com.google.android.material.R as MaterialR
 import org.robok.engine.feature.editor.R
 import org.robok.engine.res.ResUtils
 
@@ -35,45 +36,46 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
   init {
     this.context = context
     resUtils = ResUtils(context)
-
+    
+    val primary = resUtils.getAttrColor(MaterialR.attr.colorPrimary)
+    val surface = resUtils.getAttrColor(MaterialR.attr.colorSurface)
+    val onSurface = resUtils.getAttrColor(MaterialR.attr.colorOnSurface)
+    
     setColor(
       EditorColorScheme.WHOLE_BACKGROUND,
-      resUtils.getAttrColor(android.R.attr.colorBackground),
-    ) // set the background color
+      surface
+    )
     setColor(
       EditorColorScheme.CURRENT_LINE,
       resUtils.getColor(org.robok.engine.feature.editor.R.color.scheme_robok_current_line),
-    ) // set the current line color
+    )
     setColor(
       EditorColorScheme.LINE_NUMBER_PANEL,
-      resUtils.getAttrColor(android.R.attr.colorBackground),
-    ) // set color bar for line numbers
+      surface
+    )
     setColor(
       EditorColorScheme.LINE_NUMBER_BACKGROUND,
-      resUtils.getAttrColor(android.R.attr.colorBackground),
+      surface
     )
-    // set color bar for line numbers
     setColor(
       EditorColorScheme.KEYWORD,
-      resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary),
+      primary
     )
-    // set keywords colors
     setColor(
       EditorColorScheme.FUNCTION_NAME,
-      resUtils.getAttrColor(com.google.android.material.R.attr.colorPrimary),
+      onSurface
     )
-    // set function name colors
     setColor(
       EditorColorScheme.IDENTIFIER_NAME,
-      resUtils.getColor(org.robok.engine.feature.editor.R.color.scheme_robok_identifier_name),
+      primary
     )
     setColor(
       EditorColorScheme.TEXT_NORMAL,
-      resUtils.getColor(org.robok.engine.feature.editor.R.color.scheme_robok_text_normal),
+      onSurface
     )
     setColor(
       EditorColorScheme.OPERATOR,
-      resUtils.getAttrColor(com.google.android.material.R.attr.colorOnBackground),
-    ) // set delimiters color
+      onSurface
+    ) 
   }
 }
