@@ -98,7 +98,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     getSoraCodeEditor()
         .setColorScheme(
-            AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme)));
+            AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme()));
 
     if (getFileExtension().equals("java")) reloadListeners();
   }
@@ -329,7 +329,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
       baseTypeface = switch (fontIndex) {
         case 0 -> Typeface.createFromAsset(context.getAssets(), "JetBrainsMono-Regular.ttf");
         default -> Typeface.DEFAULT;
-      }
+      };
 
       return switch (typefaceIndex) {
         case 1 -> Typeface.create(baseTypeface, Typeface.DEFAULT_BOLD);
