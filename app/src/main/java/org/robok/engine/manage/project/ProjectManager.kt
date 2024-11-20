@@ -150,13 +150,9 @@ class ProjectManager(private var context: Context) {
   private fun createConfigFile() {
     val config = Config(
       mainClassName = "MainScreen",
-      gameIcon = "game/assets/images/game_icon.png"
+      gameIconPath = "game/assets/images/game_icon.png"
     )
-    val json = Json {
-      prettyPrint = true
-      prettyPrintIndent = "  "
-    }
-    FileUtil.writeFile(getConfigFile().absolutePath, json.encodeToString(config))
+    FileUtil.writeFile(getConfigFile().absolutePath, getJson().encodeToString(config))
   }
 
   private fun extractLibs(projectName: String) {
@@ -192,6 +188,17 @@ class ProjectManager(private var context: Context) {
       notifyBuildError(e, "build")
     }
   }
+  
+  private fun copyIconToPrivate() {
+    val config = getConfigFromFile()
+    val gameIconPath = config.gameIconPath
+    if (gameIconPath != null) {
+      val destPath = "${getAndroidResPath()}/drawable/ic_launcher.png"
+      FileUtil.copyFile("${projectPath}/$gameIconPath", destPath)
+      return
+    }
+    RobokLog.e(TAG, "gameIconPath is null")
+  }
 
   fun getProjectName(): String {
     return projectPath.absolutePath.substringAfterLast("/")
@@ -211,6 +218,15 @@ class ProjectManager(private var context: Context) {
 
   fun getConfigFile(): File {
     return File(projectPath, "config.json")
+  }
+  
+  fun getConfigFromFile(): Config {
+    return getJson().decodeFromString<Config>(FileUtil.readFile(getConfigFile()))
+  }
+  
+  private fun getJson(): Json = Json {
+    prettyPrint = true
+    prettyPrintIndent = "  "
   }
 
   private fun notifyCreationError(value: String) {
