@@ -23,7 +23,7 @@ import kotlinx.serialization.SerialName
 @Serializable
 data class Config(
   @SerialName("game_icon")
-  var gameIcon: String
+  var gameIcon: String,
   @SerialName("main_class_name")
   var mainClassName: String
 )

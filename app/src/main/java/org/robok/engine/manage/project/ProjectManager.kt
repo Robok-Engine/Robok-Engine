@@ -170,7 +170,7 @@ class ProjectManager(private var context: Context) {
       terminal.setCancelable(false)
       terminal.show()
 
-l      val buildLogger = Logger().apply { attach(terminal.recyclerView) }
+      val buildLogger = Logger().apply { attach(terminal.recyclerView) }
       SystemLogPrinter.start(context, buildLogger)
 
       val project =
