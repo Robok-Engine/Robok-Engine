@@ -84,7 +84,10 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
     getSoraCodeEditor()
         .setTypefaceText(
-            AppearanceManager.getTypeface(getContext(), editorConfigManager.getEditorFont(), editorConfigManager.getEditorTypeface()));
+            AppearanceManager.getTypeface(
+                getContext(),
+                editorConfigManager.getEditorFont(),
+                editorConfigManager.getEditorTypeface()));
     getSoraCodeEditor().setTextSize(16);
     getSoraCodeEditor().setWordwrap(editorConfigManager.getEditorIsUseWordWrap());
 
@@ -97,8 +100,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     }
 
     getSoraCodeEditor()
-        .setColorScheme(
-            AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme()));
+        .setColorScheme(AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme()));
 
     if (getFileExtension().equals("java")) reloadListeners();
   }
@@ -318,18 +320,20 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     /**
      * Method to choose editor font typeface.
      *
-     * @param context      Application context to load assets
-     * @param fontIndex    Number of font (0 = JetBrains, 1...4 = system fonts)
-     * @param typefaceIndex Number of style (0 = Default, 1 = Bold, 2 = Monospace, 3 = Sans-serif, 4 = Serif)
+     * @param context Application context to load assets
+     * @param fontIndex Number of font (0 = JetBrains, 1...4 = system fonts)
+     * @param typefaceIndex Number of style (0 = Default, 1 = Bold, 2 = Monospace, 3 = Sans-serif, 4
+     *     = Serif)
      * @return Return a Typeface to use on editor
      */
     public static Typeface getTypeface(Context context, int fontIndex, int typefaceIndex) {
       Typeface baseTypeface;
-      
-      baseTypeface = switch (fontIndex) {
-        case 0 -> Typeface.createFromAsset(context.getAssets(), "JetBrainsMono-Regular.ttf");
-        default -> Typeface.DEFAULT;
-      };
+
+      baseTypeface =
+          switch (fontIndex) {
+            case 0 -> Typeface.createFromAsset(context.getAssets(), "JetBrainsMono-Regular.ttf");
+            default -> Typeface.DEFAULT;
+          };
 
       return switch (typefaceIndex) {
         case 1 -> Typeface.create(baseTypeface, Typeface.DEFAULT_BOLD.getStyle());
