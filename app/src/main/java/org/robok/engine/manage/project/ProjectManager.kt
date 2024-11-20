@@ -192,10 +192,9 @@ class ProjectManager(private var context: Context) {
   
   private fun copyIconToPrivate() {
     val config = getConfigFromFile()
-    val gameIconPath = config.gameIconPath
-    if (gameIconPath != null) {
+    if (config.gameIconPath != null) {
       val destPath = "${getAndroidResPath()}/drawable/ic_launcher.png"
-      FileUtil.copyFile("${projectPath}/$gameIconPath", destPath)
+      FileUtil.copyFile("${projectPath}/${config.gameIconPath}", destPath)
       return
     }
     RobokLog.e(TAG, "gameIconPath is null")
