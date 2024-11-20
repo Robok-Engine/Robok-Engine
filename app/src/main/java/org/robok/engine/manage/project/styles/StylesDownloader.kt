@@ -49,7 +49,7 @@ class StylesDownloader(
     outputDir: String
   ): Boolean {
     return try {
-      zipDownloader.downloadAndExtractZip(zipUrl, outputDir)
+      zipDownloader.downloadAndExtractZip(zipUrl, File(outputDir))
       true
     } catch (e: Exception) {
       RobokLog.e("StylesDownloader", "Error trying to download and extract ZIP file: ${e.message}")
