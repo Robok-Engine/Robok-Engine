@@ -172,6 +172,9 @@ class ProjectManager(private var context: Context) {
 
     creationListener.onProjectCreate()
   }
+  
+  val rdkVersionFlow: Flow<Int>
+    get() = preferencesViewModel.installedRdkVersion
 
   fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
     try {
@@ -184,9 +187,6 @@ class ProjectManager(private var context: Context) {
       copyIconToPrivate()
       compileAllGuiFiles()
       downloadStyles()
-      
-      val rdkVersionFlow: Flow<Int>
-        get() = appPreferencesViewModel.installedRdkVersion
         
       var rdkVersion = "RDK-1"
       runBlocking {
