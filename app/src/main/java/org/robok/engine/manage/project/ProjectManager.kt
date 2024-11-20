@@ -174,7 +174,7 @@ class ProjectManager(private var context: Context) {
   }
   
   val rdkVersionFlow: Flow<Int>
-    get() = preferencesViewModel.installedRdkVersion
+    get() = preferencesViewModel.installedRDKVersion
 
   fun build(terminal: RecyclerViewBottomSheet, result: CompilerTask.OnCompileResult) {
     try {
