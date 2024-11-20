@@ -169,7 +169,9 @@ class ProjectManager(private var context: Context) {
 
       val buildLogger = Logger().apply { attach(terminal.recyclerView) }
       SystemLogPrinter.start(context, buildLogger)
-
+      
+      copyIconToPrivate()
+      
       val project =
         Project().apply {
           libraries = Library.fromFile(getLibsPath())
