@@ -19,6 +19,7 @@ package org.robok.engine.manage.project
 
 import android.content.Context
 import android.os.Environment
+import android.widget.Toast
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -26,6 +27,8 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
+import org.robok.easyui.GUIBuilder
+import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
@@ -171,6 +174,7 @@ class ProjectManager(private var context: Context) {
       SystemLogPrinter.start(context, buildLogger)
       
       copyIconToPrivate()
+      compileAllGuiFiles()
       
       val project =
         Project().apply {
@@ -191,6 +195,38 @@ class ProjectManager(private var context: Context) {
       notifyBuildError(e, "build")
     }
   }
+  
+  private fun compileAllGuiFiles() {
+    val hudFolderList = arrayListOf<String>()
+    hudFolderList.forEach { path ->
+      val file = File(path)
+      if(file.extension.equals("gui")) {
+        val guiCode = FileUtil.readFile(path)
+        val fileName = file.nameWithoutExtension
+        val guiCompiler = GUICompiler(
+          guiBuilder = getGuiBuilder(
+            onGenerateCode = { code, _ ->
+              FileUtil.writeFile(
+                getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+                code
+              )
+            }
+          ),
+          code = guiCode
+        )
+      }
+    }
+  }
+  
+  private fun getGuiBuilder(
+    onGenerateCode: (String, org.robok.easyui.config.Config) -> Unit,
+    onError: (String) -> Unit = {  }
+  ): GUIBuilder = GUIBuilder(
+    context = context,
+    codeComments = false,
+    onGenerateCode = onGenerateCode,
+    onError = onError
+  )
   
   private fun copyIconToPrivate() {
     val config = getConfigFromFile()
