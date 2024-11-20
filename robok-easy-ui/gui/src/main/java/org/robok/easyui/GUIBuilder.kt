@@ -170,9 +170,15 @@ class GUIBuilder(
 
     components.indentLevel++
     val attributeConverted = attributeConverter?.convert(key)
-    components.xmlCodeList.newLineBroken(
-      components.indent + attributeConverted + "=" + "\"$value\""
-    )
+    if (!key.equals("id")) {
+      components.xmlCodeList.newLineBroken(
+        components.indent + attributeConverted + "=" + "\"$value\""
+      )
+    } else {
+      components.xmlCodeList.newLineBroken(
+        components.indent + attributeConverted + "=" + "\"@+id/$value\""
+      )
+    }
     components.indentLevel--
 
     if (containsCloseTag) {
