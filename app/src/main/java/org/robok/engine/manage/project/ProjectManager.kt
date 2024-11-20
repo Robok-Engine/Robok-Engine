@@ -30,18 +30,19 @@ import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomShee
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.utils.extractZipFromAssets
-import org.robok.engine.core.utils.json.json
-import org.robok.engine.core.utils.json.toStringFormatted
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
 import org.robok.engine.manage.project.tokens.ConfigKeys
+import org.robok.engine.manage.project.models.Config
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
 import org.robok.engine.templates.xml.AndroidManifestTemplate
 import org.robok.engine.templates.xml.BasicXML
+import kotlinx.serialization.json.Json
+import kotlinx.serialization.encodeToString
 
 class ProjectManager(private var context: Context) {
 
@@ -147,11 +148,15 @@ class ProjectManager(private var context: Context) {
   }
 
   private fun createConfigFile() {
-    val content = json {
-      property(key = ConfigKeys.GAME_ICON, value = "game/assets/images/game_icon.png")
-      property(key = ConfigKeys.MAIN_CLASS_NAME, value = "MainScreen")
+    val config = Config(
+      mainClassName = "MainScreen",
+      gameIcon = "game/assets/images/game_icon.png"
+    )
+    val json = Json {
+      prettyPrint = true
+      prettyPrintIndent = "  "
     }
-    FileUtil.writeFile(getConfigFile().absolutePath, content.toStringFormatted())
+    FileUtil.writeFile(getConfigFile().absolutePath, json.encodeToString(config))
   }
 
   private fun extractLibs(projectName: String) {
@@ -165,7 +170,7 @@ class ProjectManager(private var context: Context) {
       terminal.setCancelable(false)
       terminal.show()
 
-      val buildLogger = Logger().apply { attach(terminal.recyclerView) }
+l      val buildLogger = Logger().apply { attach(terminal.recyclerView) }
       SystemLogPrinter.start(context, buildLogger)
 
       val project =
