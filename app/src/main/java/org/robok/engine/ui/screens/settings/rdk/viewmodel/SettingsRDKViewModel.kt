@@ -27,6 +27,7 @@ import kotlinx.coroutines.launch
 import org.robok.engine.core.utils.ZipDownloader
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
+import java.io.File
 
 class SettingsRDKViewModel(private val repository: SettingsRDKRepository) : ViewModel() {
 
