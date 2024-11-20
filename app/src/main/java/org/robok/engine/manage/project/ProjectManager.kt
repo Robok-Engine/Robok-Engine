@@ -176,6 +176,7 @@ class ProjectManager(private var context: Context) {
       
       copyIconToPrivate()
       compileAllGuiFiles()
+      downloadStyles()
       
       val project =
         Project().apply {
