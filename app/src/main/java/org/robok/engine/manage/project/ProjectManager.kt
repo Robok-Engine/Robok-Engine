@@ -29,8 +29,13 @@ import java.util.zip.ZipInputStream
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
+import org.koin.android.ext.android.getKoin
 import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.GUICompiler
+import org.robok.engine.RobokApplication
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
@@ -40,6 +45,7 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
+import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.manage.project.models.Config
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
@@ -54,10 +60,15 @@ class ProjectManager(private var context: Context) {
     val PROJECTS_PATH =
       File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
   }
-
+  
   lateinit var projectPath: File
   lateinit var creationListener: CreationListener
-
+  lateinit var preferencesViewModel: PreferencesViewModel
+  
+  init {
+    preferencesViewModel = RobokApplication.getInstance().getKoin().get()
+  }
+  
   fun create(projectName: String, packageName: String, template: ProjectTemplate) {
     try {
       context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
@@ -174,7 +185,13 @@ class ProjectManager(private var context: Context) {
       compileAllGuiFiles()
       downloadStyles()
       
-      val rdkVersion = "RDK-1" // TODO: Get from settings
+      val rdkVersionFlow: Flow<Int>
+        get() = appPreferencesViewModel.installedRdkVersion
+        
+      var rdkVersion = "RDK-1"
+      runBlocking {
+        rdkVersion = rdkVersionFlow.first()
+      }
       val libs = mutableListOf<Library>()
       
       libs.addAll(Library.fromFile(getLibsPath()))
