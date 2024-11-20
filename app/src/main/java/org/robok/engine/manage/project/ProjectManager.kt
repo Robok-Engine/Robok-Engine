@@ -40,6 +40,7 @@ import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
 import org.robok.engine.manage.project.tokens.ConfigKeys
 import org.robok.engine.manage.project.models.Config
+import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
 import org.robok.engine.templates.xml.AndroidManifestTemplate
@@ -197,6 +198,7 @@ class ProjectManager(private var context: Context) {
   }
   
   private fun compileAllGuiFiles() {
+    // TODO: Logs on Build BottomSheet
     val hudFolderList = arrayListOf<String>()
     hudFolderList.forEach { path ->
       val file = File(path)
@@ -227,6 +229,17 @@ class ProjectManager(private var context: Context) {
     onGenerateCode = onGenerateCode,
     onError = onError
   )
+  
+  private fun downloadStyles() {
+    // TODO: Logs on Build Bottom Sheet
+    val sd = StylesDownloader()
+    sd.startDownload(
+      context = context,
+      type = StylesDownloader.Type.DEFAULT,
+      outputDir = "${getAndroidResPath}/drawable/",
+      onResult = { isSuccess -> }
+    )
+  }
   
   private fun copyIconToPrivate() {
     val config = getConfigFromFile()
