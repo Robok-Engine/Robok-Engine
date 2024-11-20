@@ -16,25 +16,20 @@ package org.robok.engine.manage.project.styles
  *  You should have received a copy of the GNU General Public License
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import android.content.Context
+import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.robok.engine.core.utils.ZipDownloader
 import org.robok.engine.core.utils.RobokLog
-import java.io.File
+import org.robok.engine.core.utils.ZipDownloader
 
 class StylesDownloader(
   private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
 ) {
 
-  fun startDownload(
-    context: Context, 
-    type: Type,
-    outputDir: String,
-    onResult: (Boolean) -> Unit
-  ) {
+  fun startDownload(context: Context, type: Type, outputDir: String, onResult: (Boolean) -> Unit) {
     val zipDownloader = ZipDownloader(context)
     val url = getUrlForType(type)
 
@@ -47,7 +42,7 @@ class StylesDownloader(
   private suspend fun downloadAndExtract(
     zipDownloader: ZipDownloader,
     zipUrl: String,
-    outputDir: String
+    outputDir: String,
   ): Boolean {
     return try {
       zipDownloader.downloadAndExtractZip(zipUrl, File(outputDir))
@@ -65,10 +60,11 @@ class StylesDownloader(
   }
 
   private object StylesUrls {
-    const val DEFAULT = "https://github.com/Robok-Engine/Robok-GUI-Styles/raw/refs/heads/main/default_style.zip"
+    const val DEFAULT =
+      "https://github.com/Robok-Engine/Robok-GUI-Styles/raw/refs/heads/main/default_style.zip"
   }
 
   enum class Type {
-    DEFAULT;
+    DEFAULT
   }
 }

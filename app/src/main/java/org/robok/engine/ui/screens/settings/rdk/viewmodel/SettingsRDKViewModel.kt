@@ -23,11 +23,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import java.io.File
 import kotlinx.coroutines.launch
 import org.robok.engine.core.utils.ZipDownloader
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
-import java.io.File
 
 class SettingsRDKViewModel(private val repository: SettingsRDKRepository) : ViewModel() {
 
@@ -46,9 +46,9 @@ class SettingsRDKViewModel(private val repository: SettingsRDKRepository) : View
   fun startDownload(context: Context, zipUrl: String, version: String) {
     val zipDownloader = ZipDownloader(context)
     _downloadState = DownloadState.Loading
-    
+
     val dir = File(context.filesDir, version)
-    
+
     viewModelScope.launch {
       val result = zipDownloader.downloadAndExtractZip(zipUrl, dir)
 

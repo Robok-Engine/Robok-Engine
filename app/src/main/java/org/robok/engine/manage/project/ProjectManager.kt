@@ -19,7 +19,6 @@ package org.robok.engine.manage.project
 
 import android.content.Context
 import android.os.Environment
-import android.widget.Toast
 import java.io.BufferedInputStream
 import java.io.File
 import java.io.FileNotFoundException
@@ -27,6 +26,9 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
@@ -38,16 +40,12 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
-import org.robok.engine.manage.project.tokens.ConfigKeys
 import org.robok.engine.manage.project.models.Config
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
 import org.robok.engine.templates.xml.AndroidManifestTemplate
 import org.robok.engine.templates.xml.BasicXML
-import kotlinx.serialization.json.Json
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.decodeFromString
 
 class ProjectManager(private var context: Context) {
 
@@ -153,10 +151,8 @@ class ProjectManager(private var context: Context) {
   }
 
   private fun createConfigFile() {
-    val config = Config(
-      mainClassName = "MainScreen",
-      gameIconPath = "game/assets/images/game_icon.png"
-    )
+    val config =
+      Config(mainClassName = "MainScreen", gameIconPath = "game/assets/images/game_icon.png")
     FileUtil.writeFile(getConfigFile().absolutePath, getJson().encodeToString(config))
   }
 
@@ -173,11 +169,11 @@ class ProjectManager(private var context: Context) {
 
       val buildLogger = Logger().apply { attach(terminal.recyclerView) }
       SystemLogPrinter.start(context, buildLogger)
-      
+
       copyIconToPrivate()
       compileAllGuiFiles()
       downloadStyles()
-      
+
       val project =
         Project().apply {
           libraries = Library.fromFile(getLibsPath())
@@ -197,40 +193,43 @@ class ProjectManager(private var context: Context) {
       notifyBuildError(e, "build")
     }
   }
-  
+
   private fun compileAllGuiFiles() {
     // TODO: Logs on Build BottomSheet
     val hudFolderList = arrayListOf<String>()
     hudFolderList.forEach { path ->
       val file = File(path)
-      if(file.extension.equals("gui")) {
+      if (file.extension.equals("gui")) {
         val guiCode = FileUtil.readFile(path)
         val fileName = file.nameWithoutExtension
-        val guiCompiler = GUICompiler(
-          guiBuilder = getGuiBuilder(
-            onGenerateCode = { code, _ ->
-              FileUtil.writeFile(
-                getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-                code
-              )
-            }
-          ),
-          code = guiCode
-        )
+        val guiCompiler =
+          GUICompiler(
+            guiBuilder =
+              getGuiBuilder(
+                onGenerateCode = { code, _ ->
+                  FileUtil.writeFile(
+                    getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+                    code,
+                  )
+                }
+              ),
+            code = guiCode,
+          )
       }
     }
   }
-  
+
   private fun getGuiBuilder(
     onGenerateCode: (String, org.robok.easyui.config.Config) -> Unit,
-    onError: (String) -> Unit = {  }
-  ): GUIBuilder = GUIBuilder(
-    context = context,
-    codeComments = false,
-    onGenerateCode = onGenerateCode,
-    onError = onError
-  )
-  
+    onError: (String) -> Unit = {},
+  ): GUIBuilder =
+    GUIBuilder(
+      context = context,
+      codeComments = false,
+      onGenerateCode = onGenerateCode,
+      onError = onError,
+    )
+
   private fun downloadStyles() {
     // TODO: Logs on Build Bottom Sheet
     val sd = StylesDownloader()
@@ -238,10 +237,10 @@ class ProjectManager(private var context: Context) {
       context = context,
       type = StylesDownloader.Type.DEFAULT,
       outputDir = "${getAndroidResPath()}/drawable/",
-      onResult = { isSuccess -> }
+      onResult = { isSuccess -> },
     )
   }
-  
+
   private fun copyIconToPrivate() {
     val config = getConfigFromFile()
     if (config.gameIconPath != null) {
@@ -271,11 +270,11 @@ class ProjectManager(private var context: Context) {
   fun getConfigFile(): File {
     return File(projectPath, "config.json")
   }
-  
+
   fun getConfigFromFile(): Config {
     return getJson().decodeFromString<Config>(FileUtil.readFile(getConfigFile().absolutePath))
   }
-  
+
   private fun getJson(): Json = Json {
     prettyPrint = true
     prettyPrintIndent = "  "

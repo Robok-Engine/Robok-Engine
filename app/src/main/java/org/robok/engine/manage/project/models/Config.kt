@@ -17,13 +17,11 @@ package org.robok.engine.manage.project.models
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
 import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
 
 @Serializable
 data class Config(
-  @SerialName("game_icon_path")
-  var gameIconPath: String?,
-  @SerialName("main_class_name")
-  var mainClassName: String?
+  @SerialName("game_icon_path") var gameIconPath: String?,
+  @SerialName("main_class_name") var mainClassName: String?,
 )
