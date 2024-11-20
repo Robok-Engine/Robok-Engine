@@ -42,8 +42,8 @@ open class AndroidManifestTemplate : CodeTemplate() {
               package="$packageName">
               
               <application 
-                android:icon="@mipmap/ic_launcher" 
-                android:roundIcon="@mipmap/ic_launcher" 
+                android:icon="@drawable/ic_launcher" 
+                android:roundIcon="@drawable/ic_launcher" 
                 android:label="@string/app_name" 
                 android:theme="@style/Theme.Material3.DayNight.NoActionBar">
                 
