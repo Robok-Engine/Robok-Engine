@@ -54,7 +54,7 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   fun setEditorWordWrapEnable(value: Boolean) {
     viewModelScope.launch { repo.setEditorWordWrapEnable(value) }
   }
-  
+
   fun setEditorFont(value: Int) {
     viewModelScope.launch { repo.setEditorFont(value) }
   }

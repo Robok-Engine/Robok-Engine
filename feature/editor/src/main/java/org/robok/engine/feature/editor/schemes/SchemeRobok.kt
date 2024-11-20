@@ -22,9 +22,9 @@ package org.robok.engine.feature.editor.schemes
  */
 
 import android.content.Context
+import com.google.android.material.R as MaterialR
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
-import com.google.android.material.R as MaterialR
 import org.robok.engine.feature.editor.R
 import org.robok.engine.res.ResUtils
 
@@ -36,46 +36,22 @@ class SchemeRobok(context: Context) : SchemeDarcula() {
   init {
     this.context = context
     resUtils = ResUtils(context)
-    
+
     val primary = resUtils.getAttrColor(MaterialR.attr.colorPrimary)
     val surface = resUtils.getAttrColor(MaterialR.attr.colorSurface)
     val onSurface = resUtils.getAttrColor(MaterialR.attr.colorOnSurface)
-    
-    setColor(
-      EditorColorScheme.WHOLE_BACKGROUND,
-      surface
-    )
+
+    setColor(EditorColorScheme.WHOLE_BACKGROUND, surface)
     setColor(
       EditorColorScheme.CURRENT_LINE,
       resUtils.getColor(org.robok.engine.feature.editor.R.color.scheme_robok_current_line),
     )
-    setColor(
-      EditorColorScheme.LINE_NUMBER_PANEL,
-      surface
-    )
-    setColor(
-      EditorColorScheme.LINE_NUMBER_BACKGROUND,
-      surface
-    )
-    setColor(
-      EditorColorScheme.KEYWORD,
-      primary
-    )
-    setColor(
-      EditorColorScheme.FUNCTION_NAME,
-      onSurface
-    )
-    setColor(
-      EditorColorScheme.IDENTIFIER_NAME,
-      primary
-    )
-    setColor(
-      EditorColorScheme.TEXT_NORMAL,
-      onSurface
-    )
-    setColor(
-      EditorColorScheme.OPERATOR,
-      onSurface
-    ) 
+    setColor(EditorColorScheme.LINE_NUMBER_PANEL, surface)
+    setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, surface)
+    setColor(EditorColorScheme.KEYWORD, primary)
+    setColor(EditorColorScheme.FUNCTION_NAME, onSurface)
+    setColor(EditorColorScheme.IDENTIFIER_NAME, primary)
+    setColor(EditorColorScheme.TEXT_NORMAL, onSurface)
+    setColor(EditorColorScheme.OPERATOR, onSurface)
   }
 }

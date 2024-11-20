@@ -76,6 +76,7 @@ fun json(init: JsonBuilder.() -> Unit): JsonObject {
 
 fun JsonObject.toStringFormatted(): String =
   Json {
-    prettyPrint = true
-    prettyPrintIndent = "  "
-  }.encodeToString(JsonObject.serializer(), this)
+      prettyPrint = true
+      prettyPrintIndent = "  "
+    }
+    .encodeToString(JsonObject.serializer(), this)

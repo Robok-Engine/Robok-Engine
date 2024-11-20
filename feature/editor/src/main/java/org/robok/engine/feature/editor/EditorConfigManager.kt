@@ -36,7 +36,7 @@ class EditorConfigManager : KoinComponent {
 
   private val editorIsUseWordWrap: Flow<Boolean>
     get() = appPreferencesViewModel.editorIsUseWordWrap
-    
+
   private val editorFont: Flow<Int>
     get() = appPreferencesViewModel.editorFont
 
@@ -57,7 +57,7 @@ class EditorConfigManager : KoinComponent {
    * @return Return true or false
    */
   fun getEditorIsUseWordWrap(): Boolean = runBlocking { editorIsUseWordWrap.first() }
-  
+
   /*
    * Method to get if is to use Word Wrap on editor
    * @return Return true or false
@@ -75,13 +75,14 @@ class EditorConfigManager : KoinComponent {
    * @param value A Int of new theme index
    */
   fun setEditorTypeface(value: Int) = appPreferencesViewModel.setEditorTypeface(value)
-  
+
   /*
    * Method to set if editor will use WordWrap
    * @param value A Boolean to enable or disable
    */
-  fun setEditorWordWrapEnable(value: Boolean) = appPreferencesViewModel.setEditorWordWrapEnable(value)
-  
+  fun setEditorWordWrapEnable(value: Boolean) =
+    appPreferencesViewModel.setEditorWordWrapEnable(value)
+
   /*
    * Method to set editor font
    * @param value A font number index
