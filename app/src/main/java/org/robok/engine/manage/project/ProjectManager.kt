@@ -237,7 +237,7 @@ class ProjectManager(private var context: Context) {
     sd.startDownload(
       context = context,
       type = StylesDownloader.Type.DEFAULT,
-      outputDir = "${getAndroidResPath}/drawable/",
+      outputDir = "${getAndroidResPath()}/drawable/",
       onResult = { isSuccess -> }
     )
   }
