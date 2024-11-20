@@ -43,6 +43,7 @@ import org.robok.engine.templates.xml.AndroidManifestTemplate
 import org.robok.engine.templates.xml.BasicXML
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.encodeToString
+import kotlinx.serialization.decodeFromString
 
 class ProjectManager(private var context: Context) {
 
