@@ -178,8 +178,8 @@ class ProjectManager(private var context: Context) {
           javaFile = File("${projectPath.absolutePath}/game/logic/")
           manifestFile = File(getAndroidManifestFile().absolutePath)
           logger = buildLogger
-          minSdk = Config.MIN_SDK
-          targetSdk = Config.TARGET_SDK
+          minSdk = ProjectBuildConfig.MIN_SDK
+          targetSdk = ProjectBuildConfig.TARGET_SDK
           rootPath = projectPath
         }
 
@@ -259,7 +259,7 @@ class ProjectManager(private var context: Context) {
     fun onProjectCreateError(error: String)
   }
 
-  object Config {
+  object ProjectBuildConfig {
     const val MIN_SDK = 21
     const val TARGET_SDK = 28
   }
