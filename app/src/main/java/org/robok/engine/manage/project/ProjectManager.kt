@@ -173,10 +173,20 @@ class ProjectManager(private var context: Context) {
       copyIconToPrivate()
       compileAllGuiFiles()
       downloadStyles()
-
+      
+      val rdkVersion = "RDK-1" // TODO: Get from settings
+      val libs = mutableListOf<Library>()
+      
+      libs.addAll(Library.fromFile(getLibsPath()))
+      
+      val jarDir = File(context.filesDir, "${rdkVersion}/jar/")
+      if (jarDir.exists()) {
+        libs.addAll(Library.fromFile(jarDir))
+      }
+      
       val project =
         Project().apply {
-          libraries = Library.fromFile(getLibsPath())
+          libraries = libs
           resourcesFile = getAndroidResPath()
           outputFile = File("${projectPath.absolutePath}/build/")
           javaFile = File("${projectPath.absolutePath}/game/logic/")
