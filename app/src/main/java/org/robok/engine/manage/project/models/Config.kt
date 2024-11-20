@@ -1,4 +1,4 @@
-package org.robok.engine.manage.project
+package org.robok.engine.manage.project.models
 
 /*
  *  This file is part of Robok © 2024.
