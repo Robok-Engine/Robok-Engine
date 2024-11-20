@@ -23,6 +23,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.robok.engine.core.utils.ZipDownloader
 import org.robok.engine.core.utils.RobokLog
+import java.io.File
 
 class StylesDownloader(
   private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
