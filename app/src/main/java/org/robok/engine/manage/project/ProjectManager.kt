@@ -196,9 +196,9 @@ class ProjectManager(private var context: Context) {
       
       libs.addAll(Library.fromFile(getLibsPath()))
       
-      val jarDir = File(context.filesDir, "${rdkVersion}/jar/")
+      val jarDir = File(context.filesDir, "${rdkVersion}/jar/classes.jar")
       if (jarDir.exists()) {
-        libs.addAll(Library.fromFile(jarDir))
+        libs.add(Library(jarDir))
       }
       
       val project =

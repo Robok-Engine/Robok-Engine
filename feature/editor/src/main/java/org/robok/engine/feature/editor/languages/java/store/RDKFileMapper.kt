@@ -27,7 +27,7 @@ class RDKFileMapper(private val context: Context) {
   private val robokClasses: HashMap<String, String> = HashMap()
   private val actuallyRdk = "RDK-1"
 
-  private val rdkDexDir: File = File(context.filesDir, "$actuallyRdk/dex")
+  private val rdkDexDir: File = File(context.filesDir, "$actuallyRdk/dex/jar")
 
   init {
     mapRdkClasses()
