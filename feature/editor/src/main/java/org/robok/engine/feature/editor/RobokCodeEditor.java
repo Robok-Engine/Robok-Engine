@@ -332,10 +332,10 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
       };
 
       return switch (typefaceIndex) {
-        case 1 -> Typeface.create(baseTypeface, Typeface.DEFAULT_BOLD);
-        case 2 -> Typeface.create(baseTypeface, Typeface.MONOSPACE);
-        case 3 -> Typeface.create(baseTypeface, Typeface.SANS_SERIF);
-        case 4 -> Typeface.create(baseTypeface, Typeface.SERIF);
+        case 1 -> Typeface.create(baseTypeface, Typeface.DEFAULT_BOLD.getStyle());
+        case 2 -> Typeface.create(baseTypeface, Typeface.MONOSPACE.getStyle());
+        case 3 -> Typeface.create(baseTypeface, Typeface.SANS_SERIF.getStyle());
+        case 4 -> Typeface.create(baseTypeface, Typeface.SERIF.getStyle());
         default -> baseTypeface;
       };
     }
