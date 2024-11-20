@@ -221,7 +221,7 @@ class ProjectManager(private var context: Context) {
   }
   
   fun getConfigFromFile(): Config {
-    return getJson().decodeFromString<Config>(FileUtil.readFile(getConfigFile()))
+    return getJson().decodeFromString<Config>(FileUtil.readFile(getConfigFile().absolutePath))
   }
   
   private fun getJson(): Json = Json {
