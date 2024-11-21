@@ -163,7 +163,11 @@ class ProjectManager(private var context: Context) {
 
   private fun createConfigFile() {
     val config =
-      Config(mainClassName = "MainScreen", gameIconPath = "game/assets/images/game_icon.png")
+      Config(
+        appName = getProjectName(),
+        mainClassName = "MainScreen",
+        gameIconPath = "game/assets/images/game_icon.png"
+      )
     FileUtil.writeFile(getConfigFile().absolutePath, getJson().encodeToString(config))
   }
 

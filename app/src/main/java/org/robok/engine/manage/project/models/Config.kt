@@ -22,6 +22,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Config(
+  @SerialName("app_name") var appName: String?,
   @SerialName("game_icon_path") var gameIconPath: String?,
   @SerialName("main_class_name") var mainClassName: String?,
 )
