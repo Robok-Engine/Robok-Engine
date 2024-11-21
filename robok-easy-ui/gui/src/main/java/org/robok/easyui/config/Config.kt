@@ -17,10 +17,8 @@ package org.robok.easyui.config
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.annotation.Keep
 import java.io.Serializable
 
-@Keep
 data class Config(val orientation: String, val style: String) : Serializable {
   companion object {
     fun getName(): String = "config"
