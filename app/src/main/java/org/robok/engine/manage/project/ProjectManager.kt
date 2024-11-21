@@ -101,11 +101,10 @@ class ProjectManager(private var context: Context) {
             }
             zipInputStream.closeEntry()
           }
-
+          createConfigFile()
           createMainScreen(projectName, packageName)
           createAndroidManifest(packageName)
           createStringsFile(projectName)
-          createConfigFile()
           extractLibs(projectName)
         }
       }
