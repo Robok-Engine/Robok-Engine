@@ -146,7 +146,7 @@ class ProjectManager(private var context: Context) {
         name = projectName
         type = "string"
         key = "name"
-        add("app_name", projectName)
+        add("example_string", "any value")
         regenerate()
       }
     RobokLog.d(TAG, stringsFile.code)
@@ -157,15 +157,24 @@ class ProjectManager(private var context: Context) {
   }
 
   private fun createAndroidManifest(packageName: String) {
-    val androidManifest = AndroidManifestTemplate().apply { this.packageName = packageName }
+    val androidManifest = AndroidManifestTemplate().apply {
+      val mainScreenName = getConfigFromFile().mainScreenName
+      val gameName = getConfigFromFile().gameName
+      
+      this.packageName = packageName
+      
+      if (mainScreenName != null) this.mainScreenName = "$packageName.$mainScreenName"
+      if (gameName != null) this.gameName = gameName
+      regenerate()
+    }
     FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
   }
 
   private fun createConfigFile() {
     val config =
       Config(
-        appName = getProjectName(),
-        mainClassName = "MainScreen",
+        gameName = getProjectName(),
+        mainScreenName = "MainScreen",
         gameIconPath = "game/assets/images/game_icon.png"
       )
     FileUtil.writeFile(getConfigFile().absolutePath, getJson().encodeToString(config))

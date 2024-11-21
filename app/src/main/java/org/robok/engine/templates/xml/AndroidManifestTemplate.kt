@@ -24,13 +24,13 @@ open class AndroidManifestTemplate : CodeTemplate() {
   override var name: String = "AndroidManifest"
   override var packageName: String = "org.robok.empty"
   override var extension: String = ".xml"
-
-  private var mainActivityPackage = "$packageName.MainScreen"
-
+  
+  var mainScreenName = "$packageName.MainScreen"
+  var gameName = "Empty Game"
+  
   override var code: String = generateCode()
 
   override fun regenerate() {
-    mainActivityPackage = "$packageName.MainScreen"
     code = generateCode()
   }
 
@@ -44,11 +44,11 @@ open class AndroidManifestTemplate : CodeTemplate() {
               <application 
                 android:icon="@drawable/ic_launcher" 
                 android:roundIcon="@drawable/ic_launcher" 
-                android:label="@string/app_name" 
+                android:label="$gameName" 
                 android:theme="@style/Theme.Material3.DayNight.NoActionBar">
                 
                 <activity 
-                  android:name="$mainActivityPackage" 
+                  android:name="$mainScreenName" 
                   android:exported="true">
                   
                   <intent-filter>
