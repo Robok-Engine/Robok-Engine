@@ -628,7 +628,7 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
 } catch (Exception e) {
     Log.e(TAG, "Error reading file", e);
 }
-                }
+                });
       th.setPriority(Thread.MIN_PRIORITY);
       th.start();
     
