@@ -580,11 +580,15 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
     public DiagnosticsContainer diagnostics;
     public boolean onSuccess = true;
 
+        private final Java8Lexer lexer = new Java8Lexer(null);
+    private final CommonTokenStream tokens = new CommonTokenStream(lexer);
+    private final Java8Parser parser = new Java8Parser(tokens);
     /*
      * Method used to check if the editor code has errors.
      * If so, the listener will be called.
      * This method must be called every time there is a change in the code.
      */
+        
     public void CheckforPossibleErrors(String inputText, int positionIndex) {
       if (diagnostics != null) {
         diagnostics.reset();
@@ -593,27 +597,40 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
           new Thread(
               () -> {
                 try {
-                  ANTLRInputStream input = new ANTLRInputStream(inputText);
-                  Java8Lexer lexer = new Java8Lexer(input);
-                  CommonTokenStream tokens = new CommonTokenStream(lexer);
-                  Java8Parser parser = new Java8Parser(tokens);
-                  parser.removeErrorListeners();
-                  parser.getInterpreter().setPredictionMode(PredictionMode.SLL);
-                  Java8ErrorListener rbkError = new Java8ErrorListener();
-                  rbkError.getError(diagnosticListener);
-                  parser.addErrorListener(rbkError);
-                  Java8Parser.CompilationUnitContext compilationUnitContext =
-                      parser.compilationUnit();
-                  // Create and add the custom listener
-                  ParseTreeWalker walker = new ParseTreeWalker();
-                  JavaListener compiler = new JavaListener(positionIndex);
-                  walker.walk(compiler, compilationUnitContext);
-                } catch (Exception e) {
-                  Log.e(TAG, "Error reading file", e);
+    // Criar instâncias do Lexer e Parser uma vez
+    Java8Lexer lexer = new Java8Lexer(null); // Lexer sem entrada inicial
+    CommonTokenStream tokens = new CommonTokenStream(lexer);
+    Java8Parser parser = new Java8Parser(tokens);
+
+    // Processar o texto de entrada
+    lexer.setInputStream(new ANTLRInputStream(inputText)); // Define o texto no Lexer
+    tokens.setTokenSource(lexer); // Configura o token stream
+    parser.reset(); // Reseta o estado do Parser para reutilização
+    parser.removeErrorListeners(); // Remove listeners padrão para evitar overhead
+    parser.getInterpreter().setPredictionMode(PredictionMode.SLL); // Usa modo rápido
+
+    Java8Parser.CompilationUnitContext compilationUnitContext;
+    try {
+        // Tentativa inicial com PredictionMode.SLL
+        compilationUnitContext = parser.compilationUnit();
+    } catch (Exception ex) {
+        // Fallback para PredictionMode.LL em caso de erro
+        tokens.reset();
+        parser.reset();
+        parser.getInterpreter().setPredictionMode(PredictionMode.LL);
+        compilationUnitContext = parser.compilationUnit();
+    }
+
+    // Caminhar na árvore de análise
+    ParseTreeWalker walker = new ParseTreeWalker();
+    JavaListener compiler = new JavaListener(positionIndex);
+    walker.walk(compiler, compilationUnitContext);
+} catch (Exception e) {
+    Log.e(TAG, "Error reading file", e);
+}
                 }
-              });
       th.setPriority(Thread.MIN_PRIORITY);
       th.start();
-    }
-  }
+    
+        }
 }
