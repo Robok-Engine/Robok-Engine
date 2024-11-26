@@ -44,8 +44,8 @@ jobs:
 
       - name: Commit and Push changes
         run: |
-          git config --global user.name "gampiot-bot"
-          git config --global user.email "gampiot.inc@gmail.com"
+          git config --global user.name "trindadedev13"
+          git config --global user.email "trindadedev13@gmail.com"
           git add .
           git commit -m "chore: update github contributors"
           git branch -M host
