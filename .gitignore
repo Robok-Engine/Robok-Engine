@@ -18,5 +18,4 @@
 .cxx
 *.log
 local.properties
-*/build
 **/build/
