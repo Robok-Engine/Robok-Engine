@@ -1,4 +1,4 @@
-package org.robok.engine.manage.project.tokens
+package org.robok.engine.manage.project.models
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,7 +17,12 @@ package org.robok.engine.manage.project.tokens
  *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-internal object ConfigKeys {
-  const val GAME_ICON = "game_icon"
-  const val MAIN_CLASS_NAME = "main_class_name"
-}
+import kotlinx.serialization.SerialName
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class BuildConfig(
+  @SerialName("game_name") var gameName: String?,
+  @SerialName("game_icon_path") var gameIconPath: String?,
+  @SerialName("main_screen_name") var mainScreenName: String?,
+)
