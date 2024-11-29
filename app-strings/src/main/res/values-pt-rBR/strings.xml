@@ -160,4 +160,10 @@
     <string name="text_all_logs">Todos os Registros</string>
     <string name="loading_logs">Carregando registros...</string>
     <string name="warning_no_logs">Sem registros.</string>
+    <string name="common_word_ok" translatable="false"></string>
+    <string name="link_telegram" translatable="false"></string>
+    <string name="link_github" translatable="false"></string>
+    <string name="link_whatsapp" translatable="false"></string>
+    <string name="title_terminal" translatable="false"></string>
+    <string name="link_contributors" translatable="false"></string>
 </resources>
