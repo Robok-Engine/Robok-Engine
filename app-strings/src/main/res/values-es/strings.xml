@@ -130,4 +130,10 @@
     <string name="settings_debug_see_logs_description">Ver lista de todos los registros de Robok</string>
     <string name="text_all_logs">Todos los registros</string>
     <string name="text_open_contributor_profile">Abrir el perfil de %s en el navegador</string>
+    <string name="common_word_ok" translatable="false"></string>
+    <string name="link_github" translatable="false"></string>
+    <string name="title_terminal" translatable="false"></string>
+    <string name="link_contributors" translatable="false"></string>
+    <string name="link_whatsapp" translatable="false"></string>
+    <string name="link_telegram" translatable="false"></string>
 </resources>
