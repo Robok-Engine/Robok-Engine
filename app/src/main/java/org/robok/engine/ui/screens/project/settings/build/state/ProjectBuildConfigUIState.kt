@@ -1,4 +1,4 @@
-package org.robok.engine.di
+package org.robok.engine.ui.screens.project.settings.build.state
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,14 +17,8 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.koin.core.module.dsl.viewModelOf
-import org.koin.dsl.module
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
-import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
-import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
-
-val GeneralModule = module {
-  viewModelOf(::EditorViewModel)
-  viewModelOf(::XMLViewerViewModel)
-  viewModelOf(::ProjectInfoDrawerViewModel)
-}
+data class ProjectBuildConfigUIState(
+  val gameName: String? = null,
+  val gameIconPath: String? = null,
+  val mainScreenName: String? = null,
+)

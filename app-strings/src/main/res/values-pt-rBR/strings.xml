@@ -160,4 +160,9 @@
     <string name="text_all_logs">Todos os Registros</string>
     <string name="loading_logs">Carregando registros...</string>
     <string name="warning_no_logs">Sem registros.</string>
+    <string name="settings_project_settings_build_config_game_icon_path">Caminho do icone do Jogo</string>
+    <string name="common_word_basic">Básico</string>
+    <string name="settings_project_settings_build_config_game_main_screen_name">Nome da tela principal do jogo</string>
+    <string name="settings_project_settings_build_config_tile">Configurações de construção do projeto</string>
+    <string name="settings_project_settings_build_config_game_name">Nome do Jogo</string>
 </resources>

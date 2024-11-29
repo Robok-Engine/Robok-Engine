@@ -65,6 +65,7 @@ import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewMo
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
+import org.robok.engine.ui.activities.project.settings.build.ProjectBuildSettingsActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 import org.robok.engine.ui.theme.RobokTheme
 
@@ -291,15 +292,8 @@ class EditorActivity :
         FileTreeDrawer(
           path = projectPath!!,
           onClick = { node ->
-            if (node.value.isDirectory()) {
-              /*
-              val fileList = fileObject.listFiles()
-              if (fileList.size == 1 && fileList[0].isDirectory) {
-                openFolder(fileList[0])
-              }
-              */
-            } else {
-              handleNodeFileExtension(node)
+            if (node.value.isDirectory()) {} else {
+              handleNodeFileName(node)
             }
           },
         )
@@ -307,13 +301,31 @@ class EditorActivity :
     }
   }
 
+  private fun handleNodeFileName(node: Node<FileObject>) {
+    val name = node.value.getName()
+    when (name) {
+      "config.json" -> {
+        val intent =
+          Intent(this, ProjectBuildSettingsActivity::class.java).apply {
+            putExtras(
+              Bundle().apply {
+                putString(ExtraKeys.Project.PATH, projectManager.projectPath.absolutePath)
+              }
+            )
+          }
+        startActivity(intent)
+      }
+      else -> handleNodeFileExtension(node)
+    }
+  }
+  
   private fun handleNodeFileExtension(node: Node<FileObject>) {
     val fileExtension = node.value.getName().substringAfterLast(".")
     val fileToOpen = File(node.value.getAbsolutePath())
     when (fileExtension) {
       "obj" ->
         startActivity(
-          Intent(this@EditorActivity, ModelingActivity::class.java)
+          Intent(this, ModelingActivity::class.java)
         ) // open 3d modeling (todo: send args)
       else -> editorViewModel.openFile(fileToOpen) // open file on editor
     }

@@ -51,11 +51,11 @@ import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.toast.ToastHost
+import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.state.CreateProjectState
@@ -64,7 +64,7 @@ import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewMod
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
   val context = LocalContext.current
-  val toastHostState = LocalToastHostState.current
+  val toastHostState = rememberToastHostState()
 
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }

@@ -58,6 +58,10 @@
       android:name="org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity"
       android:exported="true" />
 
+    <activity
+      android:name="org.robok.engine.ui.activities.project.settings.build.ProjectBuildSettingsActivity"
+      android:exported="true" />
+
     <provider
       android:name="androidx.core.content.FileProvider"
       android:authorities="${applicationId}.provider"

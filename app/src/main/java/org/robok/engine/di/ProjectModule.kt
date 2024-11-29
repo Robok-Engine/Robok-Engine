@@ -17,14 +17,16 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.koin.core.module.dsl.viewModel
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
-import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
-import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
+import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
+import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
+import org.robok.engine.ui.screens.project.settings.build.viewmodel.ProjectBuildConfigViewModel
 
-val GeneralModule = module {
-  viewModelOf(::EditorViewModel)
-  viewModelOf(::XMLViewerViewModel)
-  viewModelOf(::ProjectInfoDrawerViewModel)
+val ProjectModule = module {
+  viewModel { (projectManager: ProjectManager) -> CreateProjectViewModel(projectManager) }
+  viewModelOf(::ManageProjectsViewModel)
+  viewModelOf(::ProjectBuildConfigViewModel)
 }

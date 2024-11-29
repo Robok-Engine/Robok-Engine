@@ -27,6 +27,8 @@ import android.net.Uri
 import android.os.Environment
 import android.provider.DocumentsContract
 import java.io.File
+import java.nio.file.Files
+import java.nio.file.Paths
 
 object PathUtils {
   @JvmStatic
@@ -183,3 +185,10 @@ fun getDefaultPath(): String {
 fun getDefaultPathFile(): File {
   return Environment.getExternalStorageDirectory()
 }
+
+fun String.isValidPath(): Boolean =
+  try {
+    Files.exists(Paths.get(this))
+  } catch (e: Exception) {
+    false
+  }

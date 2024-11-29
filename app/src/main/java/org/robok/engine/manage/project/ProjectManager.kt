@@ -40,6 +40,7 @@ import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomShee
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.utils.extractZipFromAssets
+import org.robok.engine.core.utils.isValidPath
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -158,8 +159,8 @@ class ProjectManager(private var context: Context) {
   private fun createAndroidManifest(packageName: String) {
     val androidManifest =
       AndroidManifestTemplate().apply {
-        val mainScreenName = getBuildConfigFromFile().mainScreenName
-        val gameName = getBuildConfigFromFile().gameName
+        val mainScreenName = getBuildConfigFromFile()?.mainScreenName
+        val gameName = getBuildConfigFromFile()?.gameName
 
         this.packageName = packageName
 
@@ -281,12 +282,16 @@ class ProjectManager(private var context: Context) {
 
   private fun copyIconToPrivate() {
     val config = getBuildConfigFromFile()
-    if (config.gameIconPath != null) {
+    if (config?.gameIconPath != null) {
       val destPath = "${getAndroidResPath()}/drawable/ic_launcher.png"
       FileUtil.copyFile("${projectPath}/${config.gameIconPath}", destPath)
       return
     }
     RobokLog.e(TAG, "gameIconPath is null")
+  }
+
+  fun writeToBuildConfig(buildConfig: BuildConfig) {
+    FileUtil.writeFile(getBuildConfigFile().absolutePath, getJson().encodeToString(buildConfig))
   }
 
   fun getProjectName(): String {
@@ -309,9 +314,22 @@ class ProjectManager(private var context: Context) {
     return File(projectPath, ".robok/config.json")
   }
 
-  fun getBuildConfigFromFile(): BuildConfig {
-    return getJson()
-      .decodeFromString<BuildConfig>(FileUtil.readFile(getBuildConfigFile().absolutePath))
+  fun getBuildConfigFromFile(): BuildConfig? {
+    val p = getBuildConfigFile().absolutePath
+    if (p.isValidPath()) {
+      return getJson().decodeFromString<BuildConfig>(FileUtil.readFile(p))
+    } else {
+      return null
+    }
+  }
+
+  override fun toString(): String {
+    val msg =
+      """
+      ProjectName = ${getProjectName()}
+      ProjectPath = ${projectPath}
+    """
+    return msg
   }
 
   private fun getJson(): Json = Json {

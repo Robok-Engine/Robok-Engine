@@ -19,8 +19,8 @@ package org.robok.engine.ui.screens.settings.debug.logging
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -60,10 +60,7 @@ fun SettingsDebugLoggingScreen() {
   Screen(label = stringResource(id = Strings.text_logging)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_all_logs)) {
       if (isLoading) {
-        Text(
-          modifier = Modifier.padding(18.dp),
-          text = stringResource(id = Strings.loading_logs)
-        )
+        Text(modifier = Modifier.padding(18.dp), text = stringResource(id = Strings.loading_logs))
       } else if (logs.isEmpty()) {
         EmptyContentItem()
       } else {
