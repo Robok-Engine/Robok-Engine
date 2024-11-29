@@ -52,7 +52,7 @@
     <string name="settings_libraries_title">المكتبات</string>
     <string name="settings_libraries_description">كل المكتبات التي نستخدمها في التطبيق.</string>
     <string name="settings_configure_rdk_title">تعديل RDK</string>
-    <string name="settings_configure_rdk_description">إعدادت روبوك SDK و ما إلى ذلك </string>
+    <string name="settings_configure_rdk_description">إعدادت روبوك SDK و ما إلى ذلك</string>
     <string name="settings_configure_rdk_select_rdk_label">إختر إصدار RDK</string>
     <string name="settings_configure_rdk_version">تعريف إصدار RDK</string>
     <string name="settings_build_title">بناء</string>
@@ -96,7 +96,7 @@
     
     <!--about section-->
     <string name="slogan">من جافا إلى لعبة في لحظات</string>
-    <string name="text_seeus">تابعنا على </string>
+    <string name="text_seeus">تابعنا على</string>
     <!--end section-->
     <string name="title_templates">قوالب</string>
     <string name="template_name_empty_game">لعبة فارغة</string>
@@ -159,4 +159,10 @@
     <string name="loading_logs">يجري تحميل السجلات ...</string>
     <string name="settings_debug_title">اعدادت تصحيح الأخطاء</string>
     <string name="settings_debug_see_logs_title">رؤية سجلات روبوك</string>
+    <string name="link_telegram" translatable="false"></string>
+    <string name="common_word_ok" translatable="false"></string>
+    <string name="link_whatsapp" translatable="false"></string>
+    <string name="title_terminal" translatable="false"></string>
+    <string name="link_github" translatable="false"></string>
+    <string name="link_contributors" translatable="false"></string>
 </resources>
