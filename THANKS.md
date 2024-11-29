@@ -6,6 +6,7 @@ Literally EVERYTHING that was used is here.
 - Android for JetPack Compose
 - Tom Berners Lee for xml
 - Mt Manager for code editor
+- LibGDX to Develop Game's, 3d Modeling, basically all
 - GitHub for the Actions to compile
 - Lawnchair for the some ui components (like preferences etc...)
 - Rohit Kushvaha for FileTree
@@ -18,5 +19,12 @@ Literally EVERYTHING that was used is here.
 - Mend Renovate Bot for Dependencies  Update sim
 - WebLate for Translation
 - Antlr4 for code analysis
+- Coil for Load Images with URL
+- Koin for dependency injector
+- Ktor for HTTP Requests
+- Termux for Terminal
+- Mike Penz for About Libraries
+- AndroidX
+- Material Components
 - You can see others contributors in app about.
 - Thanks for All!!!!
