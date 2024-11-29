@@ -126,46 +126,4 @@
     <string name="text_no_files_open">कोई फाइल नहीं खुली</string>
     <string name="text_click_here_to_open_files">फाइल को खोलने के लिए यहां क्लिक करें</string>
     <string name="warning_file_already_opened">फाइल पहले से खुली है</string>
-    <string name="title_gui_viewer"></string>
-    <string name="warning_exit_project_title"></string>
-    <string name="warning_exit_project_message"></string>
-    <string name="settings_debug_description"></string>
-    <string name="settings_debug_see_logs_title"></string>
-    <string name="settings_debug_title"></string>
-    <string name="text_all_logs"></string>
-    <string name="warning_no_logs"></string>
-    <string name="common_word_open"></string>
-    <string name="text_saved"></string>
-    <string name="text_saved_all"></string>
-    <string name="text_see_code"></string>
-    <string name="role_founders"></string>
-    <string name="loading_logs"></string>
-    <string name="common_word_ok" translatable="false"></string>
-    <string name="link_github" translatable="false"></string>
-    <string name="text_telegram"></string>
-    <string name="text_whatsapp"></string>
-    <string name="settings_configure_rdk_version_error"></string>
-    <string name="settings_configure_rdk_version_success"></string>
-    <string name="text_github"></string>
-    <string name="text_exit_without_save"></string>
-    <string name="text_contribute"></string>
-    <string name="text_libraries"></string>
-    <string name="role_founder"></string>
-    <string name="role_developers"></string>
-    <string name="role_translators"></string>
-    <string name="role_translator"></string>
-    <string name="title_open_contributor_profile"></string>
-    <string name="text_open_contributor_profile"></string>
-    <string name="settings_debug_see_logs_description"></string>
-    <string name="text_logging"></string>
-    <string name="role_developer"></string>
-    <string name="link_contributors" translatable="false"></string>
-    <string name="title_libraries"></string>
-    <string name="title_telegram"></string>
-    <string name="title_contribute"></string>
-    <string name="link_telegram" translatable="false"></string>
-    <string name="title_github"></string>
-    <string name="common_word_files"></string>
-    <string name="link_whatsapp" translatable="false"></string>
-    <string name="title_whatsapp"></string>
 </resources>

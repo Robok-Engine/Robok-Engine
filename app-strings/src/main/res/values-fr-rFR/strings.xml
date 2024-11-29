@@ -161,9 +161,4 @@
     <string name="settings_debug_title">Paramètres Débogage</string>
     <string name="text_open_contributor_profile">Ouvrir profil de %s dans le navigateur</string>
     <string name="warning_no_logs">Ils n\'existent aucuns journaux.</string>
-    <string name="link_whatsapp" translatable="false"></string>
-    <string name="common_word_ok" translatable="false"></string>
-    <string name="link_telegram" translatable="false"></string>
-    <string name="link_contributors" translatable="false"></string>
-    <string name="link_github" translatable="false"></string>
 </resources>

@@ -159,10 +159,4 @@
     <string name="loading_logs">يجري تحميل السجلات ...</string>
     <string name="settings_debug_title">اعدادت تصحيح الأخطاء</string>
     <string name="settings_debug_see_logs_title">رؤية سجلات روبوك</string>
-    <string name="link_telegram" translatable="false"></string>
-    <string name="common_word_ok" translatable="false"></string>
-    <string name="link_whatsapp" translatable="false"></string>
-    <string name="title_terminal" translatable="false"></string>
-    <string name="link_github" translatable="false"></string>
-    <string name="link_contributors" translatable="false"></string>
 </resources>

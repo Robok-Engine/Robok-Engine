@@ -130,10 +130,4 @@
     <string name="warning_no_logs">Без журналів.</string>
     <string name="loading_logs">Завантаження журналів...</string>
     <string name="settings_debug_see_logs_title">Дивіться журнали Робок</string>
-    <string name="common_word_ok" translatable="false"></string>
-    <string name="link_contributors" translatable="false"></string>
-    <string name="link_github" translatable="false"></string>
-    <string name="link_telegram" translatable="false"></string>
-    <string name="title_terminal" translatable="false"></string>
-    <string name="link_whatsapp" translatable="false"></string>
 </resources>
