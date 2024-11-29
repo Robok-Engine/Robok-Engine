@@ -91,7 +91,7 @@
 	<!-- terminal section -->
 	<string name="terminal_options">Options</string>
     <string name="terminal_install_package">Installer le Paquet</string>
-    <string name="terminal_install_package_hint">Écrire le nom du paquet </string>
+    <string name="terminal_install_package_hint">Écrire le nom du paquet</string>
     <string name="terminal_update_packages">Mettre à jour les paquets</string>
     <string name="terminal_warning_update_packages">Voulez-vous mettre à jour les paquets?</string>
     <!-- end section -->
@@ -101,7 +101,7 @@
     <!-- end section -->
 	
     <string name="slogan">Du Java au Jeux dans un clin d\'œil</string>
-    <string name="text_seeus">Contacter nous </string>
+    <string name="text_seeus">Contacter nous</string>
     <string name="settings_app_use_monet_title">Couleurs Dynamiques</string>
     <string name="settings_app_title">Paramètres d\'application</string>
     <string name="settings_app_description">Quelques Paramètres en relation avec l\'appli.</string>
@@ -161,4 +161,9 @@
     <string name="settings_debug_title">Paramètres Débogage</string>
     <string name="text_open_contributor_profile">Ouvrir profil de %s dans le navigateur</string>
     <string name="warning_no_logs">Ils n\'existent aucuns journaux.</string>
+    <string name="link_whatsapp" translatable="false"></string>
+    <string name="common_word_ok" translatable="false"></string>
+    <string name="link_telegram" translatable="false"></string>
+    <string name="link_contributors" translatable="false"></string>
+    <string name="link_github" translatable="false"></string>
 </resources>
