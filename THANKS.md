@@ -17,5 +17,6 @@ Literally EVERYTHING that was used is here.
 - T8RIN for the ToastHost
 - Mend Renovate Bot for Dependencies  Update sim
 - WebLate for Translation
+- Antlr4 for code analysis
 - You can see others contributors in app about.
 - Thanks for All!!!!
