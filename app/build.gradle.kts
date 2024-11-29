@@ -99,9 +99,6 @@ dependencies {
   implementation(libs.koin.android)
   implementation(libs.koin.androidx.compose)
 
-  implementation(platform(libs.okhttp.bom))
-  implementation(libs.okhttp)
-
   implementation(libs.glide)
     
   implementation(libs.google.material)
