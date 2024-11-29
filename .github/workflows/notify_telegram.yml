@@ -4,9 +4,13 @@ on:
   push:
     branches:
       - '**'
+    branches-ignore:
+      - 'dev/**'
   pull_request:
     branches:
       - '**'
+    branches-ignore:
+      - 'dev/**'
   workflow_dispatch:
 
 jobs:
