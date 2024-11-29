@@ -47,6 +47,7 @@ jobs:
     name: Send Debug APK to Telegram
     runs-on: ubuntu-latest
     needs: robok-debug-apk
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -155,6 +156,7 @@ jobs:
     name: Send Release APK to Telegram
     runs-on: ubuntu-latest
     needs: robok-release-apk
+    if: github.ref == 'refs/heads/main'
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
