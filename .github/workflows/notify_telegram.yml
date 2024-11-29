@@ -2,11 +2,11 @@ name: Notify Telegram
 
 on:
   push:
-    branches-ignore:
-      - 'dev/**'
+    branches:
+      - "main"
   pull_request:
-    branches-ignore:
-      - 'dev/**'
+    branches:
+      - "main"
   workflow_dispatch:
 
 jobs:
