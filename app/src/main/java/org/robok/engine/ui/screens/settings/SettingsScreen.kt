@@ -22,7 +22,6 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
-import org.robok.engine.BuildConfig
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.extensions.navigation.navigateSingleTop
@@ -90,12 +89,10 @@ fun AboutCategories(navController: NavHostController) {
 
 @Composable
 fun DebugOnlyCategories(navController: NavHostController) {
-  if (BuildConfig.DEBUG) {
-    PreferenceCategory(
-      label = stringResource(id = Strings.settings_debug_title),
-      description = stringResource(id = Strings.settings_debug_description),
-      icon = Icons.Rounded.BuildCircle,
-      onClick = { navController.navigateSingleTop(route = SettingsDebugRoute) },
-    )
-  }
+  PreferenceCategory(
+    label = stringResource(id = Strings.settings_debug_title),
+    description = stringResource(id = Strings.settings_debug_description),
+    icon = Icons.Rounded.BuildCircle,
+    onClick = { navController.navigateSingleTop(route = SettingsDebugRoute) },
+  )
 }
