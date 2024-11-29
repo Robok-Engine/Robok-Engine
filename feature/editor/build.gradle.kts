@@ -36,9 +36,6 @@ dependencies {
     implementation(libs.ktx.coroutines.android)
     implementation(libs.ktx.serialization.json)
     
-    implementation(platform(libs.okhttp.bom))
-    implementation("com.squareup.okhttp3:okhttp")
-    
     implementation(libs.koin.android)
     
     implementation(libs.sora.editor)
