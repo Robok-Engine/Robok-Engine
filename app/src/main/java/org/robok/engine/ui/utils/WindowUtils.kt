@@ -25,5 +25,4 @@ import androidx.compose.ui.window.DialogWindowProvider
 
 @ReadOnlyComposable
 @Composable
-fun getDialogWindow(): Window? = 
-  (LocalView.current.parent as? DialogWindowProvider)?.window
+fun getDialogWindow(): Window? = (LocalView.current.parent as? DialogWindowProvider)?.window

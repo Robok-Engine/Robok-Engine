@@ -24,10 +24,10 @@ open class AndroidManifestTemplate : CodeTemplate() {
   override var name: String = "AndroidManifest"
   override var packageName: String = "org.robok.empty"
   override var extension: String = ".xml"
-  
+
   var mainScreenName = "$packageName.MainScreen"
   var gameName = "Empty Game"
-  
+
   override var code: String = generateCode()
 
   override fun regenerate() {

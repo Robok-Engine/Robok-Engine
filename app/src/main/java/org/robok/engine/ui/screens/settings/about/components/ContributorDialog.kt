@@ -32,8 +32,8 @@ import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import com.google.android.material.R as MaterialR
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.utils.getDialogWindow
 import org.robok.engine.ui.screens.settings.about.models.Contributor
+import org.robok.engine.ui.utils.getDialogWindow
 
 @Composable
 fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {

@@ -26,12 +26,12 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
-import kotlinx.serialization.decodeFromString
-import kotlinx.serialization.encodeToString
-import kotlinx.serialization.json.Json
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
+import kotlinx.serialization.decodeFromString
+import kotlinx.serialization.encodeToString
+import kotlinx.serialization.json.Json
 import org.koin.android.ext.android.getKoin
 import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.GUICompiler
@@ -60,15 +60,15 @@ class ProjectManager(private var context: Context) {
     val PROJECTS_PATH =
       File(Environment.getExternalStorageDirectory().absolutePath + "/Robok/Projects/")
   }
-  
+
   lateinit var projectPath: File
   lateinit var creationListener: CreationListener
   lateinit var preferencesViewModel: PreferencesViewModel
-  
+
   init {
     preferencesViewModel = RobokApplication.getInstance().getKoin().get()
   }
-  
+
   fun create(projectName: String, packageName: String, template: ProjectTemplate) {
     try {
       context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
@@ -156,16 +156,17 @@ class ProjectManager(private var context: Context) {
   }
 
   private fun createAndroidManifest(packageName: String) {
-    val androidManifest = AndroidManifestTemplate().apply {
-      val mainScreenName = getBuildConfigFromFile().mainScreenName
-      val gameName = getBuildConfigFromFile().gameName
-      
-      this.packageName = packageName
-      
-      if (mainScreenName != null) this.mainScreenName = "$packageName.$mainScreenName"
-      if (gameName != null) this.gameName = gameName
-      regenerate()
-    }
+    val androidManifest =
+      AndroidManifestTemplate().apply {
+        val mainScreenName = getBuildConfigFromFile().mainScreenName
+        val gameName = getBuildConfigFromFile().gameName
+
+        this.packageName = packageName
+
+        if (mainScreenName != null) this.mainScreenName = "$packageName.$mainScreenName"
+        if (gameName != null) this.gameName = gameName
+        regenerate()
+      }
     FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
   }
 
@@ -174,7 +175,7 @@ class ProjectManager(private var context: Context) {
       BuildConfig(
         gameName = getProjectName(),
         mainScreenName = "MainScreen",
-        gameIconPath = "game/assets/images/game_icon.png"
+        gameIconPath = "game/assets/images/game_icon.png",
       )
     FileUtil.writeFile(getBuildConfigFile().absolutePath, getJson().encodeToString(config))
   }
@@ -184,7 +185,7 @@ class ProjectManager(private var context: Context) {
 
     creationListener.onProjectCreate()
   }
-  
+
   val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
 
@@ -199,20 +200,18 @@ class ProjectManager(private var context: Context) {
       copyIconToPrivate()
       compileAllGuiFiles()
       downloadStyles()
-        
+
       var rdkVersion = "RDK-1"
-      runBlocking {
-        rdkVersion = rdkVersionFlow.first()
-      }
+      runBlocking { rdkVersion = rdkVersionFlow.first() }
       val libs = mutableListOf<Library>()
-      
+
       libs.addAll(Library.fromFile(getLibsPath()))
-      
+
       val jarDir = File(context.filesDir, "${rdkVersion}/jar/")
       if (jarDir.exists()) {
         libs.addAll(Library.fromFile(jarDir))
       }
-      
+
       val project =
         Project().apply {
           libraries = libs
@@ -311,7 +310,8 @@ class ProjectManager(private var context: Context) {
   }
 
   fun getBuildConfigFromFile(): BuildConfig {
-    return getJson().decodeFromString<BuildConfig>(FileUtil.readFile(getBuildConfigFile().absolutePath))
+    return getJson()
+      .decodeFromString<BuildConfig>(FileUtil.readFile(getBuildConfigFile().absolutePath))
   }
 
   private fun getJson(): Json = Json {
