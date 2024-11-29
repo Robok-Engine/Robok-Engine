@@ -1,5 +1,12 @@
 # Thanks
+Literally EVERYTHING that was used is here.
 
+- Oracle for java
+- Jetbrains for Kotlin
+- Android for JetPack Compose
+- Tom Berners Lee for xml
+- Mt Manager for code editor
+- GitHub for the Actions to compile
 - Lawnchair for the some ui components (like preferences etc...)
 - Rohit Kushvaha for FileTree
 - Coyamo for XML Viewer/Parser
