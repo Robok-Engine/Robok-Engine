@@ -2,13 +2,9 @@ name: Notify Telegram
 
 on:
   push:
-    branches:
-      - '**'
     branches-ignore:
       - 'dev/**'
   pull_request:
-    branches:
-      - '**'
     branches-ignore:
       - 'dev/**'
   workflow_dispatch:
@@ -24,10 +20,10 @@ jobs:
       - name: List all files in repo
         run: ls
       
-      - name: notify telegram
+      - name: Notify Telegram
         uses: EverythingSuckz/github-telegram-notify@main
         continue-on-error: true
         with:
-          bot_token: '${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}'
-          chat_id: '${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}'
-          topic_id: '${{ 1100 }}'
+          bot_token: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
+          topic_id: 1100
