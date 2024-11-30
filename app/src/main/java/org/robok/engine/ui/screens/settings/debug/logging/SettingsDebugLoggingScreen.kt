@@ -64,7 +64,7 @@ fun SettingsDebugLoggingScreen() {
       } else if (logs.isEmpty()) {
         EmptyContentItem()
       } else {
-        logs.forEach { log -> Text(text = log) }
+        logs.forEach { log -> Text(modifier = Modifier.padding(18.dp), text = log) }
       }
     }
   }
