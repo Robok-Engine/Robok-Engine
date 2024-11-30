@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.settings.build
+package org.robok.engine.ui.screens.project.settings
 
 /*
  *  This file is part of Robok © 2024.
@@ -36,24 +36,24 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.toast.rememberToastHostState
+import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.project.settings.build.components.BasicInputs
-import org.robok.engine.ui.screens.project.settings.build.components.Buttons
-import org.robok.engine.ui.screens.project.settings.build.viewmodel.ProjectBuildConfigViewModel
+import org.robok.engine.ui.screens.project.settings.components.BasicInputs
+import org.robok.engine.ui.screens.project.settings.components.Buttons
+import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel
 
 @Composable
-fun ProjectBuildConfigScreen(projectManager: ProjectManager) {
+fun ProjectSettingsScreen(projectManager: ProjectManager) {
   val context = LocalContext.current
-  val toastHostState = rememberToastHostState()
+  val toastHostState = LocalToastHostState.current
   val scope = rememberCoroutineScope()
-  val viewModel = koinViewModel<ProjectBuildConfigViewModel>()
+  val viewModel = koinViewModel<ProjectSettingsViewModel>()
   val uiState = viewModel.uiState
 
   LaunchedEffect(Unit) {
     try {
-      val buildConfig = projectManager.getBuildConfigFromFile()
+      val buildConfig = projectManager.getProjectSettingsFromFile()
       viewModel.setGameName(buildConfig?.gameName ?: "")
       viewModel.setGameIconPath(buildConfig?.gameIconPath ?: "")
       viewModel.setMainScreenName(buildConfig?.mainScreenName ?: "")
@@ -62,7 +62,7 @@ fun ProjectBuildConfigScreen(projectManager: ProjectManager) {
     }
   }
 
-  Screen(label = stringResource(id = Strings.settings_project_settings_build_config_tile)) {
+  Screen(label = stringResource(id = Strings.settings_project_settings_tile)) {
     PreferenceGroup(heading = stringResource(id = Strings.common_word_basic)) {
       val modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 8.dp)
 
@@ -71,7 +71,7 @@ fun ProjectBuildConfigScreen(projectManager: ProjectManager) {
         viewModel = viewModel,
         modifier = modifier,
         onSave = { newConfig ->
-          projectManager.writeToBuildConfig(newConfig)
+          projectManager.writeToProjectSettings(newConfig)
           scope.launch {
             toastHostState.showToast(
               message = context.getString(Strings.text_saved),

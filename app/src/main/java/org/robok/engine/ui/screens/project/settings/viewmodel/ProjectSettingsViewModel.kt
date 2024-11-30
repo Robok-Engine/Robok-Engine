@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.settings.build.viewmodel
+package org.robok.engine.ui.screens.project.settings.viewmodel
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,12 +21,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import org.robok.engine.ui.screens.project.settings.build.state.ProjectBuildConfigUIState
+import org.robok.engine.ui.screens.project.settings.state.ProjectSettingsUIState
 
-class ProjectBuildConfigViewModel : ViewModel() {
-  private var _uiState by mutableStateOf(ProjectBuildConfigUIState())
+class ProjectSettingsViewModel : ViewModel() {
+  private var _uiState by mutableStateOf(ProjectSettingsUIState())
 
-  val uiState: ProjectBuildConfigUIState
+  val uiState: ProjectSettingsUIState
     get() = _uiState
 
   fun setGameName(gameName: String) {

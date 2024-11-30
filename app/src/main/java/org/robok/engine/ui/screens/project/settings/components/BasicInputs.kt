@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.settings.build.components
+package org.robok.engine.ui.screens.project.settings.components
 
 /*
  *  This file is part of Robok © 2024.
@@ -27,10 +27,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.project.settings.build.viewmodel.ProjectBuildConfigViewModel
+import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel
 
 @Composable
-fun BasicInputs(viewModel: ProjectBuildConfigViewModel, modifier: Modifier = Modifier) {
+fun BasicInputs(viewModel: ProjectSettingsViewModel, modifier: Modifier = Modifier) {
   val uiState = viewModel.uiState
 
   Column(modifier = modifier) {
@@ -38,7 +38,7 @@ fun BasicInputs(viewModel: ProjectBuildConfigViewModel, modifier: Modifier = Mod
       value = uiState.gameName ?: "",
       onValueChange = { gameName -> viewModel.setGameName(gameName) },
       label = {
-        Text(text = stringResource(id = Strings.settings_project_settings_build_config_game_name))
+        Text(text = stringResource(id = Strings.settings_project_settings_game_name))
       },
       shape = RoundedCornerShape(12.dp),
       modifier = Modifier.fillMaxWidth(),
@@ -49,7 +49,7 @@ fun BasicInputs(viewModel: ProjectBuildConfigViewModel, modifier: Modifier = Mod
       onValueChange = { gameIconPath -> viewModel.setGameIconPath(gameIconPath) },
       label = {
         Text(
-          text = stringResource(id = Strings.settings_project_settings_build_config_game_icon_path)
+          text = stringResource(id = Strings.settings_project_settings_game_icon_path)
         )
       },
       shape = RoundedCornerShape(12.dp),
@@ -63,7 +63,7 @@ fun BasicInputs(viewModel: ProjectBuildConfigViewModel, modifier: Modifier = Mod
         Text(
           text =
             stringResource(
-              id = Strings.settings_project_settings_build_config_game_main_screen_name
+              id = Strings.settings_project_settings_game_main_screen_name
             )
         )
       },

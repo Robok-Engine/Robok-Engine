@@ -47,7 +47,7 @@ import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
-import org.robok.engine.manage.project.models.BuildConfig
+import org.robok.engine.manage.project.models.ProjectSettings
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
@@ -102,7 +102,7 @@ class ProjectManager(private var context: Context) {
             }
             zipInputStream.closeEntry()
           }
-          createBuildConfigFile()
+          createProjectSettingsFile()
           createMainScreen(projectName, packageName)
           createAndroidManifest(packageName)
           createStringsFile(projectName)
@@ -159,8 +159,8 @@ class ProjectManager(private var context: Context) {
   private fun createAndroidManifest(packageName: String) {
     val androidManifest =
       AndroidManifestTemplate().apply {
-        val mainScreenName = getBuildConfigFromFile()?.mainScreenName
-        val gameName = getBuildConfigFromFile()?.gameName
+        val mainScreenName = getProjectSettingsFromFile()?.mainScreenName
+        val gameName = getProjectSettingsFromFile()?.gameName
 
         this.packageName = packageName
 
@@ -171,14 +171,14 @@ class ProjectManager(private var context: Context) {
     FileUtil.writeFile(getAndroidManifestFile().absolutePath, androidManifest.code)
   }
 
-  private fun createBuildConfigFile() {
+  private fun createProjectSettingsFile() {
     val config =
-      BuildConfig(
+      ProjectSettings(
         gameName = getProjectName(),
         mainScreenName = "MainScreen",
         gameIconPath = "game/assets/images/game_icon.png",
       )
-    FileUtil.writeFile(getBuildConfigFile().absolutePath, getJson().encodeToString(config))
+    FileUtil.writeFile(getProjectSettingsFile().absolutePath, getJson().encodeToString(config))
   }
 
   private fun extractLibs(projectName: String) {
@@ -281,7 +281,7 @@ class ProjectManager(private var context: Context) {
   }
 
   private fun copyIconToPrivate() {
-    val config = getBuildConfigFromFile()
+    val config = getProjectSettingsFromFile()
     if (config?.gameIconPath != null) {
       val destPath = "${getAndroidResPath()}/drawable/ic_launcher.png"
       FileUtil.copyFile("${projectPath}/${config.gameIconPath}", destPath)
@@ -290,8 +290,8 @@ class ProjectManager(private var context: Context) {
     RobokLog.e(TAG, "gameIconPath is null")
   }
 
-  fun writeToBuildConfig(buildConfig: BuildConfig) {
-    FileUtil.writeFile(getBuildConfigFile().absolutePath, getJson().encodeToString(buildConfig))
+  fun writeToProjectSettings(buildConfig: ProjectSettings) {
+    FileUtil.writeFile(getProjectSettingsFile().absolutePath, getJson().encodeToString(buildConfig))
   }
 
   fun getProjectName(): String {
@@ -310,14 +310,14 @@ class ProjectManager(private var context: Context) {
     return File(context.filesDir, "${getProjectName()}/xml/res/")
   }
 
-  fun getBuildConfigFile(): File {
+  fun getProjectSettingsFile(): File {
     return File(projectPath, ".robok/config.json")
   }
 
-  fun getBuildConfigFromFile(): BuildConfig? {
-    val p = getBuildConfigFile().absolutePath
+  fun getProjectSettingsFromFile(): ProjectSettings? {
+    val p = getProjectSettingsFile().absolutePath
     if (p.isValidPath()) {
-      return getJson().decodeFromString<BuildConfig>(FileUtil.readFile(p))
+      return getJson().decodeFromString<ProjectSettings>(FileUtil.readFile(p))
     } else {
       return null
     }

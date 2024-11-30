@@ -65,7 +65,7 @@ import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewMo
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
-import org.robok.engine.ui.activities.project.settings.build.ProjectBuildSettingsActivity
+import org.robok.engine.ui.activities.project.settings.ProjectSettingsActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
 import org.robok.engine.ui.theme.RobokTheme
 
@@ -306,7 +306,7 @@ class EditorActivity :
     when (name) {
       "config.json" -> {
         val intent =
-          Intent(this, ProjectBuildSettingsActivity::class.java).apply {
+          Intent(this, ProjectSettingsActivity::class.java).apply {
             putExtras(
               Bundle().apply {
                 putString(ExtraKeys.Project.PATH, projectManager.projectPath.absolutePath)

@@ -59,7 +59,7 @@
       android:exported="true" />
 
     <activity
-      android:name="org.robok.engine.ui.activities.project.settings.build.ProjectBuildSettingsActivity"
+      android:name="org.robok.engine.ui.activities.project.settings.ProjectSettingsActivity"
       android:exported="true" />
 
     <provider

@@ -115,10 +115,10 @@
   <string name="settings_debug_description">Experimental/Testing settings</string>
   <string name="settings_debug_see_logs_title">See Robok Logs</string>
   <string name="settings_debug_see_logs_description">See List of All Robok Logs</string>
-  <string name="settings_project_settings_build_config_tile">Project Build Settings</string>
-  <string name="settings_project_settings_build_config_game_name">Game Name</string>
-  <string name="settings_project_settings_build_config_game_icon_path">Game Icon Path</string>
-  <string name="settings_project_settings_build_config_game_main_screen_name">Game Main Screen Name</string>
+  <string name="settings_project_settings_tile">Project Settings</string>
+  <string name="settings_project_settings_game_name">Game Name</string>
+  <string name="settings_project_settings_game_icon_path">Game Icon Path</string>
+  <string name="settings_project_settings_game_main_screen_name">Game Main Screen Name</string>
   <!-- end section -->
 
   <!-- texts section -->

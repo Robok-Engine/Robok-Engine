@@ -1,4 +1,4 @@
-package org.robok.engine.manage.project.models
+package org.robok.engine.ui.screens.project.settings.state
 
 /*
  *  This file is part of Robok © 2024.
@@ -14,15 +14,11 @@ package org.robok.engine.manage.project.models
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.SerialName
-import kotlinx.serialization.Serializable
-
-@Serializable
-data class BuildConfig(
-  @SerialName("game_name") var gameName: String?,
-  @SerialName("game_icon_path") var gameIconPath: String?,
-  @SerialName("main_screen_name") var mainScreenName: String?,
+data class ProjectSettingsUIState(
+  val gameName: String? = null,
+  val gameIconPath: String? = null,
+  val mainScreenName: String? = null,
 )

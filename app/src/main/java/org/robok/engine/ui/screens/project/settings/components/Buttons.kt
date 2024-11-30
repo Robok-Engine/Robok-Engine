@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.project.settings.build.components
+package org.robok.engine.ui.screens.project.settings.components
 
 /*
  *  This file is part of Robok © 2024.
@@ -26,15 +26,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import org.robok.engine.manage.project.models.BuildConfig
+import org.robok.engine.manage.project.models.ProjectSettings
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.screens.project.settings.build.viewmodel.ProjectBuildConfigViewModel
+import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel
 
 @Composable
 fun Buttons(
-  viewModel: ProjectBuildConfigViewModel,
+  viewModel: ProjectSettingsViewModel,
   modifier: Modifier = Modifier,
-  onSave: (BuildConfig) -> Unit,
+  onSave: (ProjectSettings) -> Unit,
   onCancel: () -> Unit = {},
 ) {
   val uiState = viewModel.uiState
@@ -46,13 +46,13 @@ fun Buttons(
     Button(
       modifier = Modifier.weight(1f),
       onClick = {
-        val buildConfig =
-          BuildConfig(
+        val projectSettings =
+          ProjectSettings(
             gameName = uiState.gameName,
             gameIconPath = uiState.gameIconPath,
             mainScreenName = uiState.mainScreenName,
           )
-        onSave(buildConfig)
+        onSave(projectSettings)
       },
     ) {
       Text(text = stringResource(id = Strings.common_word_save))

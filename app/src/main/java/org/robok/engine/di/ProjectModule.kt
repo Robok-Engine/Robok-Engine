@@ -23,10 +23,10 @@ import org.koin.dsl.module
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
-import org.robok.engine.ui.screens.project.settings.build.viewmodel.ProjectBuildConfigViewModel
+import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel
 
 val ProjectModule = module {
   viewModel { (projectManager: ProjectManager) -> CreateProjectViewModel(projectManager) }
   viewModelOf(::ManageProjectsViewModel)
-  viewModelOf(::ProjectBuildConfigViewModel)
+  viewModelOf(::ProjectSettingsViewModel)
 }

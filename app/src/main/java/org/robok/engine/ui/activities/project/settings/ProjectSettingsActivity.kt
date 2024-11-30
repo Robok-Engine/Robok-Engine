@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.project.settings.build
+package org.robok.engine.ui.activities.project.settings
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,6 +19,8 @@ package org.robok.engine.ui.activities.project.settings.build
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,10 +29,12 @@ import java.io.File
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.activities.base.RobokComposeActivity
-import org.robok.engine.ui.screens.project.settings.build.ProjectBuildConfigScreen
+import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen
 import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.core.components.toast.rememberToastHostState
+import org.robok.engine.platform.LocalToastHostState
 
-class ProjectBuildSettingsActivity : RobokComposeActivity() {
+class ProjectSettingsActivity : RobokComposeActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     val extras = intent.extras
@@ -42,9 +46,21 @@ class ProjectBuildSettingsActivity : RobokComposeActivity() {
     setContent {
       RobokTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProjectBuildConfigScreen(projectManager = projectManager)
+          ProvideCompositionLocals {
+            ProjectSettingsScreen(projectManager = projectManager)
+          }
         }
       }
     }
+  }
+  
+  @Composable
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val toastHostState = rememberToastHostState()
+
+    CompositionLocalProvider(
+      LocalToastHostState provides toastHostState,
+      content = content,
+    )
   }
 }
