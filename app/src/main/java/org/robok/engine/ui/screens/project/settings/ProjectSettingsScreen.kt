@@ -77,8 +77,9 @@ fun ProjectSettingsScreen(projectManager: ProjectManager) {
               message = context.getString(Strings.text_saved),
               icon = Icons.Rounded.Check,
             )
+          }.invokeOnCompletion {
+            (context as? Activity)?.finish()
           }
-          (context as? Activity)?.finish()
         },
         onCancel = { (context as? Activity)?.finish() },
       )
