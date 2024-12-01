@@ -17,8 +17,6 @@ package org.robok.engine.ui.activities.debug
  *  along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.*
@@ -34,11 +32,10 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.utils.addIf
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.base.RobokComposeActivity
-import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.ui.base.BaseComposeActivity
 
 @OptIn(ExperimentalMaterial3Api::class)
-class AppFailureActivity : RobokComposeActivity() {
+class AppFailureActivity : BaseComposeActivity() {
 
   private val exceptionType =
     listOf(
@@ -58,9 +55,9 @@ class AppFailureActivity : RobokComposeActivity() {
       "Invalid intent operation",
     )
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent { RobokTheme { DebugScreen(intent.getStringExtra("error") ?: "") } }
+  @Composable
+  override fun onScreenCreated() {
+    DebugScreen(intent.getStringExtra("error") ?: "Not error collected")
   }
 
   @Composable

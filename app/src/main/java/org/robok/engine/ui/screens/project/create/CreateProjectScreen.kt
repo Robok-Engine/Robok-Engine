@@ -17,8 +17,10 @@ package org.robok.engine.ui.screens.project.create
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
 import android.content.Intent
+import android.os.Bundle
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -27,8 +29,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
 import org.koin.androidx.compose.koinViewModel
@@ -61,7 +61,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
   Screen(label = stringResource(id = Strings.title_create_project)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
       val modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 8.dp)
-      
+
       Inputs(modifier = modifier, viewModel = viewModel)
       Buttons(
         modifier = modifier,
@@ -75,9 +75,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
                 Bundle().apply {
                   putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
                 }
-              val intent = Intent(context, EditorActivity::class.java).apply {
-                putExtras(bundle) 
-              }
+              val intent = Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
               context.startActivity(intent)
             },
             onError = { error -> TODO() },

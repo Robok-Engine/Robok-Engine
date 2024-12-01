@@ -17,45 +17,30 @@ package org.robok.engine.ui.activities.project.settings
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import java.io.File
-import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.platform.LocalToastHostState
-import org.robok.engine.ui.activities.base.RobokComposeActivity
+import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen
-import org.robok.engine.ui.theme.RobokTheme
 
-class ProjectSettingsActivity : RobokComposeActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+class ProjectSettingsActivity : BaseComposeActivity() {
+
+  @Composable
+  override fun onScreenCreated() {
     val extras = intent.extras
     val projectManager = ProjectManager(this)
     if (extras != null) {
       val projectPath = extras.getString(ExtraKeys.Project.PATH)
       projectPath?.let { projectManager.projectPath = File(it) }
     }
-    setContent {
-      RobokTheme {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideCompositionLocals { ProjectSettingsScreen(projectManager = projectManager) }
-        }
-      }
+
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+      ProjectSettingsScreen(projectManager = projectManager)
     }
-  }
-
-  @Composable
-  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
-    val toastHostState = rememberToastHostState()
-
-    CompositionLocalProvider(LocalToastHostState provides toastHostState, content = content)
   }
 }

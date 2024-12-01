@@ -11,7 +11,7 @@ import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
 import org.robok.engine.RobokApplication
 import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
-import org.robok.engine.ui.activities.base.RobokActivity
+import org.robok.engine.ui.base.BaseActivity
 
 /**
  * A helper for applying the correct theme in the app, managing XML themes.
@@ -35,36 +35,27 @@ class XMLThemeManager(
    *
    * Runs on main thread
    */
-  suspend fun apply(activity: RobokActivity) {
+  suspend fun apply(activity: BaseActivity) {
     init()
 
-    // Apply themes based on user preferences
     val useMonet = appPrefsViewModel.appIsUseMonet.first()
     val useAmoled = appPrefsViewModel.appIsUseAmoled.first()
 
-    Log.d(TAG, useMonet.toString())
-    Log.d(TAG, useAmoled.toString())
-    Log.d(TAG, activity.isDarkMode().toString())
-
-    // Apply AMOLED theme only if dark mode is enabled and user has enabled AMOLED
     if (activity.isDarkMode() && useAmoled) {
       if (useMonet) {
         activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
-        Log.d(TAG, "Amoled Monet Theme Set")
         return
       }
       activity.setTheme(R.style.Theme_Robok_Amoled)
-      Log.d(TAG, "Amoled Theme Set")
       return
     }
-    // Apply Monet theme if AMOLED not used but Monet is enabled
+    
     if (useMonet) {
       DynamicColors.applyToActivityIfAvailable(activity)
       Log.d(TAG, "Monet Theme Set")
     }
   }
 
-  /** Initialize ViewModel. */
   private fun init() {
     appPrefsViewModel = RobokApplication.getInstance().getKoin().get()
   }

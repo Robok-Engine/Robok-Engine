@@ -17,8 +17,6 @@ package org.robok.engine.ui.activities
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -26,36 +24,22 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.navigation.MainNavHost
 import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.platform.LocalToastHostState
-import org.robok.engine.ui.activities.base.RobokComposeActivity
-import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.ui.base.BaseComposeActivity
 
-class MainActivity : RobokComposeActivity() {
+class MainActivity : BaseComposeActivity() {
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
-    setContent {
-      RobokTheme {
-        configurePermission()
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideCompositionLocals { MainNavHost() }
-        }
-      }
+  @Composable
+  override fun onScreenCreated() {
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+      ProvideMainCompositionLocals { MainNavHost() }
     }
   }
 
   @Composable
-  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
     val navController = rememberNavController()
-    val toastHostState = rememberToastHostState()
-
-    CompositionLocalProvider(
-      LocalMainNavController provides navController,
-      LocalToastHostState provides toastHostState,
-      content = content,
-    )
+    CompositionLocalProvider(LocalMainNavController provides navController, content = content)
   }
 }

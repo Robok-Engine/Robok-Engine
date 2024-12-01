@@ -18,8 +18,6 @@ package org.robok.engine.ui.activities.xmlviewer
  */
 
 import android.content.pm.ActivityInfo
-import android.os.Bundle
-import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -29,13 +27,12 @@ import org.robok.easyui.config.Config
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.navigation.XMLViewerNavHost
 import org.robok.engine.platform.LocalXMLViewerNavController
-import org.robok.engine.ui.activities.base.RobokComposeActivity
-import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.ui.base.BaseComposeActivity
 
-class XMLViewerActivity : RobokComposeActivity() {
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+class XMLViewerActivity : BaseComposeActivity() {
 
+  @Composable
+  override fun onScreenCreated() {
     val xml = intent.getStringExtra(ExtraKeys.Gui.CODE)
     val config = intent.getSerializableExtra(ExtraKeys.Gui.CONFIG) as? Config
 
@@ -48,12 +45,8 @@ class XMLViewerActivity : RobokComposeActivity() {
       }
     }
 
-    setContent {
-      RobokTheme {
-        Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideCompositionLocals { XMLViewerNavHost(xml!!) }
-        }
-      }
+    Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
+      ProvideCompositionLocals { XMLViewerNavHost(xml!!) }
     }
   }
 

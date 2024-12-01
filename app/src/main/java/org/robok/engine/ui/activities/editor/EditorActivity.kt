@@ -57,7 +57,6 @@ import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.base.RobokActivity
 import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
@@ -67,10 +66,11 @@ import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
 import org.robok.engine.ui.activities.project.settings.ProjectSettingsActivity
 import org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity
+import org.robok.engine.ui.base.BaseActivity
 import org.robok.engine.ui.theme.RobokTheme
 
 class EditorActivity :
-  RobokActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
+  BaseActivity(), TabLayout.OnTabSelectedListener, CompilerTask.OnCompileResult {
 
   companion object {
     const val GUI_COMPILER_TAG = "GUICompiler"

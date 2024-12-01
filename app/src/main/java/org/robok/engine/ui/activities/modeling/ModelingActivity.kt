@@ -18,28 +18,28 @@ package org.robok.engine.ui.activities.modeling
  */
 
 import android.os.Build
-import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import androidx.compose.ui.platform.ComposeView
+import androidx.compose.runtime.Composable
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
 import org.robok.engine.databinding.Activity3dModelBinding
 import org.robok.engine.feature.modeling.fragment.LibGDXFragment
-import org.robok.engine.ui.activities.base.RobokComposeActivity
+import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.modeling.ModelingScreen
 import org.robok.engine.ui.theme.RobokTheme
 
-class ModelingActivity : RobokComposeActivity(), AndroidFragmentApplication.Callbacks {
+class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callbacks {
 
   private var _binding: Activity3dModelBinding? = null
   private val binding: Activity3dModelBinding
     get() = _binding!!
 
-  override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
+  @Composable
+  override fun onScreenCreated() {
     _binding = Activity3dModelBinding.inflate(layoutInflater)
     setContentView(binding.root)
 

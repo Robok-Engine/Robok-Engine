@@ -17,8 +17,8 @@ package org.robok.engine.ui.screens.project.create.components
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
@@ -30,12 +30,9 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 
 @Composable
-fun Inputs(
-  viewModel: CreateProjectViewModel,
-  modifier: Modifier = Modifier.fillMaxWidth()
-) {
+fun Inputs(viewModel: CreateProjectViewModel, modifier: Modifier = Modifier.fillMaxWidth()) {
   val uiState = viewModel.uiState
-  
+
   Column(modifier = modifier) {
     OutlinedTextField(
       value = uiState.projectName,
