@@ -21,9 +21,12 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Error
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
@@ -31,10 +34,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
+import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
@@ -52,6 +57,8 @@ fun CreateProjectScreen(template: ProjectTemplate) {
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
   val uiState = viewModel.uiState
+  val toastHostState = LocalToastHostState.current
+  val coroutineScope = rememberCoroutineScope()
 
   LaunchedEffect(template) {
     viewModel.setProjectName(template.name)
@@ -78,7 +85,14 @@ fun CreateProjectScreen(template: ProjectTemplate) {
               val intent = Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
               context.startActivity(intent)
             },
-            onError = { error -> TODO() },
+            onError = { error ->
+              coroutineScope.launch {
+                toastHostState.showToast(
+                  message = context.getString(Strings.title_un_error_ocurred),
+                  icon = Icons.Rounded.Error,
+                )
+              }
+            },
           )
         },
         onCancel = { navController.popBackStack() },
