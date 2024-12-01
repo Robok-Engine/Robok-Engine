@@ -50,8 +50,9 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     setContent {
-      enableEdgeToEdge()
       RobokTheme {
+        enableEdgeToEdge()
+        checkPermissions()
         ProvideCompositionLocals {
           onScreenCreated()
           ToastHost()
