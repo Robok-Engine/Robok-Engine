@@ -60,7 +60,9 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.models.Diagnostic
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
@@ -86,7 +88,8 @@ class EditorActivity :
   private lateinit var editorViewModel: EditorViewModel
   private lateinit var buildTerminal: RecyclerViewBottomSheet
   private lateinit var projectInfoViewModel: ProjectInfoDrawerViewModel
-
+  private lateinit var diagnosticViewModel: DiagnosticViewModel
+  
   private val handler = Handler(Looper.getMainLooper())
   private val diagnosticStandTime: Long = 800
   private val diagnosticTimeoutRunnable = Runnable {
@@ -102,6 +105,7 @@ class EditorActivity :
 
     editorViewModel = getKoin().get()
     projectInfoViewModel = getKoin().get()
+    diagnosticViewModel = getKoin().get()
 
     val extras = intent.extras
     if (extras != null) {
@@ -268,7 +272,9 @@ class EditorActivity :
     )
 
     binding.drawerEditorRightComposeView.setContent {
-      RobokTheme(isActivity = false) { ProjectInfoDrawer(viewModel = projectInfoViewModel) }
+      RobokTheme(isActivity = false) {
+        ProjectInfoDrawer(projectInfoViewModel = projectInfoViewModel, diagnosticViewModel = diagnosticViewModel)
+      }
     }
   }
 
@@ -362,13 +368,24 @@ class EditorActivity :
           line: Int,
           positionStart: Int,
           positionEnd: Int,
-          msg: String,
+          message: String,
         ) {
+          val file = getCurrentEditor()?.let { editor -> editor.getFile() }
+          diagnosticViewModel.clearDiagnostics()
+          diagnosticViewModel.addDiagnostic(
+            Diagnostic(
+              line = line,
+              positionStart = positionStart,
+              positionEnd = positionEnd,
+              message = message,
+              file = file
+            )
+          )
           editor.addDiagnosticInEditor(
             positionStart,
             positionEnd,
             DiagnosticRegion.SEVERITY_ERROR,
-            msg,
+            message,
           )
           onDiagnosticStatusReceive(true)
         }

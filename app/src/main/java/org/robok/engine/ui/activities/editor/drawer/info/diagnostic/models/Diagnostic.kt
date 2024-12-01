@@ -1,4 +1,4 @@
-package org.robok.engine.ui.activities.editor.drawer.info.viewmodel
+package org.robok.engine.ui.activities.editor.drawer.info.diagnostic.models
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,18 +17,12 @@ package org.robok.engine.ui.activities.editor.drawer.info.viewmodel
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.lifecycle.ViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
+import java.io.File
 
-class ProjectInfoDrawerViewModel : ViewModel() {
-  private var _currentTabIndex by mutableStateOf(ProjectInfoDrawerIndexs.LOGS)
-  val currentTabIndex: Int
-    get() = _currentTabIndex
-
-  fun setCurrentTabIndex(value: Int) {
-    _currentTabIndex = value
-  }
-}
+data class Diagnostic(
+  val line: Int,
+  val positionStart: Int,
+  val positionEnd: Int,
+  val message: String,
+  val file: File? = null
+)

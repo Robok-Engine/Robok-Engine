@@ -17,17 +17,23 @@ package org.robok.engine.ui.activities.editor.drawer.info
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.res.*
-import androidx.compose.ui.unit.*
+import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Column
+import androidx.compose.ui.res.stringResource
+import androidx.compose.material3.TabRow
+import androidx.compose.material3.Tab
+import androidx.compose.material3.Text
 import org.robok.engine.strings.Strings
+import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.DiagnosticContent
+import org.robok.engine.ui.activities.editor.drawer.info.logs.LogsContent
 
 @Composable
-fun ProjectInfoDrawer(viewModel: ProjectInfoDrawerViewModel) {
+fun ProjectInfoDrawer(
+  projectInfoViewModel: ProjectInfoDrawerViewModel,
+  diagnosticViewModel: DiagnosticViewModel
+) {
   val tabTitles =
     listOf(
       stringResource(id = Strings.common_word_logs),
@@ -35,40 +41,18 @@ fun ProjectInfoDrawer(viewModel: ProjectInfoDrawerViewModel) {
     )
 
   Column {
-    TabRow(selectedTabIndex = viewModel.currentTabIndex) {
+    TabRow(selectedTabIndex = projectInfoViewModel.currentTabIndex) {
       tabTitles.forEachIndexed { index, title ->
         Tab(
-          selected = viewModel.currentTabIndex == index,
-          onClick = { viewModel.setCurrentTabIndex(index) },
+          selected = projectInfoViewModel.currentTabIndex == index,
+          onClick = { projectInfoViewModel.setCurrentTabIndex(index) },
           text = { Text(title) },
         )
       }
     }
-    when (viewModel.currentTabIndex) {
-      ProjectInfoDrawerIndexs.LOGS -> LogsDrawer()
-      ProjectInfoDrawerIndexs.DIAGNOSTIC -> DiagnosticDrawer()
+    when (projectInfoViewModel.currentTabIndex) {
+      ProjectInfoDrawerIndexs.LOGS -> LogsContent()
+      ProjectInfoDrawerIndexs.DIAGNOSTIC -> DiagnosticContent(viewModel = diagnosticViewModel)
     }
-  }
-}
-
-@Composable
-private fun LogsDrawer() {
-  Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-    Text(
-      text = stringResource(id = Strings.common_word_logs),
-      fontSize = 24.sp,
-      color = MaterialTheme.colorScheme.onSurface,
-    )
-  }
-}
-
-@Composable
-private fun DiagnosticDrawer() {
-  Column(modifier = Modifier.fillMaxSize().padding(16.dp)) {
-    Text(
-      text = stringResource(id = Strings.text_diagnostic),
-      fontSize = 24.sp,
-      color = MaterialTheme.colorScheme.onSurface,
-    )
   }
 }
