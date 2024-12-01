@@ -17,158 +17,74 @@ package org.robok.engine.ui.screens.project.create
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Bundle
 import android.content.Intent
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Error
-import androidx.compose.material.icons.outlined.Settings
-import androidx.compose.material3.AlertDialog
-import androidx.compose.material3.Button
-import androidx.compose.material3.Icon
-import androidx.compose.material3.OutlinedButton
-import androidx.compose.material3.OutlinedTextField
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.lifecycle.viewmodel.compose.viewModel
 import java.io.File
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.toast.ToastHost
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.EditorActivity
-import org.robok.engine.ui.screens.project.create.state.CreateProjectState
+import org.robok.engine.ui.screens.project.create.components.Buttons
+import org.robok.engine.ui.screens.project.create.components.Inputs
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 
 @Composable
 fun CreateProjectScreen(template: ProjectTemplate) {
   val context = LocalContext.current
-  val toastHostState = LocalToastHostState.current
-
+  val navController = LocalMainNavController.current
   val projectManager = ProjectManager(context)
   val viewModel: CreateProjectViewModel = koinViewModel { parametersOf(projectManager) }
-  val state = viewModel.state
+  val uiState = viewModel.uiState
 
   LaunchedEffect(template) {
-    viewModel.updateProjectName(template.name)
-    viewModel.updatePackageName(template.packageName)
+    viewModel.setProjectName(template.name)
+    viewModel.setPackageName(template.packageName)
   }
 
   Screen(label = stringResource(id = Strings.title_create_project)) {
     PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
-      Screen(state = state, viewModel = viewModel, template = template, context = context)
-      ToastHost(hostState = toastHostState)
-    }
-  }
-
-  if (state.errorMessage != null) {
-    LaunchedEffect(state.errorMessage) {
-      toastHostState.showToast(message = state.errorMessage, icon = Icons.Outlined.Error)
-      viewModel.updateErrorMessage(null)
-    }
-  }
-}
-
-@Composable
-private fun Screen(
-  state: CreateProjectState,
-  viewModel: CreateProjectViewModel,
-  template: ProjectTemplate,
-  context: android.content.Context,
-  modifier: Modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp),
-) {
-  val navController = LocalMainNavController.current
-
-  OutlinedTextField(
-    value = state.projectName,
-    onValueChange = { viewModel.updateProjectName(it) },
-    label = { Text(text = stringResource(id = Strings.hint_project_name), maxLines = 1) },
-    shape = RoundedCornerShape(12.dp),
-    modifier = modifier.fillMaxWidth(),
-  )
-  OutlinedTextField(
-    value = state.packageName,
-    onValueChange = { viewModel.updatePackageName(it) },
-    label = { Text(text = stringResource(id = Strings.hint_package_name), maxLines = 1) },
-    shape = RoundedCornerShape(12.dp),
-    modifier = modifier.fillMaxWidth(),
-  )
-
-  var isShowDialog = remember { mutableStateOf(false) }
-  var title by remember { mutableStateOf("") }
-  var message by remember { mutableStateOf("") }
-
-  Row(horizontalArrangement = Arrangement.spacedBy(16.dp), modifier = modifier.fillMaxWidth()) {
-    OutlinedButton(modifier = Modifier.weight(1f), onClick = { navController.popBackStack() }) {
-      Text(text = stringResource(id = Strings.common_word_cancel))
-    }
-    Button(
-      modifier = Modifier.weight(1f),
-      onClick = {
-        viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, state.projectName))
-        viewModel.createProject(
-          template,
-          onSuccess = {
-            val bundle =
-              android.os.Bundle().apply {
-                putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
+      val modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 8.dp)
+      
+      Inputs(modifier = modifier, viewModel = viewModel)
+      Buttons(
+        modifier = modifier,
+        viewModel = viewModel,
+        onCreate = {
+          viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, uiState.projectName))
+          viewModel.createProject(
+            template,
+            onSuccess = {
+              val bundle =
+                Bundle().apply {
+                  putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
+                }
+              val intent = Intent(context, EditorActivity::class.java).apply {
+                putExtras(bundle) 
               }
-            val intent = Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
-            context.startActivity(intent)
-          },
-          onError = { error ->
-            isShowDialog.value = true
-            title = "An error occurred"
-            message = error
-          },
-        )
-      },
-    ) {
-      Text(text = stringResource(id = Strings.title_create_project))
+              context.startActivity(intent)
+            },
+            onError = { error -> TODO() },
+          )
+        },
+        onCancel = { navController.popBackStack() },
+      )
     }
-    ShowNoticeDialog(title = title, message = message, isShowDialog = isShowDialog)
-  }
-}
-
-@Composable
-fun ShowNoticeDialog(title: String, message: String, isShowDialog: MutableState<Boolean>) {
-  if (isShowDialog.value) {
-    AlertDialog(
-      onDismissRequest = { isShowDialog.value = false },
-      title = { Text(text = title, fontSize = 24.sp) },
-      text = { Text(text = message) },
-      confirmButton = {
-        Button(onClick = { isShowDialog.value = false }) {
-          Text(stringResource(id = Strings.common_word_ok))
-        }
-      },
-      dismissButton = {
-        OutlinedButton(onClick = { isShowDialog.value = false }) {
-          Text(stringResource(id = Strings.common_word_cancel))
-        }
-      },
-      icon = { Icon(Icons.Outlined.Settings, contentDescription = "Icon") },
-    )
   }
 }

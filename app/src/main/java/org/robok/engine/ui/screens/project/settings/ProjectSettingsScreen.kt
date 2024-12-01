@@ -36,8 +36,8 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.project.settings.components.BasicInputs
 import org.robok.engine.ui.screens.project.settings.components.Buttons

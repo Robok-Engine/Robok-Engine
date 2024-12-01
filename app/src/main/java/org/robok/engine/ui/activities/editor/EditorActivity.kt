@@ -318,7 +318,7 @@ class EditorActivity :
       else -> handleNodeFileExtension(node)
     }
   }
-  
+
   private fun handleNodeFileExtension(node: Node<FileObject>) {
     val fileExtension = node.value.getName().substringAfterLast(".")
     val fileToOpen = File(node.value.getAbsolutePath())

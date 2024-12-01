@@ -26,21 +26,23 @@ import java.io.File
 import kotlinx.coroutines.launch
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.ui.screens.project.create.state.CreateProjectState
+import org.robok.engine.ui.screens.project.create.state.CreateProjectUIState
 
 class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
-  var state by mutableStateOf(CreateProjectState())
+  private var _uiState by mutableStateOf(CreateProjectUIState())
+  val uiState: CreateProjectUIState
+    get() = _uiState
 
-  fun updateProjectName(name: String) {
-    state = state.copy(projectName = name)
+  fun setProjectName(name: String) {
+    _uiState = _uiState.copy(projectName = name)
   }
 
-  fun updatePackageName(name: String) {
-    state = state.copy(packageName = name)
+  fun setPackageName(name: String) {
+    _uiState = _uiState.copy(packageName = name)
   }
 
-  fun updateErrorMessage(message: String?) {
-    state = state.copy(errorMessage = message ?: "Null Message")
+  fun setErrorMessage(message: String?) {
+    _uiState = _uiState.copy(errorMessage = message ?: "Null Message")
   }
 
   fun setProjectPath(file: File) {
@@ -50,25 +52,25 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
   fun getProjectPath(): File = projectManager.projectPath
 
   fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
-    if (state.projectName.isEmpty() || state.packageName.isEmpty()) {
-      state = state.copy(errorMessage = "Project name and package name cannot be empty.")
+    if (_uiState.projectName.isEmpty() || _uiState.packageName.isEmpty()) {
+      _uiState = _uiState.copy(errorMessage = "Project name and package name cannot be empty.")
       return
     }
 
     viewModelScope.launch {
-      state = state.copy(isLoading = true, errorMessage = null)
+      _uiState = _uiState.copy(isLoading = true, errorMessage = null)
       projectManager.creationListener =
         object : ProjectManager.CreationListener {
           override fun onProjectCreate() {
             onSuccess()
-            state = state.copy(isLoading = false)
+            _uiState = _uiState.copy(isLoading = false)
           }
 
           override fun onProjectCreateError(error: String) {
             onError(error)
           }
         }
-      projectManager.create(state.projectName, state.packageName, template)
+      projectManager.create(_uiState.projectName, _uiState.packageName, template)
     }
   }
 }

@@ -19,20 +19,20 @@ package org.robok.engine.ui.activities.project.settings
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import java.io.File
+import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.platform.LocalToastHostState
 import org.robok.engine.ui.activities.base.RobokComposeActivity
 import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen
 import org.robok.engine.ui.theme.RobokTheme
-import org.robok.engine.core.components.toast.rememberToastHostState
-import org.robok.engine.platform.LocalToastHostState
 
 class ProjectSettingsActivity : RobokComposeActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
@@ -46,21 +46,16 @@ class ProjectSettingsActivity : RobokComposeActivity() {
     setContent {
       RobokTheme {
         Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-          ProvideCompositionLocals {
-            ProjectSettingsScreen(projectManager = projectManager)
-          }
+          ProvideCompositionLocals { ProjectSettingsScreen(projectManager = projectManager) }
         }
       }
     }
   }
-  
+
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     val toastHostState = rememberToastHostState()
 
-    CompositionLocalProvider(
-      LocalToastHostState provides toastHostState,
-      content = content,
-    )
+    CompositionLocalProvider(LocalToastHostState provides toastHostState, content = content)
   }
 }
