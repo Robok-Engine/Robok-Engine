@@ -47,7 +47,8 @@ class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callb
 
     configureScreen()
   }
-
+  
+  @Composable
   private fun configureScreen() {
     configureGDXFragment()
     binding.modelingCompose.configureModelingScreen()
