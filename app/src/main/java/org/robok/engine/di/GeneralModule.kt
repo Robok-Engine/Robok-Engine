@@ -22,7 +22,7 @@ import org.koin.dsl.module
 import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
-import org.robok.engine.ui.screens.modeling.ModelingViewModel
+import org.robok.engine.ui.screens.modeling.viewmodel.ModelingViewModel
 import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 
 val GeneralModule = module {
