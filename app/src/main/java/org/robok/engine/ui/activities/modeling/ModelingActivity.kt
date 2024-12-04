@@ -62,7 +62,8 @@ class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callb
     fragmentTransaction.commit()
     fragmentManager.executePendingTransactions()
   }
-
+  
+  @Composable
   private fun ComposeView.configureModelingScreen() {
     val viewModel = koinViewModel<ModelingViewModel>()
     setContent { RobokTheme { ModelingScreen(viewModel = viewModel) } }
