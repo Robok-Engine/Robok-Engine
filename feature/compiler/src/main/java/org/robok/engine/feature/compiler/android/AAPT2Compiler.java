@@ -100,7 +100,7 @@ public class AAPT2Compiler extends Compiler {
     args.add(outputPath.getAbsolutePath());
     binaryExecutor.setCommands(args);
     if (!binaryExecutor.execute().isEmpty()) {
-      projectModel.getLogger().e(TAG, binaryExecutor.getLog());
+      projectModel.getLogger().e(TAG, binaryExecutor.getLogs());
       setIsCompilationSuccessful(false);
     }
 
@@ -167,7 +167,7 @@ public class AAPT2Compiler extends Compiler {
     args.add(createNewFile(binPath, "generated.apk.res").getAbsolutePath());
     binaryExecutor.setCommands(args);
     if (!binaryExecutor.execute().isEmpty()) {
-      projectModel.getLogger().e(TAG, binaryExecutor.getLog());
+      projectModel.getLogger().e(TAG, binaryExecutor.getLogs());
       setIsCompilationSuccessful(false);
     }
   }
@@ -190,7 +190,7 @@ public class AAPT2Compiler extends Compiler {
 
       binaryExecutor.setCommands(args);
       if (!binaryExecutor.execute().isEmpty()) {
-        projectModel.getLogger().e(TAG, binaryExecutor.getLog());
+        projectModel.getLogger().e(TAG, binaryExecutor.getLogs());
         setIsCompilationSuccessful(false);
       }
     }
