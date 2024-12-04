@@ -26,10 +26,12 @@ import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.databinding.Activity3dModelBinding
 import org.robok.engine.feature.modeling.fragment.LibGDXFragment
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.modeling.ModelingScreen
+import org.robok.engine.ui.screens.modeling.viewmodel.ModelingViewModel
 import org.robok.engine.ui.theme.RobokTheme
 
 class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callbacks {
@@ -62,7 +64,8 @@ class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callb
   }
 
   private fun ComposeView.configureModelingScreen() {
-    setContent { RobokTheme { ModelingScreen() } }
+    val viewModel = koinViewModel<ModelingViewModel>()
+    setContent { RobokTheme { ModelingScreen(viewModel = viewModel) } }
   }
 
   /** Hide phone ui to better experience */
