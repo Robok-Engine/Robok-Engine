@@ -36,7 +36,7 @@ material-icons-extended = "1.7.5"
 antlr = "4.13.2"
 coil = "2.7.0"
 insetter = "0.6.1"
-android-r8 = "8.3.37"
+android-r8 = "8.5.35"
 
 [plugins]
 # Android Gradle Plugin
