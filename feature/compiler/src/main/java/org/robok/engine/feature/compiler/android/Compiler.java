@@ -21,7 +21,7 @@ import android.content.Context;
 import java.io.File;
 import java.io.IOException;
 import org.robok.engine.feature.compiler.android.exception.CompilerException;
-import org.robok.engine.feature.compiler.android.util.Decompress;
+import org.robok.engine.feature.compiler.Decompress;
 
 public class Compiler {
 

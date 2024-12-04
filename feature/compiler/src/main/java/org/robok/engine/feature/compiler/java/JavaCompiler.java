@@ -32,6 +32,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.jdt.internal.compiler.batch.Main;
+import org.robok.engine.feature.compiler.Decompress;
 
 /*
  * Class that compiles a java code, based on an File Java
@@ -51,7 +52,6 @@ public final class JavaCompiler {
    * @param compileItem a Item with Info to compile
    */
   public final void compile(final CompileItem compileItem) {
-    var executor = new BinaryExecutor();
     logs.clear();
     if (!compileItem.getJavaFile().exists()
         || !compileItem.getJavaFile().getName().endsWith(".java")) {
@@ -198,12 +198,6 @@ public final class JavaCompiler {
 
   public final List<String> getLogs() {
     return logs;
-  }
-
-  public final String getJavaVersion() {
-    var executor = new BinaryExecutor();
-    executor.setCommands(List.of("java", "--version"));
-    return executor.execute();
   }
 
   private final String getLibs() {

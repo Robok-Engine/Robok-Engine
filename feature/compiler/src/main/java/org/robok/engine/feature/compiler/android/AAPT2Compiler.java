@@ -26,6 +26,7 @@ import org.robok.engine.core.utils.FileUtil;
 import org.robok.engine.feature.compiler.android.exception.CompilerException;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
+import org.robok.engine.feature.compiler.BinaryExecutor;
 
 public class AAPT2Compiler extends Compiler {
 
