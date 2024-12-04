@@ -42,4 +42,6 @@ dependencies {
     
     implementation(projects.feature.apksigner)
     implementation(projects.core.utils)
+    
+    implementation(libs.android.r8)
 }

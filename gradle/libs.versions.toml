@@ -36,6 +36,7 @@ material-icons-extended = "1.7.5"
 antlr = "4.13.2"
 coil = "2.7.0"
 insetter = "0.6.1"
+android-r8 = "8.3.37"
 
 [plugins]
 # Android Gradle Plugin
@@ -126,3 +127,4 @@ coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coi
 insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version.ref = "insetter" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref ="gson" }
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+android-r8 = { group = "com.android.tools", name = "r8", version.ref = "android-r8" } 
