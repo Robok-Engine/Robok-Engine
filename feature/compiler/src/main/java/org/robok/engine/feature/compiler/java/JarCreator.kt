@@ -29,12 +29,13 @@ import java.util.jar.Manifest
 
 /**
  * Basic .jar creator
+ *
  * @author Aquiles Trindade (trindadedev)
  */
 class JarCreator(
   private val input: String,
   private val output: String,
-  private val attributes: Attributes = getDefaultAttributes()
+  private val attributes: Attributes = getDefaultAttributes(),
 ) {
 
   init {
@@ -45,9 +46,7 @@ class JarCreator(
 
   companion object {
     private fun getDefaultAttributes(): Attributes {
-      return Attributes().apply {
-        put(Attributes.Name("Created-By"), "Sparkles IDE")
-      }
+      return Attributes().apply { put(Attributes.Name("Created-By"), "Sparkles IDE") }
     }
   }
 
@@ -83,25 +82,24 @@ class JarCreator(
     }
   }
 
-  private fun handleDirectory(name: String, source: File, target: JarOutputStream, parentPath: String) {
+  private fun handleDirectory(
+    name: String,
+    source: File,
+    target: JarOutputStream,
+    parentPath: String,
+  ) {
     var dirName = name
     if (dirName.isNotEmpty() && !dirName.endsWith("/")) {
       dirName += "/"
     }
-    val entry = JarEntry(dirName).apply {
-      time = source.lastModified()
-    }
+    val entry = JarEntry(dirName).apply { time = source.lastModified() }
     target.putNextEntry(entry)
     target.closeEntry()
-    source.listFiles()?.forEach { nestedFile ->
-      addFileToJar(parentPath, nestedFile, target)
-    }
+    source.listFiles()?.forEach { nestedFile -> addFileToJar(parentPath, nestedFile, target) }
   }
 
   private fun handleFile(name: String, source: File, target: JarOutputStream) {
-    val entry = JarEntry(name).apply {
-      time = source.lastModified()
-    }
+    val entry = JarEntry(name).apply { time = source.lastModified() }
     target.putNextEntry(entry)
     BufferedInputStream(FileInputStream(source)).use { input ->
       val buffer = ByteArray(1024)

@@ -72,14 +72,14 @@ fun ProjectSettingsScreen(projectManager: ProjectManager) {
         modifier = modifier,
         onSave = { newConfig ->
           projectManager.writeToProjectSettings(newConfig)
-          scope.launch {
-            toastHostState.showToast(
-              message = context.getString(Strings.text_saved),
-              icon = Icons.Rounded.Check,
-            )
-          }.invokeOnCompletion {
-            (context as? Activity)?.finish()
-          }
+          scope
+            .launch {
+              toastHostState.showToast(
+                message = context.getString(Strings.text_saved),
+                icon = Icons.Rounded.Check,
+              )
+            }
+            .invokeOnCompletion { (context as? Activity)?.finish() }
         },
         onCancel = { (context as? Activity)?.finish() },
       )

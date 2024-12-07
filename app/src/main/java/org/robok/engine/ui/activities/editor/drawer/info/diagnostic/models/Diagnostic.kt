@@ -24,5 +24,5 @@ data class Diagnostic(
   val positionStart: Int,
   val positionEnd: Int,
   val message: String,
-  val file: File? = null
+  val file: File? = null,
 )

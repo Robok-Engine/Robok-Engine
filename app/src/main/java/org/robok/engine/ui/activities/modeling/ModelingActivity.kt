@@ -21,14 +21,11 @@ import android.os.Build
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
+import androidx.activity.compose.setContent
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.platform.ComposeView
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
+import androidx.compose.runtime.SideEffect
 import com.badlogic.gdx.backends.android.AndroidFragmentApplication
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.databinding.Activity3dModelBinding
-import org.robok.engine.feature.modeling.fragment.LibGDXFragment
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.modeling.ModelingScreen
 import org.robok.engine.ui.screens.modeling.viewmodel.ModelingViewModel
@@ -36,36 +33,9 @@ import org.robok.engine.ui.theme.RobokTheme
 
 class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callbacks {
 
-  private var _binding: Activity3dModelBinding? = null
-  private val binding: Activity3dModelBinding
-    get() = _binding!!
-
   @Composable
   override fun onScreenCreated() {
-    _binding = Activity3dModelBinding.inflate(layoutInflater)
-    setContentView(binding.root)
-
-    configureScreen()
-  }
-  
-  @Composable
-  private fun configureScreen() {
-    configureGDXFragment()
-    binding.modelingCompose.configureModelingScreen()
-    hideSystemUI()
-  }
-
-  private fun configureGDXFragment() {
-    val libGDXFragment = LibGDXFragment()
-    val fragmentManager: FragmentManager = supportFragmentManager
-    val fragmentTransaction: FragmentTransaction = fragmentManager.beginTransaction()
-    fragmentTransaction.replace(binding.frameLibGdx?.id ?: 0, libGDXFragment)
-    fragmentTransaction.commit()
-    fragmentManager.executePendingTransactions()
-  }
-  
-  @Composable
-  private fun ComposeView.configureModelingScreen() {
+    SideEffect { hideSystemUI() }
     val viewModel = koinViewModel<ModelingViewModel>()
     setContent { RobokTheme { ModelingScreen(viewModel = viewModel) } }
   }
@@ -88,11 +58,5 @@ class ModelingActivity : BaseComposeActivity(), AndroidFragmentApplication.Callb
   /** Implementation of the exit() method of the AndroidFragmentApplication.Callbacks interface */
   override fun exit() {
     finish()
-  }
-
-  /** Set binding to null if the activity is destroyed. */
-  override fun onDestroy() {
-    _binding = null
-    super.onDestroy()
   }
 }

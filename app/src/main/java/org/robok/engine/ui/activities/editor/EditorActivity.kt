@@ -60,9 +60,9 @@ import org.robok.engine.strings.Strings
 import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawer
 import org.robok.engine.ui.activities.editor.drawer.info.ProjectInfoDrawerIndexs
-import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
 import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.models.Diagnostic
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
+import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
 import org.robok.engine.ui.activities.editor.event.EditorEvent
 import org.robok.engine.ui.activities.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.activities.modeling.ModelingActivity
@@ -89,7 +89,7 @@ class EditorActivity :
   private lateinit var buildTerminal: RecyclerViewBottomSheet
   private lateinit var projectInfoViewModel: ProjectInfoDrawerViewModel
   private lateinit var diagnosticViewModel: DiagnosticViewModel
-  
+
   private val handler = Handler(Looper.getMainLooper())
   private val diagnosticStandTime: Long = 800
   private val diagnosticTimeoutRunnable = Runnable {
@@ -273,7 +273,10 @@ class EditorActivity :
 
     binding.drawerEditorRightComposeView.setContent {
       RobokTheme(isActivity = false) {
-        ProjectInfoDrawer(projectInfoViewModel = projectInfoViewModel, diagnosticViewModel = diagnosticViewModel)
+        ProjectInfoDrawer(
+          projectInfoViewModel = projectInfoViewModel,
+          diagnosticViewModel = diagnosticViewModel,
+        )
       }
     }
   }
@@ -378,7 +381,7 @@ class EditorActivity :
               positionStart = positionStart,
               positionEnd = positionEnd,
               message = message,
-              file = file
+              file = file,
             )
           )
           editor.addDiagnosticInEditor(

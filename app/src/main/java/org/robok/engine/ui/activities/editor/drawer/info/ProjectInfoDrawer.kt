@@ -17,22 +17,22 @@ package org.robok.engine.ui.activities.editor.drawer.info
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
-import androidx.compose.ui.res.stringResource
-import androidx.compose.material3.TabRow
 import androidx.compose.material3.Tab
+import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
-import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
 import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.DiagnosticContent
+import org.robok.engine.ui.activities.editor.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
 import org.robok.engine.ui.activities.editor.drawer.info.logs.LogsContent
+import org.robok.engine.ui.activities.editor.drawer.info.viewmodel.ProjectInfoDrawerViewModel
 
 @Composable
 fun ProjectInfoDrawer(
   projectInfoViewModel: ProjectInfoDrawerViewModel,
-  diagnosticViewModel: DiagnosticViewModel
+  diagnosticViewModel: DiagnosticViewModel,
 ) {
   val tabTitles =
     listOf(
