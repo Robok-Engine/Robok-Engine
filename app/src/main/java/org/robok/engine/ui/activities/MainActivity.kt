@@ -24,8 +24,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.navigation.MainNavHost
+import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.ui.base.BaseComposeActivity
 
 class MainActivity : BaseComposeActivity() {
@@ -33,13 +34,16 @@ class MainActivity : BaseComposeActivity() {
   @Composable
   override fun onScreenCreated() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-      ProvideMainCompositionLocals { MainNavHost() }
+      ProvideMainCompositionLocals { FirstNavHost() }
     }
   }
 
   @Composable
   private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
-    val navController = rememberNavController()
-    CompositionLocalProvider(LocalMainNavController provides navController, content = content)
+    CompositionLocalProvider(
+      LocalMainNavController provides rememberNavController(),
+      LocalFirstNavController provides rememberNavController(),
+      content = content
+    )
   }
 }

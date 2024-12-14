@@ -21,8 +21,14 @@ import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
 import org.robok.engine.noLocalProvidedFor
 
+val LocalFirstNavController =
+  compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalFirstNavController") }
+
 val LocalMainNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalMainNavController") }
+
+val LocalSetupNavController =
+  compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalSetupNavController") }
 
 val LocalXMLViewerNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalXMLViewerNavController") }
