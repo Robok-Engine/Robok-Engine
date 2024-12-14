@@ -2,7 +2,7 @@
 | ------------ | -------------- | ---- |
 | trindadedev13 | 1583 | Founder |
 | ThDev-only | 210 | Founder |
-| renovate[bot] | 149 | Bot |
+| renovate[bot] | 152 | Bot |
 | gampiot-bot | 35 | Bot |
 | RohitKushvaha01 | 16 | Developer |
 | github-actions[bot] | 10 | Bot |
