@@ -23,8 +23,8 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.robok.engine.feature.settings.repositories.PreferencesRepository
-import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.core.settings.repositories.PreferencesRepository
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 
 const val APP_PREFERENCES = "app_preferences"
 

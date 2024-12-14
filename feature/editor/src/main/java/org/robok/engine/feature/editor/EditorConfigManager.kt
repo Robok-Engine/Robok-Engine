@@ -22,7 +22,7 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.runBlocking
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
-import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 
 class EditorConfigManager : KoinComponent {
 

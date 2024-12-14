@@ -144,8 +144,8 @@ dependencies {
   implementation(projects.feature.modeling)
   implementation(projects.feature.xmlviewer)
   implementation(projects.feature.compiler)
-  implementation(projects.feature.settings)
   
+  implementation(projects.core.settings)
   implementation(projects.core.components)
   implementation(projects.core.utils)
   implementation(projects.core.antlr4.java)

@@ -34,8 +34,8 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.feature.settings.DefaultValues
-import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.core.settings.DefaultValues
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 
 @Composable
 fun RobokTheme(

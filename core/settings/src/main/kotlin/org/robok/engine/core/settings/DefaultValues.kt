@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings
+package org.robok.engine.core.settings
 
 import android.os.Build.VERSION
 import android.os.Build.VERSION_CODES

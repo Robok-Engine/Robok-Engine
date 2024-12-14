@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.viewmodels
+package org.robok.engine.core.settings.viewmodels
 
 /*
  *  This file is part of Robok © 2024.
@@ -20,7 +20,7 @@ package org.robok.engine.feature.settings.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.launch
-import org.robok.engine.feature.settings.repositories.PreferencesRepository
+import org.robok.engine.core.settings.repositories.PreferencesRepository
 
 class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel() {
   val installedRDKVersion = repo.installedRDKVersion

@@ -1,4 +1,4 @@
-package org.robok.engine.feature.settings.repositories
+package org.robok.engine.core.settings.repositories
 
 /*
  *  This file is part of Robok © 2024.
@@ -24,7 +24,7 @@ import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.map
-import org.robok.engine.feature.settings.DefaultValues
+import org.robok.engine.core.settings.DefaultValues
 
 class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
   private val installedRDKVersionPreference = stringPreferencesKey("installed_rdk_version")

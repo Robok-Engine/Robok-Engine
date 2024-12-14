@@ -46,7 +46,7 @@ dependencies {
     implementation(libs.antlr4.runtime)
     
     implementation(projects.appStrings)
-    implementation(projects.feature.settings)
+    implementation(projects.core.settings)
     implementation(projects.core.utils)
     implementation(projects.core.antlr4.java)
 }

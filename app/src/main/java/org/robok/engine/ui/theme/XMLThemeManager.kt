@@ -10,7 +10,7 @@ import kotlinx.coroutines.flow.first
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.R
 import org.robok.engine.RobokApplication
-import org.robok.engine.feature.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.base.BaseActivity
 
 /**
