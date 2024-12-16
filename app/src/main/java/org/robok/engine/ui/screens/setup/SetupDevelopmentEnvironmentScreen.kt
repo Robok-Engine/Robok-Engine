@@ -21,7 +21,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
 
 @Composable
-fun SetupDevelopmentEnvironmentScreen() {
+fun SetupDevelopmentEnvironmentScreen(
+  onBack: () -> Unit,
+  onNext: () -> Unit
+) {
   Column {
     // TODO
   }
