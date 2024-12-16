@@ -29,7 +29,7 @@ import org.robok.engine.Strings
 @Composable
 fun BottomButtons(
   modifier: Modifier = Modifier, 
-  isFirstStep: String = false,
+  isFirstStep: Boolean = false,
   onBack: () -> Unit,
   onNext: () -> Unit
 ) {
