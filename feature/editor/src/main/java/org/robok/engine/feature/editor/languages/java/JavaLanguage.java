@@ -189,23 +189,22 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
         (event, undubscribe) -> {
           inputText = editor.getText().toString();
           editorListener.onEditorTextChange();
+          
         });
   }
-
-  Handler handler = new Handler(Looper.getMainLooper());
-
+    
   private void start() {
-    Runnable runnable =
+    /*Runnable runnable =
         new Runnable() {
           @Override
-          public void run() {
+          public void run() {*/
             if (diagnostics.onSuccess) {
-              diagnostics.CheckforPossibleErrors(inputText, cursorIndex);
+                diagnostics.parseCodeAsync(inputText, cursorIndex);
             }
             //  handler.postDelayed(this, 1000);
-          }
+        /*  }
         };
-    handler.postDelayed(runnable, 1000);
+    handler.postDelayed(runnable, 1000);*/
   }
 
   @NonNull
@@ -286,7 +285,7 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
     }
 
     if (diagnostics.onSuccess) {
-      start();
+        start();
     }
   }
 
@@ -421,6 +420,14 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
       JavaLanguage.currentMethod = null;
       variablesMap.clear();
       methodsMap.clear();
+    }
+        // Métodos para obter os dados capturados
+    public HashMap<String, Variable> getVariables() {
+        return variablesMap;
+    }
+
+    public HashMap<String, Method> getMethods() {
+        return methodsMap;
     }
 
     @Override
@@ -579,6 +586,11 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
     public AntlrListener diagnosticListener;
     public DiagnosticsContainer diagnostics;
     public boolean onSuccess = true;
+    JavaListener listener;    
+        
+    Handler handler = new Handler(Looper.getMainLooper());
+
+    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
     /*
      * Method used to check if the editor code has errors.
@@ -614,6 +626,38 @@ public class JavaLanguage implements Language, EditorListener, AntlrListener {
               });
       th.setPriority(Thread.MIN_PRIORITY);
       th.start();
+    }
+
+    private void parseCodeAsync(String input,  int positionIndex) {
+    executor.submit(() -> {
+        try {
+            // Construa os componentes do ANTLR
+            ANTLRInputStream inputStream = new ANTLRInputStream(input);
+            Java8Lexer lexer = new Java8Lexer(inputStream);
+            CommonTokenStream tokens = new CommonTokenStream(lexer);
+            Java8Parser parser = new Java8Parser(tokens);
+
+            // Gera a árvore de análise
+            Java8Parser.CompilationUnitContext compilationUnit = parser.compilationUnit();
+
+            // Cria um walker para percorrer a árvore
+            ParseTreeWalker walker = new ParseTreeWalker();
+
+            // Usa o listener customizado (JavaListener) para capturar variáveis e métodos
+            listener = new JavaListener(positionIndex);
+            walker.walk(listener, compilationUnit);
+
+            // Atualiza mapas de variáveis e métodos
+            updateDataFromListener(listener);
+        } catch (Exception e) {
+            Log.e(TAG, "Error parsing code", e);
+        }
+    });
+}
+        
+    private void updateDataFromListener(JavaListener listener) {
+        variablesMap.putAll(listener.getVariables());
+        methodsMap.putAll(listener.getMethods());
     }
   }
 }
