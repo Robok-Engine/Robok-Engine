@@ -163,7 +163,7 @@
   <string name="warning_exit_project_message">Are you sure you want to exit the archive? (all files will be saved)</string>
   <string name="warning_no_logs">No logs.</string>
   <!-- end section -->
-  
+
   <!-- loading section -->
   <string name="loading_logs">Loading Logs...</string>
   <!-- end section -->
@@ -194,5 +194,10 @@
   <string name="role_developers">Developers</string>
   <string name="role_translator">Translator</string>
   <string name="role_translators">Translators</string>
+  <!-- end section -->
+
+  <!-- setup section -->
+  <string name="setup_welcome_title">Welcome to Robok</string>
+  <string name="setup_welcome_message">Robok is a Game Engine that lets your create amazing 3D games!</string>
   <!-- end section -->
 </resources>

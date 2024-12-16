@@ -1,4 +1,4 @@
-package org.robok.engine.navigation
+package org.robok.engine.navigation.setup
 
 /*
  *  This file is part of Robok © 2024.
@@ -21,9 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.robok.engine.platform.LocalSetupNavController
-import org.robok.engine.routes.SetupInitialRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
-import org.robok.engine.ui.screens.setup.SetupInitialScreen
 
 @Composable
 fun SetupNavHost() {
@@ -37,6 +35,6 @@ fun SetupNavHost() {
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
     popExitTransition = { NavigationAnimationTransitions.popExitTransition },
   ) {
-    composable<SetupInitialRoute> { SetupInitialScreen() }
+    SetupRoutes()
   }
 }

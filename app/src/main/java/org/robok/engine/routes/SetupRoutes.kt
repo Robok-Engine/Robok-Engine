@@ -20,3 +20,7 @@ package org.robok.engine.routes
 import kotlinx.serialization.Serializable
 
 @Serializable object SetupInitialRoute
+
+@Serializable object SetupPermissionsRoute
+
+@Serializable object SetupDevelopmentEnvironmentRoute

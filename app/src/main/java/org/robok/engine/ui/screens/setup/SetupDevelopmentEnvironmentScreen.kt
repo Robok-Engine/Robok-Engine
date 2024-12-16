@@ -1,4 +1,4 @@
-package org.robok.engine
+package org.robok.engine.ui.screens.setup
 
 /*
  *  This file is part of Robok © 2024.
@@ -14,21 +14,15 @@ package org.robok.engine
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-typealias Drawables = org.robok.engine.R.drawable
+import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Column
 
-typealias Ids = org.robok.engine.R.id
-
-typealias Fonts = org.robok.engine.R.font
-
-typealias Styles = org.robok.engine.R.style
-
-typealias Colors = org.robok.engine.R.color
-
-typealias Layouts = org.robok.engine.R.layout
-
-typealias Mipmaps = org.robok.engine.R.mipmap
-
-typealias Strings = org.robok.engine.strings.R.string
+@Composable
+fun SetupDevelopmentEnvironmentScreen() {
+  Column {
+    // TODO
+  }
+}
