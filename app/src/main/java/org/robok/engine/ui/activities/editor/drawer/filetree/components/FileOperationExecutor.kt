@@ -6,21 +6,21 @@ import java.io.File
 
 class FileOperationExecutor(
   private val context: Context,
-  private val onFileClick: (File) -> Unit = { _: File -> },
-  private val onFolderClick: (File) -> Unit = { _: File -> },
-  private val onFileLongClick: (File) -> Boolean = { _: File -> false },
-  private val onFolderLongClick: (File) -> Boolean = { _: File -> false },
-  private val onFileTreeViewUpdated: (Int, Int) -> Unit = { _: Int, _: Int -> }
+  private val onFileClicked: (File) -> Unit = { _: File -> },
+  private val onFolderClicked: (File) -> Unit = { _: File -> },
+  private val onFileLongClicked: (File) -> Boolean = { _: File -> false },
+  private val onFolderLongClicked: (File) -> Boolean = { _: File -> false },
+  private val onFileTreeViewUpdate: (Int, Int) -> Unit = { _: Int, _: Int -> }
 ) : FileTreeEventListener {
 
-  override fun onFileClick(file: File) = onFileClick(file)
+  override fun onFileClick(file: File) = onFileClicked(file)
 
-  override fun onFolderClick(folder: File) = onFolderClick(folder)
+  override fun onFolderClick(folder: File) = onFolderClicked(folder)
 
-  override fun onFileLongClick(file: File): Boolean = onFileLongClick(file)
+  override fun onFileLongClick(file: File): Boolean = onFileLongClicked(file)
 
-  override fun onFolderLongClick(folder: File): Boolean = onFolderLongClick(folder)
+  override fun onFolderLongClick(folder: File): Boolean = onFolderLongClicked(folder)
 
   override fun onFileTreeViewUpdated(startPosition: Int, itemCount: Int) =
-    onFileTreeViewUpdated(startPosition, itemCount)
+    onFileTreeViewUpdate(startPosition, itemCount)
 }

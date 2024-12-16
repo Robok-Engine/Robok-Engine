@@ -28,7 +28,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import java.io.File
-import org.robok.engine.feature.filetree.provider.FileTreeIconProvider;
+import org.robok.engine.feature.filetree.provider.DefaultFileIconProvider
 import org.robok.engine.feature.filetree.widget.FileTreeView
 
 @Composable
@@ -54,7 +54,7 @@ private fun setFileTreeFactory(
   state: FileTreeState,
 ): FileTreeView {
   val fileOperationExecutor = FileOperationExecutor(context = context, onFileClick = onFileClick, onFolderClick = onFolderClick)
-  val fileTreeIconProvider = FileTreeIconProvider()
+  val fileTreeIconProvider = DefaultFileIconProvider()
   val fileTree = FileTreeView(context).apply {
       initializeFileTree(path, fileOperationExecutor, fileTreeIconProvider);
   }
