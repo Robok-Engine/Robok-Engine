@@ -24,7 +24,7 @@ import androidx.navigation.compose.composable
 import androidx.compose.ui.platform.LocalContext
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
-import org.robok.engine.extensions.navigateSingleTop
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupInitialRoute
 import org.robok.engine.routes.SetupPermissionsRoute
