@@ -35,6 +35,8 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
+import org.robok.engine.Drawables
+import org.robok.engine.Strings
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable
@@ -67,7 +69,7 @@ fun Welcome() {
       .padding(bottom = 24.dp)
   ) {
     Image(
-      painter = painterResource(id = R.drawable.ic_launcher),
+      painter = painterResource(id = Drawables.ic_launcher),
       contentDescription = "App Icon",
       modifier = Modifier
         .size(256.dp)
