@@ -50,6 +50,9 @@ fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
   }
   composable<SetupPermissionsRoute> {
     SetupPermissionsScreen(
+      onBack = {
+        navController.popBackStack
+      },
       onNext = {
         navController.navigateSingleTop(SetupDevelopmentEnvironmentRoute)
       }
@@ -59,6 +62,9 @@ fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
     val firstNavController = LocalFirstNavController.current
     val database = koinViewModel<DatabaseViewModel>()
     SetupDevelopmentEnvironmentScreen(
+      onBack = {
+        navController.popBackStack
+      },
       onNext = {
         firstNavController.navigateSingleTop(MainRoute)
         database.setIsFirstTime(false)
