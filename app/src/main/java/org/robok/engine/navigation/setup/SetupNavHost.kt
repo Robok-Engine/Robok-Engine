@@ -35,6 +35,6 @@ fun SetupNavHost() {
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
     popExitTransition = { NavigationAnimationTransitions.popExitTransition },
   ) {
-    SetupRoutes()
+    SetupRoutes(navController = navController)
   }
 }
