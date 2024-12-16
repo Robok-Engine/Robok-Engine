@@ -36,10 +36,12 @@ import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
 
 fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
   composable<SetupInitialRoute> {
-    val context = LocalContext.current
+    val activity = LocalContext.current as? Activity
     SetupInitialScreen(
       onBack = {
-        (context as? Activity).finish()
+        activity?.let {
+          it.finish()
+        }
       },
       onNext = {
         navController.navigateSingleTop(SetupPermissionRoutes)
