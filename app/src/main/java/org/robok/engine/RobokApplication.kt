@@ -29,12 +29,12 @@ import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.robok.engine.di.AboutModule
+import org.robok.engine.di.DatabaseModule
 import org.robok.engine.di.GeneralModule
 import org.robok.engine.di.PreferencesModule
 import org.robok.engine.di.ProjectModule
 import org.robok.engine.di.SettingsModule
 import org.robok.engine.di.SettingsRDKModule
-import org.robok.engine.di.DatabaseModule
 import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
@@ -94,7 +94,7 @@ class RobokApplication : Application() {
         SettingsRDKModule,
         AboutModule,
         ProjectModule,
-        DatabaseModule
+        DatabaseModule,
       )
     }
   }

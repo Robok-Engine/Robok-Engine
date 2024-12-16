@@ -16,31 +16,34 @@ package org.robok.engine.ui.screens.setup.components
  *  You should have received a copy of the GNU General Public License
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
- 
-import androidx.compose.runtime.Composable
+
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import org.robok.engine.Strings
 
 @Composable
 fun BottomButtons(
-  modifier: Modifier = Modifier, 
+  modifier: Modifier = Modifier,
   isFirstStep: Boolean = false,
   onBack: () -> Unit,
-  onNext: () -> Unit
+  onNext: () -> Unit,
 ) {
   Row(modifier = modifier) {
     TextButton(onClick = onBack) {
-      Text(text = stringResource(id = if (isFirstStep) Strings.common_word_exit else Strings.common_word_back))
+      Text(
+        text =
+          stringResource(
+            id = if (isFirstStep) Strings.common_word_exit else Strings.common_word_back
+          )
+      )
     }
     Spacer(modifier = Modifier.weight(1f))
-    Button(onClick = onNext) {
-      Text(text = stringResource(id = Strings.common_word_next))
-    }
+    Button(onClick = onNext) { Text(text = stringResource(id = Strings.common_word_next)) }
   }
 }

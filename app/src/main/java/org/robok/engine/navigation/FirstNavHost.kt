@@ -18,10 +18,10 @@ package org.robok.engine.navigation
  */
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import androidx.compose.runtime.CompositionLocalProvider
 import org.robok.engine.navigation.setup.SetupNavHost
 import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.platform.LocalMainNavController
@@ -49,7 +49,7 @@ fun FirstNavHost() {
     }
     composable<SetupRoute> {
       CompositionLocalProvider(LocalSetupNavController provides rememberNavController()) {
-        SetupNavHost() 
+        SetupNavHost()
       }
     }
   }

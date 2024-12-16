@@ -18,57 +18,45 @@ package org.robok.engine.navigation.setup
  */
 
 import android.app.Activity
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import androidx.compose.ui.platform.LocalContext
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.routes.MainRoute
+import org.robok.engine.routes.SetupDevelopmentEnvironmentRoute
 import org.robok.engine.routes.SetupInitialRoute
 import org.robok.engine.routes.SetupPermissionsRoute
-import org.robok.engine.routes.SetupDevelopmentEnvironmentRoute
-import org.robok.engine.platform.LocalFirstNavController
+import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
 import org.robok.engine.ui.screens.setup.SetupInitialScreen
 import org.robok.engine.ui.screens.setup.SetupPermissionsScreen
-import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
 
 fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
   composable<SetupInitialRoute> {
     val activity = LocalContext.current as? Activity
     SetupInitialScreen(
-      onBack = {
-        activity?.let {
-          it.finish()
-        }
-      },
-      onNext = {
-        navController.navigateSingleTop(SetupPermissionsRoute)
-      }
+      onBack = { activity?.let { it.finish() } },
+      onNext = { navController.navigateSingleTop(SetupPermissionsRoute) },
     )
   }
   composable<SetupPermissionsRoute> {
     SetupPermissionsScreen(
-      onBack = {
-        navController.popBackStack()
-      },
-      onNext = {
-        navController.navigateSingleTop(SetupDevelopmentEnvironmentRoute)
-      }
+      onBack = { navController.popBackStack() },
+      onNext = { navController.navigateSingleTop(SetupDevelopmentEnvironmentRoute) },
     )
   }
   composable<SetupDevelopmentEnvironmentRoute> {
     val firstNavController = LocalFirstNavController.current
     val database = koinViewModel<DatabaseViewModel>()
     SetupDevelopmentEnvironmentScreen(
-      onBack = {
-        navController.popBackStack()
-      },
+      onBack = { navController.popBackStack() },
       onNext = {
         firstNavController.navigateSingleTop(MainRoute)
         database.setIsFirstTime(false)
-      }
+      },
     )
   }
 }

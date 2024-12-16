@@ -19,9 +19,8 @@ package org.robok.engine.navigation.setup
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
-import org.robok.engine.routes.SetupInitialRoute
 import org.robok.engine.platform.LocalSetupNavController
+import org.robok.engine.routes.SetupInitialRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 
 @Composable

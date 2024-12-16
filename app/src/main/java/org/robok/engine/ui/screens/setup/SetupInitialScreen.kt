@@ -20,43 +20,37 @@ package org.robok.engine.ui.screens.setup
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.runtime.Composable
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.draw.clip
 import org.robok.engine.Drawables
 import org.robok.engine.Strings
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable
-fun SetupInitialScreen(
-  onBack: () -> Unit,
-  onNext: () -> Unit
-) {
-  BackHandler {
-    onBack()
-  }
+fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
+  BackHandler { onBack() }
   Scaffold(
     bottomBar = {
       BottomButtons(
         modifier = Modifier.fillMaxWidth(),
         isFirstStep = true,
         onNext = onNext,
-        onBack = onBack
+        onBack = onBack,
       )
     }
   ) { innerPadding ->
@@ -66,28 +60,22 @@ fun SetupInitialScreen(
 
 @Composable
 fun Welcome() {
-  Column(
-    modifier = Modifier
-      .padding(horizontal = 40.dp)
-      .padding(bottom = 24.dp)
-  ) {
+  Column(modifier = Modifier.padding(horizontal = 40.dp).padding(bottom = 24.dp)) {
     Image(
       painter = painterResource(id = Drawables.ic_launcher),
       contentDescription = "App Icon",
-      modifier = Modifier
-        .size(256.dp)
-        .clip(CircleShape),
-      contentScale = ContentScale.Crop
+      modifier = Modifier.size(256.dp).clip(CircleShape),
+      contentScale = ContentScale.Crop,
     )
     Text(
       text = stringResource(id = Strings.setup_welcome_title),
-      style = MaterialTheme.typography.headlineLarge
+      style = MaterialTheme.typography.headlineLarge,
     )
     Spacer(modifier = Modifier.height(24.dp))
     Text(
       text = stringResource(id = Strings.setup_welcome_message),
       fontSize = 19.sp,
-      style = MaterialTheme.typography.bodyLarge
+      style = MaterialTheme.typography.bodyLarge,
     )
   }
 }

@@ -17,14 +17,11 @@ package org.robok.engine.ui.screens.setup
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.Column
+import androidx.compose.runtime.Composable
 
 @Composable
-fun SetupDevelopmentEnvironmentScreen(
-  onBack: () -> Unit,
-  onNext: () -> Unit
-) {
+fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
   Column {
     // TODO
   }
