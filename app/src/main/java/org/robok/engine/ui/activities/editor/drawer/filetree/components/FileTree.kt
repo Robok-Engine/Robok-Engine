@@ -54,7 +54,7 @@ private fun setFileTreeFactory(
   val fileOperationExecutor = FileOperationExecutor(onFileClick = onClick)
     FileTreeView(context).apply {
       val fileIconProvider: FileTreeIconProvider
-      initializeFileTree(path fileOperate, fileIconProvider);
+      initializeFileTree(path, fileOperate, fileIconProvider);
     }
   state.fileTreeView = fileTree
   return fileTree
