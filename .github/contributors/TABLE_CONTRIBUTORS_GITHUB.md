@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1583 | Founder |
+| trindadedev13 | 1585 | Founder |
 | ThDev-only | 210 | Founder |
 | renovate[bot] | 152 | Bot |
 | gampiot-bot | 35 | Bot |
