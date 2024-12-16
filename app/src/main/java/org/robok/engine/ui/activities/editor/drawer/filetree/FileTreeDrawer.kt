@@ -31,7 +31,11 @@ import org.robok.engine.ui.theme.Typography
 import java.io.File
 
 @Composable
-fun FileTreeDrawer(path: String, onClick: (File) -> Unit) {
+fun FileTreeDrawer(
+  path: String,
+  onFileClick: (File) -> Unit,
+  onFolderClick: (File) -> Unit
+) {
   val fileTreeState = rememberFileTreeState()
   Column {
     Text(
@@ -41,6 +45,6 @@ fun FileTreeDrawer(path: String, onClick: (File) -> Unit) {
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp),
     )
-    FileTree(path = path, onClick = onClick, state = fileTreeState)
+    FileTree(path = path, onFileClick = onFileClick, onFolderClick = onFolderClick, state = fileTreeState)
   }
 }

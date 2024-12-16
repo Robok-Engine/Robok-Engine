@@ -34,13 +34,14 @@ import org.robok.engine.feature.filetree.widget.FileTreeView
 @Composable
 fun FileTree(
   path: String,
-  onClick: (File) -> Unit,
+  onFileClick: (File) -> Unit,
+  onFolderClick: (File) -> Unit,
   modifier: Modifier = Modifier,
   state: FileTreeState,
 ) {
   val context = LocalContext.current
   val fileTreeFactory = remember {
-    setFileTreeFactory(context = context, path = path, onClick = onClick, state = state)
+    setFileTreeFactory(context = context, path = path, onFileClick = onFileClick, onFolderClick = onFolderClick, state = state)
   }
   AndroidView(factory = { fileTreeFactory }, modifier = modifier)
 }
@@ -48,10 +49,11 @@ fun FileTree(
 private fun setFileTreeFactory(
   context: Context,
   path: String,
-  onClick: (File) -> Unit,
+  onFileClick: (File) -> Unit,
+  onFolderClick: (File) -> Unit,
   state: FileTreeState,
 ): FileTreeView {
-  val fileOperationExecutor = FileOperationExecutor(onFileClick = onClick)
+  val fileOperationExecutor = FileOperationExecutor(onFileClick = onFileClick, onFolderClick = onFolderClick)
     FileTreeView(context).apply {
       val fileIconProvider: FileTreeIconProvider
       initializeFileTree(path, fileOperate, fileIconProvider);

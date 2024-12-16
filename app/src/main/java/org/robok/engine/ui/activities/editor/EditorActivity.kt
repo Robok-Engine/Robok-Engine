@@ -298,11 +298,10 @@ class EditorActivity :
       RobokTheme(isActivity = false) {
         FileTreeDrawer(
           path = projectPath!!,
-          onClick = { node ->
-            if (node.value.isDirectory()) {} else {
-              handleFileName(node)
-            }
+          onFileClick = { file ->
+            handleFileName(file)
           },
+          onFolderClick = { file -> }
         )
       }
     }
@@ -322,7 +321,7 @@ class EditorActivity :
           }
         startActivity(intent)
       }
-      else -> handleFileExtension(node)
+      else -> handleFileExtension(file)
     }
   }
 
