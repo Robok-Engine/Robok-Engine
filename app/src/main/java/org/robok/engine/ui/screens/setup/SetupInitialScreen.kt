@@ -34,6 +34,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.draw.clip
+import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable
 fun SetupInitialScreen(
