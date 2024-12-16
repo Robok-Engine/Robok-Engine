@@ -48,7 +48,9 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
   Scaffold(
     bottomBar = {
       BottomButtons(
-        modifier = Modifier.fillMaxWidth(),
+        modifier = Modifier
+          .fillMaxWidth()
+          .padding(8.dp),
         isFirstStep = true,
         onNext = onNext,
         onBack = onBack,
@@ -64,7 +66,7 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
 }
 
 @Composable
-fun Welcome(modifier: Modifier = modifier) {
+fun Welcome(modifier: Modifier = Modifier) {
   Column(modifier = modifier) {
     Image(
       painter = painterResource(id = Drawables.ic_launcher),
