@@ -20,7 +20,10 @@ package org.robok.engine.navigation
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import org.robok.engine.platform.LocalFirstNavController
+import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.platform.LocalSetupNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
@@ -37,7 +40,15 @@ fun FirstNavHost() {
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
     popExitTransition = { NavigationAnimationTransitions.popExitTransition },
   ) {
-    composable<MainRoute> { MainNavHost() }
-    composable<SetupRoute> { SetupNavHost() }
+    composable<MainRoute> {
+      CompositionLocalProvider(LocalMainNavController provides rememberNavController()) {
+        MainNavHost()
+      }
+    }
+    composable<SetupRoute> {
+      CompositionLocalProvider(LocalSetupNavController provides rememberNavController()) {
+        SetupNavHost() 
+      }
+    }
   }
 }

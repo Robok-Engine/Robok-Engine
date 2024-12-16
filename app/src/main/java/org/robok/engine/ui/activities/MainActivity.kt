@@ -34,7 +34,6 @@ import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.platform.LocalFirstNavController
-import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.SetupRoute
 import org.robok.engine.ui.base.BaseComposeActivity
 
@@ -43,7 +42,7 @@ class MainActivity : BaseComposeActivity() {
   @Composable
   override fun onScreenCreated() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-      ProvideMainCompositionLocals {
+      ProvideCompositionLocals {
         val navController = LocalFirstNavController.current
         val database = koinViewModel<DatabaseViewModel>()
         val isFirstTime by
@@ -59,9 +58,8 @@ class MainActivity : BaseComposeActivity() {
   }
 
   @Composable
-  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     CompositionLocalProvider(
-      LocalMainNavController provides rememberNavController(),
       LocalFirstNavController provides rememberNavController(),
       content = content,
     )
