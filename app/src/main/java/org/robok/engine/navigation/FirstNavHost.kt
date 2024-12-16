@@ -28,7 +28,7 @@ import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 @Composable
 fun FirstNavHost() {
   val navController = LocalFirstNavController.current
-  
+
   NavHost(
     navController = navController,
     startDestination = MainRoute,
@@ -37,11 +37,7 @@ fun FirstNavHost() {
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
     popExitTransition = { NavigationAnimationTransitions.popExitTransition },
   ) {
-    composable<MainRoute> {
-      MainNavHost()
-    }
-    composable<SetupRoute> {
-      SetupNavHost()
-    }
+    composable<MainRoute> { MainNavHost() }
+    composable<SetupRoute> { SetupNavHost() }
   }
 }

@@ -28,7 +28,7 @@ import org.robok.engine.ui.screens.setup.SetupInitialScreen
 @Composable
 fun SetupNavHost() {
   val navController = LocalSetupNavController.current
-  
+
   NavHost(
     navController = navController,
     startDestination = SetupInitialRoute,
@@ -37,8 +37,6 @@ fun SetupNavHost() {
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
     popExitTransition = { NavigationAnimationTransitions.popExitTransition },
   ) {
-    composable<SetupInitialRoute> {
-        SetupInitialScreen()
-    }
+    composable<SetupInitialRoute> { SetupInitialScreen() }
   }
 }

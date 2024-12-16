@@ -21,6 +21,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.koin.androidx.compose.koinViewModel
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.platform.LocalXMLViewerNavController
 import org.robok.engine.routes.XMLViewerCodeRoute
 import org.robok.engine.routes.XMLViewerRoute
@@ -46,7 +47,7 @@ fun XMLViewerNavHost(xml: String) {
       XMLViewerScreen(
         viewModel = viewModel,
         onToggleFullScreen = { viewModel.toggleFullScreen() },
-        onShowCodeClick = { navController.navigate(XMLViewerCodeRoute) },
+        onShowCodeClick = { navController.navigateSingleTop(XMLViewerCodeRoute) },
         xml = xml,
         onOutlineClick = { view, bean -> },
       )

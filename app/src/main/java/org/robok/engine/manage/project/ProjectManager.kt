@@ -37,6 +37,7 @@ import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.RobokLog
 import org.robok.engine.core.utils.extractZipFromAssets
@@ -46,7 +47,6 @@ import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
-import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.manage.project.models.ProjectSettings
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate

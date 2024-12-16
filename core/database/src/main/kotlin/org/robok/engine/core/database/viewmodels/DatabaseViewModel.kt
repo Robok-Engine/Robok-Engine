@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.core.database.viewmodels
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,6 +17,15 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import org.robok.engine.core.database.repositories.DatabaseRepository
 
-@Serializable object SetupInitialRoute
+class DatabaseViewModel(private val repo: DatabaseRepository) : ViewModel() {
+  val isFirstTime = repo.isFirstTime
+
+  fun setIsFirstTime(value: Boolean) {
+    viewModelScope.launch { repo.setIsFirstTime(value) }
+  }
+}
