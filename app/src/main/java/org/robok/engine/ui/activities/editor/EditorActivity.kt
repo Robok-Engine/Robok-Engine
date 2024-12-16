@@ -52,8 +52,6 @@ import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.editor.EditorListener
 import org.robok.engine.feature.editor.RobokCodeEditor
-import org.robok.engine.feature.treeview.interfaces.FileObject
-import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.strings.Strings
@@ -302,7 +300,7 @@ class EditorActivity :
           path = projectPath!!,
           onClick = { node ->
             if (node.value.isDirectory()) {} else {
-              handleNodeFileName(node)
+              handleFileName(node)
             }
           },
         )
@@ -310,8 +308,8 @@ class EditorActivity :
     }
   }
 
-  private fun handleNodeFileName(node: Node<FileObject>) {
-    val name = node.value.getName()
+  private fun handleFileName(file: File) {
+    val name = file.getName()
     when (name) {
       "config.json" -> {
         val intent =
@@ -324,19 +322,15 @@ class EditorActivity :
           }
         startActivity(intent)
       }
-      else -> handleNodeFileExtension(node)
+      else -> handleFileExtension(node)
     }
   }
 
-  private fun handleNodeFileExtension(node: Node<FileObject>) {
-    val fileExtension = node.value.getName().substringAfterLast(".")
-    val fileToOpen = File(node.value.getAbsolutePath())
+  private fun handleFileExtension(file: File) {
+    val fileExtension = file.getName().substringAfterLast(".")
     when (fileExtension) {
-      "obj" ->
-        startActivity(
-          Intent(this, ModelingActivity::class.java)
-        ) // open 3d modeling (todo: send args)
-      else -> editorViewModel.openFile(fileToOpen) // open file on editor
+      "obj" -> startActivity(Intent(this, ModelingActivity::class.java)) // open 3d modeling (todo: send args)
+      else -> editorViewModel.openFile(file) // open file on editor
     }
   }
 

@@ -4,7 +4,7 @@ plugins {
 }
 
 android {
-    namespace = "org.robok.engine.feature.treeview"
+    namespace = "org.robok.engine.feature.filetree"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
     
     defaultConfig {

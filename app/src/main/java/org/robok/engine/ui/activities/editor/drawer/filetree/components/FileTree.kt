@@ -28,17 +28,13 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
 import androidx.compose.ui.viewinterop.AndroidView
 import java.io.File
-import org.robok.engine.feature.treeview.interfaces.FileClickListener
-import org.robok.engine.feature.treeview.interfaces.FileObject
-import org.robok.engine.feature.treeview.model.Node
-import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
-import org.robok.engine.feature.treeview.provider.FileWrapper
-import org.robok.engine.feature.treeview.widget.FileTree as FileTreeView
+import org.robok.engine.feature.filetree.provider.FileTreeIconProvider;
+import org.robok.engine.feature.filetree.widget.FileTreeView
 
 @Composable
 fun FileTree(
   path: String,
-  onClick: (Node<FileObject>) -> Unit,
+  onClick: (File) -> Unit,
   modifier: Modifier = Modifier,
   state: FileTreeState,
 ) {
@@ -52,21 +48,13 @@ fun FileTree(
 private fun setFileTreeFactory(
   context: Context,
   path: String,
-  onClick: (Node<FileObject>) -> Unit,
+  onClick: (File) -> Unit,
   state: FileTreeState,
 ): FileTreeView {
-  val fileObject = FileWrapper(File(path))
-  val fileTree =
+  val fileOperationExecutor = FileOperationExecutor(onFileClick = onClick)
     FileTreeView(context).apply {
-      loadFiles(fileObject)
-      setOnFileClickListener(
-        object : FileClickListener {
-          override fun onClick(node: Node<FileObject>) {
-            onClick(node)
-          }
-        }
-      )
-      setIconProvider(DefaultFileIconProvider(context))
+      val fileIconProvider: FileTreeIconProvider
+      initializeFileTree(path fileOperate, fileIconProvider);
     }
   state.fileTreeView = fileTree
   return fileTree

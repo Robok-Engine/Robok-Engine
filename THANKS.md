@@ -9,7 +9,8 @@ Literally EVERYTHING that was used is here.
 - LibGDX to Develop Game's, 3d Modeling, basically all
 - GitHub for the Actions to compile
 - Lawnchair for the some ui components (like preferences etc...)
-- Rohit Kushvaha for FileTree
+- SyntaxSpins for the FileTree 
+- SyntaxSpins for logo and banner
 - Coyamo for XML Viewer/Parser
 - Tyron for the android compiler
 - Ken Ellinwood for the ApkSigner
