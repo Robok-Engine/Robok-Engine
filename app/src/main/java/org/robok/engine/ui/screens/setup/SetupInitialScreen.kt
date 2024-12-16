@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
@@ -54,13 +55,17 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
       )
     }
   ) { innerPadding ->
-    Welcome()
+    Welcome(
+      modifier = Modifier.padding(innerPadding)
+        .padding(horizontal = 40.dp)
+        .padding(bottom = 24.dp)
+    )
   }
 }
 
 @Composable
-fun Welcome() {
-  Column(modifier = Modifier.padding(horizontal = 40.dp).padding(bottom = 24.dp)) {
+fun Welcome(modifier: Modifier = modifier) {
+  Column(modifier = modifier) {
     Image(
       painter = painterResource(id = Drawables.ic_launcher),
       contentDescription = "App Icon",
