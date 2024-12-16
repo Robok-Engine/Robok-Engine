@@ -44,7 +44,7 @@ fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
         }
       },
       onNext = {
-        navController.navigateSingleTop(SetupPermissionRoutes)
+        navController.navigateSingleTop(SetupPermissionRoute)
       }
     )
   }
