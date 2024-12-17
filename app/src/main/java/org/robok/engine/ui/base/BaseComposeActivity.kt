@@ -73,7 +73,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
-    permissionsState.isStoragePermissionAllow = getStoragePermStatus(this))
+    permissionsState.isStoragePermissionAllow = getStoragePermStatus(this)
     setContent { RobokTheme { Screen() } }
   }
 
