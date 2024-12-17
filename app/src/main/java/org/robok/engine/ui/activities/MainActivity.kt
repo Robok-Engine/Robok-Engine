@@ -44,7 +44,6 @@ class MainActivity : BaseComposeActivity() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
       ProvideCompositionLocals {
         val navController = LocalFirstNavController.current
-        val database = koinViewModel<DatabaseViewModel>()
         val isFirstTime by
           database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
         SideEffect {

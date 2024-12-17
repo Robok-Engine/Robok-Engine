@@ -28,7 +28,11 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.res.stringResource
+import org.koin.androidx.compose.koinViewModel
+import org.robok.engine.core.database.DefaultValues
+import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.components.dialog.permission.PermissionDialog
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.components.toast.ToastHost
@@ -42,69 +46,97 @@ import org.robok.engine.ui.theme.RobokTheme
 
 abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
-  private var showStoragePermissionDialog by mutableStateOf(false)
-  private var permissionDialogText by mutableStateOf("")
-  private var onAllowClick: (() -> Unit)? = null
-  private var onDenyClick: (() -> Unit)? = null
+  private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
+  protected val database: DatabaseViewModel by lazy { initializeDatabase() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
+    enableEdgeToEdge()
     setContent {
       RobokTheme {
-        enableEdgeToEdge()
-        checkPermissions()
-        ProvideCompositionLocals {
-          onScreenCreated()
-          ToastHost()
-        }
+        Screen()
       }
     }
   }
 
-  @Composable protected abstract fun onScreenCreated()
+  @Composable
+  private fun Screen() {
+    val isFirstTime by database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
+    if (!isFirstTime) {
+      HandlePermissions()
+    }
+    ProvideCompositionLocals {
+      onScreenCreated()
+      ToastHost()
+    }
+  }
+
+  @Composable
+  private fun HandlePermissions() {
+    val hasPermission by remember {
+      mutableStateOf(getStoragePermStatus(this)) 
+    }
+    LaunchedEffect(hasPermission) {
+      if (!hasPermission) {
+        permissionDialogState = PermissionDialogState(
+          dialogText = stringResource(id = Strings.warning_all_files_perm_message),
+          onAllowClick = { requestStoragePermission(); hasPermission = true },
+          onDenyClick = { finish() }
+        )
+      }
+    }
+    permissionDialogState?.let {
+      StoragePermissionDialog(it)
+    }
+  }
+
+  private fun initializeDatabase(): DatabaseViewModel = koinViewModel()
+
+  @Composable
+  private fun StoragePermissionDialog(state: PermissionDialogState) {
+    PermissionDialog(
+      icon = Icons.Rounded.Folder,
+      dialogText = state.dialogText,
+      onAllowClicked = {
+        state.onAllowClick.invoke()
+        permissionDialogState = null
+      },
+      onDenyClicked = {
+        state.onDenyClick.invoke()
+        permissionDialogState = null
+      },
+      onDismissRequest = { permissionDialogState = null },
+    )
+  }
+
+  private fun requestStoragePermission() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+      requestAllFilesAccessPermission(this, this)
+    } else {
+      requestReadWritePermissions(this, this)
+    }
+  }
+
+  override fun onReceive(status: Boolean) {
+    if (status) {
+      permissionDialogState = null
+    }
+  }
+
+  @Composable
+  protected abstract fun onScreenCreated()
 
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
-    val toastHostState = rememberToastHostState()
-    CompositionLocalProvider(LocalToastHostState provides toastHostState, content = content)
+    CompositionLocalProvider(
+      LocalToastHostState provides rememberToastHostState(),
+      content = content
+    )
   }
-
-  @Composable
-  private fun checkPermissions() {
-    checkStoragePermissions()
-    if (showStoragePermissionDialog) {
-      PermissionDialog(
-        icon = Icons.Rounded.Folder,
-        dialogText = stringResource(id = Strings.warning_all_files_perm_message),
-        onAllowClicked = {
-          onAllowClick?.invoke()
-          showStoragePermissionDialog = false
-        },
-        onDenyClicked = {
-          onDenyClick?.invoke()
-          showStoragePermissionDialog = false
-        },
-        onDismissRequest = { showStoragePermissionDialog = false },
-      )
-    }
-  }
-
-  @Composable
-  private fun checkStoragePermissions() {
-    if (!getStoragePermStatus(this)) {
-      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        onAllowClick = {
-          requestAllFilesAccessPermission(this@BaseComposeActivity, this@BaseComposeActivity)
-        }
-      } else {
-        onAllowClick = {
-          requestReadWritePermissions(this@BaseComposeActivity, this@BaseComposeActivity)
-        }
-      }
-      onDenyClick = { finish() }
-      showStoragePermissionDialog = true
-    }
-  }
-
-  override fun onReceive(status: Boolean) {}
+  
+  private data class PermissionDialogState(
+    val dialogText: String,
+    val onAllowClick: () -> Unit,
+    val onDenyClick: () -> Unit
+  )
 }
