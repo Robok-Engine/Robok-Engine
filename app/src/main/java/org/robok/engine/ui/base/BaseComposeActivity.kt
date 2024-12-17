@@ -19,8 +19,12 @@ package org.robok.engine.ui.base
 
 import android.os.Build
 import android.os.Bundle
+import android.os.Environment
+import android.content.Intent
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Folder
 import androidx.compose.runtime.Composable
@@ -50,6 +54,18 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
   protected val database: DatabaseViewModel by lazy { getKoin().get() }
 
+  private val allFilesPermissionLauncher =
+    registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
+      val granted = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()
+      onReceive(granted)
+    }
+
+  private val readWritePermissionLauncher =
+    registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+      val allGranted = permissions.values.all { it }
+      onReceive(allGranted)
+    }
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
@@ -68,10 +84,6 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     }
   }
 
-  @Deprecated(
-    message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING,
-  )
   @Composable
   private fun HandlePermissions() {
     var hasPermission by remember { mutableStateOf(getStoragePermStatus(this)) }
@@ -82,7 +94,6 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
             dialogText = getString(Strings.warning_all_files_perm_message),
             onAllowClick = {
               requestStoragePermission()
-              hasPermission = true
             },
             onDenyClick = { finish() },
           )
@@ -91,10 +102,6 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     permissionDialogState?.let { StoragePermissionDialog(it) }
   }
 
-  @Deprecated(
-    message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING,
-  )
   @Composable
   private fun StoragePermissionDialog(state: PermissionDialogState) {
     PermissionDialog(
@@ -112,22 +119,14 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     )
   }
 
-  @Deprecated(
-    message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING,
-  )
-  private fun requestStoragePermission() {
+  fun requestStoragePermission() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-      requestAllFilesAccessPermission(this, this)
+      requestAllFilesAccessPermission(this, allFilesPermissionLauncher)
     } else {
-      requestReadWritePermissions(this, this)
+      requestReadWritePermissions(this, readWritePermissionLauncher)
     }
   }
 
-  @Deprecated(
-    message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING,
-  )
   override fun onReceive(status: Boolean) {
     if (status) {
       permissionDialogState = null

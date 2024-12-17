@@ -41,10 +41,8 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.getStoragePermStatus
-import org.robok.engine.core.utils.requestAllFilesAccessPermission
-import org.robok.engine.core.utils.requestReadWritePermissions
+import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable
@@ -81,34 +79,11 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       PreferenceGroup {
         PreferenceSwitch(
           checked = permissionStatus,
-          onCheckedChange = {
-            requestStoragePermission(
-              activity = activity!!,
-              listener =
-                getPermissionListener(
-                  onReceived = { permissionStatus = getStoragePermStatus(activity) }
-                ),
-            )
-          },
+          onCheckedChange = { (activity as? BaseComposeActivity)?.requestStoragePermission() },
           label = stringResource(id = Strings.setup_permission_storage_title),
           description = stringResource(id = Strings.warning_storage_perm_message),
         )
       }
     }
-  }
-}
-
-private fun getPermissionListener(onReceived: (Boolean) -> Unit): PermissionListener {
-  return object : PermissionListener {
-    override fun onReceive(status: Boolean) = onReceived(status)
-  }
-}
-
-@Deprecated(message = "Deprecated. Use Compose Permission System", level = DeprecationLevel.WARNING)
-private fun requestStoragePermission(activity: Activity, listener: PermissionListener) {
-  if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    requestAllFilesAccessPermission(activity, listener)
-  } else {
-    requestReadWritePermissions(activity, listener)
   }
 }
