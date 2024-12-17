@@ -17,8 +17,6 @@ package org.robok.engine.core.utils
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-package org.robok.engine.core.utils
-
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
