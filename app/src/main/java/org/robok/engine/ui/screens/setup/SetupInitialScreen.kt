@@ -31,6 +31,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
@@ -50,18 +51,21 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
       BottomButtons(
         modifier = Modifier
           .fillMaxWidth()
-          .padding(8.dp),
+          .padding(16.dp),
         isFirstStep = true,
         onNext = onNext,
         onBack = onBack,
       )
     }
   ) { innerPadding ->
-    Welcome(
-      modifier = Modifier.padding(innerPadding)
-        .padding(horizontal = 40.dp)
-        .padding(bottom = 24.dp)
-    )
+    Box(modifier = Modifier.padding(innerPadding)) {
+      Welcome(
+        modifier = Modifier
+          .align(Alignment.BottomCenter)
+          .padding(horizontal = 40.dp)
+          .padding(bottom = 24.dp)
+      )
+    }
   }
 }
 
