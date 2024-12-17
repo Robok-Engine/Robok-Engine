@@ -199,6 +199,9 @@
 
   <!-- setup section -->
   <string name="setup_welcome_title">Welcome to Robok</string>
-  <string name="setup_welcome_message">Robok is a Game Engine that lets your create amazing 3D games!</string>
+  <string name="setup_welcome_description">Robok is a Game Engine that lets your create amazing 3D games!</string>
+  <string name="setup_permission_storage_title">Storage permission</string>
+  <string name="setup_permission_storage_description">Robok needs storage permission to create projects, open projects, and more.</string>
+  <string name="setup_permission_not_granted">Grant all permissions to continue</string>
   <!-- end section -->
 </resources>

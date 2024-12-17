@@ -84,7 +84,7 @@ fun Welcome(modifier: Modifier = Modifier) {
     )
     Spacer(modifier = Modifier.height(24.dp))
     Text(
-      text = stringResource(id = Strings.setup_welcome_message),
+      text = stringResource(id = Strings.setup_welcome_description),
       fontSize = 19.sp,
       style = MaterialTheme.typography.bodyLarge,
       textAlign = TextAlign.Center
