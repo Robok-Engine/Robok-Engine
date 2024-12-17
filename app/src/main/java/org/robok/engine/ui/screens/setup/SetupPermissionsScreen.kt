@@ -48,8 +48,9 @@ import org.robok.engine.ui.screens.setup.components.BottomButtons
 @Composable
 fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val context = LocalContext.current
-  val activity = context as Activity
-  var permissionStatus by remember { mutableStateOf(getStoragePermStatus(activity)) }
+  val activity = context as BaseComposeActivity
+  val permissionsState = activity.permissionsState
+  var isStoragePermissionAllow by remember { mutableStateOf(permissionsState.isStoragePermissionAllow) }
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
 
@@ -60,7 +61,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         onNext = {
-          if (permissionStatus) {
+          if (isStoragePermissionAllow) {
             onNext()
           } else {
             coroutineScope.launch {
@@ -78,8 +79,10 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
       PreferenceGroup {
         PreferenceSwitch(
-          checked = permissionStatus,
-          onCheckedChange = { (activity as? BaseComposeActivity)?.requestStoragePermission() },
+          checked = isStoragePermissionAllow,
+          onCheckedChange = {
+            activity?.requestStoragePermission() 
+          },
           label = stringResource(id = Strings.setup_permission_storage_title),
           description = stringResource(id = Strings.warning_storage_perm_message),
         )

@@ -53,22 +53,27 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
   private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
   protected val database: DatabaseViewModel by lazy { getKoin().get() }
-
+  
+  var permissionsState by mutableStateOf<PermissionsState?>(null)
+  
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
       val granted = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()
+      permissionsState.isStoragePermissionAllow = allGranted
       onReceive(granted)
     }
 
   private val readWritePermissionLauncher =
     registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
       val allGranted = permissions.values.all { it }
+      permissionsState.isStoragePermissionAllow = allGranted
       onReceive(allGranted)
     }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
+    permissionsState = PermissionState(isStoragePermissionAllow = getStoragePermStatus(this))
     setContent { RobokTheme { Screen() } }
   }
 
@@ -147,5 +152,9 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     val dialogText: String,
     val onAllowClick: () -> Unit,
     val onDenyClick: () -> Unit,
+  )
+  
+  private data class PermissionsState(
+    var isStoragePermissionAllow: Boolean
   )
 }
