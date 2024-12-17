@@ -17,7 +17,7 @@ package org.robok.engine.ui.screens.setup
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Bundle
+import android.os.Build
 import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.layout.Column
