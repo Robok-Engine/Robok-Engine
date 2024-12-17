@@ -58,7 +58,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         onNext = {
           coroutineScope.launch {
             toastHostState.showToast(
-              message = context.getString(Strings.setup_permission_storage_not_granted),
+              message = context.getString(Strings.setup_permission_not_granted),
               icon = Icons.Rounded.Error,
             )
           }
