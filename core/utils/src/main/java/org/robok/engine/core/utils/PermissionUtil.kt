@@ -68,8 +68,10 @@ fun requestReadWritePermissions(activity: Activity, listener: PermissionListener
   }
 }
 
-fun getStoragePermStatus(activity: Activity): Boolean {
-  return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+fun getStoragePermStatus(activity: Activity?): Boolean {
+  return if (activity == null) {
+    false
+  } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
     Environment.isExternalStorageManager()
   } else {
     ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) ==

@@ -18,6 +18,7 @@ package org.robok.engine.ui.screens.setup
  */
 
 import android.os.Bundle
+import android.app.Activity
 import android.content.Context
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,7 +46,7 @@ import org.robok.engine.ui.screens.setup.components.BottomButtons
 @Composable
 fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val context = LocalContext.current
-  val permissionStatus by remember { mutableStateOf(getStoragePermStatus(context)) }
+  val permissionStatus by remember { mutableStateOf(getStoragePermStatus(context as Activity)) }
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
   
