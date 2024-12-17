@@ -68,8 +68,8 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
       Welcome(
         modifier = Modifier
           .align(Alignment.BottomCenter)
-          .padding(horizontal = 40.dp)
-          .padding(bottom = 24.dp)
+          .padding(horizontal = 35.dp)
+          .padding(bottom = 120.dp)
       )
     }
   }
