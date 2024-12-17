@@ -77,7 +77,10 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
 
 @Composable
 fun Welcome(modifier: Modifier = Modifier) {
-  Column(modifier = modifier) {
+  Column(
+    modifier = modifier,
+    horizontalAlignment = Alignment.CenterHorizontally
+  ) {
     Image(
       painter = painterResource(id = Drawables.ic_launcher),
       contentDescription = "App Icon",
