@@ -49,7 +49,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val context = LocalContext.current
-  val permissionStatus by remember { mutableStateOf(getStoragePermStatus(context as Activity)) }
+  val activity = context as Activity
+  val permissionStatus by remember { mutableStateOf(getStoragePermStatus(activity)) }
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
   
@@ -75,7 +76,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         PreferenceSwitch(
           checked = permissionStatus,
           onCheckedChange = {
-            requestStoragePermission(context)
+            requestStoragePermission(activity!!)
           },
           label = stringResource(id = Strings.setup_permission_storage_title),
           description = stringResource(id = Strings.setup_permission_storage_description)
@@ -89,10 +90,10 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   message = "Deprecated. Use Compose Permission System",
   level = DeprecationLevel.WARNING
 )
-private fun requestStoragePermission(context: Context) {
+private fun requestStoragePermission(activity: Activity) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    requestAllFilesAccessPermission(context, null)
+    requestAllFilesAccessPermission(activity, null)
   } else {
-    requestReadWritePermissions(context, null)
+    requestReadWritePermissions(activity, null)
   }
 }

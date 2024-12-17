@@ -31,7 +31,7 @@ interface PermissionListener {
   fun onReceive(status: Boolean)
 }
 
-fun requestAllFilesAccessPermission(activity: Activity, listener: PermissionListener) {
+fun requestAllFilesAccessPermission(activity: Activity, listener: PermissionListener?) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
     if (!Environment.isExternalStorageManager()) {
       val intent =
@@ -40,14 +40,14 @@ fun requestAllFilesAccessPermission(activity: Activity, listener: PermissionList
         }
       activity.startActivityForResult(intent, REQUEST_CODE_ALL_FILES_ACCESS_PERMISSION)
     } else {
-      listener.onReceive(true)
+      listener?.onReceive(true)
     }
   } else {
-    listener.onReceive(true)
+    listener?.onReceive(true)
   }
 }
 
-fun requestReadWritePermissions(activity: Activity, listener: PermissionListener) {
+fun requestReadWritePermissions(activity: Activity, listener: PermissionListener?) {
   if (
     ContextCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE) !=
       PackageManager.PERMISSION_GRANTED ||
@@ -64,7 +64,7 @@ fun requestReadWritePermissions(activity: Activity, listener: PermissionListener
       REQUEST_CODE_READ_WRITE_PERMISSIONS,
     )
   } else {
-    listener.onReceive(true)
+    listener?.onReceive(true)
   }
 }
 
@@ -87,21 +87,21 @@ const val REQUEST_CODE_ALL_FILES_ACCESS_PERMISSION = 1002
 fun handlePermissionsResult(
   requestCode: Int,
   grantResults: IntArray,
-  listener: PermissionListener,
+  listener: PermissionListener? = null,
 ) {
   when (requestCode) {
     REQUEST_CODE_READ_WRITE_PERMISSIONS -> {
       val allPermissionsGranted =
         grantResults.isNotEmpty() && grantResults.all { it == PackageManager.PERMISSION_GRANTED }
-      listener.onReceive(allPermissionsGranted)
+      listener?.onReceive(allPermissionsGranted)
     }
     REQUEST_CODE_ALL_FILES_ACCESS_PERMISSION -> {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-        listener.onReceive(Environment.isExternalStorageManager())
+        listener?.onReceive(Environment.isExternalStorageManager())
       }
     }
     else -> {
-      listener.onReceive(false)
+      listener?.onReceive(false)
     }
   }
 }
