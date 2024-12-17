@@ -46,13 +46,13 @@ import org.robok.engine.Strings
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable
-fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
+fun SetupWelcomeScreen(onBack: () -> Unit, onNext: () -> Unit) {
   BackHandler { onBack() }
   Scaffold(
     bottomBar = {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
-        isFirstStep = true,
+        isWelcome = true,
         onNext = onNext,
         onBack = onBack,
       )

@@ -30,7 +30,7 @@ import org.robok.engine.Strings
 @Composable
 fun BottomButtons(
   modifier: Modifier = Modifier,
-  isFirstStep: Boolean = false,
+  isWelcome: Boolean = false,
   onBack: () -> Unit,
   onNext: () -> Unit,
 ) {
@@ -39,7 +39,7 @@ fun BottomButtons(
       Text(
         text =
           stringResource(
-            id = if (isFirstStep) Strings.common_word_exit else Strings.common_word_back
+            id = if (isWelcome) Strings.common_word_exit else Strings.common_word_back
           )
       )
     }

@@ -28,16 +28,16 @@ import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupDevelopmentEnvironmentRoute
-import org.robok.engine.routes.SetupInitialRoute
+import org.robok.engine.routes.SetupWelcomeRoute
 import org.robok.engine.routes.SetupPermissionsRoute
 import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
-import org.robok.engine.ui.screens.setup.SetupInitialScreen
+import org.robok.engine.ui.screens.setup.SetupWelcomeScreen
 import org.robok.engine.ui.screens.setup.SetupPermissionsScreen
 
 fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
-  composable<SetupInitialRoute> {
+  composable<SetupWelcomeRoute> {
     val activity = LocalContext.current as? Activity
-    SetupInitialScreen(
+    SetupWelcomeScreen(
       onBack = { activity?.let { it.finish() } },
       onNext = { navController.navigateSingleTop(SetupPermissionsRoute) },
     )

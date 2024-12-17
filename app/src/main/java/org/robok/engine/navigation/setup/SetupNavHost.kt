@@ -20,7 +20,7 @@ package org.robok.engine.navigation.setup
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import org.robok.engine.platform.LocalSetupNavController
-import org.robok.engine.routes.SetupInitialRoute
+import org.robok.engine.routes.SetupWelcomeRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
 
 @Composable
@@ -29,7 +29,7 @@ fun SetupNavHost() {
 
   NavHost(
     navController = navController,
-    startDestination = SetupInitialRoute,
+    startDestination = SetupWelcomeRoute,
     enterTransition = { NavigationAnimationTransitions.enterTransition },
     exitTransition = { NavigationAnimationTransitions.exitTransition },
     popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
