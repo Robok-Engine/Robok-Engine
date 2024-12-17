@@ -23,7 +23,7 @@ import androidx.navigation.compose.composable
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
@@ -34,10 +34,10 @@ fun MainNavHost() {
   NavHost(
     navController = navController,
     startDestination = HomeRoute,
-    enterTransition = { NavigationAnimationTransitions.enterTransition },
-    exitTransition = { NavigationAnimationTransitions.exitTransition },
-    popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
-    popExitTransition = { NavigationAnimationTransitions.popExitTransition },
+    enterTransition = { FadeSlide.enterTransition },
+    exitTransition = { FadeSlide.exitTransition },
+    popEnterTransition = { FadeSlide.popEnterTransition },
+    popExitTransition = { FadeSlide.popExitTransition },
   ) {
     composable<HomeRoute> { HomeScreen() }
 

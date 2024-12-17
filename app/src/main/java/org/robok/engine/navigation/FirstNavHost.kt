@@ -28,7 +28,7 @@ import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.platform.LocalSetupNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 
 @Composable
 fun FirstNavHost() {
@@ -37,10 +37,10 @@ fun FirstNavHost() {
   NavHost(
     navController = navController,
     startDestination = MainRoute,
-    enterTransition = { NavigationAnimationTransitions.enterTransition },
-    exitTransition = { NavigationAnimationTransitions.exitTransition },
-    popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
-    popExitTransition = { NavigationAnimationTransitions.popExitTransition },
+    enterTransition = { FadeSlide.enterTransition },
+    exitTransition = { FadeSlide.exitTransition },
+    popEnterTransition = { FadeSlide.popEnterTransition },
+    popExitTransition = { FadeSlide.popExitTransition },
   ) {
     composable<MainRoute> {
       CompositionLocalProvider(LocalMainNavController provides rememberNavController()) {
