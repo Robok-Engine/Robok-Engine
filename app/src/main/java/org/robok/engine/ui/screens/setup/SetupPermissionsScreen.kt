@@ -50,10 +50,9 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val context = LocalContext.current
   val activity = context as BaseComposeActivity
   val permissionsState = activity.permissionsState
-  var isStoragePermissionAllow by remember { mutableStateOf(permissionsState.isStoragePermissionAllow) }
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
-
+  
   Screen(
     label = stringResource(id = Strings.text_permissions),
     backArrowVisible = false,
@@ -79,7 +78,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
     Column(modifier = Modifier.fillMaxSize()) {
       PreferenceGroup {
         PreferenceSwitch(
-          checked = isStoragePermissionAllow,
+          checked = permissionsState.isStoragePermissionAllow,
           onCheckedChange = {
             activity?.requestStoragePermission() 
           },
