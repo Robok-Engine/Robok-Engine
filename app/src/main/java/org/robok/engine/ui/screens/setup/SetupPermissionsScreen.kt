@@ -43,6 +43,7 @@ import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
+import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 import kotlinx.coroutines.launch
 
@@ -54,18 +55,22 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
   
-  Scaffold(
+  Screen(
+    label = stringResource(id = Strings.text_permissions),
     bottomBar = {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         onNext = {
-          coroutineScope.launch {
-            toastHostState.showToast(
-              message = context.getString(Strings.setup_permission_not_granted),
-              icon = Icons.Rounded.Error,
-            )
+          if (permissionStatus) {
+            onNext()
+          } else {
+            coroutineScope.launch {
+              toastHostState.showToast(
+                message = context.getString(Strings.setup_permission_not_granted),
+                icon = Icons.Rounded.Error,
+              )
+            }
           }
-          if (permissionStatus) onNext()
         },
         onBack = onBack,
       )
@@ -76,13 +81,26 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         PreferenceSwitch(
           checked = permissionStatus,
           onCheckedChange = {
-            requestStoragePermission(activity!!)
+            requestStoragePermission(
+              activity = activity!!,
+              listener = getPermissionListener(
+                onReceived = {
+                  permissionStatus = getStoragePermStatus(activity)
+                }
+              )
+            )
           },
           label = stringResource(id = Strings.setup_permission_storage_title),
-          description = stringResource(id = Strings.setup_permission_storage_description)
+          description = stringResource(id = Strings.warning_storage_perm_message)
         )
       }
     }
+  }
+}
+
+private fun getPermissionListener(onReceived: (Boolean) -> Unit): PermissionListener {
+  return object : PermissionListener {
+    override fun onReceive(status: Boolean) = onReceived(status)
   }
 }
 
@@ -90,10 +108,10 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   message = "Deprecated. Use Compose Permission System",
   level = DeprecationLevel.WARNING
 )
-private fun requestStoragePermission(activity: Activity) {
+private fun requestStoragePermission(activity: Activity, listener: PermissionListener) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
-    requestAllFilesAccessPermission(activity, null)
+    requestAllFilesAccessPermission(activity, listener)
   } else {
-    requestReadWritePermissions(activity, null)
+    requestReadWritePermissions(activity, listener)
   }
 }

@@ -149,6 +149,7 @@
   <string name="text_exit_without_save">Exit without Save</string>
   <string name="text_logging">Logging</string>
   <string name="text_all_logs">All Logs</string>
+  <string name="text_permissions">Permissions</string>
   <!-- end section -->
 
   <!-- warnings section -->
@@ -201,7 +202,6 @@
   <string name="setup_welcome_title">Welcome to Robok</string>
   <string name="setup_welcome_description">Robok is a Game Engine that lets your create amazing 3D games!</string>
   <string name="setup_permission_storage_title">Storage permission</string>
-  <string name="setup_permission_storage_description">Robok needs storage permission to create projects, open projects, and more.</string>
   <string name="setup_permission_not_granted">Grant all permissions to continue</string>
   <!-- end section -->
 </resources>
