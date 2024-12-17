@@ -32,7 +32,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringResource
-import org.koin.androidx.compose.koinViewModel
+import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.components.dialog.permission.PermissionDialog
@@ -49,7 +49,7 @@ import org.robok.engine.ui.theme.RobokTheme
 abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
   private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
-  protected val database: DatabaseViewModel by lazy { initializeDatabase() }
+  protected val database: DatabaseViewModel by lazy { getKoin().get() }
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -94,8 +94,6 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
       StoragePermissionDialog(it)
     }
   }
-
-  @Composable private fun initializeDatabase(): DatabaseViewModel = koinViewModel()
 
   @Composable
   private fun StoragePermissionDialog(state: PermissionDialogState) {
