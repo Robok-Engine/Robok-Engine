@@ -38,6 +38,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import org.robok.engine.Drawables
@@ -86,6 +87,7 @@ fun Welcome(modifier: Modifier = Modifier) {
       text = stringResource(id = Strings.setup_welcome_message),
       fontSize = 19.sp,
       style = MaterialTheme.typography.bodyLarge,
+      textAlign = TextAlign.Center
     )
   }
 }
