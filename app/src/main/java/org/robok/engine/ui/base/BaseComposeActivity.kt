@@ -59,7 +59,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
       val granted = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()
-      permissionsState.isStoragePermissionAllow = allGranted
+      permissionsState.isStoragePermissionAllow = granted
       onReceive(granted)
     }
 
