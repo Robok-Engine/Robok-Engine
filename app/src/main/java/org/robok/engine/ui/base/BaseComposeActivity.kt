@@ -29,6 +29,8 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.database.DefaultValues
@@ -73,14 +75,17 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
   @Composable
   private fun HandlePermissions() {
-    val hasPermission by remember {
+    var hasPermission by remember {
       mutableStateOf(getStoragePermStatus(this)) 
     }
     LaunchedEffect(hasPermission) {
-      if (!hasPermission) {
+      if (hasPermission.not()) {
         permissionDialogState = PermissionDialogState(
-          dialogText = stringResource(id = Strings.warning_all_files_perm_message),
-          onAllowClick = { requestStoragePermission(); hasPermission = true },
+          dialogText = getString(Strings.warning_all_files_perm_message),
+          onAllowClick = {
+            requestStoragePermission()
+            hasPermission = true
+          },
           onDenyClick = { finish() }
         )
       }
