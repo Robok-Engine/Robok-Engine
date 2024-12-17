@@ -38,9 +38,7 @@ fun BottomButtons(
     TextButton(onClick = onBack) {
       Text(
         text =
-          stringResource(
-            id = if (isWelcome) Strings.common_word_exit else Strings.common_word_back
-          )
+          stringResource(id = if (isWelcome) Strings.common_word_exit else Strings.common_word_back)
       )
     }
     Spacer(modifier = Modifier.weight(1f))

@@ -28,11 +28,11 @@ import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupDevelopmentEnvironmentRoute
-import org.robok.engine.routes.SetupWelcomeRoute
 import org.robok.engine.routes.SetupPermissionsRoute
+import org.robok.engine.routes.SetupWelcomeRoute
 import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
-import org.robok.engine.ui.screens.setup.SetupWelcomeScreen
 import org.robok.engine.ui.screens.setup.SetupPermissionsScreen
+import org.robok.engine.ui.screens.setup.SetupWelcomeScreen
 
 fun NavGraphBuilder.SetupRoutes(navController: NavHostController) {
   composable<SetupWelcomeRoute> {

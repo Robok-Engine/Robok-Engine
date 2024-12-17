@@ -67,10 +67,10 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
       ToastHost()
     }
   }
-  
+
   @Deprecated(
     message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING
+    level = DeprecationLevel.WARNING,
   )
   @Composable
   private fun HandlePermissions() {
@@ -90,10 +90,10 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     }
     permissionDialogState?.let { StoragePermissionDialog(it) }
   }
-  
+
   @Deprecated(
     message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING
+    level = DeprecationLevel.WARNING,
   )
   @Composable
   private fun StoragePermissionDialog(state: PermissionDialogState) {
@@ -111,10 +111,10 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
       onDismissRequest = { permissionDialogState = null },
     )
   }
-  
+
   @Deprecated(
     message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING
+    level = DeprecationLevel.WARNING,
   )
   private fun requestStoragePermission() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -123,10 +123,10 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
       requestReadWritePermissions(this, this)
     }
   }
-  
+
   @Deprecated(
     message = "Deprecated. Use Compose Permission System",
-    level = DeprecationLevel.WARNING
+    level = DeprecationLevel.WARNING,
   )
   override fun onReceive(status: Boolean) {
     if (status) {

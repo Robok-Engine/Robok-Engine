@@ -17,36 +17,34 @@ package org.robok.engine.ui.screens.setup
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.os.Build
 import android.app.Activity
-import android.content.Context
+import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Error
-import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import kotlinx.coroutines.launch
 import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.toast.LocalToastHostState
+import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
-import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.ui.screens.setup.components.BottomButtons
-import kotlinx.coroutines.launch
 
 @Composable
 fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
@@ -55,7 +53,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   var permissionStatus by remember { mutableStateOf(getStoragePermStatus(activity)) }
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
-  
+
   Screen(
     label = stringResource(id = Strings.text_permissions),
     bottomBar = {
@@ -75,7 +73,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         },
         onBack = onBack,
       )
-    }
+    },
   ) { innerPadding ->
     Column(modifier = Modifier.padding(innerPadding)) {
       PreferenceGroup {
@@ -84,15 +82,14 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
           onCheckedChange = {
             requestStoragePermission(
               activity = activity!!,
-              listener = getPermissionListener(
-                onReceived = {
-                  permissionStatus = getStoragePermStatus(activity)
-                }
-              )
+              listener =
+                getPermissionListener(
+                  onReceived = { permissionStatus = getStoragePermStatus(activity) }
+                ),
             )
           },
           label = stringResource(id = Strings.setup_permission_storage_title),
-          description = stringResource(id = Strings.warning_storage_perm_message)
+          description = stringResource(id = Strings.warning_storage_perm_message),
         )
       }
     }
@@ -105,10 +102,7 @@ private fun getPermissionListener(onReceived: (Boolean) -> Unit): PermissionList
   }
 }
 
-@Deprecated(
-  message = "Deprecated. Use Compose Permission System",
-  level = DeprecationLevel.WARNING
-)
+@Deprecated(message = "Deprecated. Use Compose Permission System", level = DeprecationLevel.WARNING)
 private fun requestStoragePermission(activity: Activity, listener: PermissionListener) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
     requestAllFilesAccessPermission(activity, listener)
