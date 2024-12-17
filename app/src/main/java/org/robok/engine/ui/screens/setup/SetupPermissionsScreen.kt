@@ -41,6 +41,8 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.getStoragePermStatus
+import org.robok.engine.core.utils.requestAllFilesAccessPermission
+import org.robok.engine.core.utils.requestReadWritePermissions
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 import kotlinx.coroutines.launch
 
