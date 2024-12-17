@@ -20,6 +20,7 @@ package org.robok.engine.ui.screens.setup
 import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -56,6 +57,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
 
   Screen(
     label = stringResource(id = Strings.text_permissions),
+    backArrowVisible = false,
     bottomBar = {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
@@ -75,7 +77,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       )
     },
   ) { innerPadding ->
-    Column(modifier = Modifier.padding(innerPadding)) {
+    Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
       PreferenceGroup {
         PreferenceSwitch(
           checked = permissionStatus,
