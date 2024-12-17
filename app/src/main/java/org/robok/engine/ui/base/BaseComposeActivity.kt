@@ -25,20 +25,19 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Folder
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.setValue
-import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.ui.res.stringResource
+import androidx.compose.runtime.setValue
 import org.koin.android.ext.android.getKoin
-import org.robok.engine.core.database.DefaultValues
-import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.components.dialog.permission.PermissionDialog
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.components.toast.ToastHost
 import org.robok.engine.core.components.toast.rememberToastHostState
+import org.robok.engine.core.database.DefaultValues
+import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
@@ -54,11 +53,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     enableEdgeToEdge()
-    setContent {
-      RobokTheme {
-        Screen()
-      }
-    }
+    setContent { RobokTheme { Screen() } }
   }
 
   @Composable
@@ -75,24 +70,21 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
   @Composable
   private fun HandlePermissions() {
-    var hasPermission by remember {
-      mutableStateOf(getStoragePermStatus(this)) 
-    }
+    var hasPermission by remember { mutableStateOf(getStoragePermStatus(this)) }
     LaunchedEffect(hasPermission) {
       if (hasPermission.not()) {
-        permissionDialogState = PermissionDialogState(
-          dialogText = getString(Strings.warning_all_files_perm_message),
-          onAllowClick = {
-            requestStoragePermission()
-            hasPermission = true
-          },
-          onDenyClick = { finish() }
-        )
+        permissionDialogState =
+          PermissionDialogState(
+            dialogText = getString(Strings.warning_all_files_perm_message),
+            onAllowClick = {
+              requestStoragePermission()
+              hasPermission = true
+            },
+            onDenyClick = { finish() },
+          )
       }
     }
-    permissionDialogState?.let {
-      StoragePermissionDialog(it)
-    }
+    permissionDialogState?.let { StoragePermissionDialog(it) }
   }
 
   @Composable
@@ -126,20 +118,19 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     }
   }
 
-  @Composable
-  protected abstract fun onScreenCreated()
+  @Composable protected abstract fun onScreenCreated()
 
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     CompositionLocalProvider(
       LocalToastHostState provides rememberToastHostState(),
-      content = content
+      content = content,
     )
   }
-  
+
   private data class PermissionDialogState(
     val dialogText: String,
     val onAllowClick: () -> Unit,
-    val onDenyClick: () -> Unit
+    val onDenyClick: () -> Unit,
   )
 }
