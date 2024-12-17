@@ -17,8 +17,6 @@ package org.robok.engine.ui.screens.setup
  *   along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.app.Activity
-import android.os.Build
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -27,8 +25,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Error
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -41,7 +37,6 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
@@ -52,7 +47,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
   val permissionsState = activity.permissionsState
   val toastHostState = LocalToastHostState.current
   val coroutineScope = rememberCoroutineScope()
-  
+
   Screen(
     label = stringResource(id = Strings.text_permissions),
     backArrowVisible = false,
@@ -79,9 +74,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       PreferenceGroup {
         PreferenceSwitch(
           checked = permissionsState.isStoragePermissionAllow,
-          onCheckedChange = {
-            activity?.requestStoragePermission() 
-          },
+          onCheckedChange = { activity?.requestStoragePermission() },
           label = stringResource(id = Strings.setup_permission_storage_title),
           description = stringResource(id = Strings.warning_storage_perm_message),
         )

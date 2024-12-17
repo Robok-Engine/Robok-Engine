@@ -20,14 +20,13 @@ package org.robok.engine.core.utils
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.provider.Settings
-import android.net.Uri
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
-import androidx.core.app.ActivityCompat
-import android.content.pm.PackageManager
 
 interface PermissionListener {
   fun onReceive(status: Boolean)
@@ -36,21 +35,22 @@ interface PermissionListener {
 fun requestAllFilesAccessPermission(activity: Activity, launcher: ActivityResultLauncher<Intent>) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
     if (!Environment.isExternalStorageManager()) {
-      val intent = Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
-        data = Uri.parse("package:${activity.packageName}")
-      }
+      val intent =
+        Intent(Settings.ACTION_MANAGE_APP_ALL_FILES_ACCESS_PERMISSION).apply {
+          data = Uri.parse("package:${activity.packageName}")
+        }
       launcher.launch(intent)
     }
   }
 }
 
-fun requestReadWritePermissions(activity: Activity, launcher: ActivityResultLauncher<Array<String>>) {
+fun requestReadWritePermissions(
+  activity: Activity,
+  launcher: ActivityResultLauncher<Array<String>>,
+) {
   if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
     launcher.launch(
-      arrayOf(
-        Manifest.permission.READ_EXTERNAL_STORAGE,
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-      )
+      arrayOf(Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     )
   }
 }

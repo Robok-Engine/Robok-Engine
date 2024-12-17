@@ -20,10 +20,8 @@ package org.robok.engine.ui.base
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.content.Intent
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Folder
@@ -53,12 +51,13 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
 
   private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
   protected val database: DatabaseViewModel by lazy { getKoin().get() }
-  
+
   public var permissionsState by mutableStateOf<PermissionsState>(PermissionsState(false))
-  
+
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
-      val granted = Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()
+      val granted =
+        Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Environment.isExternalStorageManager()
       permissionsState.isStoragePermissionAllow = granted
       onReceive(granted)
     }
@@ -97,9 +96,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
         permissionDialogState =
           PermissionDialogState(
             dialogText = getString(Strings.warning_all_files_perm_message),
-            onAllowClick = {
-              requestStoragePermission()
-            },
+            onAllowClick = { requestStoragePermission() },
             onDenyClick = { finish() },
           )
       }
@@ -153,8 +150,6 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     val onAllowClick: () -> Unit,
     val onDenyClick: () -> Unit,
   )
-  
-  public data class PermissionsState(
-    var isStoragePermissionAllow: Boolean
-  )
+
+  public data class PermissionsState(var isStoragePermissionAllow: Boolean)
 }
