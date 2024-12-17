@@ -60,7 +60,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         onNext = {
-          if (isStoragePermissionAllow) {
+          if (permissionsState.isStoragePermissionAllow) {
             onNext()
           } else {
             coroutineScope.launch {
