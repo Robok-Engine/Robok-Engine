@@ -95,7 +95,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     }
   }
 
-  private fun initializeDatabase(): DatabaseViewModel = koinViewModel()
+  @Composable private fun initializeDatabase(): DatabaseViewModel = koinViewModel()
 
   @Composable
   private fun StoragePermissionDialog(state: PermissionDialogState) {
