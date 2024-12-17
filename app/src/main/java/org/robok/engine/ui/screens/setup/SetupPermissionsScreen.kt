@@ -77,7 +77,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
       )
     },
   ) { innerPadding ->
-    Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+    Column(modifier = Modifier.fillMaxSize()) {
       PreferenceGroup {
         PreferenceSwitch(
           checked = permissionStatus,
