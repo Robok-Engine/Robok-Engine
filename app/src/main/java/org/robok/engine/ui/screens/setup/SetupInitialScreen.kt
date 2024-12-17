@@ -22,6 +22,7 @@ import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -59,7 +60,11 @@ fun SetupInitialScreen(onBack: () -> Unit, onNext: () -> Unit) {
       )
     }
   ) { innerPadding ->
-    Box(modifier = Modifier.padding(innerPadding)) {
+    Box(
+      modifier = Modifier
+        .padding(innerPadding)
+        .fillMaxSize()
+    ) {
       Welcome(
         modifier = Modifier
           .align(Alignment.BottomCenter)
