@@ -87,7 +87,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
 
 @Deprecated(
   message = "Deprecated. Use Compose Permission System",
-  level = DeprecationLevel.HIDDEN
+  level = DeprecationLevel.WARNING
 )
 private fun requestStoragePermission(context: Context) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
