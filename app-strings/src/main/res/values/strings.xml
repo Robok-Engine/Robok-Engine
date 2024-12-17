@@ -150,6 +150,7 @@
   <string name="text_logging">Logging</string>
   <string name="text_all_logs">All Logs</string>
   <string name="text_permissions">Permissions</string>
+  <string name="text_environment">Environment</string>
   <!-- end section -->
 
   <!-- warnings section -->

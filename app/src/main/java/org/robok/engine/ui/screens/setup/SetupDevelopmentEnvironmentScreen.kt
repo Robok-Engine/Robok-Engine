@@ -18,11 +18,43 @@ package org.robok.engine.ui.screens.setup
  */
 
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import org.koin.androidx.compose.koinViewModel
+import org.robok.engine.Strings
+import org.robok.engine.core.components.Screen
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.screens.setup.components.BottomButtons
+import org.robok.engine.ui.screens.setup.viewmodel.SetupDevelopmentEnvironmentViewModel
 
 @Composable
 fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
-  Column {
-    // TODO
+  val viewModel = koinViewModel<SetupDevelopmentEnvironmentViewModel>()
+  val preferencesViewModel = koinViewModel<PreferencesViewModel>()
+  
+  Screen(
+    label = stringResource(id = Strings.text_environment),
+    backArrowVisible = false,
+    bottomBar = {
+      BottomButtons(
+        modifier = Modifier.fillMaxWidth().padding(16.dp),
+        onNext = {
+          // todo
+        },
+        onBack = onBack,
+      )
+    },
+  ) {
+    DynamicSelectTextField(
+      modifier = modifier,
+      selectedValue = version,
+      options = viewModel.versions,
+      label = stringResource(id = Strings.settings_configure_rdk_version),
+      onValueChangedEvent = { selectedVersion -> version = selectedVersion },
+    )
   }
 }
