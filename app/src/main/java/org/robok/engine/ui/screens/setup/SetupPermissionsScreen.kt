@@ -78,7 +78,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
             requestStoragePermission(context)
           },
           label = stringResource(id = Strings.setup_permission_storage_title),
-          description = stringResource(id = Strings.setup_permission_storage_message)
+          description = stringResource(id = Strings.setup_permission_storage_description)
         )
       }
     }
