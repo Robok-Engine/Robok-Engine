@@ -54,7 +54,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
   private var permissionDialogState by mutableStateOf<PermissionDialogState?>(null)
   protected val database: DatabaseViewModel by lazy { getKoin().get() }
   
-  var permissionsState by mutableStateOf<PermissionsState?>(null)
+  public var permissionsState by mutableStateOf<PermissionsState?>(null)
   
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -124,7 +124,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     )
   }
 
-  fun requestStoragePermission() {
+  public fun requestStoragePermission() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
       requestAllFilesAccessPermission(this, allFilesPermissionLauncher)
     } else {
@@ -154,7 +154,7 @@ abstract class BaseComposeActivity : BaseActivity(), PermissionListener {
     val onDenyClick: () -> Unit,
   )
   
-  private data class PermissionsState(
+  public data class PermissionsState(
     var isStoragePermissionAllow: Boolean
   )
 }
