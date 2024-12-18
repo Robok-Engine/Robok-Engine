@@ -20,8 +20,8 @@ package org.robok.engine.ui.screens.setup.state
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
 
 data class SetupDevelopmentEnvironmentUIState(
-  val isAndroidSDKDownloaded:, Boolean = false,
-  val isRobokSDKDownloaded:, Boolean = false
+  val isAndroidSDKDownloaded: Boolean = false,
+  val isRobokSDKDownloaded: Boolean = false,
   val androidSDKDownloadState: DownloadState = DownloadState.NotStarted,
   val robokSDKDownloadState: DownloadState = DownloadState.NotStarted
 )
