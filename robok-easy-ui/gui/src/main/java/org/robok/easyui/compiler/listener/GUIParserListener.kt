@@ -29,7 +29,7 @@ import org.robok.easyui.internal.AttributeDefaults
 class GUIParserListener(
   private val builder: GUIBuilder
 ): GUIBaseListener() {
-  private var componentName: String? = null
+  private var componentName: String = ""
      
   /** when finish the code */
   override fun exitGuiFile(context: GuiFileContext) {
