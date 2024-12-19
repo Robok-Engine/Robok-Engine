@@ -28,11 +28,11 @@ import org.robok.easyui.internal.AttributeDefaults
  
 class GUIParserListener(
   private val builder: GUIBuilder
-): GUIBaseListener {
+): GUIBaseListener() {
   private var componentName: String? = null
      
   /** when finish the code */
-  override fun exitGuiFile(context: GUIFileContext) {
+  override fun exitGuiFile(context: GuiFileContext) {
     builder.finish()
     super.exitGuiFile(context)
   }
@@ -44,7 +44,7 @@ class GUIParserListener(
    */
   override fun enterComponent(context: ComponentContext) {
     componentName = context.IDENTIFIER().text
-    builder.runMethod(context)
+    builder.runMethod(componentName)
   }
   
   /**
@@ -82,11 +82,11 @@ class GUIParserListener(
     var value = getAttributeValue(context)
 
     if (value.startsWith("\"") && value.endsWith("\"")) {
-      value = value.substring(1, value.length() - 1)
+      value = value.substring(1, value.length - 1)
     }
 
     if (value.contains("\\\"")) {
-      value = value.replaceAll("\\\"", "&quot;")
+      value = value.replace("\\\"", "&quot;")
     }
 
     builder.runMethodWithParameters(
