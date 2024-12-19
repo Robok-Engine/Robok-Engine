@@ -27,34 +27,67 @@ import androidx.compose.ui.unit.dp
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 import org.robok.engine.ui.screens.setup.viewmodel.SetupDevelopmentEnvironmentViewModel
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
-  val viewModel = koinViewModel<SetupDevelopmentEnvironmentViewModel>()
-  val preferencesViewModel = koinViewModel<PreferencesViewModel>()
-  
-  Screen(
-    label = stringResource(id = Strings.text_environment),
-    backArrowVisible = false,
-    bottomBar = {
-      BottomButtons(
-        modifier = Modifier.fillMaxWidth().padding(16.dp),
-        onNext = {
-          // todo
-        },
-        onBack = onBack,
-      )
-    },
-  ) {
-    DynamicSelectTextField(
-      modifier = modifier,
-      selectedValue = version,
-      options = viewModel.versions,
-      label = stringResource(id = Strings.settings_configure_rdk_version),
-      onValueChangedEvent = { selectedVersion -> version = selectedVersion },
+fun SetupDevelopmentEnvironmentScreen() {
+  val context = LocalContext.current
+  val viewModel = koinViewModel<SettingsRDKViewModel>()
+  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
+
+  val installedRDKVersion by
+    appPrefsViewModel.installedRDKVersion.collectAsState(
+      initial = DefaultValues.INSTALLED_RDK_VERSION
     )
+
+  var version by remember { mutableStateOf(installedRDKVersion) }
+
+  val zipUrl = "https://github.com/robok-engine/Robok-SDK/raw/dev/versions/$version/files.zip"
+  val downloadState = viewModel.downloadState
+
+  val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
+
+  Screen(label = stringResource(id = Strings.settings_configure_rdk_title)) {
+    PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
+      DynamicSelectTextField(
+        modifier = modifier,
+        selectedValue = version,
+        options = viewModel.versions,
+        label = stringResource(id = Strings.settings_configure_rdk_version),
+        onValueChangedEvent = { selectedVersion -> version = selectedVersion },
+      )
+      DownloadStateContent(
+        modifier = modifier,
+        downloadState = downloadState,
+        onSaveClick = {
+          appPrefsViewModel.setInstalledRDKVersion(version)
+          viewModel.startDownload(context, zipUrl, version)
+        },
+      )
+    }
+  }
+}
+
+@Composable
+private fun DownloadStateContent(
+  modifier: Modifier,
+  downloadState: DownloadState,
+  onSaveClick: () -> Unit,
+) {
+  when (downloadState) {
+    is DownloadState.NotStarted -> {
+      Button(modifier = modifier.fillMaxWidth(), onClick = onSaveClick) {
+        Text(text = stringResource(id = Strings.common_word_save))
+      }
+    }
+    is DownloadState.Loading -> CircularProgressIndicator(modifier = modifier)
+    is DownloadState.Success ->
+      Text(modifier = modifier, text = (downloadState as DownloadState.Success).message)
+    is DownloadState.Error ->
+      Text(modifier = modifier, text = (downloadState as DownloadState.Error).error)
   }
 }

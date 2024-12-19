@@ -44,15 +44,6 @@ class SetupDevelopmentEnvironmentViewModel: ViewModel() {
     )
   }
   
-  fun startRobokSDKDownload(context: Context, version: String) {
-    startDownload(
-      context = context,
-      zipUrl = Urls.ROBOK_SDK(version),
-      outputDir = File(context.filesDir, version),
-      state = uiState.robokSDKDownloadState
-    )
-  }
-  
   private fun startDownload(
     context: Context,
     zipUrl: String,
@@ -76,10 +67,5 @@ class SetupDevelopmentEnvironmentViewModel: ViewModel() {
   
   object Urls {
     const val ANDROID_SDK = "https://raw.githubusercontent.com/Robok-Engine/Robok-Libs/refs/heads/main/android.jar"
-    
-    @JvmStatic
-    fun ROBOK_SDK(version: String): String {
-      return "https://github.com/Robok-Engine/Robok-SDK/raw/dev/versions/$version/files.zip"
-    }
   }
 }
