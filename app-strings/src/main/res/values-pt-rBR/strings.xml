@@ -165,4 +165,13 @@
     <string name="settings_project_settings_game_main_screen_name">Nome da tela principal do jogo</string>
     <string name="settings_project_settings_tile">Configurações do projeto</string>
     <string name="settings_project_settings_game_name">Nome do Jogo</string>
+    <string name="text_permissions">Permissões</string>
+    <string name="setup_welcome_title">Bem vindo a Robok</string>
+    <string name="text_environment">Ambiente</string>
+    <string name="setup_development_environment_not_finish">Baixe os SDKs primeiro</string>
+    <string name="setup_welcome_description">Robok é um motor de jogo que permite criar jogos 3D incríveis!</string>
+    <string name="setup_permission_storage_title">Permissão de armazenamento</string>
+    <string name="common_word_exit">Sair</string>
+    <string name="setup_permission_not_granted">Conceda todas as permissões para continuar</string>
+    <string name="setup_development_environment_title">Ambiente de Desenvolvimento</string>
 </resources>
