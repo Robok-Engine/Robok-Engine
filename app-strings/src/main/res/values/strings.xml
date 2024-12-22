@@ -33,6 +33,7 @@
   <string name="common_word_open">Open</string>
   <string name="common_word_files">Files</string>
   <string name="common_word_basic">Basic</string>
+  <string name="common_word_exit">Exit</string>
   <!-- end section -->
 
   <!-- links section -->
@@ -148,6 +149,8 @@
   <string name="text_exit_without_save">Exit without Save</string>
   <string name="text_logging">Logging</string>
   <string name="text_all_logs">All Logs</string>
+  <string name="text_permissions">Permissions</string>
+  <string name="text_environment">Environment</string>
   <!-- end section -->
 
   <!-- warnings section -->
@@ -163,7 +166,7 @@
   <string name="warning_exit_project_message">Are you sure you want to exit the archive? (all files will be saved)</string>
   <string name="warning_no_logs">No logs.</string>
   <!-- end section -->
-  
+
   <!-- loading section -->
   <string name="loading_logs">Loading Logs...</string>
   <!-- end section -->
@@ -194,5 +197,14 @@
   <string name="role_developers">Developers</string>
   <string name="role_translator">Translator</string>
   <string name="role_translators">Translators</string>
+  <!-- end section -->
+
+  <!-- setup section -->
+  <string name="setup_welcome_title">Welcome to Robok</string>
+  <string name="setup_welcome_description">Robok is a Game Engine that lets your create amazing 3D games!</string>
+  <string name="setup_permission_storage_title">Storage permission</string>
+  <string name="setup_permission_not_granted">Grant all permissions to continue</string>
+  <string name="setup_development_environment_title">Development Environment</string>
+  <string name="setup_development_environment_not_finish">Donwload SDKs First</string>
   <!-- end section -->
 </resources>

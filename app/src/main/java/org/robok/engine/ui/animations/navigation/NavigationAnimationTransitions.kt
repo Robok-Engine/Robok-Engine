@@ -20,16 +20,41 @@ package org.robok.engine.ui.animations.navigation
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 
 object NavigationAnimationTransitions {
+  object ScaleFadeSlide {
+    val enterTransition =
+      scaleIn(animationSpec = tween(250), initialScale = 0.7f) +
+        fadeIn(animationSpec = tween(250)) +
+        slideInHorizontally { it / 2 }
 
-  val enterTransition = fadeIn(tween(250)) + slideInHorizontally { it / 2 }
+    val exitTransition =
+      scaleOut(animationSpec = tween(200), targetScale = 0.7f) +
+        fadeOut(animationSpec = tween(200)) +
+        slideOutHorizontally { -it / 2 }
 
-  val exitTransition = fadeOut(tween(200)) + slideOutHorizontally { -it / 2 }
+    val popEnterTransition =
+      scaleIn(animationSpec = tween(250), initialScale = 0.7f) +
+        fadeIn(animationSpec = tween(250)) +
+        slideInHorizontally { -it / 2 }
 
-  val popEnterTransition = fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
+    val popExitTransition =
+      scaleOut(animationSpec = tween(200), targetScale = 0.7f) +
+        fadeOut(animationSpec = tween(200)) +
+        slideOutHorizontally { it / 2 }
+  }
 
-  val popExitTransition = fadeOut(tween(200)) + slideOutHorizontally { it / 2 }
+  object FadeSlide {
+    val enterTransition = fadeIn(tween(250)) + slideInHorizontally { it / 2 }
+
+    val exitTransition = fadeOut(tween(200)) + slideOutHorizontally { -it / 2 }
+
+    val popEnterTransition = fadeIn(tween(250)) + slideInHorizontally { -it / 2 }
+
+    val popExitTransition = fadeOut(tween(200)) + slideOutHorizontally { it / 2 }
+  }
 }

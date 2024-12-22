@@ -146,6 +146,7 @@ dependencies {
   implementation(projects.feature.compiler)
   
   implementation(projects.core.settings)
+  implementation(projects.core.database)
   implementation(projects.core.components)
   implementation(projects.core.utils)
   implementation(projects.core.antlr4.java)

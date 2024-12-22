@@ -1,4 +1,4 @@
-package org.robok.engine.navigation
+package org.robok.engine.navigation.setup
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,26 +19,22 @@ package org.robok.engine.navigation
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import org.robok.engine.platform.LocalSetupNavController
-import org.robok.engine.routes.SetupInitialRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
-import org.robok.engine.ui.screens.setup.SetupInitialScreen
+import org.robok.engine.routes.SetupWelcomeRoute
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 
 @Composable
 fun SetupNavHost() {
   val navController = LocalSetupNavController.current
-  
+
   NavHost(
     navController = navController,
-    startDestination = SetupInitialRoute,
-    enterTransition = { NavigationAnimationTransitions.enterTransition },
-    exitTransition = { NavigationAnimationTransitions.exitTransition },
-    popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
-    popExitTransition = { NavigationAnimationTransitions.popExitTransition },
+    startDestination = SetupWelcomeRoute,
+    enterTransition = { FadeSlide.enterTransition },
+    exitTransition = { FadeSlide.exitTransition },
+    popEnterTransition = { FadeSlide.popEnterTransition },
+    popExitTransition = { FadeSlide.popExitTransition },
   ) {
-    composable<SetupInitialRoute> {
-        SetupInitialScreen()
-    }
+    SetupRoutes(navController = navController)
   }
 }

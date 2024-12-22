@@ -18,30 +18,39 @@ package org.robok.engine.navigation
  */
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import org.robok.engine.navigation.setup.SetupNavHost
 import org.robok.engine.platform.LocalFirstNavController
+import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.platform.LocalSetupNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 
 @Composable
 fun FirstNavHost() {
   val navController = LocalFirstNavController.current
-  
+
   NavHost(
     navController = navController,
     startDestination = MainRoute,
-    enterTransition = { NavigationAnimationTransitions.enterTransition },
-    exitTransition = { NavigationAnimationTransitions.exitTransition },
-    popEnterTransition = { NavigationAnimationTransitions.popEnterTransition },
-    popExitTransition = { NavigationAnimationTransitions.popExitTransition },
+    enterTransition = { FadeSlide.enterTransition },
+    exitTransition = { FadeSlide.exitTransition },
+    popEnterTransition = { FadeSlide.popEnterTransition },
+    popExitTransition = { FadeSlide.popExitTransition },
   ) {
     composable<MainRoute> {
-      MainNavHost()
+      CompositionLocalProvider(LocalMainNavController provides rememberNavController()) {
+        MainNavHost()
+      }
     }
     composable<SetupRoute> {
-      SetupNavHost()
+      CompositionLocalProvider(LocalSetupNavController provides rememberNavController()) {
+        SetupNavHost()
+      }
     }
   }
 }

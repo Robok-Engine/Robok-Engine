@@ -30,3 +30,5 @@ typealias Colors = org.robok.engine.R.color
 typealias Layouts = org.robok.engine.R.layout
 
 typealias Mipmaps = org.robok.engine.R.mipmap
+
+typealias Strings = org.robok.engine.strings.R.string

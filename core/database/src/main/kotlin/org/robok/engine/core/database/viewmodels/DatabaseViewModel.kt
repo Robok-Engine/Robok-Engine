@@ -1,4 +1,4 @@
-package org.robok.engine.ui.animations.navigation
+package org.robok.engine.core.database.viewmodels
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,7 +17,15 @@ package org.robok.engine.ui.animations.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-object NavigationAnimationValues {
-  const val SlideDistance: Int = 50
-  const val SlideDuration: Int = 400
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.launch
+import org.robok.engine.core.database.repositories.DatabaseRepository
+
+class DatabaseViewModel(private val repo: DatabaseRepository) : ViewModel() {
+  val isFirstTime = repo.isFirstTime
+
+  fun setIsFirstTime(value: Boolean) {
+    viewModelScope.launch { repo.setIsFirstTime(value) }
+  }
 }

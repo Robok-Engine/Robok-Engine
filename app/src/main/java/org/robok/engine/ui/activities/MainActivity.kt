@@ -22,11 +22,17 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import org.robok.engine.core.database.DefaultValues
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
-import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.platform.LocalFirstNavController
+import org.robok.engine.routes.SetupRoute
 import org.robok.engine.ui.base.BaseComposeActivity
 
 class MainActivity : BaseComposeActivity() {
@@ -34,16 +40,25 @@ class MainActivity : BaseComposeActivity() {
   @Composable
   override fun onScreenCreated() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
-      ProvideMainCompositionLocals { FirstNavHost() }
+      ProvideCompositionLocals {
+        val navController = LocalFirstNavController.current
+        val isFirstTime by
+          database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
+        SideEffect {
+          if (isFirstTime) {
+            navController.navigateSingleTop(SetupRoute)
+          }
+        }
+        FirstNavHost()
+      }
     }
   }
 
   @Composable
-  private fun ProvideMainCompositionLocals(content: @Composable () -> Unit) {
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     CompositionLocalProvider(
-      LocalMainNavController provides rememberNavController(),
       LocalFirstNavController provides rememberNavController(),
-      content = content
+      content = content,
     )
   }
 }
