@@ -41,9 +41,7 @@ class GUIBuilder(
   companion object {
     private const val TAG = "GUIBuilder"
   }
-
-  var attributeConverter: AttributeConverter? = null
-
+  
   private var orientation: String = "portrait"
   private var style: String = "defaultStyle"
   private var isConfigEnable = false
@@ -51,14 +49,9 @@ class GUIBuilder(
 
   init {
     components.rootView()
-    attributeConverter = AttributeConverter()
   }
 
-  fun newLog(log: String) {
-    if (codeComments) components.xmlCodeList.newLine(log)
-  }
-
-  fun closeBlockComponent() {
+  public fun closeBlockComponent() {
     if (isConfigEnable) {
       isConfigEnable = false
       return
@@ -92,7 +85,7 @@ class GUIBuilder(
     }
   }
 
-  fun closeBlockLayout() {
+  public fun closeBlockLayout() {
     if (components.closingTagLayoutList.isNotEmpty()) {
       val tags = components.closingTagLayoutList.last().split(":")
 
@@ -114,7 +107,7 @@ class GUIBuilder(
     }
   }
 
-  fun runMethod(methodName: String) {
+  public fun runMethod(methodName: String) {
     try {
       val method = Components::class.java.getDeclaredMethod(methodName)
       method.invoke(components)
@@ -123,7 +116,7 @@ class GUIBuilder(
     }
   }
 
-  fun runMethodWithParameters(methodName: String, vararg args: Any?) {
+  public fun runMethodWithParameters(methodName: String, vararg args: Any?) {
     try {
       val parameterTypes = args.map { it?.javaClass }.toTypedArray()
       val method = this::class.java.getDeclaredMethod(methodName, *parameterTypes)
@@ -139,7 +132,7 @@ class GUIBuilder(
     }
   }
 
-  fun addAttribute(methodName: String, key: String, value: String) {
+  public fun addAttribute(methodName: String, key: String, value: String) {
     var containsCloseTag = false
     var containsSingleCloseTag = false
     var attribute = ""
@@ -169,7 +162,7 @@ class GUIBuilder(
     }
 
     components.indentLevel++
-    val attributeConverted = attributeConverter?.convert(key)
+    val attributeConverted = AttributeConverter.convert(key)
     if (!key.equals("id")) {
       components.xmlCodeList.newLineBroken(
         components.indent + attributeConverted + "=" + "\"$value\""
@@ -190,16 +183,18 @@ class GUIBuilder(
       components.xmlCodeList.newLineBroken(">")
     }
   }
+  
+  public fun newLog(log: String) {
+    if (codeComments) components.xmlCodeList.newLine(log)
+  }
 
-  fun buildXML(): String {
+  public fun buildXML(): String {
     var codes: StringBuilder = StringBuilder()
-
     components.xmlCodeList.forEach { codes.append(it) }
-
     return codes.toString()
   }
 
-  fun finish() {
+  public fun finish() {
     components.indentLevel--
     components.indentLevel--
     if (codeComments) components.xmlCodeList.newLineBroken(comment("Closing Root Layout"))
