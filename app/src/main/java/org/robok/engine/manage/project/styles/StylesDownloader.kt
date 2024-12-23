@@ -22,7 +22,7 @@ import java.io.File
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.ZipDownloader
 
 class StylesDownloader(
@@ -48,7 +48,7 @@ class StylesDownloader(
       zipDownloader.downloadAndExtractZip(zipUrl, File(outputDir))
       true
     } catch (e: Exception) {
-      RobokLog.e("StylesDownloader", "Error trying to download and extract ZIP file: ${e.message}")
+      Log.e("StylesDownloader", "Error trying to download and extract ZIP file: ${e.message}")
       false
     }
   }

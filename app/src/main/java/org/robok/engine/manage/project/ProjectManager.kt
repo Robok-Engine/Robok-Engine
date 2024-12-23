@@ -39,7 +39,7 @@ import org.robok.engine.RobokApplication
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
 import org.robok.engine.feature.compiler.android.CompilerTask
@@ -149,7 +149,7 @@ class ProjectManager(private var context: Context) {
         add("example_string", "any value")
         regenerate()
       }
-    RobokLog.d(TAG, stringsFile.code)
+    Log.d(TAG, stringsFile.code)
     FileUtil.writeFile(
       "${projectPath.absolutePath}/game/assets/texts/strings.xml",
       stringsFile.code,
@@ -287,7 +287,7 @@ class ProjectManager(private var context: Context) {
       FileUtil.copyFile("${projectPath}/${config.gameIconPath}", destPath)
       return
     }
-    RobokLog.e(TAG, "gameIconPath is null")
+    Log.e(TAG, "gameIconPath is null")
   }
 
   fun writeToProjectSettings(buildConfig: ProjectSettings) {

@@ -23,7 +23,6 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
-import android.util.Log
 import android.util.SparseArray
 import android.view.View
 import android.widget.Toast
@@ -47,6 +46,7 @@ import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
+import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.UniqueNameBuilder
 import org.robok.engine.databinding.ActivityEditorBinding
 import org.robok.engine.feature.compiler.android.CompilerTask

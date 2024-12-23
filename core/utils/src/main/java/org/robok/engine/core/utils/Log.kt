@@ -17,30 +17,30 @@ package org.robok.engine.core.utils
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.util.Log
+import android.util.Log as AndroidLog
 
-object RobokLog {
+object Log {
   private val logs: MutableList<String> = mutableListOf()
 
   @JvmStatic
-  fun d(tag: String = "RobokLog", message: String) {
+  fun d(tag: String = "Robok", message: String) {
     val logMessage = "DEBUG: [$tag] $message"
     logs.add(logMessage)
-    Log.d(tag, message)
+    AndroidLog.d(tag, message)
   }
 
   @JvmStatic
-  fun e(tag: String = "RobokLog", message: String) {
+  fun e(tag: String = "Robok", message: String) {
     val logMessage = "ERROR: [$tag] $message"
     logs.add(logMessage)
-    Log.e(tag, message)
+    AndroidLog.e(tag, message)
   }
 
   @JvmStatic
-  fun i(tag: String = "RobokLog", message: String) {
+  fun i(tag: String = "Robok", message: String) {
     val logMessage = "INFO: [$tag] $message"
     logs.add(logMessage)
-    Log.i(tag, message)
+    AndroidLog.i(tag, message)
   }
 
   @JvmStatic fun getLogs(): List<String> = logs

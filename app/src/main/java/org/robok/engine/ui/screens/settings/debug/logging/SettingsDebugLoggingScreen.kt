@@ -39,7 +39,7 @@ import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
-import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.core.utils.Log
 import org.robok.engine.strings.Strings
 
 @Composable
@@ -49,7 +49,7 @@ fun SettingsDebugLoggingScreen() {
 
   LaunchedEffect(Unit) {
     try {
-      val retrievedLogs = RobokLog.getLogs()
+      val retrievedLogs = Log.getLogs()
       logs = retrievedLogs
       isLoading = false
     } catch (e: Exception) {

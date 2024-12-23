@@ -23,7 +23,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
-import org.robok.engine.core.utils.RobokLog
+import org.robok.engine.core.utils.Log
 
 class SettingsRDKRepository(val client: HttpClient) {
 
@@ -42,7 +42,7 @@ class SettingsRDKRepository(val client: HttpClient) {
         emptyList()
       }
     } catch (e: Exception) {
-      RobokLog.e(message = e.toString())
+      Log.e(message = e.toString())
       emptyList()
     }
   }
