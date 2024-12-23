@@ -78,7 +78,7 @@
     <string name="settings_app_use_monet_title">Динамічні кольори</string>
     <string name="warning_project_installer_not_found">Встановлювач пакетів не знайдено.</string>
     <string name="settings_app_use_monet_description">Використовує тему пристрою в застосунку.</string>
-    <string name="title_un_error_ocurred">Виникла помилка</string>
+    <string name="title_un_error_ocurred">Сталася помилка</string>
     <string name="text_error_info">Інформація про помилку</string>
     <string name="common_word_close">Закрити</string>
     <string name="common_word_close_others">Закрити «Інше»</string>
@@ -135,4 +135,13 @@
     <string name="settings_project_settings_tile">Параметри проекту</string>
     <string name="settings_project_settings_game_icon_path">Шлях значка гри</string>
     <string name="settings_project_settings_game_main_screen_name">Головна назва гри</string>
+    <string name="common_word_exit">Вихід</string>
+    <string name="text_permissions">Дозволи</string>
+    <string name="setup_welcome_title">Ласкаво просимо до Robok</string>
+    <string name="setup_welcome_description">Robok — це ігровий движок, який дозволяє вам створювати дивовижні 3D-ігри!</string>
+    <string name="setup_permission_storage_title">Дозвіл на зберігання</string>
+    <string name="setup_permission_not_granted">Надайте всі дозволи, щоб продовжити</string>
+    <string name="setup_development_environment_title">Середовище розробки</string>
+    <string name="setup_development_environment_not_finish">Спочатку завантажте SDK</string>
+    <string name="text_environment">Навколишнє середовище</string>
 </resources>
