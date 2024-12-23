@@ -44,7 +44,7 @@ class MainActivity : BaseComposeActivity() {
       ProvideCompositionLocals {
         val navController = LocalFirstNavController.current
         val isFirstTime by
-          database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
+          database.isFirstTime.collectAsState(initial = true)
         LaunchedEffect(isFirstTime) {
           if (isFirstTime) {
             navController.navigateSingleTop(SetupRoute)
