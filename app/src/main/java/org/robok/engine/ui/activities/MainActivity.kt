@@ -22,7 +22,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
@@ -32,6 +32,7 @@ import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.platform.LocalFirstNavController
+import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupRoute
 import org.robok.engine.ui.base.BaseComposeActivity
 
@@ -44,9 +45,11 @@ class MainActivity : BaseComposeActivity() {
         val navController = LocalFirstNavController.current
         val isFirstTime by
           database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
-        SideEffect {
+        LaunchedEffect(isFirstTime) {
           if (isFirstTime) {
             navController.navigateSingleTop(SetupRoute)
+          } else {
+            navController.navigateSingleTop(MainRoute)
           }
         }
         FirstNavHost()
