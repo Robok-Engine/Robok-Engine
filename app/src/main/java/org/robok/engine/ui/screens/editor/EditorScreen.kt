@@ -71,7 +71,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
   Scaffold(
     topBar = {
       EditorToolbar(
-        uiState = editorViewModel.uiState,
+        editorViewModel = editorViewModel,
         onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
       )
     }
@@ -112,8 +112,9 @@ private fun NoOpenedFilesContent() {
 }
 
 @Composable
-private fun EditorToolbar(uiState: EditorUIState, onNavigationIconClick: () -> Unit = {}) {
+private fun EditorToolbar(editorViewModel: EditorViewModel, onNavigationIconClick: () -> Unit = {}) {
   var topBarState = rememberEditorTopBarState()
+  val uiState = editorViewModel.uiState
   topBarState =
     topBarState.copy(
       title = uiState.title,

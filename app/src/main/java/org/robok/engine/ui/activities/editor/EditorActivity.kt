@@ -86,7 +86,6 @@ class EditorActivity :
   private lateinit var projectManager: ProjectManager
   private lateinit var antlrListener: AntlrListener
   private lateinit var editorViewModel: EditorViewModel
-  private lateinit var buildTerminal: RecyclerViewBottomSheet
   private lateinit var projectInfoViewModel: ProjectInfoDrawerViewModel
   private lateinit var diagnosticViewModel: DiagnosticViewModel
 
@@ -168,7 +167,6 @@ class EditorActivity :
   override fun onTabUnselected(tab: TabLayout.Tab) {}
 
   override fun onCompileSuccess(signApk: File) {
-    buildTerminal.setCancelable(true)
     val apkUri: Uri =
       FileProvider.getUriForFile(this@EditorActivity, "${packageName}.provider", signApk)
     val intent =
@@ -189,7 +187,7 @@ class EditorActivity :
   }
 
   override fun onCompileError(error: String) {
-    buildTerminal.setCancelable(true)
+    
   }
 
   private fun configureScreen() {
@@ -203,10 +201,10 @@ class EditorActivity :
   }
 
   private fun configureButtons() {
-    buildTerminal = RecyclerViewBottomSheet(this)
+    
     binding.runButton.setOnClickListener {
       editorViewModel.saveAllFiles()
-      projectManager.build(buildTerminal, this)
+      projectManager.build(this)
     }
 
     binding.openFilesButton.setOnClickListener {
