@@ -55,7 +55,7 @@ fun MainNavHost() {
     composable<TerminalRoute> { TerminalScreen() }
 
     composable<EditorRoute> {
-      CompositionLocalProvider(LocalEditorFilesDrawerState provides rememberDrawerState(initial = DrawerValue.Closed)) {
+      CompositionLocalProvider(LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed)) {
         EditorScreen(pPath = SingleString.instance.value) 
       }
     }
