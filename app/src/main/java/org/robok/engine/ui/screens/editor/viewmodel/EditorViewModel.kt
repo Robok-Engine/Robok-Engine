@@ -108,7 +108,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   }
 
   override fun onCompileSuccess(signedApk: java.io.File) {
-    _buildState = BuildState.Success(signedApk)
+    _buildState = BuildState.Success(signedApk as File)
   }
 
   override fun onCompileError(error: String) {
