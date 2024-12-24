@@ -44,7 +44,6 @@ import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.Drawables
 import org.robok.engine.Ids
 import org.robok.engine.core.antlr4.java.AntlrListener
-import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.UniqueNameBuilder
@@ -186,9 +185,7 @@ class EditorActivity :
     }
   }
 
-  override fun onCompileError(error: String) {
-    
-  }
+  override fun onCompileError(error: String) {}
 
   private fun configureScreen() {
     configureToolbar()
@@ -201,10 +198,10 @@ class EditorActivity :
   }
 
   private fun configureButtons() {
-    
+
     binding.runButton.setOnClickListener {
       editorViewModel.saveAllFiles()
-      projectManager.build(result= this)
+      projectManager.build(result = this)
     }
 
     binding.openFilesButton.setOnClickListener {

@@ -55,7 +55,7 @@ fun MainNavHost() {
     composable<EditorRoute> {
       CompositionLocalProvider(
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
-        LocalEditorDrawerNavController provides rememberNavController()
+        LocalEditorDrawerNavController provides rememberNavController(),
       ) {
         EditorScreen(pPath = SingleString.instance.value)
       }

@@ -32,46 +32,50 @@ class Logger {
 
   fun e(tagg: String, message: String) {
     val tag = "" // "[$tagg]"
-    val messageSpan = SpannableString(message).apply {
-      setSpan(
-        ForegroundColorSpan(0xffff0000.toInt()),
-        0,
-        message.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-      )
-    }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff0000.toInt()),
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-    val tagSpan = SpannableString(tag).apply {
-      setSpan(
-        ForegroundColorSpan(0xffff0000.toInt()),
-        0,
-        tag.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-      )
-    }
+    val tagSpan =
+      SpannableString(tag).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff0000.toInt()),
+          0,
+          tag.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
     logs.add(Log(tagSpan, messageSpan))
   }
 
   fun w(tagg: String, message: String) {
     val tag = "" // "[$tagg]"
-    val messageSpan = SpannableString(message).apply {
-      setSpan(
-        ForegroundColorSpan(0xffff7043.toInt()),
-        0,
-        message.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-      )
-    }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()),
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-    val tagSpan = SpannableString(tag).apply {
-      setSpan(
-        ForegroundColorSpan(0xffff7043.toInt()),
-        0,
-        tag.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-      )
-    }
+    val tagSpan =
+      SpannableString(tag).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()),
+          0,
+          tag.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
     logs.add(Log(tagSpan, messageSpan))
   }

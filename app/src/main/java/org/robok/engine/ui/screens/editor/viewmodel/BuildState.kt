@@ -21,6 +21,8 @@ import java.io.File
 
 sealed class BuildState {
   object NotStarted : BuildState()
+
   data class Success(val file: File) : BuildState()
+
   data class Error(val error: String) : BuildState()
 }

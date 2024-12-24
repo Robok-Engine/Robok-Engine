@@ -51,7 +51,6 @@ import org.robok.engine.ui.screens.editor.appbar.EditorTopBarItem
 import org.robok.engine.ui.screens.editor.appbar.rememberEditorTopBarState
 import org.robok.engine.ui.screens.editor.drawer.EditorDrawer
 import org.robok.engine.ui.screens.editor.event.EditorEvent
-import org.robok.engine.ui.screens.editor.state.EditorUIState
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
@@ -129,7 +128,10 @@ private fun NoOpenedFilesContent() {
 }
 
 @Composable
-private fun EditorToolbar(editorViewModel: EditorViewModel, onNavigationIconClick: () -> Unit = {}) {
+private fun EditorToolbar(
+  editorViewModel: EditorViewModel,
+  onNavigationIconClick: () -> Unit = {},
+) {
   var topBarState = rememberEditorTopBarState()
   val uiState = editorViewModel.uiState
   topBarState =
@@ -143,31 +145,31 @@ private fun EditorToolbar(editorViewModel: EditorViewModel, onNavigationIconClic
             icon = Icons.Rounded.Undo,
             enabled = uiState.canUndo,
             visible = uiState.hasFileOpen,
-            onClick = { editorViewModel.undo() }
+            onClick = { editorViewModel.undo() },
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_redo),
             icon = Icons.Rounded.Redo,
             enabled = uiState.canRedo,
             visible = uiState.hasFileOpen,
-            onClick = { editorViewModel.redo() }
+            onClick = { editorViewModel.redo() },
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_run),
             icon = Icons.Rounded.PlayArrow,
-            onClick = { editorViewModel.run() }
+            onClick = { editorViewModel.run() },
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_save),
             icon = Icons.Rounded.Save,
             visible = uiState.hasFileOpen,
-            onClick = { editorViewModel.saveFile() }
+            onClick = { editorViewModel.saveFile() },
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_more),
             icon = Icons.AutoMirrored.Rounded.More,
             visible = uiState.hasFileOpen,
-            onClick = { editorViewModel.more() }
+            onClick = { editorViewModel.more() },
           ),
         ),
     )

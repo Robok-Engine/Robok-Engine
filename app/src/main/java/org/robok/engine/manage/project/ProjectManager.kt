@@ -36,7 +36,6 @@ import org.koin.android.ext.android.getKoin
 import org.robok.easyui.GUIBuilder
 import org.robok.easyui.compiler.GUICompiler
 import org.robok.engine.RobokApplication
-import org.robok.engine.core.components.dialog.sheet.list.RecyclerViewBottomSheet
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.Log
@@ -189,7 +188,7 @@ class ProjectManager(private var context: Context) {
 
   val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
-    
+
   fun build(buildLogger: Logger = Logger(), result: CompilerTask.OnCompileResult) {
     try {
       SystemLogPrinter.start(context, buildLogger)
