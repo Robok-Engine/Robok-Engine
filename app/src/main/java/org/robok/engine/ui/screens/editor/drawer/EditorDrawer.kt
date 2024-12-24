@@ -31,7 +31,7 @@ import org.robok.engine.ui.screens.editor.navigation.EditorDrawerNavHost
 
 @Composable
 fun EditorDrawer(
-  editorViewModel: EditorViewModel
+  editorViewModel: EditorViewModel,
   content: @Composable () -> Unit
 ) {
   val drawerState = LocalEditorFilesDrawerState.current
