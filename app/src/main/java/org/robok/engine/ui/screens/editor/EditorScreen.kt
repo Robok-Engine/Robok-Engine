@@ -92,7 +92,7 @@ private fun EditorFilesDrawer(viewModel: EditorViewModel) {
 }
 
 @Composable
-private fun EditorScreenContent(viewModel: EditorViewModel, drawerState: DrawerState) {
+private fun EditorScreenContent(viewModel: EditorViewModel) {
   val coroutineScope = rememberCoroutineScope()
   val drawerState = LocalEditorFilesDrawerState.current
   Scaffold(
