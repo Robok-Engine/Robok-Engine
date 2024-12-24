@@ -204,7 +204,7 @@ class EditorActivity :
     
     binding.runButton.setOnClickListener {
       editorViewModel.saveAllFiles()
-      projectManager.build(this)
+      projectManager.build(result= this)
     }
 
     binding.openFilesButton.setOnClickListener {
