@@ -120,7 +120,7 @@ private fun EditorScreenContent(viewModel: EditorViewModel) {
 }
 
 @Composable
-private fun EditorsTabs(viewModel: EditorViewModel) {
+private fun EditorTabs(viewModel: EditorViewModel) {
   //todo: tabs
 }
 
