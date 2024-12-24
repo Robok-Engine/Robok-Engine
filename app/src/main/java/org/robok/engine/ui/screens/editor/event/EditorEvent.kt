@@ -26,7 +26,7 @@ sealed interface EditorEvent {
 
   data class CloseFile(val index: Int) : EditorEvent
   
-  data object CloseOthers(val index: Int) : EditorEvent
+  data class CloseOthers(val index: Int) : EditorEvent
 
   data object CloseAll : EditorEvent
 
