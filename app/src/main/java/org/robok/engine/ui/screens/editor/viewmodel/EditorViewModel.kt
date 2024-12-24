@@ -42,8 +42,8 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     get() = _buildState
     
   private var _editorEvent by mutableStateOf<EditorEvent?>(null)
-  val editorEvent: EditorEvent
-    get() = _editorEvent!!
+  val editorEvent: EditorEvent?
+    get() = _editorEvent
   
   private var logger = Logger()
 

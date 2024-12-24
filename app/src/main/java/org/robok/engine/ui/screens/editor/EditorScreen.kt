@@ -79,16 +79,18 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
     }
   ) { innerPadding ->
     LaunchedEffect(editorViewModel.editorEvent) {
-      when (editorViewModel.editorEvent) {
-        is EditorEvent.OpenFile -> TODO("OPEN FILE NOT IMPLEMENTED")
-        is EditorEvent.CloseFile -> TODO("CLOSE FILE NOT IMPLEMENTED")
-        is EditorEvent.CloseOthers -> TODO("CLOSE OTHERS NOT IMPLEMENTED")
-        is EditorEvent.CloseAll -> TODO("CLOSE ALL NOT IMPLEMENTED")
-        is EditorEvent.SaveFile -> TODO("SAVE NOT IMPLEMENTED")
-        is EditorEvent.SaveAllFiles -> TODO("SAVE ALL NOT IMPLEMENTED")
-        is EditorEvent.Undo -> TODO("UNDO NOT IMPLEMENTED")
-        is EditorEvent.Redo -> TODO("REDO NOT IMPLEMENTED")
-        is EditorEvent.More -> TODO("MORE NOT IMPLEMENTED")
+      editorViewModel.editorEvent?.let { event ->
+        when (event) {
+          is EditorEvent.OpenFile -> TODO("OPEN FILE NOT IMPLEMENTED")
+          is EditorEvent.CloseFile -> TODO("CLOSE FILE NOT IMPLEMENTED")
+          is EditorEvent.CloseOthers -> TODO("CLOSE OTHERS NOT IMPLEMENTED")
+          is EditorEvent.CloseAll -> TODO("CLOSE ALL NOT IMPLEMENTED")
+          is EditorEvent.SaveFile -> TODO("SAVE NOT IMPLEMENTED")
+          is EditorEvent.SaveAllFiles -> TODO("SAVE ALL NOT IMPLEMENTED")
+          is EditorEvent.Undo -> TODO("UNDO NOT IMPLEMENTED")
+          is EditorEvent.Redo -> TODO("REDO NOT IMPLEMENTED")
+          is EditorEvent.More -> TODO("MORE NOT IMPLEMENTED")
+        }
       }
     }
     Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
