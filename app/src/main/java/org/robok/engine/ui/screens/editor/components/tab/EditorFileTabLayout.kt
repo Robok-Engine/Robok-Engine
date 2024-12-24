@@ -38,14 +38,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
-fun EditorFileTabLayout(
-  modifier: Modifier = Modifier,
-  editorViewModel: EditorViewModel
-) {
+fun EditorFileTabLayout(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
   val uiState = editorViewModel.uiState
 
   val selectedFileIndex = uiState.selectedFileIndex.coerceAtLeast(0)
@@ -59,10 +55,7 @@ fun EditorFileTabLayout(
 
   @Composable
   fun tabOffset(position: TabPosition?): State<Dp> {
-    return animateDpAsState(
-      targetValue = position?.left ?: 0.dp,
-      label = "tabOffset"
-    )
+    return animateDpAsState(targetValue = position?.left ?: 0.dp, label = "tabOffset")
   }
 
   ScrollableTabRow(
@@ -73,9 +66,7 @@ fun EditorFileTabLayout(
       tabPosition = tabPositions.getOrNull(selectedFileIndex)
 
       if (tabPosition != null) {
-        TabRowDefaults.SecondaryIndicator(
-          Modifier.tabIndicatorOffset(tabPosition!!)
-        )
+        TabRowDefaults.SecondaryIndicator(Modifier.tabIndicatorOffset(tabPosition!!))
       }
     },
     divider = {
@@ -83,21 +74,16 @@ fun EditorFileTabLayout(
 
       DropdownMenu(
         expanded = showTabMenu,
-        offset = DpOffset(
-          x = if (selectedFileIndex == 0) tabOffset + 2.dp else tabOffset,
-          y = 2.dp
-        ),
+        offset =
+          DpOffset(x = if (selectedFileIndex == 0) tabOffset + 2.dp else tabOffset, y = 2.dp),
         shape = MaterialTheme.shapes.medium,
-        onDismissRequest = { showTabMenu = false }
+        onDismissRequest = { showTabMenu = false },
       ) {
-        EditorFileTabActions(
-          editorViewModel = editorViewModel,
-          index = selectedFileIndex
-        ) {
+        EditorFileTabActions(editorViewModel = editorViewModel, index = selectedFileIndex) {
           showTabMenu = false
         }
       }
-    }
+    },
   ) {
     openedFiles.forEachIndexed { index, openedFile ->
       Tab(
@@ -110,10 +96,8 @@ fun EditorFileTabLayout(
           }
         },
         text = {
-          Text(
-            text = if (openedFile.isModified()) "*${openedFile.name}" else openedFile.name
-          )
-        }
+          Text(text = if (openedFile.isModified()) "*${openedFile.name}" else openedFile.name)
+        },
       )
     }
   }

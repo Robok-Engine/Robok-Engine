@@ -21,9 +21,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import org.robok.engine.io.File
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.logger.Logger
+import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.state.EditorUIState
@@ -102,7 +102,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   fun saveAllFiles() {
     _editorEvent = EditorEvent.SaveAllFiles
   }
-  
+
   fun selectFile(index: Int) {
     _editorEvent = EditorEvent.SelectFile(index)
   }

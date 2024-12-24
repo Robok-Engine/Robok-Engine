@@ -16,15 +16,13 @@ package org.robok.engine.io
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 import java.security.MessageDigest
 
 class File(val filePath: String) : java.io.File(filePath) {
   private var previousHash: String? = null
 
-  /**
-   * Generates the hash (SHA-256) of the file content.
-   */
+  /** Generates the hash (SHA-256) of the file content. */
   private fun calculateHash(): String {
     if (!exists()) throw IllegalStateException("File does not exist: $path")
     val digest = MessageDigest.getInstance("SHA-256")
@@ -39,8 +37,8 @@ class File(val filePath: String) : java.io.File(filePath) {
   }
 
   /**
-   * Checks if the file content has been modified since the last check.
-   * Returns `true` if the content is different, `false` otherwise.
+   * Checks if the file content has been modified since the last check. Returns `true` if the
+   * content is different, `false` otherwise.
    */
   fun isModified(): Boolean {
     val currentHash = calculateHash()

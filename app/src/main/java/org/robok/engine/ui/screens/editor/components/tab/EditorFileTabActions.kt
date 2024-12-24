@@ -16,7 +16,6 @@ package org.robok.engine.ui.screens.editor.components.tab
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
 
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Text
@@ -26,17 +25,13 @@ import org.robok.engine.Strings
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
-fun EditorFileTabActions(
-  editorViewModel: EditorViewModel,
-  index: Int,
-  onClick: () -> Unit = {}
-) {
+fun EditorFileTabActions(editorViewModel: EditorViewModel, index: Int, onClick: () -> Unit = {}) {
   DropdownMenuItem(
     text = { Text(stringResource(id = Strings.common_word_close)) },
     onClick = {
       editorViewModel.closeFile(index)
       onClick()
-    }
+    },
   )
 
   DropdownMenuItem(
@@ -44,7 +39,7 @@ fun EditorFileTabActions(
     onClick = {
       editorViewModel.closeOthers(index)
       onClick()
-    }
+    },
   )
 
   DropdownMenuItem(
@@ -52,8 +47,6 @@ fun EditorFileTabActions(
     onClick = {
       editorViewModel.closeAll()
       onClick()
-    }
+    },
   )
 }
-
-

@@ -21,11 +21,11 @@ import java.io.File
 
 sealed interface EditorEvent {
   data class SelectFile(val index: Int) : EditorEvent
-  
+
   data class OpenFile(val file: File) : EditorEvent
 
   data class CloseFile(val index: Int) : EditorEvent
-  
+
   data class CloseOthers(val index: Int) : EditorEvent
 
   data object CloseAll : EditorEvent

@@ -105,10 +105,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
   }
 }
 
-@Composable
-private fun Editors() {
-
-}
+@Composable private fun Editors() {}
 
 @Composable
 private fun NoOpenedFilesContent() {
