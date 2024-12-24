@@ -24,7 +24,7 @@ import androidx.lifecycle.ViewModel
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.ui.screens.editor.event.EditorEditor
+import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.state.EditorUIState
 import java.io.File
 
@@ -37,7 +37,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   val projectManager: ProjectManager
     get() = _projectManager!!
   
-  private var _buildState by mutableStateOf(BuildState.NotStarted)
+  private var _buildState by mutableStateOf<BuildState>(BuildState.NotStarted)
   val buildState: BuildState
     get() = _buildState
     
