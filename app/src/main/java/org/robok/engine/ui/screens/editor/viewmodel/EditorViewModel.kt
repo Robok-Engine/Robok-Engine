@@ -87,8 +87,8 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _editorEvent = EditorEvent.CloseFile(index)
   }
 
-  fun closeOthers() {
-    _editorEvent = EditorEvent.CloseOthers
+  fun closeOthers(index: Int) {
+    _editorEvent = EditorEvent.CloseOthers(index)
   }
 
   fun closeAll() {
@@ -101,6 +101,10 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
 
   fun saveAllFiles() {
     _editorEvent = EditorEvent.SaveAllFiles
+  }
+  
+  fun selectFile(index: Int) {
+    _editorEvent = EditorEvent.SelectFile(index)
   }
 
   override fun onCompileSuccess(signedApk: File) {

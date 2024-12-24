@@ -50,6 +50,7 @@ import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarItem
 import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
 import org.robok.engine.ui.screens.editor.components.drawer.EditorDrawer
+import org.robok.engine.ui.screens.editor.conponents.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
@@ -80,6 +81,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
     LaunchedEffect(editorViewModel.editorEvent) {
       editorViewModel.editorEvent?.let { event ->
         when (event) {
+          is EditorEvent.SelectFile -> TODO("SELECT FILE NOT IMPLEMENTED")
           is EditorEvent.OpenFile -> TODO("OPEN FILE NOT IMPLEMENTED")
           is EditorEvent.CloseFile -> TODO("CLOSE FILE NOT IMPLEMENTED")
           is EditorEvent.CloseOthers -> TODO("CLOSE OTHERS NOT IMPLEMENTED")
@@ -94,17 +96,13 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
     }
     Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
-        EditorTabs(editorViewModel = editorViewModel)
+        EditorFileTabLayout(editorViewModel = editorViewModel)
+        Editors()
       } else {
         NoOpenedFilesContent()
       }
     }
   }
-}
-
-@Composable
-private fun EditorTabs(editorViewModel: EditorViewModel) {
-  // todo: tabs
 }
 
 @Composable

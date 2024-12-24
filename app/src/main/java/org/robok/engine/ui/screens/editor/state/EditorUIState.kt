@@ -17,9 +17,13 @@ package org.robok.engine.ui.screens.editor.state
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import java.io.File
+
 data class EditorUIState(
   var title: String = "Robok",
   var canRedo: Boolean = false,
   var canUndo: Boolean = false,
   var hasFileOpen: Boolean = false,
+  var openedFiles: MutableList<File> = mutableListOf(),
+  var selectedFileIndex: Int = 0,
 )
