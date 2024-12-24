@@ -126,7 +126,7 @@ private fun EditorTabs(viewModel: EditorViewModel) {
 
 @Composable
 private fun NoOpenedFilesContent() {
-  val drawerState = LocalDrawerState.current
+  val drawerState = LocalEditorFilesDrawerState.current
   val coroutineScope = rememberCoroutineScope()
   Column(
     modifier = Modifier.fillMaxSize(),
