@@ -88,6 +88,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
         is EditorEvent.SaveAllFiles -> TODO("SAVE ALL NOT IMPLEMENTED")
         is EditorEvent.Undo -> TODO("UNDO NOT IMPLEMENTED")
         is EditorEvent.Redo -> TODO("REDO NOT IMPLEMENTED")
+        is EditorEvent.More -> TODO("MORE NOT IMPLEMENTED")
       }
     }
     Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
