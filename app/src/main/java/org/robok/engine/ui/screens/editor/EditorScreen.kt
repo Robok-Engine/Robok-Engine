@@ -115,9 +115,9 @@ private fun EditorScreenContent(viewModel: EditorViewModel) {
         .padding(innerPadding)
     ) {
       if (viewModel.uiState.hasFileOpen) {
-        NoOpenedFilesContent()
-      } else {
         EditorTabs(viewModel = viewModel)
+      } else {
+        NoOpenedFilesContent()
       }
     }
   }
