@@ -32,7 +32,7 @@ fun EditorFileTabActions(
   onClick: () -> Unit = {}
 ) {
   DropdownMenuItem(
-    text = { Text(stringResource(id = Strings.close)) },
+    text = { Text(stringResource(id = Strings.common_word_close)) },
     onClick = {
       editorViewModel.closeFile(index)
       onClick()
@@ -40,7 +40,7 @@ fun EditorFileTabActions(
   )
 
   DropdownMenuItem(
-    text = { Text(stringResource(id = Strings.close_others)) },
+    text = { Text(stringResource(id = Strings.common_word_close_others)) },
     onClick = {
       editorViewModel.closeOthers(index)
       onClick()
@@ -48,7 +48,7 @@ fun EditorFileTabActions(
   )
 
   DropdownMenuItem(
-    text = { Text(stringResource(id = Strings.close_all)) },
+    text = { Text(stringResource(id = Strings.common_word_close_all)) },
     onClick = {
       editorViewModel.closeAll()
       onClick()

@@ -46,7 +46,7 @@ fun EditorFileTabLayout(
   modifier: Modifier = Modifier,
   editorViewModel: EditorViewModel
 ) {
-  val uiState by editorViewModel.uiState.collectAsStateWithLifecycle()
+  val uiState = editorViewModel.uiState
 
   val selectedFileIndex = uiState.selectedFileIndex.coerceAtLeast(0)
   val openedFiles = uiState.openedFiles
@@ -111,7 +111,7 @@ fun EditorFileTabLayout(
         },
         text = {
           Text(
-            text = if (openedFile.isModified) "*${openedFile.file.name}" else openedFile.file.name
+            text = if (openedFile.isModified()) "*${openedFile.file.name}" else openedFile.file.name
           )
         }
       )

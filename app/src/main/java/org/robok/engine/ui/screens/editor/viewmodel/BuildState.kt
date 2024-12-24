@@ -17,7 +17,7 @@ package org.robok.engine.ui.screens.editor.viewmodel
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import java.io.File
+import org.robok.engine.io.File
 
 sealed class BuildState {
   object NotStarted : BuildState()
