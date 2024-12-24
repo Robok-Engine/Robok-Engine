@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.di
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,10 +17,8 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
+import org.koin.core.module.dsl.viewModelOf
+import org.koin.dsl.module
+import org.robok.engine.ui.screens.editor.EditorViewModel
 
-@Serializable object HomeRoute : Route
-
-@Serializable object TerminalRoute : Route
-
-@Serializable object EditorRoute : Route
+val EditorModule = module { viewModelOf(::EditorViewModel) }

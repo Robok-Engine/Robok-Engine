@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.core.utils
 
 /*
  *  This file is part of Robok © 2024.
@@ -16,11 +16,21 @@ package org.robok.engine.routes
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-import kotlinx.serialization.Serializable
-
-@Serializable object HomeRoute : Route
-
-@Serializable object TerminalRoute : Route
-
-@Serializable object EditorRoute : Route
+ 
+class SingleString private constructor() {
+  companion object {
+    @JvmStatic
+    val instance: SingleString by lazy { SingleString() }
+  }
+  
+  @Volatile
+  private var _value: String = ""
+  
+  var value: String
+    get() = _value
+    set(newValue) {
+      synchronized(this) {
+        _value = newValue
+      }
+    }
+}

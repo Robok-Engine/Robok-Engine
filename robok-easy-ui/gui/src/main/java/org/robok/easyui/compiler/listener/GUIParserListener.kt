@@ -16,42 +16,31 @@ package org.robok.easyui.compiler.listener
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
+import org.robok.easyui.GUIBuilder
+import org.robok.easyui.antlr4.GUIBaseListener
 import org.robok.easyui.antlr4.GUIParser.ArgumentContext
 import org.robok.easyui.antlr4.GUIParser.ArgumentListContext
 import org.robok.easyui.antlr4.GUIParser.ComponentContext
 import org.robok.easyui.antlr4.GUIParser.GuiFileContext
-
-import org.robok.easyui.GUIBuilder
-import org.robok.easyui.antlr4.GUIBaseListener
 import org.robok.easyui.internal.AttributeDefaults
- 
-class GUIParserListener(
-  private val builder: GUIBuilder
-): GUIBaseListener() {
+
+class GUIParserListener(private val builder: GUIBuilder) : GUIBaseListener() {
   private var componentName: String = ""
-     
+
   /** when finish the code */
   override fun exitGuiFile(context: GuiFileContext) {
     builder.finish()
     super.exitGuiFile(context)
   }
-     
-  /**
-   * Called in start of component
-   * Example:
-   * Column { or Button(
-   */
+
+  /** Called in start of component Example: Column { or Button( */
   override fun enterComponent(context: ComponentContext) {
     componentName = context.IDENTIFIER().text
     builder.runMethod(componentName)
   }
-  
-  /**
-   * Called in end of component
-   * Example
-   * } or )
-   */
+
+  /** Called in end of component Example } or ) */
   override fun exitComponent(context: ComponentContext) {
     if (context.text.endsWith("}")) {
       builder.closeBlockLayout()
@@ -59,7 +48,7 @@ class GUIParserListener(
     }
     builder.closeBlockComponent()
   }
-  
+
   /*
    * When entering a list of arguments (example: Button(text = "Click here"))
    */
@@ -89,12 +78,7 @@ class GUIParserListener(
       value = value.replace("\\\"", "&quot;")
     }
 
-    builder.runMethodWithParameters(
-      "addAttribute",
-      componentName,
-      key,
-      value
-    )
+    builder.runMethodWithParameters("addAttribute", componentName, key, value)
   }
 
   /*

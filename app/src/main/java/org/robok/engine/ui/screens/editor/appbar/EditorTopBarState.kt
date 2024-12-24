@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.ui.screens.editor.appbar
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,10 +17,13 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 
-@Serializable object HomeRoute : Route
+@Composable fun rememberEditorTopBarState() = remember { EditorTopBarState() }
 
-@Serializable object TerminalRoute : Route
-
-@Serializable object EditorRoute : Route
+data class EditorTopBarState(
+  var title: String = "Robok",
+  var onNavigationIconClick: () -> Unit = {},
+  var actions: List<EditorTopBarItem> = emptyList(),
+)

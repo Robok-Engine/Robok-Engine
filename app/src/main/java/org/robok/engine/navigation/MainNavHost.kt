@@ -18,14 +18,21 @@ package org.robok.engine.navigation
  */
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
+import androidx.navigation.navArgument
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
+import org.robok.engine.routes.EditorRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
+import org.robok.engine.core.utils.SingleString
+import java.net.URLDecoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun MainNavHost() {
@@ -42,6 +49,8 @@ fun MainNavHost() {
     composable<HomeRoute> { HomeScreen() }
 
     composable<TerminalRoute> { TerminalScreen() }
+
+    composable<EditorRoute> { EditorScreen(pPath = SingleString.instance.value) }
 
     ProjectRoutes(navController)
     SettingsRoutes(navController)

@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.ui.screens.editor.appbar
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,10 +17,12 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import kotlinx.serialization.Serializable
+import androidx.compose.ui.graphics.vector.ImageVector
 
-@Serializable object HomeRoute : Route
-
-@Serializable object TerminalRoute : Route
-
-@Serializable object EditorRoute : Route
+data class EditorTopBarItem(
+  var name: String,
+  var icon: ImageVector,
+  var enabled: Boolean = true,
+  var visible: Boolean = true,
+  var onClick: () -> Unit = {},
+)

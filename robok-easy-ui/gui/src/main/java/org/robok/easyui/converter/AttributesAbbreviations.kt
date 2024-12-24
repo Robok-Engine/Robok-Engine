@@ -16,17 +16,18 @@ package org.robok.easyui.converter
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 object AttributesAbbreviations {
-  public val attributes: Map<String, String> = mapOf(
-    "layout:an:bm" to "android:layout_alignParentBottom",
-    "layout:an:be" to "android:layout_alignBaseline",
-    "layout:gravity:cr:hl" to "android:layout_centerHorizontal",
-    "layout:gravity:cr:vl" to "android:layout_centerVertical",
-    "layout:an:st" to "android:layout_alignParentStart",
-    "layout:an:tp" to "android:layout_alignParentTop",
-    "layout:an:ed" to "android:layout_alignParentEnd",
-  )
+  public val attributes: Map<String, String> =
+    mapOf(
+      "layout:an:bm" to "android:layout_alignParentBottom",
+      "layout:an:be" to "android:layout_alignBaseline",
+      "layout:gravity:cr:hl" to "android:layout_centerHorizontal",
+      "layout:gravity:cr:vl" to "android:layout_centerVertical",
+      "layout:an:st" to "android:layout_alignParentStart",
+      "layout:an:tp" to "android:layout_alignParentTop",
+      "layout:an:ed" to "android:layout_alignParentEnd",
+    )
 
   public fun convert(attribute: String): String? {
     return attributes[attribute]

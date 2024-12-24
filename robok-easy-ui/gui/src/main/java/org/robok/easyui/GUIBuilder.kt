@@ -41,7 +41,7 @@ class GUIBuilder(
   companion object {
     private const val TAG = "GUIBuilder"
   }
-  
+
   private var orientation: String = "portrait"
   private var style: String = "defaultStyle"
   private var isConfigEnable = false
@@ -183,7 +183,7 @@ class GUIBuilder(
       components.xmlCodeList.newLineBroken(">")
     }
   }
-  
+
   public fun newLog(log: String) {
     if (codeComments) components.xmlCodeList.newLine(log)
   }

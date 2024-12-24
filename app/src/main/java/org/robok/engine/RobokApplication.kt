@@ -30,6 +30,7 @@ import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
 import org.robok.engine.di.AboutModule
 import org.robok.engine.di.DatabaseModule
+import org.robok.engine.di.EditorModule
 import org.robok.engine.di.GeneralModule
 import org.robok.engine.di.PreferencesModule
 import org.robok.engine.di.ProjectModule
@@ -88,13 +89,14 @@ class RobokApplication : Application() {
       androidLogger()
       androidContext(this@RobokApplication)
       modules(
+        AboutModule,
+        DatabaseModule,
+        EditorModule,
         GeneralModule,
         PreferencesModule,
+        ProjectModule,
         SettingsModule,
         SettingsRDKModule,
-        AboutModule,
-        ProjectModule,
-        DatabaseModule,
       )
     }
   }
