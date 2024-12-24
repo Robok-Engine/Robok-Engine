@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.appbar
+package org.robok.engine.ui.screens.editor.components.appbar
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,12 +17,13 @@ package org.robok.engine.ui.screens.editor.appbar
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 
-data class EditorTopBarItem(
-  var name: String,
-  var icon: ImageVector,
-  var enabled: Boolean = true,
-  var visible: Boolean = true,
-  var onClick: () -> Unit = {},
+@Composable fun rememberEditorTopBarState() = remember { EditorTopBarState() }
+
+data class EditorTopBarState(
+  var title: String = "Robok",
+  var onNavigationIconClick: () -> Unit = {},
+  var actions: List<EditorTopBarItem> = emptyList(),
 )

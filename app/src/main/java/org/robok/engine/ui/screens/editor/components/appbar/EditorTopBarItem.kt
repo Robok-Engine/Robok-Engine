@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.drawer
+package org.robok.engine.ui.screens.editor.components.appbar
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,14 +17,12 @@ package org.robok.engine.ui.screens.editor.drawer
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.runtime.Composable
-import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
-import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
+import androidx.compose.ui.graphics.vector.ImageVector
 
-@Composable
-fun EditorFilesDrawer(editorViewModel: EditorViewModel) {
-  FileTreeDrawer(
-    path = editorViewModel.projectManager.projectPath.absolutePath,
-    onClick = { node -> },
-  )
-}
+data class EditorTopBarItem(
+  var name: String,
+  var icon: ImageVector,
+  var enabled: Boolean = true,
+  var visible: Boolean = true,
+  var onClick: () -> Unit = {},
+)

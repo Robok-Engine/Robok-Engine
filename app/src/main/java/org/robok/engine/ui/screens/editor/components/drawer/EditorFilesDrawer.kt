@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.appbar
+package org.robok.engine.ui.screens.editor.components.drawer
 
 /*
  *  This file is part of Robok © 2024.
@@ -18,12 +18,13 @@ package org.robok.engine.ui.screens.editor.appbar
  */
 
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
+import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
+import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
-@Composable fun rememberEditorTopBarState() = remember { EditorTopBarState() }
-
-data class EditorTopBarState(
-  var title: String = "Robok",
-  var onNavigationIconClick: () -> Unit = {},
-  var actions: List<EditorTopBarItem> = emptyList(),
-)
+@Composable
+fun EditorFilesDrawer(editorViewModel: EditorViewModel) {
+  FileTreeDrawer(
+    path = editorViewModel.projectManager.projectPath.absolutePath,
+    onClick = { node -> },
+  )
+}

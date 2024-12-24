@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.appbar
+package org.robok.engine.ui.screens.editor.components.appbar
 
 /*
  *  This file is part of Robok © 2024.

@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.drawer
+package org.robok.engine.ui.screens.editor.components.drawer
 
 /*
  *  This file is part of Robok © 2024.

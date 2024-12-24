@@ -46,10 +46,10 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.ui.screens.editor.appbar.EditorTopBar
-import org.robok.engine.ui.screens.editor.appbar.EditorTopBarItem
-import org.robok.engine.ui.screens.editor.appbar.rememberEditorTopBarState
-import org.robok.engine.ui.screens.editor.drawer.EditorDrawer
+import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
+import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarItem
+import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
+import org.robok.engine.ui.screens.editor.components.drawer.EditorDrawer
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
@@ -105,6 +105,11 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
 @Composable
 private fun EditorTabs(editorViewModel: EditorViewModel) {
   // todo: tabs
+}
+
+@Composable
+private fun Editors() {
+
 }
 
 @Composable
