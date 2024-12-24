@@ -190,7 +190,7 @@ class ProjectManager(private var context: Context) {
   val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
     
-  fun build(buildLogger: Logger, result: CompilerTask.OnCompileResult) {
+  fun build(buildLogger: Logger = Logger(), result: CompilerTask.OnCompileResult) {
     try {
       SystemLogPrinter.start(context, buildLogger)
 

@@ -24,6 +24,7 @@ import androidx.lifecycle.ViewModel
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.ui.screens.editor.event.EditorEditor
 import org.robok.engine.ui.screens.editor.state.EditorUIState
 import java.io.File
 
@@ -40,9 +41,9 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   val buildState: BuildState
     get() = _buildState
     
-  private var _editorEvent by mutableStateOf<EditorEvent>(null)
+  private var _editorEvent by mutableStateOf<EditorEvent?>(null)
   val editorEvent: EditorEvent
-    get() = _editorEvent
+    get() = _editorEvent!!
   
   private var logger = Logger()
 
@@ -63,7 +64,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   }
   
   fun run() {
-    _projectManager.build(logger, this)
+    _projectManager?.build(logger, this)
   }
   
   fun undo() {
