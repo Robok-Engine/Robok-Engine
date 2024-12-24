@@ -19,7 +19,7 @@ package org.robok.engine.io
  
 import java.security.MessageDigest
 
-class File(override val path: String) : java.io.File(path) {
+class File(val path: String) : java.io.File(path) {
   private var previousHash: String? = null
 
   /**
