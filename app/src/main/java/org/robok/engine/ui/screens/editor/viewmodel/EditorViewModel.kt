@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor
+package org.robok.engine.ui.screens.editor.viewmodel
 
 /*
  *  This file is part of Robok © 2024.
@@ -22,6 +22,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.ui.screens.editor.state.EditorUIState
 
 class EditorViewModel : ViewModel() {
   private var _uiState by mutableStateOf(EditorUIState())

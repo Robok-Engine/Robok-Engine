@@ -53,56 +53,31 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.noLocalProvidedFor
 import org.robok.engine.Strings
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.screens.editor.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.appbar.EditorTopBarItem
 import org.robok.engine.ui.screens.editor.appbar.rememberEditorTopBarState
-
-val LocalEditorFilesDrawerState = compositionLocalOf<DrawerState> {
-  noLocalProvidedFor("LocalEditorFilesDrawerState")
-}
+import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
 fun EditorScreen(pPath: String) {
   val context = LocalContext.current
-  val drawerState = LocalEditorFilesDrawerState.current
-  val viewModel = koinViewModel<EditorViewModel>()
+  val editorViewModel = koinViewModel<EditorViewModel>()
   val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
-  viewModel.setProjectManager(projectManager)
-
-  ModalNavigationDrawer(
-    drawerState = drawerState,
-    modifier = Modifier
-      .fillMaxSize()
-      .imePadding(),
-    drawerContent = {
-      ModalDrawerSheet(
-        drawerState = drawerState,
-        modifier = Modifier.fillMaxWidth(fraction = 0.85f),
-        drawerContainerColor = MaterialTheme.colorScheme.background,
-        drawerContentColor = contentColorFor(MaterialTheme.colorScheme.background)
-      ) {
-        EditorFilesDrawer(viewModel = viewModel)
-      }
-    },
-  ) {
-    EditorScreenContent(viewModel = viewModel)
+  editorViewModel.setProjectManager(projectManager)
+  
+  EditorDrawer(editorViewModel = editorViewModel) {
+    EditorScreenContent(editorViewModel = editorViewModel)
   }
 }
 
 @Composable
-private fun EditorFilesDrawer(viewModel: EditorViewModel) {
-  FileTreeDrawer(path = viewModel.projectManager.projectPath.absolutePath, onClick = { node -> })
-}
-
-@Composable
-private fun EditorScreenContent(viewModel: EditorViewModel) {
+private fun EditorScreenContent(editorViewModel: EditorViewModel) {
   val coroutineScope = rememberCoroutineScope()
   val drawerState = LocalEditorFilesDrawerState.current
   Scaffold(
     topBar = {
       EditorToolbar(
-        uiState = viewModel.uiState,
+        uiState = editorViewModel.uiState,
         onNavigationIconClick = {
           coroutineScope.launch { drawerState.open() }
         }
@@ -114,8 +89,8 @@ private fun EditorScreenContent(viewModel: EditorViewModel) {
         .fillMaxSize()
         .padding(innerPadding)
     ) {
-      if (viewModel.uiState.hasFileOpen) {
-        EditorTabs(viewModel = viewModel)
+      if (editorViewModel.uiState.hasFileOpen) {
+        EditorTabs(editorViewModel = editorViewModel)
       } else {
         NoOpenedFilesContent()
       }
@@ -124,7 +99,7 @@ private fun EditorScreenContent(viewModel: EditorViewModel) {
 }
 
 @Composable
-private fun EditorTabs(viewModel: EditorViewModel) {
+private fun EditorTabs(editorViewModel: EditorViewModel) {
   //todo: tabs
 }
 

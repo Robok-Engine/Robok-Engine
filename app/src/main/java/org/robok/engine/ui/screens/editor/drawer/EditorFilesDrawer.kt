@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor
+package org.robok.engine.ui.screens.editor.drawer
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,9 +17,11 @@ package org.robok.engine.ui.screens.editor
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-data class EditorUIState(
-  var title: String = "Robok",
-  var canRedo: Boolean = false,
-  var canUndo: Boolean = false,
-  var hasFileOpen: Boolean = false,
-)
+import androidx.compose.runtime.Composable
+import org.robok.engine.ui.activities.editor.drawer.filetree.FileTreeDrawer
+import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
+
+@Composable
+fun EditorFilesDrawer(editorViewModel: EditorViewModel) {
+  FileTreeDrawer(path = editorViewModel.projectManager.projectPath.absolutePath, onClick = { node -> })
+}
