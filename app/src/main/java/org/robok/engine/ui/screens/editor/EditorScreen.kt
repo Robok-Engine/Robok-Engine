@@ -50,7 +50,7 @@ import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarItem
 import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
 import org.robok.engine.ui.screens.editor.components.drawer.EditorDrawer
-import org.robok.engine.ui.screens.editor.conponents.tab.EditorFileTabLayout
+import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
