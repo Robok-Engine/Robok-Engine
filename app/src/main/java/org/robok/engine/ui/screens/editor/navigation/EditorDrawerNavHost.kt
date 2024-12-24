@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.navigation
+package org.robok.engine.ui.screens.editor.navigation
 
 /*
  *  This file is part of Robok © 2024.

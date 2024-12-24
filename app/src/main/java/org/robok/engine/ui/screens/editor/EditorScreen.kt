@@ -48,6 +48,8 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.editor.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.appbar.EditorTopBarItem
 import org.robok.engine.ui.screens.editor.appbar.rememberEditorTopBarState
+import org.robok.engine.ui.screens.editor.drawer.EditorDrawer
+import org.robok.engine.ui.screens.editor.state.EditorUIState
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable

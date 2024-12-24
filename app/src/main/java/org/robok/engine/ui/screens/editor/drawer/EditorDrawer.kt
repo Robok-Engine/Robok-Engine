@@ -26,6 +26,7 @@ import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.contentColorFor
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
 import org.robok.engine.ui.screens.editor.navigation.EditorDrawerNavHost
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
