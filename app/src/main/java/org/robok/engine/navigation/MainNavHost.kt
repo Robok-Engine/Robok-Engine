@@ -17,6 +17,8 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavType
 import androidx.navigation.navArgument
@@ -28,6 +30,7 @@ import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.screens.editor.EditorScreen
+import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 import org.robok.engine.core.utils.SingleString
@@ -50,7 +53,11 @@ fun MainNavHost() {
 
     composable<TerminalRoute> { TerminalScreen() }
 
-    composable<EditorRoute> { EditorScreen(pPath = SingleString.instance.value) }
+    composable<EditorRoute> {
+      CompositionLocalProvider(LocalEditorFilesDrawerState provides rememberDrawerState(initial = DrawerValue.Closed)) {
+        EditorScreen(pPath = SingleString.instance.value) 
+      }
+    }
 
     ProjectRoutes(navController)
     SettingsRoutes(navController)
