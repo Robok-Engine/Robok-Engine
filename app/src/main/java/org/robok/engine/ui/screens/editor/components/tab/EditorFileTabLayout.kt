@@ -111,7 +111,7 @@ fun EditorFileTabLayout(
         },
         text = {
           Text(
-            text = if (openedFile.isModified()) "*${openedFile.file.name}" else openedFile.file.name
+            text = if (openedFile.isModified()) "*${openedFile.name}" else openedFile.name
           )
         }
       )
