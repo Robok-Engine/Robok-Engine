@@ -21,10 +21,13 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import org.robok.engine.feature.compiler.android.CompilerTask
+import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.editor.state.EditorUIState
+import java.io.File
 
-class EditorViewModel : ViewModel() {
+class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   private var _uiState by mutableStateOf(EditorUIState())
   val uiState: EditorUIState
     get() = _uiState
@@ -32,6 +35,16 @@ class EditorViewModel : ViewModel() {
   private var _projectManager by mutableStateOf<ProjectManager?>(null)
   val projectManager: ProjectManager
     get() = _projectManager!!
+  
+  private var _buildState by mutableStateOf(BuildState.NotStarted)
+  val buildState: BuildState
+    get() = _buildState
+    
+  private var _editorEvent by mutableStateOf<EditorEvent>(null)
+  val editorEvent: EditorEvent
+    get() = _editorEvent
+  
+  private var logger = Logger()
 
   fun setCanUndo(canUndo: Boolean) {
     _uiState = _uiState.copy(canUndo = canUndo)
@@ -47,5 +60,53 @@ class EditorViewModel : ViewModel() {
 
   fun setProjectManager(projectManager: ProjectManager) {
     _projectManager = projectManager
+  }
+  
+  fun run() {
+    _projectManager.build(logger, this)
+  }
+  
+  fun undo() {
+    _editorEvent = EditorEvent.Undo
+  }
+  
+  fun redo() {
+    _editorEvent = EditorEvent.Redo
+  }
+  
+  fun more() {
+    _editorEvent = EditorEvent.More
+  }
+  
+  fun openFile(file: File) {
+    _editorEvent = EditorEvent.OpenFile(file)
+  }
+
+  fun closeFile(index: Int) {
+    _editorEvent = EditorEvent.CloseFile(index)
+  }
+
+  fun closeOthers() {
+    _editorEvent = EditorEvent.CloseOthers
+  }
+
+  fun closeAll() {
+    _editorEvent = EditorEvent.CloseAll
+  }
+
+  fun saveFile() {
+    _editorEvent = EditorEvent.SaveFile
+  }
+
+  fun saveAllFiles() {
+    _editorEvent = EditorEvent.SaveAllFiles
+  }
+  
+  override fun onCompileSuccess(signedApk: File) {
+    _buildState = BuildState.Success(signedApk)
+  }
+
+  override fun onCompileError(error: String) {
+    _buildState = BuildState.Error(error)
   }
 }

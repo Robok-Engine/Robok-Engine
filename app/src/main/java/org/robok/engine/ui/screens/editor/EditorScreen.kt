@@ -76,6 +76,18 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
       )
     }
   ) { innerPadding ->
+    LaunchedEffect(editorViewModel.editorEvent) {
+      when (editorViewModel.editorEvent) {
+        EditorEvent.OpenFile -> TODO("OPEN FILE NOT IMPLEMENTED")
+        EditorEvent.CloseFile -> TODO("CLOSE FILE NOT IMPLEMENTED")
+        EditorEvent.CloseOthers -> TODO("CLOSE OTHERS NOT IMPLEMENTED")
+        EditorEvent.CloseAll -> TODO("CLOSE ALL NOT IMPLEMENTED")
+        EditorEvent.SaveFile -> TODO("SAVE NOT IMPLEMENTED")
+        EditorEvent.SaveAllFiles -> TODO("SAVE ALL NOT IMPLEMENTED")
+        EditorEvent.Undo -> TODO("UNDO NOT IMPLEMENTED")
+        EditorEvent.Redo -> TODO("REDO NOT IMPLEMENTED")
+      }
+    }
     Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorTabs(editorViewModel = editorViewModel)
@@ -126,26 +138,31 @@ private fun EditorToolbar(editorViewModel: EditorViewModel, onNavigationIconClic
             icon = Icons.Rounded.Undo,
             enabled = uiState.canUndo,
             visible = uiState.hasFileOpen,
+            onClick = { editorViewModel.undo() }
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_redo),
             icon = Icons.Rounded.Redo,
             enabled = uiState.canRedo,
             visible = uiState.hasFileOpen,
+            onClick = { editorViewModel.redo() }
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_run),
             icon = Icons.Rounded.PlayArrow,
+            onClick = { editorViewModel.run() }
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_save),
             icon = Icons.Rounded.Save,
             visible = uiState.hasFileOpen,
+            onClick = { editorViewModel.saveFile() }
           ),
           EditorTopBarItem(
             name = stringResource(id = Strings.common_word_more),
             icon = Icons.AutoMirrored.Rounded.More,
             visible = uiState.hasFileOpen,
+            onClick = { editorViewModel.more() }
           ),
         ),
     )
