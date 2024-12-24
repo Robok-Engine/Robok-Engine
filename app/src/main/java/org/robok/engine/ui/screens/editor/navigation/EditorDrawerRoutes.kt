@@ -21,11 +21,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import org.robok.engine.routes.EditorDrawerFilesRoute
-import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 import org.robok.engine.ui.screens.editor.drawer.EditorFilesDrawer
+import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
-fun NavGraphBuilder.EditorDrawerRoutes(navController: NavHostController, editorViewModel: EditorViewModel) {
-  composable<EditorDrawerFilesRoute> {
-    EditorFilesDrawer(editorViewModel = editorViewModel)
-  }
+fun NavGraphBuilder.EditorDrawerRoutes(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+) {
+  composable<EditorDrawerFilesRoute> { EditorFilesDrawer(editorViewModel = editorViewModel) }
 }

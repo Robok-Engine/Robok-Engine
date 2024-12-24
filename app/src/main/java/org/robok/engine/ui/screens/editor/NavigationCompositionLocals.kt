@@ -23,7 +23,7 @@ import androidx.navigation.NavHostController
 import org.robok.engine.noLocalProvidedFor
 
 val LocalEditorFilesDrawerState =
-  compositionLocalOf<DrawerState> { noLocalProvidedFor("LocalEditorFilesDrawerState") } 
+  compositionLocalOf<DrawerState> { noLocalProvidedFor("LocalEditorFilesDrawerState") }
 
-val LocalEditorDrawerNavController = 
+val LocalEditorDrawerNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalEditorDrawerNavController") }

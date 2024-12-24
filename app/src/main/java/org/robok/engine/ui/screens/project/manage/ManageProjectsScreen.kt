@@ -83,9 +83,7 @@ fun ProjectItem(projectFile: File, onProjectClick: (String) -> Unit) {
   PreferenceTemplate(
     title = { Text(text = projectFile.name, style = MaterialTheme.typography.titleMedium) },
     description = { Text(text = projectFile.path, style = MaterialTheme.typography.titleSmall) },
-    modifier =
-      Modifier.fillMaxWidth()
-        .clickable(onClick = { onProjectClick(projectFile.path) }),
+    modifier = Modifier.fillMaxWidth().clickable(onClick = { onProjectClick(projectFile.path) }),
   )
 }
 

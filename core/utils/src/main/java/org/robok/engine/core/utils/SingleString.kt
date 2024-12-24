@@ -16,21 +16,17 @@ package org.robok.engine.core.utils
  *  You should have received a copy of the GNU General Public License
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
- 
+
 class SingleString private constructor() {
   companion object {
-    @JvmStatic
-    val instance: SingleString by lazy { SingleString() }
+    @JvmStatic val instance: SingleString by lazy { SingleString() }
   }
-  
-  @Volatile
-  private var _value: String = ""
-  
+
+  @Volatile private var _value: String = ""
+
   var value: String
     get() = _value
     set(newValue) {
-      synchronized(this) {
-        _value = newValue
-      }
+      synchronized(this) { _value = newValue }
     }
 }

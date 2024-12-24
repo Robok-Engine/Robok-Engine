@@ -22,16 +22,16 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
+import org.robok.engine.core.utils.SingleString
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.routes.CreateProjectRoute
-import org.robok.engine.routes.ManageProjectsRoute
 import org.robok.engine.routes.EditorRoute
+import org.robok.engine.routes.ManageProjectsRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
-import org.robok.engine.core.utils.SingleString
 
 fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
   composable<TemplatesRoute> {
@@ -57,7 +57,7 @@ fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
     ManageProjectsScreen(
       onProjectClick = { projectPath ->
         SingleString.instance.value = projectPath
-        navController.navigateSingleTop(EditorRoute) 
+        navController.navigateSingleTop(EditorRoute)
       }
     )
   }

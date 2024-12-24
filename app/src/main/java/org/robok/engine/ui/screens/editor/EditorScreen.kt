@@ -19,28 +19,21 @@ package org.robok.engine.ui.screens.editor
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.More
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Redo
 import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material.icons.rounded.Undo
-import androidx.compose.material3.contentColorFor
-import androidx.compose.material3.DrawerState
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.ModalDrawerSheet
-import androidx.compose.material3.ModalNavigationDrawer
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -50,7 +43,6 @@ import androidx.compose.ui.unit.dp
 import java.io.File
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.noLocalProvidedFor
 import org.robok.engine.Strings
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.editor.appbar.EditorTopBar
@@ -64,7 +56,7 @@ fun EditorScreen(pPath: String) {
   val editorViewModel = koinViewModel<EditorViewModel>()
   val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
   editorViewModel.setProjectManager(projectManager)
-  
+
   EditorDrawer(editorViewModel = editorViewModel) {
     EditorScreenContent(editorViewModel = editorViewModel)
   }
@@ -78,17 +70,11 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
     topBar = {
       EditorToolbar(
         uiState = editorViewModel.uiState,
-        onNavigationIconClick = {
-          coroutineScope.launch { drawerState.open() }
-        }
+        onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
       )
     }
   ) { innerPadding ->
-    Column(
-      modifier = Modifier
-        .fillMaxSize()
-        .padding(innerPadding)
-    ) {
+    Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorTabs(editorViewModel = editorViewModel)
       } else {
@@ -100,7 +86,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
 
 @Composable
 private fun EditorTabs(editorViewModel: EditorViewModel) {
-  //todo: tabs
+  // todo: tabs
 }
 
 @Composable
@@ -110,16 +96,14 @@ private fun NoOpenedFilesContent() {
   Column(
     modifier = Modifier.fillMaxSize(),
     horizontalAlignment = Alignment.CenterHorizontally,
-    verticalArrangement = Arrangement.Center
+    verticalArrangement = Arrangement.Center,
   ) {
     Text(
       text = stringResource(id = Strings.text_no_files_open),
-      style = MaterialTheme.typography.titleLarge
+      style = MaterialTheme.typography.titleLarge,
     )
     Spacer(modifier = Modifier.height(5.dp))
-    ElevatedButton(
-      onClick = { coroutineScope.launch { drawerState.open() } }
-    ) {
+    ElevatedButton(onClick = { coroutineScope.launch { drawerState.open() } }) {
       Text(text = stringResource(id = Strings.text_click_here_to_open_files))
     }
   }
