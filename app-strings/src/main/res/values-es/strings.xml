@@ -130,4 +130,18 @@
     <string name="settings_debug_see_logs_description">Ver lista de todos los registros de Robok</string>
     <string name="text_all_logs">Todos los registros</string>
     <string name="text_open_contributor_profile">Abrir el perfil de %s en el navegador</string>
+    <string name="common_word_basic">Básico</string>
+    <string name="settings_project_settings_tile">Configuración del proyecto</string>
+    <string name="common_word_exit">Salir</string>
+    <string name="settings_project_settings_game_name">Nombre del juego</string>
+    <string name="settings_project_settings_game_icon_path">Ruta del ícono del juego</string>
+    <string name="settings_project_settings_game_main_screen_name">Nombre de la pantalla principal del juego</string>
+    <string name="text_permissions">Permisos</string>
+    <string name="text_environment">Ambiente</string>
+    <string name="setup_welcome_title">Bienvenido/a a Robok</string>
+    <string name="setup_welcome_description">¡Robok es un motor de juegos que te permite crear increíbles juegos en 3D!</string>
+    <string name="setup_permission_not_granted">Otorgue todos los permisos para continuar</string>
+    <string name="setup_development_environment_not_finish">Descargue primero los SDK</string>
+    <string name="setup_permission_storage_title">Permiso de almacenamiento</string>
+    <string name="setup_development_environment_title">Entorno de desarrollo</string>
 </resources>
