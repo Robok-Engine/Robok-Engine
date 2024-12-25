@@ -82,8 +82,8 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
       editorViewModel.editorEvent?.let { event ->
         when (event) {
           is EditorEvent.SelectFile -> TODO("SELECT FILE NOT IMPLEMENTED")
-          is EditorEvent.OpenFile -> TODO("OPEN FILE NOT IMPLEMENTED")
-          is EditorEvent.CloseFile -> TODO("CLOSE FILE NOT IMPLEMENTED")
+          is EditorEvent.OpenFile -> editorViewModel.addFile(event.file)
+          is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
           is EditorEvent.CloseOthers -> TODO("CLOSE OTHERS NOT IMPLEMENTED")
           is EditorEvent.CloseAll -> TODO("CLOSE ALL NOT IMPLEMENTED")
           is EditorEvent.SaveFile -> TODO("SAVE NOT IMPLEMENTED")

@@ -106,6 +106,24 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   fun selectFile(index: Int) {
     _editorEvent = EditorEvent.SelectFile(index)
   }
+  
+  fun addFile(file: File) {
+    val openedFiles = _uiState.openedFiles
+    openedFiles.add(file)
+    _uiState = _uiState.copy(
+      openedFiles = openedFiles,
+      hasFileOpen = openedFiles.isNotEmpty()
+    )
+  }
+  
+  fun removeFile(index: Int) {
+    val openedFiles = _uiState.openedFiles
+    openedFiles.removeAt(index)
+    _uiState = _uiState.copy(
+      openedFiles = openedFiles,
+      hasFileOpen = openedFiles.isNotEmpty()
+    )
+  }
 
   override fun onCompileSuccess(signedApk: java.io.File) {
     _buildState = BuildState.Success(signedApk as File)
