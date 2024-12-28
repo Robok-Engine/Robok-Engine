@@ -1,0 +1,16 @@
+name: Notify on New Issue
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  notify-telegram:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Telegram
+        uses: EverythingSuckz/github-telegram-notify@main
+        with:
+          bot_token: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
+          chat_id: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
+          topic_id: 1100
