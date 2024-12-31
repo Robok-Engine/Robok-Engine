@@ -127,10 +127,12 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
           }
           is EditorEvent.Undo -> {
             editorViewModel.getSelectedEditor()?.undo()
+            editorViewModel.updateUndoRedo(editorView)
             editorViewModel.clearEvent()
           }
           is EditorEvent.Redo -> {
             editorViewModel.getSelectedEditor()?.redo()
+            editorViewModel.updateUndoRedo(editorView)
             editorViewModel.clearEvent()
           }
           is EditorEvent.More -> {
