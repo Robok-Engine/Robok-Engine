@@ -28,7 +28,6 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.platform.LocalFirstNavController
@@ -43,8 +42,7 @@ class MainActivity : BaseComposeActivity() {
     Surface(modifier = Modifier.fillMaxSize(), color = MaterialTheme.colorScheme.background) {
       ProvideCompositionLocals {
         val navController = LocalFirstNavController.current
-        val isFirstTime by
-          database.isFirstTime.collectAsState(initial = false)
+        val isFirstTime by database.isFirstTime.collectAsState(initial = false)
         LaunchedEffect(isFirstTime) {
           if (isFirstTime) {
             navController.navigateSingleTop(SetupRoute)

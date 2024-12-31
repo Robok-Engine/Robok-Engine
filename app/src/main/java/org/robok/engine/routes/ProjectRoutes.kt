@@ -25,3 +25,5 @@ import org.robok.engine.models.project.ProjectTemplate
 @Serializable object ManageProjectsRoute : Route
 
 @Serializable object TemplatesRoute : Route
+
+@Serializable object ProjectSettingsRoute : Route

@@ -17,18 +17,25 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
+import java.io.File
 import kotlin.reflect.typeOf
+import org.robok.engine.core.utils.SingleString
 import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.routes.CreateProjectRoute
+import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.ManageProjectsRoute
+import org.robok.engine.routes.ProjectSettingsRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
+import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
 
 fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
@@ -51,5 +58,19 @@ fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
     CreateProjectScreen(template = route.template)
   }
 
-  composable<ManageProjectsRoute> { ManageProjectsScreen() }
+  composable<ManageProjectsRoute> {
+    ManageProjectsScreen(
+      onProjectClick = { projectPath ->
+        SingleString.instance.value = projectPath
+        navController.navigateSingleTop(EditorRoute)
+      }
+    )
+  }
+
+  composable<ProjectSettingsRoute> {
+    val context = LocalContext.current
+    val projectManager =
+      ProjectManager(context).apply { projectPath = File(SingleString.instance.value) }
+    ProjectSettingsScreen(onBack = { navController.popBackStack() }, projectManager)
+  }
 }

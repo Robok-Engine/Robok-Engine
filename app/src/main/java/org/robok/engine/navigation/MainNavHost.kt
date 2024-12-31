@@ -17,13 +17,22 @@ package org.robok.engine.navigation
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.material3.DrawerValue
+import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import org.robok.engine.core.utils.SingleString
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.screens.editor.EditorScreen
+import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
+import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
@@ -42,6 +51,15 @@ fun MainNavHost() {
     composable<HomeRoute> { HomeScreen() }
 
     composable<TerminalRoute> { TerminalScreen() }
+
+    composable<EditorRoute> {
+      CompositionLocalProvider(
+        LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
+        LocalEditorDrawerNavController provides rememberNavController(),
+      ) {
+        EditorScreen(pPath = SingleString.instance.value)
+      }
+    }
 
     ProjectRoutes(navController)
     SettingsRoutes(navController)

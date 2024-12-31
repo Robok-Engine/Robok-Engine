@@ -311,6 +311,12 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
   @Override
   public void onEditorTextChange() {}
 
+  @Override
+  public String toString() {
+    // return the current file path
+    return "File" + getFile().getAbsolutePath();
+  }
+
   /*
    * AppearanceManager class
    * subclass to manage Code Editor Appearance.

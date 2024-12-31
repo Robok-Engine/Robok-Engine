@@ -20,96 +20,67 @@ package org.robok.engine.feature.compiler.android.logger
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.style.ForegroundColorSpan
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 
 class Logger {
 
-  private lateinit var adapter: LogAdapter
-  private lateinit var layoutManager: LinearLayoutManager
-  private val data: MutableList<Log> = mutableListOf()
-
-  private var mRecyclerView: RecyclerView? = null
-
-  fun attach(view: RecyclerView) {
-    mRecyclerView = view
-    init()
-  }
-
-  private fun init() {
-    adapter = LogAdapter(data)
-    layoutManager = LinearLayoutManager(mRecyclerView?.context).apply { stackFromEnd = true }
-    mRecyclerView?.layoutManager = layoutManager
-    mRecyclerView?.adapter = adapter
-  }
+  private val logs: MutableList<Log> = mutableListOf()
 
   fun d(tag: String, message: String) {
-    mRecyclerView?.post {
-      data.add(Log("", message))
-      adapter.notifyItemInserted(data.size)
-      scroll()
-    }
+    val log = Log(SpannableString(""), SpannableString(message))
+    logs.add(log)
   }
 
   fun e(tagg: String, message: String) {
     val tag = "" // "[$tagg]"
-    mRecyclerView?.post {
-      val messageSpan =
-        SpannableString(message).apply {
-          setSpan(
-            ForegroundColorSpan(0xffff0000.toInt()),
-            0,
-            message.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-          )
-        }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff0000.toInt()),
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-      val tagSpan =
-        SpannableString(tag).apply {
-          setSpan(
-            ForegroundColorSpan(0xffff0000.toInt()),
-            0,
-            tag.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-          )
-        }
+    val tagSpan =
+      SpannableString(tag).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff0000.toInt()),
+          0,
+          tag.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-      data.add(Log(tagSpan, messageSpan))
-      adapter.notifyItemInserted(data.size)
-      scroll()
-    }
+    logs.add(Log(tagSpan, messageSpan))
   }
 
   fun w(tagg: String, message: String) {
     val tag = "" // "[$tagg]"
-    mRecyclerView?.post {
-      val messageSpan =
-        SpannableString(message).apply {
-          setSpan(
-            ForegroundColorSpan(0xffff7043.toInt()),
-            0,
-            message.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-          )
-        }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()),
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-      val tagSpan =
-        SpannableString(tag).apply {
-          setSpan(
-            ForegroundColorSpan(0xffff7043.toInt()),
-            0,
-            tag.length,
-            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
-          )
-        }
+    val tagSpan =
+      SpannableString(tag).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()),
+          0,
+          tag.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-      data.add(Log(tagSpan, messageSpan))
-      adapter.notifyItemInserted(data.size)
-      scroll()
-    }
+    logs.add(Log(tagSpan, messageSpan))
   }
 
-  private fun scroll() {
-    mRecyclerView?.smoothScrollToPosition(data.size - 1)
+  fun getLogs(): List<Log> {
+    return logs
   }
 }

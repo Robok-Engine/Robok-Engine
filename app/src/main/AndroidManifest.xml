@@ -36,11 +36,6 @@
     </activity>
 
     <activity
-      android:name="org.robok.engine.ui.activities.editor.EditorActivity"
-      android:exported="true"
-      android:windowSoftInputMode="adjustResize" />
-
-    <activity
       android:name="org.robok.engine.ui.activities.debug.AppFailureActivity"
       android:exported="true" />
 
@@ -56,10 +51,6 @@
 
     <activity
       android:name="org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity"
-      android:exported="true" />
-
-    <activity
-      android:name="org.robok.engine.ui.activities.project.settings.ProjectSettingsActivity"
       android:exported="true" />
 
     <provider

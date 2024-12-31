@@ -17,8 +17,6 @@ package org.robok.engine.ui.screens.project.create
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Intent
-import android.os.Bundle
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
@@ -40,12 +38,13 @@ import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.keys.ExtraKeys
+import org.robok.engine.core.utils.SingleString
+import org.robok.engine.extensions.navigation.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.routes.EditorRoute
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.create.components.Buttons
 import org.robok.engine.ui.screens.project.create.components.Inputs
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
@@ -78,12 +77,8 @@ fun CreateProjectScreen(template: ProjectTemplate) {
           viewModel.createProject(
             template,
             onSuccess = {
-              val bundle =
-                Bundle().apply {
-                  putString(ExtraKeys.Project.PATH, viewModel.getProjectPath().absolutePath)
-                }
-              val intent = Intent(context, EditorActivity::class.java).apply { putExtras(bundle) }
-              context.startActivity(intent)
+              SingleString.instance.value = viewModel.getProjectPath().absolutePath
+              navController.navigateSingleTop(EditorRoute)
             },
             onError = { error ->
               coroutineScope.launch {

@@ -17,7 +17,6 @@ package org.robok.engine.ui.screens.project.manage
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import android.content.Intent
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -45,17 +44,15 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.strings.Strings
-import org.robok.engine.ui.activities.editor.EditorActivity
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ManageProjectsScreen() {
+fun ManageProjectsScreen(onProjectClick: (String) -> Unit) {
   val projectViewModel = koinViewModel<ManageProjectsViewModel>()
   val projects by projectViewModel.projects.collectAsState()
 
@@ -69,7 +66,9 @@ fun ManageProjectsScreen() {
   Screen(label = stringResource(id = Strings.title_projects)) {
     PreferenceGroup(heading = stringResource(id = Strings.title_your_projects)) {
       if (projects.isEmpty().not()) {
-        projects.forEach { project -> ProjectItem(projectFile = project) }
+        projects.forEach { project ->
+          ProjectItem(projectFile = project, onProjectClick = onProjectClick)
+        }
       } else {
         EmptyContentItem()
       }
@@ -78,26 +77,13 @@ fun ManageProjectsScreen() {
 }
 
 @Composable
-fun ProjectItem(projectFile: File) {
+fun ProjectItem(projectFile: File, onProjectClick: (String) -> Unit) {
+  val navController = LocalMainNavController.current
   val context = LocalContext.current
   PreferenceTemplate(
     title = { Text(text = projectFile.name, style = MaterialTheme.typography.titleMedium) },
     description = { Text(text = projectFile.path, style = MaterialTheme.typography.titleSmall) },
-    modifier =
-      Modifier.fillMaxWidth()
-        .clickable(
-          onClick = {
-            context.startActivity(
-              Intent(context, EditorActivity::class.java).apply {
-                putExtras(
-                  android.os.Bundle().apply {
-                    putString(ExtraKeys.Project.PATH, projectFile.absolutePath)
-                  }
-                )
-              }
-            )
-          }
-        ),
+    modifier = Modifier.fillMaxWidth().clickable(onClick = { onProjectClick(projectFile.path) }),
   )
 }
 

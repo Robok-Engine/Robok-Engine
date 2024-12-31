@@ -44,7 +44,7 @@ import org.robok.engine.ui.screens.project.settings.components.Buttons
 import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel
 
 @Composable
-fun ProjectSettingsScreen(projectManager: ProjectManager) {
+fun ProjectSettingsScreen(onBack: () -> Unit, projectManager: ProjectManager) {
   val context = LocalContext.current
   val toastHostState = LocalToastHostState.current
   val scope = rememberCoroutineScope()
@@ -81,7 +81,7 @@ fun ProjectSettingsScreen(projectManager: ProjectManager) {
             }
             .invokeOnCompletion { (context as? Activity)?.finish() }
         },
-        onCancel = { (context as? Activity)?.finish() },
+        onCancel = onBack,
       )
     }
   }

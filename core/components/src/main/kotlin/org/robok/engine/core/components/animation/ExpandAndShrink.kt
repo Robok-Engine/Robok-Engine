@@ -18,9 +18,11 @@ package org.robok.engine.core.components.animation
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.AnimatedVisibilityScope
+import androidx.compose.animation.expandHorizontally
 import androidx.compose.animation.expandVertically
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkHorizontally
 import androidx.compose.animation.shrinkVertically
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -36,12 +38,23 @@ import androidx.compose.ui.Modifier
 fun ExpandAndShrink(
   visible: Boolean,
   modifier: Modifier = Modifier,
+  vertically: Boolean = true,
   content: @Composable AnimatedVisibilityScope.() -> Unit,
 ) {
   AnimatedVisibility(
     visible = visible,
-    enter = expandVertically() + fadeIn(),
-    exit = shrinkVertically() + fadeOut(),
+    enter =
+      if (vertically) {
+        expandVertically() + fadeIn()
+      } else {
+        expandHorizontally() + fadeIn()
+      },
+    exit =
+      if (vertically) {
+        shrinkVertically() + fadeOut()
+      } else {
+        shrinkHorizontally() + fadeOut()
+      },
     content = content,
     modifier = modifier,
   )
