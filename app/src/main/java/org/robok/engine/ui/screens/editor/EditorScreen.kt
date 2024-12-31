@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
+import androidx.compose.material.icons.rounded.Error
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Redo
@@ -126,13 +127,17 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
             }
           }
           is EditorEvent.Undo -> {
-            editorViewModel.getSelectedEditor()?.undo()
-            editorViewModel.updateUndoRedo(editorView)
+            editorViewModel.getSelectedEditor()?.let { editor ->
+              editor.undo()
+              editorViewModel.updateUndoRedo(editor)
+            }
             editorViewModel.clearEvent()
           }
           is EditorEvent.Redo -> {
-            editorViewModel.getSelectedEditor()?.redo()
-            editorViewModel.updateUndoRedo(editorView)
+            editorViewModel.getSelectedEditor()?.let { editor ->
+              editor.redo()
+              editorViewModel.updateUndoRedo(editor)
+            }
             editorViewModel.clearEvent()
           }
           is EditorEvent.More -> {
@@ -232,6 +237,8 @@ private fun EditorToolbar(
 ) {
   var topBarState = rememberEditorTopBarState()
   val uiState = editorViewModel.uiState
+  val coroutineScope = rememberCoroutineScope()
+  val toastHostState = LocalToastHostState.current
   topBarState =
     topBarState.copy(
       title = uiState.title,
@@ -255,7 +262,14 @@ private fun EditorToolbar(
           EditorTopBarAction(
             name = stringResource(id = Strings.common_word_run),
             icon = Icons.Rounded.PlayArrow,
-            onClick = { editorViewModel.run() },
+            onClick = {
+              coroutineScope.launch {
+                toastHostState.showToast(
+                  message = "Not implemented yet",
+                  icon = Icons.Rounded.Error,
+                )
+              }
+            },
           ),
           EditorTopBarAction(
             name = stringResource(id = Strings.common_word_save),
