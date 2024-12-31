@@ -98,7 +98,10 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
       editorViewModel.editorEvent?.let { event ->
         when (event) {
           is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
-          is EditorEvent.OpenFile -> handleFile(navController, editorViewModel, event.file)
+          is EditorEvent.OpenFile -> {
+            handleFile(navController, editorViewModel, event.file)
+            editorViewModel.clearEvent()
+          }
           is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
           is EditorEvent.CloseOthers -> editorViewModel.removeOthersFiles()
           is EditorEvent.CloseAll -> editorViewModel.removeAllFiles()
@@ -122,10 +125,18 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
               )
             }
           }
-          is EditorEvent.Undo -> editorViewModel.getSelectedEditor()?.undo()
-          is EditorEvent.Redo -> editorViewModel.getSelectedEditor()?.redo()
-          is EditorEvent.More ->
+          is EditorEvent.Undo -> {
+            editorViewModel.getSelectedEditor()?.undo()
+            editorViewModel.clearEvent()
+          }
+          is EditorEvent.Redo -> {
+            editorViewModel.getSelectedEditor()?.redo()
+            editorViewModel.clearEvent()
+          }
+          is EditorEvent.More -> {
             editorViewModel.setMoreOptionOpen(!editorViewModel.uiState.moreOptionOpen)
+            editorViewModel.clearEvent()
+          }
         }
       }
     }
