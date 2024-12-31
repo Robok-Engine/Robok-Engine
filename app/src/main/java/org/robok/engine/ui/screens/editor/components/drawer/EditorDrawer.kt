@@ -39,6 +39,7 @@ fun EditorDrawer(editorViewModel: EditorViewModel, content: @Composable () -> Un
     drawerContent = {
       ModalDrawerSheet(
         drawerState = drawerState,
+        gesturesEnabled = drawerState.isOpen,
         modifier = Modifier.fillMaxWidth(fraction = 0.85f),
         drawerContainerColor = MaterialTheme.colorScheme.background,
         drawerContentColor = contentColorFor(MaterialTheme.colorScheme.background),
