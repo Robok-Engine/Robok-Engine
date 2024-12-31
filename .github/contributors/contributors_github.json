@@ -19,7 +19,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1592,
+    "contributions": 1595,
     "role": "Founder"
   },
   {
@@ -226,7 +226,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 6,
+    "contributions": 7,
     "role": "Translator"
   },
   {
@@ -366,5 +366,27 @@
     "site_admin": false,
     "contributions": 28,
     "role": "Developer"
+  },
+  {
+    "login": "ELPRR0",
+    "id": 188648749,
+    "node_id": "U_kgDOCz6NLQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/188648749?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/ELPRR0",
+    "html_url": "https://github.com/ELPRR0",
+    "followers_url": "https://api.github.com/users/ELPRR0/followers",
+    "following_url": "https://api.github.com/users/ELPRR0/following{/other_user}",
+    "gists_url": "https://api.github.com/users/ELPRR0/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/ELPRR0/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/ELPRR0/subscriptions",
+    "organizations_url": "https://api.github.com/users/ELPRR0/orgs",
+    "repos_url": "https://api.github.com/users/ELPRR0/repos",
+    "events_url": "https://api.github.com/users/ELPRR0/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/ELPRR0/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 1
   }
 ]
