@@ -77,10 +77,10 @@ fun Welcome(modifier: Modifier = Modifier) {
     Image(
       painter = painterResource(id = Drawables.ic_vector ),
       contentDescription = "App Icon",
-      modifier = Modifier.size(256.dp)
+      modifier = Modifier.size(720.dp)
       .padding(bottom = 24.dp)
       ,
-      contentScale = ContentScale.Crop,
+      contentScale = ContentScale.None,
     )
     Text(
       text = stringResource(id = Strings.setup_welcome_title),
