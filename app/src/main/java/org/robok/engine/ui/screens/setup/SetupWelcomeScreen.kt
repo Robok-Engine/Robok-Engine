@@ -77,7 +77,7 @@ fun Welcome(modifier: Modifier = Modifier) {
     Image(
       painter = painterResource(id = Drawables.ic_vector ),
       contentDescription = "App Icon",
-      modifier = Modifier.size(720.dp)
+      modifier = Modifier.size(256.dp)
       .padding(bottom = 24.dp)
       ,
       contentScale = ContentScale.Fit,
