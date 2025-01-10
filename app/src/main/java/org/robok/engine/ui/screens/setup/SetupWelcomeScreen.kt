@@ -77,7 +77,9 @@ fun Welcome(modifier: Modifier = Modifier) {
     Image(
       painter = painterResource(id = Drawables.ic_launcher),
       contentDescription = "App Icon",
-      modifier = Modifier.size(256.dp).clip(CircleShape),
+      modifier = Modifier.size(256.dp)
+      .padding(bottom = 24.dp)
+      ,
       contentScale = ContentScale.Crop,
     )
     Text(
