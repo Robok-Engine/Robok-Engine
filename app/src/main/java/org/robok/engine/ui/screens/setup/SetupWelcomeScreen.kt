@@ -75,7 +75,7 @@ fun SetupWelcomeScreen(onBack: () -> Unit, onNext: () -> Unit) {
 fun Welcome(modifier: Modifier = Modifier) {
   Column(modifier = modifier, horizontalAlignment = Alignment.CenterHorizontally) {
     Image(
-      painter = painterResource(id = Drawables.ic_vector ),
+      painter = painterResource(id = Drawables.ic_setup_welcome_person ),
       contentDescription = "App Icon",
       modifier = Modifier.size(256.dp)
       .padding(bottom = 24.dp)
