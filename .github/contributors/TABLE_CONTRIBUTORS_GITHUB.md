@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1597 | Founder |
+| trindadedev13 | 1599 | Founder |
 | ThDev-only | 210 | Founder |
 | renovate[bot] | 152 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -15,5 +15,5 @@
 | Xori71 | 1 | Translator |
 | weblate | 11 | Bot |
 | ElPerro | 18 | Translator |
-| SyntaxSpins | 28 | Developer |
+| SyntaxSpins | 29 | Developer |
 | ELPRR0 | 1 | N/A |
