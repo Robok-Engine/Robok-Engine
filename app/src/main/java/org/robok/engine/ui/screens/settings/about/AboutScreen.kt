@@ -36,6 +36,7 @@ import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.core.utils.isDeviceLanguage
 import org.robok.engine.defaults.DefaultContributors
 import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
@@ -114,7 +115,7 @@ fun AboutScreen() {
 
 @Composable
 private fun getLinksList(): List<Link> {
-  return listOf(
+  return listOfNotNull(
     Link(
       name = stringResource(id = Strings.title_github),
       description = stringResource(id = Strings.text_github),
@@ -127,11 +128,15 @@ private fun getLinksList(): List<Link> {
       imageResId = Drawables.ic_send_24,
       url = stringResource(id = Strings.link_telegram),
     ),
-    Link(
-      name = stringResource(id = Strings.title_whatsapp),
-      description = stringResource(id = Strings.text_whatsapp),
-      imageResId = Drawables.ic_whatsapp_24,
-      url = stringResource(id = Strings.link_whatsapp),
-    ),
+    if (isDeviceLanguage("pt", "BR")) {
+      Link(
+        name = stringResource(id = Strings.title_whatsapp),
+        description = stringResource(id = Strings.text_whatsapp),
+        imageResId = Drawables.ic_whatsapp_24,
+        url = stringResource(id = Strings.link_whatsapp),
+      )
+    } else {
+      null
+    }
   )
 }
