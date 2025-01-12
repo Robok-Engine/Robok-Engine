@@ -27,7 +27,6 @@ class ContributorsRepository(val client: HttpClient) {
               contributor.role != "Bot" &&
               contributor.user_view_type != "private"
           }
-        Log.e(message = contributorsFiltered.toString())
         contributorsFiltered
       } else {
         emptyList()
