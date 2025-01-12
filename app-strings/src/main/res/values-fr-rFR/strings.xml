@@ -1,164 +1,136 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- common words section -->
-	<string name="common_word_back">Retour</string>
-    <string name="common_word_result">Résultat</string>
-    <string name="common_word_run">Éxecuter</string>
-    <string name="common_word_code">Code</string>
-    <string name="common_word_logs">Journaux</string>
-    <string name="common_word_output">Sortie</string>
-    <string name="common_word_end">Fin</string>
-    <string name="common_word_confirm">Confirmer</string>
-    <string name="common_word_settings">Paramètres</string>
-    <string name="common_word_cancel">Annuler</string>
-    <string name="common_word_next">Suivant</string>
-    <string name="common_word_undo">Annuler</string>
-    <string name="common_word_redo">Refaire</string>
-    <string name="common_word_allow">Autoriser</string>
-    <string name="common_word_deny">Annuler</string>
-    <string name="common_word_normal">Normal</string>
-    <string name="common_word_retry">Réessayer</string>
-    <string name="common_word_save">Sauvegarder</string>
-    <!--  end section  -->
-	
-	<!-- titles section -->
-	<string name="title_create_project">Créer un projet</string>
-    <string name="title_open_project">Ouvrir le projet</string>
-    <string name="title_terminal" translatable="false">Terminal</string>
-    <string name="title_open_editor">Ouvrir l\'éditeur</string>
-    <string name="title_select_theme">Sélectionner le Thème</string>
-    <string name="title_select_folder">Sélectionner un dossier</string>
-    <string name="title_templates">Modèles</string>
-    <!-- end section -->
-	
-	<!-- go to section -->
-	<string name="go_to_outputs">Accéder aux sorties</string>
-    <!-- end section -->
-	
-	<!-- hints section -->
-	<string name="hint_project_name">Nom du Projet</string>
-    <string name="hint_package_name">Nom du paquet</string>
-    <!-- end section -->
-	
-	<!-- settings section -->
-	<string name="settings_code_editor_title">Paramètres de l\'Éditeur</string>
-    <string name="settings_code_editor_description">Quelques paramètres de l\'éditeur de code</string>
-    <string name="settings_code_editor_theme_title">Thème de l\'éditeur de code</string>
-    <string name="settings_code_editor_theme_description">Changer le thème de l\'éditeur de code</string>
-    <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
-    <string name="settings_code_editor_word_wrap_description">Activer le WordWrap dans l\'éditeur de code .</string>
-    <string name="settings_code_editor_typeface_title">Le Font d\'éditeur</string>
-    <string name="settings_code_editor_typeface_description">Changer le font de l\'éditeur comme vous voulez</string>
-    <string name="settings_about_title">À-propos</string>
-    <string name="settings_about_description">Tout sur Le Moteur Robok</string>
-    <string name="settings_libraries_title">Logicel Tiers</string>
-    <string name="settings_libraries_description">Les bibliothèques que nous avons utilisées</string>
-    <string name="settings_configure_rdk_title">Configurer RDK</string>
-    <string name="settings_configure_rdk_description">"Paramètres de Robok-SDK  Comme versions et autres"</string>
-    <string name="settings_configure_rdk_select_rdk_label">Sélectionner Version RDK</string>
-    <string name="settings_configure_rdk_version">Definir Version RDK</string>
-    <string name="settings_build_title">Construire</string>
-    <string name="settings_formatting_title">Format</string>
-    <string name="settings_appearance_title">Apparance</string>
-    <string name="settings_general_title">Géneral</string>
-    <!-- end section -->
-	
-	<!-- texts section -->
-	<string name="text_diagnostic">Diagnostique</string>
-    <string name="text_logs">Journaux</string>
-    <string name="text_error_details">Détails du erreur:</string>
-    <string name="text_bold">Gras</string>
-    <string name="text_monospace">Monospace</string>
-    <string name="text_serif">Serif</string>
-    <string name="text_sans_serif">Sans-Serif</string>
-    <!-- ene section -->
-	
-	<!-- warnings section -->
-	<string name="warning_storage_perm_title">Accéder Aux Stockage</string>
-    <string name="warning_storage_perm_message">Robok a besoin d\'une autorisation de stockage pour créer des projets, ouvrir des projets, etc</string>
-    <string name="warning_all_files_perm_message">Dans Android 11 +, Pour Continuer au Robok Vous Pouvez Accorder l\'Autorisation pour Accéder Aux Stockage.</string>
-    <string name="warning_project_created_title">Projet créé avec succès!</string>
-    <string name="warning_project_created_message">Votre projet a été créé avec succès !</string>
-    <!-- end section -->
-	
-	<!-- errors section -->
-	<string name="error_storage_perm_title">"Erreur Aux  Autorisation aux stockages"</string>
-    <string name="error_storage_perm_message">Vous n\'avez pas accepté l\'autorisation de stockage, elle est nécessaire au fonctionnement de Robok.</string>
-    <string name="error_invalid_name">Nom invalide</string>
-    <string name="error_load_fail">Erreur de chargements</string>
-    <!-- end section -->
-	
-	<!-- terminal section -->
-	<string name="terminal_options">Options</string>
-    <string name="terminal_install_package">Installer le Paquet</string>
-    <string name="terminal_install_package_hint">Écrire le nom du paquet</string>
-    <string name="terminal_update_packages">Mettre à jour les paquets</string>
-    <string name="terminal_warning_update_packages">Voulez-vous mettre à jour les paquets?</string>
-    <!-- end section -->
-	
-	<!-- templates section -->
-	<string name="template_name_empty_game">Jeu vide</string>
-    <!-- end section -->
-	
-    <string name="slogan">Du Java au Jeux dans un clin d\'œil</string>
-    <string name="text_seeus">Contacter nous</string>
-    <string name="settings_app_use_monet_title">Couleurs Dynamiques</string>
-    <string name="settings_app_title">Paramètres d\'application</string>
-    <string name="settings_app_description">Quelques Paramètres en relation avec l\'appli.</string>
-    <string name="text_view_layout">Aperçu de IGU</string>
-    <string name="title_un_error_ocurred">Une erreur s\'est produite</string>
-    <string name="text_basic_info">Information Basique</string>
-    <string name="warning_project_installer_not_found">"Il n\'y a pas du Package d\'installation du kit  trouvé."</string>
-    <string name="common_word_close">Fermer</string>
-    <string name="common_word_close_others">Fermer Autres</string>
-    <string name="common_word_close_all">Tout Fermer</string>
-    <string name="title_projects">Projets</string>
-    <string name="title_your_projects">Votre Projets</string>
-    <string name="settings_app_use_monet_description">Utiliser le thème dans l\'appli.</string>
-    <string name="text_error_info">Information de l\'erreur</string>
-    <string name="text_no_files_open">Il n\'y a pas de fichiers ouverts.</string>
-    <string name="text_click_here_to_open_files">Appuyez ici pour ouvrir le fichier</string>
-    <string name="warning_file_already_opened">Le Fichier est déjà ouvert dans l\'éditeur.</string>
-    <string name="common_word_templates">Modèles</string>
-    <string name="settings_app_use_amoled_title">Thème Amoled</string>
-    <string name="settings_app_use_amoled_description">Utiliser L\'Amoled dans l\'appli.</string>
-    <string name="warning_no_projects">Il n\'y a pas de projets .</string>
-    <string name="title_gui_viewer">Visionneur de IGU</string>
-    <string name="common_word_open">Ouvrir</string>
-    <string name="common_word_files">Fichiers</string>
-    <string name="title_telegram">Telegram</string>
-    <string name="title_whatsapp">WhatsApp</string>
-    <string name="title_github">Github</string>
-    <string name="title_contribute">Contribuer</string>
-    <string name="title_libraries">Logicels Tiers</string>
-    <string name="settings_configure_rdk_version_success">Téléchargé avec Succès.</string>
-    <string name="text_saved">enregistré !</string>
-    <string name="text_saved_all">Tout enregistré !</string>
-    <string name="text_see_code">Voir Code</string>
-    <string name="warning_exit_project_title">Quitter le projet</string>
-    <string name="warning_exit_project_message">Voulez-Vous Quitter l\'archive (Tous Sont enregistrés)</string>
-    <string name="text_telegram">Notre Communaté Telegram</string>
-    <string name="text_whatsapp">Notre Group WhatsApp.</string>
-    <string name="text_contribute">Voici Comment vous voulez participer avec nous</string>
-    <string name="text_libraries">Les Bibliothèques Utilisés</string>
-    <string name="role_translator">Traducteur(rice)</string>
-    <string name="role_translators">Traducteurs</string>
-    <string name="role_developers">Developpeurs</string>
-    <string name="settings_configure_rdk_version_error">une erreur s\'est produite</string>
-    <string name="text_exit_without_save">Quitter sans Sauvgarder</string>
-    <string name="role_founders">Fondateurs</string>
-    <string name="role_developer">Developpeur(euse)</string>
-    <string name="role_founder">Fondateur</string>
-    <string name="text_github">Depôt Github</string>
-    <string name="text_contributors">Contributeurs</string>
-    <string name="title_open_contributor_profile">Ouvrir le profil du contributeur</string>
-    <string name="settings_debug_description">Experimentale/Paramètres de tests</string>
-    <string name="settings_debug_see_logs_title">Voir Journaux Robok</string>
-    <string name="settings_debug_see_logs_description">Voir Liste de tout les journaux robok</string>
-    <string name="text_logging">Enregistrement</string>
-    <string name="text_all_logs">Tous les Journaux</string>
-    <string name="loading_logs">Chargements des Journaux...</string>
-    <string name="settings_debug_title">Paramètres Débogage</string>
-    <string name="text_open_contributor_profile">Ouvrir profil de %s dans le navigateur</string>
-    <string name="warning_no_logs">Ils n\'existent aucuns journaux.</string>
+  <string name="common_word_back">Retour</string>
+  <string name="common_word_result">Résultat</string>
+  <string name="common_word_run">Éxecuter</string>
+  <string name="common_word_code">Code</string>
+  <string name="common_word_logs">Journaux</string>
+  <string name="common_word_output">Sortie</string>
+  <string name="common_word_end">Fin</string>
+  <string name="common_word_confirm">Confirmer</string>
+  <string name="common_word_settings">Paramètres</string>
+  <string name="common_word_cancel">Annuler</string>
+  <string name="common_word_next">Suivant</string>
+  <string name="common_word_undo">Annuler</string>
+  <string name="common_word_redo">Refaire</string>
+  <string name="common_word_allow">Autoriser</string>
+  <string name="common_word_deny">Annuler</string>
+  <string name="common_word_normal">Normal</string>
+  <string name="common_word_retry">Réessayer</string>
+  <string name="common_word_save">Sauvegarder</string>
+  <string name="title_create_project">Créer un projet</string>
+  <string name="title_open_project">Ouvrir le projet</string>
+  <string
+    name="title_terminal"
+    translatable="false">Terminal</string>
+  <string name="title_open_editor">Ouvrir l\'éditeur</string>
+  <string name="title_select_theme">Sélectionner le Thème</string>
+  <string name="title_select_folder">Sélectionner un dossier</string>
+  <string name="title_templates">Modèles</string>
+  <string name="go_to_outputs">Accéder aux sorties</string>
+  <string name="hint_project_name">Nom du Projet</string>
+  <string name="hint_package_name">Nom du paquet</string>
+  <string name="settings_code_editor_title">Paramètres de l\'Éditeur</string>
+  <string name="settings_code_editor_description">Quelques paramètres de l\'éditeur de code</string>
+  <string name="settings_code_editor_theme_title">Thème de l\'éditeur de code</string>
+  <string name="settings_code_editor_theme_description">Changer le thème de l\'éditeur de code</string>
+  <string name="settings_code_editor_word_wrap_title">Word Wrap</string>
+  <string name="settings_code_editor_word_wrap_description">Activer le WordWrap dans l\'éditeur de code .</string>
+  <string name="settings_code_editor_typeface_title">Le Font d\'éditeur</string>
+  <string name="settings_code_editor_typeface_description">Changer le font de l\'éditeur comme vous voulez</string>
+  <string name="settings_about_title">À-propos</string>
+  <string name="settings_about_description">Tout sur Le Moteur Robok</string>
+  <string name="settings_libraries_title">Logicel Tiers</string>
+  <string name="settings_libraries_description">Les bibliothèques que nous avons utilisées</string>
+  <string name="settings_configure_rdk_title">Configurer RDK</string>
+  <string name="settings_configure_rdk_description">"Paramètres de Robok-SDK  Comme versions et autres"</string>
+  <string name="settings_configure_rdk_select_rdk_label">Sélectionner Version RDK</string>
+  <string name="settings_configure_rdk_version">Definir Version RDK</string>
+  <string name="settings_build_title">Construire</string>
+  <string name="settings_formatting_title">Format</string>
+  <string name="settings_appearance_title">Apparance</string>
+  <string name="settings_general_title">Géneral</string>
+  <string name="text_diagnostic">Diagnostique</string>
+  <string name="text_logs">Journaux</string>
+  <string name="text_error_details">Détails du erreur:</string>
+  <string name="text_bold">Gras</string>
+  <string name="text_monospace">Monospace</string>
+  <string name="text_serif">Serif</string>
+  <string name="text_sans_serif">Sans-Serif</string>
+  <string name="warning_storage_perm_title">Accéder Aux Stockage</string>
+  <string name="warning_storage_perm_message">Robok a besoin d\'une autorisation de stockage pour créer des projets, ouvrir des projets, etc</string>
+  <string name="warning_all_files_perm_message">Dans Android 11 +, Pour Continuer au Robok Vous Pouvez Accorder l\'Autorisation pour Accéder Aux Stockage.</string>
+  <string name="warning_project_created_title">Projet créé avec succès!</string>
+  <string name="warning_project_created_message">Votre projet a été créé avec succès !</string>
+  <string name="error_storage_perm_title">"Erreur Aux  Autorisation aux stockages"</string>
+  <string name="error_storage_perm_message">Vous n\'avez pas accepté l\'autorisation de stockage, elle est nécessaire au fonctionnement de Robok.</string>
+  <string name="error_invalid_name">Nom invalide</string>
+  <string name="error_load_fail">Erreur de chargements</string>
+  <string name="terminal_options">Options</string>
+  <string name="terminal_install_package">Installer le Paquet</string>
+  <string name="terminal_install_package_hint">Écrire le nom du paquet</string>
+  <string name="terminal_update_packages">Mettre à jour les paquets</string>
+  <string name="terminal_warning_update_packages">Voulez-vous mettre à jour les paquets?</string>
+  <string name="template_name_empty_game">Jeu vide</string>
+  <string name="slogan">Du Java au Jeux dans un clin d\'œil</string>
+  <string name="text_seeus">Contacter nous</string>
+  <string name="settings_app_use_monet_title">Couleurs Dynamiques</string>
+  <string name="settings_app_title">Paramètres d\'application</string>
+  <string name="settings_app_description">Quelques Paramètres en relation avec l\'appli.</string>
+  <string name="text_view_layout">Aperçu de IGU</string>
+  <string name="title_un_error_ocurred">Une erreur s\'est produite</string>
+  <string name="text_basic_info">Information Basique</string>
+  <string name="warning_project_installer_not_found">"Il n\'y a pas du Package d\'installation du kit  trouvé."</string>
+  <string name="common_word_close">Fermer</string>
+  <string name="common_word_close_others">Fermer Autres</string>
+  <string name="common_word_close_all">Tout Fermer</string>
+  <string name="title_projects">Projets</string>
+  <string name="title_your_projects">Votre Projets</string>
+  <string name="settings_app_use_monet_description">Utiliser le thème dans l\'appli.</string>
+  <string name="text_error_info">Information de l\'erreur</string>
+  <string name="text_no_files_open">Il n\'y a pas de fichiers ouverts.</string>
+  <string name="text_click_here_to_open_files">Appuyez ici pour ouvrir le fichier</string>
+  <string name="warning_file_already_opened">Le Fichier est déjà ouvert dans l\'éditeur.</string>
+  <string name="common_word_templates">Modèles</string>
+  <string name="settings_app_use_amoled_title">Thème Amoled</string>
+  <string name="settings_app_use_amoled_description">Utiliser L\'Amoled dans l\'appli.</string>
+  <string name="warning_no_projects">Il n\'y a pas de projets .</string>
+  <string name="title_gui_viewer">Visionneur de IGU</string>
+  <string name="common_word_open">Ouvrir</string>
+  <string name="common_word_files">Fichiers</string>
+  <string name="title_telegram">Telegram</string>
+  <string name="title_whatsapp">WhatsApp</string>
+  <string name="title_github">Github</string>
+  <string name="title_contribute">Contribuer</string>
+  <string name="title_libraries">Logicels Tiers</string>
+  <string name="settings_configure_rdk_version_success">Téléchargé avec Succès.</string>
+  <string name="text_saved">enregistré !</string>
+  <string name="text_saved_all">Tout enregistré !</string>
+  <string name="text_see_code">Voir Code</string>
+  <string name="warning_exit_project_title">Quitter le projet</string>
+  <string name="warning_exit_project_message">Voulez-Vous Quitter l\'archive (Tous Sont enregistrés)</string>
+  <string name="text_telegram">Notre Communaté Telegram</string>
+  <string name="text_whatsapp">Notre Group WhatsApp.</string>
+  <string name="text_contribute">Voici Comment vous voulez participer avec nous</string>
+  <string name="text_libraries">Les Bibliothèques Utilisés</string>
+  <string name="role_translator">Traducteur(rice)</string>
+  <string name="role_translators">Traducteurs</string>
+  <string name="role_developers">Developpeurs</string>
+  <string name="settings_configure_rdk_version_error">une erreur s\'est produite</string>
+  <string name="text_exit_without_save">Quitter sans Sauvgarder</string>
+  <string name="role_founders">Fondateurs</string>
+  <string name="role_developer">Developpeur(euse)</string>
+  <string name="role_founder">Fondateur</string>
+  <string name="text_github">Depôt Github</string>
+  <string name="text_contributors">Contributeurs</string>
+  <string name="title_open_contributor_profile">Ouvrir le profil du contributeur</string>
+  <string name="settings_debug_description">Experimentale/Paramètres de tests</string>
+  <string name="settings_debug_see_logs_title">Voir Journaux Robok</string>
+  <string name="settings_debug_see_logs_description">Voir Liste de tout les journaux robok</string>
+  <string name="text_logging">Enregistrement</string>
+  <string name="text_all_logs">Tous les Journaux</string>
+  <string name="loading_logs">Chargements des Journaux...</string>
+  <string name="settings_debug_title">Paramètres Débogage</string>
+  <string name="text_open_contributor_profile">Ouvrir profil de %s dans le navigateur</string>
+  <string name="warning_no_logs">Ils n\'existent aucuns journaux.</string>
 </resources>

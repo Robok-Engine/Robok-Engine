@@ -1,162 +1,133 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- common words section -->
-    <string name="common_word_back">عودة</string>
-    <string name="common_word_result">النتيجة</string>
-    <string name="common_word_run">تشغيل</string>
-    <string name="common_word_code">الكود</string>
-    <string name="common_word_logs">السجل</string>
-    <string name="common_word_output">الناتج</string>
-    <string name="common_word_end">النهاية</string>
-    <string name="common_word_confirm">تأكيد</string>
-    <string name="common_word_settings">الإعدادت</string>
-    <string name="common_word_cancel">إلغاء</string>
-    <string name="common_word_next">التالي</string>
-    <string name="common_word_undo">التراجع</string>
-    <string name="common_word_redo">إعادة</string>
-    <string name="common_word_allow">السماح</string>
-    <string name="common_word_deny">رفض</string>
-    <string name="common_word_normal">عادي</string>
-    <string name="common_word_retry">إعادة المحاولة</string>
-    <string name="common_word_save">حفظ</string>
-    <!-- end section -->
-    
-    <!-- titles section -->
-    <string name="title_create_project">إنشاء مشروع</string>
-    <string name="title_open_project">فتح المشروع</string>
-    <string name="title_open_editor">فتح محرر النصوص</string>
-    <string name="title_select_theme">إختر السمة</string>
-    <string name="title_select_folder">إختر مجلدا</string>
-    <!-- end section -->
-    
-    <!-- go to section -->
-    <string name="go_to_outputs">الذهاب إلى الناتج</string>
-    <!-- end section -->
-    
-    <!-- hints section -->
-    <string name="hint_project_name">إسم المشروع</string>
-    <string name="hint_package_name">إسم الحزمة</string>
-    <!-- end section -->
-    
-    <!-- settings section -->
-    <string name="settings_code_editor_title">إعدادت محرر الكود</string>
-    <string name="settings_code_editor_description">بعض إعدادت محرر الكود</string>
-    <string name="settings_code_editor_theme_title">سمة محرر الكود</string>
-    <string name="settings_code_editor_theme_description">إختر سمة محرر الكود</string>
-    <string name="settings_code_editor_word_wrap_title">لف الكلمات</string>
-    <string name="settings_code_editor_word_wrap_description">.تشغيل لف الكلمات في محرر الكود</string>
-    <string name="settings_code_editor_typeface_title">تغير خط محرر الكود</string>
-    <string name="settings_code_editor_typeface_description">.غيّر خط محرر الكود و إجعله مناسبا لمذاقك</string>
-    <string name="settings_about_title">حول التطبيق</string>
-    <string name="settings_about_description">كل شيء حول robok</string>
-    <string name="settings_libraries_title">المكتبات</string>
-    <string name="settings_libraries_description">كل المكتبات التي نستخدمها في التطبيق.</string>
-    <string name="settings_configure_rdk_title">تعديل RDK</string>
-    <string name="settings_configure_rdk_description">إعدادت روبوك SDK و ما إلى ذلك</string>
-    <string name="settings_configure_rdk_select_rdk_label">إختر إصدار RDK</string>
-    <string name="settings_configure_rdk_version">تعريف إصدار RDK</string>
-    <string name="settings_build_title">بناء</string>
-    <string name="settings_formatting_title">صياغة</string>
-    <string name="settings_appearance_title">المظهر</string>
-    <string name="settings_general_title">عام</string>
-    <!-- end section -->
-    
-    <!-- texts section -->
-    <string name="text_diagnostic">التشخيص</string>
-    <string name="text_logs">السجل</string>
-    <string name="text_error_details">تفاصيل الخطأ :</string>
-    <string name="text_bold">سميك</string>
-    <string name="text_monospace">مونوسبايس</string>
-    <string name="text_serif">خط رقيق</string>
-    <string name="text_sans_serif">دون تشعبات</string>
-    <!-- ene section -->
-    
-    <!-- warnings section -->
-    <string name="warning_storage_perm_title">إذن التخزين</string>
-    <string name="warning_storage_perm_message">يحتاج روبوك إلى إذن التخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
-    <string name="warning_all_files_perm_message">في Android 11+، لكي يعمل Robok بشكل صحيح، فإنه يحتاج إلى إذن للوصول إلى جميع الملفات.</string>
-    <string name="warning_project_created_title">أنشأ المشروع بنجاح!</string>
-    <string name="warning_project_created_message">لقد أنشأ مشروعك بنجاح!</string>
-    <!-- end section -->
-    
-    <!-- errors section -->
-    <string name="error_storage_perm_title">خطا في السماح بالتخزين</string>
-    <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل Robok.</string>
-    <string name="error_invalid_name">إسم غير صالح</string>
-    <string name="error_load_fail">خطأ في التحميل.</string>
-    <!-- end section -->
-    
-    <!-- terminal section -->
-    <string name="terminal_options">خيارات</string>
-    <string name="terminal_install_package">تثبيت الحزمة</string>
-    <string name="terminal_install_package_hint">اكتب اسم الحزمة</string>
-    <string name="terminal_update_packages">تحديث الحزمات</string>
-    <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
-    <!-- end section -->
-    
-    <!--about section-->
-    <string name="slogan">من جافا إلى لعبة في لحظات</string>
-    <string name="text_seeus">تابعنا على</string>
-    <!--end section-->
-    <string name="title_templates">قوالب</string>
-    <string name="template_name_empty_game">لعبة فارغة</string>
-    <string name="common_word_close">غلق</string>
-    <string name="common_word_close_all">غلق الكل</string>
-    <string name="common_word_close_others">غلق الآخرين</string>
-    <string name="settings_app_title">اعدادات التطبيق</string>
-    <string name="settings_app_use_monet_title">الألوان الديناميكية</string>
-    <string name="title_un_error_ocurred">لقد حدث خطأ</string>
-    <string name="settings_app_use_monet_description">إستخدام سمة الجاهز في التطبيق.</string>
-    <string name="settings_app_description">بعض الإعدادات المرتبطة بالتطبيق.</string>
-    <string name="title_projects">المشاريع</string>
-    <string name="title_your_projects">مشاريعك</string>
-    <string name="text_click_here_to_open_files">إضغط هنا بفتح الملف</string>
-    <string name="settings_app_use_amoled_title">سمة سوداء</string>
-    <string name="settings_app_use_amoled_description">إستخدام سمة سوداء في التطبيق.</string>
-    <string name="text_basic_info">معلومات أساسية</string>
-    <string name="text_error_info">تفاصيل الخطأ</string>
-    <string name="text_no_files_open">لا ملفات مفتوحة.</string>
-    <string name="warning_project_installer_not_found">لم يتم العثور على أي مثبت حزم.</string>
-    <string name="warning_file_already_opened">الملف مفتوح بالفعل في المحرر.</string>
-    <string name="warning_no_projects">لا مشاريع هنا .</string>
-    <string name="text_view_layout">إظهار واجهة المستخدم</string>
-    <string name="common_word_templates">القوالب</string>
-    <string name="text_saved">تم الحفظ!</string>
-    <string name="title_gui_viewer">عارض واجهة المستخدم</string>
-    <string name="common_word_open">افتح</string>
-    <string name="text_saved_all">تم حفظ الكل!</string>
-    <string name="settings_configure_rdk_version_success">تم التحميل بنجاح</string>
-    <string name="settings_configure_rdk_version_error">هناك خطأ</string>
-    <string name="common_word_files">الملفات</string>
-    <string name="title_telegram">تلجرام</string>
-    <string name="title_whatsapp">واتساب</string>
-    <string name="title_github">جيتهب</string>
-    <string name="title_contribute">شارك</string>
-    <string name="title_libraries">برامج الطرف الثالث</string>
-    <string name="text_see_code">انظر الكود</string>
-    <string name="text_exit_without_save">خروج دون حفظ</string>
-    <string name="text_telegram">مجتمع التلجرام الخاص بنا</string>
-    <string name="text_github">مستودع الجيتهاب</string>
-    <string name="text_contributors">المشاركون</string>
-    <string name="text_contribute">انظر كيف يمكنك المشاركة</string>
-    <string name="warning_exit_project_title">الخروج من المشروع</string>
-    <string name="warning_exit_project_message">هل انت متأكد من الخروج من الأرشيف( جميع الملفات ستحفظ)</string>
-    <string name="role_founder">المؤسس</string>
-    <string name="role_founders">المؤسسون</string>
-    <string name="role_developer">مطور</string>
-    <string name="role_developers">المطورون</string>
-    <string name="role_translator">مترجم</string>
-    <string name="role_translators">المترجمون</string>
-    <string name="text_whatsapp">مجموعة الواتساب.</string>
-    <string name="text_libraries">المكتبات المستعملة</string>
-    <string name="title_open_contributor_profile">فتح حساب المشارك</string>
-    <string name="settings_debug_description">إعدادت التجارب</string>
-    <string name="settings_debug_see_logs_description">جميع سجلات روبوك</string>
-    <string name="text_open_contributor_profile">فتح حساب %s في المتصفح</string>
-    <string name="text_logging">تسجيل</string>
-    <string name="text_all_logs">جميع السجلات</string>
-    <string name="warning_no_logs">لا سجلات هنا.</string>
-    <string name="loading_logs">يجري تحميل السجلات ...</string>
-    <string name="settings_debug_title">اعدادت تصحيح الأخطاء</string>
-    <string name="settings_debug_see_logs_title">رؤية سجلات روبوك</string>
+  <string name="common_word_back">عودة</string>
+  <string name="common_word_result">النتيجة</string>
+  <string name="common_word_run">تشغيل</string>
+  <string name="common_word_code">الكود</string>
+  <string name="common_word_logs">السجل</string>
+  <string name="common_word_output">الناتج</string>
+  <string name="common_word_end">النهاية</string>
+  <string name="common_word_confirm">تأكيد</string>
+  <string name="common_word_settings">الإعدادت</string>
+  <string name="common_word_cancel">إلغاء</string>
+  <string name="common_word_next">التالي</string>
+  <string name="common_word_undo">التراجع</string>
+  <string name="common_word_redo">إعادة</string>
+  <string name="common_word_allow">السماح</string>
+  <string name="common_word_deny">رفض</string>
+  <string name="common_word_normal">عادي</string>
+  <string name="common_word_retry">إعادة المحاولة</string>
+  <string name="common_word_save">حفظ</string>
+  <string name="title_create_project">إنشاء مشروع</string>
+  <string name="title_open_project">فتح المشروع</string>
+  <string name="title_open_editor">فتح محرر النصوص</string>
+  <string name="title_select_theme">إختر السمة</string>
+  <string name="title_select_folder">إختر مجلدا</string>
+  <string name="go_to_outputs">الذهاب إلى الناتج</string>
+  <string name="hint_project_name">إسم المشروع</string>
+  <string name="hint_package_name">إسم الحزمة</string>
+  <string name="settings_code_editor_title">إعدادت محرر الكود</string>
+  <string name="settings_code_editor_description">بعض إعدادت محرر الكود</string>
+  <string name="settings_code_editor_theme_title">سمة محرر الكود</string>
+  <string name="settings_code_editor_theme_description">إختر سمة محرر الكود</string>
+  <string name="settings_code_editor_word_wrap_title">لف الكلمات</string>
+  <string name="settings_code_editor_word_wrap_description">.تشغيل لف الكلمات في محرر الكود</string>
+  <string name="settings_code_editor_typeface_title">تغير خط محرر الكود</string>
+  <string name="settings_code_editor_typeface_description">.غيّر خط محرر الكود و إجعله مناسبا لمذاقك</string>
+  <string name="settings_about_title">حول التطبيق</string>
+  <string name="settings_about_description">كل شيء حول robok</string>
+  <string name="settings_libraries_title">المكتبات</string>
+  <string name="settings_libraries_description">كل المكتبات التي نستخدمها في التطبيق.</string>
+  <string name="settings_configure_rdk_title">تعديل RDK</string>
+  <string name="settings_configure_rdk_description">إعدادت روبوك SDK و ما إلى ذلك</string>
+  <string name="settings_configure_rdk_select_rdk_label">إختر إصدار RDK</string>
+  <string name="settings_configure_rdk_version">تعريف إصدار RDK</string>
+  <string name="settings_build_title">بناء</string>
+  <string name="settings_formatting_title">صياغة</string>
+  <string name="settings_appearance_title">المظهر</string>
+  <string name="settings_general_title">عام</string>
+  <string name="text_diagnostic">التشخيص</string>
+  <string name="text_logs">السجل</string>
+  <string name="text_error_details">تفاصيل الخطأ :</string>
+  <string name="text_bold">سميك</string>
+  <string name="text_monospace">مونوسبايس</string>
+  <string name="text_serif">خط رقيق</string>
+  <string name="text_sans_serif">دون تشعبات</string>
+  <string name="warning_storage_perm_title">إذن التخزين</string>
+  <string name="warning_storage_perm_message">يحتاج روبوك إلى إذن التخزين لإنشاء المشاريع وفتح المشاريع والمزيد</string>
+  <string name="warning_all_files_perm_message">في Android 11+، لكي يعمل Robok بشكل صحيح، فإنه يحتاج إلى إذن للوصول إلى جميع الملفات.</string>
+  <string name="warning_project_created_title">أنشأ المشروع بنجاح!</string>
+  <string name="warning_project_created_message">لقد أنشأ مشروعك بنجاح!</string>
+  <string name="error_storage_perm_title">خطا في السماح بالتخزين</string>
+  <string name="error_storage_perm_message">لم تقبل إذن التخزين، وهو ضروري لعمل Robok.</string>
+  <string name="error_invalid_name">إسم غير صالح</string>
+  <string name="error_load_fail">خطأ في التحميل.</string>
+  <string name="terminal_options">خيارات</string>
+  <string name="terminal_install_package">تثبيت الحزمة</string>
+  <string name="terminal_install_package_hint">اكتب اسم الحزمة</string>
+  <string name="terminal_update_packages">تحديث الحزمات</string>
+  <string name="terminal_warning_update_packages">هل تريد تحديث الحزمات ؟</string>
+  <string name="slogan">من جافا إلى لعبة في لحظات</string>
+  <string name="text_seeus">تابعنا على</string>
+  <string name="title_templates">قوالب</string>
+  <string name="template_name_empty_game">لعبة فارغة</string>
+  <string name="common_word_close">غلق</string>
+  <string name="common_word_close_all">غلق الكل</string>
+  <string name="common_word_close_others">غلق الآخرين</string>
+  <string name="settings_app_title">اعدادات التطبيق</string>
+  <string name="settings_app_use_monet_title">الألوان الديناميكية</string>
+  <string name="title_un_error_ocurred">لقد حدث خطأ</string>
+  <string name="settings_app_use_monet_description">إستخدام سمة الجاهز في التطبيق.</string>
+  <string name="settings_app_description">بعض الإعدادات المرتبطة بالتطبيق.</string>
+  <string name="title_projects">المشاريع</string>
+  <string name="title_your_projects">مشاريعك</string>
+  <string name="text_click_here_to_open_files">إضغط هنا بفتح الملف</string>
+  <string name="settings_app_use_amoled_title">سمة سوداء</string>
+  <string name="settings_app_use_amoled_description">إستخدام سمة سوداء في التطبيق.</string>
+  <string name="text_basic_info">معلومات أساسية</string>
+  <string name="text_error_info">تفاصيل الخطأ</string>
+  <string name="text_no_files_open">لا ملفات مفتوحة.</string>
+  <string name="warning_project_installer_not_found">لم يتم العثور على أي مثبت حزم.</string>
+  <string name="warning_file_already_opened">الملف مفتوح بالفعل في المحرر.</string>
+  <string name="warning_no_projects">لا مشاريع هنا .</string>
+  <string name="text_view_layout">إظهار واجهة المستخدم</string>
+  <string name="common_word_templates">القوالب</string>
+  <string name="text_saved">تم الحفظ!</string>
+  <string name="title_gui_viewer">عارض واجهة المستخدم</string>
+  <string name="common_word_open">افتح</string>
+  <string name="text_saved_all">تم حفظ الكل!</string>
+  <string name="settings_configure_rdk_version_success">تم التحميل بنجاح</string>
+  <string name="settings_configure_rdk_version_error">هناك خطأ</string>
+  <string name="common_word_files">الملفات</string>
+  <string name="title_telegram">تلجرام</string>
+  <string name="title_whatsapp">واتساب</string>
+  <string name="title_github">جيتهب</string>
+  <string name="title_contribute">شارك</string>
+  <string name="title_libraries">برامج الطرف الثالث</string>
+  <string name="text_see_code">انظر الكود</string>
+  <string name="text_exit_without_save">خروج دون حفظ</string>
+  <string name="text_telegram">مجتمع التلجرام الخاص بنا</string>
+  <string name="text_github">مستودع الجيتهاب</string>
+  <string name="text_contributors">المشاركون</string>
+  <string name="text_contribute">انظر كيف يمكنك المشاركة</string>
+  <string name="warning_exit_project_title">الخروج من المشروع</string>
+  <string name="warning_exit_project_message">هل انت متأكد من الخروج من الأرشيف( جميع الملفات ستحفظ)</string>
+  <string name="role_founder">المؤسس</string>
+  <string name="role_founders">المؤسسون</string>
+  <string name="role_developer">مطور</string>
+  <string name="role_developers">المطورون</string>
+  <string name="role_translator">مترجم</string>
+  <string name="role_translators">المترجمون</string>
+  <string name="text_whatsapp">مجموعة الواتساب.</string>
+  <string name="text_libraries">المكتبات المستعملة</string>
+  <string name="title_open_contributor_profile">فتح حساب المشارك</string>
+  <string name="settings_debug_description">إعدادت التجارب</string>
+  <string name="settings_debug_see_logs_description">جميع سجلات روبوك</string>
+  <string name="text_open_contributor_profile">فتح حساب %s في المتصفح</string>
+  <string name="text_logging">تسجيل</string>
+  <string name="text_all_logs">جميع السجلات</string>
+  <string name="warning_no_logs">لا سجلات هنا.</string>
+  <string name="loading_logs">يجري تحميل السجلات ...</string>
+  <string name="settings_debug_title">اعدادت تصحيح الأخطاء</string>
+  <string name="settings_debug_see_logs_title">رؤية سجلات روبوك</string>
 </resources>

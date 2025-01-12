@@ -11,8 +11,6 @@ plugins {
   id("kotlin-parcelize")
 }
 
-val app_version = "0.0.1"
-
 android {
   namespace = "org.robok.engine"
   compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -21,8 +19,8 @@ android {
     minSdk = libs.versions.android.minSdk.get().toInt()
     targetSdk = libs.versions.android.targetSdk.get().toInt()
     applicationId = "org.robok.engine"
-    versionCode = 1
-    versionName = app_version
+    versionCode = 100
+    versionName = "1.0.0"
     
     vectorDrawables.useSupportLibrary = true
   }
