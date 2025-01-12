@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Warning
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -81,8 +83,8 @@ private fun EmptyContentItem() {
     },
     startWidget = {
       Image(
-        painter = painterResource(id = Drawables.ic_warning_24),
-        contentDescription = null,
+        imageVector = Icons.Rounded.Warning,
+        contentDescription = stringResource(id = Strings.warning_no_projects),
         modifier = Modifier.size(32.dp).clip(CircleShape),
       )
     },
