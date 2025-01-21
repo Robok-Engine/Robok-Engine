@@ -26,9 +26,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import dev.chrisbanes.insetter.Insetter
-import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.utils.PermissionListener
@@ -59,8 +60,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
-    val themeManager = XMLThemeManager()
-    runBlocking { themeManager.apply(this@BaseActivity) }
+    lifecycleScope.launch { XMLThemeManager.getInstance().apply(this@BaseActivity) }
     super.onCreate(savedInstanceState)
   }
 

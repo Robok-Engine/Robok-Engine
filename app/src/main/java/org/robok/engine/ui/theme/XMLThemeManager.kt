@@ -8,7 +8,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import org.koin.android.ext.android.getKoin
-import org.robok.engine.R
+import org.robok.engine.Styles
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.base.BaseActivity
@@ -22,9 +22,17 @@ import org.robok.engine.ui.base.BaseActivity
  */
 const val TAG = "XMLThemeManager"
 
-class XMLThemeManager(
-  private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
-) {
+class XMLThemeManager private constructor() {
+
+  companion object {
+    private var instance: XMLThemeManager? = null
+
+    @JvmStatic
+    fun getInstance(): XMLThemeManager {
+      if (instance == null) instance = XMLThemeManager()
+      return instance!!
+    }
+  }
 
   private lateinit var appPrefsViewModel: PreferencesViewModel
 
@@ -43,10 +51,10 @@ class XMLThemeManager(
 
     if (activity.isDarkMode() && useAmoled) {
       if (useMonet) {
-        activity.setTheme(R.style.Theme_Robok_Amoled_Monet)
+        activity.setTheme(Styles.Theme_Robok_Amoled_Monet)
         return
       }
-      activity.setTheme(R.style.Theme_Robok_Amoled)
+      activity.setTheme(Styles.Theme_Robok_Amoled)
       return
     }
 
