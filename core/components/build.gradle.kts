@@ -42,4 +42,5 @@ dependencies {
   implementation(libs.compose.viewmodel)
 
   implementation(projects.appStrings)
+  implementation(projects.core.utils)
 }
