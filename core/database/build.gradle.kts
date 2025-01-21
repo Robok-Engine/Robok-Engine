@@ -5,7 +5,8 @@ plugins {
 
 android {
   namespace = "org.robok.engine.core.database"
-  compileSdk = libs.versions.android.compileSdk.get().toInt() 
+  compileSdk = libs.versions.android.compileSdk.get().toInt()
+
   defaultConfig {
     minSdk = libs.versions.android.minSdk.get().toInt()
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
@@ -19,7 +20,7 @@ android {
   kotlinOptions {
     jvmTarget = libs.versions.android.jvm.get()
   }
-    
+
   composeOptions {
     kotlinCompilerExtensionVersion = "1.5.15"
   }

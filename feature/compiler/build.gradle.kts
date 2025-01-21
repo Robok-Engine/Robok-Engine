@@ -1,47 +1,43 @@
 plugins {
-    alias(libs.plugins.agp.lib)
-    alias(libs.plugins.kotlin)
+  alias(libs.plugins.agp.lib)
+  alias(libs.plugins.kotlin)
 }
 
 android {
-    namespace = "org.robok.engine.feature.compiler"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
-    
-    defaultConfig {
-        minSdk = libs.versions.android.minSdk.get().toInt()
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+  namespace = "org.robok.engine.feature.compiler"
+  compileSdk = libs.versions.android.compileSdk.get().toInt()
 
-    compileOptions {
-        sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
-        targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
-    }
+  defaultConfig {
+    minSdk = libs.versions.android.minSdk.get().toInt()
+    testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+  }
 
-    kotlinOptions {
-        jvmTarget = libs.versions.android.jvm.get()
-    }
-    
-    packaging {
-        resources {
-            // Exclude all instances of 'plugin.properties'
-            excludes += "plugin.properties"
+  compileOptions {
+    sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+    targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
+  }
 
-            // Alternatively, keep the first occurrence
-            // pickFirsts += "plugin.properties"
-        }
+  kotlinOptions {
+    jvmTarget = libs.versions.android.jvm.get()
+  }
+
+  packaging {
+    resources {
+      excludes += "plugin.properties"
     }
+  }
 }
 
 dependencies {
-    implementation(fileTree("libs") { include("*.jar") })
-    
-    implementation(libs.google.material)
-    implementation(libs.androidx.appcompat)
-    
-    implementation(libs.google.gson)
-    
-    implementation(projects.feature.apksigner)
-    implementation(projects.core.utils)
-    
-    implementation(libs.android.r8)
+  implementation(fileTree("libs") { include("*.jar") })
+
+  implementation(libs.google.material)
+  implementation(libs.androidx.appcompat)
+
+  implementation(libs.google.gson)
+
+  implementation(projects.feature.apksigner)
+  implementation(projects.core.utils)
+
+  implementation(libs.android.r8)
 }

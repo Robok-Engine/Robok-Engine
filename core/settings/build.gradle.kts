@@ -19,7 +19,7 @@ android {
   kotlinOptions {
     jvmTarget = libs.versions.android.jvm.get()
   }
-    
+
   composeOptions {
     kotlinCompilerExtensionVersion = "1.5.15"
   }
