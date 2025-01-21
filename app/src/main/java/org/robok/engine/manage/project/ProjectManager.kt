@@ -33,14 +33,14 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.koin.android.ext.android.getKoin
-import org.robok.easyui.GUIBuilder
-import org.robok.easyui.compiler.GUICompiler
+import org.robok.amix.Amix
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
+import org.robok.engine.core.utils.PathUtils
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -194,7 +194,7 @@ class ProjectManager(private var context: Context) {
       SystemLogPrinter.start(context, buildLogger)
 
       copyIconToPrivate()
-      compileAllGuiFiles()
+      compileAllAmixFiles()
       downloadStyles()
 
       var rdkVersion = "RDK-1"
@@ -228,44 +228,39 @@ class ProjectManager(private var context: Context) {
     }
   }
 
-  private fun compileAllGuiFiles() {
+  /** compiles all .amx files of project */
+  fun compileAllAmixFiles() {
     // TODO: Logs on Build BottomSheet
-    val hudFolderList = arrayListOf<String>()
-    hudFolderList.forEach { path ->
-      val file = File(path)
-      if (file.extension.equals("gui")) {
-        val guiCode = FileUtil.readFile(path)
+    getAllAmixFiles.forEach { file ->
+      if (file.extension.equals("amx")) {
+        val amixCode = FileUtil.readFile(file.absolutePath)
         val fileName = file.nameWithoutExtension
-        val guiCompiler =
-          GUICompiler(
-            guiBuilder =
-              getGuiBuilder(
-                onGenerateCode = { code, _ ->
-                  FileUtil.writeFile(
-                    getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-                    code,
-                  )
-                }
-              ),
-            code = guiCode,
-          )
+        FileUtil.writeFile(
+          getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+          generateXmlFromAmix(amixCode),
+        )
       }
     }
   }
 
-  private fun getGuiBuilder(
-    onGenerateCode: (String, org.robok.easyui.config.Config) -> Unit,
-    onError: (String) -> Unit = {},
-  ): GUIBuilder =
-    GUIBuilder(
-      context = context,
-      codeComments = false,
-      onGenerateCode = onGenerateCode,
-      onError = onError,
-    )
+  /** compile .amx file and return XML result  */
+  fun generateXmlFromAmix(amixCode: String): String {
+    var generatedXml: String? = null
+    val amix = Amix.Builder(context)
+      .setUseComments(false)
+      .setCode(amixCode)
+      .setOnGenerateCode { generatedCode, config ->
+        generatedXml = generatedCode
+      }
+      .setOnError { errorMessage -> }
+      .create()
+    amix.compile()
+    return generatedXml ?: "Failed to generate XML"
+  }
 
   private fun downloadStyles() {
     // TODO: Logs on Build Bottom Sheet
+    // TODO: do a for-each in hud files and verify what styles are used
     val sd = StylesDownloader()
     sd.startDownload(
       context = context,
@@ -307,6 +302,23 @@ class ProjectManager(private var context: Context) {
 
   fun getProjectSettingsFile(): File {
     return File(projectPath, ".robok/config.json")
+  }
+
+  fun getHudsPath(): File {
+    return File(projectPath, "game/assets/hud/")
+  }
+
+  fun getScreensPath(): File {
+    return File(projectPath, "game/assets/screens/")
+  }
+
+  fun getAllAmixFiles(): List<File> {
+    val screensFolderList = PathUtils.listFilesInDir(getScreensPath())
+    val hudFolderList = PathUtils.listFilesInDir(getHudsPath())
+    val allAmixFiles = mutableListOf<File>()
+    allAmixFiles.addAll(screensFolderList)
+    allAmixFiles.addAll(hudFolderList)
+    return allAmixFiles
   }
 
   fun getProjectSettingsFromFile(): ProjectSettings? {
