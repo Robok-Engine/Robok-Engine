@@ -21,30 +21,30 @@ android {
     applicationId = "org.robok.engine"
     versionCode = 100
     versionName = "1.0.0"
-    
+
     vectorDrawables.useSupportLibrary = true
   }
-  
+
   packaging {
     jniLibs.useLegacyPackaging = true
   }
-  
+
   sourceSets {
     getByName("main") {
       jniLibs.srcDirs("src/main/jniLibs")
     }
   }
-  
+
   compileOptions {
     sourceCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     targetCompatibility = JavaVersion.toVersion(libs.versions.android.jvm.get().toInt())
     isCoreLibraryDesugaringEnabled = true
   }
-  
+
   kotlinOptions {
     jvmTarget = libs.versions.android.jvm.get()
   }
-  
+
   buildTypes {
     getByName("release") {
       isMinifyEnabled = false
@@ -54,17 +54,17 @@ android {
       versionNameSuffix = "@${getShortGitHash()}"
     }
   }
-  
+
   buildFeatures {
     buildConfig = true
     viewBinding = true
     compose = true
   }
-  
+
   androidResources {
     generateLocaleConfig = true
   }
-  
+
   signingConfigs {
     getByName("debug") {
       storeFile = file(layout.buildDirectory.dir("../testkey.keystore"))
@@ -92,12 +92,12 @@ dependencies {
   implementation(libs.ktx.coroutines.core)
   implementation(libs.ktx.coroutines.android)
   implementation(libs.ktx.serialization.json)
-    
+
   implementation(libs.koin.android)
   implementation(libs.koin.androidx.compose)
 
   implementation(libs.glide)
-    
+
   implementation(libs.google.material)
 
   coreLibraryDesugaring(libs.desugar.jdk.libs)
@@ -108,48 +108,45 @@ dependencies {
   implementation(libs.compose.navigation)
   implementation(libs.compose.material.motion.core)
   implementation(libs.compose.material.icons)
-    
+
   implementation(libs.libgdx)
   implementation(libs.libgdx.backend.android)
-    
+
   implementation(libs.sora.editor)
   implementation(libs.sora.editor.language.textmate)
-    
+
   implementation(libs.termux.terminal.view)
   implementation(libs.termux.terminal.emulator)
-    
+
   implementation(libs.coil.compose)
 
   implementation(libs.google.gson)
-    
+
   implementation(libs.ktor.client.android)
   implementation(libs.ktor.client.content.negotiation)
   implementation(libs.ktor.serialization.kotlix.json)
   implementation(libs.slf4j)
-    
+
   implementation(libs.about.libraries.core)
   implementation(libs.about.libraries.compose)
   implementation(libs.about.libraries.compose.m3)
-  
+
   implementation(libs.insetter)
   
   // projects
-  
   implementation(projects.appStrings)
-  
+
   implementation(projects.feature.treeview)
   implementation(projects.feature.editor)
   implementation(projects.feature.modeling)
   implementation(projects.feature.xmlviewer)
   implementation(projects.feature.compiler)
-  
+
   implementation(projects.core.settings)
   implementation(projects.core.database)
   implementation(projects.core.components)
   implementation(projects.core.utils)
   implementation(projects.core.antlr4.java)
-  
-  implementation(projects.robokEasyUi.gui)
 }
 
 fun execAndGetOutput(vararg command: String): String {
