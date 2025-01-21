@@ -337,7 +337,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
       baseTypeface =
           switch (fontIndex) {
-            case 0 -> Typeface.createFromAsset(context.getAssets(), "JetBrainsMono-Regular.ttf");
+            case 0 -> Typeface.createFromAsset(context.getAssets(), "editor/font/jetbrainsmono-regular.ttf");
             default -> Typeface.DEFAULT;
           };
 

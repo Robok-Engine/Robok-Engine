@@ -69,7 +69,7 @@ private fun setCodeEditorFactory(
   state: CodeEditorState,
 ): CodeEditor {
   val editor = CodeEditor(context)
-  val typeface = Typeface.createFromAsset(context.assets, "JetBrainsMono-Regular.ttf")
+  val typeface = Typeface.createFromAsset(context.assets, "editor/font/jetbrainsmono-regular.ttf")
   val theme = if (isDarkMode) "darcula" else "quietlight"
 
   editor.apply {
