@@ -87,8 +87,8 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   }
 
   /** init the compilation */
-  fun run() {
-    _projectManager?.build(logger, this)
+  fun compileProject() {
+    _projectManager?.compileProject(logger, this)
   }
 
   /** triggered when request to redo an action */
