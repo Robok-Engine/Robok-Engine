@@ -33,6 +33,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
@@ -105,6 +106,7 @@ fun EmptyContentItem() {
         imageVector = Icons.Rounded.Warning,
         contentDescription = stringResource(id = Strings.warning_no_projects),
         modifier = Modifier.size(32.dp).clip(CircleShape),
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
       )
     },
     modifier =
