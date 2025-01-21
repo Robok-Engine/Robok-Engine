@@ -140,9 +140,9 @@ dependencies {
 
   implementation(projects.feature.treeview)
   implementation(projects.feature.editor)
-  implementation(projects.feature.modeling)
   implementation(projects.feature.xmlviewer)
   implementation(projects.feature.compiler)
+  implementation(projects.feature.graphics.modeling)
 
   implementation(projects.core.settings)
   implementation(projects.core.database)
