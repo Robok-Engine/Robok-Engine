@@ -23,7 +23,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import org.robok.easyui.config.Config
+import org.robok.amix.config.Config
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.navigation.XMLViewerNavHost
 import org.robok.engine.platform.LocalXMLViewerNavController
