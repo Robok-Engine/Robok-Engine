@@ -37,6 +37,8 @@ coil = "2.7.0"
 insetter = "0.6.1"
 android-r8 = "8.5.35"
 
+robok-amix = "1.0.0"
+
 [plugins]
 # Android Gradle Plugin
 agp-lib = { id = "com.android.library", version.ref = "agp" }
@@ -116,10 +118,12 @@ ktor-serialization-kotlix-json = { group = "io.ktor", name = "ktor-serialization
 
 slf4j = { group = "org.slf4j", name = "slf4j-android", version.ref = "slf4j" }
 
+robok-amix = { group = "com.github.Robok-Engine", name = "Robok-Amix", version.ref = "robok-amix" }
+
 # Others
 glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
 insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version.ref = "insetter" }
 google-gson = { group = "com.google.code.gson", name = "gson", version.ref ="gson" }
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
-android-r8 = { group = "com.android.tools", name = "r8", version.ref = "android-r8" } 
+android-r8 = { group = "com.android.tools", name = "r8", version.ref = "android-r8" }

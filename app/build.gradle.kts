@@ -132,7 +132,9 @@ dependencies {
   implementation(libs.about.libraries.compose.m3)
 
   implementation(libs.insetter)
-  
+
+  implementation(libs.robok.amix)
+
   // projects
   implementation(projects.appStrings)
 
