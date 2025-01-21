@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.viewmodel
+package org.robok.engine.ui.screens.editor.state
 
 /*
  *  This file is part of Robok © 2024.

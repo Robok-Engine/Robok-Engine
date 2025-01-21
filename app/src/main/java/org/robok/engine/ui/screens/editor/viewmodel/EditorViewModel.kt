@@ -30,6 +30,7 @@ import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.ui.screens.editor.event.EditorEvent
+import org.robok.engine.ui.screens.editor.state.BuildState
 import org.robok.engine.ui.screens.editor.state.EditorUIState
 
 class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
