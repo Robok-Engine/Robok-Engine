@@ -19,7 +19,7 @@
     "type": "User",
     "user_view_type": "public",
     "site_admin": false,
-    "contributions": 1599
+    "contributions": 1622
   },
   {
     "login": "ThDev-only",
@@ -154,6 +154,28 @@
     "contributions": 11
   },
   {
+    "login": "Kefir2105",
+    "id": 103105829,
+    "node_id": "U_kgDOBiVFJQ",
+    "avatar_url": "https://avatars.githubusercontent.com/u/103105829?v=4",
+    "gravatar_id": "",
+    "url": "https://api.github.com/users/Kefir2105",
+    "html_url": "https://github.com/Kefir2105",
+    "followers_url": "https://api.github.com/users/Kefir2105/followers",
+    "following_url": "https://api.github.com/users/Kefir2105/following{/other_user}",
+    "gists_url": "https://api.github.com/users/Kefir2105/gists{/gist_id}",
+    "starred_url": "https://api.github.com/users/Kefir2105/starred{/owner}{/repo}",
+    "subscriptions_url": "https://api.github.com/users/Kefir2105/subscriptions",
+    "organizations_url": "https://api.github.com/users/Kefir2105/orgs",
+    "repos_url": "https://api.github.com/users/Kefir2105/repos",
+    "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
+    "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
+    "type": "User",
+    "user_view_type": "public",
+    "site_admin": false,
+    "contributions": 10
+  },
+  {
     "login": "github-actions[bot]",
     "id": 41898282,
     "node_id": "MDM6Qm90NDE4OTgyODI=",
@@ -174,28 +196,6 @@
     "user_view_type": "public",
     "site_admin": false,
     "contributions": 10
-  },
-  {
-    "login": "Kefir2105",
-    "id": 103105829,
-    "node_id": "U_kgDOBiVFJQ",
-    "avatar_url": "https://avatars.githubusercontent.com/u/103105829?v=4",
-    "gravatar_id": "",
-    "url": "https://api.github.com/users/Kefir2105",
-    "html_url": "https://github.com/Kefir2105",
-    "followers_url": "https://api.github.com/users/Kefir2105/followers",
-    "following_url": "https://api.github.com/users/Kefir2105/following{/other_user}",
-    "gists_url": "https://api.github.com/users/Kefir2105/gists{/gist_id}",
-    "starred_url": "https://api.github.com/users/Kefir2105/starred{/owner}{/repo}",
-    "subscriptions_url": "https://api.github.com/users/Kefir2105/subscriptions",
-    "organizations_url": "https://api.github.com/users/Kefir2105/orgs",
-    "repos_url": "https://api.github.com/users/Kefir2105/repos",
-    "events_url": "https://api.github.com/users/Kefir2105/events{/privacy}",
-    "received_events_url": "https://api.github.com/users/Kefir2105/received_events",
-    "type": "User",
-    "user_view_type": "public",
-    "site_admin": false,
-    "contributions": 9
   },
   {
     "login": "OSilvaDev",
