@@ -172,7 +172,7 @@ object PathUtils {
   }
 
   fun listFilesInDir(dir: File?): List<File> {
-    val files = mutableListOf<File>
+    val files = mutableListOf<File>()
     if (dir != null && dir.isDirectory) {
       dir.listFiles()?.let { files.addAll(it) }
     }
