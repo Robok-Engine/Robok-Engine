@@ -309,9 +309,4 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   override fun onCompileError(error: String) {
     _buildState = BuildState.Error(error)
   }
-
-  /** helper to print list content */
-  private inline fun List<*>.print(tag: String = "") {
-    Log.d(tag = tag, message = toString())
-  }
 }
