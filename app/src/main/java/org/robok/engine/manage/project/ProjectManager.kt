@@ -231,7 +231,7 @@ class ProjectManager(private var context: Context) {
   /** compiles all .amx files of project */
   fun compileAllAmixFiles() {
     // TODO: Logs on Build BottomSheet
-    getAllAmixFiles.forEach { file ->
+    getAllAmixFiles().forEach { file ->
       if (file.extension.equals("amx")) {
         val amixCode = FileUtil.readFile(file.absolutePath)
         val fileName = file.nameWithoutExtension
