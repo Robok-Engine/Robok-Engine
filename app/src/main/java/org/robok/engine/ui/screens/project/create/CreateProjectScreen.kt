@@ -36,6 +36,7 @@ import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.koin.core.parameter.parametersOf
 import org.robok.engine.core.components.Screen
+import org.robok.engine.core.components.dialog.loading.LoadingDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.SingleString
@@ -93,5 +94,8 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         onCancel = { navController.popBackStack() },
       )
     }
+  }
+  if(uiState.isLoading) {
+    LoadingDialog()
   }
 }
