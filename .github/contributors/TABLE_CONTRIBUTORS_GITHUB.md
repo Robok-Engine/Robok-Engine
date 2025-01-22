@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1622 | Founder |
+| trindadedev13 | 1632 | Founder |
 | ThDev-only | 210 | Founder |
 | renovate[bot] | 152 | Bot |
 | gampiot-bot | 35 | Bot |
@@ -11,7 +11,7 @@
 | teixeira0x | 6 | Developer |
 | Yamenher | 7 | Translator |
 | itsvks19 | 3 | Developer |
-| Paxsenix0 | 2 | Translator |
+| Paxsenix0 | 4 | Translator |
 | Xori71 | 1 | Translator |
 | weblate | 11 | Bot |
 | SyntaxSpins | 29 | Developer |
