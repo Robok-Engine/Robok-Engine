@@ -53,6 +53,9 @@
   <string
     name="link_discord"
     translatable="false">https://discord.gg/aZ9T22Wa</string>
+  <string
+    name="link_rdk"
+    translatable="false">https://github.com/Robok-Engine/Robok-SDK/raw/dev/versions/%d/files.zip</string>
   <!-- end section -->
 
   <!-- titles section -->
