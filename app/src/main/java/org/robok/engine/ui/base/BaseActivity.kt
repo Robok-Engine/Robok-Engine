@@ -47,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   public val database: DatabaseViewModel by lazy { getKoin().get() }
 
   /** preferences of app */
-  public val preferences: PreferenceViewModel by lazy { getKoin().get() }
+  public val preferences: PreferencesViewModel by lazy { getKoin().get() }
 
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -119,9 +119,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
    *
    * implement in your activity to handle this.
    */
-  protected open fun onReceive(type: PermissionType, status: Boolean) {
-    onReceive(status)
-  }
+  protected open fun onReceive(type: PermissionType, status: Boolean) = DoNothing
 
   /**
    * called when return of permission android screen
