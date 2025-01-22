@@ -32,6 +32,7 @@ import dev.chrisbanes.insetter.Insetter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.getBackPressedClickListener
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
@@ -44,6 +45,9 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   /** database to get database, like isFirstTime */
   public val database: DatabaseViewModel by lazy { getKoin().get() }
+
+  /** preferences of app */
+  public val preferences: PreferenceViewModel by lazy { getKoin().get() }
 
   private val allFilesPermissionLauncher =
     registerForActivityResult(ActivityResultContracts.StartActivityForResult()) {
@@ -60,7 +64,8 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
-    lifecycleScope.launch { XMLThemeManager.getInstance().apply(this@BaseActivity) }
+    reloadTheme()
+    preferences.setOnAppThemePreferenceChange { reloadTheme() }
     super.onCreate(savedInstanceState)
   }
 
@@ -71,6 +76,12 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
     } else {
       requestReadWritePermissions(this, readWritePermissionLauncher)
     }
+  }
+
+  /** reloads the Android Views (XML) Theme */
+  @Deprecated("Use Jetpack Compose instead.")
+  protected fun reloadTheme() {
+    lifecycleScope.launch { XMLThemeManager.getInstance().apply(this@BaseActivity) }
   }
 
   /** verify if app is in darkMode */
@@ -119,6 +130,11 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
    *
    * implement in your activity to handle this.
    */
+  @Deprecated(
+    message = "Use the most informative method:",
+    replaceWith = ReplaceWith("onReceive(PermissionType, Boolean)"),
+    level = DeprecationLevel.HIDDEN
+  )
   override fun onReceive(status: Boolean) = DoNothing
 
   enum class PermissionType {

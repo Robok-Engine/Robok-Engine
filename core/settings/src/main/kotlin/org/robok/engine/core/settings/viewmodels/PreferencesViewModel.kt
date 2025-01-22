@@ -31,15 +31,19 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   val editorIsUseWordWrap = repo.editorIsUseWordWrap
   val editorFont = repo.editorFont
 
+  var onAppThemePreferenceChange: () -> Unit = { }
+
   fun setInstalledRDKVersion(value: String) {
     viewModelScope.launch { repo.setInstalledRDKVersion(value) }
   }
 
   fun setMonetEnable(value: Boolean) {
+    onAppThemePreferenceChange()
     viewModelScope.launch { repo.setMonetEnable(value) }
   }
 
   fun setAmoledEnable(value: Boolean) {
+    onAppThemePreferenceChange()
     viewModelScope.launch { repo.setAmoledEnable(value) }
   }
 
