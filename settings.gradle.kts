@@ -36,6 +36,3 @@ include(":core:utils")
 include(":core:antlr4:java")
 include(":core:settings")
 include(":core:database")
-
-include(":robok-easy-ui:antlr4")
-include(":robok-easy-ui:gui")
