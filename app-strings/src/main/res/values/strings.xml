@@ -50,6 +50,9 @@
   <string
     name="link_whatsapp"
     translatable="false">https://chat.whatsapp.com/Bif7OZqpzr19EUuAtIFkM8</string>
+  <string
+    name="link_discord"
+    translatable="false">https://discord.gg/aZ9T22Wa</string>
   <!-- end section -->
 
   <!-- titles section -->
@@ -73,6 +76,39 @@
   <string name="title_github">GitHub</string>
   <string name="title_contribute">Contribute</string>
   <string name="title_libraries">Third-Party Software</string>
+  <string name="title_discord">Discord</string>
+  <!-- end section -->
+
+  <!-- texts section -->
+  <string name="text_diagnostic">Diagnostic</string>
+  <string name="text_logs">Logs</string>
+  <string name="text_error_details">Error details:</string>
+  <string name="text_bold">Bold</string>
+  <string name="text_monospace">Monospace</string>
+  <string name="text_serif">Serif</string>
+  <string name="text_sans_serif">Sans-Serif</string>
+  <string name="text_basic_info">Basic information</string>
+  <string name="text_error_info">Error info</string>
+  <string name="text_no_files_open">No files open.</string>
+  <string name="text_click_here_to_open_files">Click here to open file</string>
+  <string name="text_view_layout">View GUI</string>
+  <string name="text_saved">Saved!</string>
+  <string name="text_saved_all">All Saved!</string>
+  <string name="text_see_code">See Code</string>
+  <string name="text_open_contributor_profile">Open %s Profile in Browser</string>
+  <string name="text_seeus">See us</string>
+  <string name="text_telegram">Our Telegram Community</string>
+  <string name="text_whatsapp">Our WhatsApp group.</string>
+  <string name="text_github">GitHub Repository</string>
+  <string name="text_contributors">Contributors</string>
+  <string name="text_contribute">See how you can contribute with us</string>
+  <string name="text_libraries">The libraries we used</string>
+  <string name="text_exit_without_save">Exit without Save</string>
+  <string name="text_logging">Logging</string>
+  <string name="text_all_logs">All Logs</string>
+  <string name="text_permissions">Permissions</string>
+  <string name="text_environment">Environment</string>
+  <string name="text_discord">Our Server in Discord</string>
   <!-- end section -->
 
   <!-- go to section -->
@@ -121,37 +157,6 @@
   <string name="settings_project_settings_game_name">Game Name</string>
   <string name="settings_project_settings_game_icon_path">Game Icon Path</string>
   <string name="settings_project_settings_game_main_screen_name">Game Main Screen Name</string>
-  <!-- end section -->
-
-  <!-- texts section -->
-  <string name="text_diagnostic">Diagnostic</string>
-  <string name="text_logs">Logs</string>
-  <string name="text_error_details">Error details:</string>
-  <string name="text_bold">Bold</string>
-  <string name="text_monospace">Monospace</string>
-  <string name="text_serif">Serif</string>
-  <string name="text_sans_serif">Sans-Serif</string>
-  <string name="text_basic_info">Basic information</string>
-  <string name="text_error_info">Error info</string>
-  <string name="text_no_files_open">No files open.</string>
-  <string name="text_click_here_to_open_files">Click here to open file</string>
-  <string name="text_view_layout">View GUI</string>
-  <string name="text_saved">Saved!</string>
-  <string name="text_saved_all">All Saved!</string>
-  <string name="text_see_code">See Code</string>
-  <string name="text_open_contributor_profile">Open %s Profile in Browser</string>
-  <string name="text_seeus">See us</string>
-  <string name="text_telegram">Our Telegram Community</string>
-  <string name="text_whatsapp">Our WhatsApp group.</string>
-  <string name="text_github">GitHub Repository</string>
-  <string name="text_contributors">Contributors</string>
-  <string name="text_contribute">See how you can contribute with us</string>
-  <string name="text_libraries">The libraries we used</string>
-  <string name="text_exit_without_save">Exit without Save</string>
-  <string name="text_logging">Logging</string>
-  <string name="text_all_logs">All Logs</string>
-  <string name="text_permissions">Permissions</string>
-  <string name="text_environment">Environment</string>
   <!-- end section -->
 
   <!-- warnings section -->

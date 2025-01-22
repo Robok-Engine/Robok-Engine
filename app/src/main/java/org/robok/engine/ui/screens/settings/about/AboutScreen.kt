@@ -128,6 +128,12 @@ private fun getLinksList(): List<Link> {
       imageResId = Drawables.ic_send_24,
       url = stringResource(id = Strings.link_telegram),
     ),
+    Link(
+      name = stringResource(id = Strings.title_discord),
+      description = stringResource(id = Strings.text_discord),
+      imageResId = Drawables.ic_discord_24,
+      url = stringResource(id = Strings.link_discord),
+    ),
     if (isDeviceLanguage("pt", "BR")) {
       Link(
         name = stringResource(id = Strings.title_whatsapp),
