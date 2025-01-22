@@ -16,12 +16,17 @@
 package org.robok.engine.core.components.edges;
 
 import android.content.Context;
+import android.os.Build;
 import android.view.View;
 import android.widget.EdgeEffect;
-import org.robok.engine.core.utils.sdk.SDKUtilsKt;
+import androidx.annotation.ChecksSdkIntAtLeast;
+
 
 /** Extension of {@link EdgeEffect} to allow backwards compatibility */
 public class EdgeEffectCompat extends EdgeEffect {
+
+  @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)
+  public static final boolean ATLEAST_S = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S;
 
   public EdgeEffectCompat(Context context) {
     super(context);
@@ -29,12 +34,12 @@ public class EdgeEffectCompat extends EdgeEffect {
 
   @Override
   public float getDistance() {
-    return SDKUtilsKt.ATLEAST_S ? super.getDistance() : 0;
+    return ATLEAST_S ? super.getDistance() : 0;
   }
 
   @Override
   public float onPullDistance(float deltaDistance, float displacement) {
-    if (SDKUtilsKt.ATLEAST_S) {
+    if (ATLEAST_S) {
       return super.onPullDistance(deltaDistance, displacement);
     } else {
       onPull(deltaDistance, displacement);
@@ -43,7 +48,7 @@ public class EdgeEffectCompat extends EdgeEffect {
   }
 
   public static EdgeEffectCompat create(Context context, View view) {
-    if (SDKUtilsKt.ATLEAST_S) {
+    if (ATLEAST_S) {
       return new EdgeEffectCompat(context);
     } else {
       StretchEdgeEffect effect = new StretchEdgeEffect(context);
