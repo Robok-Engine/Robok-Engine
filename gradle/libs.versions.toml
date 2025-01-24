@@ -37,7 +37,7 @@ coil = "2.7.0"
 insetter = "0.6.1"
 android-r8 = "8.7.18"
 
-robok-amix = "1.0.0"
+robok-amix = "1.0.2"
 
 [plugins]
 # Android Gradle Plugin
