@@ -248,6 +248,8 @@ class ProjectManager(private var context: Context) {
     var generatedXml: String? = null
     val amix = Amix.Builder(context)
       .setUseComments(false)
+      .setUseStyle(true)
+      .setUseVerticalRoot(true)
       .setCode(amixCode)
       .setOnGenerateCode { generatedCode, config ->
         generatedXml = generatedCode
