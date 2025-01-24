@@ -246,8 +246,10 @@ class ProjectManager(private var context: Context) {
   /** compile .amx file and return XML result  */
   fun generateXmlFromAmix(amixCode: String): String {
     var generatedXml: String? = null
-    val amix = Amix.Builder(context)
+    val amix = Amix.Builder()
       .setUseComments(false)
+      .setUseStyle(true)
+      .setUseVerticalRoot(true)
       .setCode(amixCode)
       .setOnGenerateCode { generatedCode, config ->
         generatedXml = generatedCode
