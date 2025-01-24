@@ -232,7 +232,7 @@ class ProjectManager(private var context: Context) {
   fun compileAllAmixFiles() {
     // TODO: Logs on Build BottomSheet
     getAllAmixFiles().forEach { file ->
-      if (file.extension.equals("amx")) {
+      if (file.extension.equals("amx") || file.extension.equals("amix")) {
         val amixCode = FileUtil.readFile(file.absolutePath)
         val fileName = file.nameWithoutExtension
         FileUtil.writeFile(
