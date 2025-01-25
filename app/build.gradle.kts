@@ -133,7 +133,7 @@ dependencies {
 
   implementation(libs.insetter)
 
-  implementation(libs.robok.amix)
+  implementation(libs.amix)
 
   // projects
   implementation(projects.appStrings)
