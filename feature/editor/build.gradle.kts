@@ -2,7 +2,7 @@ plugins {
   alias(libs.plugins.agp.lib)
   alias(libs.plugins.kotlin)
   alias(libs.plugins.compose.compiler)
-  kotlin("plugin.serialization") version "2.1.0"
+  kotlin("plugin.serialization") version "2.1.10"
 }
 
 android {
