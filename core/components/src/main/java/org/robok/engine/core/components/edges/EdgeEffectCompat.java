@@ -21,7 +21,6 @@ import android.view.View;
 import android.widget.EdgeEffect;
 import androidx.annotation.ChecksSdkIntAtLeast;
 
-
 /** Extension of {@link EdgeEffect} to allow backwards compatibility */
 public class EdgeEffectCompat extends EdgeEffect {
 
