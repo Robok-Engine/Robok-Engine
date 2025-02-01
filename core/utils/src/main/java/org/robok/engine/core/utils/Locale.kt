@@ -23,15 +23,16 @@ import java.util.Locale
 
 /**
  * Verify user device language
- * 
+ *
  * @param language The Language, like "pt".
  * @param country The Country name, like "BR".
  */
 fun isDeviceLanguage(language: String, country: String): Boolean {
-  val currentLocale: Locale = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-    LocaleList.getDefault()[0]
-  } else {
-    Locale.getDefault()
-  }
+  val currentLocale: Locale =
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      LocaleList.getDefault()[0]
+    } else {
+      Locale.getDefault()
+    }
   return currentLocale.language == language && currentLocale.country == country
 }

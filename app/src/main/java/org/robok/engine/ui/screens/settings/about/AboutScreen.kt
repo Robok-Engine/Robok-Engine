@@ -143,6 +143,6 @@ private fun getLinksList(): List<Link> {
       )
     } else {
       null
-    }
+    },
   )
 }

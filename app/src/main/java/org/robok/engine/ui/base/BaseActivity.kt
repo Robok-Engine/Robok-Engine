@@ -131,7 +131,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   @Deprecated(
     message = "Use the most informative method:",
     replaceWith = ReplaceWith("onReceive(PermissionType, Boolean)"),
-    level = DeprecationLevel.HIDDEN
+    level = DeprecationLevel.HIDDEN,
   )
   override fun onReceive(status: Boolean) = DoNothing
 

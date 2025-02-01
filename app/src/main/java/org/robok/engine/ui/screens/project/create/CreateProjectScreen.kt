@@ -95,7 +95,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
       )
     }
   }
-  if(uiState.isLoading) {
+  if (uiState.isLoading) {
     LoadingDialog()
   }
 }

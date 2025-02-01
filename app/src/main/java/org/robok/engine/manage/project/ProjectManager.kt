@@ -38,9 +38,9 @@ import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.Log
+import org.robok.engine.core.utils.PathUtils
 import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
-import org.robok.engine.core.utils.PathUtils
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
@@ -243,19 +243,18 @@ class ProjectManager(private var context: Context) {
     }
   }
 
-  /** compile .amx file and return XML result  */
+  /** compile .amx file and return XML result */
   fun generateXmlFromAmix(amixCode: String): String {
     var generatedXml: String? = null
-    val amix = Amix.Builder()
-      .setUseComments(false)
-      .setUseStyle(true)
-      .setUseVerticalRoot(true)
-      .setCode(amixCode)
-      .setOnGenerateCode { generatedCode, config ->
-        generatedXml = generatedCode
-      }
-      .setOnError { errorMessage -> }
-      .create()
+    val amix =
+      Amix.Builder()
+        .setUseComments(false)
+        .setUseStyle(true)
+        .setUseVerticalRoot(true)
+        .setCode(amixCode)
+        .setOnGenerateCode { generatedCode, config -> generatedXml = generatedCode }
+        .setOnError { errorMessage -> }
+        .create()
     amix.compile()
     return generatedXml ?: "Failed to generate XML"
   }

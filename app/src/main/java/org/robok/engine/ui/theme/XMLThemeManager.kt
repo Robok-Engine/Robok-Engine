@@ -4,12 +4,10 @@ import android.content.Context
 import android.content.res.Resources
 import android.util.Log
 import com.google.android.material.color.DynamicColors
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.first
 import org.koin.android.ext.android.getKoin
-import org.robok.engine.Styles
 import org.robok.engine.RobokApplication
+import org.robok.engine.Styles
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.base.BaseActivity
 

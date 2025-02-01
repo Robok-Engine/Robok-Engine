@@ -17,24 +17,18 @@ package org.robok.engine.core.components.dialog.loading
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
@@ -43,14 +37,15 @@ import androidx.compose.ui.window.DialogProperties
 fun LoadingDialog(
   dismissOnBackPress: Boolean = false,
   dismissOnClickOutside: Boolean = false,
-  onDismiss: () -> Unit = { }
+  onDismiss: () -> Unit = {},
 ) {
   Dialog(
     onDismissRequest = onDismiss,
-    properties = DialogProperties(
-      dismissOnBackPress = dismissOnBackPress,
-      dismissOnClickOutside = dismissOnClickOutside
-    ),
+    properties =
+      DialogProperties(
+        dismissOnBackPress = dismissOnBackPress,
+        dismissOnClickOutside = dismissOnClickOutside,
+      ),
   ) {
     Box(
       contentAlignment = Alignment.Center,
@@ -59,10 +54,7 @@ fun LoadingDialog(
           .background(MaterialTheme.colorScheme.surfaceContainerHigh),
     ) {
       CircularProgressIndicator(
-        modifier = Modifier
-          .padding(16.dp)
-          .width(15.dp)
-          .height(15.dp),
+        modifier = Modifier.padding(16.dp).width(15.dp).height(15.dp),
         color = MaterialTheme.colorScheme.secondary,
         trackColor = MaterialTheme.colorScheme.surfaceVariant,
       )

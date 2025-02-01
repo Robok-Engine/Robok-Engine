@@ -35,14 +35,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import java.io.File
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.Drawables
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
@@ -106,7 +104,7 @@ fun EmptyContentItem() {
         imageVector = Icons.Rounded.Warning,
         contentDescription = stringResource(id = Strings.warning_no_projects),
         modifier = Modifier.size(32.dp).clip(CircleShape),
-        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface)
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       )
     },
     modifier =
