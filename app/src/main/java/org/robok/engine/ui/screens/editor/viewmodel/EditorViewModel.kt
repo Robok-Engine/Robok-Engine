@@ -86,6 +86,15 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _uiState = _uiState.copy(title = projectManager.getProjectName())
   }
 
+  /**
+   * Defines if user clicked in Device Back Button
+   *
+   * @param isBackClicked The value
+   */
+  fun setIsBackClicked(isBackClicked: Boolean) {
+    _uiState = _uiState.copy(isBackClicked = isBackClicked)
+  }
+
   /** init the compilation */
   fun compileProject() {
     _projectManager?.compileProject(logger, this)

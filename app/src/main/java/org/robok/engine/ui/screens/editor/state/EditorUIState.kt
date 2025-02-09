@@ -29,4 +29,5 @@ data class EditorUIState(
   val selectedFileIndex: Int = 0,
   val editors: List<RobokCodeEditor> = emptyList(),
   val moreOptionOpen: Boolean = false,
+  val isBackClicked: Boolean = false
 )

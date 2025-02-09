@@ -106,6 +106,7 @@
   <string name="text_contributors">Contributors</string>
   <string name="text_contribute">See how you can contribute with us</string>
   <string name="text_libraries">The libraries we used</string>
+  <string name="text_exit_with_save">Exit with Save</string>
   <string name="text_exit_without_save">Exit without Save</string>
   <string name="text_logging">Logging</string>
   <string name="text_all_logs">All Logs</string>

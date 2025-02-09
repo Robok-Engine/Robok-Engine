@@ -18,6 +18,7 @@ package org.robok.engine.ui.screens.editor
  */
 
 import android.view.ViewGroup
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -32,10 +33,13 @@ import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Redo
 import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material.icons.rounded.Undo
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -73,7 +77,45 @@ fun EditorScreen(pPath: String) {
   val context = LocalContext.current
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
+  val navController = LocalMainNavController.current
   editorViewModel.setProjectManager(projectManager)
+
+  BackHandler {
+    editorViewModel.setIsBackClicked(true)
+  }
+
+  if (editorViewModel.uiState.isBackClicked) {
+    AlertDialog(
+      title = {
+        Text(text = stringResource(Strings.warning_exit_project_title))
+      },
+      text = {
+        Text(text = stringResource(Strings.warning_exit_project_message))
+      },
+      onDismissRequest = {
+        editorViewModel.setIsBackClicked(false)
+      },
+      confirmButton = {
+        Button(
+          onClick = {
+            editorViewModel.saveAllFiles();
+            navController.popBackStack()
+          }
+        ) {
+          Text(text = stringResource(Strings.text_exit_with_save))
+        }
+      },
+      dismissButton = {
+        TextButton(
+          onClick = {
+            navController.popBackStack()
+          }
+        ) {
+          Text(text = stringResource(Strings.text_exit_without_save))
+        }
+      }
+    )
+  }
 
   EditorDrawer(editorViewModel = editorViewModel) {
     EditorScreenContent(editorViewModel = editorViewModel)
