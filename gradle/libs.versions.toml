@@ -1,45 +1,50 @@
 [versions]
 agp = "8.8.0"
+
 android-jvm = "21"
 android-compileSdk = "35"
 android-targetSdk = "35"
 android-minSdk = "26"
+
 kotlin = "2.1.10"
-material = "1.12.0"
-appcompat = "1.7.0"
-coroutines = "1.10.1"
-glide = "4.16.0"
-lifecycle = "2.8.7"
-core-ktx = "1.15.0"
-fragment-ktx = "1.8.5"
-splashscreen = "1.0.1"
-preference = "1.2.1"
-datastore = "1.1.2"
-serialization-json = "1.8.0"
-desugar = "2.1.4"
-compose-bom = "2025.01.01"
-activity-compose = "1.10.0"
-navigation-compose = "2.8.6"
-material-motion = "2.0.1"
+
 about-libraries = "11.5.0"
-sora-editor = "0.23.5"
+
+google-material = "1.12.0"
+google-gson = "2.12.1"
+
+androidx-appcompat = "1.7.0"
+androidx-lifecycle-runtime-ktx = "2.8.7"
+androidx-core-ktx = "1.15.0"
+androidx-fragment-ktx = "1.8.5"
+androidx-splashscreen = "1.0.1"
+androidx-datastore-preferences = "1.1.2"
+androidx-annotation = "1.9.1"
+
+compose-bom = "2025.01.01"
+compose-activity = "1.10.0"
+compose-navigation = "2.8.6"
+compose-viewmodel = "2.8.7"
+compose-material-icons-extended = "1.7.7"
+compose-version = "1.8.0-beta01"
+compose-scrolleffect = "1.0.0-fix01"
+
+ktx-coroutines = "1.10.1"
+ktx-serialization-json = "1.8.0"
+
+io-ktor = "3.0.3"
+io-koin = "4.0.2"
+io-coil = "2.7.0"
+
+org-slf4j = "1.7.36"
+org-antlr = "4.13.2"
+
 libgdx = "1.13.1"
-koin = "4.0.2"
 termux = "0.118.1"
-gson = "2.12.1"
-ktor = "3.0.3"
-slf4j = "1.7.36"
-annotation = "1.9.1"
-viewmodel-compose = "2.8.7"
-material-icons-extended = "1.7.7"
-antlr = "4.13.2"
-coil = "2.7.0"
-insetter = "0.6.1"
-android-r8 = "8.7.18"
-
+sora-editor = "0.23.5"
 amix = "1.0.0"
-
-compose-scrolleffect = "1.0.0"
+desugar-jdk-libs = "2.1.4"
+android-r8 = "8.7.18"
 
 [plugins]
 # Android Gradle Plugin
@@ -58,28 +63,30 @@ compose-compiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "
 about-libraries-plugin = { id = "com.mikepenz.aboutlibraries.plugin", version.ref = "about-libraries" }
 
 [libraries]
-google-material = { group = "com.google.android.material", name = "material", version.ref = "material" }
+google-material = { group = "com.google.android.material", name = "material", version.ref = "google-material" }
+google-gson = { group = "com.google.code.gson", name = "gson", version.ref ="google-gson" }
 
 # Commons
-androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
-androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle" }
-androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
-androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment-ktx" }
-androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "splashscreen" }
-androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "datastore" }
-androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "annotation" }
+androidx-appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "androidx-appcompat" }
+androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "androidx-lifecycle-runtime-ktx" }
+androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "androidx-core-ktx" }
+androidx-fragment-ktx = { group = "androidx.fragment", name = "fragment-ktx", version.ref = "androidx-fragment-ktx" }
+androidx-splashscreen = { group = "androidx.core", name = "core-splashscreen", version.ref = "androidx-splashscreen" }
+androidx-datastore-preferences = { group = "androidx.datastore", name = "datastore-preferences", version.ref = "androidx-datastore-preferences" }
+androidx-annotation = { group = "androidx.annotation", name = "annotation", version.ref = "androidx-annotation" }
 
 # Compose
-compose-bom = { group = "androidx.compose", name = "compose-bom", version.ref = "compose-bom" }
-compose-material = { group = "androidx.compose.material", name = "material" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3" }
-compose-ui = { group = "androidx.compose.ui", name = "ui" }
-compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics" }
-compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "activity-compose" }
-compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "viewmodel-compose" }
-compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
-compose-material-motion-core = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
-compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
+compose-foundation = { group = "androidx.compose.foundation", name = "foundation", version.ref = "compose-version" }
+compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "compose-version" }
+compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose-version" }
+compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose-version" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.4.0-alpha07" }
+compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose-version" }
+compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "compose-version"}
+compose-activity = { group = "androidx.activity", name = "activity-compose", version.ref = "compose-activity" }
+compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "compose-viewmodel" }
+compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
+compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-material-icons-extended" }
 compose-scrolleffect = { group = "com.github.trindadedev13", name = "ScrollEffect", version.ref = "compose-scrolleffect" }
 
 # About Libraries
@@ -88,17 +95,27 @@ about-libraries-compose = { group = "com.mikepenz", name = "aboutlibraries-compo
 about-libraries-compose-m3 = { group = "com.mikepenz", name = "aboutlibraries-compose-m3", version.ref = "about-libraries"}
 
 # Kotlin X
-ktx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "coroutines" }
-ktx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "coroutines" }
-ktx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "serialization-json" }
+ktx-coroutines-core = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-core", version.ref = "ktx-coroutines" }
+ktx-coroutines-android = { group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-android", version.ref = "ktx-coroutines" }
+ktx-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "ktx-serialization-json" }
+
+# Ktor
+ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "io-ktor" }
+ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "io-ktor" }
+ktor-serialization-kotlix-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "io-ktor" }
+
+org-slf4j = { group = "org.slf4j", name = "slf4j-android", version.ref = "org-slf4j" }
 
 # Koin
-koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "koin"}
-koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "koin"}
+koin-android = { group = "io.insert-koin", name = "koin-android", version.ref = "io-koin"}
+koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compose", version.ref = "io-koin"}
+
+# Coil
+coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "io-coil" }
 
 # ANTLR4
-antlr4 = { group = "org.antlr", name = "antlr4", version.ref = "antlr" }
-antlr4-runtime = { group = "org.antlr", name = "antlr4-runtime", version.ref = "antlr" }
+antlr4 = { group = "org.antlr", name = "antlr4", version.ref = "org-antlr" }
+antlr4-runtime = { group = "org.antlr", name = "antlr4-runtime", version.ref = "org-antlr" }
 
 # LibGDX
 libgdx = { group = "com.badlogicgames.gdx", name = "gdx", version.ref = "libgdx" }
@@ -114,20 +131,30 @@ sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp"
 sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java", version.ref = "sora-editor" }
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
 
-# Ktor
-ktor-client-android = { group = "io.ktor", name = "ktor-client-android", version.ref = "ktor" }
-ktor-client-content-negotiation = { group = "io.ktor", name = "ktor-client-content-negotiation", version.ref = "ktor" }
-ktor-serialization-kotlix-json = { group = "io.ktor", name = "ktor-serialization-kotlinx-json", version.ref = "ktor" }
-
-slf4j = { group = "org.slf4j", name = "slf4j-android", version.ref = "slf4j" }
-
 # Amix Language
 amix = { group = "com.github.AmixLang", name = "Amix", version.ref = "amix" }
 
 # Others
-glide = { group = "com.github.bumptech.glide", name = "glide", version.ref = "glide" }
-coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "coil" }
-insetter = { group = "dev.chrisbanes.insetter", name = "insetter", version.ref = "insetter" }
-google-gson = { group = "com.google.code.gson", name = "gson", version.ref ="gson" }
-desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar" }
+desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 android-r8 = { group = "com.android.tools", name = "r8", version.ref = "android-r8" }
+
+[bundles]
+androidx = [
+    "androidx-appcompat",
+    "androidx-lifecycle-runtime-ktx",
+    "androidx-core-ktx",
+    "androidx-fragment-ktx",
+    "androidx-splashscreen",
+    "androidx-annotation"
+]
+compose = [
+    "compose-foundation",
+    "compose-foundation-layout",
+    "compose-runtime",
+    "compose-material",
+    "compose-material3",
+    "compose-ui",
+    "compose-ui-graphics",
+    "compose-activity",
+    "compose-material-icons",
+]

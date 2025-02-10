@@ -28,7 +28,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
-import dev.chrisbanes.insetter.Insetter
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
@@ -89,16 +88,6 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   public fun isDarkMode(): Boolean {
     val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
     return currentNightMode == Configuration.UI_MODE_NIGHT_YES
-  }
-
-  /**
-   * handle inssets when edgeToEdge is enable in xml screens
-   *
-   * @param view The root view of xml screen
-   */
-  @Deprecated("Use Jetpack Compose instead.")
-  protected fun handleInsetts(rootView: View) {
-    Insetter.builder().padding(WindowInsetsCompat.Type.navigationBars()).applyToView(rootView)
   }
 
   /**

@@ -30,12 +30,10 @@ android {
 
 dependencies {
   implementation(libs.google.material)
-  implementation(libs.androidx.appcompat) 
-  implementation(libs.androidx.lifecycle.runtime.ktx)
+  implementation(libs.bundles.androidx)
   implementation(libs.androidx.datastore.preferences)
 
-  implementation(platform(libs.compose.bom))
-  implementation(libs.compose.material3)
+  implementation(libs.bundles.compose)
 
   implementation(libs.ktx.coroutines.android)
   implementation(libs.ktx.serialization.json)

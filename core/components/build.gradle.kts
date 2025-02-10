@@ -32,11 +32,7 @@ dependencies {
   implementation(libs.google.material)
   implementation(libs.androidx.appcompat)
 
-  implementation(platform(libs.compose.bom))
-  implementation(libs.compose.material3)
-  implementation(libs.compose.material)
-  implementation(libs.compose.ui)
-  implementation(libs.compose.ui.graphics)
+  implementation(libs.bundles.compose)
   implementation(libs.compose.scrolleffect)
 
   implementation(projects.appStrings)

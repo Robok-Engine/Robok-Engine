@@ -82,10 +82,7 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 }
 
 dependencies {
-  implementation(libs.androidx.appcompat)
-  implementation(libs.androidx.lifecycle.runtime.ktx)
-  implementation(libs.androidx.core.ktx)
-  implementation(libs.androidx.fragment.ktx)
+  implementation(libs.bundles.androidx)
   implementation(libs.androidx.splashscreen)
   implementation(libs.androidx.datastore.preferences)
 
@@ -96,18 +93,12 @@ dependencies {
   implementation(libs.koin.android)
   implementation(libs.koin.androidx.compose)
 
-  implementation(libs.glide)
-
   implementation(libs.google.material)
 
   coreLibraryDesugaring(libs.desugar.jdk.libs)
 
-  implementation(platform(libs.compose.bom))
-  implementation(libs.compose.material3)
-  implementation(libs.compose.activity)
+  implementation(libs.bundles.compose)
   implementation(libs.compose.navigation)
-  implementation(libs.compose.material.motion.core)
-  implementation(libs.compose.material.icons)
 
   implementation(libs.libgdx)
   implementation(libs.libgdx.backend.android)
@@ -125,13 +116,11 @@ dependencies {
   implementation(libs.ktor.client.android)
   implementation(libs.ktor.client.content.negotiation)
   implementation(libs.ktor.serialization.kotlix.json)
-  implementation(libs.slf4j)
+  implementation(libs.org.slf4j)
 
   implementation(libs.about.libraries.core)
   implementation(libs.about.libraries.compose)
   implementation(libs.about.libraries.compose.m3)
-
-  implementation(libs.insetter)
 
   implementation(libs.amix)
 
