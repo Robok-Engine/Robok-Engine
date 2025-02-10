@@ -36,7 +36,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.awaitCancellation
-import org.robok.engine.core.components.scroll.NestedScrollStretch
+import dev.trindadedev.scrolleffect.edgeeffect.NestedScrollStretch
 import org.robok.engine.core.components.utils.addIf
 
 @Composable

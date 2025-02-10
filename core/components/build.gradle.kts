@@ -37,9 +37,7 @@ dependencies {
   implementation(libs.compose.material)
   implementation(libs.compose.ui)
   implementation(libs.compose.ui.graphics)
-  implementation(libs.compose.activity)
-  implementation(libs.compose.navigation)
-  implementation(libs.compose.viewmodel)
+  implementation(libs.compose.scrolleffect)
 
   implementation(projects.appStrings)
   implementation(projects.core.utils)

@@ -39,6 +39,8 @@ android-r8 = "8.7.18"
 
 amix = "1.0.0"
 
+compose-scrolleffect = "1.0.0"
+
 [plugins]
 # Android Gradle Plugin
 agp-lib = { id = "com.android.library", version.ref = "agp" }
@@ -78,6 +80,7 @@ compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "navigation-compose" }
 compose-material-motion-core = { group = "io.github.fornewid", name = "material-motion-compose-core", version.ref = "material-motion" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "material-icons-extended" }
+compose-scrolleffect = { group = "com.github.trindadedev13", name = "ScrollEffect", version.ref = "compose-scrolleffect" }
 
 # About Libraries
 about-libraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "about-libraries"}
