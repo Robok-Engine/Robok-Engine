@@ -28,10 +28,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.*
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.utils.addIf
-import org.robok.engine.strings.Strings
 import org.robok.engine.ui.base.BaseComposeActivity
 
 @OptIn(ExperimentalMaterial3Api::class)

@@ -23,7 +23,7 @@ import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
-import org.robok.engine.strings.Strings
+import org.robok.engine.Strings
 import org.robok.engine.ui.screens.editor.components.drawer.info.diagnostic.DiagnosticContent
 import org.robok.engine.ui.screens.editor.components.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
 import org.robok.engine.ui.screens.editor.components.drawer.info.logs.LogsContent

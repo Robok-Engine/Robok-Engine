@@ -35,7 +35,7 @@ import com.termux.view.TerminalView
 import java.io.File
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.utils.KeyboardUtil
-import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.terminal.client.TerminalSessionClient
 import org.robok.engine.ui.screens.terminal.client.TerminalViewClient
 

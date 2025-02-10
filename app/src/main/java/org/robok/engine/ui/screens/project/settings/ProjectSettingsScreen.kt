@@ -34,11 +34,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
+import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.project.settings.components.BasicInputs
 import org.robok.engine.ui.screens.project.settings.components.Buttons
 import org.robok.engine.ui.screens.project.settings.viewmodel.ProjectSettingsViewModel

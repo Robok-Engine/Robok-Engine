@@ -34,13 +34,13 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.Drawables
-import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.Strings
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.routes.ManageProjectsRoute
 import org.robok.engine.routes.SettingsRoute
 import org.robok.engine.routes.TemplatesRoute
 import org.robok.engine.routes.TerminalRoute
-import org.robok.engine.strings.Strings
+import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.theme.Typography
 
 @Composable

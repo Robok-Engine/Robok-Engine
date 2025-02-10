@@ -1,4 +1,4 @@
-package org.robok.engine.extensions.navigation
+package org.robok.engine.ext
 
 /*
  *  This file is part of Robok © 2024.

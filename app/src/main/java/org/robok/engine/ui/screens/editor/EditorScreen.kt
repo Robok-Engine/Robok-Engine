@@ -56,18 +56,22 @@ import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
+import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.SingleString
-import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.ProjectSettingsRoute
+import org.robok.engine.state.KeyboardState
+import org.robok.engine.state.keyboardAsState
+import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarAction
 import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
 import org.robok.engine.ui.screens.editor.components.drawer.EditorDrawer
+import org.robok.engine.ui.screens.editor.components.modal.EditorModal
 import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
@@ -80,25 +84,17 @@ fun EditorScreen(pPath: String) {
   val navController = LocalMainNavController.current
   editorViewModel.setProjectManager(projectManager)
 
-  BackHandler {
-    editorViewModel.setIsBackClicked(true)
-  }
+  BackHandler { editorViewModel.setIsBackClicked(true) }
 
   if (editorViewModel.uiState.isBackClicked) {
     AlertDialog(
-      title = {
-        Text(text = stringResource(Strings.warning_exit_project_title))
-      },
-      text = {
-        Text(text = stringResource(Strings.warning_exit_project_message))
-      },
-      onDismissRequest = {
-        editorViewModel.setIsBackClicked(false)
-      },
+      title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
+      text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
+      onDismissRequest = { editorViewModel.setIsBackClicked(false) },
       confirmButton = {
         Button(
           onClick = {
-            editorViewModel.saveAllFiles();
+            editorViewModel.saveAllFiles()
             navController.popBackStack()
           }
         ) {
@@ -106,14 +102,10 @@ fun EditorScreen(pPath: String) {
         }
       },
       dismissButton = {
-        TextButton(
-          onClick = {
-            navController.popBackStack()
-          }
-        ) {
+        TextButton(onClick = { navController.popBackStack() }) {
           Text(text = stringResource(Strings.text_exit_without_save))
         }
-      }
+      },
     )
   }
 
@@ -129,6 +121,7 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
   val drawerState = LocalEditorFilesDrawerState.current
   val toastHostState = LocalToastHostState.current
   val navController = LocalMainNavController.current
+  val keyboardState by keyboardAsState()
   Scaffold(
     topBar = {
       EditorToolbar(
@@ -192,7 +185,8 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
     Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorFileTabLayout(editorViewModel = editorViewModel)
-        Editor(editorViewModel = editorViewModel)
+        Editor(modifier = Modifier.weight(1f), editorViewModel = editorViewModel)
+        ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
       } else {
         NoOpenedFilesContent()
       }
@@ -220,7 +214,7 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 }
 
 @Composable
-private fun Editor(editorViewModel: EditorViewModel) {
+private fun Editor(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
   val uiState = editorViewModel.uiState
   val openedFiles = uiState.openedFiles
   val selectedFileIndex = uiState.selectedFileIndex
@@ -231,13 +225,13 @@ private fun Editor(editorViewModel: EditorViewModel) {
   openedFile?.let { file ->
     selectedEditor?.let { editorView ->
       LaunchedEffect(editorView) { editorViewModel.updateUndoRedo(editorView) }
-      key(file.path) { EditorView(editorView) }
+      key(file.path) { EditorView(modifier, editorView) }
     }
   }
 }
 
 @Composable
-private fun EditorView(view: RobokCodeEditor) {
+private fun EditorView(modifier: Modifier = Modifier, view: RobokCodeEditor) {
   AndroidView(
     factory = {
       view.apply {
@@ -248,7 +242,7 @@ private fun EditorView(view: RobokCodeEditor) {
           )
       }
     },
-    modifier = Modifier.fillMaxSize(),
+    modifier = modifier,
   )
 }
 

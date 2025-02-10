@@ -22,17 +22,17 @@ import androidx.compose.material.icons.rounded.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
+import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.category.PreferenceCategory
-import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.platform.LocalMainNavController
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.routes.AboutLibrariesRoute
 import org.robok.engine.routes.AboutRoute
 import org.robok.engine.routes.SettingsAppRoute
 import org.robok.engine.routes.SettingsCodeEditorRoute
 import org.robok.engine.routes.SettingsDebugRoute
 import org.robok.engine.routes.SettingsRDKRoute
-import org.robok.engine.strings.Strings
+import org.robok.engine.ui.platform.LocalMainNavController
 
 @Composable
 fun SettingsScreen() {

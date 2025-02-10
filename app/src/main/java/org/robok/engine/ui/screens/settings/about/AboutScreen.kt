@@ -33,12 +33,12 @@ import androidx.compose.ui.unit.*
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.BuildConfig
 import org.robok.engine.Drawables
+import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.isDeviceLanguage
 import org.robok.engine.defaults.DefaultContributors
-import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
 import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
 import org.robok.engine.ui.screens.settings.about.components.LinkWidget

@@ -25,11 +25,11 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import org.robok.engine.core.utils.SingleString
-import org.robok.engine.platform.LocalMainNavController
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState

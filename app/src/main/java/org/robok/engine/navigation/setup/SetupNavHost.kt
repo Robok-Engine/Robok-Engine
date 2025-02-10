@@ -19,9 +19,9 @@ package org.robok.engine.navigation.setup
 
 import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
-import org.robok.engine.platform.LocalSetupNavController
 import org.robok.engine.routes.SetupWelcomeRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.platform.LocalSetupNavController
 
 @Composable
 fun SetupNavHost() {

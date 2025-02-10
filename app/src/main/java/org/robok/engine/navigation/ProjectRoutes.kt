@@ -25,7 +25,7 @@ import androidx.navigation.toRoute
 import java.io.File
 import kotlin.reflect.typeOf
 import org.robok.engine.core.utils.SingleString
-import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.routes.CreateProjectRoute

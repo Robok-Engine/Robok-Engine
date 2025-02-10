@@ -30,12 +30,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.dp
 import java.util.Stack
+import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.feature.xmlviewer.TreeNode
 import org.robok.engine.feature.xmlviewer.lib.proxy.ProxyResources
 import org.robok.engine.feature.xmlviewer.lib.utils.MessageArray
 import org.robok.engine.feature.xmlviewer.ui.treeview.ViewBean
-import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.xmlviewer.components.OutlineView
 import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 

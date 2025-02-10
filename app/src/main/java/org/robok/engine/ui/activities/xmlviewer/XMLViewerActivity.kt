@@ -26,8 +26,8 @@ import androidx.navigation.compose.rememberNavController
 import org.amix.config.Config
 import org.robok.engine.keys.ExtraKeys
 import org.robok.engine.navigation.XMLViewerNavHost
-import org.robok.engine.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.base.BaseComposeActivity
+import org.robok.engine.ui.platform.LocalXMLViewerNavController
 
 class XMLViewerActivity : BaseComposeActivity() {
 

@@ -23,7 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.*
 import io.github.rosemoe.sora.text.Content
-import org.robok.engine.strings.Strings
+import org.robok.engine.Strings
 import org.robok.engine.ui.screens.xmlviewer.components.CodeEditor
 import org.robok.engine.ui.screens.xmlviewer.components.rememberCodeEditorState
 

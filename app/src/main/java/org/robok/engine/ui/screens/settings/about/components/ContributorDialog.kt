@@ -31,7 +31,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import com.google.android.material.R as MaterialR
-import org.robok.engine.strings.Strings
+import org.robok.engine.Strings
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 import org.robok.engine.ui.utils.getDialogWindow
 

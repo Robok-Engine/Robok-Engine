@@ -29,11 +29,11 @@ import androidx.compose.ui.layout.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
+import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.defaults.DefaultTemplate
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.platform.LocalMainNavController
-import org.robok.engine.strings.Strings
+import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.project.template.components.ProjectTemplateCard
 
 @OptIn(ExperimentalMaterial3Api::class)

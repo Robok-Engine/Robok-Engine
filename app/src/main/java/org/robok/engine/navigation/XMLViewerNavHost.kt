@@ -21,11 +21,11 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.koin.androidx.compose.koinViewModel
-import org.robok.engine.extensions.navigation.navigateSingleTop
-import org.robok.engine.platform.LocalXMLViewerNavController
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.routes.XMLViewerCodeRoute
 import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerCodeScreen
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
 import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel

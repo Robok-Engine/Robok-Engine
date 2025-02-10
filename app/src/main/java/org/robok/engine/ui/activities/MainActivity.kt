@@ -28,12 +28,12 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.extensions.navigation.navigateSingleTop
+import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
-import org.robok.engine.platform.LocalFirstNavController
 import org.robok.engine.routes.MainRoute
 import org.robok.engine.routes.SetupRoute
 import org.robok.engine.ui.base.BaseComposeActivity
+import org.robok.engine.ui.platform.LocalFirstNavController
 
 class MainActivity : BaseComposeActivity() {
 

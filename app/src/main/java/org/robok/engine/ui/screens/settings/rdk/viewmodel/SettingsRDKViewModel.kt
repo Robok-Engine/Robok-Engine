@@ -25,8 +25,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import java.io.File
 import kotlinx.coroutines.launch
+import org.robok.engine.Strings
 import org.robok.engine.core.utils.ZipDownloader
-import org.robok.engine.strings.Strings
 import org.robok.engine.ui.screens.settings.rdk.repository.SettingsRDKRepository
 
 class SettingsRDKViewModel(private val repository: SettingsRDKRepository) : ViewModel() {

@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor.state
+package org.robok.engine.state
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,17 +17,20 @@ package org.robok.engine.ui.screens.editor.state
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.engine.feature.editor.RobokCodeEditor
-import org.robok.engine.io.File
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.ime
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.ui.platform.LocalDensity
 
-data class EditorUIState(
-  val title: String = "Robok",
-  val canRedo: Boolean = false,
-  val canUndo: Boolean = false,
-  val hasFileOpen: Boolean = false,
-  val openedFiles: List<File> = emptyList(),
-  val selectedFileIndex: Int = 0,
-  val editors: List<RobokCodeEditor> = emptyList(),
-  val moreOptionOpen: Boolean = false,
-  val isBackClicked: Boolean = false,
-)
+enum class KeyboardState {
+  Opened,
+  Closed,
+}
+
+@Composable
+fun keyboardAsState(): State<KeyboardState> {
+  val isImeVisible = WindowInsets.ime.getBottom(LocalDensity.current) > 0
+  return rememberUpdatedState(if (isImeVisible) KeyboardState.Opened else KeyboardState.Closed)
+}
