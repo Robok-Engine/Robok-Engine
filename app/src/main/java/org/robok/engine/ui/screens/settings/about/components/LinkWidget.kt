@@ -30,6 +30,7 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.graphics.ColorFilter
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.ui.screens.settings.about.models.Link
 
@@ -46,6 +47,7 @@ fun LinkWidget(model: Link) {
         painter = painterResource(id = model.imageResId),
         contentDescription = null,
         modifier = Modifier.size(32.dp).clip(CircleShape),
+        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       )
     },
   )
