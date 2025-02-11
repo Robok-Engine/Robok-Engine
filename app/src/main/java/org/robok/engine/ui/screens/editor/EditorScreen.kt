@@ -137,6 +137,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
   val toastHostState = LocalToastHostState.current
   val navController = LocalMainNavController.current
   Scaffold(
+    modifier = modifier,
     topBar = {
       EditorToolbar(
         editorViewModel = editorViewModel,
@@ -200,7 +201,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         }
       }
     }
-    Column(modifier = modifier.padding(innerPadding)) {
+    Column(modifier = Modifier.padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorFileTabLayout(editorViewModel = editorViewModel)
         Editor(editorViewModel = editorViewModel)
