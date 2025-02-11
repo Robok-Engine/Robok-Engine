@@ -78,8 +78,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
           viewModel.createProject(
             template,
             onSuccess = {
-              SingleString.instance.value = viewModel.getProjectPath().absolutePath
-              navController.navigateSingleTop(EditorRoute)
+              navController.navigateSingleTop(EditorRoute(viewModel.getProjectPath().absolutePath))
             },
             onError = { error ->
               coroutineScope.launch {
