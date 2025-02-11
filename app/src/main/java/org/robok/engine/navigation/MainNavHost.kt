@@ -21,6 +21,7 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
@@ -59,7 +60,8 @@ fun MainNavHost() {
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
       ) {
-        EditorScreen(pPath = SingleString.instance.value)
+        val path = remember { SingleString.instance.value }
+        EditorScreen(pPath = path)
       }
     }
 
@@ -68,7 +70,8 @@ fun MainNavHost() {
 
     composable<XMLViewerRoute> {
       CompositionLocalProvider(LocalXMLViewerNavController provides rememberNavController()) {
-        XMLViewerNavHost(xml = SingleString.instance.value)
+        val xml = remember { SingleString.instance.value }
+        XMLViewerNavHost(xml = xml)
       }
     }
   }
