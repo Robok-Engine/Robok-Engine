@@ -20,6 +20,7 @@ package org.robok.engine.ui.screens.editor.components.modal
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -61,7 +62,8 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
         modifier = Modifier.fillMaxWidth().height(50.dp).clickable {
           modalHeight = if (modalHeight = maxHeight) initialHeight else maxHeight
         },
-        contentAlignment = Alignment.Center,
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.Center
       ) {
         Text(text = stringResource(Strings.title_project_initialized), fontSize = 16.sp)
         Text(text = stringResource(Strings.text_swipe_up_down_build_info), fontSize = 12.sp)
@@ -70,4 +72,12 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
       Column { Text(text = "Here will be displayed the Build logs") }
     }
   }
+}
+
+
+Column(
+    modifier = Modifier.fillMaxSize(),
+    
+) {
+    Text("Texto centralizado")
 }
