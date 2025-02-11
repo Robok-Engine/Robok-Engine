@@ -122,10 +122,7 @@ fun EditorScreen(pPath: String) {
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
-    Column(modifier = Modifier.fillMaxSize()) {
-      EditorScreenContent(modifier = Modifier.weight(1f), editorViewModel = editorViewModel)
-      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
-    }
+    EditorScreenContent(editorViewModel = editorViewModel)
   }
 }
 
@@ -201,7 +198,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         }
       }
     }
-    Column(modifier = Modifier.padding(innerPadding)) {
+    Column(modifier = Modifier.weight(1f).padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorFileTabLayout(editorViewModel = editorViewModel)
         Editor(editorViewModel = editorViewModel)
@@ -209,6 +206,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         NoOpenedFilesContent()
       }
     }
+    ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
   }
 }
 
