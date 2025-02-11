@@ -342,5 +342,5 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
 data class EditorNavigateActions(
   val popBackStack: () -> Unit,
   val onNavigateToXMLViewer: (String) -> Unit,
-  val onNavigateToProjectSettings: () -> Unit,
+  val onNavigateToProjectSettings: (String) -> Unit,
 )
