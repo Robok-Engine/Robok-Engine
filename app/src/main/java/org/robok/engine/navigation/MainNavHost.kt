@@ -22,20 +22,24 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import androidx.navigation.NavType
+import androidx.navigation.toRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import kotlin.reflect.typeOf
 import org.robok.engine.core.utils.SingleString
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
-import org.robok.engine.routes.XMLViewerRoute
+import org.robok.engine.routes.XMLViewerMainRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
+import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
@@ -60,18 +64,25 @@ fun MainNavHost() {
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
       ) {
-        val path = remember { SingleString.instance.value }
-        EditorScreen(pPath = path)
+        val currentProjectPath = remember { SingleString.instance.value }
+        EditorScreen(
+          currentProjectPath = currentProjectPath,
+          editorNavigateActions = EditorNavigateActions(
+            popBackStack = { navController.popBackStack() },
+            onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },
+            onNavigateToProjectSettings = { /** to implement */ }
+          )
+        )
       }
     }
 
     ProjectRoutes(navController)
     SettingsRoutes(navController)
 
-    composable<XMLViewerRoute> {
+    composable<XMLViewerMainRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
       CompositionLocalProvider(LocalXMLViewerNavController provides rememberNavController()) {
-        val xml = remember { SingleString.instance.value }
-        XMLViewerNavHost(xml = xml)
+        val route: XMLViewerMainRoute = it.toRoute()
+        XMLViewerNavHost(xml = route.xml)
       }
     }
   }

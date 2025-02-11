@@ -28,6 +28,7 @@ import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
+import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.state.BuildState
 import org.robok.engine.ui.screens.editor.state.EditorUIState
@@ -102,6 +103,15 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
    */
   fun setIsRunClicked(isRunClicked: Boolean) {
     _uiState = _uiState.copy(isRunClicked = isRunClicked)
+  }
+
+  /**
+   * Defines the defined EditorNavigateActions
+   *
+   * @param editorNavigateActions The value
+   */
+  fun setEditorNavigateActions(editorNavigateActions: EditorNavigateActions) {
+    _uiState = _uiState.copy(editorNavigateActions = editorNavigateActions)
   }
 
   /** init the compilation */

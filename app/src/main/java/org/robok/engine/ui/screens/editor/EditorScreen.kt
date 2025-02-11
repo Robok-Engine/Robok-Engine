@@ -41,6 +41,7 @@ import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
@@ -79,15 +80,18 @@ import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
-fun EditorScreen(pPath: String) {
+fun EditorScreen(
+  currentProjectPath: String,
+  editorNavigateActions: EditorNavigateActions
+) {
   val context = LocalContext.current
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
-  val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
-  val navController = LocalMainNavController.current
+  val projectManager = ProjectManager(context).apply { this.projectPath = File(currentProjectPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
 
   editorViewModel.setProjectManager(projectManager)
+  editorViewModel.setEditorNavigateActions(editorNavigateActions)
 
   BackHandler { editorViewModel.setIsBackClicked(true) }
 
@@ -100,14 +104,14 @@ fun EditorScreen(pPath: String) {
         Button(
           onClick = {
             editorViewModel.saveAllFiles()
-            navController.popBackStack()
+            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
           }
         ) {
           Text(text = stringResource(Strings.text_exit_with_save))
         }
       },
       dismissButton = {
-        OutlinedButton(onClick = { navController.popBackStack() }) {
+        OutlinedButton(onClick = { editorViewModel.uiState.editorNavigateActions!!.popBackStack() }) {
           Text(text = stringResource(Strings.text_exit_without_save))
         }
       },
@@ -118,7 +122,7 @@ fun EditorScreen(pPath: String) {
     val currentFile =
       editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
     if (currentFile.name.substringAfterLast(".").equals("amix")) {
-      compileAmixAndOpenXmlViewer(navController, editorViewModel, currentFile)
+      compileAmixAndOpenXmlViewer(editorViewModel, currentFile)
     }
     editorViewModel.setIsRunClicked(false)
   }
@@ -128,7 +132,7 @@ fun EditorScreen(pPath: String) {
       when (event) {
         is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
         is EditorEvent.OpenFile -> {
-          handleFile(navController, editorViewModel, event.file)
+          handleFile(editorViewModel, event.file)
           editorViewModel.clearEvent()
         }
         is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
@@ -193,7 +197,6 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
   val context = LocalContext.current
   val coroutineScope = rememberCoroutineScope()
   val drawerState = LocalEditorFilesDrawerState.current
-  val navController = LocalMainNavController.current
   val keyboardState by keyboardAsState()
 
   Scaffold(
@@ -324,7 +327,6 @@ private fun EditorToolbar(
 }
 
 private fun handleFile(
-  navController: NavHostController,
   editorViewModel: EditorViewModel,
   file: File,
 ) {
@@ -332,14 +334,13 @@ private fun handleFile(
   when (name) {
     "config.json" -> {
       SingleString.instance.value = editorViewModel.projectManager.projectPath.path
-      navController.navigateSingleTop(ProjectSettingsRoute)
+      editorViewModel.uiState.editorNavigateActions.onNavigateToProjectSettings()
     }
-    else -> handleFileExtension(navController, editorViewModel, file)
+    else -> handleFileExtension(editorViewModel, file)
   }
 }
 
 private fun handleFileExtension(
-  navController: NavHostController,
   editorViewModel: EditorViewModel,
   file: File,
 ) {
@@ -347,12 +348,17 @@ private fun handleFileExtension(
 }
 
 private fun compileAmixAndOpenXmlViewer(
-  navController: NavHostController,
   editorViewModel: EditorViewModel,
   file: File,
 ) {
   val amixCode = FileUtil.readFile(file.absolutePath)
   val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
-  SingleString.instance.value = xmlCode
-  navController.navigateSingleTop(XMLViewerRoute)
+  editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
 }
+
+@Immutable
+data class EditorNavigateActions(
+  val popBackStack: () -> Unit,
+  val onNavigateToXMLViewer: (String) -> Unit,
+  val onNavigateToProjectSettings: () -> Unit
+)
