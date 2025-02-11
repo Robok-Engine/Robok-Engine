@@ -58,7 +58,6 @@ fun MainNavHost() {
       CompositionLocalProvider(
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
-        LocalXMLViewerNavController provides rememberNavController()
       ) {
         EditorScreen(pPath = SingleString.instance.value)
       }
@@ -67,6 +66,10 @@ fun MainNavHost() {
     ProjectRoutes(navController)
     SettingsRoutes(navController)
 
-    composable<XMLViewerRoute> { XMLViewerNavHost(xml = SingleString.instance.value) }
+    composable<XMLViewerRoute> {
+      CompositionLocalProvider(LocalXMLViewerNavController provides rememberNavController()) {
+        XMLViewerNavHost(xml = SingleString.instance.value)
+      }
+    }
   }
 }
