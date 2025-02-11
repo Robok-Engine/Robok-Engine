@@ -73,11 +73,3 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
     }
   }
 }
-
-
-Column(
-    modifier = Modifier.fillMaxSize(),
-    
-) {
-    Text("Texto centralizado")
-}
