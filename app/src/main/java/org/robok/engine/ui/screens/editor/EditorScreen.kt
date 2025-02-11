@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.MoreVert
@@ -180,7 +181,10 @@ fun EditorScreen(pPath: String) {
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
-    EditorScreenContent(editorViewModel = editorViewModel)
+    EditorScreenContent(
+      modifier = Modifier.systemBarsPadding(),
+      editorViewModel = editorViewModel
+    )
   }
 }
 
