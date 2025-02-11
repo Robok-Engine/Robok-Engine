@@ -83,7 +83,6 @@ fun EditorScreen(pPath: String) {
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
   val navController = LocalMainNavController.current
-  val keyboardState by keyboardAsState()
 
   editorViewModel.setProjectManager(projectManager)
 
@@ -121,28 +120,7 @@ fun EditorScreen(pPath: String) {
     editorViewModel.setIsRunClicked(false)
   }
 
-  EditorDrawer(editorViewModel = editorViewModel) {
-    EditorScreenContent(editorViewModel = editorViewModel)
-  }
-}
-
-@Composable
-private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
-  val context = LocalContext.current
-  val coroutineScope = rememberCoroutineScope()
-  val drawerState = LocalEditorFilesDrawerState.current
-  val toastHostState = LocalToastHostState.current
-  val navController = LocalMainNavController.current
-  Scaffold(
-    modifier = modifier,
-    topBar = {
-      EditorToolbar(
-        editorViewModel = editorViewModel,
-        onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
-      )
-    }
-  ) { innerPadding ->
-    LaunchedEffect(editorViewModel.editorEvent) {
+  LaunchedEffect(editorViewModel.editorEvent) {
       editorViewModel.editorEvent?.let { event ->
         when (event) {
           is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
@@ -198,15 +176,41 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         }
       }
     }
-    Column(modifier = Modifier.weight(1f).padding(innerPadding)) {
-      if (editorViewModel.uiState.hasFileOpen) {
-        EditorFileTabLayout(editorViewModel = editorViewModel)
-        Editor(editorViewModel = editorViewModel)
-      } else {
-        NoOpenedFilesContent()
-      }
+
+  EditorDrawer(editorViewModel = editorViewModel) {
+    EditorScreenContent(editorViewModel = editorViewModel)
+  }
+}
+
+@Composable
+private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
+  val context = LocalContext.current
+  val coroutineScope = rememberCoroutineScope()
+  val drawerState = LocalEditorFilesDrawerState.current
+  val toastHostState = LocalToastHostState.current
+  val navController = LocalMainNavController.current
+  val keyboardState by keyboardAsState()
+
+  Scaffold(
+    modifier = modifier,
+    topBar = {
+      EditorToolbar(
+        editorViewModel = editorViewModel,
+        onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
+      )
     }
-    ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
+  ) { innerPadding ->
+    Column {
+      Column(modifier = Modifier.weight(1f).padding(innerPadding)) {
+        if (editorViewModel.uiState.hasFileOpen) {
+          EditorFileTabLayout(editorViewModel = editorViewModel)
+          Editor(editorViewModel = editorViewModel)
+        } else {
+          NoOpenedFilesContent()
+        }
+      }
+      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
+    }
   }
 }
 
