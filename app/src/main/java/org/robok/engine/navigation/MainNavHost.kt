@@ -31,6 +31,7 @@ import org.robok.engine.routes.TerminalRoute
 import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
+import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
@@ -57,6 +58,7 @@ fun MainNavHost() {
       CompositionLocalProvider(
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
+        LocalXMLViewerNavController provides rememberNavController()
       ) {
         EditorScreen(pPath = SingleString.instance.value)
       }
