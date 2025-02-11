@@ -123,61 +123,61 @@ fun EditorScreen(pPath: String) {
   }
 
   LaunchedEffect(editorViewModel.editorEvent) {
-      editorViewModel.editorEvent?.let { event ->
-        when (event) {
-          is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
-          is EditorEvent.OpenFile -> {
-            handleFile(navController, editorViewModel, event.file)
-            editorViewModel.clearEvent()
-          }
-          is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
-          is EditorEvent.CloseOthers -> editorViewModel.removeOthersFiles()
-          is EditorEvent.CloseAll -> editorViewModel.removeAllFiles()
-          is EditorEvent.SaveFile -> {
-            editorViewModel.writeFile(
-              editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
+    editorViewModel.editorEvent?.let { event ->
+      when (event) {
+        is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
+        is EditorEvent.OpenFile -> {
+          handleFile(navController, editorViewModel, event.file)
+          editorViewModel.clearEvent()
+        }
+        is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
+        is EditorEvent.CloseOthers -> editorViewModel.removeOthersFiles()
+        is EditorEvent.CloseAll -> editorViewModel.removeAllFiles()
+        is EditorEvent.SaveFile -> {
+          editorViewModel.writeFile(
+            editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
+          )
+          coroutineScope.launch {
+            toastHostState.showToast(
+              message = context.getString(Strings.text_saved),
+              icon = Icons.Rounded.Check,
             )
-            coroutineScope.launch {
-              toastHostState.showToast(
-                message = context.getString(Strings.text_saved),
-                icon = Icons.Rounded.Check,
-              )
-            }
           }
-          is EditorEvent.SaveAllFiles -> {
-            editorViewModel.writeAllFiles()
-            coroutineScope.launch {
-              toastHostState.showToast(
-                message = context.getString(Strings.text_saved_all),
-                icon = Icons.Rounded.Check,
-              )
-            }
+        }
+        is EditorEvent.SaveAllFiles -> {
+          editorViewModel.writeAllFiles()
+          coroutineScope.launch {
+            toastHostState.showToast(
+              message = context.getString(Strings.text_saved_all),
+              icon = Icons.Rounded.Check,
+            )
           }
-          is EditorEvent.Undo -> {
-            editorViewModel.getSelectedEditor()?.let { editor ->
-              editor.undo()
-              editorViewModel.updateUndoRedo(editor)
-            }
-            editorViewModel.clearEvent()
+        }
+        is EditorEvent.Undo -> {
+          editorViewModel.getSelectedEditor()?.let { editor ->
+            editor.undo()
+            editorViewModel.updateUndoRedo(editor)
           }
-          is EditorEvent.Redo -> {
-            editorViewModel.getSelectedEditor()?.let { editor ->
-              editor.redo()
-              editorViewModel.updateUndoRedo(editor)
-            }
-            editorViewModel.clearEvent()
+          editorViewModel.clearEvent()
+        }
+        is EditorEvent.Redo -> {
+          editorViewModel.getSelectedEditor()?.let { editor ->
+            editor.redo()
+            editorViewModel.updateUndoRedo(editor)
           }
-          is EditorEvent.More -> {
-            editorViewModel.setMoreOptionOpen(!editorViewModel.uiState.moreOptionOpen)
-            editorViewModel.clearEvent()
-          }
-          is EditorEvent.Run -> {
-            editorViewModel.setIsRunClicked(!editorViewModel.uiState.isRunClicked)
-            editorViewModel.clearEvent()
-          }
+          editorViewModel.clearEvent()
+        }
+        is EditorEvent.More -> {
+          editorViewModel.setMoreOptionOpen(!editorViewModel.uiState.moreOptionOpen)
+          editorViewModel.clearEvent()
+        }
+        is EditorEvent.Run -> {
+          editorViewModel.setIsRunClicked(!editorViewModel.uiState.isRunClicked)
+          editorViewModel.clearEvent()
         }
       }
     }
+  }
 
   EditorDrawer(editorViewModel = editorViewModel) {
     EditorScreenContent(editorViewModel = editorViewModel)
@@ -199,7 +199,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         editorViewModel = editorViewModel,
         onNavigationIconClick = { coroutineScope.launch { drawerState.open() } },
       )
-    }
+    },
   ) { innerPadding ->
     Column {
       Column(modifier = Modifier.weight(1f).padding(innerPadding)) {
