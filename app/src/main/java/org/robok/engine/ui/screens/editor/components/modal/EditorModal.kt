@@ -57,7 +57,7 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
           }
     ) {
       HorizontalDivider()
-      Box(
+      Column(
         modifier = Modifier.fillMaxWidth().height(50.dp).clickable { modalHeight = maxHeight },
         contentAlignment = Alignment.Center,
       ) {

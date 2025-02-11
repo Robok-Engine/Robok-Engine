@@ -84,6 +84,8 @@ fun EditorScreen(pPath: String) {
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(pPath) }
   val navController = LocalMainNavController.current
+  val keyboardState by keyboardAsState()
+
   editorViewModel.setProjectManager(projectManager)
 
   BackHandler { editorViewModel.setIsBackClicked(true) }
@@ -120,18 +122,21 @@ fun EditorScreen(pPath: String) {
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
-    EditorScreenContent(editorViewModel = editorViewModel)
+    EditorScreenContent(
+      modifier = Modifier.weight(1f),
+      editorViewModel = editorViewModel
+    )
+    ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
   }
 }
 
 @Composable
-private fun EditorScreenContent(editorViewModel: EditorViewModel) {
+private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
   val context = LocalContext.current
   val coroutineScope = rememberCoroutineScope()
   val drawerState = LocalEditorFilesDrawerState.current
   val toastHostState = LocalToastHostState.current
   val navController = LocalMainNavController.current
-  val keyboardState by keyboardAsState()
   Scaffold(
     topBar = {
       EditorToolbar(
@@ -190,62 +195,21 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
             editorViewModel.clearEvent()
           }
           is EditorEvent.Run -> {
-            editorViewModel.setIsRunClicked(!EditorViewModel.uiState.isRunClicked)
+            editorViewModel.setIsRunClicked(!editorViewModel.uiState.isRunClicked)
             editorViewModel.clearEvent()
           }
         }
       }
     }
-    Column(modifier = Modifier.fillMaxSize().padding(innerPadding)) {
+    Column(modifier = modifier.padding(innerPadding)) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorFileTabLayout(editorViewModel = editorViewModel)
-        Editor(modifier = Modifier.weight(1f), editorViewModel = editorViewModel)
+        Editor(editorViewModel = editorViewModel)
       } else {
         NoOpenedFilesContent()
       }
-      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
     }
   }
-}
-
-private fun handleFile(
-  navController: NavHostController,
-  editorViewModel: EditorViewModel,
-  file: File,
-) {
-  val name = file.name
-  when (name) {
-    "config.json" -> {
-      SingleString.instance.value = editorViewModel.projectManager.projectPath.path
-      navController.navigateSingleTop(ProjectSettingsRoute)
-    }
-    else -> handleFileExtension(navController, editorViewModel, file)
-  }
-}
-
-private fun handleFileExtension(
-  navController: NavHostController,
-  editorViewModel: EditorViewModel,
-  file: File
-) {
-  val extension = file.name.substringAfterLast(".")
-  when (extension) {
-    "amix" -> {
-      compileAmixAndOpenXmlViewer(navController, editorViewModel, file)
-    }
-  }
-  editorViewModel.addFile(file)
-}
-
-private fun compileAmixAndOpenXmlViewer(
-  navController: NavHostController,
-  editorViewModel: EditorViewModel,
-  file: File
-) {
-  val amixCode = FileUtil.readFile(file.absolutePath)
-  val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
-  SingleString.instance.value = xmlCode
-  navController.navigateSingleTop(XMLViewerRoute)
 }
 
 @Composable
@@ -350,4 +314,38 @@ private fun EditorToolbar(
         ),
     )
   EditorTopBar(state = topBarState, editorViewModel = editorViewModel)
+}
+
+private fun handleFile(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+  file: File,
+) {
+  val name = file.name
+  when (name) {
+    "config.json" -> {
+      SingleString.instance.value = editorViewModel.projectManager.projectPath.path
+      navController.navigateSingleTop(ProjectSettingsRoute)
+    }
+    else -> handleFileExtension(navController, editorViewModel, file)
+  }
+}
+
+private fun handleFileExtension(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+  file: File
+) {
+  editorViewModel.addFile(file)
+}
+
+private fun compileAmixAndOpenXmlViewer(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+  file: File
+) {
+  val amixCode = FileUtil.readFile(file.absolutePath)
+  val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
+  SingleString.instance.value = xmlCode
+  navController.navigateSingleTop(XMLViewerRoute)
 }
