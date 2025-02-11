@@ -124,6 +124,11 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _editorEvent = EditorEvent.More
   }
 
+  /** triggered when request to run project, file */
+  fun run() {
+    _editorEvent = EditorEvent.Run
+  }
+
   /**
    * triggered when request to open file
    *
