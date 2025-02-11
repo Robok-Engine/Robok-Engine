@@ -334,7 +334,7 @@ private fun handleFile(
   when (name) {
     "config.json" -> {
       SingleString.instance.value = editorViewModel.projectManager.projectPath.path
-      editorViewModel.uiState.editorNavigateActions.onNavigateToProjectSettings()
+      editorViewModel.uiState.editorNavigateActions!!.onNavigateToProjectSettings()
     }
     else -> handleFileExtension(editorViewModel, file)
   }
