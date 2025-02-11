@@ -19,6 +19,7 @@ package org.robok.engine.ui.screens.editor.components.modal
 
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -36,6 +37,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.compose.ui.res.stringResource
 import org.robok.engine.Strings
 
@@ -57,7 +59,15 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
           }
     ) {
       HorizontalDivider()
-      Box(modifier = Modifier.fillMaxWidth().height(50.dp), contentAlignment = Alignment.Center) {
+      Box(
+        modifier = Modifier
+          .fillMaxWidth()
+          .height(50.dp)
+          .clickable {
+            modalHeight = maxHeight
+          }
+        contentAlignment = Alignment.Center
+      ) {
         Text(
           text = stringResource(Strings.title_project_initialized),
           fontSize = 16.sp

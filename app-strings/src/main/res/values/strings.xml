@@ -114,7 +114,7 @@
   <string name="text_permissions">Permissions</string>
   <string name="text_environment">Environment</string>
   <string name="text_discord">Our Server in Discord</string>
-  <string name="text_swipe_up_down_build_info">Swipe up or click for build info and more.</string>
+  <string name="text_swipe_up_down_build_info">Swipe up/down or click for build info and more.</string>
   <!-- end section -->
 
   <!-- go to section -->
