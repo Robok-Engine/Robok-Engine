@@ -186,10 +186,10 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
       if (editorViewModel.uiState.hasFileOpen) {
         EditorFileTabLayout(editorViewModel = editorViewModel)
         Editor(modifier = Modifier.weight(1f), editorViewModel = editorViewModel)
-        ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
       } else {
         NoOpenedFilesContent()
       }
+      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
     }
   }
 }
