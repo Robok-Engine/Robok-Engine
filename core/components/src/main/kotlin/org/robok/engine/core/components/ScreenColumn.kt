@@ -16,7 +16,6 @@ package org.robok.engine.core.components
  * limitations under the License.
  */
 
-import androidx.compose.animation.core.generateDecayAnimationSpec
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
@@ -32,13 +31,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalDensity
-import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
-import dev.trindadedev.scrolleffect.cupertino.CupertinoFlingBehavior
-import dev.trindadedev.scrolleffect.cupertino.CupertinoOverscrollEffect
-import dev.trindadedev.scrolleffect.cupertino.CupertinoScrollDecayAnimationSpec
-import org.robok.engine.core.components.utils.addIf
+import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -50,29 +44,16 @@ fun ScreenColumn(
   scrollState: ScrollState? = rememberScrollState(),
   content: @Composable ColumnScope.() -> Unit,
 ) {
-
-  val density = LocalDensity.current.density
-  val layoutDirection = LocalLayoutDirection.current
-  val overscrollEffect = remember { CupertinoOverscrollEffect(density, layoutDirection, false) }
-
-  Column(
-    verticalArrangement = verticalArrangement,
-    horizontalAlignment = horizontalAlignment,
-    modifier =
-      Modifier.fillMaxHeight()
-        .addIf(scrollState != null) {
-          this.verticalScroll(
-            scrollState!!,
-            overscrollEffect = overscrollEffect,
-            flingBehavior =
-              CupertinoFlingBehavior(
-                CupertinoScrollDecayAnimationSpec().generateDecayAnimationSpec()
-              ),
-          )
-        }
-        .overscroll(overscrollEffect)
-        .padding(contentPadding)
-        .padding(top = 8.dp, bottom = 16.dp),
-    content = content,
-  )
+  CupertinoColumnScroll(
+    modifier = Modifier
+      .padding(contentPadding)
+      .padding(top = 8.dp, bottom = 16.dp),
+    scrollState = scrollState
+  ) {
+    Column(
+      verticalArrangement = verticalArrangement,
+      horizontalAlignment = horizontalAlignment,
+      content = content,
+    )
+  }
 }
