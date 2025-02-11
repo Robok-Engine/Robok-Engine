@@ -122,11 +122,13 @@ fun EditorScreen(pPath: String) {
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
-    EditorScreenContent(
-      modifier = Modifier.weight(1f),
-      editorViewModel = editorViewModel
-    )
-    ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
+    Column(modifier = Modifier.fillMaxSize()) {
+      EditorScreenContent(
+        modifier = Modifier.weight(1f),
+        editorViewModel = editorViewModel
+      )
+      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
+    }
   }
 }
 
