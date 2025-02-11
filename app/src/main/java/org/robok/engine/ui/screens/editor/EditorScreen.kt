@@ -53,22 +53,17 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.navigation.NavHostController
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
-import org.robok.engine.routes.ProjectSettingsRoute
-import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
-import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarAction
 import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
@@ -79,10 +74,7 @@ import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
-fun EditorScreen(
-  projectPath: String,
-  editorNavigateActions: EditorNavigateActions
-) {
+fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
   val context = LocalContext.current
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(projetPath) }
@@ -110,7 +102,9 @@ fun EditorScreen(
         }
       },
       dismissButton = {
-        OutlinedButton(onClick = { editorViewModel.uiState.editorNavigateActions!!.popBackStack() }) {
+        OutlinedButton(
+          onClick = { editorViewModel.uiState.editorNavigateActions!!.popBackStack() }
+        ) {
           Text(text = stringResource(Strings.text_exit_without_save))
         }
       },
@@ -184,10 +178,7 @@ fun EditorScreen(
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
-    EditorScreenContent(
-      modifier = Modifier.systemBarsPadding(),
-      editorViewModel = editorViewModel
-    )
+    EditorScreenContent(modifier = Modifier.systemBarsPadding(), editorViewModel = editorViewModel)
   }
 }
 
@@ -325,10 +316,7 @@ private fun EditorToolbar(
   EditorTopBar(state = topBarState, editorViewModel = editorViewModel)
 }
 
-private fun handleFile(
-  editorViewModel: EditorViewModel,
-  file: File,
-) {
+private fun handleFile(editorViewModel: EditorViewModel, file: File) {
   val name = file.name
   when (name) {
     "config.json" -> {
@@ -338,17 +326,11 @@ private fun handleFile(
   }
 }
 
-private fun handleFileExtension(
-  editorViewModel: EditorViewModel,
-  file: File,
-) {
+private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
   editorViewModel.addFile(file)
 }
 
-private fun compileAmixAndOpenXmlViewer(
-  editorViewModel: EditorViewModel,
-  file: File,
-) {
+private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
   val amixCode = FileUtil.readFile(file.absolutePath)
   val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
   editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
@@ -358,5 +340,5 @@ private fun compileAmixAndOpenXmlViewer(
 data class EditorNavigateActions(
   val popBackStack: () -> Unit,
   val onNavigateToXMLViewer: (String) -> Unit,
-  val onNavigateToProjectSettings: () -> Unit
+  val onNavigateToProjectSettings: () -> Unit,
 )

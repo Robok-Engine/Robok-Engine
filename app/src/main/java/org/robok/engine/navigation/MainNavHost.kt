@@ -21,14 +21,12 @@ import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.remember
 import androidx.navigation.NavType
-import androidx.navigation.toRoute
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
-import org.robok.engine.core.utils.SingleString
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
@@ -36,10 +34,10 @@ import org.robok.engine.routes.XMLViewerMainRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.platform.LocalXMLViewerNavController
+import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
-import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
@@ -67,11 +65,14 @@ fun MainNavHost() {
         val route: EditorRoute = it.toRoute()
         EditorScreen(
           projectPath = route.projectPath,
-          editorNavigateActions = EditorNavigateActions(
-            popBackStack = { navController.popBackStack() },
-            onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },
-            onNavigateToProjectSettings = { /** to implement */ }
-          )
+          editorNavigateActions =
+            EditorNavigateActions(
+              popBackStack = { navController.popBackStack() },
+              onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },
+              onNavigateToProjectSettings = {
+              /** to implement */
+              },
+            ),
         )
       }
     }

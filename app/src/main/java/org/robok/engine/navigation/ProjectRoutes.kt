@@ -60,9 +60,7 @@ fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
 
   composable<ManageProjectsRoute> {
     ManageProjectsScreen(
-      onProjectClick = { projectPath ->
-        navController.navigateSingleTop(EditorRoute(projectPath))
-      }
+      onProjectClick = { projectPath -> navController.navigateSingleTop(EditorRoute(projectPath)) }
     )
   }
 

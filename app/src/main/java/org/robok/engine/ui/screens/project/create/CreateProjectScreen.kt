@@ -40,7 +40,6 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.dialog.loading.LoadingDialog
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.core.utils.SingleString
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
