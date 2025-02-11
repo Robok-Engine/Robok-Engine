@@ -27,7 +27,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
-import androidx.compose.material.icons.rounded.Error
 import androidx.compose.material.icons.rounded.MoreVert
 import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Redo
@@ -114,7 +113,8 @@ fun EditorScreen(pPath: String) {
   }
 
   if (editorViewModel.uiState.isRunClicked) {
-    val currentFile = editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
+    val currentFile =
+      editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
     if (currentFile.name.substringAfterLast(".").equals("amix")) {
       compileAmixAndOpenXmlViewer(navController, editorViewModel, currentFile)
     }
@@ -123,10 +123,7 @@ fun EditorScreen(pPath: String) {
 
   EditorDrawer(editorViewModel = editorViewModel) {
     Column(modifier = Modifier.fillMaxSize()) {
-      EditorScreenContent(
-        modifier = Modifier.weight(1f),
-        editorViewModel = editorViewModel
-      )
+      EditorScreenContent(modifier = Modifier.weight(1f), editorViewModel = editorViewModel)
       ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
     }
   }
@@ -336,7 +333,7 @@ private fun handleFile(
 private fun handleFileExtension(
   navController: NavHostController,
   editorViewModel: EditorViewModel,
-  file: File
+  file: File,
 ) {
   editorViewModel.addFile(file)
 }
@@ -344,7 +341,7 @@ private fun handleFileExtension(
 private fun compileAmixAndOpenXmlViewer(
   navController: NavHostController,
   editorViewModel: EditorViewModel,
-  file: File
+  file: File,
 ) {
   val amixCode = FileUtil.readFile(file.absolutePath)
   val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)

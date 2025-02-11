@@ -59,11 +59,12 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
     ) {
       HorizontalDivider()
       Column(
-        modifier = Modifier.fillMaxWidth().height(50.dp).clickable {
-          modalHeight = if (modalHeight == maxHeight) initialHeight else maxHeight
-        },
+        modifier =
+          Modifier.fillMaxWidth().height(50.dp).clickable {
+            modalHeight = if (modalHeight == maxHeight) initialHeight else maxHeight
+          },
         horizontalAlignment = Alignment.CenterHorizontally,
-        verticalArrangement = Arrangement.Center
+        verticalArrangement = Arrangement.Center,
       ) {
         Text(text = stringResource(Strings.title_project_initialized), fontSize = 16.sp)
         Text(text = stringResource(Strings.text_swipe_up_down_build_info), fontSize = 12.sp)

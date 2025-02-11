@@ -65,8 +65,6 @@ fun MainNavHost() {
     ProjectRoutes(navController)
     SettingsRoutes(navController)
 
-    composable<XMLViewerRoute> {
-      XMLViewerNavHost(xml = SingleString.instance.value)
-    }
+    composable<XMLViewerRoute> { XMLViewerNavHost(xml = SingleString.instance.value) }
   }
 }
