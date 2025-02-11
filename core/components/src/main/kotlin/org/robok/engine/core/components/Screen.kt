@@ -21,9 +21,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.RowScope
-import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.compositionLocalOf
@@ -31,6 +28,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import org.robok.engine.core.components.spacer.BottomSpacer
+
+val LocalIsExpandedScreen = compositionLocalOf { false }
 
 /**
  * Represents the layout of all Screen screens. Uses a combination of [ScreenScaffold] and
@@ -78,48 +77,3 @@ fun Screen(
     )
   }
 }
-
-/**
- * Represents the layout of all Screen screens. This composable only composes and lays out the
- * currently visible items. Uses a combination of [ScreenScaffold] and [ScreenLazyColumn] to
- * represent the layout.
- *
- * @param label the text to be displayed at the top of the screen
- * @param modifier the [Modifier] to apply at [ScreenLazyColumn]
- * @param enabled whether the layout allows user input or not
- * @param backArrowVisible whether to show the back arrow or not
- * @param state the state object to be used to control or observe the list's state
- * @param actions what content to show at the top-right of the layout
- * @param content the actual content
- * @see [Screen]
- *
- * TODO: use DSL to represent all preferences
- */
-@Composable
-fun ScreenLazyColumn(
-  label: String,
-  modifier: Modifier = Modifier,
-  isExpandedScreen: Boolean = LocalIsExpandedScreen.current,
-  enabled: Boolean = true,
-  backArrowVisible: Boolean = true,
-  state: LazyListState = rememberLazyListState(),
-  actions: @Composable RowScope.() -> Unit = {},
-  content: LazyListScope.(PaddingValues) -> Unit,
-) {
-  ScreenScaffold(
-    backArrowVisible = backArrowVisible,
-    label = label,
-    isExpandedScreen = isExpandedScreen,
-    actions = actions,
-  ) {
-    ScreenLazyColumn(
-      contentPadding = it,
-      modifier = modifier,
-      enabled = enabled,
-      state = state,
-      content = { content(it) },
-    )
-  }
-}
-
-val LocalIsExpandedScreen = compositionLocalOf { false }

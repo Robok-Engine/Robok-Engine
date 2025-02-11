@@ -21,11 +21,9 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
-import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.launch

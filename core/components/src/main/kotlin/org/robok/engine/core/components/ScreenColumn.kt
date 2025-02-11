@@ -16,7 +16,8 @@ package org.robok.engine.core.components
  * limitations under the License.
  */
 
-import androidx.compose.foundation.MutatePriority
+import androidx.compose.animation.core.generateDecayAnimationSpec
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -24,21 +25,22 @@ import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.lazy.LazyListScope
-import androidx.compose.foundation.lazy.LazyListState
-import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.overscroll
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
-import kotlinx.coroutines.awaitCancellation
-import dev.trindadedev.scrolleffect.edgeeffect.NestedScrollStretch
+import dev.trindadedev.scrolleffect.cupertino.CupertinoFlingBehavior
+import dev.trindadedev.scrolleffect.cupertino.CupertinoOverscrollEffect
+import dev.trindadedev.scrolleffect.cupertino.CupertinoScrollDecayAnimationSpec
 import org.robok.engine.core.components.utils.addIf
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun ScreenColumn(
   contentPadding: PaddingValues,
@@ -48,40 +50,29 @@ fun ScreenColumn(
   scrollState: ScrollState? = rememberScrollState(),
   content: @Composable ColumnScope.() -> Unit,
 ) {
-  NestedScrollStretch(modifier = modifier) {
-    Column(
-      verticalArrangement = verticalArrangement,
-      horizontalAlignment = horizontalAlignment,
-      modifier =
-        Modifier.fillMaxHeight()
-          .addIf(scrollState != null) { this.verticalScroll(scrollState!!) }
-          .padding(contentPadding)
-          .padding(top = 8.dp, bottom = 16.dp),
-      content = content,
-    )
-  }
-}
 
-@Composable
-fun ScreenLazyColumn(
-  contentPadding: PaddingValues,
-  modifier: Modifier = Modifier,
-  enabled: Boolean = true,
-  isChild: Boolean = false,
-  state: LazyListState = rememberLazyListState(),
-  content: LazyListScope.() -> Unit,
-) {
-  if (!enabled) {
-    LaunchedEffect(key1 = null) {
-      state.scroll(scrollPriority = MutatePriority.PreventUserInput) { awaitCancellation() }
-    }
-  }
-  NestedScrollStretch(modifier = modifier) {
-    LazyColumn(
-      modifier = Modifier.addIf(!isChild) { fillMaxHeight() },
-      contentPadding = contentPadding,
-      state = state,
-      content = content,
-    )
-  }
+  val density = LocalDensity.current.density
+  val layoutDirection = LocalLayoutDirection.current
+  val overscrollEffect = remember { CupertinoOverscrollEffect(density, layoutDirection, false) }
+
+  Column(
+    verticalArrangement = verticalArrangement,
+    horizontalAlignment = horizontalAlignment,
+    modifier =
+      Modifier.fillMaxHeight()
+        .addIf(scrollState != null) {
+          this.verticalScroll(
+            scrollState!!,
+            overscrollEffect = overscrollEffect,
+            flingBehavior =
+              CupertinoFlingBehavior(
+                CupertinoScrollDecayAnimationSpec().generateDecayAnimationSpec()
+              ),
+          )
+        }
+        .overscroll(overscrollEffect)
+        .padding(contentPadding)
+        .padding(top = 8.dp, bottom = 16.dp),
+    content = content,
+  )
 }
