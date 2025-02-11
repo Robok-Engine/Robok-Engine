@@ -24,6 +24,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -35,6 +36,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import org.robok.engine.Strings
 
 @Composable
 fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
@@ -47,15 +50,26 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
         Modifier.align(Alignment.BottomCenter)
           .fillMaxWidth()
           .height(animatedHeight.dp)
-          .background(MaterialTheme.colorScheme.surfaceContainerLow)
           .pointerInput(Unit) {
             detectVerticalDragGestures { _, dragAmount ->
               modalHeight = (modalHeight - dragAmount).coerceIn(initialHeight, maxHeight)
             }
           }
     ) {
+      HorizontalDivider()
       Box(modifier = Modifier.fillMaxWidth().height(50.dp), contentAlignment = Alignment.Center) {
-        Text(text = "drag to top/down")
+        Text(
+          text = stringResource(Strings.title_project_initialized),
+          fontSize = 16.sp
+        )
+        Text(
+          text = stringResource(Strings.text_swipe_up_down_build_info),
+          fontSize = 12.sp
+        )
+      }
+      HorizontalDivider()
+      Column {
+        Text(text = "Here will be displayed the Build logs")
       }
     }
   }

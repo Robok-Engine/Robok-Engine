@@ -80,6 +80,7 @@
   <string name="title_contribute">Contribute</string>
   <string name="title_libraries">Third-Party Software</string>
   <string name="title_discord">Discord</string>
+  <string name="title_project_initialized">Project initialized.</string>
   <!-- end section -->
 
   <!-- texts section -->
@@ -113,6 +114,7 @@
   <string name="text_permissions">Permissions</string>
   <string name="text_environment">Environment</string>
   <string name="text_discord">Our Server in Discord</string>
+  <string name="text_swipe_up_down_build_info">Swipe up or click for build info and more.</string>
   <!-- end section -->
 
   <!-- go to section -->
