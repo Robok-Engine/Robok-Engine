@@ -77,7 +77,7 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
   val context = LocalContext.current
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
-  val projectManager = ProjectManager(context).apply { this.projectPath = File(projetPath) }
+  val projectManager = ProjectManager(context).apply { this.projectPath = File(projectPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
 
