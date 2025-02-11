@@ -320,7 +320,7 @@ private fun handleFile(editorViewModel: EditorViewModel, file: File) {
   val name = file.name
   when (name) {
     "config.json" -> {
-      editorViewModel.uiState.editorNavigateActions!!.onNavigateToProjectSettings()
+      editorViewModel.uiState.editorNavigateActions!!.onNavigateToProjectSettings(editorViewModel.projectManager.projectPath)
     }
     else -> handleFileExtension(editorViewModel, file)
   }

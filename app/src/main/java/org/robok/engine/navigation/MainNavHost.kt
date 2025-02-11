@@ -30,6 +30,7 @@ import kotlin.reflect.typeOf
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.TerminalRoute
+import org.robok.engine.routes.ProjectSettingsRoute
 import org.robok.engine.routes.XMLViewerMainRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
@@ -69,9 +70,7 @@ fun MainNavHost() {
             EditorNavigateActions(
               popBackStack = { navController.popBackStack() },
               onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },
-              onNavigateToProjectSettings = {
-              /** to implement */
-              },
+              onNavigateToProjectSettings = { projectPath -> navController.navigate(ProjectSettingsRoute(projectPath)) },
             ),
         )
       }

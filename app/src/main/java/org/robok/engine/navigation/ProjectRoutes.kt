@@ -24,7 +24,6 @@ import androidx.navigation.compose.composable
 import androidx.navigation.toRoute
 import java.io.File
 import kotlin.reflect.typeOf
-import org.robok.engine.core.utils.SingleString
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
@@ -64,10 +63,10 @@ fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
     )
   }
 
-  composable<ProjectSettingsRoute> {
+  composable<ProjectSettingsRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
+    val route: ProjectSettingsRoute = it.toRoute()
     val context = LocalContext.current
-    val projectManager =
-      ProjectManager(context).apply { projectPath = File(SingleString.instance.value) }
+    val projectManager = ProjectManager(context).apply { projectPath = File(route.projectPath) }
     ProjectSettingsScreen(onBack = { navController.popBackStack() }, projectManager)
   }
 }
