@@ -59,14 +59,14 @@ fun MainNavHost() {
 
     composable<TerminalRoute> { TerminalScreen() }
 
-    composable<EditorRoute> {
+    composable<EditorRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
       CompositionLocalProvider(
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
       ) {
-        val currentProjectPath = remember { SingleString.instance.value }
+        val route: EditorRoute = it.toRoute()
         EditorScreen(
-          currentProjectPath = currentProjectPath,
+          projectPath = route.projectPath,
           editorNavigateActions = EditorNavigateActions(
             popBackStack = { navController.popBackStack() },
             onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },

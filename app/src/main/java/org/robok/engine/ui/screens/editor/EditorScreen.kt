@@ -60,7 +60,6 @@ import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.core.utils.SingleString
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
@@ -81,12 +80,12 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
 fun EditorScreen(
-  currentProjectPath: String,
+  projectPath: String,
   editorNavigateActions: EditorNavigateActions
 ) {
   val context = LocalContext.current
   val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
-  val projectManager = ProjectManager(context).apply { this.projectPath = File(currentProjectPath) }
+  val projectManager = ProjectManager(context).apply { this.projectPath = File(projetPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
 
@@ -333,7 +332,6 @@ private fun handleFile(
   val name = file.name
   when (name) {
     "config.json" -> {
-      SingleString.instance.value = editorViewModel.projectManager.projectPath.path
       editorViewModel.uiState.editorNavigateActions!!.onNavigateToProjectSettings()
     }
     else -> handleFileExtension(editorViewModel, file)

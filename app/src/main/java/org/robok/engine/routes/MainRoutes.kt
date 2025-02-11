@@ -23,4 +23,4 @@ import kotlinx.serialization.Serializable
 
 @Serializable object TerminalRoute : Route
 
-@Serializable object EditorRoute : Route
+@Serializable data class EditorRoute(val projectPath) : Route
