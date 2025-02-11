@@ -19,12 +19,8 @@ package org.robok.engine.di
 
 import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.robok.engine.ui.screens.editor.components.drawer.info.diagnostic.viewmodel.DiagnosticViewModel
-import org.robok.engine.ui.screens.editor.components.drawer.info.viewmodel.ProjectInfoDrawerViewModel
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 val EditorModule = module {
   viewModelOf(::EditorViewModel)
-  viewModelOf(::ProjectInfoDrawerViewModel)
-  viewModelOf(::DiagnosticViewModel)
 }
