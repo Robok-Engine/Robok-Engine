@@ -95,6 +95,15 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _uiState = _uiState.copy(isBackClicked = isBackClicked)
   }
 
+  /**
+   * Defines if user clicked in Run Button
+   *
+   * @param isRunClicked The value
+   */
+  fun setIsRunClicked(isRunClicked: Boolean) {
+    _uiState = _uiState.copy(isRunClicked = isRunClicked)
+  }
+
   /** init the compilation */
   fun compileProject() {
     _projectManager?.compileProject(logger, this)

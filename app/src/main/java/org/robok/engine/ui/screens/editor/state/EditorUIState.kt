@@ -30,4 +30,5 @@ data class EditorUIState(
   val editors: List<RobokCodeEditor> = emptyList(),
   val moreOptionOpen: Boolean = false,
   val isBackClicked: Boolean = false,
+  val isRunClicked: Boolean = false
 )

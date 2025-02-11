@@ -58,12 +58,14 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
+import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.SingleString
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.routes.ProjectSettingsRoute
+import org.robok.engine.routes.XMLViewerRoute
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
 import org.robok.engine.ui.platform.LocalMainNavController
@@ -107,6 +109,14 @@ fun EditorScreen(pPath: String) {
         }
       },
     )
+  }
+
+  if (editorViewModel.uiState.isRunClicked) {
+    val currentFile = editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
+    if (currentFile.name.substringAfterLast(".").equals("amix")) {
+      compileAmixAndOpenXmlViewer(navController, editorViewModel, currentFile)
+    }
+    editorViewModel.setIsRunClicked(false)
   }
 
   EditorDrawer(editorViewModel = editorViewModel) {
@@ -179,6 +189,10 @@ private fun EditorScreenContent(editorViewModel: EditorViewModel) {
             editorViewModel.setMoreOptionOpen(!editorViewModel.uiState.moreOptionOpen)
             editorViewModel.clearEvent()
           }
+          is EditorEvent.Run -> {
+            editorViewModel.setIsRunClicked(!EditorViewModel.uiState.isRunClicked)
+            editorViewModel.clearEvent()
+          }
         }
       }
     }
@@ -205,12 +219,33 @@ private fun handleFile(
       SingleString.instance.value = editorViewModel.projectManager.projectPath.path
       navController.navigateSingleTop(ProjectSettingsRoute)
     }
-    else -> handleFileExtension(editorViewModel, file)
+    else -> handleFileExtension(navController, editorViewModel, file)
   }
 }
 
-private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
+private fun handleFileExtension(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+  file: File
+) {
+  val extension = file.name.substringAfterLast(".")
+  when (extension) {
+    "amix" -> {
+      compileAmixAndOpenXmlViewer(navController, editorViewModel, file)
+    }
+  }
   editorViewModel.addFile(file)
+}
+
+private fun compileAmixAndOpenXmlViewer(
+  navController: NavHostController,
+  editorViewModel: EditorViewModel,
+  file: File
+) {
+  val amixCode = FileUtil.readFile(file.absolutePath)
+  val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
+  SingleString.instance.value = xmlCode
+  navController.navigateSingleTop(XMLViewerRoute)
 }
 
 @Composable
@@ -298,14 +333,7 @@ private fun EditorToolbar(
           EditorTopBarAction(
             name = stringResource(id = Strings.common_word_run),
             icon = Icons.Rounded.PlayArrow,
-            onClick = {
-              coroutineScope.launch {
-                toastHostState.showToast(
-                  message = "Not implemented yet",
-                  icon = Icons.Rounded.Error,
-                )
-              }
-            },
+            onClick = { editorViewModel.run() },
           ),
           EditorTopBarAction(
             name = stringResource(id = Strings.common_word_save),

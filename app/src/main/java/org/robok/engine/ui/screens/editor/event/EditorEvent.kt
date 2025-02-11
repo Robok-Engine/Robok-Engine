@@ -39,4 +39,6 @@ sealed interface EditorEvent {
   data object Redo : EditorEvent
 
   data object More : EditorEvent
+
+  data object Run : EditorEvent
 }
