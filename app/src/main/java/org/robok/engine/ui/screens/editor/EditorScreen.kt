@@ -54,6 +54,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.launch
+import org.amix.Amix
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
@@ -207,7 +208,13 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
           NoOpenedFilesContent()
         }
       }
-      ExpandAndShrink(keyboardState == KeyboardState.Closed) { EditorModal() }
+      ExpandAndShrink(keyboardState == KeyboardState.Closed) {
+        EditorModal {
+          editorViewModel.uiState.logs.forEach {
+            Text(text = String.format("%s: %s", it.tag, it.message))
+          }
+        }
+      }
     }
   }
 }
@@ -333,16 +340,21 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 }
 
 private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
-  val amixCode = FileUtil.readFile(file.absolutePath)
+  val amixCode = file.readText()
   var xmlCode = "Failed to generate source code."
-  editorViewModel.projectManager.generateXmlFromAmix(
-    amixCode = amixCode,
-    onGenerateCode = { generatedCode, config ->
-      org.robok.engine.core.utils.Log.d(message = "EditorScreen::compileAmixAndOpenXmlViewer::onGenerateCode")
-      xmlCode = generatedCode
-      editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
+  val amix = Amix.Builder()
+    .setUseStyle(true)
+    .setUseVerticalRoot(true)
+    .setCode(amixCode)
+    .setOnGenerateCode { code, _ ->
+      editorViewModel.addBuildLog("File ${file.name} compiled successfully")
     }
-  )
+    .setOnError { error ->
+      editorViewModel.addBuildLog("Error compiling ${file.name}: $error")
+    }
+    .create()
+
+  amix.compile()
 }
 
 @Immutable

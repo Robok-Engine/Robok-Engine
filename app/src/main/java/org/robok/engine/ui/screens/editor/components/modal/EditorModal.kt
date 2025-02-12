@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import org.robok.engine.Strings
 
 @Composable
-fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
+fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f, content: @Composable.() -> Unit) {
   var modalHeight by remember { mutableStateOf(initialHeight) }
   val animatedHeight by
     animateFloatAsState(targetValue = modalHeight, label = "Editor Modal Height")
@@ -70,7 +70,7 @@ fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f) {
         Text(text = stringResource(Strings.text_swipe_up_down_build_info), fontSize = 12.sp)
       }
       HorizontalDivider()
-      Column { Text(text = "Here will be displayed the Build logs") }
+      Column(content = content)
     }
   }
 }

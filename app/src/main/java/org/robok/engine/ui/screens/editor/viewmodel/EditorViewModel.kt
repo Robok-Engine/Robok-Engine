@@ -25,6 +25,7 @@ import androidx.lifecycle.ViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.logger.Logger
+import org.robok.engine.feature.compiler.android.logger.Log
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -318,6 +319,17 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
    */
   fun updateUndoRedo(editor: RobokCodeEditor) {
     _uiState = _uiState.copy(canUndo = editor.isCanUndo(), canRedo = editor.isCanRedo())
+  }
+
+  /**
+   * Adds a new log in build logs.
+   *
+   * @param log The instance of log with infos
+   */
+  fun addBuildLog(log: Log) {
+    val logs = _uiState.logs.toMutableList()
+    logs.add(log)
+    _uiState = _uiState.copy(logs = logs)
   }
 
   /** clear event after action */

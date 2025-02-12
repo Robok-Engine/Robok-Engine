@@ -20,6 +20,7 @@ package org.robok.engine.ui.screens.editor.state
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.ui.screens.editor.EditorNavigateActions
+import org.robok.engine.feature.compiler.android.logger.Log
 
 data class EditorUIState(
   val title: String = "Robok",
@@ -33,4 +34,5 @@ data class EditorUIState(
   val isBackClicked: Boolean = false,
   val isRunClicked: Boolean = false,
   val editorNavigateActions: EditorNavigateActions? = null,
+  val logs: List<Log> = emptyList(),
 )
