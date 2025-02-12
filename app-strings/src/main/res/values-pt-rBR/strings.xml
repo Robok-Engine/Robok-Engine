@@ -146,4 +146,9 @@
     <string name="setup_development_environment_title">Ambiente de Desenvolvimento</string>
     <string name="common_word_ok">OK</string>
     <string name="common_word_more">Mais</string>
+    <string name="text_swipe_up_down_build_info">Deslize para cima/baixo ou clique para obter informações sobre a construção e muito mais.</string>
+    <string name="title_project_initialized">Projeto inicializado.</string>
+    <string name="title_discord">Discord</string>
+    <string name="text_exit_with_save">Salvar e Sair</string>
+    <string name="text_discord">Nosso servidor no Discord</string>
 </resources>
