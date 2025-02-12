@@ -17,15 +17,26 @@ package org.robok.engine.ui.activities.debug
  *  along with Robok. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.*
-import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.Button
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.*
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.Strings
@@ -44,6 +55,7 @@ class AppFailureActivity : BaseComposeActivity() {
       "ArithmeticException",
       "NumberFormatException",
       "ActivityNotFoundException",
+      "NullPointerException",
     )
 
   private val errMessage =
@@ -52,7 +64,8 @@ class AppFailureActivity : BaseComposeActivity() {
       "Invalid list operation\n",
       "Invalid arithmetical operation\n",
       "Invalid toNumber block operation\n",
-      "Invalid intent operation",
+      "Invalid intent operation\n",
+      "Invalid nullable treatment",
     )
 
   @Composable
@@ -85,7 +98,7 @@ class AppFailureActivity : BaseComposeActivity() {
               finish()
             }
           ) {
-            Text(stringResource(id = Strings.common_word_end))
+            Text(stringResource(id = Strings.common_word_exit))
           }
         },
       )
