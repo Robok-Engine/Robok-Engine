@@ -28,6 +28,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.style.TextOverflow
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
@@ -36,7 +37,13 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 @Composable
 fun EditorTopBar(editorViewModel: EditorViewModel, state: EditorTopBarState) {
   TopAppBar(
-    title = { Text(text = state.title) },
+    title = {
+      Text(
+        text = state.title,
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis
+      )
+    },
     navigationIcon = {
       IconButton(onClick = state.onNavigationIconClick) {
         Icon(
