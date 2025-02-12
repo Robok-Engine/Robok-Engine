@@ -236,12 +236,15 @@ class ProjectManager(private var context: Context) {
       if (file.extension.equals("amx") || file.extension.equals("amix")) {
         val amixCode = FileUtil.readFile(file.absolutePath)
         val fileName = file.nameWithoutExtension
-        generateXmlFromAmix(amixCode) { generatedCode, config ->
-          FileUtil.writeFile(
-            getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-            generatedCode,
-          )
-        }
+        generateXmlFromAmix(
+          amixCode = amixCode,
+          onGenerateCode = { generatedCode, config ->
+            FileUtil.writeFile(
+              getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+              generatedCode,
+            )
+          }
+        )
       }
     }
   }
