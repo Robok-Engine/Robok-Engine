@@ -338,8 +338,8 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
   var xmlCode = "Failed to generate source code."
   editorViewModel.projectManager.generateXmlFromAmix(amixCode) { generatedCode, config ->
     xmlCode = generatedCode
+    editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
   }
-  editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
 }
 
 @Immutable
