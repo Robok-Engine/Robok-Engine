@@ -33,7 +33,6 @@ import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import org.amix.Amix
-import org.amix.config.Config
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
@@ -243,7 +242,7 @@ class ProjectManager(private var context: Context) {
               getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
               generatedCode,
             )
-          }
+          },
         )
       }
     }
@@ -253,7 +252,7 @@ class ProjectManager(private var context: Context) {
   fun generateXmlFromAmix(
     amixCode: String,
     onGenerateCode: Amix.OnGenerateCode,
-    onError: Amix.OnError? = null
+    onError: Amix.OnError? = null,
   ) {
     val builder =
       Amix.Builder()

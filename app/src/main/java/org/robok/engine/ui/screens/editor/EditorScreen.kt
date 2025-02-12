@@ -59,7 +59,6 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.feature.compiler.android.logger.Log as EditorModalLog
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
@@ -345,17 +344,18 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
   val amixCode = file.readText()
   var xmlCode = "Failed to generate source code."
-  val amix = Amix.Builder()
-    .setUseStyle(true)
-    .setUseVerticalRoot(true)
-    .setCode(amixCode)
-    .setOnGenerateCode { code, _ ->
-      editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
-    }
-    .setOnError { error ->
-      editorViewModel.addBuildLog(log("Error compiling ${file.name}: $error"))
-    }
-    .create()
+  val amix =
+    Amix.Builder()
+      .setUseStyle(true)
+      .setUseVerticalRoot(true)
+      .setCode(amixCode)
+      .setOnGenerateCode { code, _ ->
+        editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
+      }
+      .setOnError { error ->
+        editorViewModel.addBuildLog(log("Error compiling ${file.name}: $error"))
+      }
+      .create()
 
   amix.compile()
 }
