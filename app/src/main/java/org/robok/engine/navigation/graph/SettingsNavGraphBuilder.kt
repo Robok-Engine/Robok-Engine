@@ -1,4 +1,4 @@
-package org.robok.engine.navigation
+package org.robok.engine.navigation.graph
 
 /*
  *  This file is part of Robok © 2024.
@@ -37,7 +37,7 @@ import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 
-fun NavGraphBuilder.SettingsRoutes(navController: NavHostController) {
+fun NavGraphBuilder.SettingsNavGraphBuilder(navController: NavHostController) {
   composable<SettingsRoute> { SettingsScreen() }
 
   composable<SettingsAppRoute> { SettingsAppScreen() }

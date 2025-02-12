@@ -1,4 +1,4 @@
-package org.robok.engine.navigation
+package org.robok.engine.navigation.graph
 
 /*
  *  This file is part of Robok © 2024.
@@ -38,7 +38,7 @@ import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen
 import org.robok.engine.ui.screens.project.template.ProjectTemplatesScreen
 
-fun NavGraphBuilder.ProjectRoutes(navController: NavHostController) {
+fun NavGraphBuilder.ProjectNavGraphBuilder(navController: NavHostController) {
   composable<TemplatesRoute> {
     ProjectTemplatesScreen(
       onTemplateClick = { template ->

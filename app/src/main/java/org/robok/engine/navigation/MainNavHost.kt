@@ -27,6 +27,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
+import org.robok.engine.navigation.graph.ProjectNavGraphBuilder
+import org.robok.engine.navigation.graph.SettingsNavGraphBuilder
 import org.robok.engine.routes.EditorRoute
 import org.robok.engine.routes.HomeRoute
 import org.robok.engine.routes.ProjectSettingsRoute
@@ -78,8 +80,8 @@ fun MainNavHost() {
       }
     }
 
-    ProjectRoutes(navController)
-    SettingsRoutes(navController)
+    ProjectNavGraphBuilder(navController)
+    SettingsNavGraphBuilder(navController)
 
     composable<XMLViewerMainRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
       CompositionLocalProvider(LocalXMLViewerNavController provides rememberNavController()) {
