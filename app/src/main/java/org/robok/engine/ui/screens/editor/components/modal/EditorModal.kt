@@ -23,6 +23,7 @@ import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ColumnScope
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.HorizontalDivider
@@ -41,7 +42,7 @@ import androidx.compose.ui.unit.sp
 import org.robok.engine.Strings
 
 @Composable
-fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f, content: @Composable () -> Unit) {
+fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f, content: @Composable ColumnScope.() -> Unit) {
   var modalHeight by remember { mutableStateOf(initialHeight) }
   val animatedHeight by
     animateFloatAsState(targetValue = modalHeight, label = "Editor Modal Height")

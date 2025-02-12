@@ -60,6 +60,7 @@ import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.utils.FileUtil
+import org.robok.engine.feature.compiler.android.logger.Log as EditorModalLog
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -73,6 +74,8 @@ import org.robok.engine.ui.screens.editor.components.modal.EditorModal
 import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
+
+const val TAG_BUILD_LOG = "BuildLog"
 
 @Composable
 fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
@@ -347,15 +350,17 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
     .setUseVerticalRoot(true)
     .setCode(amixCode)
     .setOnGenerateCode { code, _ ->
-      editorViewModel.addBuildLog("File ${file.name} compiled successfully")
+      editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
     }
     .setOnError { error ->
-      editorViewModel.addBuildLog("Error compiling ${file.name}: $error")
+      editorViewModel.addBuildLog(log("Error compiling ${file.name}: $error"))
     }
     .create()
 
   amix.compile()
 }
+
+inline fun log(msg: String): EditorModalLog = EditorModalLog(TAG_BUILD_LOG, msg)
 
 @Immutable
 data class EditorNavigateActions(
