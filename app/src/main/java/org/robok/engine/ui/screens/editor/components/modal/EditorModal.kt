@@ -41,7 +41,7 @@ import androidx.compose.ui.unit.sp
 import org.robok.engine.Strings
 
 @Composable
-fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f, content: @Composable.() -> Unit) {
+fun EditorModal(initialHeight: Float = 50f, maxHeight: Float = 800f, content: @Composable () -> Unit) {
   var modalHeight by remember { mutableStateOf(initialHeight) }
   val animatedHeight by
     animateFloatAsState(targetValue = modalHeight, label = "Editor Modal Height")
