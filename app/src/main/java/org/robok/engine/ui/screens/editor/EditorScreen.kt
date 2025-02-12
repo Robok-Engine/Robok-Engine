@@ -334,7 +334,10 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 
 private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
   val amixCode = FileUtil.readFile(file.absolutePath)
-  val xmlCode = editorViewModel.projectManager.generateXmlFromAmix(amixCode)
+  var xmlCode = "Failed to generate source code."
+  editorViewModel.projectManager.generateXmlFromAmix(amixCode) { generatedCode, _ ->
+    xmlCode = generatedCode
+  }
   editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
 }
 

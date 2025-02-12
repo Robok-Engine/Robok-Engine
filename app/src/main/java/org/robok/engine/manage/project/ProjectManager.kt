@@ -235,28 +235,31 @@ class ProjectManager(private var context: Context) {
       if (file.extension.equals("amx") || file.extension.equals("amix")) {
         val amixCode = FileUtil.readFile(file.absolutePath)
         val fileName = file.nameWithoutExtension
-        FileUtil.writeFile(
-          getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-          generateXmlFromAmix(amixCode),
-        )
+        generateXmlFromAmix(amixCode) { generatedCode, config ->
+          FileUtil.writeFile(
+            getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
+            generatedCode
+          )
+        }
       }
     }
   }
 
   /** compile .amx file and return XML result */
-  fun generateXmlFromAmix(amixCode: String): String {
-    var generatedXml: String? = null
+  fun generateXmlFromAmix(
+    amixCode: String,
+    onGenerateCode: (String, Config) -> Unit
+  ) {
     val amix =
       Amix.Builder()
         .setUseComments(false)
         .setUseStyle(true)
         .setUseVerticalRoot(true)
         .setCode(amixCode)
-        .setOnGenerateCode { generatedCode, config -> generatedXml = generatedCode }
+        .setOnGenerateCode { generatedCode, config -> onGenerateCode(generatedCode, config) }
         .setOnError { errorMessage -> }
         .create()
     amix.compile()
-    return generatedXml ?: "Failed to generate XML"
   }
 
   private fun downloadStyles() {
