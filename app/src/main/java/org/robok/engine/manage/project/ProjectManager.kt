@@ -247,16 +247,22 @@ class ProjectManager(private var context: Context) {
   }
 
   /** compile .amx file and return XML result */
-  fun generateXmlFromAmix(amixCode: String, onGenerateCode: (String, Config) -> Unit) {
-    val amix =
+  fun generateXmlFromAmix(
+    amixCode: String,
+    onGenerateCode: Amix.OnGenerateCode,
+    onError: Amix.OnError? = null
+  ) {
+    val builder =
       Amix.Builder()
         .setUseComments(false)
         .setUseStyle(true)
         .setUseVerticalRoot(true)
         .setCode(amixCode)
-        .setOnGenerateCode { generatedCode, config -> onGenerateCode(generatedCode, config) }
-        .setOnError { errorMessage -> }
-        .create()
+        .setOnGenerateCode(onGenerateCode)
+
+    onError?.let { builder.setOnError(it) }
+
+    val amix = builder.create()
     amix.compile()
   }
 
