@@ -338,6 +338,7 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
   editorViewModel.projectManager.generateXmlFromAmix(
     amixCode = amixCode,
     onGenerateCode = { generatedCode, config ->
+      org.robok.engine.core.utils.Log.d(message = "EditorScreen::compileAmixAndOpenXmlViewer::onGenerateCode")
       xmlCode = generatedCode
       editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
     }
