@@ -22,9 +22,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.robok.engine.navigation.setup.SetupNavHost
 import org.robok.engine.navigation.routes.MainRoute
 import org.robok.engine.navigation.routes.SetupRoute
+import org.robok.engine.navigation.setup.SetupNavHost
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalFirstNavController
 import org.robok.engine.ui.platform.LocalMainNavController

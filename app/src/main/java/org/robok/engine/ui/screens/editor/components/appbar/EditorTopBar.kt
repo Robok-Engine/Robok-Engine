@@ -37,13 +37,7 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 @Composable
 fun EditorTopBar(editorViewModel: EditorViewModel, state: EditorTopBarState) {
   TopAppBar(
-    title = {
-      Text(
-        text = state.title,
-        maxLines = 1,
-        overflow = TextOverflow.Ellipsis
-      )
-    },
+    title = { Text(text = state.title, maxLines = 1, overflow = TextOverflow.Ellipsis) },
     navigationIcon = {
       IconButton(onClick = state.onNavigationIconClick) {
         Icon(

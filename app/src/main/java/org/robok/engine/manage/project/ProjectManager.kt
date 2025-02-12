@@ -239,7 +239,7 @@ class ProjectManager(private var context: Context) {
         generateXmlFromAmix(amixCode) { generatedCode, config ->
           FileUtil.writeFile(
             getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-            generatedCode
+            generatedCode,
           )
         }
       }
@@ -247,10 +247,7 @@ class ProjectManager(private var context: Context) {
   }
 
   /** compile .amx file and return XML result */
-  fun generateXmlFromAmix(
-    amixCode: String,
-    onGenerateCode: (String, Config) -> Unit
-  ) {
+  fun generateXmlFromAmix(amixCode: String, onGenerateCode: (String, Config) -> Unit) {
     val amix =
       Amix.Builder()
         .setUseComments(false)
