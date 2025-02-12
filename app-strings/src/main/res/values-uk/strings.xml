@@ -146,4 +146,9 @@
     <string name="text_environment">Навколишнє середовище</string>
     <string name="common_word_more">Більше</string>
     <string name="common_word_ok">Гаразд</string>
+    <string name="title_project_initialized">Проект ініціалізовано.</string>
+    <string name="text_swipe_up_down_build_info">Проведіть пальцем угору/вниз або натисніть, щоб отримати інформацію про збірку тощо.</string>
+    <string name="title_discord">Discord</string>
+    <string name="text_discord">Наш сервер у Discord</string>
+    <string name="text_exit_with_save">Вийдіть із збереженням</string>
 </resources>
