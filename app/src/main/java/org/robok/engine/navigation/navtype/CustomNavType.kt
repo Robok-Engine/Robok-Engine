@@ -1,3 +1,5 @@
+package org.robok.engine.navigation.navtype
+
 /*
  * This file is part of Robok © 2024.
  *
@@ -14,8 +16,6 @@
  * You should have received a copy of the GNU General Public License
  * along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
-
-package org.robok.engine.navigation
 
 import android.os.Build
 import android.os.Bundle

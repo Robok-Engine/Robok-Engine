@@ -54,6 +54,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import kotlinx.coroutines.launch
+import org.amix.config.Config
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
@@ -335,7 +336,7 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
   val amixCode = FileUtil.readFile(file.absolutePath)
   var xmlCode = "Failed to generate source code."
-  editorViewModel.projectManager.generateXmlFromAmix(amixCode) { generatedCode, _ ->
+  editorViewModel.projectManager.generateXmlFromAmix(amixCode) { generatedCode, config ->
     xmlCode = generatedCode
   }
   editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(xmlCode)
