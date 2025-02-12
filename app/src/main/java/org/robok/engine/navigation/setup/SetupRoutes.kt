@@ -25,10 +25,10 @@ import androidx.navigation.compose.composable
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.ext.navigateSingleTop
-import org.robok.engine.routes.MainRoute
-import org.robok.engine.routes.SetupDevelopmentEnvironmentRoute
-import org.robok.engine.routes.SetupPermissionsRoute
-import org.robok.engine.routes.SetupWelcomeRoute
+import org.robok.engine.navigation.routes.MainRoute
+import org.robok.engine.navigation.routes.SetupDevelopmentEnvironmentRoute
+import org.robok.engine.navigation.routes.SetupPermissionsRoute
+import org.robok.engine.navigation.routes.SetupWelcomeRoute
 import org.robok.engine.ui.platform.LocalFirstNavController
 import org.robok.engine.ui.screens.setup.SetupDevelopmentEnvironmentScreen
 import org.robok.engine.ui.screens.setup.SetupPermissionsScreen

@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.navigation.routes
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,4 +17,10 @@ package org.robok.engine.routes
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-interface Route
+import kotlinx.serialization.Serializable
+
+@Serializable object HomeRoute : Route
+
+@Serializable object TerminalRoute : Route
+
+@Serializable data class EditorRoute(val projectPath: String) : Route

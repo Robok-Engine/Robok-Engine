@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.navigation.routes
 
 /*
  *  This file is part of Robok © 2024.
@@ -19,8 +19,6 @@ package org.robok.engine.routes
 
 import kotlinx.serialization.Serializable
 
-@Serializable data class XMLViewerMainRoute(val xml: String) : Route
+@Serializable object MainRoute
 
-@Serializable object XMLViewerRoute : Route
-
-@Serializable object XMLViewerCodeRoute : Route
+@Serializable object SetupRoute

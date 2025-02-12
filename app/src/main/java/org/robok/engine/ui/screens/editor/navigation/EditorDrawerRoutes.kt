@@ -20,7 +20,7 @@ package org.robok.engine.ui.screens.editor.navigation
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
-import org.robok.engine.routes.EditorDrawerFilesRoute
+import org.robok.engine.navigation.routes.EditorDrawerFilesRoute
 import org.robok.engine.ui.screens.editor.components.drawer.EditorFilesDrawer
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 

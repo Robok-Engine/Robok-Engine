@@ -33,7 +33,7 @@
 # Engine
 -keep class org.robok.engine.core.components.edges.StretchEdgeEffect { *; }
 -keep class org.robok.engine.feature.modeling.** { *; }
--keep class org.robok.engine.routes.** { *; }
+-keep class org.robok.engine.navigation.routes.** { *; }
 
 # Easy UI
 -keep class org.robok.easyui.GUIBuilder { *; }

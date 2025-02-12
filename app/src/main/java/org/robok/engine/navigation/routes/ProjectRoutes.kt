@@ -1,4 +1,4 @@
-package org.robok.engine.routes
+package org.robok.engine.navigation.routes
 
 /*
  *  This file is part of Robok © 2024.

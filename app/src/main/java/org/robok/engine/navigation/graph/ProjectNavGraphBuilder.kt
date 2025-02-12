@@ -28,11 +28,11 @@ import kotlin.reflect.typeOf
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.routes.CreateProjectRoute
-import org.robok.engine.routes.EditorRoute
-import org.robok.engine.routes.ManageProjectsRoute
-import org.robok.engine.routes.ProjectSettingsRoute
-import org.robok.engine.routes.TemplatesRoute
+import org.robok.engine.navigation.routes.CreateProjectRoute
+import org.robok.engine.navigation.routes.EditorRoute
+import org.robok.engine.navigation.routes.ManageProjectsRoute
+import org.robok.engine.navigation.routes.ProjectSettingsRoute
+import org.robok.engine.navigation.routes.TemplatesRoute
 import org.robok.engine.ui.screens.project.create.CreateProjectScreen
 import org.robok.engine.ui.screens.project.manage.ManageProjectsScreen
 import org.robok.engine.ui.screens.project.settings.ProjectSettingsScreen

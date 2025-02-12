@@ -29,11 +29,11 @@ import androidx.navigation.toRoute
 import kotlin.reflect.typeOf
 import org.robok.engine.navigation.graph.ProjectNavGraphBuilder
 import org.robok.engine.navigation.graph.SettingsNavGraphBuilder
-import org.robok.engine.routes.EditorRoute
-import org.robok.engine.routes.HomeRoute
-import org.robok.engine.routes.ProjectSettingsRoute
-import org.robok.engine.routes.TerminalRoute
-import org.robok.engine.routes.XMLViewerMainRoute
+import org.robok.engine.navigation.routes.EditorRoute
+import org.robok.engine.navigation.routes.HomeRoute
+import org.robok.engine.navigation.routes.ProjectSettingsRoute
+import org.robok.engine.navigation.routes.TerminalRoute
+import org.robok.engine.navigation.routes.XMLViewerMainRoute
 import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.platform.LocalXMLViewerNavController

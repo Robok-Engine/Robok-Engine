@@ -43,7 +43,7 @@ import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.routes.EditorRoute
+import org.robok.engine.navigation.routes.EditorRoute
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.project.create.components.Buttons
 import org.robok.engine.ui.screens.project.create.components.Inputs

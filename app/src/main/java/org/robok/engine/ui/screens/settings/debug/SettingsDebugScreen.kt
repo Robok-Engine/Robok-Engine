@@ -24,8 +24,8 @@ import org.robok.engine.Strings
 import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.normal.Preference
-import org.robok.engine.routes.Route
-import org.robok.engine.routes.SettingsDebugLoggingRoute
+import org.robok.engine.navigation.routes.Route
+import org.robok.engine.navigation.routes.SettingsDebugLoggingRoute
 
 @Composable
 fun SettingsDebugScreen(onNavigate: (Route) -> Unit) {
