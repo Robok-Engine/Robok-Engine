@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
+import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Check
 import androidx.compose.material.icons.rounded.MoreVert
@@ -213,7 +214,9 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
       ExpandAndShrink(keyboardState == KeyboardState.Closed) {
         EditorModal {
           editorViewModel.uiState.logs.forEach {
-            Text(text = String.format("%s: %s", it.tag, it.message))
+            SelectionContainer {
+              Text(text = String.format("%s: %s", it.tag, it.message))
+            }
           }
         }
       }
