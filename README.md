@@ -82,8 +82,8 @@ Help translate Robok-Engine! Visit [Weblate](https://hosted.weblate.org/engage/r
 - [ ] Full 3D Modeling
 - [ ] Classes to simplify development
 - [ ] AI System
-- [ ] Full Easy UI Implemention
-- [ ] Language class for Robok Easy Ui files (.gui), like [JavaLanguage](https://github.com/Robok-Engine/Robok-Engine/blob/dev/feature/editor/src/main/java/org/robok/engine/feature/editor/languages/java/JavaLanguage.java)
+- [ ] Full Robok Amix Implemention
+- [ ] Robok Amix Auto Completion
 - [ ] Robok SDK Auto Completion
 - [ ] Get templates from [Robok-Templates Repo](https://github.com/Robok-Engine/Robok-Templates)
 - [ ] Improve Libs system (For now, each project has its libs folder in the app's private directory, however, this is not good, because if the user deletes the project outside of Robok, the libs remain there. or if he doesn't create the project through Robok, the libs won't be there.)
