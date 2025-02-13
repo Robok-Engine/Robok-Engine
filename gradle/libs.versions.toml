@@ -25,7 +25,7 @@ compose-bom = "2025.01.01"
 compose-activity = "1.10.0"
 compose-navigation = "2.8.6"
 compose-viewmodel = "2.8.7"
-compose-material-icons-extended = "1.7.7"
+compose-material-icons-extended = "1.7.8"
 compose-version = "1.8.0-beta02"
 compose-scrolleffect = "1.0.1"
 
