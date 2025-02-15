@@ -19,6 +19,7 @@ package org.robok.engine.ui.screens.editor
 
 import android.view.ViewGroup
 import androidx.activity.compose.BackHandler
+import androidx.lifecycle.lifecycleScope
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -357,7 +358,9 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
       .setCode(amixCode)
       .setOnGenerateCode { code, _ ->
         editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
-        editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code)
+        lifecycleScope.launch {
+          editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code)
+        }
       }
       .setOnError { error ->
         editorViewModel.addBuildLog(log("Error compiling ${file.name}: $error"))
