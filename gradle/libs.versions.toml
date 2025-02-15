@@ -42,7 +42,7 @@ org-antlr = "4.13.2"
 libgdx = "1.13.1"
 termux = "0.118.1"
 sora-editor = "0.23.5"
-amix = "1.0.0"
+amix = "1.0.1-alpha01"
 desugar-jdk-libs = "2.1.4"
 android-r8 = "8.7.18"
 
