@@ -54,6 +54,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
 import kotlinx.coroutines.launch
 import org.amix.Amix
 import org.koin.androidx.compose.koinViewModel
@@ -213,9 +214,11 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
       }
       ExpandAndShrink(keyboardState == KeyboardState.Closed) {
         EditorModal {
-          editorViewModel.uiState.logs.forEach {
-            SelectionContainer {
-              Text(text = String.format("%s: %s", it.tag, it.message))
+          CupertinoColumnScroll {
+            editorViewModel.uiState.logs.forEach {
+              SelectionContainer {
+                Text(text = String.format("%s: %s", it.tag, it.message))
+              }
             }
           }
         }

@@ -99,6 +99,7 @@ dependencies {
 
   implementation(libs.bundles.compose)
   implementation(libs.compose.navigation)
+  implementation(libs.compose.scrolleffect)
 
   implementation(libs.libgdx)
   implementation(libs.libgdx.backend.android)
