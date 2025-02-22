@@ -17,6 +17,8 @@ package org.robok.engine
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+typealias Arrays = org.robok.engine.R.array
+
 typealias Drawables = org.robok.engine.R.drawable
 
 typealias Fonts = org.robok.engine.R.font

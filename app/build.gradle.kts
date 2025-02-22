@@ -101,6 +101,7 @@ dependencies {
   implementation(libs.compose.navigation)
   implementation(libs.compose.scrolleffect)
   implementation(libs.compose.cloudy)
+  implementation(libs.compose.ui.text.google.fonts)
 
   implementation(libs.libgdx)
   implementation(libs.libgdx.backend.android)

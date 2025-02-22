@@ -33,8 +33,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import org.robok.engine.core.components.switch.Switch
 import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.core.components.switch.Switch
 
 /**
  * A Preference that provides a two-state toggleable option.
