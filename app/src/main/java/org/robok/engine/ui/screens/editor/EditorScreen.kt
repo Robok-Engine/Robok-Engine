@@ -225,10 +225,10 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
             SelectionContainer {
               Column {
                 editorViewModel.uiState.logs.forEach { log ->
-                  Text(text = "$log.tag: $log.message")
+                  Text(text = String.format("%s: %s", log.tag, log.message))
                 }
                 editorViewModel.getLogsFromLogger().forEach { log ->
-                  Text(text = "$log.tag: $log.message")
+                  Text(text = String.format("%s: %s", log.tag, log.message))
                 }
               }
             }
