@@ -65,7 +65,6 @@ import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.components.animation.ExpandAndShrink
 import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.feature.compiler.android.logger.Log as EditorModalLog
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -79,8 +78,7 @@ import org.robok.engine.ui.screens.editor.components.modal.EditorModal
 import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
-
-const val TAG_BUILD_LOG = "BuildLog"
+import org.robok.engine.ui.screens.editor.viewmodel.buildLog
 
 @Composable
 fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
@@ -127,6 +125,8 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
       editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
     if (currentFile.name.substringAfterLast(".").equals("amix")) {
       compileAmixAndOpenXmlViewer(lifecycleOwner.lifecycleScope, editorViewModel, currentFile)
+    } else {
+      editorViewModel.compileProject()
     }
     editorViewModel.setIsRunClicked(false)
   }
@@ -222,9 +222,14 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
       ExpandAndShrink(keyboardState == KeyboardState.Closed) {
         EditorModal {
           CupertinoColumnScroll {
-            editorViewModel.uiState.logs.forEach {
-              SelectionContainer {
-                Text(text = String.format("%s: %s", it.tag, it.message))
+            SelectionContainer {
+              Column {
+                editorViewModel.uiState.logs.forEach { log ->
+                  Text(text = "$log.tag: $log.message")
+                }
+                editorViewModel.getLogsFromLogger().forEach { log ->
+                  Text(text = "$log.tag: $log.message")
+                }
               }
             }
           }
@@ -367,20 +372,18 @@ private fun compileAmixAndOpenXmlViewer(
       .setUseVerticalRoot(true)
       .setCode(amixCode)
       .setOnGenerateCode { code, _ ->
-        editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
+        editorViewModel.addBuildLog(buildLog("File ${file.name} compiled successfully"))
         scope.launch {
           editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code)
         }
       }
       .setOnError { error ->
-        editorViewModel.addBuildLog(log("Error compiling ${file.name}: $error"))
+        editorViewModel.addBuildLog(buildLog("Error compiling ${file.name}: $error"))
       }
       .create()
 
   amix.compile()
 }
-
-inline fun log(msg: String): EditorModalLog = EditorModalLog(TAG_BUILD_LOG, msg)
 
 @Immutable
 data class EditorNavigateActions(

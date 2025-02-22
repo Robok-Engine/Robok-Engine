@@ -24,7 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.feature.compiler.android.CompilerTask
-import org.robok.engine.feature.compiler.android.logger.Log
+import org.robok.engine.feature.compiler.android.logger.Log as CompilerLog
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
@@ -326,11 +326,16 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
    *
    * @param log The instance of log with infos
    */
-  fun addBuildLog(log: Log) {
+  fun addBuildLog(log: CompilerLog) {
     val logs = _uiState.logs.toMutableList()
     logs.add(log)
     _uiState = _uiState.copy(logs = logs)
   }
+
+  /**
+   * Returns a list with build logs.
+   */
+  fun getLogsFromLogger(): List<CompilerLog> = logger.logs
 
   /** clear event after action */
   fun clearEvent() {
@@ -355,3 +360,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _buildState = BuildState.Error(error)
   }
 }
+
+const val TAG_BUILD_LOG = "BuildLog"
+
+inline fun buildLog(msg: String): CompilerLog = CompilerLog(TAG_BUILD_LOG, msg)

@@ -23,11 +23,13 @@ import android.text.style.ForegroundColorSpan
 
 class Logger {
 
-  private val logs: MutableList<Log> = mutableListOf()
+  private val _logs: MutableList<Log> = mutableListOf()
+  val logs: List<Log>
+    get() = _logs.toList()
 
   fun d(tag: String, message: String) {
     val log = Log(SpannableString(""), SpannableString(message))
-    logs.add(log)
+    _logs.add(log)
   }
 
   fun e(tagg: String, message: String) {
@@ -52,11 +54,11 @@ class Logger {
         )
       }
 
-    logs.add(Log(tagSpan, messageSpan))
+    _logs.add(Log(tagSpan, messageSpan))
   }
 
   fun w(tagg: String, message: String) {
-    val tag = "" // "[$tagg]"
+    val tag = ""
     val messageSpan =
       SpannableString(message).apply {
         setSpan(
@@ -77,10 +79,6 @@ class Logger {
         )
       }
 
-    logs.add(Log(tagSpan, messageSpan))
-  }
-
-  fun getLogs(): List<Log> {
-    return logs
+    _logs.add(Log(tagSpan, messageSpan))
   }
 }
