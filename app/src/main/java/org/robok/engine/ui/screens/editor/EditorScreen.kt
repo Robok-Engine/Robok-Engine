@@ -19,7 +19,6 @@ package org.robok.engine.ui.screens.editor
 
 import android.view.ViewGroup
 import androidx.activity.compose.BackHandler
-import androidx.lifecycle.lifecycleScope
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -57,6 +56,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
+import androidx.lifecycle.lifecycleScope
 import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
@@ -362,7 +362,7 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
 private fun compileAmixAndOpenXmlViewer(
   scope: CoroutineScope,
   editorViewModel: EditorViewModel,
-  file: File
+  file: File,
 ) {
   val amixCode = file.readText()
   var xmlCode = "Failed to generate source code."
@@ -373,9 +373,7 @@ private fun compileAmixAndOpenXmlViewer(
       .setCode(amixCode)
       .setOnGenerateCode { code, _ ->
         editorViewModel.addBuildLog(buildLog("File ${file.name} compiled successfully"))
-        scope.launch {
-          editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code)
-        }
+        scope.launch { editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code) }
       }
       .setOnError { error ->
         editorViewModel.addBuildLog(buildLog("Error compiling ${file.name}: $error"))

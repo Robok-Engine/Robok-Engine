@@ -332,9 +332,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
     _uiState = _uiState.copy(logs = logs)
   }
 
-  /**
-   * Returns a list with build logs.
-   */
+  /** Returns a list with build logs. */
   fun getLogsFromLogger(): List<CompilerLog> = logger.logs
 
   /** clear event after action */
