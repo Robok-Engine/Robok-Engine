@@ -72,11 +72,15 @@ public fun BaseNavHost(
   popEnterTransition:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) =
-    enterTransition,
+    {
+      FadeSlide.popEnterTransition
+    },
   popExitTransition:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) =
-    exitTransition,
+    {
+      FadeSlide.popExitTransition
+    },
   sizeTransform:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> SizeTransform?)? =
@@ -84,17 +88,17 @@ public fun BaseNavHost(
   builder: NavGraphBuilder.() -> Unit,
 ) {
   NavHost(
-    navController,
-    startDestination,
-    modifier,
-    contentAlignment,
+    navController = navController,
+    startDestination = startDestination,
+    modifier = modifier,
+    contentAlignment = contentAlignment,
     route = route,
     typeMap = typeMap,
-    enterTransition,
-    exitTransition,
-    popEnterTransition,
-    popExitTransition,
-    sizeTransform,
+    enterTransition = enterTransition,
+    exitTransition = exitTransition,
+    popEnterTransition = popEnterTransition,
+    popExitTransition = popExitTransition,
+    sizeTransform = sizeTransform,
     builder = builder,
   )
 }
