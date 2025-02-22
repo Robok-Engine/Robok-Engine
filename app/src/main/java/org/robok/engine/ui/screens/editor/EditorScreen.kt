@@ -100,10 +100,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
     AlertDialog(
       title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
       text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
-      onDismissRequest = {
-        editorViewModel.setIsBackClicked(false)
-        enableBlur(context, false)
-      },
+      onDismissRequest = { editorViewModel.setIsBackClicked(false) },
       confirmButton = {
         Button(
           onClick = {
@@ -122,6 +119,8 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
         }
       },
     )
+  } else {
+    enableBlur(context, false)
   }
 
   if (editorViewModel.uiState.isRunClicked) {
