@@ -28,6 +28,7 @@ compose-viewmodel = "2.8.7"
 compose-material-icons-extended = "1.7.8"
 compose-version = "1.8.0-beta02"
 compose-scrolleffect = "1.0.1"
+compose-cloudy = "0.2.4"
 
 ktx-coroutines = "1.10.1"
 ktx-serialization-json = "1.8.0"
@@ -88,6 +89,7 @@ compose-viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-
 compose-navigation = { group = "androidx.navigation", name = "navigation-compose", version.ref = "compose-navigation" }
 compose-material-icons = { module = "androidx.compose.material:material-icons-extended", version.ref = "compose-material-icons-extended" }
 compose-scrolleffect = { group = "com.github.trindadedev13", name = "ScrollEffect", version.ref = "compose-scrolleffect" }
+compose-cloudy = { group = "com.github.skydoves", name = "cloudy", version.ref = "compose-cloudy" }
 
 # About Libraries
 about-libraries-core = { group = "com.mikepenz", name = "aboutlibraries-core", version.ref = "about-libraries"}

@@ -70,6 +70,7 @@ import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
+import org.robok.engine.ui.draw.enableBlur
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarAction
 import org.robok.engine.ui.screens.editor.components.appbar.rememberEditorTopBarState
@@ -95,10 +96,14 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   BackHandler { editorViewModel.setIsBackClicked(true) }
 
   if (editorViewModel.uiState.isBackClicked) {
+    enableBlur(context, true)
     AlertDialog(
       title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
       text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
-      onDismissRequest = { editorViewModel.setIsBackClicked(false) },
+      onDismissRequest = {
+        editorViewModel.setIsBackClicked(false)
+        enableBlur(context, false)
+      },
       confirmButton = {
         Button(
           onClick = {

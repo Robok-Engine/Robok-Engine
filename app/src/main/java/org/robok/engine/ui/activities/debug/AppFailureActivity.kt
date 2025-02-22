@@ -45,6 +45,7 @@ import org.robok.engine.core.components.Screen
 import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.utils.addIf
 import org.robok.engine.ui.base.BaseComposeActivity
+import org.robok.engine.ui.draw.enableBlur
 
 @OptIn(ExperimentalMaterial3Api::class)
 class AppFailureActivity : BaseComposeActivity() {
@@ -88,8 +89,12 @@ class AppFailureActivity : BaseComposeActivity() {
     }
 
     if (showDialog) {
+      enableBlur(this@AppFailureActivity, true)
       AlertDialog(
-        onDismissRequest = { showDialog = false },
+        onDismissRequest = {
+          showDialog = false
+          enableBlur(this@AppFailureActivity, false)
+        },
         title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
         text = { ErrorCard(madeErrMsg) },
         confirmButton = {

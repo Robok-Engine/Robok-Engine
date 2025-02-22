@@ -39,6 +39,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.isDeviceLanguage
 import org.robok.engine.defaults.DefaultContributors
+import org.robok.engine.ui.draw.enableBlur
 import org.robok.engine.ui.screens.settings.about.components.ContributorDialog
 import org.robok.engine.ui.screens.settings.about.components.ContributorWidget
 import org.robok.engine.ui.screens.settings.about.components.LinkWidget
@@ -52,6 +53,7 @@ var contributors = DefaultContributors()
 fun AboutScreen() {
   val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
   val aboutViewModel = koinViewModel<AboutViewModel>()
+  val context = LocalContext.current
 
   Screen(
     label = stringResource(id = Strings.settings_about_title),
@@ -104,9 +106,13 @@ fun AboutScreen() {
   }
 
   if (aboutViewModel.isShowContributorDialog) {
+    enableBlur(context, true)
     ContributorDialog(
       contributor = aboutViewModel.currentContributor,
-      onDismissRequest = { aboutViewModel.setShowContributorDialog(false) },
+      onDismissRequest = {
+        aboutViewModel.setShowContributorDialog(false)
+        enableBlur(context, false)
+      },
     )
   }
 }
