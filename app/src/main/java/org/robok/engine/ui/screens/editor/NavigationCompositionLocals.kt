@@ -21,9 +21,13 @@ import androidx.compose.material3.DrawerState
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
 import org.robok.engine.noLocalProvidedFor
+import org.robok.engine.ui.screens.editor.components.modal.EditorModalState
 
 val LocalEditorFilesDrawerState =
   compositionLocalOf<DrawerState> { noLocalProvidedFor("LocalEditorFilesDrawerState") }
 
 val LocalEditorDrawerNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalEditorDrawerNavController") }
+
+val LocalEditorModalState =
+  compositionLocalOf<EditorModalState> { noLocalProvidedFor("LocalEditorModalState") }

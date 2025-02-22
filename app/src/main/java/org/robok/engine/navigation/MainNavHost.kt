@@ -39,6 +39,8 @@ import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
+import org.robok.engine.ui.screens.editor.LocalEditorModalState
+import org.robok.engine.ui.screens.editor.components.modal.rememberEditorModalState
 import org.robok.engine.ui.screens.home.HomeScreen
 import org.robok.engine.ui.screens.terminal.TerminalScreen
 
@@ -55,6 +57,7 @@ fun MainNavHost() {
       CompositionLocalProvider(
         LocalEditorFilesDrawerState provides rememberDrawerState(DrawerValue.Closed),
         LocalEditorDrawerNavController provides rememberNavController(),
+        LocalEditorModalState provides rememberEditorModalState(),
       ) {
         val route: EditorRoute = it.toRoute()
         EditorScreen(

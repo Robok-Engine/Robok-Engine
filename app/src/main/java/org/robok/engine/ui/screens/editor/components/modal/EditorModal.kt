@@ -17,7 +17,8 @@ package org.robok.engine.ui.screens.editor.components.modal
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.Animatable
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.gestures.detectVerticalDragGestures
 import androidx.compose.foundation.layout.Arrangement
@@ -29,9 +30,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,26 +42,24 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.coroutines.launch
 import org.robok.engine.Strings
 
 @Composable
 fun EditorModal(
-  initialHeight: Float = 50f,
-  maxHeight: Float = 800f,
+  editorModalState: EditorModalState = rememberEditorModalState(),
   content: @Composable ColumnScope.() -> Unit,
 ) {
-  var modalHeight by remember { mutableStateOf(initialHeight) }
-  val animatedHeight by
-    animateFloatAsState(targetValue = modalHeight, label = "Editor Modal Height")
+  val coroutineScope = rememberCoroutineScope()
   Box {
     Column(
       modifier =
         Modifier.align(Alignment.BottomCenter)
           .fillMaxWidth()
-          .height(animatedHeight.dp)
+          .height(editorModalState.currentHeight.dp)
           .pointerInput(Unit) {
             detectVerticalDragGestures { _, dragAmount ->
-              modalHeight = (modalHeight - dragAmount).coerceIn(initialHeight, maxHeight)
+              coroutineScope.launch { editorModalState.updateHeight(-dragAmount) }
             }
           }
     ) {
@@ -66,7 +67,7 @@ fun EditorModal(
       Column(
         modifier =
           Modifier.fillMaxWidth().height(50.dp).clickable {
-            modalHeight = if (modalHeight > initialHeight) initialHeight else maxHeight
+            coroutineScope.launch { editorModalState.toggle() }
           },
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.Center,
@@ -77,5 +78,58 @@ fun EditorModal(
       HorizontalDivider()
       Column(content = content)
     }
+  }
+}
+
+@Composable fun rememberEditorModalState() = remember { EditorModalState() }
+
+enum class EditorModalValue {
+  Closed,
+  Expanded,
+}
+
+@Stable
+class EditorModalState(
+  val initialHeight: Float = 50f,
+  val maxHeight: Float = 820f,
+  initialValue: EditorModalValue = EditorModalValue.Closed,
+) {
+
+  private val animatableHeight = Animatable(initialValue = initialHeight)
+  val currentHeight: Float
+    get() = animatableHeight.value
+
+  var currentValue by mutableStateOf(initialValue)
+    private set
+
+  val isClosed: Boolean
+    get() = currentValue == EditorModalValue.Closed
+
+  val isExpanded: Boolean
+    get() = currentValue == EditorModalValue.Expanded
+
+  private fun calculateValue() {
+    currentValue =
+      if (currentHeight > initialHeight) EditorModalValue.Expanded else EditorModalValue.Closed
+  }
+
+  suspend fun open() {
+    animatableHeight.animateTo(maxHeight, animationSpec = tween(durationMillis = 500))
+    calculateValue()
+  }
+
+  suspend fun close() {
+    animatableHeight.animateTo(initialHeight, animationSpec = tween(durationMillis = 500))
+    calculateValue()
+  }
+
+  suspend fun toggle() {
+    if (isExpanded) close() else open()
+  }
+
+  suspend fun updateHeight(dragAmount: Float) {
+    val newHeight = (currentHeight + dragAmount).coerceIn(initialHeight, maxHeight)
+    animatableHeight.snapTo(newHeight)
+    calculateValue()
   }
 }

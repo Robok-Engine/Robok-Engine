@@ -89,6 +89,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
   val lifecycleOwner = LocalLifecycleOwner.current
+  val editorModalState = LocalEditorModalState.current
 
   editorViewModel.setProjectManager(projectManager)
   editorViewModel.setEditorNavigateActions(editorNavigateActions)
@@ -142,8 +143,13 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   LaunchedEffect(editorViewModel.editorEvent) {
     editorViewModel.editorEvent?.let { event ->
       when (event) {
-        is EditorEvent.SelectFile -> editorViewModel.setCurrentFileIndex(event.index)
+        is EditorEvent.SelectFile -> {
+          coroutineScope.launch { editorModalState.close() }
+          editorViewModel.setCurrentFileIndex(event.index)
+          editorViewModel.clearEvent()
+        }
         is EditorEvent.OpenFile -> {
+          coroutineScope.launch { editorModalState.close() }
           handleFile(editorViewModel, event.file)
           editorViewModel.clearEvent()
         }
@@ -208,6 +214,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
   val coroutineScope = rememberCoroutineScope()
   val drawerState = LocalEditorFilesDrawerState.current
   val keyboardState by keyboardAsState()
+  val editorModalState = LocalEditorModalState.current
 
   Scaffold(
     modifier = modifier,
@@ -228,7 +235,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
         }
       }
       ExpandAndShrink(keyboardState == KeyboardState.Closed) {
-        EditorModal {
+        EditorModal(editorModalState) {
           CupertinoColumnScroll {
             SelectionContainer {
               Column {
