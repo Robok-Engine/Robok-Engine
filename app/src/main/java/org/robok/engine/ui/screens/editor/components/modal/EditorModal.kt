@@ -91,7 +91,7 @@ enum class EditorModalValue {
 @Stable
 class EditorModalState(
   val initialHeight: Float = 50f,
-  val maxHeight: Float = 820f,
+  val maxHeight: Float = 830f,
   initialValue: EditorModalValue = EditorModalValue.Closed,
 ) {
 
