@@ -122,6 +122,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   }
 
   if (editorViewModel.uiState.isRunClicked) {
+    if (editorViewModel.uiState.openedFiles.isEmpty()) return
     val currentFile =
       editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
     if (currentFile.name.substringAfterLast(".").equals("amix")) {
