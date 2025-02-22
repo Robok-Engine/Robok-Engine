@@ -1,8 +1,8 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1632 | Founder |
+| trindadedev13 | 1722 | Founder |
 | ThDev-only | 210 | Founder |
-| renovate[bot] | 152 | Bot |
+| renovate[bot] | 184 | Bot |
 | gampiot-bot | 35 | Bot |
 | RohitKushvaha01 | 16 | Developer |
 | github-actions[bot] | 10 | Bot |
@@ -16,3 +16,6 @@
 | weblate | 11 | Bot |
 | SyntaxSpins | 29 | Developer |
 | ELPRR0 | 1 | N/A |
+| SketchwareOwner | 35 | N/A |
+| Mustiy0 | 1 | N/A |
+| Maksim2005UA | 1 | N/A |
