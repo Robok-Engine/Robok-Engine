@@ -104,6 +104,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
       confirmButton = {
         Button(
           onClick = {
+            editorViewModel.setIsBackClicked(false)
             editorViewModel.saveAllFiles()
             editorViewModel.uiState.editorNavigateActions!!.popBackStack()
           }
@@ -113,7 +114,10 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
       },
       dismissButton = {
         OutlinedButton(
-          onClick = { editorViewModel.uiState.editorNavigateActions!!.popBackStack() }
+          onClick = {
+            editorViewModel.setIsBackClicked(false)
+            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
+          }
         ) {
           Text(text = stringResource(Strings.text_exit_without_save))
         }
