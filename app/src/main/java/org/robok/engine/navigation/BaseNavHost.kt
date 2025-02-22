@@ -24,15 +24,15 @@ import androidx.compose.animation.SizeTransform
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.navigation.NavType
 import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import kotlin.jvm.JvmSuppressWildcards
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 
 /**
  * Base NavHost for all NavHosts. with the animations already defined.

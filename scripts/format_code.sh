@@ -6,7 +6,7 @@
 # Variables
 
 # Directory where files to be formatted are located
-TO_FORMAT_DIR="../"
+TO_FORMAT_DIR="./"
 
 CACHE_DIR="$HOME/.cache/trindadedev/formatters"
 
