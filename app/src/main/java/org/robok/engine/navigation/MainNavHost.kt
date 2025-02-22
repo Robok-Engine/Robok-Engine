@@ -22,7 +22,6 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.navigation.NavType
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.toRoute
@@ -34,7 +33,6 @@ import org.robok.engine.navigation.routes.HomeRoute
 import org.robok.engine.navigation.routes.ProjectSettingsRoute
 import org.robok.engine.navigation.routes.TerminalRoute
 import org.robok.engine.navigation.routes.XMLViewerMainRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.editor.EditorNavigateActions
@@ -48,14 +46,7 @@ import org.robok.engine.ui.screens.terminal.TerminalScreen
 fun MainNavHost() {
   val navController = LocalMainNavController.current
 
-  NavHost(
-    navController = navController,
-    startDestination = HomeRoute,
-    enterTransition = { FadeSlide.enterTransition },
-    exitTransition = { FadeSlide.exitTransition },
-    popEnterTransition = { FadeSlide.popEnterTransition },
-    popExitTransition = { FadeSlide.popExitTransition },
-  ) {
+  BaseNavHost(navController = navController, startDestination = HomeRoute) {
     composable<HomeRoute> { HomeScreen() }
 
     composable<TerminalRoute> { TerminalScreen() }

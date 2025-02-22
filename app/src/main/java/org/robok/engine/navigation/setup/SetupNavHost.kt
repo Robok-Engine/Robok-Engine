@@ -18,23 +18,15 @@ package org.robok.engine.navigation.setup
  */
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
+import org.robok.engine.navigation.BaseNavHost
 import org.robok.engine.navigation.routes.SetupWelcomeRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalSetupNavController
 
 @Composable
 fun SetupNavHost() {
   val navController = LocalSetupNavController.current
 
-  NavHost(
-    navController = navController,
-    startDestination = SetupWelcomeRoute,
-    enterTransition = { FadeSlide.enterTransition },
-    exitTransition = { FadeSlide.exitTransition },
-    popEnterTransition = { FadeSlide.popEnterTransition },
-    popExitTransition = { FadeSlide.popExitTransition },
-  ) {
+  BaseNavHost(navController = navController, startDestination = SetupWelcomeRoute) {
     SetupRoutes(navController = navController)
   }
 }

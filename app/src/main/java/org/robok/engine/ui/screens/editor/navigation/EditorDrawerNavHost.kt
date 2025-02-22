@@ -18,9 +18,8 @@ package org.robok.engine.ui.screens.editor.navigation
  */
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
+import org.robok.engine.navigation.BaseNavHost
 import org.robok.engine.navigation.routes.EditorDrawerFilesRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
@@ -28,14 +27,7 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 fun EditorDrawerNavHost(editorViewModel: EditorViewModel) {
   val navController = LocalEditorDrawerNavController.current
 
-  NavHost(
-    navController = navController,
-    startDestination = EditorDrawerFilesRoute,
-    enterTransition = { FadeSlide.enterTransition },
-    exitTransition = { FadeSlide.exitTransition },
-    popEnterTransition = { FadeSlide.popEnterTransition },
-    popExitTransition = { FadeSlide.popExitTransition },
-  ) {
+  BaseNavHost(navController = navController, startDestination = EditorDrawerFilesRoute) {
     EditorDrawerRoutes(navController = navController, editorViewModel = editorViewModel)
   }
 }

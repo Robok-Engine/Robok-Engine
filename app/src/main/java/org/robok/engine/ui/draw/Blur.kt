@@ -30,9 +30,6 @@ fun enableBlur(context: Context, enable: Boolean) {
 }
 
 @Composable
-fun Modifier.blur(
-  radius: Int = 15,
-  isBlurEnable: Boolean = true
-): Modifier {
+fun Modifier.blur(radius: Int = 15, isBlurEnable: Boolean = true): Modifier {
   return if (isBlurEnable) cloudy(radius = radius) else this
 }

@@ -32,7 +32,6 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.unit.dp
 import org.robok.engine.Strings
 import org.robok.engine.core.components.dialog.permission.PermissionDialog
 import org.robok.engine.core.components.toast.LocalToastHostState
@@ -40,8 +39,8 @@ import org.robok.engine.core.components.toast.ToastHost
 import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.core.utils.getStoragePermStatus
-import org.robok.engine.ui.theme.RobokTheme
 import org.robok.engine.ui.draw.blur
+import org.robok.engine.ui.theme.RobokTheme
 
 /** Base activity for all compose activities. */
 abstract class BaseComposeActivity : BaseActivity() {
@@ -68,13 +67,7 @@ abstract class BaseComposeActivity : BaseActivity() {
       HandlePermissions()
     }
     ProvideCompositionLocals {
-      Box(
-        modifier = Modifier.fillMaxSize()
-          .blur(
-            radius = 15,
-            isBlurEnable = isBlurEnable
-          )
-      ) {
+      Box(modifier = Modifier.fillMaxSize().blur(radius = 15, isBlurEnable = isBlurEnable)) {
         onScreenCreated()
       }
       ToastHost()

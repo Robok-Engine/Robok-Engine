@@ -18,13 +18,11 @@ package org.robok.engine.navigation
  */
 
 import androidx.compose.runtime.Composable
-import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.routes.XMLViewerCodeRoute
 import org.robok.engine.navigation.routes.XMLViewerRoute
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
 import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerCodeScreen
 import org.robok.engine.ui.screens.xmlviewer.XMLViewerScreen
@@ -34,14 +32,7 @@ import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 fun XMLViewerNavHost(xml: String) {
   val navController = LocalXMLViewerNavController.current
 
-  NavHost(
-    navController = navController,
-    startDestination = XMLViewerRoute,
-    enterTransition = { FadeSlide.enterTransition },
-    exitTransition = { FadeSlide.exitTransition },
-    popEnterTransition = { FadeSlide.popEnterTransition },
-    popExitTransition = { FadeSlide.popExitTransition },
-  ) {
+  BaseNavHost(navController = navController, startDestination = XMLViewerRoute) {
     composable<XMLViewerRoute> {
       val viewModel = koinViewModel<XMLViewerViewModel>()
       XMLViewerScreen(
