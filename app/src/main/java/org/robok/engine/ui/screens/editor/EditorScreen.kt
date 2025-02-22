@@ -20,6 +20,7 @@ package org.robok.engine.ui.screens.editor
 import android.view.ViewGroup
 import androidx.activity.compose.BackHandler
 import androidx.lifecycle.lifecycleScope
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -52,10 +53,12 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.amix.Amix
 import org.koin.androidx.compose.koinViewModel
@@ -86,6 +89,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   val projectManager = ProjectManager(context).apply { this.projectPath = File(projectPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
+  val lifecycleOwner = LocalLifecycleOwner.current
 
   editorViewModel.setProjectManager(projectManager)
   editorViewModel.setEditorNavigateActions(editorNavigateActions)
@@ -121,7 +125,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
     val currentFile =
       editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
     if (currentFile.name.substringAfterLast(".").equals("amix")) {
-      compileAmixAndOpenXmlViewer(editorViewModel, currentFile)
+      compileAmixAndOpenXmlViewer(lifecycleOwner.lifecycleScope, editorViewModel, currentFile)
     }
     editorViewModel.setIsRunClicked(false)
   }
@@ -188,6 +192,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   }
 }
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: EditorViewModel) {
   val context = LocalContext.current
@@ -348,7 +353,11 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
   editorViewModel.addFile(file)
 }
 
-private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: File) {
+private fun compileAmixAndOpenXmlViewer(
+  scope: CoroutineScope,
+  editorViewModel: EditorViewModel,
+  file: File
+) {
   val amixCode = file.readText()
   var xmlCode = "Failed to generate source code."
   val amix =
@@ -358,7 +367,7 @@ private fun compileAmixAndOpenXmlViewer(editorViewModel: EditorViewModel, file: 
       .setCode(amixCode)
       .setOnGenerateCode { code, _ ->
         editorViewModel.addBuildLog(log("File ${file.name} compiled successfully"))
-        lifecycleScope.launch {
+        scope.launch {
           editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code)
         }
       }
