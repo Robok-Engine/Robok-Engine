@@ -3,4 +3,4 @@
   android:fontProviderAuthority="com.google.android.gms.fonts"
   android:fontProviderPackage="com.google.android.gms"
   android:fontProviderQuery="Ubuntu"
-  android:fontProviderCerts="@array/font_certs" />
+  android:fontProviderCerts="@array/com_google_android_gms_fonts_certs" />
