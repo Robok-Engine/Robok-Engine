@@ -89,11 +89,11 @@ class AppFailureActivity : BaseComposeActivity() {
     }
 
     if (showDialog) {
-      enableBlur(this@AppFailureActivity, true)
+      enableBlur(true)
       AlertDialog(
         onDismissRequest = {
           showDialog = false
-          enableBlur(this@AppFailureActivity, false)
+          enableBlur(false)
         },
         title = { Text(stringResource(id = Strings.title_un_error_ocurred)) },
         text = { ErrorCard(madeErrMsg) },
