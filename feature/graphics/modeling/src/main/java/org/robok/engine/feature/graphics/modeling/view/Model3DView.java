@@ -69,7 +69,7 @@ public class Model3DView extends ApplicationAdapter {
 
   public Model3DView() {
     instance = this;
-    SceneObject.getSceneObjects() = new ArrayList<>();
+    SceneObject.setSceneObjects(new ArrayList<>());
   }
 
   @Override

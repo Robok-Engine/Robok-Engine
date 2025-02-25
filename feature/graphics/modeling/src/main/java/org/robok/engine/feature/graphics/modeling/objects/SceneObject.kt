@@ -21,11 +21,14 @@ import com.badlogic.gdx.graphics.g3d.Model
 import com.badlogic.gdx.graphics.g3d.ModelInstance
 import com.badlogic.gdx.math.Vector3
 
-class SceneObject(var model: Model, var size: Vector3, var modelInstance: ModelInstance) {
+class SceneObject(
+  public var model: Model,
+  public var size: Vector3,
+  public var modelInstance: ModelInstance,
+) {
 
   companion object {
-    @JvmStatic
-    public var sceneObjects: MutableList<SceneObject> = mutableListOf()
+    @JvmStatic public var sceneObjects: MutableList<SceneObject> = mutableListOf()
   }
 
   fun updateTransform(x: Float, y: Float, z: Float) {
