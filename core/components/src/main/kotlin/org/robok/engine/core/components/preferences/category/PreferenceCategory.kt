@@ -36,7 +36,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun PreferenceCategory(
-  label: String,
+  title: String,
   icon: ImageVector,
   onClick: () -> Unit,
   modifier: Modifier = Modifier,
@@ -58,7 +58,7 @@ fun PreferenceCategory(
     verticalPadding = 14.dp,
     title = {
       Text(
-        text = label,
+        text = title,
         color =
           if (isSelected) MaterialTheme.colorScheme.primary
           else MaterialTheme.colorScheme.onBackground,

@@ -18,9 +18,10 @@ package org.robok.engine.ui.screens.settings.app
  */
 
 import android.os.Build
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
@@ -33,32 +34,32 @@ import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsAppScreen() {
-  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
+  val preferencesViewModel: PreferencesViewModel = koinViewModel()
   Screen(label = stringResource(id = Strings.settings_app_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
-      appearancePrefs(appPrefsViewModel)
+      AppearancePrefs(preferencesViewModel)
     }
   }
 }
 
 @Composable
-fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
+fun AppearancePrefs(preferencesViewModel: PreferencesViewModel) {
   val appIsUseMonet by
-    appPrefsViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+    preferencesViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
   val appIsUseAmoled by
-    appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
+    preferencesViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
 
   PreferenceSwitch(
     checked = appIsUseMonet,
-    onCheckedChange = { newValue -> appPrefsViewModel.setMonetEnable(newValue) },
-    label = stringResource(id = Strings.settings_app_use_monet_title),
+    onCheckedChange = { newValue -> preferencesViewModel.setMonetEnable(newValue) },
+    title = stringResource(id = Strings.settings_app_use_monet_title),
     description = stringResource(id = Strings.settings_app_use_monet_description),
     enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
   )
   PreferenceSwitch(
     checked = appIsUseAmoled,
-    onCheckedChange = { newValue -> appPrefsViewModel.setAmoledEnable(newValue) },
-    label = stringResource(id = Strings.settings_app_use_amoled_title),
+    onCheckedChange = { newValue -> preferencesViewModel.setAmoledEnable(newValue) },
+    title = stringResource(id = Strings.settings_app_use_amoled_title),
     description = stringResource(id = Strings.settings_app_use_amoled_description),
   )
 }

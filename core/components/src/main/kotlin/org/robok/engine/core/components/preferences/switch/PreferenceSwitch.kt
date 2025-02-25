@@ -45,7 +45,7 @@ import org.robok.engine.core.components.switch.Switch
 fun PreferenceSwitch(
   checked: Boolean,
   onCheckedChange: (Boolean) -> Unit,
-  label: String,
+  title: String,
   modifier: Modifier = Modifier,
   description: String? = null,
   enabled: Boolean = true,
@@ -67,7 +67,7 @@ fun PreferenceSwitch(
         }
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-    title = { Text(fontWeight = FontWeight.Bold, text = label) },
+    title = { Text(fontWeight = FontWeight.Bold, text = title) },
     description = { description?.let { Text(text = it) } },
     endWidget = {
       if (onClick != null) {

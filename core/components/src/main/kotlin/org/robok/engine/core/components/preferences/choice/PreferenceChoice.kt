@@ -40,18 +40,18 @@ import org.robok.engine.core.components.preferences.base.PreferenceTemplate
  */
 @Composable
 fun PreferenceChoice(
-  label: String,
-  title: String = label,
+  title: String,
+  description: String = title,
   disabled: Boolean = false,
   pref: Int,
   options: List<Int>,
   excludedOptions: List<Int> = emptyList(),
-  labelFactory: (Int) -> String = { it.toString() },
+  titleFactory: (Int) -> String = { it.toString() },
   onPrefChange: (Int) -> Unit,
   modifier: Modifier = Modifier,
-  onSheetOpenClose: (Boolean) -> Unit = {}
+  onSheetOpenClose: (Boolean) -> Unit = {},
 ) {
-  val choiceLabel = labelFactory(pref)
+  val choiceLabel = titleFactory(pref)
   val (opened, setOpened) = remember { mutableStateOf(false) }
   val interactionSource = remember { MutableInteractionSource() }
 
@@ -66,7 +66,7 @@ fun PreferenceChoice(
         setOpened(true)
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-    title = { Text(fontWeight = FontWeight.Bold, text = label) },
+    title = { Text(fontWeight = FontWeight.Bold, text = title) },
     endWidget = {
       if (!disabled) {
         FilledTonalButton(
@@ -91,7 +91,7 @@ fun PreferenceChoice(
       title = { Text(fontWeight = FontWeight.Bold, text = title) },
       default = pref,
       options = options,
-      labelFactory = labelFactory,
+      titleFactory = titleFactory,
       excludedOptions = excludedOptions,
       onRequestClose = {
         onSheetOpenClose(false)

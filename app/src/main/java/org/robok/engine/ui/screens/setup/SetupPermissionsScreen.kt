@@ -79,7 +79,7 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         PreferenceSwitch(
           checked = permissionsState.isStoragePermissionAllow,
           onCheckedChange = { activity?.requestStoragePermission() },
-          label = stringResource(id = Strings.setup_permission_storage_title),
+          title = stringResource(id = Strings.setup_permission_storage_title),
           description = stringResource(id = Strings.warning_storage_perm_message),
         )
       }

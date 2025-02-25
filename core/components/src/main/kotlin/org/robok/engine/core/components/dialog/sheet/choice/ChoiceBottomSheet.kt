@@ -35,7 +35,7 @@ fun ChoiceBottomSheet(
   title: @Composable () -> Unit,
   default: Int,
   options: List<Int>,
-  labelFactory: (Int) -> String,
+  titleFactory: (Int) -> String,
   excludedOptions: List<Int>,
   onRequestClose: () -> Unit,
   onChoice: (Int) -> Unit,
@@ -78,7 +78,7 @@ fun ChoiceBottomSheet(
           default = tempSelectedOption,
           options = options,
           excludedOptions = excludedOptions,
-          labelFactory = labelFactory,
+          labelFactory = titleFactory,
           onChoiceSelected = { selectedOption -> tempSelectedOption = selectedOption },
         )
       }

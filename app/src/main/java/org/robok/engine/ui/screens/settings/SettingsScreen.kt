@@ -18,7 +18,12 @@ package org.robok.engine.ui.screens.settings
  */
 
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.*
+import androidx.compose.material.icons.rounded.Android
+import androidx.compose.material.icons.rounded.Book
+import androidx.compose.material.icons.rounded.BuildCircle
+import androidx.compose.material.icons.rounded.DeveloperMode
+import androidx.compose.material.icons.rounded.Edit
+import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
@@ -48,13 +53,13 @@ fun SettingsScreen() {
 @Composable
 fun GeneralCategories(navController: NavHostController) {
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_app_title),
+    title = stringResource(id = Strings.settings_app_title),
     description = stringResource(id = Strings.settings_app_description),
     icon = Icons.Rounded.Android,
     onClick = { navController.navigateSingleTop(route = SettingsAppRoute) },
   )
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_code_editor_title),
+    title = stringResource(id = Strings.settings_code_editor_title),
     description = stringResource(id = Strings.settings_code_editor_description),
     icon = Icons.Rounded.Edit,
     onClick = { navController.navigateSingleTop(route = SettingsCodeEditorRoute) },
@@ -64,7 +69,7 @@ fun GeneralCategories(navController: NavHostController) {
 @Composable
 fun BuildCategories(navController: NavHostController) {
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_configure_rdk_title),
+    title = stringResource(id = Strings.settings_configure_rdk_title),
     description = stringResource(id = Strings.settings_configure_rdk_description),
     icon = Icons.Rounded.DeveloperMode,
     onClick = { navController.navigateSingleTop(route = SettingsRDKRoute) },
@@ -74,13 +79,13 @@ fun BuildCategories(navController: NavHostController) {
 @Composable
 fun AboutCategories(navController: NavHostController) {
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_libraries_title),
+    title = stringResource(id = Strings.settings_libraries_title),
     description = stringResource(id = Strings.settings_libraries_description),
     icon = Icons.Rounded.Book,
     onClick = { navController.navigateSingleTop(route = AboutLibrariesRoute) },
   )
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_about_title),
+    title = stringResource(id = Strings.settings_about_title),
     description = stringResource(id = Strings.settings_about_description),
     icon = Icons.Rounded.Info,
     onClick = { navController.navigateSingleTop(route = AboutRoute) },
@@ -90,7 +95,7 @@ fun AboutCategories(navController: NavHostController) {
 @Composable
 fun DebugOnlyCategories(navController: NavHostController) {
   PreferenceCategory(
-    label = stringResource(id = Strings.settings_debug_title),
+    title = stringResource(id = Strings.settings_debug_title),
     description = stringResource(id = Strings.settings_debug_description),
     icon = Icons.Rounded.BuildCircle,
     onClick = { navController.navigateSingleTop(route = SettingsDebugRoute) },

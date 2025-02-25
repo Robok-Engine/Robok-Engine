@@ -17,9 +17,11 @@ package org.robok.engine.ui.screens.settings.editor
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
@@ -30,25 +32,26 @@ import org.robok.engine.core.components.preferences.choice.PreferenceChoice
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
-import org.robok.engine.ui.blur.enableBlur
+import org.robok.engine.ui.draw.enableBlur
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SettingsCodeEditorScreen() {
-  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
+  val preferencesViewModel = koinViewModel<PreferencesViewModel>()
 
   Screen(label = stringResource(id = Strings.settings_code_editor_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
-      appearancePrefs(appPrefsViewModel)
+      EditorThemePreference(preferencesViewModel)
+      EditorTypefacePreference(preferencesViewModel)
     }
     PreferenceGroup(heading = stringResource(id = Strings.settings_formatting_title)) {
-      formattingPrefs(appPrefsViewModel)
+      EditorWordWrapPreference(preferencesViewModel)
     }
   }
 }
 
 @Composable
-fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
+private fun EditorThemePreference(preferencesViewModel: PreferencesViewModel) {
   val context = LocalContext.current
   val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) // ints/positions
   val editorThemeLabels =
@@ -62,6 +65,24 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
       "Notepad XX",
     ) // strings/labels
 
+  val editorTheme by
+    preferencesViewModel.editorTheme.collectAsState(initial = DefaultValues.EDITOR_THEME)
+
+  PreferenceChoice(
+    title = stringResource(id = Strings.settings_code_editor_theme_title),
+    description = stringResource(id = Strings.settings_code_editor_theme_description),
+    pref = editorTheme,
+    options = editorThemes,
+    titleFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
+    onPrefChange = { newTheme -> preferencesViewModel.setEditorTheme(newTheme) },
+    onSheetOpenClose = { enableBlur(context, it) },
+  )
+}
+
+@Composable
+private fun EditorTypefacePreference(preferencesViewModel: PreferencesViewModel) {
+  val context = LocalContext.current
+
   val editorTypefaces = listOf(0, 1, 2, 3, 4) // ints/positions
   val editorTypefacesLabels =
     listOf(
@@ -70,45 +91,31 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
       context.getString(Strings.text_monospace),
       context.getString(Strings.text_sans_serif),
       context.getString(Strings.text_serif),
-    ) // strings/labels
-  val editorTheme by
-    appPrefsViewModel.editorTheme.collectAsState(initial = DefaultValues.EDITOR_THEME)
+    )
   val editorTypeface by
-    appPrefsViewModel.editorTypeface.collectAsState(initial = DefaultValues.EDITOR_TYPEFACE)
+    preferencesViewModel.editorTypeface.collectAsState(initial = DefaultValues.EDITOR_TYPEFACE)
 
   PreferenceChoice(
-    label = stringResource(id = Strings.settings_code_editor_theme_title),
-    title = stringResource(id = Strings.settings_code_editor_theme_description),
-    pref = editorTheme,
-    options = editorThemes,
-    excludedOptions = emptyList(),
-    labelFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
-    onPrefChange = { newTheme -> appPrefsViewModel.setEditorTheme(newTheme) },
-    onSheetOpenClose = { enableBlur(context, it) }
-  )
-
-  PreferenceChoice(
-    label = stringResource(id = Strings.settings_code_editor_typeface_title),
-    title = stringResource(id = Strings.settings_code_editor_typeface_description),
+    title = stringResource(id = Strings.settings_code_editor_typeface_title),
+    description = stringResource(id = Strings.settings_code_editor_typeface_description),
     pref = editorTypeface,
     options = editorTypefaces,
-    excludedOptions = emptyList(),
-    labelFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
-    onPrefChange = { newTypeface -> appPrefsViewModel.setEditorTypeface(newTypeface) },
-    onSheetOpenClose = { enableBlur(context, it) }
+    titleFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
+    onPrefChange = { newTypeface -> preferencesViewModel.setEditorTypeface(newTypeface) },
+    onSheetOpenClose = { enableBlur(context, it) },
   )
 }
 
 @Composable
-fun formattingPrefs(appPrefsViewModel: PreferencesViewModel) {
+private fun EditorWordWrapPreference(preferencesViewModel: PreferencesViewModel) {
   val editorIsUseWordWrap by
-    appPrefsViewModel.editorIsUseWordWrap.collectAsState(
+    preferencesViewModel.editorIsUseWordWrap.collectAsState(
       initial = DefaultValues.EDITOR_IS_USE_WORD_WRAP
     )
   PreferenceSwitch(
     checked = editorIsUseWordWrap,
-    onCheckedChange = { newValue -> appPrefsViewModel.setEditorWordWrapEnable(newValue) },
-    label = stringResource(id = Strings.settings_code_editor_word_wrap_title),
+    onCheckedChange = { newValue -> preferencesViewModel.setEditorWordWrapEnable(newValue) },
+    title = stringResource(id = Strings.settings_code_editor_word_wrap_title),
     description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
   )
 }
