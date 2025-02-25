@@ -29,6 +29,12 @@ fun Context.enableBlur(enable: Boolean) {
   a.isBlurEnable = enable
 }
 
+/** Defines the radius value in blur */
+fun Context.setBlurRadius(blurRadius: Int) {
+  val a = this as BaseComposeActivity
+  a.blurRadius = blurRadius
+}
+
 @Composable
 fun Modifier.blur(radius: Int = 15, isBlurEnable: Boolean = true): Modifier {
   return if (isBlurEnable) cloudy(radius = radius) else this

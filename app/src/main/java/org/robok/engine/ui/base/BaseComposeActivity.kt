@@ -54,6 +54,9 @@ abstract class BaseComposeActivity : BaseActivity() {
   /** define if is to blur screen content */
   public var isBlurEnable by mutableStateOf(false)
 
+  /** screen content blur radius */
+  public var blurRadius by mutableStateOf(15)
+
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     permissionsState.isStoragePermissionAllow = getStoragePermStatus(this)
@@ -67,7 +70,7 @@ abstract class BaseComposeActivity : BaseActivity() {
       HandlePermissions()
     }
     ProvideCompositionLocals {
-      Box(modifier = Modifier.fillMaxSize().blur(radius = 15, isBlurEnable = isBlurEnable)) {
+      Box(modifier = Modifier.fillMaxSize().blur(radius = blurRadius, isBlurEnable = isBlurEnable)) {
         onScreenCreated()
       }
       ToastHost()
