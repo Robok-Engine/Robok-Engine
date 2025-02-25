@@ -132,7 +132,8 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
     if (editorViewModel.uiState.openedFiles.isEmpty()) return
     val currentFile =
       editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
-    if (currentFile.name.substringAfterLast(".").equals("amix")) {
+    val extension = currentFile.name.substringAfterLast(".")
+    if (extension.equals("amix") || extension.equals("amx")) {
       compileAmixAndOpenXmlViewer(lifecycleOwner.lifecycleScope, editorViewModel, currentFile)
     } else {
       editorViewModel.compileProject()
