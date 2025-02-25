@@ -97,7 +97,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   BackHandler { editorViewModel.setIsBackClicked(true) }
 
   if (editorViewModel.uiState.isBackClicked) {
-    enableBlur(context, true)
+    context.enableBlur(true)
     AlertDialog(
       title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
       text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
@@ -125,7 +125,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
       },
     )
   } else {
-    enableBlur(context, false)
+    context.enableBlur(false)
   }
 
   if (editorViewModel.uiState.isRunClicked) {

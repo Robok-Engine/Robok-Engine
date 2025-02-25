@@ -24,8 +24,8 @@ import com.skydoves.cloudy.cloudy
 import org.robok.engine.ui.base.BaseComposeActivity
 
 /** Enable or disable blur of content */
-fun enableBlur(context: Context, enable: Boolean) {
-  val a = context as BaseComposeActivity
+fun Context.enableBlur(enable: Boolean) {
+  val a = this as BaseComposeActivity
   a.isBlurEnable = enable
 }
 

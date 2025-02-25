@@ -75,7 +75,7 @@ private fun EditorThemePreference(preferencesViewModel: PreferencesViewModel) {
     options = editorThemes,
     titleFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
     onPrefChange = { newTheme -> preferencesViewModel.setEditorTheme(newTheme) },
-    onSheetOpenClose = { enableBlur(context, it) },
+    onSheetOpenClose = { context.enableBlur(it) },
   )
 }
 
@@ -102,7 +102,7 @@ private fun EditorTypefacePreference(preferencesViewModel: PreferencesViewModel)
     options = editorTypefaces,
     titleFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
     onPrefChange = { newTypeface -> preferencesViewModel.setEditorTypeface(newTypeface) },
-    onSheetOpenClose = { enableBlur(context, it) },
+    onSheetOpenClose = { context.enableBlur(it) },
   )
 }
 

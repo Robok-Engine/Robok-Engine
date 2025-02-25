@@ -106,12 +106,12 @@ fun AboutScreen() {
   }
 
   if (aboutViewModel.isShowContributorDialog) {
-    enableBlur(context, true)
+    context.enableBlur(true)
     ContributorDialog(
       contributor = aboutViewModel.currentContributor,
       onDismissRequest = {
         aboutViewModel.setShowContributorDialog(false)
-        enableBlur(context, false)
+        context.enableBlur(false)
       },
     )
   }
