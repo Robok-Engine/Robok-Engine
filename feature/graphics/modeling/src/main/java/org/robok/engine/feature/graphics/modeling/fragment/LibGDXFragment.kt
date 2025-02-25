@@ -27,7 +27,7 @@ import org.robok.engine.feature.graphics.modeling.view.Model3DView
 
 class LibGDXFragment : AndroidFragmentApplication() {
 
-  @JvmField private lateinit var model3dView: Model3DView
+  private lateinit var model3dView: Model3DView
 
   override fun onCreateView(
     inflater: LayoutInflater,
