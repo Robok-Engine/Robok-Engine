@@ -367,7 +367,7 @@ public class CameraInputController2 extends GestureDetector {
       z = position.z;
 
       // scala
-      Vector3 dimensions = this.selectedObject.size;
+      Vector3 dimensions = this.selectedObject.getSize();
 
       float scaleX, scaleY, scaleZ;
       scaleX = dimensions.x;
