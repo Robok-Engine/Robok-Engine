@@ -30,6 +30,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -90,8 +91,8 @@ enum class EditorModalValue {
 
 @Stable
 class EditorModalState(
-  val initialHeight: Float = 50f,
-  val maxHeight: Float = 830f,
+  val initialHeight: Float = EditorModalDefaults.minHeight,
+  val maxHeight: Float = EditorModalDefaults.maxHeight,
   initialValue: EditorModalValue = EditorModalValue.Closed,
 ) {
 
@@ -132,4 +133,10 @@ class EditorModalState(
     animatableHeight.snapTo(newHeight)
     calculateValue()
   }
+}
+
+@Immutable
+object EditorModalDefaults {
+  const val minHeight = 55f
+  const val maxHeight = 775f
 }
