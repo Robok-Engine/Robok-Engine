@@ -107,11 +107,8 @@ public class CameraInputController2 extends GestureDetector {
   private final Vector3 tmpV1 = new Vector3();
   private final Vector3 tmpV2 = new Vector3();
 
-  // MovimentObject
-  // public MovimentObject movimentObject;
-
-  // objeto selecionado
-  public SceneObject sceneObject;
+  // selected object
+  public SceneObject selectedObject;
 
   protected static class CameraGestureListener extends GestureAdapter {
     public static CameraInputController2 controller;
@@ -121,17 +118,10 @@ public class CameraInputController2 extends GestureDetector {
     private boolean isZoom;
     private CameraInputController2.Object object;
 
-    // colocar caso nao for tocado
-    /*
-
-    */
     @Override
     public boolean touchDown(float x, float y, int pointer, int button) {
       previousZoom = 0;
       isZoom = false;
-      /*if(controller.movimentObject != null){
-          controller.movimentObject.handleInput(x,y);
-      }*/
       return false;
     }
 
@@ -144,13 +134,13 @@ public class CameraInputController2 extends GestureDetector {
         SceneObject sc = object.getObjectFromTap(x, y);
         if (sc != null) {
           //  object = new CameraInputController2.Object(controller.camera);
-          controller.sceneObject = sc;
+          controller.selectedObject = sc;
         }
       }
       if (count == 2) {
         object = new CameraInputController2.Object(controller.camera);
-        controller.sceneObject = object.getObjectFromTap(x, y);
-        if (controller.sceneObject != null) focarCameraNoObject(controller.sceneObject);
+        controller.selectedObject = object.getObjectFromTap(x, y);
+        if (controller.selectedObject != null) focarCameraNoObject(controller.selectedObject);
 
         controller.ammount = true;
       }
@@ -366,13 +356,9 @@ public class CameraInputController2 extends GestureDetector {
   }
 
   public void updateRenderer(ShapeRenderer shapeRenderer) {
-    // if(this.movimentObject != null){
-    /* for (Arrow arrow : this.movimentObject.getMovimentArrows()) {
-        arrow.render(shapeRenderer);
-    }*/
     // renderEdges(shapeRenderer, ob.getModelInstance());
-    if (this.sceneObject != null) {
-      Matrix4 matrix = this.sceneObject.getModelInstance().transform;
+    if (this.selectedObject != null) {
+      Matrix4 matrix = this.selectedObject.getModelInstance().transform;
       Vector3 position = new Vector3(0f, 0f, 0f);
       matrix.getTranslation(position);
       float x, y, z;
@@ -381,7 +367,7 @@ public class CameraInputController2 extends GestureDetector {
       z = position.z;
 
       // scala
-      Vector3 dimensions = this.sceneObject.size;
+      Vector3 dimensions = this.selectedObject.size;
 
       float scaleX, scaleY, scaleZ;
       scaleX = dimensions.x;
@@ -414,7 +400,7 @@ public class CameraInputController2 extends GestureDetector {
   @Override
   public boolean touchUp(int screenX, int screenY, int pointer, int button) {
     // if(movimentObject != null) movimentObject.touchUp(); //MovimentObject
-    // this.sceneObject = null;
+    // this.selectedObject = null;
     touched &= -1 ^ (1 << pointer);
     multiTouch = !MathUtils.isPowerOfTwo(touched);
     if (button == this.button) this.button = -1;
