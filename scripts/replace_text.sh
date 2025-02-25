@@ -3,8 +3,8 @@
 DIRECTORY="../" # use ../ because the script is inside the shellscript folder
 
 # Text to be replaced
-OLD_TEXT="org.robok.engine.routes"
-NEW_TEXT="org.robok.engine.navigation.routes"
+OLD_TEXT="AndroidViewsThemeManager"
+NEW_TEXT="AndroidViewsThemeManager"
 
 find "$DIRECTORY" -name "shellscript" -o -name ".git" -prune -o -type f -print | while read -r file; do
     sed -i "s/$OLD_TEXT/$NEW_TEXT/g" "$file"

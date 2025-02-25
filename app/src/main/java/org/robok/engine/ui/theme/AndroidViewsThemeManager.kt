@@ -18,16 +18,16 @@ import org.robok.engine.ui.base.BaseActivity
  *
  * @author Aquiles Trindade
  */
-const val TAG = "XMLThemeManager"
+const val TAG = "AndroidViewsThemeManager"
 
-class XMLThemeManager private constructor() {
+class AndroidViewsThemeManager private constructor() {
 
   companion object {
-    private var instance: XMLThemeManager? = null
+    private var instance: AndroidViewsThemeManager? = null
 
     @JvmStatic
-    fun getInstance(): XMLThemeManager {
-      if (instance == null) instance = XMLThemeManager()
+    fun getInstance(): AndroidViewsThemeManager {
+      if (instance == null) instance = AndroidViewsThemeManager()
       return instance!!
     }
   }

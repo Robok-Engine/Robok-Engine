@@ -17,6 +17,7 @@ package org.robok.engine.ui.base
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.content.Context
 import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
@@ -35,7 +36,7 @@ import org.robok.engine.core.utils.getBackPressedClickListener
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
 import org.robok.engine.defaults.DoNothing
-import org.robok.engine.ui.theme.XMLThemeManager
+import org.robok.engine.ui.theme.AndroidViewsThemeManager
 
 /** Base Class for All Activities. */
 abstract class BaseActivity : AppCompatActivity(), PermissionListener {
@@ -78,7 +79,7 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   /** reloads the Android Views (XML) Theme */
   @Deprecated("Use Jetpack Compose instead.")
   protected fun reloadTheme() {
-    lifecycleScope.launch { XMLThemeManager.getInstance().apply(this@BaseActivity) }
+    lifecycleScope.launch { AndroidViewsThemeManager.getInstance().apply(this@BaseActivity) }
   }
 
   /** verify if app is in darkMode */
@@ -125,4 +126,10 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   enum class PermissionType {
     STORAGE
   }
+}
+
+/** Reloads the theme of app in anywhere. */
+fun Context.reloadTheme() {
+  val a = this as? BaseActivity
+  a?.reloadTheme()
 }

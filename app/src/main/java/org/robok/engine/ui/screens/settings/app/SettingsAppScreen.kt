@@ -22,6 +22,7 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
@@ -30,6 +31,7 @@ import org.robok.engine.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.base.reloadTheme
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -44,6 +46,7 @@ fun SettingsAppScreen() {
 
 @Composable
 fun AppearancePrefs(preferencesViewModel: PreferencesViewModel) {
+  val context = LocalContext.current
   val appIsUseMonet by
     preferencesViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
   val appIsUseAmoled by
@@ -51,14 +54,20 @@ fun AppearancePrefs(preferencesViewModel: PreferencesViewModel) {
 
   PreferenceSwitch(
     checked = appIsUseMonet,
-    onCheckedChange = { newValue -> preferencesViewModel.setMonetEnable(newValue) },
+    onCheckedChange = { newValue ->
+      context.reloadTheme()
+      preferencesViewModel.setMonetEnable(newValue)
+    },
     title = stringResource(id = Strings.settings_app_use_monet_title),
     description = stringResource(id = Strings.settings_app_use_monet_description),
     enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
   )
   PreferenceSwitch(
     checked = appIsUseAmoled,
-    onCheckedChange = { newValue -> preferencesViewModel.setAmoledEnable(newValue) },
+    onCheckedChange = { newValue ->
+      preferencesViewModel.setAmoledEnable(newValue)
+      context.reloadTheme()
+    },
     title = stringResource(id = Strings.settings_app_use_amoled_title),
     description = stringResource(id = Strings.settings_app_use_amoled_description),
   )
