@@ -1,4 +1,4 @@
-package org.robok.engine.feature.graphics.modeling.fragment;
+package org.robok.engine.feature.graphics.modeling.fragment
 
 /*
  *  This file is part of Robok © 2024.
@@ -27,15 +27,14 @@ import org.robok.engine.feature.graphics.modeling.view.Model3DView
 
 class LibGDXFragment : AndroidFragmentApplication() {
 
-  @JvmField
-  private lateinit var model3dView: Model3DView
+  @JvmField private lateinit var model3dView: Model3DView
 
   override fun onCreateView(
-    inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
+    inflater: LayoutInflater,
+    container: ViewGroup?,
+    savedInstanceState: Bundle?,
   ): View? {
-    val config = AndroidApplicationConfiguration().apply {
-      useGL30 = true
-    }
+    val config = AndroidApplicationConfiguration().apply { useGL30 = true }
     model3dView = Model3DView()
     return initializeForView(model3dView, config)
   }

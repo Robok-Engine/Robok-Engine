@@ -27,6 +27,8 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.appbar.MaterialToolbar
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
@@ -62,8 +64,8 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
-    reloadTheme()
-    preferences.onAppThemePreferenceChange = { reloadTheme() }
+    lifecycleScope.launch { reloadTheme() }
+    preferences.onAppThemePreferenceChange = { lifecycleScope.launch { reloadTheme() } }
     super.onCreate(savedInstanceState)
   }
 
@@ -78,8 +80,8 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   /** reloads the Android Views (XML) Theme */
   @Deprecated("Use Jetpack Compose instead.")
-  protected fun reloadTheme() {
-    lifecycleScope.launch { AndroidViewsThemeManager.getInstance().apply(this@BaseActivity) }
+  protected suspend fun reloadTheme() {
+    AndroidViewsThemeManager.getInstance().apply(this@BaseActivity)
   }
 
   /** verify if app is in darkMode */
@@ -128,8 +130,8 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   }
 }
 
-/** Reloads the theme of app in anywhere. */
+/** Reloads the theme of app anywhere. */
 fun Context.reloadTheme() {
   val a = this as? BaseActivity
-  a?.reloadTheme()
+  a?.let { CoroutineScope(Dispatchers.Main).launch { it.reloadTheme() } }
 }

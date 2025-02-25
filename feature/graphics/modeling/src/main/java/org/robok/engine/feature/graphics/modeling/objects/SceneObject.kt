@@ -1,4 +1,4 @@
-package org.robok.engine.feature.graphics.modeling.objects;
+package org.robok.engine.feature.graphics.modeling.objects
 
 /*
  *  This file is part of Robok © 2024.
