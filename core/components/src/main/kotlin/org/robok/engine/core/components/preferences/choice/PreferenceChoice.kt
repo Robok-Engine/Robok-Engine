@@ -49,6 +49,7 @@ fun PreferenceChoice(
   labelFactory: (Int) -> String = { it.toString() },
   onPrefChange: (Int) -> Unit,
   modifier: Modifier = Modifier,
+  onSheetOpenClose: (Boolean) -> Unit = {}
 ) {
   val choiceLabel = labelFactory(pref)
   val (opened, setOpened) = remember { mutableStateOf(false) }
@@ -61,6 +62,7 @@ fun PreferenceChoice(
         indication = ripple(),
         interactionSource = interactionSource,
       ) {
+        onSheetOpenClose(true)
         setOpened(true)
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
@@ -69,7 +71,10 @@ fun PreferenceChoice(
       if (!disabled) {
         FilledTonalButton(
           modifier = Modifier.padding(horizontal = 16.dp),
-          onClick = { setOpened(true) },
+          onClick = {
+            onSheetOpenClose(true)
+            setOpened(true)
+          },
           enabled = !disabled,
         ) {
           Text(choiceLabel)
@@ -88,8 +93,12 @@ fun PreferenceChoice(
       options = options,
       labelFactory = labelFactory,
       excludedOptions = excludedOptions,
-      onRequestClose = { setOpened(false) },
+      onRequestClose = {
+        onSheetOpenClose(false)
+        setOpened(false)
+      },
       onChoice = {
+        onSheetOpenClose(false)
         setOpened(false)
         onPrefChange(it)
       },

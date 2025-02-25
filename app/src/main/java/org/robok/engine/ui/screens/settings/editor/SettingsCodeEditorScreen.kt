@@ -30,6 +30,7 @@ import org.robok.engine.core.components.preferences.choice.PreferenceChoice
 import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.blur.enableBlur
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -83,6 +84,7 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
     excludedOptions = emptyList(),
     labelFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
     onPrefChange = { newTheme -> appPrefsViewModel.setEditorTheme(newTheme) },
+    onSheetOpenClose = { enableBlur(context, it) }
   )
 
   PreferenceChoice(
@@ -93,6 +95,7 @@ fun appearancePrefs(appPrefsViewModel: PreferencesViewModel) {
     excludedOptions = emptyList(),
     labelFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
     onPrefChange = { newTypeface -> appPrefsViewModel.setEditorTypeface(newTypeface) },
+    onSheetOpenClose = { enableBlur(context, it) }
   )
 }
 
