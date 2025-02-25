@@ -33,7 +33,6 @@ import androidx.compose.ui.unit.*
 import com.google.android.material.R as MaterialR
 import org.robok.engine.Strings
 import org.robok.engine.ui.screens.settings.about.models.Contributor
-import org.robok.engine.ui.utils.getDialogWindow
 
 @Composable
 fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
@@ -60,10 +59,4 @@ fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
       }
     },
   )
-  val dialogWindow = getDialogWindow()
-  LaunchedEffect(Unit) {
-    dialogWindow?.apply {
-      setWindowAnimations(MaterialR.style.MaterialAlertDialog_Material3_Animation)
-    }
-  }
 }
