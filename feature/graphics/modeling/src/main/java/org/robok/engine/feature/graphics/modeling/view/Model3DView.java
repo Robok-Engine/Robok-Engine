@@ -69,7 +69,7 @@ public class Model3DView extends ApplicationAdapter {
 
   public Model3DView() {
     instance = this;
-    SceneObject.sceneObjects = new ArrayList<>();
+    SceneObject.getSceneObjects() = new ArrayList<>();
   }
 
   @Override
@@ -110,7 +110,7 @@ public class Model3DView extends ApplicationAdapter {
     modelInstance = new ModelInstance(modelB);
     modelInstance.transform.setToTranslation(0f, 0f, 0f);
 
-    SceneObject.sceneObjects.add(new SceneObject(modelInstance.model, size, modelInstance));
+    SceneObject.getSceneObjects().add(new SceneObject(modelInstance.model, size, modelInstance));
 
     /*criar plano */
 
@@ -149,7 +149,7 @@ public class Model3DView extends ApplicationAdapter {
     //   handleInput();
     String text = "Objetos na cena: ";
     int p = 0;
-    for (SceneObject scene : SceneObject.sceneObjects) {
+    for (SceneObject scene : SceneObject.getSceneObjects()) {
 
       modelBatch.render(scene.getModelInstance());
       p++;
@@ -254,7 +254,7 @@ public class Model3DView extends ApplicationAdapter {
   public void dispose() {
     modelBatch.dispose();
 
-    for (SceneObject scene : SceneObject.sceneObjects) {
+    for (SceneObject scene : SceneObject.getSceneObjects()) {
       scene.getModelInstance().model.dispose();
     }
   }
@@ -265,7 +265,7 @@ public class Model3DView extends ApplicationAdapter {
 
   private void invokeObject(String objectCommand) {
     try {
-      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.sceneObjects);
+      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.getSceneObjects());
       Class<?> instance = createObjects.getClass();
       Method method = instance.getDeclaredMethod(objectCommand);
       method.invoke(createObjects);

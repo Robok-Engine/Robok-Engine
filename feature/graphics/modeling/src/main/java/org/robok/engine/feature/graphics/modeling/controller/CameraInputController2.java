@@ -290,7 +290,7 @@ public class CameraInputController2 extends GestureDetector {
       SceneObject closestObject = null;
       float closestDistance = Float.MAX_VALUE;
 
-      for (SceneObject scene : SceneObject.sceneObjects) {
+      for (SceneObject scene : SceneObject.getSceneObjects()) {
         BoundingBox bbox = new BoundingBox();
         scene.getModelInstance().calculateBoundingBox(bbox);
         bbox.mul(scene.getModelInstance().transform); // Aplicar transformação
