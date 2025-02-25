@@ -24,6 +24,7 @@ import com.badlogic.gdx.math.Vector3
 class SceneObject(var model: Model, var size: Vector3, var modelInstance: ModelInstance) {
 
   companion object {
+    @JvmStatic
     public var sceneObjects: MutableList<SceneObject> = mutableListOf()
   }
 
