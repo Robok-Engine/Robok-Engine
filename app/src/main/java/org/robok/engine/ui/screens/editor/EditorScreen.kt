@@ -178,7 +178,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
 }
 
 @Composable
-private fun EditorBackPressed(editorViewModel: EditorViewModel) {
+private fun EditorBackHandler(editorViewModel: EditorViewModel) {
   val context = LocalContext.current
   val drawerState = LocalEditorFilesDrawerState.current
   val editorModalState = LocalEditorModalState.current
