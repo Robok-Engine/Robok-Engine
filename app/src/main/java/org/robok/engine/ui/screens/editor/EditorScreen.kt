@@ -94,39 +94,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
   editorViewModel.setProjectManager(projectManager)
   editorViewModel.setEditorNavigateActions(editorNavigateActions)
 
-  BackHandler { editorViewModel.setIsBackClicked(true) }
-
-  if (editorViewModel.uiState.isBackClicked) {
-    context.enableBlur(true)
-    AlertDialog(
-      title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
-      text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
-      onDismissRequest = { editorViewModel.setIsBackClicked(false) },
-      confirmButton = {
-        Button(
-          onClick = {
-            editorViewModel.setIsBackClicked(false)
-            editorViewModel.saveAllFiles()
-            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
-          }
-        ) {
-          Text(text = stringResource(Strings.text_exit_with_save))
-        }
-      },
-      dismissButton = {
-        OutlinedButton(
-          onClick = {
-            editorViewModel.setIsBackClicked(false)
-            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
-          }
-        ) {
-          Text(text = stringResource(Strings.text_exit_without_save))
-        }
-      },
-    )
-  } else {
-    context.enableBlur(false)
-  }
+  EditorBackHandler(editorViewModel)
 
   if (editorViewModel.uiState.isRunClicked) {
     if (editorViewModel.uiState.openedFiles.isEmpty()) return
@@ -206,6 +174,60 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
 
   EditorDrawer(editorViewModel = editorViewModel) {
     EditorScreenContent(modifier = Modifier.systemBarsPadding(), editorViewModel = editorViewModel)
+  }
+}
+
+@Composable
+private fun EditorBackPressed(editorViewModel: EditorViewModel) {
+  val context = LocalContext.current
+  val drawerState = LocalEditorFilesDrawerState.current
+  val editorModalState = LocalEditorModalState.current
+  val coroutineScope = rememberCoroutineScope()
+
+  BackHandler { editorViewModel.setIsBackClicked(true) }
+
+  if (editorViewModel.uiState.isBackClicked) {
+    context.enableBlur(true)
+    AlertDialog(
+      title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
+      text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
+      onDismissRequest = { editorViewModel.setIsBackClicked(false) },
+      confirmButton = {
+        Button(
+          onClick = {
+            editorViewModel.setIsBackClicked(false)
+            editorViewModel.saveAllFiles()
+            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
+          }
+        ) {
+          Text(text = stringResource(Strings.text_exit_with_save))
+        }
+      },
+      dismissButton = {
+        OutlinedButton(
+          onClick = {
+            editorViewModel.setIsBackClicked(false)
+            editorViewModel.uiState.editorNavigateActions!!.popBackStack()
+          }
+        ) {
+          Text(text = stringResource(Strings.text_exit_without_save))
+        }
+      },
+    )
+  } else {
+    context.enableBlur(false)
+  }
+
+  if (drawerState.isOpen) {
+    coroutineScope.launch {
+      drawerState.close()
+    }
+  }
+
+  if (editorModalState.isExpanded) {
+    coroutineScope.launch {
+      editorModalState.close()
+    }
   }
 }
 
