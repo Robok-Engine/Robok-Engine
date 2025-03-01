@@ -86,7 +86,7 @@ fun EditorModal(
 @Composable
 fun rememberEditorModalState(): EditorModalState {
   val maxHeight = rememberEditorModalMaxHeight()
-  return remember { EditorModalState(maxHeight = maxHeight) }
+  return remember { EditorModalState(maxHeight = maxHeight - EditorModalDefaults.minHeight) }
 }
 
 @Composable
@@ -126,12 +126,12 @@ class EditorModalState(
   }
 
   suspend fun open() {
-    animatableHeight.animateTo(maxHeight, animationSpec = tween(durationMillis = 500))
+    animatableHeight.animateTo(maxHeight, animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration))
     calculateValue()
   }
 
   suspend fun close() {
-    animatableHeight.animateTo(initialHeight, animationSpec = tween(durationMillis = 500))
+    animatableHeight.animateTo(initialHeight, animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration))
     calculateValue()
   }
 
@@ -150,4 +150,5 @@ class EditorModalState(
 object EditorModalDefaults {
   const val minHeight = 55f
   const val maxHeight = 775f
+  const val animationDuration = 500
 }
