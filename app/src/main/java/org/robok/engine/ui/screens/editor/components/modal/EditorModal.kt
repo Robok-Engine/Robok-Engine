@@ -85,14 +85,14 @@ fun EditorModal(
 
 @Composable
 fun rememberEditorModalState(): EditorModalState {
-  val maxHeight by rememberEditorModalMaxHeight()
+  val maxHeight = rememberEditorModalMaxHeight()
   return remember { EditorModalState(maxHeight = maxHeight) }
 }
 
 @Composable
 fun rememberEditorModalMaxHeight(): Float {
   val configuration = LocalConfiguration.current
-  return configuration.screenHeightDp.toFloat()
+  return remember { configuration.screenHeightDp.toFloat() }
 }
 
 enum class EditorModalValue {
