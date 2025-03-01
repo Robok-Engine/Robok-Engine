@@ -152,6 +152,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
         is EditorEvent.OpenFile -> {
           coroutineScope.launch { editorModalState.close() }
           handleFile(editorViewModel, event.file)
+          editorViewModel.setCurrentFileIndex(editorViewModel.uiState.openedFiles.lastIndex)
           editorViewModel.clearEvent()
         }
         is EditorEvent.CloseFile -> editorViewModel.removeFile(event.index)
@@ -267,7 +268,11 @@ private fun Editor(modifier: Modifier = Modifier, editorViewModel: EditorViewMod
   openedFile?.let { file ->
     selectedEditor?.let { editorView ->
       LaunchedEffect(editorView) { editorViewModel.updateUndoRedo(editorView) }
-      key(file.path) { EditorView(modifier, editorView) }
+      key(file.path) {
+        ExpandAndShrink(file.path == editorView.file.path) {
+          EditorView(modifier, editorView)
+        }
+      }
     }
   }
 }
