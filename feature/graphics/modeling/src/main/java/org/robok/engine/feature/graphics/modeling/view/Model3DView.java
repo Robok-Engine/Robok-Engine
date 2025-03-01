@@ -265,7 +265,8 @@ public class Model3DView extends ApplicationAdapter {
 
   private void invokeObject(String objectCommand) {
     try {
-      ObjectsCreator createObjects = new ObjectsCreator(camController, SceneObject.getSceneObjects());
+      ObjectsCreator createObjects =
+          new ObjectsCreator(camController, SceneObject.getSceneObjects());
       Class<?> instance = createObjects.getClass();
       Method method = instance.getDeclaredMethod(objectCommand);
       method.invoke(createObjects);

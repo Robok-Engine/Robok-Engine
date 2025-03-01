@@ -70,7 +70,9 @@ abstract class BaseComposeActivity : BaseActivity() {
       HandlePermissions()
     }
     ProvideCompositionLocals {
-      Box(modifier = Modifier.fillMaxSize().blur(radius = blurRadius, isBlurEnable = isBlurEnable)) {
+      Box(
+        modifier = Modifier.fillMaxSize().blur(radius = blurRadius, isBlurEnable = isBlurEnable)
+      ) {
         onScreenCreated()
       }
       ToastHost()

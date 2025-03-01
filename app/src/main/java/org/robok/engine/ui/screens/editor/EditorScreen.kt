@@ -219,15 +219,11 @@ private fun EditorBackPressed(editorViewModel: EditorViewModel) {
   }
 
   if (drawerState.isOpen) {
-    coroutineScope.launch {
-      drawerState.close()
-    }
+    coroutineScope.launch { drawerState.close() }
   }
 
   if (editorModalState.isExpanded) {
-    coroutineScope.launch {
-      editorModalState.close()
-    }
+    coroutineScope.launch { editorModalState.close() }
   }
 }
 
@@ -284,16 +280,22 @@ private fun Editor(modifier: Modifier = Modifier, editorViewModel: EditorViewMod
   val openedFiles = uiState.openedFiles
   val selectedFileIndex = uiState.selectedFileIndex
   val openedFile = openedFiles.getOrNull(selectedFileIndex)
+  val keyboardState by keyboardAsState()
 
   val selectedEditor = editorViewModel.getSelectedEditor()
 
   openedFile?.let { file ->
     selectedEditor?.let { editorView ->
+      // hide symbol line if keyboard is Closed
+      // todo: refactor symbol input with Jetpack Compose.
+      if (keyboardState == KeyboardState.Closed) {
+        editorView.hideSymbols()
+      } else {
+        editorView.showSymbols()
+      }
       LaunchedEffect(editorView) { editorViewModel.updateUndoRedo(editorView) }
       key(file.path) {
-        ExpandAndShrink(file.path == editorView.file.path) {
-          EditorView(modifier, editorView)
-        }
+        ExpandAndShrink(file.path == editorView.file.path) { EditorView(modifier, editorView) }
       }
     }
   }

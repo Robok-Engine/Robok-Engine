@@ -19,6 +19,7 @@ package org.robok.engine.feature.editor;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.view.View;
 import android.view.LayoutInflater;
 import android.widget.LinearLayout;
 import io.github.rosemoe.sora.lang.EmptyLanguage;
@@ -260,7 +261,7 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
 
   /*
    * Method to mark editor value modifierd or not
-   * @param isModified  new value
+   * @param isModified new value
    */
   public void setModified(boolean isModified) {
     this.isModified = isModified;
@@ -281,6 +282,20 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
    */
   public File getFile() {
     return this.file;
+  }
+
+  /**
+   * Hides the Symbol Input View.
+   */
+  public void hideSymbols() {
+    binding.robokSymbolInput.setVisibility(View.GONE);
+  }
+
+  /**
+   * Shows the Symbol Input View.
+   */
+  public void showSymbols() {
+    binding.robokSymbolInput.setVisibility(View.VISIBLE);
   }
 
   /**

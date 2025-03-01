@@ -126,12 +126,18 @@ class EditorModalState(
   }
 
   suspend fun open() {
-    animatableHeight.animateTo(maxHeight, animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration))
+    animatableHeight.animateTo(
+      maxHeight,
+      animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration),
+    )
     calculateValue()
   }
 
   suspend fun close() {
-    animatableHeight.animateTo(initialHeight, animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration))
+    animatableHeight.animateTo(
+      initialHeight,
+      animationSpec = tween(durationMillis = EditorModalDefaults.animationDuration),
+    )
     calculateValue()
   }
 

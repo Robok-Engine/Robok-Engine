@@ -22,6 +22,7 @@ import android.util.AttributeSet;
 import io.github.rosemoe.sora.widget.SymbolInputView;
 import org.robok.engine.res.ResUtils;
 
+@Deprecated
 public class RobokSymbolInput extends SymbolInputView {
 
   public Context context;
