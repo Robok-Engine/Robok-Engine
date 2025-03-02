@@ -31,7 +31,7 @@
 
 # Robok
 # Engine
--keep class org.robok.engine.core.components.edges.StretchEdgeEffect { *; }
+-keep class org.robok.engine.ui.core.components.edges.StretchEdgeEffect { *; }
 -keep class org.robok.engine.feature.modeling.** { *; }
 -keep class org.robok.engine.navigation.routes.** { *; }
 

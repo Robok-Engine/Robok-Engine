@@ -63,13 +63,13 @@ import kotlinx.coroutines.launch
 import org.amix.Amix
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
-import org.robok.engine.core.components.animation.ExpandAndShrink
-import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
+import org.robok.engine.ui.core.components.animation.ExpandAndShrink
+import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.draw.enableBlur
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBarAction

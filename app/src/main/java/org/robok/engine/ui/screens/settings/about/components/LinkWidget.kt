@@ -31,7 +31,7 @@ import androidx.compose.ui.platform.*
 import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.ui.screens.settings.about.models.Link
 
 @Composable

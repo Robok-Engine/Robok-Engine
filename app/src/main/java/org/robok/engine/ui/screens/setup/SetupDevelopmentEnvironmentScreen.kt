@@ -43,12 +43,12 @@ import java.io.File
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.textfields.DynamicSelectTextField
-import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.textfields.DynamicSelectTextField
+import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.setup.components.BottomButtons

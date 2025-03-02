@@ -35,11 +35,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.launch
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.switch.PreferenceSwitch
-import org.robok.engine.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.base.BaseComposeActivity
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.preferences.switch.PreferenceSwitch
+import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
 @Composable

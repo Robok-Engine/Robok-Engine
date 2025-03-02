@@ -31,7 +31,7 @@ include(":feature:apksigner")
 include(":feature:compiler")
 include(":feature:graphics:modeling")
 
-include(":core:components")
+include(":core:ui:components")
 include(":core:utils")
 include(":core:antlr4:java")
 include(":core:settings")

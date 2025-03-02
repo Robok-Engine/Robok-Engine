@@ -30,8 +30,8 @@ import androidx.compose.ui.res.stringResource
 import com.mikepenz.aboutlibraries.Libs
 import com.mikepenz.aboutlibraries.util.withContext
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

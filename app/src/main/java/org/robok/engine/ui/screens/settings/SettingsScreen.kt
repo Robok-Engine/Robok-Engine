@@ -28,8 +28,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavHostController
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.routes.AboutLibrariesRoute
 import org.robok.engine.navigation.routes.AboutRoute
@@ -37,6 +35,8 @@ import org.robok.engine.navigation.routes.SettingsAppRoute
 import org.robok.engine.navigation.routes.SettingsCodeEditorRoute
 import org.robok.engine.navigation.routes.SettingsDebugRoute
 import org.robok.engine.navigation.routes.SettingsRDKRoute
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.ui.platform.LocalMainNavController
 
 @Composable

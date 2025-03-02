@@ -33,12 +33,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import org.robok.engine.Strings
-import org.robok.engine.core.components.dialog.permission.PermissionDialog
-import org.robok.engine.core.components.toast.LocalToastHostState
-import org.robok.engine.core.components.toast.ToastHost
-import org.robok.engine.core.components.toast.rememberToastHostState
 import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.core.utils.getStoragePermStatus
+import org.robok.engine.ui.core.components.dialog.permission.PermissionDialog
+import org.robok.engine.ui.core.components.toast.LocalToastHostState
+import org.robok.engine.ui.core.components.toast.ToastHost
+import org.robok.engine.ui.core.components.toast.rememberToastHostState
 import org.robok.engine.ui.draw.blur
 import org.robok.engine.ui.theme.RobokTheme
 

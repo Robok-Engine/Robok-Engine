@@ -33,7 +33,7 @@ import androidx.compose.ui.unit.*
 import coil.compose.AsyncImage
 import org.robok.engine.Drawables
 import org.robok.engine.Strings
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 @Composable

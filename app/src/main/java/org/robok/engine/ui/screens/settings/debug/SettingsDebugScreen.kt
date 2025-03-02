@@ -21,11 +21,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.normal.Preference
 import org.robok.engine.navigation.routes.Route
 import org.robok.engine.navigation.routes.SettingsDebugLoggingRoute
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.preferences.normal.Preference
 
 @Composable
 fun SettingsDebugScreen(onNavigate: (Route) -> Unit) {

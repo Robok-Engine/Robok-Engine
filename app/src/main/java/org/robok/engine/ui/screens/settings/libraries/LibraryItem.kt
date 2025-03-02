@@ -25,7 +25,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mikepenz.aboutlibraries.entity.Library
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
+import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun LibraryItem(library: Library, onClick: () -> Unit) {

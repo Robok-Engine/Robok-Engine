@@ -42,12 +42,12 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.navigation.routes.TemplatesRoute
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.project.manage.viewmodel.ManageProjectsViewModel
 

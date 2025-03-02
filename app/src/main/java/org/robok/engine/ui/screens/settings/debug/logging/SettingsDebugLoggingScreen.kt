@@ -38,10 +38,10 @@ import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import org.robok.engine.Strings
-import org.robok.engine.core.components.Screen
-import org.robok.engine.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.core.components.preferences.base.PreferenceTemplate
 import org.robok.engine.core.utils.Log
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
+import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 
 @Composable
 fun SettingsDebugLoggingScreen() {

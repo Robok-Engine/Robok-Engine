@@ -30,7 +30,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import org.robok.engine.Strings
-import org.robok.engine.core.components.animation.ExpandAndShrink
+import org.robok.engine.ui.core.components.animation.ExpandAndShrink
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)

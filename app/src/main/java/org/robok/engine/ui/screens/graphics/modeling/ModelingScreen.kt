@@ -36,7 +36,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.zIndex
 import org.robok.engine.Drawables
-import org.robok.engine.core.components.animation.ExpandAndShrink
+import org.robok.engine.ui.core.components.animation.ExpandAndShrink
 import org.robok.engine.ui.screens.graphics.modeling.components.GDXWidget
 import org.robok.engine.ui.screens.graphics.modeling.components.rememberGDXState
 import org.robok.engine.ui.screens.graphics.modeling.viewmodel.ModelingViewModel
