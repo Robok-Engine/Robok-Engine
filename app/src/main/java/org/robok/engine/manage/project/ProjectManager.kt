@@ -38,7 +38,6 @@ import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.core.utils.Log
-import org.robok.engine.core.utils.PathUtils
 import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
 import org.robok.engine.feature.compiler.android.CompilerTask
@@ -323,8 +322,8 @@ class ProjectManager(private var context: Context) {
   }
 
   fun getAllAmixFiles(): List<File> {
-    val screensFolderList = PathUtils.listFilesInDir(getScreensPath())
-    val hudFolderList = PathUtils.listFilesInDir(getHudsPath())
+    val screensFolderList = FileUtil.listFilesInDir(getScreensPath())
+    val hudFolderList = FileUtil.listFilesInDir(getHudsPath())
     val allAmixFiles = mutableListOf<File>()
     allAmixFiles.addAll(screensFolderList)
     allAmixFiles.addAll(hudFolderList)

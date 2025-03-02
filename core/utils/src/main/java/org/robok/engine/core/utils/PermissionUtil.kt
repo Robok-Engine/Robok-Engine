@@ -28,10 +28,12 @@ import android.provider.Settings
 import androidx.activity.result.ActivityResultLauncher
 import androidx.core.content.ContextCompat
 
+@Deprecated("Pls refactor that fucked up thingy")
 interface PermissionListener {
   fun onReceive(status: Boolean)
 }
 
+@Deprecated("Pls refactor that fucked up thingy")
 fun requestAllFilesAccessPermission(activity: Activity, launcher: ActivityResultLauncher<Intent>) {
   if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
     if (!Environment.isExternalStorageManager()) {
@@ -44,6 +46,7 @@ fun requestAllFilesAccessPermission(activity: Activity, launcher: ActivityResult
   }
 }
 
+@Deprecated("Pls refactor that fucked up thingy")
 fun requestReadWritePermissions(
   activity: Activity,
   launcher: ActivityResultLauncher<Array<String>>,
@@ -55,6 +58,7 @@ fun requestReadWritePermissions(
   }
 }
 
+@Deprecated("Pls refactor that fucked up thingy")
 fun getStoragePermStatus(activity: Activity?): Boolean {
   return if (activity == null) {
     false

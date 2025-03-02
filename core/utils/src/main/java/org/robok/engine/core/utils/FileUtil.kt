@@ -1,7 +1,13 @@
 package org.robok.engine.core.utils
 
 import java.io.File
+import java.nio.file.Paths
 
+/**
+ * Basic file util
+ *
+ * @author Aquiles Trindade (trindadedev).
+ */
 object FileUtil {
 
   @JvmStatic
@@ -59,4 +65,20 @@ object FileUtil {
     list.clear()
     files.forEach { list.add(it.absolutePath) }
   }
+
+  @JvmStatic
+  fun listFilesInDir(dir: File?): List<File> {
+    val files = mutableListOf<File>()
+    if (dir != null && dir.isDirectory) {
+      dir.listFiles()?.let { files.addAll(it) }
+    }
+    return files.toList()
+  }
 }
+
+fun String.isValidPath(): Boolean =
+  try {
+    Files.exists(Paths.get(this))
+  } catch (e: Exception) {
+    false
+  }
