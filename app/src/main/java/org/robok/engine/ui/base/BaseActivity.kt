@@ -26,7 +26,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import com.google.android.material.appbar.MaterialToolbar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -34,7 +33,6 @@ import org.koin.android.ext.android.getKoin
 import org.robok.engine.core.database.viewmodels.DatabaseViewModel
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.core.utils.PermissionListener
-import org.robok.engine.core.utils.getBackPressedClickListener
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
 import org.robok.engine.defaults.DoNothing
@@ -89,16 +87,6 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   public fun isDarkMode(): Boolean {
     val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
     return currentNightMode == Configuration.UI_MODE_NIGHT_YES
-  }
-
-  /**
-   * configure toolbar back icon action in xml screens
-   *
-   * @param toolbar A Toolbar that will be configured
-   */
-  @Deprecated("Use Jetpack Compose instead.")
-  protected fun configureToolbarNavigationBack(toolbar: MaterialToolbar) {
-    toolbar.setNavigationOnClickListener(getBackPressedClickListener(onBackPressedDispatcher))
   }
 
   /**
