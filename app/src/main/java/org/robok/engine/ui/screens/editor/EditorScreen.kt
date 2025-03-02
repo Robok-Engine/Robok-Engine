@@ -218,11 +218,11 @@ private fun EditorBackHandler(editorViewModel: EditorViewModel) {
     context.enableBlur(false)
   }
 
-  if (drawerState.isOpen) {
+  if (editorViewModel.uiState.isBackClicked && drawerState.isOpen) {
     coroutineScope.launch { drawerState.close() }
   }
 
-  if (editorModalState.isExpanded) {
+  if (editorViewModel.uiState.isBackClicked && editorModalState.isExpanded) {
     coroutineScope.launch { editorModalState.close() }
   }
 }
