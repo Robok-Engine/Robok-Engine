@@ -21,7 +21,7 @@ androidx-splashscreen = "1.0.1"
 androidx-datastore-preferences = "1.1.2"
 androidx-annotation = "1.9.1"
 
-compose-activity = "1.10.0"
+compose-activity = "1.10.1"
 compose-navigation = "2.8.7"
 compose-viewmodel = "2.8.7"
 compose-material-icons-extended = "1.7.8"
