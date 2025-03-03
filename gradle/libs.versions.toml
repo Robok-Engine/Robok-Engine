@@ -32,7 +32,7 @@ compose-cloudy = "0.2.4"
 ktx-coroutines = "1.10.1"
 ktx-serialization-json = "1.8.0"
 
-io-ktor = "3.1.0"
+io-ktor = "3.1.1"
 io-koin = "4.0.2"
 io-coil = "2.7.0"
 
