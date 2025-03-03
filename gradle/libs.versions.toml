@@ -22,7 +22,7 @@ androidx-datastore-preferences = "1.1.2"
 androidx-annotation = "1.9.1"
 
 compose-activity = "1.10.0"
-compose-navigation = "2.8.7"
+compose-navigation = "2.8.8"
 compose-viewmodel = "2.8.7"
 compose-material-icons-extended = "1.7.8"
 compose-version = "1.8.0-beta02"
