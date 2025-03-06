@@ -14,6 +14,9 @@
 
 ---
 
+> [!WARNING]
+> The main maintainer of this project is currently not active, which means the project will be on hold, but you can still contribute and your PRs will be revised.
+
 ## ✨ Features
 
 - **Material Design 3 UI**: Fully developed following Google’s Material Design 3 guidelines for a modern and clean interface.
