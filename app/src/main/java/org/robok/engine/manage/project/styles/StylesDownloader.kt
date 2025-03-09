@@ -22,16 +22,12 @@ import java.io.File
 import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.ZipDownloader
 
-/**
- * All types of styles.
- */
+/** All types of styles. */
 enum class StyleType {
-    DEFAULT // Default Robok Style.
+  DEFAULT // Default Robok Style.
 }
 
-/**
- * Download styles by type.
- */
+/** Download styles by type. */
 class StylesDownloader {
 
   /**
@@ -40,9 +36,14 @@ class StylesDownloader {
    * @param context The android context to be used.
    * @param type The style to be downloaded.
    * @param outputDir where style will be downloaded.
-   * @param onResult Lambda called when successfully downloaded. 
+   * @param onResult Lambda called when successfully downloaded.
    */
-  suspend fun startDownload(context: Context, type: StyleType, outputDir: String, onResult: (Boolean) -> Unit) {
+  suspend fun startDownload(
+    context: Context,
+    type: StyleType,
+    outputDir: String,
+    onResult: (Boolean) -> Unit,
+  ) {
     val zipDownloader = ZipDownloader(context)
     val url = getUrlForType(type)
     val success = downloadAndExtract(zipDownloader, url, outputDir)
@@ -50,8 +51,8 @@ class StylesDownloader {
   }
 
   /**
-   * Basic helper to download  & extract zip with ZipDownloader. 
-   * 
+   * Basic helper to download & extract zip with ZipDownloader.
+   *
    * @param zipDownloader The Configure instance of zipDownloader
    * @param zipUrl The url to be downloaded.
    * @param outputDir where zip will be downloaded.
@@ -76,20 +77,17 @@ class StylesDownloader {
    * @param type The style type requested
    */
   private fun getUrlForType(type: StyleType): String {
-    val styleName = when (type) {
-      StyleType.DEFAULT -> Styles.DEFAULT
-      else -> "Unknow"
-    }
+    val styleName =
+      when (type) {
+        StyleType.DEFAULT -> Styles.DEFAULT
+        else -> "Unknow"
+      }
     return Styles.BASE_URL + styleName
   }
 
-  /**
-   * All Styles.
-   * used in download.
-   */
+  /** All Styles. used in download. */
   private object Styles {
     const val BASE_URL = "https://github.com/Robok-Engine/Robok-GUI-Styles/raw/refs/heads/main/"
-    const val DEFAULT =
-      "default_style.zip"
+    const val DEFAULT = "default_style.zip"
   }
 }
