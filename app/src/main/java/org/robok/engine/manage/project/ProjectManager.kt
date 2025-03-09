@@ -26,8 +26,11 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
@@ -46,6 +49,7 @@ import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project
 import org.robok.engine.manage.project.models.ProjectSettings
+import org.robok.engine.manage.project.styles.StyleType
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.logic.ScreenLogicTemplate
@@ -190,11 +194,13 @@ class ProjectManager(private var context: Context) {
 
   fun compileProject(buildLogger: Logger = Logger(), result: CompilerTask.OnCompileResult) {
     try {
+      val coroutineScope = CoroutineScope(Dispatchers.IO)
+
       SystemLogPrinter.start(context, buildLogger)
 
       copyIconToPrivate()
       compileAllAmixFiles()
-      downloadStyles()
+      coroutineScope.launch { downloadStyles() }
 
       var rdkVersion = "RDK-1"
       runBlocking { rdkVersion = rdkVersionFlow.first() }
@@ -267,13 +273,13 @@ class ProjectManager(private var context: Context) {
     amix.compile()
   }
 
-  private fun downloadStyles() {
+  private suspend fun downloadStyles() {
     // TODO: Logs on Build Bottom Sheet
     // TODO: do a for-each in hud files and verify what styles are used
     val sd = StylesDownloader()
     sd.startDownload(
       context = context,
-      type = StylesDownloader.Type.DEFAULT,
+      type = StyleType.DEFAULT,
       outputDir = "${getAndroidResPath()}/drawable/",
       onResult = { isSuccess -> },
     )

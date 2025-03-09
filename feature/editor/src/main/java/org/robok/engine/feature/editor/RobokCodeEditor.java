@@ -19,8 +19,8 @@ package org.robok.engine.feature.editor;
 
 import android.content.Context;
 import android.graphics.Typeface;
-import android.view.View;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.LinearLayout;
 import io.github.rosemoe.sora.lang.EmptyLanguage;
 import io.github.rosemoe.sora.lang.diagnostic.DiagnosticDetail;
@@ -284,16 +284,12 @@ public class RobokCodeEditor extends LinearLayout implements AntlrListener, Edit
     return this.file;
   }
 
-  /**
-   * Hides the Symbol Input View.
-   */
+  /** Hides the Symbol Input View. */
   public void hideSymbols() {
     binding.robokSymbolInput.setVisibility(View.GONE);
   }
 
-  /**
-   * Shows the Symbol Input View.
-   */
+  /** Shows the Symbol Input View. */
   public void showSymbols() {
     binding.robokSymbolInput.setVisibility(View.VISIBLE);
   }

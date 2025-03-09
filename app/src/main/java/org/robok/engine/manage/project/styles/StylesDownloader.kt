@@ -19,26 +19,44 @@ package org.robok.engine.manage.project.styles
 
 import android.content.Context
 import java.io.File
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.ZipDownloader
 
-class StylesDownloader(
-  private val coroutineScope: CoroutineScope = CoroutineScope(Dispatchers.Main)
-) {
+/** All types of styles. */
+enum class StyleType {
+  DEFAULT // Default Robok Style.
+}
 
-  fun startDownload(context: Context, type: Type, outputDir: String, onResult: (Boolean) -> Unit) {
+/** Download styles by type. */
+class StylesDownloader {
+
+  /**
+   * Starts the style download.
+   *
+   * @param context The android context to be used.
+   * @param type The style to be downloaded.
+   * @param outputDir where style will be downloaded.
+   * @param onResult Lambda called when successfully downloaded.
+   */
+  suspend fun startDownload(
+    context: Context,
+    type: StyleType,
+    outputDir: String,
+    onResult: (Boolean) -> Unit,
+  ) {
     val zipDownloader = ZipDownloader(context)
     val url = getUrlForType(type)
-
-    coroutineScope.launch {
-      val success = downloadAndExtract(zipDownloader, url, outputDir)
-      onResult(success)
-    }
+    val success = downloadAndExtract(zipDownloader, url, outputDir)
+    onResult(success)
   }
 
+  /**
+   * Basic helper to download & extract zip with ZipDownloader.
+   *
+   * @param zipDownloader The Configure instance of zipDownloader
+   * @param zipUrl The url to be downloaded.
+   * @param outputDir where zip will be downloaded.
+   */
   private suspend fun downloadAndExtract(
     zipDownloader: ZipDownloader,
     zipUrl: String,
@@ -53,18 +71,23 @@ class StylesDownloader(
     }
   }
 
-  private fun getUrlForType(type: Type): String {
-    return when (type) {
-      Type.DEFAULT -> StylesUrls.DEFAULT
-    }
+  /**
+   * Returns an URL based on StyleType.
+   *
+   * @param type The style type requested
+   */
+  private fun getUrlForType(type: StyleType): String {
+    val styleName =
+      when (type) {
+        StyleType.DEFAULT -> Styles.DEFAULT
+        else -> "Unknow"
+      }
+    return Styles.BASE_URL + styleName
   }
 
-  private object StylesUrls {
-    const val DEFAULT =
-      "https://github.com/Robok-Engine/Robok-GUI-Styles/raw/refs/heads/main/default_style.zip"
-  }
-
-  enum class Type {
-    DEFAULT
+  /** All Styles. used in download. */
+  private object Styles {
+    const val BASE_URL = "https://github.com/Robok-Engine/Robok-GUI-Styles/raw/refs/heads/main/"
+    const val DEFAULT = "default_style.zip"
   }
 }
