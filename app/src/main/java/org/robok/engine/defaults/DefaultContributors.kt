@@ -19,17 +19,15 @@ package org.robok.engine.defaults
 
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
-fun DefaultContributors(): List<Contributor> {
-  return listOf(
-    Contributor(
-      login = "Aquiles Trindade",
-      role = "Founder",
-      avatar_url = "https://github.com/trindadedev13.png",
-    ),
-    Contributor(
-      login = "Thiarley Rocha",
-      role = "Founder",
-      avatar_url = "https://github.com/thdev-only.png",
-    ),
-  )
-}
+fun DefaultContributors() = listOf(
+  Contributor(
+    login = "Aquiles Trindade",
+    role = "Founder",
+    avatar_url = "https://github.com/trindadedev13.png",
+  ),
+  Contributor(
+    login = "Thiarley Rocha",
+    role = "Founder",
+    avatar_url = "https://github.com/thdev-only.png",
+  ),
+)
