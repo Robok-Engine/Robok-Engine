@@ -17,22 +17,40 @@ package org.robok.engine.ui.screens.home
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.lazy.grid.*
-import androidx.compose.foundation.shape.*
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.rounded.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.draw.*
-import androidx.compose.ui.graphics.*
-import androidx.compose.ui.graphics.vector.*
-import androidx.compose.ui.platform.*
-import androidx.compose.ui.res.*
-import androidx.compose.ui.text.font.*
-import androidx.compose.ui.unit.*
+import androidx.compose.material.icons.rounded.Add
+import androidx.compose.material.icons.rounded.FolderOpen
+import androidx.compose.material.icons.rounded.Info
+import androidx.compose.material.icons.rounded.Settings
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.Immutable
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.ColorFilter
+import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.robok.engine.Drawables
 import org.robok.engine.Strings
 import org.robok.engine.ext.navigateSingleTop
@@ -47,6 +65,30 @@ import org.robok.engine.ui.theme.Typography
 fun HomeScreen() {
   val navController = LocalMainNavController.current
   val context = LocalContext.current
+
+  val homeCardItems =
+    listOf(
+      HomeCardItemData(
+        icon = Icons.Rounded.Add,
+        title = stringResource(id = Strings.title_create_project),
+        onClick = { navController.navigateSingleTop(route = TemplatesRoute) },
+      ),
+      HomeCardItemData(
+        icon = Icons.Rounded.FolderOpen,
+        title = stringResource(id = Strings.title_open_project),
+        onClick = { navController.navigateSingleTop(route = ManageProjectsRoute) },
+      ),
+      HomeCardItemData(
+        icon = Icons.Rounded.Settings,
+        title = stringResource(id = Strings.common_word_settings),
+        onClick = { navController.navigateSingleTop(route = SettingsRoute) },
+      ),
+      HomeCardItemData(
+        icon = Icons.Rounded.Info,
+        title = stringResource(id = Strings.title_terminal),
+        onClick = { navController.navigateSingleTop(route = TerminalRoute) },
+      ),
+    )
 
   Column(
     modifier = Modifier.fillMaxWidth().fillMaxHeight(),
@@ -77,54 +119,18 @@ fun HomeScreen() {
       contentPadding = PaddingValues(8.dp),
       modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
     ) {
-      items(4) { index ->
-        HomeCardItem(
-          icon =
-            when (index) {
-              0 -> Icons.Rounded.Add
-              1 -> Icons.Rounded.FolderOpen
-              2 -> Icons.Rounded.Settings
-              else -> Icons.Rounded.Info
-            },
-          title =
-            when (index) {
-              0 -> stringResource(id = Strings.title_create_project)
-              1 -> stringResource(id = Strings.title_open_project)
-              2 -> stringResource(id = Strings.common_word_settings)
-              else -> stringResource(id = Strings.title_terminal)
-            },
-          onClick = {
-            when (index) {
-              0 -> {
-                navController.navigateSingleTop(route = TemplatesRoute)
-              }
-
-              1 -> {
-                navController.navigateSingleTop(route = ManageProjectsRoute)
-              }
-
-              2 -> {
-                navController.navigateSingleTop(route = SettingsRoute)
-              }
-
-              else -> {
-                navController.navigateSingleTop(route = TerminalRoute)
-              }
-            }
-          },
-        )
-      }
+      items(homeCardItems) { item -> HomeCardItem(item = item) }
     }
   }
 }
 
 @Composable
-fun HomeCardItem(icon: ImageVector, title: String, onClick: () -> Unit) {
+fun HomeCardItem(item: HomeCardItemData) {
   Card(
     modifier = Modifier.padding(8.dp).height(100.dp),
     shape = MaterialTheme.shapes.medium,
     elevation = CardDefaults.cardElevation(0.dp),
-    onClick = onClick,
+    onClick = item.onClick,
   ) {
     Column(
       modifier = Modifier.padding(11.dp).fillMaxSize(),
@@ -132,12 +138,19 @@ fun HomeCardItem(icon: ImageVector, title: String, onClick: () -> Unit) {
       verticalArrangement = Arrangement.Top,
     ) {
       Image(
-        imageVector = icon,
-        contentDescription = title,
+        imageVector = item.icon,
+        contentDescription = item.title,
         modifier = Modifier.size(25.dp),
         colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
       )
-      Text(text = title, modifier = Modifier.padding(top = 8.dp), style = Typography.bodyMedium)
+      Text(
+        text = item.title,
+        modifier = Modifier.padding(top = 8.dp),
+        style = Typography.bodyMedium,
+      )
     }
   }
 }
+
+@Immutable
+data class HomeCardItemData(val icon: ImageVector, val title: String, val onClick: () -> Unit)
