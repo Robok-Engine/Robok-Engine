@@ -23,12 +23,11 @@ package org.robok.engine.defaults
 
 import org.robok.engine.models.project.ProjectTemplate
 
-fun DefaultTemplate(): ProjectTemplate {
-  return ProjectTemplate(
+fun DefaultTemplate() = 
+  ProjectTemplate(
     name = "Empty Game",
     packageName = "com.robok.empty",
     zipFileName = "empty_game.zip",
     javaSupport = true,
     kotlinSupport = false,
   )
-}
