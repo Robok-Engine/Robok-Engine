@@ -18,16 +18,17 @@ androidx-lifecycle-runtime-ktx = "2.8.7"
 androidx-core-ktx = "1.15.0"
 androidx-fragment-ktx = "1.8.6"
 androidx-splashscreen = "1.0.1"
-androidx-datastore-preferences = "1.1.2"
+androidx-datastore-preferences = "1.1.3"
 androidx-annotation = "1.9.1"
 
-compose-activity = "1.10.0"
+compose-activity = "1.10.1"
 compose-navigation = "2.8.7"
 compose-viewmodel = "2.8.7"
 compose-material-icons-extended = "1.7.8"
-compose-version = "1.8.0-beta02"
+compose-version = "1.8.0-rc01"
 compose-scrolleffect = "1.0.1"
 compose-cloudy = "0.2.4"
+compose-material3 = "1.4.0-alpha10"
 
 ktx-coroutines = "1.10.1"
 ktx-serialization-json = "1.8.0"
@@ -80,7 +81,7 @@ compose-foundation = { group = "androidx.compose.foundation", name = "foundation
 compose-foundation-layout = { group = "androidx.compose.foundation", name = "foundation-layout", version.ref = "compose-version" }
 compose-runtime = { group = "androidx.compose.runtime", name = "runtime", version.ref = "compose-version" }
 compose-material = { group = "androidx.compose.material", name = "material", version.ref = "compose-version" }
-compose-material3 = { group = "androidx.compose.material3", name = "material3", version = "1.4.0-alpha08" }
+compose-material3 = { group = "androidx.compose.material3", name = "material3", version.ref "compose-material3" }
 compose-ui = { group = "androidx.compose.ui", name = "ui", version.ref = "compose-version" }
 compose-ui-text-google-fonts = { group = "androidx.compose.ui", name = "ui-text-google-fonts", version.ref = "compose-version" }
 compose-ui-graphics = { group = "androidx.compose.ui", name = "ui-graphics", version.ref = "compose-version"}
