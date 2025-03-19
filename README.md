@@ -78,7 +78,7 @@ Help translate Robok-Engine! Visit [Weblate](https://hosted.weblate.org/engage/r
 ## 📝 TO-DO
 
 - [X] AAPT2 Compiler
-- [X] Code Diagnostics
+- [ ] Code Diagnostics
 - [X] Code Editor
 - [X] Project Creation
 - [X] File Tree
