@@ -27,7 +27,6 @@ include(":app-strings")
 include(":feature:treeview")
 include(":feature:editor")
 include(":feature:xmlviewer")
-include(":feature:apksigner")
 include(":feature:compiler")
 include(":feature:graphics:modeling")
 
