@@ -141,7 +141,7 @@ amix = { group = "com.github.AmixLang", name = "Amix", version.ref = "amix" }
 # Others
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk-libs" }
 android-r8 = { group = "com.android.tools", name = "r8", version.ref = "android-r8" }
-apksigner = { group = "com.github.Robok-Engine", name = "apk-signer", version.ref = "apk-signer" }
+apksigner = { group = "com.github.Robok-Engine", name = "apk-signer", version.ref = "apksigner" }
 [bundles]
 androidx = [
     "androidx-appcompat",
