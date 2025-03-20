@@ -36,7 +36,8 @@ dependencies {
 
   implementation(libs.google.gson)
 
-  implementation(projects.feature.apksigner)
+  implementation(libs.apksigner)
+
   implementation(projects.core.utils)
 
   implementation(libs.android.r8)
