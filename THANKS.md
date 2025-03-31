@@ -13,7 +13,6 @@ Literally EVERYTHING that was used is here.
 - Tyron for the android compiler
 - Ken Ellinwood for the ApkSigner
 - Rosemoe Sora Editor for the Sora Code Editor
-- Vivek for the XMLViewer Code Editor (Editor of see code Activity)
 - T8RIN for the ToastHost
 - Mend Renovate Bot for Dependencies  Update sim
 - WebLate for Translation

@@ -60,7 +60,6 @@ import androidx.lifecycle.lifecycleScope
 import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import org.amix.Amix
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.feature.editor.RobokCodeEditor
@@ -98,14 +97,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
 
   if (editorViewModel.uiState.isRunClicked) {
     if (editorViewModel.uiState.openedFiles.isEmpty()) return
-    val currentFile =
-      editorViewModel.uiState.openedFiles.get(editorViewModel.uiState.selectedFileIndex)
-    val extension = currentFile.name.substringAfterLast(".")
-    if (extension.equals("amix") || extension.equals("amx")) {
-      compileAmixAndOpenXmlViewer(lifecycleOwner.lifecycleScope, editorViewModel, currentFile)
-    } else {
-      editorViewModel.compileProject()
-    }
+    editorViewModel.compileProject()
     editorViewModel.setIsRunClicked(false)
   }
 
@@ -404,33 +396,8 @@ private fun handleFileExtension(editorViewModel: EditorViewModel, file: File) {
   editorViewModel.addFile(file)
 }
 
-private fun compileAmixAndOpenXmlViewer(
-  scope: CoroutineScope,
-  editorViewModel: EditorViewModel,
-  file: File,
-) {
-  val amixCode = file.readText()
-  var xmlCode = "Failed to generate source code."
-  val amix =
-    Amix.Builder()
-      .setUseStyle(true)
-      .setUseVerticalRoot(true)
-      .setCode(amixCode)
-      .setOnGenerateCode { code, _ ->
-        editorViewModel.addBuildLog(buildLog("File ${file.name} compiled successfully"))
-        scope.launch { editorViewModel.uiState.editorNavigateActions!!.onNavigateToXMLViewer(code) }
-      }
-      .setOnError { error ->
-        editorViewModel.addBuildLog(buildLog("Error compiling ${file.name}: $error"))
-      }
-      .create()
-
-  amix.compile()
-}
-
 @Immutable
 data class EditorNavigateActions(
   val popBackStack: () -> Unit,
-  val onNavigateToXMLViewer: (String) -> Unit,
   val onNavigateToProjectSettings: (String) -> Unit,
 )

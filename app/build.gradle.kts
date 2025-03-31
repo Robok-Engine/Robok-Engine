@@ -122,14 +122,11 @@ dependencies {
   implementation(libs.about.libraries.compose)
   implementation(libs.about.libraries.compose.m3)
 
-  implementation(libs.amix)
-
   // projects
   implementation(projects.appStrings)
 
   implementation(projects.feature.treeview)
   implementation(projects.feature.editor)
-  implementation(projects.feature.xmlviewer)
   implementation(projects.feature.compiler)
 
   implementation(projects.core.settings)

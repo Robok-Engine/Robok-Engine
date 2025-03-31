@@ -32,9 +32,7 @@ import org.robok.engine.navigation.routes.EditorRoute
 import org.robok.engine.navigation.routes.HomeRoute
 import org.robok.engine.navigation.routes.ProjectSettingsRoute
 import org.robok.engine.navigation.routes.TerminalRoute
-import org.robok.engine.navigation.routes.XMLViewerMainRoute
 import org.robok.engine.ui.platform.LocalMainNavController
-import org.robok.engine.ui.platform.LocalXMLViewerNavController
 import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.editor.EditorScreen
 import org.robok.engine.ui.screens.editor.LocalEditorDrawerNavController
@@ -65,7 +63,6 @@ fun MainNavHost() {
           editorNavigateActions =
             EditorNavigateActions(
               popBackStack = { navController.popBackStack() },
-              onNavigateToXMLViewer = { xml -> navController.navigate(XMLViewerMainRoute(xml)) },
               onNavigateToProjectSettings = { projectPath ->
                 navController.navigate(ProjectSettingsRoute(projectPath))
               },
@@ -76,12 +73,5 @@ fun MainNavHost() {
 
     ProjectNavGraphBuilder(navController)
     SettingsNavGraphBuilder(navController)
-
-    composable<XMLViewerMainRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
-      CompositionLocalProvider(LocalXMLViewerNavController provides rememberNavController()) {
-        val route: XMLViewerMainRoute = it.toRoute()
-        XMLViewerNavHost(xml = route.xml)
-      }
-    }
   }
 }

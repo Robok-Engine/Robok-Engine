@@ -42,7 +42,6 @@ org-antlr = "4.13.2"
 
 termux = "0.118.1"
 sora-editor = "0.23.5"
-amix = "1.0.1-alpha01"
 desugar-jdk-libs = "2.1.4"
 android-r8 = "8.7.18"
 apksigner = "1.0.0"
@@ -129,9 +128,6 @@ sora-editor = { group = "io.github.Rosemoe.sora-editor", name = "editor", versio
 sora-editor-lsp = { group = "io.github.Rosemoe.sora-editor", name = "editor-lsp", version.ref = "sora-editor" }
 sora-editor-language-java = { group = "io.github.Rosemoe.sora-editor", name = "language-java", version.ref = "sora-editor" }
 sora-editor-language-textmate = { group = "io.github.Rosemoe.sora-editor", name = "language-textmate", version.ref = "sora-editor" }
-
-# Amix Language
-amix = { group = "com.github.AmixLang", name = "Amix", version.ref = "amix" }
 
 # Others
 desugar-jdk-libs = { group = "com.android.tools", name = "desugar_jdk_libs", version.ref = "desugar-jdk-libs" }

@@ -17,10 +17,7 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
-import org.robok.engine.ui.screens.xmlviewer.viewmodel.XMLViewerViewModel
 
 val GeneralModule = module {
-  viewModelOf(::XMLViewerViewModel)
 }

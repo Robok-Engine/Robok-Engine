@@ -29,6 +29,3 @@ val LocalMainNavController =
 
 val LocalSetupNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalSetupNavController") }
-
-val LocalXMLViewerNavController =
-  compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalXMLViewerNavController") }

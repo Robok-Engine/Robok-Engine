@@ -35,7 +35,6 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
-import org.amix.Amix
 import org.koin.android.ext.android.getKoin
 import org.robok.engine.RobokApplication
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
@@ -50,8 +49,6 @@ import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project as CompilerProject
 import org.robok.engine.manage.project.models.Project
 import org.robok.engine.manage.project.models.ProjectSettings
-import org.robok.engine.manage.project.styles.StyleType
-import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
 import org.robok.engine.templates.Language
 import org.robok.engine.templates.logic.JavaScreenTemplate
@@ -210,14 +207,11 @@ class ProjectManager(private var context: Context) {
 
   fun compileProject(buildLogger: Logger = Logger(), result: CompilerTask.OnCompileResult) {
     try {
-      val coroutineScope = CoroutineScope(Dispatchers.IO)
 
       SystemLogPrinter.start(context, buildLogger)
 
       copyIconToPrivate()
-      compileAllAmixFiles()
-      coroutineScope.launch { downloadStyles() }
-
+      
       var rdkVersion = "RDK-1"
       runBlocking { rdkVersion = rdkVersionFlow.first() }
       val libs = mutableListOf<Library>()
@@ -247,58 +241,6 @@ class ProjectManager(private var context: Context) {
     } catch (e: Exception) {
       notifyBuildError(e, "build")
     }
-  }
-
-  /** compiles all .amx files of project */
-  fun compileAllAmixFiles() {
-    // TODO: Logs on Build BottomSheet
-    getAllAmixFiles().forEach { file ->
-      if (file.extension.equals("amx") || file.extension.equals("amix")) {
-        val amixCode = FileUtil.readFile(file.absolutePath)
-        val fileName = file.nameWithoutExtension
-        generateXmlFromAmix(
-          amixCode = amixCode,
-          onGenerateCode = { generatedCode, config ->
-            FileUtil.writeFile(
-              getAndroidResPath().absolutePath + "/layout/${fileName}.xml",
-              generatedCode,
-            )
-          },
-        )
-      }
-    }
-  }
-
-  /** compile .amx file and return XML result */
-  fun generateXmlFromAmix(
-    amixCode: String,
-    onGenerateCode: Amix.OnGenerateCode,
-    onError: Amix.OnError? = null,
-  ) {
-    val builder =
-      Amix.Builder()
-        .setUseComments(false)
-        .setUseStyle(true)
-        .setUseVerticalRoot(true)
-        .setCode(amixCode)
-        .setOnGenerateCode(onGenerateCode)
-
-    onError?.let { builder.setOnError(it) }
-
-    val amix = builder.create()
-    amix.compile()
-  }
-
-  private suspend fun downloadStyles() {
-    // TODO: Logs on Build Bottom Sheet
-    // TODO: do a for-each in hud files and verify what styles are used
-    val sd = StylesDownloader()
-    sd.startDownload(
-      context = context,
-      type = StyleType.DEFAULT,
-      outputDir = "${getAndroidResPath()}/drawable/",
-      onResult = { isSuccess -> },
-    )
   }
 
   private fun copyIconToPrivate() {
@@ -341,15 +283,6 @@ class ProjectManager(private var context: Context) {
 
   fun getScreensPath(): File {
     return File(projectPath, "game/assets/screens/")
-  }
-
-  fun getAllAmixFiles(): List<File> {
-    val screensFolderList = FileUtil.listFilesInDir(getScreensPath())
-    val hudFolderList = FileUtil.listFilesInDir(getHudsPath())
-    val allAmixFiles = mutableListOf<File>()
-    allAmixFiles.addAll(screensFolderList)
-    allAmixFiles.addAll(hudFolderList)
-    return allAmixFiles
   }
 
   fun getProjectSettingsFromFile(): ProjectSettings? {

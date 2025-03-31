@@ -26,7 +26,6 @@ include(":app-strings")
 
 include(":feature:treeview")
 include(":feature:editor")
-include(":feature:xmlviewer")
 include(":feature:compiler")
 
 include(":core:ui:components")
