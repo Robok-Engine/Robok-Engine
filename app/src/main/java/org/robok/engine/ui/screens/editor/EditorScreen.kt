@@ -163,6 +163,7 @@ fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActio
           editorViewModel.clearEvent()
         }
         is EditorEvent.Run -> {
+          coroutineScope.launch { editorModalState.open() }
           editorViewModel.setIsRunClicked(!editorViewModel.uiState.isRunClicked)
           editorViewModel.clearEvent()
         }
