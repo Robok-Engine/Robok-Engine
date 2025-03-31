@@ -1,4 +1,4 @@
-package org.robok.engine.defaults
+package org.robok.engine.manage.project.models
 
 /*
  *  This file is part of Robok © 2024.
@@ -14,20 +14,9 @@ package org.robok.engine.defaults
  *  GNU General Public License for more details.
  *
  *  You should have received a copy of the GNU General Public License
- *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
+ *  along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/*
- * Default template.
- */
+import kotlinx.serialization.Serializable
 
-import org.robok.engine.models.project.ProjectTemplate
-
-fun DefaultTemplate() =
-  ProjectTemplate(
-    name = "Empty Game",
-    packageName = "com.robok.empty",
-    zipFileName = "empty_game.zip",
-    javaSupport = true,
-    kotlinSupport = false,
-  )
+@Serializable data class Project(var name: String, var settings: ProjectSettings)

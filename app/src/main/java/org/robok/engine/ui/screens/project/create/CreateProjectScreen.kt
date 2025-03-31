@@ -47,6 +47,7 @@ import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.project.create.components.Buttons
 import org.robok.engine.ui.screens.project.create.components.Inputs
+import org.robok.engine.ui.screens.project.create.components.LanguageChooser
 import org.robok.engine.ui.screens.project.create.viewmodel.CreateProjectViewModel
 
 @Composable
@@ -65,9 +66,8 @@ fun CreateProjectScreen(template: ProjectTemplate) {
   }
 
   Screen(label = stringResource(id = Strings.title_create_project)) {
+    val modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 8.dp)
     PreferenceGroup(heading = stringResource(id = Strings.text_basic_info)) {
-      val modifier = Modifier.fillMaxWidth().padding(horizontal = 18.dp, vertical = 8.dp)
-
       Inputs(modifier = modifier, viewModel = viewModel)
       Buttons(
         modifier = modifier,
@@ -91,6 +91,9 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         },
         onCancel = { navController.popBackStack() },
       )
+    }
+    PreferenceGroup(heading = stringResource(Strings.text_project_language)) {
+      LanguageChooser(modifier = modifier, viewModel = viewModel)
     }
   }
   if (uiState.isLoading) {

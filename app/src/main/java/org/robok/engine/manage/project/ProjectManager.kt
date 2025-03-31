@@ -47,12 +47,15 @@ import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.compiler.android.model.Library
-import org.robok.engine.feature.compiler.android.model.Project
+import org.robok.engine.feature.compiler.android.model.Project as CompilerProject
+import org.robok.engine.manage.project.models.Project
 import org.robok.engine.manage.project.models.ProjectSettings
 import org.robok.engine.manage.project.styles.StyleType
 import org.robok.engine.manage.project.styles.StylesDownloader
 import org.robok.engine.models.project.ProjectTemplate
-import org.robok.engine.templates.logic.ScreenLogicTemplate
+import org.robok.engine.templates.Language
+import org.robok.engine.templates.logic.JavaScreenTemplate
+import org.robok.engine.templates.logic.KotlinScreenTemplate
 import org.robok.engine.templates.xml.AndroidManifestTemplate
 import org.robok.engine.templates.xml.BasicXML
 
@@ -72,7 +75,12 @@ class ProjectManager(private var context: Context) {
     preferencesViewModel = RobokApplication.getInstance().getKoin().get()
   }
 
-  fun create(projectName: String, packageName: String, template: ProjectTemplate) {
+  fun create(
+    projectName: String,
+    packageName: String,
+    language: Language,
+    template: ProjectTemplate,
+  ) {
     try {
       context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
         ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
@@ -105,7 +113,7 @@ class ProjectManager(private var context: Context) {
             zipInputStream.closeEntry()
           }
           createProjectSettingsFile()
-          createMainScreen(projectName, packageName)
+          createMainScreen(projectName, packageName, language)
           createAndroidManifest(packageName)
           createStringsFile(projectName)
           extractLibs(projectName)
@@ -118,16 +126,24 @@ class ProjectManager(private var context: Context) {
     }
   }
 
-  private fun createMainScreen(projectName: String, packageName: String) {
+  private fun createMainScreen(projectName: String, packageName: String, language: Language) {
     try {
       val template =
-        ScreenLogicTemplate().apply {
+        when (language) {
+          Language.Java -> JavaScreenTemplate()
+          else -> KotlinScreenTemplate()
+        }.apply {
           name = "MainScreen"
           this.packageName = packageName
           regenerate()
         }
 
-      val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.java"
+      val fileExt = when (language) {
+        Language.Java -> "java"
+        else -> "kt"
+      }
+
+      val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.${fileExt}"
       val javaFile = File(projectPath, classFilePath)
 
       if (javaFile?.parentFile?.exists()!!.not()) {
@@ -214,7 +230,7 @@ class ProjectManager(private var context: Context) {
       }
 
       val project =
-        Project().apply {
+        CompilerProject().apply {
           libraries = libs
           resourcesFile = getAndroidResPath()
           outputFile = File("${projectPath.absolutePath}/build/")
@@ -343,6 +359,12 @@ class ProjectManager(private var context: Context) {
     } else {
       return null
     }
+  }
+
+  fun getProject(): Project? {
+    val settings = getProjectSettingsFromFile()
+    if (settings == null) return null
+    return Project(name = getProjectName(), settings = settings!!)
   }
 
   override fun toString(): String {

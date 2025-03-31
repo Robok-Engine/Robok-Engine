@@ -26,6 +26,7 @@ import java.io.File
 import kotlinx.coroutines.launch
 import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.models.project.ProjectTemplate
+import org.robok.engine.templates.Language
 import org.robok.engine.ui.screens.project.create.state.CreateProjectUIState
 
 class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewModel() {
@@ -49,6 +50,10 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
     projectManager.projectPath = file
   }
 
+  fun setLanguage(newLanguage: Language) {
+    _uiState = _uiState.copy(language = newLanguage)
+  }
+
   fun getProjectPath(): File = projectManager.projectPath
 
   fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
@@ -70,7 +75,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
             onError(error)
           }
         }
-      projectManager.create(_uiState.projectName, _uiState.packageName, template)
+      projectManager.create(_uiState.projectName, _uiState.packageName, _uiState.language, template)
     }
   }
 }

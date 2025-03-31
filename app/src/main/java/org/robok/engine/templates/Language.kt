@@ -1,4 +1,4 @@
-package org.robok.engine.defaults
+package org.robok.engine.templates
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,17 +17,7 @@ package org.robok.engine.defaults
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/*
- * Default template.
- */
-
-import org.robok.engine.models.project.ProjectTemplate
-
-fun DefaultTemplate() =
-  ProjectTemplate(
-    name = "Empty Game",
-    packageName = "com.robok.empty",
-    zipFileName = "empty_game.zip",
-    javaSupport = true,
-    kotlinSupport = false,
-  )
+enum class Language {
+  Java,
+  Kotlin,
+}

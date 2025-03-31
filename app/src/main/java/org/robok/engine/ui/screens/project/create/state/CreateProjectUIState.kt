@@ -17,9 +17,12 @@ package org.robok.engine.ui.screens.project.create.state
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.robok.engine.templates.Language
+
 data class CreateProjectUIState(
   val projectName: String = "",
   val packageName: String = "",
   val isLoading: Boolean = false,
   val errorMessage: String? = null,
+  val language: Language = Language.Java,
 )

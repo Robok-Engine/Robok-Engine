@@ -22,7 +22,6 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
-import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Error
 import androidx.compose.material3.Button
 import androidx.compose.material3.CircularProgressIndicator
@@ -40,14 +39,12 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import java.io.File
-import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.core.components.Screen
 import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
-import org.robok.engine.ui.core.components.textfields.DynamicSelectTextField
 import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
 import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
@@ -79,6 +76,8 @@ fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         onNext = {
+          onNext()
+          /*
           if (isRDKInstalled(context, version)) {
             onNext()
           } else {
@@ -89,13 +88,14 @@ fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
               )
             }
           }
+          */
         },
         onBack = onBack,
       )
     },
   ) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
-      DynamicSelectTextField(
+      /*DynamicSelectTextField(
         modifier = modifier,
         selectedValue = version,
         options = rdkViewModel.versions,
@@ -110,6 +110,8 @@ fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
           rdkViewModel.startDownload(context, zipUrl, version)
         },
       )
+      */
+      Text(text = "Not Implemented Yet.")
     }
   }
 }

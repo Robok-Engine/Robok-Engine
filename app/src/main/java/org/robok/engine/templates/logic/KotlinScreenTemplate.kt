@@ -17,11 +17,11 @@ package org.robok.engine.templates.logic
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-open class ScreenLogicTemplate : JavaClassTemplate() {
+open class KotlinScreenTemplate : JavaClassTemplate() {
 
-  override var name: String = "ScreenLogic"
+  override var name: String = "KotlinScreen"
   override var packageName: String = "org.robok.empty"
-  override var extension: String = ".java"
+  override var extension: String = ".kt"
 
   override var code: String = generateCode()
 
@@ -31,14 +31,26 @@ open class ScreenLogicTemplate : JavaClassTemplate() {
 
   private fun generateCode(): String {
     return """
-            package $packageName;
+            package $packageName
+
+            import org.robok.gl.GLContext
+            import org.robok.screen.GameScreen
+            import org.robok.unit.Size
             
-            import org.robok.game.screen.GameScreen;
-            
-            public class $name extends GameScreen {
+            class $name: GameScreen() {
               @Override
-              public void onScreenCreated() {
-                // Initialization logic here
+              override fun GLContext.onStart() {
+                // On Game start
+              }
+
+              @Override
+              override fun GLContext.onSizeChanged(newSize: Size) {
+                // On Game Surface Size Changed
+              }
+
+              @Override
+              override fun GLContext.onUpdate() {
+                // On Frame Update
               }
             }
         """

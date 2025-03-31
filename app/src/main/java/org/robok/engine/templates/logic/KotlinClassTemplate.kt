@@ -1,4 +1,4 @@
-package org.robok.engine.defaults
+package org.robok.engine.templates.logic
 
 /*
  *  This file is part of Robok © 2024.
@@ -17,17 +17,28 @@ package org.robok.engine.defaults
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-/*
- * Default template.
- */
+import org.robok.engine.templates.CodeTemplate
 
-import org.robok.engine.models.project.ProjectTemplate
+open class KotlinClassTemplate : CodeTemplate() {
 
-fun DefaultTemplate() =
-  ProjectTemplate(
-    name = "Empty Game",
-    packageName = "com.robok.empty",
-    zipFileName = "empty_game.zip",
-    javaSupport = true,
-    kotlinSupport = false,
-  )
+  override var name: String = "KotlinClass"
+  override var packageName: String = "org.robok.empty"
+  override var extension: String = ".kt"
+
+  override var code: String = generateCode()
+
+  override fun regenerate() {
+    code = generateCode()
+  }
+
+  private fun generateCode(): String {
+    return """
+            package $packageName
+            
+            class $name {
+              // your logic
+            }
+        """
+      .trimIndent()
+  }
+}

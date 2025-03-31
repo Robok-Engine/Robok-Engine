@@ -115,7 +115,8 @@
   <string name="text_environment">Environment</string>
   <string name="text_discord">Our Server in Discord</string>
   <string name="text_swipe_up_down_build_info">Swipe up/down or click for build info and more.</string>
-  <!-- end section -->
+  <string name="text_project_language">Project Language</string>
+   <!-- end section -->
 
   <!-- go to section -->
   <string name="go_to_outputs">Go to outputs</string>
