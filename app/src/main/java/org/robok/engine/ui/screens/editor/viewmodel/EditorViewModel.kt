@@ -349,8 +349,10 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
    *
    * @param signedApk The File of apk ready to install
    */
-  override fun onCompileSuccess(signedApk: java.io.File) {
-    _buildState = BuildState.Success(signedApk as File)
+  override fun onCompileSuccess(signedApk: java.io.File?) {
+    signedApk?.let {
+      _buildState = BuildState.Success(it as File)
+    }
   }
 
   /**

@@ -22,6 +22,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 import android.widget.TextView;
+import androidx.annotation.Nullable;
 import com.android.sdklib.build.ApkBuilder;
 import java.io.File;
 import java.lang.ref.WeakReference;
@@ -43,7 +44,7 @@ import org.robok.engine.feature.compiler.robok.AssetsCompiler.LogType;
 public class CompilerTask {
 
   public interface OnCompileResult {
-    void onCompileSuccess(File file);
+    void onCompileSuccess(@Nullable File file);
 
     void onCompileError(String msg);
   }
