@@ -32,20 +32,7 @@
 # Robok
 # Engine
 -keep class org.robok.engine.ui.core.components.edges.StretchEdgeEffect { *; }
--keep class org.robok.engine.feature.modeling.** { *; }
 -keep class org.robok.engine.navigation.routes.** { *; }
-
-# Easy UI
--keep class org.robok.easyui.GUIBuilder { *; }
--keep class org.robok.easyui.components.Components { *; }
--keep class org.robok.easyui.config.Config { *; }
-# Keep the no-args constructor of the deserialized class
--keepclassmembers class org.robok.easyui.config.Config {
-  <init>();
-}
-
-# LibGDX
--keep class com.badlogic.gdx.** { *; }
 
 # Warns
 

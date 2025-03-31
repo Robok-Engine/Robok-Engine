@@ -28,7 +28,6 @@ include(":feature:treeview")
 include(":feature:editor")
 include(":feature:xmlviewer")
 include(":feature:compiler")
-include(":feature:graphics:modeling")
 
 include(":core:ui:components")
 include(":core:utils")

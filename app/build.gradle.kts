@@ -103,9 +103,6 @@ dependencies {
   implementation(libs.compose.cloudy)
   implementation(libs.compose.ui.text.google.fonts)
 
-  implementation(libs.libgdx)
-  implementation(libs.libgdx.backend.android)
-
   implementation(libs.sora.editor)
   implementation(libs.sora.editor.language.textmate)
 
@@ -134,7 +131,6 @@ dependencies {
   implementation(projects.feature.editor)
   implementation(projects.feature.xmlviewer)
   implementation(projects.feature.compiler)
-  implementation(projects.feature.graphics.modeling)
 
   implementation(projects.core.settings)
   implementation(projects.core.database)

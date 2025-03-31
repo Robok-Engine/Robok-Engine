@@ -6,7 +6,6 @@ Literally EVERYTHING that was used is here.
 - Android for JetPack Compose
 - Tom Berners Lee for xml
 - Mt Manager for code editor
-- LibGDX to Develop Game's, 3d Modeling, basically all
 - GitHub for the Actions to compile
 - Lawnchair for the some ui components (like preferences etc...)
 - Rohit Kushvaha for FileTree

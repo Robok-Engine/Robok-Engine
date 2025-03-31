@@ -44,12 +44,6 @@
       android:exported="true" />
 
     <activity
-      android:name="org.robok.engine.ui.activities.graphics.modeling.ModelingActivity"
-      android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-      android:screenOrientation="landscape"
-      android:exported="true" />
-
-    <activity
       android:name="org.robok.engine.ui.activities.xmlviewer.XMLViewerActivity"
       android:exported="true" />
 
