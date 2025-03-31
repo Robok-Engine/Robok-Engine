@@ -68,7 +68,7 @@ fun EditorModal(
       HorizontalDivider()
       Column(
         modifier =
-          Modifier.fillMaxWidth().height(50.dp).clickable {
+          Modifier.fillMaxWidth().height(55.dp).clickable {
             coroutineScope.launch { editorModalState.toggle() }
           },
         horizontalAlignment = Alignment.CenterHorizontally,
