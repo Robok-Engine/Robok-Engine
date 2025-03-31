@@ -64,7 +64,7 @@ public class AAPT2Compiler extends Compiler {
     for (Library library : new ArrayList<>(librariesList)) {
       if (new File(binPath, "/res/" + library.getName() + ".zip").exists()) {
         librariesList.remove(library); // remove the library from the list so it wont get compiled
-        onProgressUpdate(TAG, "Removing " + library.getName() + " to speed up compilation");
+        onProgressUpdate("Removing " + library.getName() + " to speed up compilation");
       }
     }
     File[] childs = binPath.listFiles();

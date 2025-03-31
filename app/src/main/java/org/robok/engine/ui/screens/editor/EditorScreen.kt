@@ -62,6 +62,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -83,7 +84,12 @@ import org.robok.engine.ui.screens.editor.viewmodel.buildLog
 @Composable
 fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
   val context = LocalContext.current
-  val editorViewModel = koinViewModel<EditorViewModel>().apply { this.context = context }
+  // maybe instanciate loggerviewmodel in viewmodel is better but aahhh lazy
+  val lvm = koinViewModel<LoggerViewModel>()
+  val editorViewModel = koinViewModel<EditorViewModel>().apply {
+    loggerViewModel = lvm
+    this.context = context
+  }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(projectPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current
@@ -254,7 +260,7 @@ private fun EditorScreenContent(modifier: Modifier = Modifier, editorViewModel: 
                 editorViewModel.uiState.logs.forEach { log ->
                   Text(text = String.format("%s: %s", log.tag, log.message))
                 }
-                editorViewModel.getLogsFromLogger().forEach { log ->
+                editorViewModel.getLogsFromLoggerViewModel().forEach { log ->
                   Text(text = String.format("%s: %s", log.tag, log.message))
                 }
               }
@@ -361,6 +367,7 @@ private fun EditorToolbar(
           EditorTopBarAction(
             name = stringResource(id = Strings.common_word_run),
             icon = Icons.Rounded.PlayArrow,
+            visible = uiState.hasFileOpen,
             onClick = { editorViewModel.run() },
           ),
           EditorTopBarAction(

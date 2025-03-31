@@ -21,12 +21,12 @@ import android.content.Context
 import java.io.OutputStream
 import java.io.PrintStream
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.feature.compiler.android.logger.Logger
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 
 object SystemLogPrinter {
 
   @JvmStatic
-  fun start(glbContext: Context, logger: Logger) {
+  fun start(glbContext: Context, logger: LoggerViewModel) {
     // Reset the log file
     FileUtil.writeFile("${glbContext.getExternalFilesDir(null)}/logs.txt", "")
 

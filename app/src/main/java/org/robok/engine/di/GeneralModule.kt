@@ -17,7 +17,10 @@ package org.robok.engine.di
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import org.koin.core.module.dsl.viewModelOf
 import org.koin.dsl.module
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 
 val GeneralModule = module {
+  viewModelOf(::LoggerViewModel)
 }

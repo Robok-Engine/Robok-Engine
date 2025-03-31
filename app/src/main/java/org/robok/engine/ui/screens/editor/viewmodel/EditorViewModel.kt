@@ -22,10 +22,11 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.feature.compiler.android.CompilerTask
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.compiler.android.logger.Log as CompilerLog
-import org.robok.engine.feature.compiler.android.logger.Logger
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -53,8 +54,8 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
 
   var context: Context? = null
 
-  /** the instance of logger of build */
-  private var logger = Logger()
+  /** the instance of LoggerViewModel of build */
+  var loggerViewModel: LoggerViewModel? = null
 
   /**
    * Defines if can undo
@@ -117,7 +118,7 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
 
   /** init the compilation */
   fun compileProject() {
-    _projectManager?.compileProject(logger, this)
+    _projectManager?.compileProject(loggerViewModel!!, this)
   }
 
   /** triggered when request to redo an action */
@@ -333,8 +334,11 @@ class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
   }
 
   /** Returns a list with build logs. */
-  fun getLogsFromLogger(): List<CompilerLog> = logger.logs
-
+  fun getLogsFromLoggerViewModel(): List<CompilerLog> {
+    return loggerViewModel?.let {
+      it.logs
+    } ?: emptyList()
+  }
   /** clear event after action */
   fun clearEvent() {
     _editorEvent = null

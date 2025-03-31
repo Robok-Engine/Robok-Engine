@@ -44,7 +44,7 @@ import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
 import org.robok.engine.feature.compiler.android.CompilerTask
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
-import org.robok.engine.feature.compiler.android.logger.Logger
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.compiler.android.model.Library
 import org.robok.engine.feature.compiler.android.model.Project as CompilerProject
 import org.robok.engine.manage.project.models.Project
@@ -205,10 +205,10 @@ class ProjectManager(private var context: Context) {
   val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
 
-  fun compileProject(buildLogger: Logger = Logger(), result: CompilerTask.OnCompileResult) {
+  fun compileProject(buildLoggerViewModel: LoggerViewModel, result: CompilerTask.OnCompileResult) {
     try {
 
-      SystemLogPrinter.start(context, buildLogger)
+      SystemLogPrinter.start(context, buildLoggerViewModel)
 
       copyIconToPrivate()
       
@@ -230,7 +230,7 @@ class ProjectManager(private var context: Context) {
           outputFile = File("${projectPath.absolutePath}/build/")
           javaFile = File("${projectPath.absolutePath}/game/logic/")
           manifestFile = File(getAndroidManifestFile().absolutePath)
-          logger = buildLogger
+          logger = buildLoggerViewModel
           minSdk = ProjectBuildConfig.MIN_SDK
           targetSdk = ProjectBuildConfig.TARGET_SDK
           rootPath = projectPath

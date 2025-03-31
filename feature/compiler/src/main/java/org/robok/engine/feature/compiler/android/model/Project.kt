@@ -18,7 +18,7 @@ package org.robok.engine.feature.compiler.android.model
  */
 
 import java.io.File
-import org.robok.engine.feature.compiler.android.logger.Logger
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 
 data class Project(
   var outputFile: File? = null,
@@ -31,6 +31,6 @@ data class Project(
   var versionName: String = "1.0",
   var libraries: MutableList<Library>? = null,
   var assetsFile: File? = null,
-  var logger: Logger? = null,
+  var logger: LoggerViewModel? = null,
   var rootPath: File? = null,
 )

@@ -38,6 +38,8 @@ dependencies {
 
   implementation(libs.apksigner)
 
+  implementation(libs.compose.runtime)
+
   implementation(projects.core.utils)
 
   implementation(libs.android.r8)
