@@ -133,7 +133,6 @@ dependencies {
   implementation(projects.core.database)
   implementation(projects.core.ui.components)
   implementation(projects.core.utils)
-  implementation(projects.core.antlr4.java)
 }
 
 fun execAndGetOutput(vararg command: String): String {

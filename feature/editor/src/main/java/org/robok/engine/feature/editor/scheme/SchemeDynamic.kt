@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.schemes
+package org.robok.engine.feature.editor.scheme
 
 /*
  *  This file is part of Robok © 2024.
@@ -28,7 +28,7 @@ import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import org.robok.engine.feature.editor.R
 import org.robok.engine.res.ResUtils
 
-class SchemeRobok(context: Context) : SchemeDarcula() {
+class SchemeDynamic(context: Context) : SchemeDarcula() {
 
   val context: Context
   val resUtils: ResUtils

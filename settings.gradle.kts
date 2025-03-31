@@ -30,6 +30,5 @@ include(":feature:compiler")
 
 include(":core:ui:components")
 include(":core:utils")
-include(":core:antlr4:java")
 include(":core:settings")
 include(":core:database")

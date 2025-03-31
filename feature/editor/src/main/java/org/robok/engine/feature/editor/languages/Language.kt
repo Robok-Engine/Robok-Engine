@@ -17,7 +17,6 @@ package org.robok.engine.feature.editor.languages
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
-import org.robok.engine.core.antlr4.java.AntlrListener
 import org.robok.engine.feature.editor.EditorListener
 
 /*
@@ -32,10 +31,4 @@ interface Language : io.github.rosemoe.sora.lang.Language {
    * @link EditorListener.kt
    */
   fun setEditorListener(editorListener: EditorListener)
-
-  /*
-   * Set the listener of editor
-   * @link AntlrListener, module robok:robok:antlr4
-   */
-  fun setAntlrListener(antlrListener: AntlrListener)
 }

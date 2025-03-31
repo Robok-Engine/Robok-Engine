@@ -16,7 +16,6 @@ Literally EVERYTHING that was used is here.
 - T8RIN for the ToastHost
 - Mend Renovate Bot for Dependencies  Update sim
 - WebLate for Translation
-- Antlr4 for code analysis
 - Coil for Load Images with URL
 - Koin for dependency injector
 - Ktor for HTTP Requests

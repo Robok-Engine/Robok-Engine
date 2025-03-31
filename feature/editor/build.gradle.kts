@@ -44,11 +44,7 @@ dependencies {
   implementation(libs.sora.editor.language.java)
   implementation(libs.sora.editor.language.textmate)
 
-  implementation(libs.antlr4)
-  implementation(libs.antlr4.runtime)
-
   implementation(projects.appStrings)
   implementation(projects.core.settings)
   implementation(projects.core.utils)
-  implementation(projects.core.antlr4.java)
 }

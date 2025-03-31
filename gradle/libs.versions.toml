@@ -38,7 +38,6 @@ io-koin = "4.0.2"
 io-coil = "2.7.0"
 
 org-slf4j = "1.7.36"
-org-antlr = "4.13.2"
 
 termux = "0.118.1"
 sora-editor = "0.23.5"
@@ -114,10 +113,6 @@ koin-androidx-compose = { group = "io.insert-koin", name = "koin-androidx-compos
 
 # Coil
 coil-compose = { group = "io.coil-kt", name = "coil-compose", version.ref = "io-coil" }
-
-# ANTLR4
-antlr4 = { group = "org.antlr", name = "antlr4", version.ref = "org-antlr" }
-antlr4-runtime = { group = "org.antlr", name = "antlr4-runtime", version.ref = "org-antlr" }
 
 # Termux Terminal
 termux-terminal-view = { group = "com.termux.termux-app", name = "terminal-view", version.ref = "termux" }
