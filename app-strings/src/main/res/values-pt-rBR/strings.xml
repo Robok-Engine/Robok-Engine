@@ -151,4 +151,5 @@
     <string name="title_discord">Discord</string>
     <string name="text_exit_with_save">Salvar e Sair</string>
     <string name="text_discord">Nosso servidor no Discord</string>
+    <string name="text_project_language">Linguagem do Projeto</string>
 </resources>
