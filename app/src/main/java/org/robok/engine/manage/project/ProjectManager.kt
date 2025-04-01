@@ -80,7 +80,7 @@ class ProjectManager(private var context: Context) {
     template: ProjectTemplate,
   ) {
     try {
-      context.assets?.open(template.zipFileName)?.use { zipFileInputStream ->
+      context.assets?.open("templates/${template.zipFileName}")?.use { zipFileInputStream ->
         ZipInputStream(BufferedInputStream(zipFileInputStream)).use { zipInputStream ->
           if (!projectPath.exists()) {
             projectPath.mkdirs()

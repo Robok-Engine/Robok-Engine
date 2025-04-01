@@ -27,7 +27,7 @@ fun DefaultTemplate() =
   ProjectTemplate(
     name = "MyEmptyGame",
     packageName = "com.my.emptygame",
-    zipFileName = "template/empty_game.zip",
+    zipFileName = "empty_game.zip",
     javaSupport = true,
     kotlinSupport = false,
   )
