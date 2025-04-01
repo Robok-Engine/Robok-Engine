@@ -151,4 +151,5 @@
     <string name="title_discord">Discord</string>
     <string name="text_discord">Наш сервер у Discord</string>
     <string name="text_exit_with_save">Вийдіть із збереженням</string>
+    <string name="text_project_language">Мова проекту</string>
 </resources>
