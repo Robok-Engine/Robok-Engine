@@ -26,7 +26,6 @@ import org.robok.engine.navigation.routes.SettingsAppRoute
 import org.robok.engine.navigation.routes.SettingsCodeEditorRoute
 import org.robok.engine.navigation.routes.SettingsDebugLoggingRoute
 import org.robok.engine.navigation.routes.SettingsDebugRoute
-import org.robok.engine.navigation.routes.SettingsRDKRoute
 import org.robok.engine.navigation.routes.SettingsRoute
 import org.robok.engine.ui.screens.settings.SettingsScreen
 import org.robok.engine.ui.screens.settings.about.AboutScreen

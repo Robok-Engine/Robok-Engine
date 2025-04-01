@@ -43,7 +43,6 @@ fun SettingsScreen() {
   val navController = LocalMainNavController.current
   Screen(label = stringResource(id = Strings.common_word_settings)) {
     GeneralCategories(navController)
-    BuildCategories(navController)
     AboutCategories(navController)
     DebugOnlyCategories(navController)
   }
