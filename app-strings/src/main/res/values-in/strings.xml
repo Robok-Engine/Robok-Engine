@@ -146,4 +146,10 @@
     <string name="text_exit_with_save">Keluar dan Simpan</string>
     <string name="text_discord">Server Kami di Discord</string>
     <string name="text_swipe_up_down_build_info">Geser ke atas/bawah atau klik untuk info build dan lainnya.</string>
+    <string name="text_serif">Serif</string>
+    <string name="title_github">GitHub</string>
+    <string name="text_monospace">Monospace</string>
+    <string name="text_sans_serif">Sans Serif</string>
+    <string name="title_whatsapp">WhatsApp</string>
+    <string name="title_discord">Discord</string>
 </resources>
