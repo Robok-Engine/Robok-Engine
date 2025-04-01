@@ -92,7 +92,7 @@ class ProjectManager(private var context: Context) {
               val outputFileName =
                 entryName
                   .replace(template.name, projectName)
-                  .replace("game/logic/\$pkgName", "game/logic/${packageName.replace('.', '/')}")
+                  .replace("game/src/logic/\$pkgName", "game/src/logic/${packageName.replace('.', '/')}")
               val outputFile = File(projectPath, outputFileName)
 
               if (outputFile?.parentFile?.exists()!!.not()) {
@@ -140,7 +140,7 @@ class ProjectManager(private var context: Context) {
         else -> "kt"
       }
 
-      val classFilePath = "game/logic/${packageName.replace('.', '/')}/${template.name}.${fileExt}"
+      val classFilePath = "game/src/logic/${packageName.replace('.', '/')}/${template.name}.${fileExt}"
       val javaFile = File(projectPath, classFilePath)
 
       if (javaFile?.parentFile?.exists()!!.not()) {
@@ -166,7 +166,7 @@ class ProjectManager(private var context: Context) {
       }
     Log.d(TAG, stringsFile.code)
     FileUtil.writeFile(
-      "${projectPath.absolutePath}/game/assets/texts/strings.xml",
+      "${projectPath.absolutePath}/game/src/resources/texts/strings.xml",
       stringsFile.code,
     )
   }
@@ -191,7 +191,7 @@ class ProjectManager(private var context: Context) {
       ProjectSettings(
         gameName = getProjectName(),
         mainScreenName = "MainScreen",
-        gameIconPath = "game/assets/images/game_icon.png",
+        gameIconPath = "game/src/resources/images/game_icon.png",
       )
     FileUtil.writeFile(getProjectSettingsFile().absolutePath, getJson().encodeToString(config))
   }
@@ -228,7 +228,7 @@ class ProjectManager(private var context: Context) {
           libraries = libs
           resourcesFile = getAndroidResPath()
           outputFile = File("${projectPath.absolutePath}/build/")
-          javaFile = File("${projectPath.absolutePath}/game/logic/")
+          javaFile = File("${projectPath.absolutePath}/game/src/logic/")
           manifestFile = File(getAndroidManifestFile().absolutePath)
           logger = buildLoggerViewModel
           minSdk = ProjectBuildConfig.MIN_SDK
@@ -275,14 +275,6 @@ class ProjectManager(private var context: Context) {
 
   fun getProjectSettingsFile(): File {
     return File(projectPath, ".robok/config.json")
-  }
-
-  fun getHudsPath(): File {
-    return File(projectPath, "game/assets/hud/")
-  }
-
-  fun getScreensPath(): File {
-    return File(projectPath, "game/assets/screens/")
   }
 
   fun getProjectSettingsFromFile(): ProjectSettings? {

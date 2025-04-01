@@ -37,9 +37,9 @@ import org.robok.engine.feature.compiler.android.incremental.IncrementalD8Compil
 import org.robok.engine.feature.compiler.android.incremental.IncrementalECJCompiler;
 import org.robok.engine.feature.compiler.android.model.Library;
 import org.robok.engine.feature.compiler.android.model.Project;
-import org.robok.engine.feature.compiler.robok.AssetsCompiler;
-import org.robok.engine.feature.compiler.robok.AssetsCompiler.Log;
-import org.robok.engine.feature.compiler.robok.AssetsCompiler.LogType;
+import org.robok.engine.feature.compiler.robok.ResourcesCompiler;
+import org.robok.engine.feature.compiler.robok.ResourcesCompiler.Log;
+import org.robok.engine.feature.compiler.robok.ResourcesCompiler.LogType;
 
 public class CompilerTask {
 
@@ -91,7 +91,7 @@ public class CompilerTask {
     try {
       this.project = project;
 
-      if (startAssetsCompiler()) {
+      if (startResourcesCompiler()) {
         compilationSteps.add(true);
 
         if (startAaptCompiler()) {
@@ -130,22 +130,21 @@ public class CompilerTask {
   }
 
   /*
-   * compile /sdcard/Robok/projects/$projectName/assets
+   * compile /sdcard/Robok/projects/$projectName/game/src/resources
    * to android structure in private dir
-   * @param buildLogger A Terminal Logger instante
    */
-  private boolean startAssetsCompiler() {
-    var assetsCompiler = new AssetsCompiler(mContext.get(), project.getRootPath());
+  private boolean startResourcesCompiler() {
+    var assetsCompiler = new ResourcesCompiler(mContext.get(), project.getRootPath());
     var hasError = new AtomicBoolean(false);
 
     assetsCompiler.setCompileListener(
         logs -> {
           for (Log log : logs) {
             if (log.getType() == LogType.NORMAL) {
-              publishProgress("AssetsCompiler", log.getText());
+              publishProgress("ResourcesCompiler", log.getText());
               hasError.set(false);
             } else {
-              project.getLogger().e("AssetsCompiler", log.getText());
+              project.getLogger().e("ResourcesCompiler", log.getText());
               hasError.set(true);
             }
           }

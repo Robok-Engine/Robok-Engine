@@ -21,14 +21,14 @@ import android.content.Context
 import java.io.File
 import org.robok.engine.core.utils.FileUtil
 
-class AssetsCompiler(val context: Context, val projectPath: File) {
+class ResourcesCompiler(val context: Context, val projectPath: File) {
 
   lateinit var projectName: String
   var logs: MutableList<Log>? = null
   lateinit var compileListener: CompileListener
 
   companion object {
-    private const val TAG = "AssetsCompiler"
+    private const val TAG = "ResourcesCompiler"
   }
 
   @FunctionalInterface
