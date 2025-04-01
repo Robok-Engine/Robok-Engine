@@ -23,7 +23,6 @@ import kotlinx.coroutines.launch
 import org.robok.engine.core.settings.repositories.PreferencesRepository
 
 class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel() {
-  val installedRDKVersion = repo.installedRDKVersion
   val appIsUseMonet = repo.appIsUseMonet
   val appIsUseAmoled = repo.appIsUseAmoled
   val editorTheme = repo.editorTheme
@@ -32,10 +31,6 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   val editorFont = repo.editorFont
 
   var onAppThemePreferenceChange: () -> Unit = {}
-
-  fun setInstalledRDKVersion(value: String) {
-    viewModelScope.launch { repo.setInstalledRDKVersion(value) }
-  }
 
   fun setMonetEnable(value: Boolean) {
     onAppThemePreferenceChange()

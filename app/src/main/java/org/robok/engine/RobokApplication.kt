@@ -35,7 +35,6 @@ import org.robok.engine.di.GeneralModule
 import org.robok.engine.di.PreferencesModule
 import org.robok.engine.di.ProjectModule
 import org.robok.engine.di.SettingsModule
-import org.robok.engine.di.SettingsRDKModule
 import org.robok.engine.ui.activities.debug.AppFailureActivity
 
 /*
@@ -96,7 +95,6 @@ class RobokApplication : Application() {
         PreferencesModule,
         ProjectModule,
         SettingsModule,
-        SettingsRDKModule,
       )
     }
   }

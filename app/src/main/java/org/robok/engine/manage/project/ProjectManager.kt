@@ -202,26 +202,16 @@ class ProjectManager(private var context: Context) {
     extractZipFromAssets(context, "libs.zip", getLibsPath())
   }
 
-  val rdkVersionFlow: Flow<String>
-    get() = preferencesViewModel.installedRDKVersion
-
   fun compileProject(buildLoggerViewModel: LoggerViewModel, result: OnCompileResult) {
     try {
 
       SystemLogPrinter.start(context, buildLoggerViewModel)
 
       copyIconToPrivate()
-      
-      var rdkVersion = "RDK-1"
-      runBlocking { rdkVersion = rdkVersionFlow.first() }
+
       val libs = mutableListOf<Library>()
 
       libs.addAll(Library.fromFile(getLibsPath()))
-
-      val jarDir = File(context.filesDir, "${rdkVersion}/jar/")
-      if (jarDir.exists()) {
-        libs.addAll(Library.fromFile(jarDir))
-      }
 
       val project =
         CompilerProject().apply {

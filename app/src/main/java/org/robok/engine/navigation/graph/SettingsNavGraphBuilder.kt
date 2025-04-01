@@ -35,7 +35,6 @@ import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
 import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen
 import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
-import org.robok.engine.ui.screens.settings.rdk.SettingsRDKScreen
 
 fun NavGraphBuilder.SettingsNavGraphBuilder(navController: NavHostController) {
   composable<SettingsRoute> { SettingsScreen() }
@@ -43,8 +42,6 @@ fun NavGraphBuilder.SettingsNavGraphBuilder(navController: NavHostController) {
   composable<SettingsAppRoute> { SettingsAppScreen() }
 
   composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
-
-  composable<SettingsRDKRoute> { SettingsRDKScreen() }
 
   composable<SettingsDebugRoute> {
     SettingsDebugScreen(onNavigate = { route -> navController.navigate(route) })

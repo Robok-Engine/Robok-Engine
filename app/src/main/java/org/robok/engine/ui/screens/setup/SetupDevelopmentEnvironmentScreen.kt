@@ -46,25 +46,10 @@ import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.core.components.Screen
 import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.ui.core.components.toast.LocalToastHostState
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.DownloadState
-import org.robok.engine.ui.screens.settings.rdk.viewmodel.SettingsRDKViewModel
 import org.robok.engine.ui.screens.setup.components.BottomButtons
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
-  val context = LocalContext.current
-  val toastHostState = LocalToastHostState.current
-  val coroutineScope = rememberCoroutineScope()
-  val rdkViewModel = koinViewModel<SettingsRDKViewModel>()
-  val appPrefsViewModel = koinViewModel<PreferencesViewModel>()
-  val installedRDKVersion by
-    appPrefsViewModel.installedRDKVersion.collectAsState(
-      initial = DefaultValues.INSTALLED_RDK_VERSION
-    )
-  var version by remember { mutableStateOf(installedRDKVersion) }
-  val zipUrl = stringResource(Strings.link_rdk, version)
-  val downloadState = rdkViewModel.downloadState
   val modifier = Modifier.padding(horizontal = 18.dp, vertical = 8.dp)
 
   BackHandler { onBack() }
@@ -76,67 +61,16 @@ fun SetupDevelopmentEnvironmentScreen(onBack: () -> Unit, onNext: () -> Unit) {
       BottomButtons(
         modifier = Modifier.fillMaxWidth().padding(16.dp),
         onNext = {
+          // check if tools are downloaded with success before go next
           onNext()
-          /*
-          if (isRDKInstalled(context, version)) {
-            onNext()
-          } else {
-            coroutineScope.launch {
-              toastHostState.showToast(
-                message = context.getString(Strings.setup_development_environment_not_finish),
-                icon = Icons.Rounded.Error,
-              )
-            }
-          }
-          */
         },
         onBack = onBack,
       )
     },
   ) {
+    // Soon Robok SDK Configuration
     PreferenceGroup(heading = stringResource(id = Strings.settings_configure_rdk_version)) {
-      /*DynamicSelectTextField(
-        modifier = modifier,
-        selectedValue = version,
-        options = rdkViewModel.versions,
-        label = stringResource(id = Strings.settings_configure_rdk_version),
-        onValueChangedEvent = { selectedVersion -> version = selectedVersion },
-      )
-      DownloadStateContent(
-        modifier = modifier,
-        downloadState = downloadState,
-        onSaveClick = {
-          appPrefsViewModel.setInstalledRDKVersion(version)
-          rdkViewModel.startDownload(context, zipUrl, version)
-        },
-      )
-      */
       Text(modifier = modifier, text = "Robok SDK is Still Under Development.")
     }
-  }
-}
-
-private fun isRDKInstalled(context: Context, version: String): Boolean {
-  val dir = File(context.filesDir, version)
-  return dir.exists()
-}
-
-@Composable
-private fun DownloadStateContent(
-  modifier: Modifier,
-  downloadState: DownloadState,
-  onSaveClick: () -> Unit,
-) {
-  when (downloadState) {
-    is DownloadState.NotStarted -> {
-      Button(modifier = modifier.fillMaxWidth(), onClick = onSaveClick) {
-        Text(text = stringResource(id = Strings.common_word_save))
-      }
-    }
-    is DownloadState.Loading -> CircularProgressIndicator(modifier = modifier)
-    is DownloadState.Success ->
-      Text(modifier = modifier, text = (downloadState as DownloadState.Success).message)
-    is DownloadState.Error ->
-      Text(modifier = modifier, text = (downloadState as DownloadState.Error).error)
   }
 }

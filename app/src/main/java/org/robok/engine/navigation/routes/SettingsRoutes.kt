@@ -24,8 +24,6 @@ import kotlinx.serialization.Serializable
 
 @Serializable object SettingsCodeEditorRoute : Route
 
-@Serializable object SettingsRDKRoute : Route
-
 @Serializable object AboutRoute : Route
 
 @Serializable object AboutLibrariesRoute : Route

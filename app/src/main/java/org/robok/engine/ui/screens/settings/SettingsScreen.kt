@@ -34,7 +34,6 @@ import org.robok.engine.navigation.routes.AboutRoute
 import org.robok.engine.navigation.routes.SettingsAppRoute
 import org.robok.engine.navigation.routes.SettingsCodeEditorRoute
 import org.robok.engine.navigation.routes.SettingsDebugRoute
-import org.robok.engine.navigation.routes.SettingsRDKRoute
 import org.robok.engine.ui.core.components.Screen
 import org.robok.engine.ui.core.components.preferences.category.PreferenceCategory
 import org.robok.engine.ui.platform.LocalMainNavController
@@ -63,16 +62,6 @@ fun GeneralCategories(navController: NavHostController) {
     description = stringResource(id = Strings.settings_code_editor_description),
     icon = Icons.Rounded.Edit,
     onClick = { navController.navigateSingleTop(route = SettingsCodeEditorRoute) },
-  )
-}
-
-@Composable
-fun BuildCategories(navController: NavHostController) {
-  PreferenceCategory(
-    title = stringResource(id = Strings.settings_configure_rdk_title),
-    description = stringResource(id = Strings.settings_configure_rdk_description),
-    icon = Icons.Rounded.DeveloperMode,
-    onClick = { navController.navigateSingleTop(route = SettingsRDKRoute) },
   )
 }
 
