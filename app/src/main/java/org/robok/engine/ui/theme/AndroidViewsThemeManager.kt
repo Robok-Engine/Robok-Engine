@@ -20,6 +20,7 @@ import org.robok.engine.ui.base.BaseActivity
  */
 const val TAG = "AndroidViewsThemeManager"
 
+@Deprecated("Use Compose Instead.")
 class AndroidViewsThemeManager private constructor() {
 
   companion object {
