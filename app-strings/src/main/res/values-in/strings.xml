@@ -2,7 +2,7 @@
 <resources>
     <string name="common_word_code">Kode</string>
     <string name="common_word_settings">Pengaturan</string>
-    <string name="common_word_cancel">BATAL</string>
+    <string name="common_word_cancel">Batal</string>
     <string name="common_word_next">Selanjutnya</string>
     <string name="common_word_normal">Normal</string>
     <string name="common_word_retry">Coba lagi</string>
@@ -21,7 +21,7 @@
     <string name="warning_storage_perm_message">Robok memerlukan izin penyimpanan untuk membuat proyek, membuka proyek, dan banyak lagi</string>
     <string name="warning_project_created_message">Proyek Anda telah berhasil dibuat!</string>
     <string name="text_seeus">Lihat kami</string>
-    <string name="text_sans_serif">Sans-Serif</string>
+    <string name="text_sans_serif"></string>
     <string name="settings_configure_rdk_select_rdk_label">Pilih versi RDK</string>
     <string name="settings_configure_rdk_version">Tentukan Versi RDK</string>
     <string name="text_diagnostic">Diagnostik</string>
@@ -56,8 +56,8 @@
     <string name="text_logs">Catatan</string>
     <string name="text_error_details">Detail kesalahan:</string>
     <string name="text_bold">Tebal</string>
-    <string name="text_monospace">Monospace</string>
-    <string name="text_serif">Serif</string>
+    <string name="text_monospace"></string>
+    <string name="text_serif"></string>
     <string name="warning_storage_perm_title">Izin penyimpanan</string>
     <string name="warning_all_files_perm_message">di Android 11+, agar Robok berfungsi dengan baik, diperlukan izin untuk mengakses semua file.</string>
     <string name="warning_project_created_title">Proyek Berhasil Dibuat!</string>
@@ -72,7 +72,7 @@
     <string name="template_name_empty_game">Game Kosong</string>
     <string name="slogan">Java Menjadi Game dalam Sekejap</string>
     <string name="text_contributors">Kontributor</string>
-    <string name="title_gui_viewer">­Penampil Gui</string>
+    <string name="title_gui_viewer">Penampil Gui</string>
     <string name="common_word_ok">OKE</string>
     <string name="common_word_templates">Templat</string>
     <string name="common_word_open">Buka</string>
@@ -104,7 +104,7 @@
     <string name="text_open_contributor_profile">Buka Profil %s di Peramban</string>
     <string name="text_telegram">Komunitas Telegram Kami</string>
     <string name="text_libraries">Perpustakaan yang kami gunakan</string>
-    <string name="text_logging">Logging</string>
+    <string name="text_logging">Pencatatan Log</string>
     <string name="text_all_logs">Semua Log</string>
     <string name="text_basic_info">Informasi dasar</string>
     <string name="text_error_info">Info kesalahan</string>
@@ -139,8 +139,15 @@
     <string name="role_translator">Penerjemah</string>
     <string name="role_developers">Pengembang</string>
     <string name="settings_debug_description">Pengaturan Eksperimental/Pengujian</string>
-    <string name="text_exit_without_save">Keluar tanpa simpan</string>
+    <string name="text_exit_without_save">Keluar tanpa Simpan</string>
     <string name="warning_exit_project_title">Keluar dari Proyek</string>
     <string name="warning_no_logs">Tidak ada log.</string>
     <string name="loading_logs">Memuat log...</string>
+    <string name="text_project_language">Bahasa Proyek</string>
+    <string name="title_telegram">Telegram</string>
+    <string name="title_whatsapp"></string>
+    <string name="title_project_initialized">Proyek telah diinisialisasi.</string>
+    <string name="text_exit_with_save">Keluar dan Simpan</string>
+    <string name="text_discord">Server Kami di Discord</string>
+    <string name="text_swipe_up_down_build_info">Geser ke atas/bawah atau klik untuk info build dan lainnya.</string>
 </resources>
