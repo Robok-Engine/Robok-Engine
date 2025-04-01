@@ -114,7 +114,8 @@ class ProjectManager(private var context: Context) {
           createMainScreen(projectName, packageName, language)
           createAndroidManifest(packageName)
           createStringsFile(projectName)
-          extractLibs(projectName)
+          extractLibs()
+          creationListener.onProjectCreate()
         }
       }
     } catch (e: FileNotFoundException) {
@@ -197,10 +198,8 @@ class ProjectManager(private var context: Context) {
     FileUtil.writeFile(getProjectSettingsFile().absolutePath, getJson().encodeToString(config))
   }
 
-  private fun extractLibs(projectName: String) {
+  private fun extractLibs() {
     extractZipFromAssets(context, "libs.zip", getLibsPath())
-
-    creationListener.onProjectCreate()
   }
 
   val rdkVersionFlow: Flow<String>
