@@ -21,7 +21,6 @@
     <string name="warning_storage_perm_message">Robok memerlukan izin penyimpanan untuk membuat proyek, membuka proyek, dan banyak lagi</string>
     <string name="warning_project_created_message">Proyek Anda telah berhasil dibuat!</string>
     <string name="text_seeus">Lihat kami</string>
-    <string name="text_sans_serif"></string>
     <string name="settings_configure_rdk_select_rdk_label">Pilih versi RDK</string>
     <string name="settings_configure_rdk_version">Tentukan Versi RDK</string>
     <string name="text_diagnostic">Diagnostik</string>
@@ -56,8 +55,6 @@
     <string name="text_logs">Catatan</string>
     <string name="text_error_details">Detail kesalahan:</string>
     <string name="text_bold">Tebal</string>
-    <string name="text_monospace"></string>
-    <string name="text_serif"></string>
     <string name="warning_storage_perm_title">Izin penyimpanan</string>
     <string name="warning_all_files_perm_message">di Android 11+, agar Robok berfungsi dengan baik, diperlukan izin untuk mengakses semua file.</string>
     <string name="warning_project_created_title">Proyek Berhasil Dibuat!</string>
@@ -145,7 +142,6 @@
     <string name="loading_logs">Memuat log...</string>
     <string name="text_project_language">Bahasa Proyek</string>
     <string name="title_telegram">Telegram</string>
-    <string name="title_whatsapp"></string>
     <string name="title_project_initialized">Proyek telah diinisialisasi.</string>
     <string name="text_exit_with_save">Keluar dan Simpan</string>
     <string name="text_discord">Server Kami di Discord</string>
