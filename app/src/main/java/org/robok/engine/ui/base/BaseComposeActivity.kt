@@ -61,6 +61,13 @@ abstract class BaseComposeActivity : BaseActivity() {
     super.onCreate(savedInstanceState)
     permissionsState.isStoragePermissionAllow = getStoragePermStatus(this)
     setContent { RobokTheme { Screen() } }
+    permissionsLoop()
+  }
+
+  private fun permissionsLoop() {
+    while (true) {
+      permissionsState.isStoragePermissionAllow = getStoragePermStatus(this)
+    }
   }
 
   @Composable
