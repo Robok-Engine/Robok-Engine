@@ -43,6 +43,7 @@ import org.robok.engine.core.utils.Log
 import org.robok.engine.core.utils.extractZipFromAssets
 import org.robok.engine.core.utils.isValidPath
 import org.robok.engine.feature.compiler.android.CompilerTask
+import org.robok.engine.feature.compiler.android.OnCompileResult
 import org.robok.engine.feature.compiler.android.SystemLogPrinter
 import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.compiler.android.model.Library
@@ -205,7 +206,7 @@ class ProjectManager(private var context: Context) {
   val rdkVersionFlow: Flow<String>
     get() = preferencesViewModel.installedRDKVersion
 
-  fun compileProject(buildLoggerViewModel: LoggerViewModel, result: CompilerTask.OnCompileResult) {
+  fun compileProject(buildLoggerViewModel: LoggerViewModel, result: OnCompileResult) {
     try {
 
       SystemLogPrinter.start(context, buildLoggerViewModel)

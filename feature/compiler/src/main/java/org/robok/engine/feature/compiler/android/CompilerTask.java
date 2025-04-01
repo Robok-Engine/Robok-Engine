@@ -43,12 +43,6 @@ import org.robok.engine.feature.compiler.robok.ResourcesCompiler.LogType;
 
 public class CompilerTask {
 
-  public interface OnCompileResult {
-    void onCompileSuccess(@Nullable File file);
-
-    void onCompileError(String msg);
-  }
-
   private final WeakReference<Context> mContext;
   private final Handler mHandler;
   private final ExecutorService mExecutor;

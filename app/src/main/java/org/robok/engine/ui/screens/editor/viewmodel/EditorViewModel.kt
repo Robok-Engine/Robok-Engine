@@ -24,7 +24,7 @@ import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.utils.FileUtil
-import org.robok.engine.feature.compiler.android.CompilerTask
+import org.robok.engine.feature.compiler.android.OnCompileResult
 import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.compiler.android.logger.Log as CompilerLog
 import org.robok.engine.feature.editor.RobokCodeEditor
@@ -35,7 +35,7 @@ import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.state.BuildState
 import org.robok.engine.ui.screens.editor.state.EditorUIState
 
-class EditorViewModel : ViewModel(), CompilerTask.OnCompileResult {
+class EditorViewModel : ViewModel(), OnCompileResult {
   private var _uiState by mutableStateOf(EditorUIState())
   val uiState: EditorUIState
     get() = _uiState
