@@ -22,25 +22,18 @@
 
 
 # Keep
+
 -keep class io.github.rosemoe.sora.widget.** { *; }
 
+-keep class com.android.sdklib.** { *; }
+
+-keep class org.robok.engine.navigation.routes.** { *; }
 -keep class org.eclipse.jdt.internal.compiler.** { *; }
 
--keep class com.android.sdklib.** { *; }
 -keep class sun.security.** { *; }
-
-# Robok
-# Engine
--keep class org.robok.engine.ui.core.components.edges.StretchEdgeEffect { *; }
--keep class org.robok.engine.navigation.routes.** { *; }
 
 # Warns
 
-# Robok
--dontwarn org.robok.engine.feature.component.compose.edge.StretchEdgeEffect
-
-# Other
--dontwarn org.eclipse.jdt.internal.compiler.**
 -dontwarn com.android.SdkConstants
 -dontwarn com.android.dvlib.DeviceSchema
 -dontwarn com.android.io.FolderWrapper
@@ -164,6 +157,9 @@
 -dontwarn com.google.common.io.Closeables
 -dontwarn com.google.common.io.Closer
 -dontwarn com.google.common.io.Files
+
+-dontwarn org.eclipse.jdt.internal.compiler.**
+
 -dontwarn java.awt.Dimension
 -dontwarn java.awt.Point
 -dontwarn javax.xml.bind.DatatypeConverter
@@ -189,6 +185,9 @@
 -dontwarn javax.xml.bind.annotation.XmlType
 -dontwarn javax.xml.bind.annotation.adapters.CollapsedStringAdapter
 -dontwarn javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter
+-dontwarn javax.xml.stream.XMLInputFactory
+-dontwarn javax.xml.stream.XMLStreamReader
+
 -dontwarn sun.misc.BASE64Encoder
 -dontwarn sun.security.pkcs.ContentInfo
 -dontwarn sun.security.pkcs.PKCS7
