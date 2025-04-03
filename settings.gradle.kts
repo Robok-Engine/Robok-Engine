@@ -32,3 +32,6 @@ include(":core:ui:components")
 include(":core:utils")
 include(":core:settings")
 include(":core:database")
+
+// submodule
+include(":sdk")
