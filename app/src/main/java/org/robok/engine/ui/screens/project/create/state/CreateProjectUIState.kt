@@ -23,6 +23,5 @@ data class CreateProjectUIState(
   val projectName: String = "",
   val packageName: String = "",
   val isLoading: Boolean = false,
-  val errorMessage: String? = null,
   val language: Language = Language.Java,
 )

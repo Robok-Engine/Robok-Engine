@@ -74,7 +74,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         viewModel = viewModel,
         onCreate = {
           viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, uiState.projectName))
-          viewModel.createProject(
+          viewModel.create(
             template,
             onSuccess = {
               navController.navigateSingleTop(EditorRoute(viewModel.getProjectPath().absolutePath))
@@ -82,7 +82,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
             onError = { error ->
               coroutineScope.launch {
                 toastHostState.showToast(
-                  message = context.getString(Strings.title_un_error_ocurred),
+                  message = error,
                   icon = Icons.Rounded.Error,
                 )
               }

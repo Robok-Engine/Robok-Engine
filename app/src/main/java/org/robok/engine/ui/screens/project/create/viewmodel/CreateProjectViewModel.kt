@@ -42,10 +42,6 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
     _uiState = _uiState.copy(packageName = name)
   }
 
-  fun setErrorMessage(message: String?) {
-    _uiState = _uiState.copy(errorMessage = message ?: "Null Message")
-  }
-
   fun setProjectPath(file: File) {
     projectManager.projectPath = file
   }
@@ -56,26 +52,35 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
 
   fun getProjectPath(): File = projectManager.projectPath
 
-  fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
+  fun create(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
+    _uiState = _uiState.copy(isLoading = true)
+    viewModelScope.launch {
+      createProject(
+        template = template,
+        onSuccess = onSuccess,
+        onError = onError
+      )
+    }
+  }
+
+  private suspend fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
     if (_uiState.projectName.isEmpty() || _uiState.packageName.isEmpty()) {
-      _uiState = _uiState.copy(errorMessage = "Project name and package name cannot be empty.")
+      onError("Project name and package name cannot be empty.")
       return
     }
 
-    viewModelScope.launch {
-      _uiState = _uiState.copy(isLoading = true, errorMessage = null)
-      projectManager.creationListener =
-        object : ProjectManager.CreationListener {
-          override fun onProjectCreate() {
-            onSuccess()
-            _uiState = _uiState.copy(isLoading = false)
-          }
-
-          override fun onProjectCreateError(error: String) {
-            onError(error)
-          }
+    projectManager.creationListener =
+      object : ProjectManager.CreationListener {
+        override fun onProjectCreate() {
+          _uiState = _uiState.copy(isLoading = false)
+          onSuccess()
         }
-      projectManager.create(_uiState.projectName, _uiState.packageName, _uiState.language, template)
-    }
+
+        override fun onProjectCreateError(error: String) {
+          _uiState = _uiState.copy(isLoading = false)
+          onError(error)
+        }
+      }
+    projectManager.create(_uiState.projectName, _uiState.packageName, _uiState.language, template)
   }
 }
