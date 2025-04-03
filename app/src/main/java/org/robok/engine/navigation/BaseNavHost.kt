@@ -32,7 +32,10 @@ import androidx.navigation.compose.NavHost
 import kotlin.jvm.JvmSuppressWildcards
 import kotlin.reflect.KClass
 import kotlin.reflect.KType
-import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions.FadeSlide
+import org.robok.engine.ui.animations.navigation.NavigationAnimationTransitions
+
+/** The Transition used in NavHost. */
+private val TransitionAnimation = NavigationAnimationTransitions.SlideFade
 
 /**
  * Base NavHost for all NavHosts. with the animations already defined.
@@ -61,25 +64,25 @@ public fun BaseNavHost(
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) =
     {
-      FadeSlide.enterTransition
+      TransitionAnimation.enterTransition
     },
   exitTransition:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) =
     {
-      FadeSlide.exitTransition
+      TransitionAnimation.exitTransition
     },
   popEnterTransition:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> EnterTransition) =
     {
-      FadeSlide.popEnterTransition
+      TransitionAnimation.popEnterTransition
     },
   popExitTransition:
     (@JvmSuppressWildcards
     AnimatedContentTransitionScope<NavBackStackEntry>.() -> ExitTransition) =
     {
-      FadeSlide.popExitTransition
+      TransitionAnimation.popExitTransition
     },
   sizeTransform:
     (@JvmSuppressWildcards
