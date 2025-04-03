@@ -2,7 +2,7 @@ Contributing to the Robok project—a modern game engine written in Kotlin—enh
 
 1. **Understand the Project**: Begin by familiarizing yourself with features, architecture, and coding standards.
 
-2. **Communication Channels**: For questions, suggestions, or discussions, utilize the project's [Telegram group](https://t.me/robokinc)
+2. **Communication Channels**: For questions, suggestions, or discussions, utilize the project's [Telegram group](https://t.me/robokengine)
 
 3. **Reporting Issues**:
    - **Identify Bugs**: If you discover a bug, check the existing issues to see if it's already reported.
