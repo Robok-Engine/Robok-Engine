@@ -46,6 +46,10 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
     projectManager.projectPath = file
   }
 
+  fun setIsLoading(newIsLoading: Boolean) {
+    _uiState = _uiState.copy(isLoading = newIsLoading)
+  }
+
   fun setLanguage(newLanguage: Language) {
     _uiState = _uiState.copy(language = newLanguage)
   }
@@ -53,7 +57,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
   fun getProjectPath(): File = projectManager.projectPath
 
   fun create(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
-    _uiState = _uiState.copy(isLoading = true)
+    setIsLoading(true)
     viewModelScope.launch {
       createProject(
         template = template,
@@ -65,7 +69,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
 
   private suspend fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
     if (_uiState.projectName.isEmpty() || _uiState.packageName.isEmpty()) {
-      _uiState = _uiState.copy(isLoading = false)
+      setIsLoading(false)
       onError("Project name and package name cannot be empty.")
       return
     }
@@ -73,12 +77,12 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
     projectManager.creationListener =
       object : ProjectManager.CreationListener {
         override fun onProjectCreate() {
-          _uiState = _uiState.copy(isLoading = false)
+          setIsLoading(false)
           onSuccess()
         }
 
         override fun onProjectCreateError(error: String) {
-          _uiState = _uiState.copy(isLoading = false)
+          setIsLoading(false)
           onError(error)
         }
       }

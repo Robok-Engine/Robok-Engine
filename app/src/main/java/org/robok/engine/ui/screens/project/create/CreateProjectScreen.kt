@@ -73,6 +73,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
         modifier = modifier,
         viewModel = viewModel,
         onCreate = {
+          viewModel.setIsLoading(true)
           viewModel.setProjectPath(File(ProjectManager.PROJECTS_PATH, uiState.projectName))
           viewModel.create(
             template,
