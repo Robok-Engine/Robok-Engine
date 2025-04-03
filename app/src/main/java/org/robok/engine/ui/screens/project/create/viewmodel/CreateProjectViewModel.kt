@@ -65,6 +65,7 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
 
   private suspend fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
     if (_uiState.projectName.isEmpty() || _uiState.packageName.isEmpty()) {
+      _uiState = _uiState.copy(isLoading = false)
       onError("Project name and package name cannot be empty.")
       return
     }
