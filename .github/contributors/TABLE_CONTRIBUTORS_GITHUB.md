@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1796 | Founder |
+| trindadedev13 | 1800 | Founder |
 | ThDev-only | 210 | Developer |
 | renovate[bot] | 184 | Bot |
 | RohitKushvaha01 | 16 | Developer |
@@ -13,7 +13,6 @@
 | Paxsenix0 | 5 | Translator |
 | Xori71 | 1 | Translator |
 | weblate | 12 | Bot |
-| SyntaxSpins | 29 | Developer |
 | ELPRR0 | 1 | Translator |
 | SketchwareOwner | 35 | Bot |
 | Mustiy0 | 1 | Translator |
