@@ -1,6 +1,6 @@
 | Contributor | Contributions | Role |
 | ------------ | -------------- | ---- |
-| trindadedev13 | 1763 | Founder |
+| trindadedev13 | 1796 | Founder |
 | ThDev-only | 210 | Developer |
 | renovate[bot] | 184 | Bot |
 | RohitKushvaha01 | 16 | Developer |
@@ -10,11 +10,12 @@
 | teixeira0x | 6 | Developer |
 | Yamenher | 7 | Translator |
 | itsvks19 | 3 | Developer |
-| Paxsenix0 | 4 | Translator |
+| Paxsenix0 | 5 | Translator |
 | Xori71 | 1 | Translator |
-| weblate | 11 | Bot |
+| weblate | 12 | Bot |
 | SyntaxSpins | 29 | Developer |
 | ELPRR0 | 1 | Translator |
 | SketchwareOwner | 35 | Bot |
 | Mustiy0 | 1 | Translator |
-| Maksim2005UA | 1 | Translator |
+| Maksim2005UA | 2 | Translator |
+| SyntaxSpin | 29 | N/A |
