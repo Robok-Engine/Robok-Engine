@@ -71,7 +71,7 @@ class MainActivity : BaseComposeActivity() {
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     val appIsUseMonet by preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
-    val appThemeSeedColor by preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+    val appThemeSeedColor: Int by preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
     val appThemePaletteStyleIndex by preferences.appThemePaletteStyleIndex.collectAsState(initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX)
     val dynamicScheme = rememberDynamicScheme()
     val tonalPalettes = if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) dynamicScheme.toTonalPalettes() else Color(appThemeSeedColor).toTonalPalettes(paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot })
