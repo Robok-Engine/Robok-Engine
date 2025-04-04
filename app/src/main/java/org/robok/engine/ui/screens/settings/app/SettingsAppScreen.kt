@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
@@ -30,7 +29,6 @@ import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.navigation.routes.Route
 import org.robok.engine.navigation.routes.SettingsAppThemeColorsRoute
-import org.robok.engine.ui.base.reloadTheme
 import org.robok.engine.ui.core.components.Screen
 import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.ui.core.components.preferences.normal.Preference
@@ -52,7 +50,6 @@ private fun AppearancePreference(
   preferencesViewModel: PreferencesViewModel,
   onNavigate: (Route) -> Unit,
 ) {
-  val context = LocalContext.current
   val appIsUseMonet by
     preferencesViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
   val appIsUseAmoled by
@@ -69,7 +66,6 @@ private fun AppearancePreference(
   PreferenceSwitch(
     checked = appIsUseMonet,
     onCheckedChange = { newValue ->
-      context.reloadTheme()
       preferencesViewModel.setMonetEnable(newValue)
     },
     title = stringResource(id = Strings.settings_app_use_monet_title),
@@ -80,7 +76,6 @@ private fun AppearancePreference(
     checked = appIsUseAmoled,
     onCheckedChange = { newValue ->
       preferencesViewModel.setAmoledEnable(newValue)
-      context.reloadTheme()
     },
     title = stringResource(id = Strings.settings_app_use_amoled_title),
     description = stringResource(id = Strings.settings_app_use_amoled_description),
