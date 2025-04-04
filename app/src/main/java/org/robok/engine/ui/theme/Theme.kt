@@ -41,13 +41,13 @@ import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.text.style.LineBreak
 import androidx.compose.ui.text.style.TextDirection
 import androidx.core.view.WindowCompat
+import com.google.android.material.color.MaterialColors
+import com.kyant.monet.LocalTonalPalettes
+import com.kyant.monet.dynamicColorScheme
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ui.platform.LocalThemeFixedColorRoles
-import com.google.android.material.color.MaterialColors
-import com.kyant.monet.LocalTonalPalettes
-import com.kyant.monet.dynamicColorScheme
 
 fun Color.applyOpacity(enabled: Boolean): Color {
   return if (enabled) this else this.copy(alpha = 0.62f)
@@ -130,7 +130,7 @@ fun RobokTheme(
       colorScheme = colorScheme,
       typography = Typography,
       shapes = Shapes,
-      content = content
+      content = content,
     )
   }
 }
