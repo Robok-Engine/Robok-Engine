@@ -71,7 +71,7 @@ abstract class BaseComposeActivity : BaseActivity() {
     }
     ProvideCompositionLocals {
       Box(
-        modifier = Modifier.fillMaxSize().blur(radius = blurRadius, isBlurEnable = isBlurEnable)
+        modifier = Modifier.fillMaxSize().blur(radius = blurRadius, isBlurEnable = false) // remove blur for now
       ) {
         onScreenCreated()
       }
