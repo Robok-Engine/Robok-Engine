@@ -43,7 +43,7 @@ class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
     dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.IS_USE_AMOLED }
 
   val appThemeSeedColor =
-    dataStore.data.map { it[appThemeSeedColorPreference] ?: DefaultValues.APP_THEME_SEED }
+    dataStore.data.map { it[appThemeSeedColorPreference] ?: DefaultValues.APP_THEME_SEED_COLOR }
 
   val appThemePaletteStyleIndex =
     dataStore.data.map { it[appThemePaletteStyleIndexPreference] ?: DefaultValues.APP_THEME_PALETTE_STYLE_INDEX }
