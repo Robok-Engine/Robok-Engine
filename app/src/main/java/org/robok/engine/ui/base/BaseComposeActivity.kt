@@ -17,6 +17,7 @@ package org.robok.engine.ui.base
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -32,6 +33,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import com.kyant.monet.LocalTonalPalettes
+import com.kyant.monet.PaletteStyle
+import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
 import org.robok.engine.Strings
 import org.robok.engine.core.database.DefaultValues
 import org.robok.engine.core.utils.getStoragePermStatus
@@ -40,7 +45,12 @@ import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.core.components.toast.ToastHost
 import org.robok.engine.ui.core.components.toast.rememberToastHostState
 import org.robok.engine.ui.draw.blur
+import org.robok.engine.ui.platform.LocalThemeDynamicColor
+import org.robok.engine.ui.platform.LocalThemePaletteStyleIndex
+import org.robok.engine.ui.platform.LocalThemeSeedColor
 import org.robok.engine.ui.theme.RobokTheme
+import org.robok.engine.ui.theme.paletteStyles
+import org.robok.engine.ui.theme.rememberDynamicScheme
 
 /** Base activity for all compose activities. */
 abstract class BaseComposeActivity : BaseActivity() {
@@ -60,7 +70,13 @@ abstract class BaseComposeActivity : BaseActivity() {
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
     permissionsState.isStoragePermissionAllow = getStoragePermStatus(this)
-    setContent { RobokTheme { Screen() } }
+    setContent {
+      ProvideCompositionLocals {
+        RobokTheme {
+          Screen()
+        }
+      }
+    }
   }
 
   @Composable
@@ -69,16 +85,15 @@ abstract class BaseComposeActivity : BaseActivity() {
     if (!isFirstTime) {
       HandlePermissions()
     }
-    ProvideCompositionLocals {
-      Box(
-        modifier =
-          Modifier.fillMaxSize()
-            .blur(radius = blurRadius, isBlurEnable = false) // remove blur for now
-      ) {
-        onScreenCreated()
-      }
-      ToastHost()
+
+    Box(
+      modifier =
+        Modifier.fillMaxSize()
+          .blur(radius = blurRadius, isBlurEnable = false) // remove blur for now
+    ) {
+      onScreenCreated()
     }
+    ToastHost()
   }
 
   /** verify if permission values, ask if is denied */
@@ -142,7 +157,27 @@ abstract class BaseComposeActivity : BaseActivity() {
 
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val appIsUseMonet by
+      preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+    val appThemeSeedColor: Int by
+      preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+    val appThemePaletteStyleIndex by
+      preferences.appThemePaletteStyleIndex.collectAsState(
+        initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
+      )
+    val tonalPalettes =
+      if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) rememberDynamicScheme().toTonalPalettes()
+      else
+        Color(appThemeSeedColor)
+          .toTonalPalettes(
+            paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot }
+          )
+
     CompositionLocalProvider(
+      LocalThemeSeedColor provides appThemeSeedColor,
+      LocalThemePaletteStyleIndex provides appThemePaletteStyleIndex,
+      LocalThemeDynamicColor provides appIsUseMonet,
+      LocalTonalPalettes provides tonalPalettes,
       LocalToastHostState provides rememberToastHostState(),
       content = content,
     )
