@@ -22,6 +22,9 @@ import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 import com.kyant.monet.PaletteStyle
 
+const val STYLE_TONAL_SPOT = 0
+const val STYLE_MONOCHROME = 4
+
 val paletteStyles =
   listOf(
     PaletteStyle.TonalSpot,
