@@ -27,6 +27,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
@@ -34,12 +35,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.style.LineBreak
+import androidx.compose.ui.text.style.TextDirection
 import androidx.core.view.WindowCompat
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.platform.LocalThemeFixedColorRoles
+import com.google.android.material.color.MaterialColors
 import com.kyant.monet.LocalTonalPalettes
 import com.kyant.monet.dynamicColorScheme
 
@@ -117,7 +123,7 @@ fun RobokTheme(
   }
 
   CompositionLocalProvider(
-    LocalFixedColorRoles provides FixedColorRoles.fromTonalPalettes(tonalPalettes),
+    LocalThemeFixedColorRoles provides FixedColorRoles.fromTonalPalettes(tonalPalettes),
     LocalTextStyle provides textStyle,
   ) {
     MaterialTheme(
