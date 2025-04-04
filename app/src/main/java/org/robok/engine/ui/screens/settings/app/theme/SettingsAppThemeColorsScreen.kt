@@ -18,6 +18,7 @@ package org.robok.engine.ui.screens.settings.app.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.res.stringResource
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel

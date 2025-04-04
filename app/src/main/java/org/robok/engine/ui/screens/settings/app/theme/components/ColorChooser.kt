@@ -18,8 +18,10 @@ package org.robok.engine.ui.screens.settings.app.theme.components
 
 import androidx.compose.animation.core.animateDpAsState
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -74,6 +76,8 @@ public fun ColorChooser(
   onChangeThemeSeedColor: (Int, Int) -> Unit,
   onChangeDynamicColors: (Boolean) -> Unit,
 ) {
+  val pageCount = ColorList.size + 1
+
   val pagerState =
     rememberPagerState(
       initialPage =
