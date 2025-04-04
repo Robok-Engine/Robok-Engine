@@ -42,6 +42,8 @@ import org.robok.engine.ui.platform.LocalFirstNavController
 import org.robok.engine.ui.platform.LocalThemeSeedColor
 import org.robok.engine.ui.platform.LocalThemePaletteStyleIndex
 import org.robok.engine.ui.platform.LocalThemeDynamicColor
+import org.robok.engine.ui.theme.paletteStyles
+import org.robok.engine.ui.theme.rememberDynamicScheme
 import com.kyant.monet.LocalTonalPalettes
 import com.kyant.monet.PaletteStyle
 import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
@@ -71,7 +73,8 @@ class MainActivity : BaseComposeActivity() {
     val appIsUseMonet by preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
     val appThemeSeedColor by preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
     val appThemePaletteStyleIndex by preferences.appThemePaletteStyleIndex.collectAsState(initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX)
-    val tonalPalettes = if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) dynamicDarkColorScheme(LocalContext.current).toTonalPalettes() else Color(appThemeSeedColor).toTonalPalettes(paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot })
+    val dynamicScheme = rememberDynamicScheme()
+    val tonalPalettes = if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) dynamicScheme.toTonalPalettes() else Color(appThemeSeedColor).toTonalPalettes(paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot })
     CompositionLocalProvider(
       LocalFirstNavController provides rememberNavController(),
       LocalThemeSeedColor provides appThemeSeedColor,

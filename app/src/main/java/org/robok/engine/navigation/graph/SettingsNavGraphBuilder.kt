@@ -31,6 +31,7 @@ import org.robok.engine.navigation.routes.SettingsRoute
 import org.robok.engine.ui.screens.settings.SettingsScreen
 import org.robok.engine.ui.screens.settings.about.AboutScreen
 import org.robok.engine.ui.screens.settings.app.SettingsAppScreen
+import org.robok.engine.ui.screens.settings.app.theme.SettingsAppThemeColorsScreen
 import org.robok.engine.ui.screens.settings.debug.SettingsDebugScreen
 import org.robok.engine.ui.screens.settings.debug.logging.SettingsDebugLoggingScreen
 import org.robok.engine.ui.screens.settings.editor.SettingsCodeEditorScreen

@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.settings.app.color
+package org.robok.engine.ui.screens.settings.app.theme.components
 
 /*
  * Copyright 2025 Robok.
