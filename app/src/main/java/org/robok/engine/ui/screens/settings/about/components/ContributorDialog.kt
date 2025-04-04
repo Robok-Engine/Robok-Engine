@@ -31,12 +31,13 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.Strings
+import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 @Composable
 fun ContributorDialog(contributor: Contributor, onDismissRequest: () -> Unit) {
   val uriHandler = LocalUriHandler.current
-  AlertDialog(
+  EnhancedAlertDialog(
     onDismissRequest = onDismissRequest,
     title = { Text(text = stringResource(Strings.title_open_contributor_profile)) },
     text = {

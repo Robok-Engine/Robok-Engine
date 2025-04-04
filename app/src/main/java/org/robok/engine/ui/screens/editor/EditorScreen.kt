@@ -35,7 +35,6 @@ import androidx.compose.material.icons.rounded.PlayArrow
 import androidx.compose.material.icons.rounded.Redo
 import androidx.compose.material.icons.rounded.Save
 import androidx.compose.material.icons.rounded.Undo
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.MaterialTheme
@@ -69,6 +68,7 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
 import org.robok.engine.ui.core.components.animation.ExpandAndShrink
+import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
 import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.draw.enableBlur
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar
@@ -187,7 +187,7 @@ private fun EditorBackHandler(editorViewModel: EditorViewModel) {
 
   if (editorViewModel.uiState.isBackClicked) {
     context.enableBlur(true)
-    AlertDialog(
+    EnhancedAlertDialog(
       title = { Text(text = stringResource(Strings.warning_exit_project_title)) },
       text = { Text(text = stringResource(Strings.warning_exit_project_message)) },
       onDismissRequest = { editorViewModel.setIsBackClicked(false) },

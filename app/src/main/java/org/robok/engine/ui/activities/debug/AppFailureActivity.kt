@@ -23,7 +23,6 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.selection.SelectionContainer
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
@@ -43,6 +42,7 @@ import androidx.compose.ui.unit.dp
 import org.robok.engine.Strings
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.core.components.Screen
+import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
 import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.ui.core.components.utils.addIf
 import org.robok.engine.ui.draw.enableBlur
@@ -90,7 +90,7 @@ class AppFailureActivity : BaseComposeActivity() {
 
     if (showDialog) {
       enableBlur(true)
-      AlertDialog(
+      EnhancedAlertDialog(
         onDismissRequest = {
           showDialog = false
           enableBlur(false)

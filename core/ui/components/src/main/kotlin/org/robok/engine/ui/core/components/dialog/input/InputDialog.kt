@@ -23,6 +23,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import org.robok.engine.strings.Strings
+import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
 
 /*
  * A Basic Dialog with Text Field for input.
@@ -37,7 +38,7 @@ fun InputDialog(
   onConfirm: () -> Unit,
   onDismiss: () -> Unit,
 ) {
-  AlertDialog(
+  EnhancedAlertDialog(
     onDismissRequest = onDismiss,
     title = { Text(text = title) },
     text = {
