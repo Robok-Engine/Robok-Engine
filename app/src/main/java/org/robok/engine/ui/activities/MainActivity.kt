@@ -76,9 +76,8 @@ class MainActivity : BaseComposeActivity() {
       preferences.appThemePaletteStyleIndex.collectAsState(
         initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
       )
-    val dynamicScheme = rememberDynamicScheme()
     val tonalPalettes =
-      if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) dynamicScheme.toTonalPalettes()
+      if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) rememberDynamicScheme().toTonalPalettes()
       else
         Color(appThemeSeedColor)
           .toTonalPalettes(
