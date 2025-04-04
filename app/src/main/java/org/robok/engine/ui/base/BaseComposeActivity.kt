@@ -80,6 +80,34 @@ abstract class BaseComposeActivity : BaseActivity() {
   }
 
   @Composable
+  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val appIsUseMonet by
+      preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+    val appThemeSeedColor: Int by
+      preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+    val appThemePaletteStyleIndex by
+      preferences.appThemePaletteStyleIndex.collectAsState(
+        initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
+      )
+    val tonalPalettes =
+      if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) rememberDynamicScheme().toTonalPalettes()
+      else
+        Color(appThemeSeedColor)
+          .toTonalPalettes(
+            paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot }
+          )
+
+    CompositionLocalProvider(
+      LocalThemeSeedColor provides appThemeSeedColor,
+      LocalThemePaletteStyleIndex provides appThemePaletteStyleIndex,
+      LocalThemeDynamicColor provides appIsUseMonet,
+      LocalTonalPalettes provides tonalPalettes,
+      LocalToastHostState provides rememberToastHostState(),
+      content = content,
+    )
+  }
+
+  @Composable
   private fun Screen() {
     val isFirstTime by database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
     if (!isFirstTime) {
@@ -154,34 +182,6 @@ abstract class BaseComposeActivity : BaseActivity() {
   }
 
   @Composable protected abstract fun onScreenCreated()
-
-  @Composable
-  private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
-    val appIsUseMonet by
-      preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
-    val appThemeSeedColor: Int by
-      preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
-    val appThemePaletteStyleIndex by
-      preferences.appThemePaletteStyleIndex.collectAsState(
-        initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
-      )
-    val tonalPalettes =
-      if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) rememberDynamicScheme().toTonalPalettes()
-      else
-        Color(appThemeSeedColor)
-          .toTonalPalettes(
-            paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot }
-          )
-
-    CompositionLocalProvider(
-      LocalThemeSeedColor provides appThemeSeedColor,
-      LocalThemePaletteStyleIndex provides appThemePaletteStyleIndex,
-      LocalThemeDynamicColor provides appIsUseMonet,
-      LocalTonalPalettes provides tonalPalettes,
-      LocalToastHostState provides rememberToastHostState(),
-      content = content,
-    )
-  }
 
   /**
    * data class used to store permission dialog values
