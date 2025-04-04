@@ -24,7 +24,6 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.navigation.NavHostController
 import org.robok.engine.core.settings.DefaultValues.APP_THEME_SEED_COLOR
 import org.robok.engine.noLocalProvidedFor
-import org.robok.engine.ui.theme.FixedColorRoles
 
 val LocalFirstNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalFirstNavController") }
@@ -40,7 +39,3 @@ val LocalThemeSeedColor = compositionLocalOf { APP_THEME_SEED_COLOR }
 val LocalThemeDynamicColor = compositionLocalOf { false }
 
 val LocalThemePaletteStyleIndex = compositionLocalOf { 0 }
-
-val LocalThemeFixedColorRoles = staticCompositionLocalOf {
-  FixedColorRoles.fromColorSchemes(lightColors = lightColorScheme(), darkColors = darkColorScheme())
-}
