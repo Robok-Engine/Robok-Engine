@@ -38,7 +38,8 @@ import com.kyant.monet.LocalTonalPalettes
 import com.kyant.monet.PaletteStyle
 import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
 import org.robok.engine.Strings
-import org.robok.engine.core.database.DefaultValues
+import org.robok.engine.core.database.DefaultValues as DBDefaultValues
+import org.robok.engine.core.settings.DefaultValues as PrefsDefaultValues
 import org.robok.engine.core.utils.getStoragePermStatus
 import org.robok.engine.ui.core.components.dialog.permission.PermissionDialog
 import org.robok.engine.ui.core.components.toast.LocalToastHostState
@@ -82,12 +83,12 @@ abstract class BaseComposeActivity : BaseActivity() {
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
     val appIsUseMonet by
-      preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+      preferences.appIsUseMonet.collectAsState(initial = PrefsDefaultValues.IS_USE_MONET)
     val appThemeSeedColor: Int by
-      preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+      preferences.appThemeSeedColor.collectAsState(initial = PrefsDefaultValues.APP_THEME_SEED_COLOR)
     val appThemePaletteStyleIndex by
       preferences.appThemePaletteStyleIndex.collectAsState(
-        initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
+        initial = PrefsDefaultValues.APP_THEME_PALETTE_STYLE_INDEX
       )
     val tonalPalettes =
       if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) rememberDynamicScheme().toTonalPalettes()
@@ -109,7 +110,7 @@ abstract class BaseComposeActivity : BaseActivity() {
 
   @Composable
   private fun Screen() {
-    val isFirstTime by database.isFirstTime.collectAsState(initial = DefaultValues.IS_FIRST_TIME)
+    val isFirstTime by database.isFirstTime.collectAsState(initial = DBDefaultValues.IS_FIRST_TIME)
     if (!isFirstTime) {
       HandlePermissions()
     }
