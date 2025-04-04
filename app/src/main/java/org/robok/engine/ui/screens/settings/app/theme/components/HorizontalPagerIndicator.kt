@@ -83,18 +83,8 @@ public fun HorizontalPagerIndicator(
   indicatorHeight: Dp = indicatorWidth,
   spacing: Dp = indicatorWidth,
   indicatorShape: Shape = CircleShape,
-) {
-  val stateBridge = remember(pagerState) {
-    object : PagerStateBridge {
-      override val currentPage: Int
-        get() = pagerState.currentPage
-      override val currentPageOffset: Float
-        get() = pagerState.currentPageOffsetFraction
-    }
-  }
-
-  HorizontalPagerIndicator(
-    pagerState = stateBridge,
+) = HorizontalPagerIndicatorImpl(
+    pagerState = pagerState,
     pageCount = pageCount,
     modifier = modifier,
     pageIndexMapping = pageIndexMapping,
@@ -105,11 +95,10 @@ public fun HorizontalPagerIndicator(
     spacing = spacing,
     indicatorShape = indicatorShape
   )
-}
 
 @Composable
-private fun HorizontalPagerIndicator(
-  pagerState: PagerStateBridge,
+private fun HorizontalPagerIndicatorImpl(
+  pagerState: PagerState,
   pageCount: Int,
   modifier: Modifier = Modifier,
   pageIndexMapping: (Int) -> Int = { it },
@@ -145,7 +134,7 @@ private fun HorizontalPagerIndicator(
       Modifier
         .offset {
           val position = pageIndexMapping(pagerState.currentPage)
-          val offset = pagerState.currentPageOffset
+          val offset = pagerState.currentPageOffsetFraction
           val next = pageIndexMapping(pagerState.currentPage + offset.sign.toInt())
           val scrollPosition = ((next - position) * offset.absoluteValue + position)
             .coerceIn(

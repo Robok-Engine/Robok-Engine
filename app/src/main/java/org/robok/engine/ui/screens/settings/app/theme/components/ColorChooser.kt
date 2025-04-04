@@ -64,6 +64,7 @@ import org.robok.engine.ui.platform.LocalThemePaletteStyleIndex
 import org.robok.engine.ui.platform.LocalThemeSeedColor
 import org.robok.engine.ui.theme.STYLE_MONOCHROME
 import org.robok.engine.ui.theme.STYLE_TONAL_SPOT
+import org.robok.engine.ui.theme.paletteStyles
 
 // Based on the Seal application.
 // All credit to Seal.
@@ -77,70 +78,72 @@ public fun ColorChooser(
   onChangeThemeSeedColor: (Int, Int) -> Unit,
   onChangeDynamicColors: (Boolean) -> Unit,
 ) {
-  val pageCount = ColorList.size + 1
+  Column {
+    val pageCount = ColorList.size + 1
 
-  val pagerState =
-    rememberPagerState(
-      initialPage =
-        if (LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME) pageCount
-        else
-          ColorList.indexOf(Color(LocalThemeSeedColor.current)).run {
-            if (this == -1) 0 else this
-          }
-    ) {
-      pageCount
-    }
-  HorizontalPager(
-    modifier = Modifier
-      .fillMaxWidth()
-      .clearAndSetSemantics {},
-    state = pagerState,
-    contentPadding = PaddingValues(horizontal = 12.dp),
-  ) { page ->
+    val pagerState =
+      rememberPagerState(
+        initialPage =
+          if (LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME) pageCount
+          else
+            ColorList.indexOf(Color(LocalThemeSeedColor.current)).run {
+              if (this == -1) 0 else this
+            }
+      ) {
+        pageCount
+      }
+    HorizontalPager(
+      modifier = Modifier
+        .fillMaxWidth()
+        .clearAndSetSemantics {},
+      state = pagerState,
+      contentPadding = PaddingValues(horizontal = 12.dp),
+    ) { page ->
 
-    if (page < pageCount - 1) {
-      Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-      ) {
-        ColorButtons(
-          color = ColorList[page],
-          onChangeThemeSeedColor = onChangeThemeSeedColor,
-          onChangeDynamicColors = onChangeDynamicColors
-        )
-      }
-    } else {
-      val isSelected = LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME && !LocalThemeDynamicColor.current
-      Row(
-        modifier = Modifier.fillMaxWidth(),
-        horizontalArrangement = Arrangement.Center,
-      ) {
-        ColorButtonImpl(
-          isSelected = isSelected,
-          tonalPalettes = Color.Black.toTonalPalettes(PaletteStyle.Monochrome),
-          onClick = {
-            onChangeDynamicColors(false)
-            onChangeThemeSeedColor(
-              Color.Black.toArgb(),
-              STYLE_MONOCHROME,
-            )
-          },
-        )
+      if (page < pageCount - 1) {
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.Center,
+        ) {
+          ColorButtons(
+            color = ColorList[page],
+            onChangeThemeSeedColor = onChangeThemeSeedColor,
+            onChangeDynamicColors = onChangeDynamicColors
+          )
+        }
+      } else {
+        val isSelected = LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME && !LocalThemeDynamicColor.current
+        Row(
+          modifier = Modifier.fillMaxWidth(),
+          horizontalArrangement = Arrangement.Center,
+        ) {
+          ColorButtonImpl(
+            isSelected = isSelected,
+            tonalPalettes = Color.Black.toTonalPalettes(PaletteStyle.Monochrome),
+            onClick = {
+              onChangeDynamicColors(false)
+              onChangeThemeSeedColor(
+                Color.Black.toArgb(),
+                STYLE_MONOCHROME,
+              )
+            },
+          )
+        }
       }
     }
+    HorizontalPagerIndicator(
+      pagerState = pagerState,
+      pageCount = pageCount,
+      modifier = Modifier
+        .clearAndSetSemantics {}
+        .align(Alignment.CenterHorizontally)
+        .padding(vertical = 12.dp),
+      activeColor = MaterialTheme.colorScheme.primary,
+      inactiveColor = MaterialTheme.colorScheme.outlineVariant,
+      indicatorHeight = 6.dp,
+      indicatorWidth = 6.dp,
+    )
   }
-  HorizontalPagerIndicator(
-    pagerState = pagerState,
-    pageCount = pageCount,
-    modifier = Modifier
-      .clearAndSetSemantics {}
-      .align(Alignment.CenterHorizontally)
-      .padding(vertical = 12.dp),
-    activeColor = MaterialTheme.colorScheme.primary,
-    inactiveColor = MaterialTheme.colorScheme.outlineVariant,
-    indicatorHeight = 6.dp,
-    indicatorWidth = 6.dp,
-  )
 }
 
 @Composable
