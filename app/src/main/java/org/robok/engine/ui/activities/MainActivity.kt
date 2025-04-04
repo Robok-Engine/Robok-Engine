@@ -33,7 +33,9 @@ import androidx.navigation.compose.rememberNavController
 import com.kyant.monet.LocalTonalPalettes
 import com.kyant.monet.PaletteStyle
 import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
+import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.settings.DefaultValues
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.navigation.routes.MainRoute
@@ -68,12 +70,13 @@ class MainActivity : BaseComposeActivity() {
 
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val preferencesViewModel = koinViewModel<PreferencesViewModel>()
     val appIsUseMonet by
-      preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+      preferencesViewModel.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
     val appThemeSeedColor: Int by
-      preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+      preferencesViewModel.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
     val appThemePaletteStyleIndex by
-      preferences.appThemePaletteStyleIndex.collectAsState(
+      preferencesViewModel.appThemePaletteStyleIndex.collectAsState(
         initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
       )
     val tonalPalettes =
