@@ -17,5 +17,25 @@ package org.robok.engine.ui.screens.settings.app.theme
  */
 
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.res.stringResource
+import org.robok.engine.Strings
+import org.robok.engine.core.settings.DefaultValues
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+import org.robok.engine.ui.core.components.Screen
+import org.robok.engine.ui.screens.settings.app.theme.components.ColorChooser
 
-@Composable fun SettingsAppThemeColorsScreen(onBack: () -> Unit = {}) {}
+@Composable
+fun SettingsAppThemeColorsScreen() {
+  val preferencesViewModel = koinViewModel<PreferencesViewModel>()
+  Screen(label = stringResource(id = Strings.settings_app_theme_colors_title)) {
+    ColorChooser(
+      onChangeThemeSeedColor = { seed, paletteStyleIndex ->
+        preferencesViewModel.setAppThemeSeedColor(seed)
+        preferencesViewModel.setAppThemePaletteStyleIndex(paletteStyleIndex)
+      },
+      onChangeDynamicColors = {
+        preferencesViewModel.setMonetEnable(it)
+      }
+    )
+  }
+}

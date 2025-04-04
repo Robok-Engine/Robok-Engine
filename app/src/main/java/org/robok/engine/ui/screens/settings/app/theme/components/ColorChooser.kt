@@ -70,7 +70,7 @@ private val ColorList =
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ColorChooser(
+public fun ColorChooser(
   onChangeThemeSeedColor: (Int, Int) -> Unit,
   onChangeDynamicColors: (Boolean) -> Unit,
 ) {
