@@ -62,8 +62,8 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
-    lifecycleScope.launch { reloadTheme() }
-    preferences.onAppThemePreferenceChange = { lifecycleScope.launch { reloadTheme() } }
+    /*lifecycleScope.launch { reloadTheme() }
+    preferences.onAppThemePreferenceChange = { lifecycleScope.launch { reloadTheme() } }*/
     super.onCreate(savedInstanceState)
   }
 
