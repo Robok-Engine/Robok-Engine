@@ -50,15 +50,11 @@ import com.kyant.monet.a3
 
 // Code based on the Seal application.
 
-data class ColorChooserInfo(
-  val isMonetEnable: Boolean = false,
-)
+
 
 @Composable
-private fun RowScope.ColorButton(
-  chooserInfo: ColorChooserInfo
-) {
-  
+private fun RowScope.ColorButton() {
+
 }
 
 @Composable

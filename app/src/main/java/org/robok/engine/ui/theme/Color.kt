@@ -21,7 +21,14 @@ import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.ui.graphics.Color
 
-const val DEFAULT_SEED_COLOR = 0xa3d48d
+val paletteStyles =
+  listOf(
+      PaletteStyle.TonalSpot,
+      PaletteStyle.Spritz,
+      PaletteStyle.FruitSalad,
+      PaletteStyle.Vibrant,
+      PaletteStyle.Monochrome,
+  )
 
 internal val primaryLight = Color(0xFF4C662B)
 internal val onPrimaryLight = Color(0xFFFFFFFF)
