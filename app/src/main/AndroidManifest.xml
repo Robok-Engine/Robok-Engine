@@ -22,7 +22,7 @@
     android:supportsRtl="false"
     android:enableOnBackInvokedCallback="true"
     android:name="org.robok.engine.RobokApplication"
-    android:theme="@style/Theme.Robok"
+    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
     android:requestLegacyExternalStorage="true">
     <activity
       android:name="org.robok.engine.ui.activities.MainActivity"
