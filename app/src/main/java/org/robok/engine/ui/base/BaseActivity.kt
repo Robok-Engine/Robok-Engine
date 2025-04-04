@@ -36,7 +36,6 @@ import org.robok.engine.core.utils.PermissionListener
 import org.robok.engine.core.utils.requestAllFilesAccessPermission
 import org.robok.engine.core.utils.requestReadWritePermissions
 import org.robok.engine.defaults.DoNothing
-import org.robok.engine.ui.theme.AndroidViewsThemeManager
 
 /** Base Class for All Activities. */
 abstract class BaseActivity : AppCompatActivity(), PermissionListener {
@@ -62,8 +61,6 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
-    /*lifecycleScope.launch { reloadTheme() }
-    preferences.onAppThemePreferenceChange = { lifecycleScope.launch { reloadTheme() } }*/
     super.onCreate(savedInstanceState)
   }
 
@@ -74,12 +71,6 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
     } else {
       requestReadWritePermissions(this, readWritePermissionLauncher)
     }
-  }
-
-  /** reloads the Android Views (XML) Theme */
-  @Deprecated("Use Jetpack Compose instead.")
-  protected suspend fun reloadTheme() {
-    AndroidViewsThemeManager.getInstance().apply(this@BaseActivity)
   }
 
   /** verify if app is in darkMode */
@@ -116,10 +107,4 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
   enum class PermissionType {
     STORAGE
   }
-}
-
-/** Reloads the theme of app anywhere. */
-fun Context.reloadTheme() {
-  val a = this as? BaseActivity
-  a?.let { CoroutineScope(Dispatchers.Main).launch { it.reloadTheme() } }
 }
