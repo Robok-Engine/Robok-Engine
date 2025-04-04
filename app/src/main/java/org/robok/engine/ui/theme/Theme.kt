@@ -47,7 +47,6 @@ import com.kyant.monet.dynamicColorScheme
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
-import org.robok.engine.ui.platform.LocalThemeFixedColorRoles
 
 fun Color.applyOpacity(enabled: Boolean): Color {
   return if (enabled) this else this.copy(alpha = 0.62f)
@@ -122,10 +121,7 @@ fun RobokTheme(
     }
   }
 
-  CompositionLocalProvider(
-    LocalThemeFixedColorRoles provides FixedColorRoles.fromTonalPalettes(tonalPalettes),
-    LocalTextStyle provides textStyle,
-  ) {
+  CompositionLocalProvider(LocalTextStyle provides textStyle) {
     MaterialTheme(
       colorScheme = colorScheme,
       typography = Typography,
