@@ -70,7 +70,7 @@ import org.robok.engine.ui.theme.paletteStyles
 // All credit to Seal.
 
 private val ColorList =
-    ((4..10) + (1..3)).map { it * 35.0 }.map { Color(Hct.from(it, 40.0, 40.0).toInt()) }
+  ((4..10) + (1..3)).map { it * 35.0 }.map { Color(Hct.from(it, 40.0, 40.0).toInt()) }
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -93,39 +93,28 @@ public fun ColorChooser(
         pageCount
       }
     HorizontalPager(
-      modifier = Modifier
-        .fillMaxWidth()
-        .clearAndSetSemantics {},
+      modifier = Modifier.fillMaxWidth().clearAndSetSemantics {},
       state = pagerState,
       contentPadding = PaddingValues(horizontal = 12.dp),
     ) { page ->
-
       if (page < pageCount - 1) {
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.Center,
-        ) {
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
           ColorButtons(
             color = ColorList[page],
             onChangeThemeSeedColor = onChangeThemeSeedColor,
-            onChangeDynamicColors = onChangeDynamicColors
+            onChangeDynamicColors = onChangeDynamicColors,
           )
         }
       } else {
-        val isSelected = LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME && !LocalThemeDynamicColor.current
-        Row(
-          modifier = Modifier.fillMaxWidth(),
-          horizontalArrangement = Arrangement.Center,
-        ) {
+        val isSelected =
+          LocalThemePaletteStyleIndex.current == STYLE_MONOCHROME && !LocalThemeDynamicColor.current
+        Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.Center) {
           ColorButtonImpl(
             isSelected = isSelected,
             tonalPalettes = Color.Black.toTonalPalettes(PaletteStyle.Monochrome),
             onClick = {
               onChangeDynamicColors(false)
-              onChangeThemeSeedColor(
-                Color.Black.toArgb(),
-                STYLE_MONOCHROME,
-              )
+              onChangeThemeSeedColor(Color.Black.toArgb(), STYLE_MONOCHROME)
             },
           )
         }
@@ -134,10 +123,10 @@ public fun ColorChooser(
     HorizontalPagerIndicator(
       pagerState = pagerState,
       pageCount = pageCount,
-      modifier = Modifier
-        .clearAndSetSemantics {}
-        .align(Alignment.CenterHorizontally)
-        .padding(vertical = 12.dp),
+      modifier =
+        Modifier.clearAndSetSemantics {}
+          .align(Alignment.CenterHorizontally)
+          .padding(vertical = 12.dp),
       activeColor = MaterialTheme.colorScheme.primary,
       inactiveColor = MaterialTheme.colorScheme.outlineVariant,
       indicatorHeight = 6.dp,
@@ -158,7 +147,7 @@ private fun RowScope.ColorButtons(
       index = index,
       tonalStyle = style,
       onChangeThemeSeedColor = onChangeThemeSeedColor,
-      onChangeDynamicColors = onChangeDynamicColors
+      onChangeDynamicColors = onChangeDynamicColors,
     )
   }
 }
@@ -174,13 +163,13 @@ private fun RowScope.ColorButton(
 ) {
   val tonalPalettes by remember { mutableStateOf(color.toTonalPalettes(tonalStyle)) }
   val isSelected =
-        !LocalThemeDynamicColor.current &&
-            LocalThemeSeedColor.current == color.toArgb() &&
-            LocalThemePaletteStyleIndex.current == index
-    ColorButtonImpl(modifier = modifier, tonalPalettes = tonalPalettes, isSelected = isSelected) {
-        onChangeDynamicColors(false)
-        onChangeThemeSeedColor(color.toArgb(), index)
-    }
+    !LocalThemeDynamicColor.current &&
+      LocalThemeSeedColor.current == color.toArgb() &&
+      LocalThemePaletteStyleIndex.current == index
+  ColorButtonImpl(modifier = modifier, tonalPalettes = tonalPalettes, isSelected = isSelected) {
+    onChangeDynamicColors(false)
+    onChangeThemeSeedColor(color.toArgb(), index)
+  }
 }
 
 @Composable
