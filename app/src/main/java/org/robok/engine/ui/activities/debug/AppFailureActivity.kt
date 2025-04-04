@@ -42,7 +42,7 @@ import androidx.compose.ui.unit.dp
 import org.robok.engine.Strings
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.core.components.Screen
-import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
+import org.robok.engine.ui.core.components.dialog.EnhancedAlertDialog
 import org.robok.engine.ui.core.components.preferences.base.PreferenceGroup
 import org.robok.engine.ui.core.components.utils.addIf
 import org.robok.engine.ui.draw.enableBlur

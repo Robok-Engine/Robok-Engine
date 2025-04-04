@@ -68,7 +68,7 @@ import org.robok.engine.manage.project.ProjectManager
 import org.robok.engine.state.KeyboardState
 import org.robok.engine.state.keyboardAsState
 import org.robok.engine.ui.core.components.animation.ExpandAndShrink
-import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
+import org.robok.engine.ui.core.components.dialog.EnhancedAlertDialog
 import org.robok.engine.ui.core.components.toast.LocalToastHostState
 import org.robok.engine.ui.draw.enableBlur
 import org.robok.engine.ui.screens.editor.components.appbar.EditorTopBar

@@ -31,7 +31,7 @@ import androidx.compose.ui.res.*
 import androidx.compose.ui.text.font.*
 import androidx.compose.ui.unit.*
 import org.robok.engine.Strings
-import Org.robok.engine.ui.core.components.dialog EnhancedAlertDialog
+import org.robok.engine.ui.core.components.dialog.EnhancedAlertDialog
 import org.robok.engine.ui.screens.settings.about.models.Contributor
 
 @Composable
