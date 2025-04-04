@@ -21,6 +21,7 @@ import android.app.Activity
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -39,7 +40,7 @@ import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 
 @Composable
-fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()) {
+fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()): ColorScheme {
   val context = LocalContext.current
   return remember { if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context) }
 }
