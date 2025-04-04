@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import com.kyant.monet.LocalTonalPalettes
 import com.kyant.monet.PaletteStyle
 import com.kyant.monet.TonalPalettes
+import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
 import com.kyant.monet.a1
 import com.kyant.monet.a2
 import com.kyant.monet.a3
