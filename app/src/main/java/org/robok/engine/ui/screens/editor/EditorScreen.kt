@@ -55,9 +55,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
-import androidx.lifecycle.lifecycleScope
 import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.Strings
@@ -79,17 +77,17 @@ import org.robok.engine.ui.screens.editor.components.modal.EditorModal
 import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
-import org.robok.engine.ui.screens.editor.viewmodel.buildLog
 
 @Composable
 fun EditorScreen(projectPath: String, editorNavigateActions: EditorNavigateActions) {
   val context = LocalContext.current
   // maybe instanciate loggerviewmodel in viewmodel is better but aahhh lazy
   val lvm = koinViewModel<LoggerViewModel>()
-  val editorViewModel = koinViewModel<EditorViewModel>().apply {
-    loggerViewModel = lvm
-    this.context = context
-  }
+  val editorViewModel =
+    koinViewModel<EditorViewModel>().apply {
+      loggerViewModel = lvm
+      this.context = context
+    }
   val projectManager = ProjectManager(context).apply { this.projectPath = File(projectPath) }
   val coroutineScope = rememberCoroutineScope()
   val toastHostState = LocalToastHostState.current

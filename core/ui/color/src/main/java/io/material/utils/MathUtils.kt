@@ -19,7 +19,7 @@ package io.material.utils
 
 import kotlin.math.abs
 
-/** Utility methods for mathematical operations.  */
+/** Utility methods for mathematical operations. */
 object MathUtils {
   /**
    * The signum function.
@@ -104,26 +104,25 @@ object MathUtils {
   /**
    * Sign of direction change needed to travel from one angle to another.
    *
-   *
    * For angles that are 180 degrees apart from each other, both directions have the same travel
    * distance, so either direction is shortest. The value 1.0 is returned in this case.
    *
    * @param from The angle travel starts from, in degrees.
    * @param to The angle travel ends at, in degrees.
    * @return -1 if decreasing from leads to the shortest travel distance, 1 if increasing from leads
-   * to the shortest travel distance.
+   *   to the shortest travel distance.
    */
   fun rotationDirection(from: Double, to: Double): Double {
     val increasingDifference = sanitizeDegreesDouble(to - from)
     return if (increasingDifference <= 180.0) 1.0 else -1.0
   }
 
-  /** Distance of two points on a circle, represented using degrees.  */
+  /** Distance of two points on a circle, represented using degrees. */
   fun differenceDegrees(a: Double, b: Double): Double {
     return 180.0 - abs(abs(a - b) - 180.0)
   }
 
-  /** Multiplies a 1x3 row vector with a 3x3 matrix.  */
+  /** Multiplies a 1x3 row vector with a 3x3 matrix. */
   fun matrixMultiply(row: DoubleArray, matrix: Array<DoubleArray>): DoubleArray {
     val a = row[0] * matrix[0][0] + row[1] * matrix[0][1] + row[2] * matrix[0][2]
     val b = row[0] * matrix[1][0] + row[1] * matrix[1][1] + row[2] * matrix[1][2]

@@ -54,7 +54,7 @@ fun LanguageChooser(modifier: Modifier = Modifier, viewModel: CreateProjectViewM
   Row(
     modifier = modifier,
     horizontalArrangement = Arrangement.Center,
-    verticalAlignment = Alignment.CenterVertically
+    verticalAlignment = Alignment.CenterVertically,
   ) {
     LanguageButton(
       language = Language.Java,

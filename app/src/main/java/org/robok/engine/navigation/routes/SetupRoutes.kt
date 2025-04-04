@@ -16,14 +16,10 @@ package org.robok.engine.navigation.routes
  * limitations under the License.
  */
 
-import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
-@Serializable
-object SetupWelcomeRoute
+@Serializable object SetupWelcomeRoute
 
-@Serializable
-object SetupPermissionsRoute
+@Serializable object SetupPermissionsRoute
 
-@Serializable
-object SetupDevelopmentEnvironmentRoute
+@Serializable object SetupDevelopmentEnvironmentRoute

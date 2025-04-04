@@ -17,9 +17,7 @@ package org.robok.engine.ui.screens.settings.app.theme.components
  */
 
 import androidx.compose.animation.core.animateDpAsState
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
@@ -50,12 +48,7 @@ import com.kyant.monet.a3
 
 // Code based on the Seal application.
 
-
-
-@Composable
-private fun RowScope.ColorButton() {
-
-}
+@Composable private fun RowScope.ColorButton() {}
 
 @Composable
 fun RowScope.ColorButtonImpl(
@@ -87,24 +80,13 @@ fun RowScope.ColorButtonImpl(
       val color3 = 60.a3
       Box(modifier = Modifier.fillMaxSize()) {
         Box(
-          modifier = modifier
-            .size(48.dp)
-            .clip(CircleShape)
-            .align(Alignment.Center)
-            .drawBehind { drawCircle(color1) }
+          modifier =
+            modifier.size(48.dp).clip(CircleShape).align(Alignment.Center).drawBehind {
+              drawCircle(color1)
+            }
         ) {
-          Surface(
-            modifier = Modifier
-              .align(Alignment.BottomStart)
-              .size(24.dp),
-            color = color2,
-          ) {}
-          Surface(
-            modifier = Modifier
-              .align(Alignment.BottomEnd)
-              .size(24.dp),
-            color = color3,
-          ) {}
+          Surface(modifier = Modifier.align(Alignment.BottomStart).size(24.dp), color = color2) {}
+          Surface(modifier = Modifier.align(Alignment.BottomEnd).size(24.dp), color = color3) {}
           Box(
             modifier =
               Modifier.align(Alignment.Center).clip(CircleShape).size(containerSize).drawBehind {

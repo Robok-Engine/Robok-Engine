@@ -18,7 +18,4 @@ package org.robok.engine.ui.screens.settings.app.theme
 
 import androidx.compose.runtime.Composable
 
-@Composable
-fun SettingsAppThemeColorsScreen(onBack: () -> Unit = {}) {
-  
-}
+@Composable fun SettingsAppThemeColorsScreen(onBack: () -> Unit = {}) {}

@@ -22,11 +22,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
-import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.utils.FileUtil
 import org.robok.engine.feature.compiler.android.OnCompileResult
-import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.compiler.android.logger.Log as CompilerLog
+import org.robok.engine.feature.compiler.android.logger.LoggerViewModel
 import org.robok.engine.feature.editor.RobokCodeEditor
 import org.robok.engine.io.File
 import org.robok.engine.manage.project.ProjectManager
@@ -335,10 +334,9 @@ class EditorViewModel : ViewModel(), OnCompileResult {
 
   /** Returns a list with build logs. */
   fun getLogsFromLoggerViewModel(): List<CompilerLog> {
-    return loggerViewModel?.let {
-      it.logs
-    } ?: emptyList()
+    return loggerViewModel?.let { it.logs } ?: emptyList()
   }
+
   /** clear event after action */
   fun clearEvent() {
     _editorEvent = null
@@ -350,9 +348,7 @@ class EditorViewModel : ViewModel(), OnCompileResult {
    * @param signedApk The File of apk ready to install
    */
   override fun onCompileSuccess(signedApk: java.io.File?) {
-    signedApk?.let {
-      _buildState = BuildState.Success(it as File)
-    }
+    signedApk?.let { _buildState = BuildState.Success(it as File) }
   }
 
   /**

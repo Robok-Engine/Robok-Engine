@@ -42,7 +42,9 @@ import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 @Composable
 fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()): ColorScheme {
   val context = LocalContext.current
-  return remember { if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context) }
+  return remember {
+    if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+  }
 }
 
 @Composable

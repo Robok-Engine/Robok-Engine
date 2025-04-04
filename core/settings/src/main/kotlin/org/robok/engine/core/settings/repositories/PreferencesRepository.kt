@@ -22,7 +22,6 @@ import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.core.intPreferencesKey
-import androidx.datastore.preferences.core.stringPreferencesKey
 import kotlinx.coroutines.flow.map
 import org.robok.engine.core.settings.DefaultValues
 
@@ -30,7 +29,8 @@ class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
   private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
   private val appIsUseAmoledPreference = booleanPreferencesKey("app_amoled")
   private val appThemeSeedColorPreference = intPreferencesKey("app_theme_seed_color")
-  private val appThemePaletteStyleIndexPreference = intPreferencesKey("app_theme_palette_style_index")
+  private val appThemePaletteStyleIndexPreference =
+    intPreferencesKey("app_theme_palette_style_index")
   private val editorThemePreference = intPreferencesKey("editor_theme")
   private val editorTypefacePreference = intPreferencesKey("editor_typeface")
   private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
@@ -46,7 +46,9 @@ class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
     dataStore.data.map { it[appThemeSeedColorPreference] ?: DefaultValues.APP_THEME_SEED_COLOR }
 
   val appThemePaletteStyleIndex =
-    dataStore.data.map { it[appThemePaletteStyleIndexPreference] ?: DefaultValues.APP_THEME_PALETTE_STYLE_INDEX }
+    dataStore.data.map {
+      it[appThemePaletteStyleIndexPreference] ?: DefaultValues.APP_THEME_PALETTE_STYLE_INDEX
+    }
 
   val editorTheme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.EDITOR_THEME }
 

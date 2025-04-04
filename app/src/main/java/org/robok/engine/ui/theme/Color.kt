@@ -24,11 +24,11 @@ import com.kyant.monet.PaletteStyle
 
 val paletteStyles =
   listOf(
-      PaletteStyle.TonalSpot,
-      PaletteStyle.Spritz,
-      PaletteStyle.FruitSalad,
-      PaletteStyle.Vibrant,
-      PaletteStyle.Monochrome,
+    PaletteStyle.TonalSpot,
+    PaletteStyle.Spritz,
+    PaletteStyle.FruitSalad,
+    PaletteStyle.Vibrant,
+    PaletteStyle.Monochrome,
   )
 
 internal val primaryLight = Color(0xFF4C662B)

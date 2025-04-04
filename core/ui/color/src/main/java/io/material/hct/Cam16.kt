@@ -32,16 +32,13 @@ import kotlin.math.sqrt
  * CAM16, a color appearance model. Colors are not just defined by their hex code, but rather, a hex
  * code and viewing conditions.
  *
- *
- * CAM16 instances also have coordinates in the CAM16-UCS space, called J*, a*, b*, or jstar,
- * astar, bstar in code. CAM16-UCS is included in the CAM16 specification, and should be used when
+ * CAM16 instances also have coordinates in the CAM16-UCS space, called J*, a*, b*, or jstar, astar,
+ * bstar in code. CAM16-UCS is included in the CAM16 specification, and should be used when
  * measuring distances between colors.
- *
  *
  * In traditional color spaces, a color can be identified solely by the observer's measurement of
  * the color. Color appearance models such as CAM16 also use information about the environment where
  * the color was observed, known as the viewing conditions.
- *
  *
  * For example, white under the traditional assumption of a midday sun white point is accurately
  * measured as a slightly chromatic blue by CAM16. (roughly, hue 203, chroma 3, lightness 100)
@@ -50,12 +47,12 @@ class Cam16
 /**
  * All of the CAM16 dimensions can be calculated from 3 of the dimensions, in the following
  * combinations: - {j or q} and {c, m, or s} and hue - jstar, astar, bstar Prefer using a static
- * method that constructs from 3 of those dimensions. This constructor is intended for those
- * methods to use to return all possible dimensions.
+ * method that constructs from 3 of those dimensions. This constructor is intended for those methods
+ * to use to return all possible dimensions.
  *
  * @param hue for example, red, orange, yellow, green, etc.
  * @param chroma informally, colorfulness / color intensity. like saturation in HSL, except
- * perceptually accurate.
+ *   perceptually accurate.
  * @param j lightness
  * @param q brightness; ratio of lightness to white point's lightness
  * @param m colorfulness
@@ -63,17 +60,17 @@ class Cam16
  * @param jstar CAM16-UCS J coordinate
  * @param astar CAM16-UCS a coordinate
  * @param bstar CAM16-UCS b coordinate
- */ private constructor(
-  /** Hue in CAM16  */
+ */
+private constructor(
+  /** Hue in CAM16 */
   // CAM16 color dimensions, see getters for documentation.
   val hue: Double,
-  /** Chroma in CAM16  */
+  /** Chroma in CAM16 */
   val chroma: Double,
-  /** Lightness in CAM16  */
+  /** Lightness in CAM16 */
   val j: Double,
   /**
    * Brightness in CAM16.
-   *
    *
    * Prefer lightness, brightness is an absolute quantity. For example, a sheet of white paper is
    * much brighter viewed in sunlight than in indoor light, but it is the lightest object under any
@@ -83,28 +80,25 @@ class Cam16
   /**
    * Colorfulness in CAM16.
    *
-   *
-   * Prefer chroma, colorfulness is an absolute quantity. For example, a yellow toy car is much
-   * more colorful outside than inside, but it has the same chroma in both environments.
+   * Prefer chroma, colorfulness is an absolute quantity. For example, a yellow toy car is much more
+   * colorful outside than inside, but it has the same chroma in both environments.
    */
   val m: Double,
   /**
    * Saturation in CAM16.
    *
-   *
    * Colorfulness in proportion to brightness. Prefer chroma, saturation measures colorfulness
    * relative to the color's own brightness, where chroma is colorfulness relative to white.
    */
   val s: Double,
-  /** Lightness coordinate in CAM16-UCS  */
+  /** Lightness coordinate in CAM16-UCS */
   // Coordinates in UCS space. Used to determine color distance, like delta E equations in L*a*b*.
   val jstar: Double,
-  /** a* coordinate in CAM16-UCS  */
+  /** a* coordinate in CAM16-UCS */
   val astar: Double,
-  /** b* coordinate in CAM16-UCS  */
-  val bstar: Double
+  /** b* coordinate in CAM16-UCS */
+  val bstar: Double,
 ) {
-
 
   // Avoid allocations during conversion by pre-allocating an array.
   private val tempArray = doubleArrayOf(0.0, 0.0, 0.0)
@@ -143,17 +137,15 @@ class Cam16
 
   fun xyzInViewingConditions(
     viewingConditions: ViewingConditions,
-    returnArray: DoubleArray?
+    returnArray: DoubleArray?,
   ): DoubleArray {
-    val alpha = if (chroma == 0.0 || j == 0.0) 0.0 else chroma / sqrt(
-      j / 100.0
-    )
+    val alpha = if (chroma == 0.0 || j == 0.0) 0.0 else chroma / sqrt(j / 100.0)
     val t = (alpha / (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73)).pow(1.0 / 0.9)
     val hRad = hue.toRadians()
 
     val eHue = 0.25 * (cos(hRad + 2.0) + 3.8)
-    val ac = (viewingConditions.aw
-        * (j / 100.0).pow(1.0 / viewingConditions.c / viewingConditions.z))
+    val ac =
+      (viewingConditions.aw * (j / 100.0).pow(1.0 / viewingConditions.c / viewingConditions.z))
     val p1 = eHue * (50000.0 / 13.0) * viewingConditions.nc * viewingConditions.ncb
     val p2 = ac / viewingConditions.nbb
     val hSin = sin(hRad)
@@ -189,21 +181,24 @@ class Cam16
 
   companion object {
     // Transforms XYZ color space coordinates to 'cone'/'RGB' responses in CAM16.
-    val XYZ_TO_CAM16RGB = arrayOf(
-      doubleArrayOf(0.401288, 0.650173, -0.051461),
-      doubleArrayOf(-0.250268, 1.204414, 0.045854),
-      doubleArrayOf(-0.002079, 0.048952, 0.953127)
-    )
+    val XYZ_TO_CAM16RGB =
+      arrayOf(
+        doubleArrayOf(0.401288, 0.650173, -0.051461),
+        doubleArrayOf(-0.250268, 1.204414, 0.045854),
+        doubleArrayOf(-0.002079, 0.048952, 0.953127),
+      )
 
     // Transforms 'cone'/'RGB' responses in CAM16 to XYZ color space coordinates.
-    val CAM16RGB_TO_XYZ = arrayOf(
-      doubleArrayOf(1.8620678, -1.0112547, 0.14918678),
-      doubleArrayOf(0.38752654, 0.62144744, -0.00897398),
-      doubleArrayOf(-0.01584150, -0.03412294, 1.0499644)
-    )
+    val CAM16RGB_TO_XYZ =
+      arrayOf(
+        doubleArrayOf(1.8620678, -1.0112547, 0.14918678),
+        doubleArrayOf(0.38752654, 0.62144744, -0.00897398),
+        doubleArrayOf(-0.01584150, -0.03412294, 1.0499644),
+      )
 
     /**
-     * Create a CAM16 color from a color, assuming the color was viewed in default viewing conditions.
+     * Create a CAM16 color from a color, assuming the color was viewed in default viewing
+     * conditions.
      *
      * @param argb ARGB representation of a color.
      */
@@ -235,7 +230,10 @@ class Cam16
     }
 
     fun fromXyzInViewingConditions(
-      x: Double, y: Double, z: Double, viewingConditions: ViewingConditions
+      x: Double,
+      y: Double,
+      z: Double,
+      viewingConditions: ViewingConditions,
     ): Cam16 {
       // Transform XYZ to 'cone'/'rgb' responses
       val matrix = XYZ_TO_CAM16RGB
@@ -269,27 +267,27 @@ class Cam16
       val atan2 = atan2(b, a)
       val atanDegrees = atan2.toDegrees()
       val hue =
-        if (atanDegrees < 0) atanDegrees + 360.0 else if (atanDegrees >= 360) atanDegrees - 360.0 else atanDegrees
+        if (atanDegrees < 0) atanDegrees + 360.0
+        else if (atanDegrees >= 360) atanDegrees - 360.0 else atanDegrees
       val hueRadians = hue.toRadians()
 
       // achromatic response to color
       val ac = p2 * viewingConditions.nbb
 
       // CAM16 lightness and brightness
-      val j = (100.0
-          * (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z))
-      val q = ((4.0
-          / viewingConditions.c) * sqrt(j / 100.0)
-          * (viewingConditions.aw + 4.0)
-          * viewingConditions.flRoot)
+      val j = (100.0 * (ac / viewingConditions.aw).pow(viewingConditions.c * viewingConditions.z))
+      val q =
+        ((4.0 / viewingConditions.c) *
+          sqrt(j / 100.0) *
+          (viewingConditions.aw + 4.0) *
+          viewingConditions.flRoot)
 
       // CAM16 chroma, colorfulness, and saturation.
       val huePrime = if (hue < 20.14) hue + 360 else hue
       val eHue = 0.25 * (cos(huePrime.toRadians() + 2.0) + 3.8)
       val p1 = 50000.0 / 13.0 * eHue * viewingConditions.nc * viewingConditions.ncb
       val t = p1 * hypot(a, b) / (u + 0.305)
-      val alpha =
-        (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73) * t.pow(0.9)
+      val alpha = (1.64 - 0.29.pow(viewingConditions.n)).pow(0.73) * t.pow(0.9)
       // CAM16 chroma, colorfulness, saturation
       val c = alpha * sqrt(j / 100.0)
       val m = c * viewingConditions.flRoot
@@ -319,12 +317,16 @@ class Cam16
      * @param viewingConditions Information about the environment where the color was observed.
      */
     private fun fromJchInViewingConditions(
-      j: Double, c: Double, h: Double, viewingConditions: ViewingConditions
+      j: Double,
+      c: Double,
+      h: Double,
+      viewingConditions: ViewingConditions,
     ): Cam16 {
-      val q = ((4.0
-          / viewingConditions.c) * sqrt(j / 100.0)
-          * (viewingConditions.aw + 4.0)
-          * viewingConditions.flRoot)
+      val q =
+        ((4.0 / viewingConditions.c) *
+          sqrt(j / 100.0) *
+          (viewingConditions.aw + 4.0) *
+          viewingConditions.flRoot)
       val m = c * viewingConditions.flRoot
       val alpha = c / sqrt(j / 100.0)
       val s = 50.0 * sqrt(alpha * viewingConditions.c / (viewingConditions.aw + 4.0))
@@ -341,17 +343,12 @@ class Cam16
      *
      * @param jstar CAM16-UCS lightness.
      * @param astar CAM16-UCS a dimension. Like a* in L*a*b*, it is a Cartesian coordinate on the Y
-     * axis.
+     *   axis.
      * @param bstar CAM16-UCS b dimension. Like a* in L*a*b*, it is a Cartesian coordinate on the X
-     * axis.
+     *   axis.
      */
     fun fromUcs(jstar: Double, astar: Double, bstar: Double): Cam16 {
-      return fromUcsInViewingConditions(
-        jstar,
-        astar,
-        bstar,
-        ViewingConditions.Companion.DEFAULT
-      )
+      return fromUcsInViewingConditions(jstar, astar, bstar, ViewingConditions.Companion.DEFAULT)
     }
 
     /**
@@ -359,13 +356,16 @@ class Cam16
      *
      * @param jstar CAM16-UCS lightness.
      * @param astar CAM16-UCS a dimension. Like a* in L*a*b*, it is a Cartesian coordinate on the Y
-     * axis.
+     *   axis.
      * @param bstar CAM16-UCS b dimension. Like a* in L*a*b*, it is a Cartesian coordinate on the X
-     * axis.
+     *   axis.
      * @param viewingConditions Information about the environment where the color was observed.
      */
     fun fromUcsInViewingConditions(
-      jstar: Double, astar: Double, bstar: Double, viewingConditions: ViewingConditions
+      jstar: Double,
+      astar: Double,
+      bstar: Double,
+      viewingConditions: ViewingConditions,
     ): Cam16 {
       val m = hypot(astar, bstar)
       val m2 = expm1(m * 0.0228) / 0.0228

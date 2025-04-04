@@ -42,10 +42,7 @@ fun SettingsAppScreen(onNavigate: (Route) -> Unit) {
   val preferencesViewModel: PreferencesViewModel = koinViewModel()
   Screen(label = stringResource(id = Strings.settings_app_title)) {
     PreferenceGroup(heading = stringResource(id = Strings.settings_appearance_title)) {
-      AppearancePreference(
-        preferencesViewModel = preferencesViewModel,
-        onNavigate = onNavigate
-      )
+      AppearancePreference(preferencesViewModel = preferencesViewModel, onNavigate = onNavigate)
     }
   }
 }
@@ -53,7 +50,7 @@ fun SettingsAppScreen(onNavigate: (Route) -> Unit) {
 @Composable
 private fun AppearancePreference(
   preferencesViewModel: PreferencesViewModel,
-  onNavigate: (Route) -> Unit
+  onNavigate: (Route) -> Unit,
 ) {
   val context = LocalContext.current
   val appIsUseMonet by

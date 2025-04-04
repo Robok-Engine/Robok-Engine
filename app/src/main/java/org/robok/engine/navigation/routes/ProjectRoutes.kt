@@ -20,18 +20,10 @@ import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 import org.robok.engine.models.project.ProjectTemplate
 
-@Keep
-@Serializable
-data class CreateProjectRoute(val template: ProjectTemplate) : Route
+@Keep @Serializable data class CreateProjectRoute(val template: ProjectTemplate) : Route
 
-@Keep
-@Serializable
-object ManageProjectsRoute : Route
+@Keep @Serializable object ManageProjectsRoute : Route
 
-@Keep
-@Serializable
-object TemplatesRoute : Route
+@Keep @Serializable object TemplatesRoute : Route
 
-@Keep
-@Serializable
-data class ProjectSettingsRoute(val projectPath: String) : Route
+@Keep @Serializable data class ProjectSettingsRoute(val projectPath: String) : Route

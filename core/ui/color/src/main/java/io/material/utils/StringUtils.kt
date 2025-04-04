@@ -16,7 +16,7 @@ package io.material.utils
  * limitations under the License.
  */
 
-/** Utility methods for string representations of colors.  */
+/** Utility methods for string representations of colors. */
 internal object StringUtils {
   /**
    * Hex string representing color, ex. #ff0000 for red.

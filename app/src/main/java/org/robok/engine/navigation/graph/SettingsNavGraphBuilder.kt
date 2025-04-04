@@ -44,9 +44,7 @@ fun NavGraphBuilder.SettingsNavGraphBuilder(navController: NavHostController) {
     SettingsAppScreen(onNavigate = { route -> navController.navigate(route) })
   }
 
-  composable<SettingsAppThemeColorsRoute> {
-    SettingsAppThemeColorsScreen()
-  }
+  composable<SettingsAppThemeColorsRoute> { SettingsAppThemeColorsScreen() }
 
   composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
 

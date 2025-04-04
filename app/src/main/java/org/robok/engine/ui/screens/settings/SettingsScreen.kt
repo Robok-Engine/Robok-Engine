@@ -21,7 +21,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Android
 import androidx.compose.material.icons.rounded.Book
 import androidx.compose.material.icons.rounded.BuildCircle
-import androidx.compose.material.icons.rounded.DeveloperMode
 import androidx.compose.material.icons.rounded.Edit
 import androidx.compose.material.icons.rounded.Info
 import androidx.compose.runtime.Composable

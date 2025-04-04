@@ -23,33 +23,29 @@ import kotlin.math.roundToLong
 /**
  * Color science utilities.
  *
- *
- * Utility methods for color science constants and color space conversions that aren't HCT or
- * CAM16.
+ * Utility methods for color science constants and color space conversions that aren't HCT or CAM16.
  */
 object ColorUtils {
-  val SRGB_TO_XYZ = arrayOf(
-    doubleArrayOf(0.41233895, 0.35762064, 0.18051042),
-    doubleArrayOf(0.2126, 0.7152, 0.0722),
-    doubleArrayOf(0.01932141, 0.11916382, 0.95034478)
-  )
-  val XYZ_TO_SRGB = arrayOf(
-    doubleArrayOf(
-      3.2413774792388685, -1.5376652402851851, -0.49885366846268053
-    ), doubleArrayOf(
-      -0.9691452513005321, 1.8758853451067872, 0.04156585616912061
-    ), doubleArrayOf(
-      0.05562093689691305, -0.20395524564742123, 1.0571799111220335
+  val SRGB_TO_XYZ =
+    arrayOf(
+      doubleArrayOf(0.41233895, 0.35762064, 0.18051042),
+      doubleArrayOf(0.2126, 0.7152, 0.0722),
+      doubleArrayOf(0.01932141, 0.11916382, 0.95034478),
     )
-  )
+  val XYZ_TO_SRGB =
+    arrayOf(
+      doubleArrayOf(3.2413774792388685, -1.5376652402851851, -0.49885366846268053),
+      doubleArrayOf(-0.9691452513005321, 1.8758853451067872, 0.04156585616912061),
+      doubleArrayOf(0.05562093689691305, -0.20395524564742123, 1.0571799111220335),
+    )
   val WHITE_POINT_D65 = doubleArrayOf(95.047, 100.0, 108.883)
 
-  /** Converts a color from RGB components to ARGB format.  */
+  /** Converts a color from RGB components to ARGB format. */
   fun argbFromRgb(red: Int, green: Int, blue: Int): Int {
     return 255 shl 24 or (red and 255 shl 16) or (green and 255 shl 8) or (blue and 255)
   }
 
-  /** Converts a color from linear RGB components to ARGB format.  */
+  /** Converts a color from linear RGB components to ARGB format. */
   fun argbFromLinrgb(linrgb: DoubleArray?): Int {
     val r = delinearized(linrgb!![0])
     val g = delinearized(linrgb[1])
@@ -57,32 +53,32 @@ object ColorUtils {
     return argbFromRgb(r, g, b)
   }
 
-  /** Returns the alpha component of a color in ARGB format.  */
+  /** Returns the alpha component of a color in ARGB format. */
   fun alphaFromArgb(argb: Int): Int {
     return argb shr 24 and 255
   }
 
-  /** Returns the red component of a color in ARGB format.  */
+  /** Returns the red component of a color in ARGB format. */
   fun redFromArgb(argb: Int): Int {
     return argb shr 16 and 255
   }
 
-  /** Returns the green component of a color in ARGB format.  */
+  /** Returns the green component of a color in ARGB format. */
   fun greenFromArgb(argb: Int): Int {
     return argb shr 8 and 255
   }
 
-  /** Returns the blue component of a color in ARGB format.  */
+  /** Returns the blue component of a color in ARGB format. */
   fun blueFromArgb(argb: Int): Int {
     return argb and 255
   }
 
-  /** Returns whether a color in ARGB format is opaque.  */
+  /** Returns whether a color in ARGB format is opaque. */
   fun isOpaque(argb: Int): Boolean {
     return alphaFromArgb(argb) >= 255
   }
 
-  /** Converts a color from ARGB to XYZ.  */
+  /** Converts a color from ARGB to XYZ. */
   fun argbFromXyz(x: Double, y: Double, z: Double): Int {
     val matrix = XYZ_TO_SRGB
     val linearR = matrix[0][0] * x + matrix[0][1] * y + matrix[0][2] * z
@@ -94,7 +90,7 @@ object ColorUtils {
     return argbFromRgb(r, g, b)
   }
 
-  /** Converts a color from XYZ to ARGB.  */
+  /** Converts a color from XYZ to ARGB. */
   fun xyzFromArgb(argb: Int): DoubleArray? {
     val r = linearized(redFromArgb(argb))
     val g = linearized(greenFromArgb(argb))
@@ -102,7 +98,7 @@ object ColorUtils {
     return MathUtils.matrixMultiply(doubleArrayOf(r, g, b), SRGB_TO_XYZ)
   }
 
-  /** Converts a color represented in Lab color space into an ARGB integer.  */
+  /** Converts a color represented in Lab color space into an ARGB integer. */
   fun argbFromLab(l: Double, a: Double, b: Double): Int {
     val whitePoint = WHITE_POINT_D65
     val fy = (l + 16.0) / 116.0
@@ -170,9 +166,7 @@ object ColorUtils {
   /**
    * Converts an L* value to a Y value.
    *
-   *
    * L* in L*a*b* and Y in XYZ measure the same quantity, luminance.
-   *
    *
    * L* measures perceptual luminance, a linear scale. Y in XYZ measures relative luminance, a
    * logarithmic scale.
@@ -187,9 +181,7 @@ object ColorUtils {
   /**
    * Converts a Y value to an L* value.
    *
-   *
    * L* in L*a*b* and Y in XYZ measure the same quantity, luminance.
-   *
    *
    * L* measures perceptual luminance, a linear scale. Y in XYZ measures relative luminance, a
    * logarithmic scale.
@@ -225,11 +217,12 @@ object ColorUtils {
   fun delinearized(rgbComponent: Double): Int {
     val normalized = rgbComponent / 100.0
     var delinearized = 0.0
-    delinearized = if (normalized <= 0.0031308) {
-      normalized * 12.92
-    } else {
-      1.055 * normalized.pow(1.0 / 2.4) - 0.055
-    }
+    delinearized =
+      if (normalized <= 0.0031308) {
+        normalized * 12.92
+      } else {
+        1.055 * normalized.pow(1.0 / 2.4) - 0.055
+      }
     return MathUtils.clampInt(0, 255, (delinearized * 255.0).roundToLong().toInt())
   }
 

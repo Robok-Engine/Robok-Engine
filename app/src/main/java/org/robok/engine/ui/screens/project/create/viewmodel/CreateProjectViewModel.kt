@@ -59,15 +59,15 @@ class CreateProjectViewModel(private val projectManager: ProjectManager) : ViewM
   fun create(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
     setIsLoading(true)
     viewModelScope.launch {
-      createProject(
-        template = template,
-        onSuccess = onSuccess,
-        onError = onError
-      )
+      createProject(template = template, onSuccess = onSuccess, onError = onError)
     }
   }
 
-  private suspend fun createProject(template: ProjectTemplate, onSuccess: () -> Unit, onError: (String) -> Unit) {
+  private suspend fun createProject(
+    template: ProjectTemplate,
+    onSuccess: () -> Unit,
+    onError: (String) -> Unit,
+  ) {
     if (_uiState.projectName.isEmpty() || _uiState.packageName.isEmpty()) {
       setIsLoading(false)
       onError("Project name and package name cannot be empty.")
