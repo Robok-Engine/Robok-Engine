@@ -17,6 +17,7 @@ package org.robok.engine.ui.activities
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Build
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -27,13 +28,23 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.compose.rememberNavController
+import org.robok.engine.core.settings.DefaultValues
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.navigation.routes.MainRoute
 import org.robok.engine.navigation.routes.SetupRoute
 import org.robok.engine.ui.base.BaseComposeActivity
 import org.robok.engine.ui.platform.LocalFirstNavController
+import org.robok.engine.ui.platform.LocalThemeSeedColor
+import org.robok.engine.ui.platform.LocalThemePaletteStyleIndex
+import org.robok.engine.ui.platform.LocalThemeDynamicColor
+import com.kyant.monet.LocalTonalPalettes
+import com.kyant.monet.PaletteStyle
+import com.kyant.monet.TonalPalettes.Companion.toTonalPalettes
 
 class MainActivity : BaseComposeActivity() {
 
@@ -57,8 +68,16 @@ class MainActivity : BaseComposeActivity() {
 
   @Composable
   private fun ProvideCompositionLocals(content: @Composable () -> Unit) {
+    val appIsUseMonet by preferences.appIsUseMonet.collectAsState(initial = DefaultValues.IS_USE_MONET)
+    val appThemeSeedColor by preferences.appThemeSeedColor.collectAsState(initial = DefaultValues.APP_THEME_SEED_COLOR)
+    val appThemePaletteStyleIndex by preferences.appThemePaletteStyleIndex.collectAsState(initial = DefaultValues.APP_THEME_PALETTE_STYLE_INDEX)
+    val tonalPalettes = if (appIsUseMonet && Build.VERSION.SDK_INT >= 31) dynamicDarkColorScheme(LocalContext.current).toTonalPalettes() else Color(appThemeSeedColor).toTonalPalettes(paletteStyles.getOrElse(appThemePaletteStyleIndex) { PaletteStyle.TonalSpot })
     CompositionLocalProvider(
       LocalFirstNavController provides rememberNavController(),
+      LocalThemeSeedColor provides appThemeSeedColor,
+      LocalThemePaletteStyleIndex provides appThemePaletteStyleIndex,
+      LocalThemeDynamicColor provides appIsUseMonet,
+      LocalTonalPalettes provides tonalPalettes,
       content = content,
     )
   }

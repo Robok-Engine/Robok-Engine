@@ -29,6 +29,7 @@ include(":feature:editor")
 include(":feature:compiler")
 
 include(":core:ui:components")
+include(":core:ui:color")
 include(":core:utils")
 include(":core:settings")
 include(":core:database")

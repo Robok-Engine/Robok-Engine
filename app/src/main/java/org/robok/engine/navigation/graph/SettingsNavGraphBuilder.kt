@@ -23,6 +23,7 @@ import androidx.navigation.compose.composable
 import org.robok.engine.navigation.routes.AboutLibrariesRoute
 import org.robok.engine.navigation.routes.AboutRoute
 import org.robok.engine.navigation.routes.SettingsAppRoute
+import org.robok.engine.navigation.routes.SettingsAppThemeColorsRoute
 import org.robok.engine.navigation.routes.SettingsCodeEditorRoute
 import org.robok.engine.navigation.routes.SettingsDebugLoggingRoute
 import org.robok.engine.navigation.routes.SettingsDebugRoute
@@ -38,7 +39,13 @@ import org.robok.engine.ui.screens.settings.libraries.LibrariesScreen
 fun NavGraphBuilder.SettingsNavGraphBuilder(navController: NavHostController) {
   composable<SettingsRoute> { SettingsScreen() }
 
-  composable<SettingsAppRoute> { SettingsAppScreen() }
+  composable<SettingsAppRoute> {
+    SettingsAppScreen(onNavigate = { route -> navController.navigate(route) })
+  }
+
+  composable<SettingsAppThemeColorsRoute> {
+    SettingsAppThemeColorsScreen()
+  }
 
   composable<SettingsCodeEditorRoute> { SettingsCodeEditorScreen() }
 

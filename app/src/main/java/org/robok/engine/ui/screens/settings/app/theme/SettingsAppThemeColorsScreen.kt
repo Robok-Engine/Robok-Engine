@@ -1,4 +1,4 @@
-package org.robok.engine.navigation.routes
+package org.robok.engine.ui.screens.settings.app.color
 
 /*
  * Copyright 2025 Robok.
@@ -16,37 +16,9 @@ package org.robok.engine.navigation.routes
  * limitations under the License.
  */
 
-import androidx.annotation.Keep
-import kotlinx.serialization.Serializable
+import androidx.compose.runtime.Composable
 
-@Keep
-@Serializable
-object SettingsRoute : Route
-
-@Keep
-@Serializable
-object SettingsAppRoute : Route
-
-@Keep
-@Serializable
-object SettingsCodeEditorRoute : Route
-
-@Keep
-@Serializable
-object AboutRoute : Route
-
-@Keep
-@Serializable
-object AboutLibrariesRoute : Route
-
-@Keep
-@Serializable
-object SettingsDebugRoute : Route
-
-@Keep
-@Serializable
-object SettingsDebugLoggingRoute : Route
-
-@Keep
-@Serializable
-object SettingsAppThemeColorsRoute : Route
+@Composable
+fun SettingsAppThemeColorsScreen(onBack: () -> Unit = {}) {
+  
+}

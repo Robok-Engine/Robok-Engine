@@ -20,6 +20,7 @@ package org.robok.engine.ui.platform
 import androidx.compose.runtime.compositionLocalOf
 import androidx.navigation.NavHostController
 import org.robok.engine.noLocalProvidedFor
+import org.robok.engine.ui.theme.DEFAULT_SEED_COLOR
 
 val LocalFirstNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalFirstNavController") }
@@ -29,3 +30,12 @@ val LocalMainNavController =
 
 val LocalSetupNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalSetupNavController") }
+
+val LocalThemeSeedColor =
+  compositionLocalOf { DEFAULT_SEED_COLOR }
+
+val LocalThemeDynamicColor =
+  compositionLocalOf { false }
+
+val LocalThemePaletteStyleIndex =
+  compositionLocalOf { 0 }
