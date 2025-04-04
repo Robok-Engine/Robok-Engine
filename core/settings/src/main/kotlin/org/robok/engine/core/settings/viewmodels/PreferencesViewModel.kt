@@ -23,38 +23,47 @@ import kotlinx.coroutines.launch
 import org.robok.engine.core.settings.repositories.PreferencesRepository
 
 class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel() {
-  val appIsUseMonet = repo.appIsUseMonet
-  val appIsUseAmoled = repo.appIsUseAmoled
-  val editorTheme = repo.editorTheme
-  val editorTypeface = repo.editorTypeface
-  val editorIsUseWordWrap = repo.editorIsUseWordWrap
-  val editorFont = repo.editorFont
+  val appPreferences = AppPreferencesViewModel(repo.appPreferences)
+  val editorPreferences = EditorPreferencesViewModel(repo.editorPreferences)
 
-  var onAppThemePreferenceChange: () -> Unit = {}
+  class AppPreferencesViewModel(private val appRepo: PreferencesRepository.AppPreferences) {
+    val isUseMonet = appRepo.isUseMonet
+    val isUseAmoled = appRepo.isUseAmoled
+    val isUseBlur = appRepo.isUseBlur
 
-  fun setMonetEnable(value: Boolean) {
-    onAppThemePreferenceChange()
-    viewModelScope.launch { repo.setMonetEnable(value) }
+    fun setUseMonetEnable(value: Boolean) {
+      viewModelScope.launch { appRepo.setMonetEnable(value) }
+    }
+
+    fun setUseAmoledEnable(value: Boolean) {
+      viewModelScope.launch { appRepo.setAmoledEnable(value) }
+    }
+
+    fun setUseBlurEnable(value: Boolean) {
+      viewModelScope.launch { appRepo.setUseBlurEnable(value) }
+    }
   }
 
-  fun setAmoledEnable(value: Boolean) {
-    onAppThemePreferenceChange()
-    viewModelScope.launch { repo.setAmoledEnable(value) }
-  }
+  class EditorPreferencesViewModel(private val editorRepo: PreferencesRepository.EditorPreferences) {
+    val theme = editorRepo.theme
+    val typeface = editorRepo.typeface
+    val isUseWordWrap = editorRepo.isUseWordWrap
+    val font = editorRepo.font
 
-  fun setEditorTheme(value: Int) {
-    viewModelScope.launch { repo.setEditorTheme(value) }
-  }
+    fun setEditorTheme(value: Int) {
+      viewModelScope.launch { editorRepo.setEditorTheme(value) }
+    }
 
-  fun setEditorTypeface(value: Int) {
-    viewModelScope.launch { repo.setEditorTypeface(value) }
-  }
+    fun setEditorTypeface(value: Int) {
+      viewModelScope.launch { editorRepo.setEditorTypeface(value) }
+    }
 
-  fun setEditorWordWrapEnable(value: Boolean) {
-    viewModelScope.launch { repo.setEditorWordWrapEnable(value) }
-  }
+    fun setEditorWordWrapEnable(value: Boolean) {
+      viewModelScope.launch { editorRepo.setEditorWordWrapEnable(value) }
+    }
 
-  fun setEditorFont(value: Int) {
-    viewModelScope.launch { repo.setEditorFont(value) }
+    fun setEditorFont(value: Int) {
+      viewModelScope.launch { editorRepo.setEditorFont(value) }
+    }
   }
 }

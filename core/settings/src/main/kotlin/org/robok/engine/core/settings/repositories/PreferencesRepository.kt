@@ -27,41 +27,50 @@ import kotlinx.coroutines.flow.map
 import org.robok.engine.core.settings.DefaultValues
 
 class PreferencesRepository(private val dataStore: DataStore<Preferences>) {
-  private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
-  private val appIsUseAmoledPreference = booleanPreferencesKey("app_amoled")
-  private val editorThemePreference = intPreferencesKey("editor_theme")
-  private val editorTypefacePreference = intPreferencesKey("editor_typeface")
-  private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
-  private val editorFontPreference = intPreferencesKey("editor_font")
 
-  val appIsUseMonet =
-    dataStore.data.map { it[appIsUseMonetPreference] ?: DefaultValues.IS_USE_MONET }
-  val appIsUseAmoled =
-    dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.IS_USE_AMOLED }
-  val editorTheme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.EDITOR_THEME }
-  val editorTypeface =
-    dataStore.data.map { it[editorTypefacePreference] ?: DefaultValues.EDITOR_TYPEFACE }
-  val editorIsUseWordWrap =
-    dataStore.data.map {
-      it[editorIsUseWordWrapPreference] ?: DefaultValues.EDITOR_IS_USE_WORD_WRAP
-    }
-  val editorFont = dataStore.data.map { it[editorFontPreference] ?: DefaultValues.EDITOR_FONT }
+  val appPreferences = AppPreferences(dataStore)
+  val editorPreferences = EditorPreferences(dataStore)
 
-  suspend fun setMonetEnable(value: Boolean) =
-    dataStore.edit { preferences -> preferences[appIsUseMonetPreference] = value }
+  class AppPreferences(private val dataStore: DataStore<Preferences>) {
+    private val appIsUseMonetPreference = booleanPreferencesKey("app_monet")
+    private val appIsUseAmoledPreference = booleanPreferencesKey("app_amoled")
+    private val appIsUseBlurPreference = booleanPreferencesKey("app_blur")
 
-  suspend fun setAmoledEnable(value: Boolean) =
-    dataStore.edit { preferences -> preferences[appIsUseAmoledPreference] = value }
+    val isUseMonet = dataStore.data.map { it[appIsUseMonetPreference] ?: DefaultValues.App.USE_MONET }
+    val isUseAmoled = dataStore.data.map { it[appIsUseAmoledPreference] ?: DefaultValues.App.USE_AMOLED }
+    val isUseBlur = dataStore.data.map { it[appIsUseBlurPreference] ?: DefaultValues.App.USE_BLUR }
 
-  suspend fun setEditorTheme(value: Int) =
-    dataStore.edit { preferences -> preferences[editorThemePreference] = value }
+    suspend fun setUseMonetEnable(value: Boolean) =
+        dataStore.edit { it[appIsUseMonetPreference] = value }
 
-  suspend fun setEditorTypeface(value: Int) =
-    dataStore.edit { preferences -> preferences[editorTypefacePreference] = value }
+    suspend fun setUseAmoledEnable(value: Boolean) =
+        dataStore.edit { it[appIsUseAmoledPreference] = value }
 
-  suspend fun setEditorWordWrapEnable(value: Boolean) =
-    dataStore.edit { preferences -> preferences[editorIsUseWordWrapPreference] = value }
+    suspend fun setUseBlurEnable(value: Boolean) =
+        dataStore.edit { it[appIsUseBlurPreference] = value }
+  }
 
-  suspend fun setEditorFont(value: Int) =
-    dataStore.edit { preferences -> preferences[editorFontPreference] = value }
+  class EditorPreferences(private val dataStore: DataStore<Preferences>) {
+    private val editorThemePreference = intPreferencesKey("editor_theme")
+    private val editorTypefacePreference = intPreferencesKey("editor_typeface")
+    private val editorIsUseWordWrapPreference = booleanPreferencesKey("editor_word_wrap")
+    private val editorFontPreference = intPreferencesKey("editor_font")
+
+    val theme = dataStore.data.map { it[editorThemePreference] ?: DefaultValues.Editor.THEME }
+    val typeface = dataStore.data.map { it[editorTypefacePreference] ?: DefaultValues.Editor.TYPEFACE }
+    val isUseWordWrap = dataStore.data.map { it[editorIsUseWordWrapPreference] ?: DefaultValues.Editor.USE_WORD_WRAP }
+    val font = dataStore.data.map { it[editorFontPreference] ?: DefaultValues.Editor.FONT }
+
+    suspend fun setEditorTheme(value: Int) =
+        dataStore.edit { it[editorThemePreference] = value }
+
+    suspend fun setEditorTypeface(value: Int) =
+        dataStore.edit { it[editorTypefacePreference] = value }
+
+    suspend fun setEditorWordWrapEnable(value: Boolean) =
+        dataStore.edit { it[editorIsUseWordWrapPreference] = value }
+
+    suspend fun setEditorFont(value: Int) =
+        dataStore.edit { it[editorFontPreference] = value }
+  }
 }

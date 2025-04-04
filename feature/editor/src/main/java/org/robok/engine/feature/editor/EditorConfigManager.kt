@@ -26,66 +26,71 @@ import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 
 class EditorConfigManager : KoinComponent {
 
-  private val appPreferencesViewModel: PreferencesViewModel by inject()
+  private val editorPreferences: PreferencesViewModel by inject()
 
   private val editorTheme: Flow<Int>
-    get() = appPreferencesViewModel.editorTheme
-
+    get() = preferencesViewModel.editorPreferences.theme
   private val editorTypeface: Flow<Int>
-    get() = appPreferencesViewModel.editorTypeface
-
+    get() = preferencesViewModel.editorPreferences.typeface
   private val editorIsUseWordWrap: Flow<Boolean>
-    get() = appPreferencesViewModel.editorIsUseWordWrap
-
+    get() = preferencesViewModel.editorPreferences.isUseWordWrap
   private val editorFont: Flow<Int>
-    get() = appPreferencesViewModel.editorFont
+    get() = preferencesViewModel.editorPreferences.font
 
-  /*
+  /**
    * Method to get Editor theme index
-   * @return Return a Int (0..6) with theme index
+   * @return Return a Int (0..6) with theme index 
    */
-  fun getEditorTheme(): Int = runBlocking { editorTheme.first() }
+  fun getEditorTheme(): Int =
+    runBlocking { editorTheme.first() }
 
-  /*
-   * Method to get Editor theme index
-   * @return Return a Int (0..6) with theme index
+  /**
+   * Method to get Editor typeface index
+   * @return Return a Int with typeface index 
    */
-  fun getEditorTypeface(): Int = runBlocking { editorTypeface.first() }
+  fun getEditorTypeface(): Int =
+    runBlocking { editorTypeface.first() }
 
-  /*
+  /**
    * Method to get if is to use Word Wrap on editor
    * @return Return true or false
    */
-  fun getEditorIsUseWordWrap(): Boolean = runBlocking { editorIsUseWordWrap.first() }
+  fun getEditorIsUseWordWrap(): Boolean =
+    runBlocking { editorIsUseWordWrap.first() }
 
-  /*
-   * Method to get if is to use Word Wrap on editor
-   * @return Return true or false
+  /**
+   * Method to get editor font index
+   * @return Return an Int with font index 
    */
-  fun getEditorFont(): Int = runBlocking { editorFont.first() }
+  fun getEditorFont(): Int =
+    runBlocking { editorFont.first() }
 
-  /*
+  /**
    * Method to set Editor theme index
    * @param value A Int of new theme index
    */
-  fun setEditorTheme(value: Int) = appPreferencesViewModel.setEditorTheme(value)
 
-  /*
-   * Method to set Editor theme index
-   * @param value A Int of new theme index
+  fun setEditorTheme(value: Int) =
+    preferencesViewModel.editorPreferences.setEditorTheme(value)
+
+  /**
+   * Method to set Editor typeface index
+   * @param value A Int of new typeface index
    */
-  fun setEditorTypeface(value: Int) = appPreferencesViewModel.setEditorTypeface(value)
+  fun setEditorTypeface(value: Int) =
+    preferencesViewModel.editorPreferences.setEditorTypeface(value)
 
-  /*
+  /**
    * Method to set if editor will use WordWrap
    * @param value A Boolean to enable or disable
    */
   fun setEditorWordWrapEnable(value: Boolean) =
-    appPreferencesViewModel.setEditorWordWrapEnable(value)
+    preferencesViewModel.editorPreferences.setEditorWordWrapEnable(value)
 
-  /*
+  /**
    * Method to set editor font
    * @param value A font number index
    */
-  fun setEditorFont(value: Int) = appPreferencesViewModel.setEditorFont(value)
+  fun setEditorFont(value: Int) =
+    preferencesViewModel.editorPreferences.setEditorFont(value)
 }
