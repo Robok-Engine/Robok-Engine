@@ -105,8 +105,6 @@ class FileTreeAdapter(
 
     holder.expandView.setOnClickListener(clickListener)
     holder.fileView.setPadding(0, 0, 0, 0)
-    holder.fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
-    holder.expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
     return holder
   }
 
@@ -148,6 +146,9 @@ class FileTreeAdapter(
     }
 
     holder.textView.text = "  ${node.value.getName()}  "
+
+    fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+    expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
   }
 
   fun expandNode(clickedNode: Node<FileObject>) {
