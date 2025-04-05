@@ -28,7 +28,7 @@ import org.robok.engine.feature.treeview.interfaces.FileLongClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.feature.treeview.provider.DefaultFileIconProvider
-import org.robok.engine.feature.treeview.util.Sorter
+import org.robok.engine.feature.treeview.util.sort
 
 class FileTree @JvmOverloads constructor(
   context: Context,
@@ -73,7 +73,7 @@ class FileTree @JvmOverloads constructor(
       if (showRootNode) {
         mutableListOf<Node<FileObject>>().apply { add(Node(file)) }
       } else {
-        Sorter.sort(file)
+        sort(file)
       }
 
     if (!init) {
@@ -95,7 +95,7 @@ class FileTree @JvmOverloads constructor(
       if (showRootNode) {
         mutableListOf<Node<FileObject>>().apply { add(Node(rootFileObject)) }
       } else {
-        Sorter.sort(rootFileObject)
+        sort(rootFileObject)
       }
     fileTreeAdapter.submitList(nodes)
   }
