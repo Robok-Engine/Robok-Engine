@@ -25,6 +25,8 @@ import org.robok.engine.core.settings.repositories.PreferencesRepository
 class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel() {
   val appIsUseMonet = repo.appIsUseMonet
   val appIsUseAmoled = repo.appIsUseAmoled
+  val appThemeSeedColor = repo.appThemeSeedColor
+  val appThemePaletteStyleIndex = repo.appThemePaletteStyleIndex
   val editorTheme = repo.editorTheme
   val editorTypeface = repo.editorTypeface
   val editorIsUseWordWrap = repo.editorIsUseWordWrap
@@ -33,13 +35,19 @@ class PreferencesViewModel(private val repo: PreferencesRepository) : ViewModel(
   var onAppThemePreferenceChange: () -> Unit = {}
 
   fun setMonetEnable(value: Boolean) {
-    onAppThemePreferenceChange()
     viewModelScope.launch { repo.setMonetEnable(value) }
   }
 
   fun setAmoledEnable(value: Boolean) {
-    onAppThemePreferenceChange()
     viewModelScope.launch { repo.setAmoledEnable(value) }
+  }
+
+  fun setAppThemeSeedColor(value: Int) {
+    viewModelScope.launch { repo.setAppThemeSeedColor(value) }
+  }
+
+  fun setAppThemePaletteStyleIndex(value: Int) {
+    viewModelScope.launch { repo.setAppThemePaletteStyleIndex(value) }
   }
 
   fun setEditorTheme(value: Int) {

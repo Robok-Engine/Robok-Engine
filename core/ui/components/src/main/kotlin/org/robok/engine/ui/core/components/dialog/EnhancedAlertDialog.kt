@@ -19,9 +19,9 @@ package org.robok.engine.ui.core.components.dialog
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.AlertDialogDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.window.DialogProperties
 
@@ -40,7 +40,7 @@ fun EnhancedAlertDialog(
   titleContentColor: Color = AlertDialogDefaults.titleContentColor,
   textContentColor: Color = AlertDialogDefaults.textContentColor,
   tonalElevation: Dp = AlertDialogDefaults.TonalElevation,
-  properties: DialogProperties = DialogProperties()
+  properties: DialogProperties = DialogProperties(),
 ) =
   AlertDialog(
     onDismissRequest = onDismissRequest,
@@ -56,5 +56,5 @@ fun EnhancedAlertDialog(
     titleContentColor = titleContentColor,
     textContentColor = textContentColor,
     tonalElevation = tonalElevation,
-    properties = properties
+    properties = properties,
   )

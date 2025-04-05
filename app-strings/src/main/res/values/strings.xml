@@ -131,6 +131,8 @@
   <string name="settings_app_use_monet_description">Use device theme in app.</string>
   <string name="settings_app_use_amoled_title">Amoled Theme</string>
   <string name="settings_app_use_amoled_description">Use amoled theme in app.</string>
+  <string name="settings_app_theme_colors_title">Theme Colors</string>
+  <string name="settings_app_theme_colors_description">Change the app color palette to suit your taste.</string>
   <string name="settings_code_editor_title">Code Editor Settings</string>
   <string name="settings_code_editor_description">Some code editor settings.</string>
   <string name="settings_code_editor_theme_title">Code Editor Theme</string>

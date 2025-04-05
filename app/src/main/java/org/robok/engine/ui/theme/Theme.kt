@@ -21,21 +21,54 @@ import android.app.Activity
 import android.os.Build
 import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material3.ColorScheme
+import androidx.compose.material3.LocalTextStyle
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.ReadOnlyComposable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
+import androidx.compose.ui.text.style.LineBreak
+import androidx.compose.ui.text.style.TextDirection
 import androidx.core.view.WindowCompat
+import com.google.android.material.color.MaterialColors
+import com.kyant.monet.LocalTonalPalettes
+import com.kyant.monet.dynamicColorScheme
 import org.koin.androidx.compose.koinViewModel
 import org.robok.engine.core.settings.DefaultValues
 import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
+
+fun Color.applyOpacity(enabled: Boolean): Color {
+  return if (enabled) this else this.copy(alpha = 0.62f)
+}
+
+@Composable
+@ReadOnlyComposable
+fun Color.harmonizeWith(other: Color) =
+  Color(MaterialColors.harmonize(this.toArgb(), other.toArgb()))
+
+@Composable
+@ReadOnlyComposable
+fun Color.harmonizeWithPrimary(): Color =
+  this.harmonizeWith(other = MaterialTheme.colorScheme.primary)
+
+@Composable
+fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()): ColorScheme {
+  val context = LocalContext.current
+  return remember {
+    if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+  }
+}
 
 @Composable
 fun RobokTheme(
@@ -52,22 +85,27 @@ fun RobokTheme(
     appPrefsViewModel.appIsUseAmoled.collectAsState(initial = DefaultValues.IS_USE_AMOLED)
 
   val colorScheme =
-    when {
-      dynamicColor && supportsDynamicTheming() -> {
-        val context = LocalContext.current
-        when {
-          darkTheme && highContrastDarkTheme ->
-            dynamicDarkColorScheme(context).copy(background = Color.Black, surface = Color.Black)
-          darkTheme -> dynamicDarkColorScheme(context)
-          else -> dynamicLightColorScheme(context)
-        }
-      }
-
-      darkTheme && highContrastDarkTheme ->
-        DarkColorScheme.copy(background = Color.Black, surface = Color.Black)
-      darkTheme -> DarkColorScheme
-      else -> LightColorScheme
+    dynamicColorScheme(!darkTheme).run {
+      if (highContrastDarkTheme && darkTheme)
+        copy(
+          surface = Color.Black,
+          background = Color.Black,
+          surfaceContainerLowest = Color.Black,
+          surfaceContainerLow = surfaceContainerLowest,
+          surfaceContainer = surfaceContainerLow,
+          surfaceContainerHigh = surfaceContainerLow,
+          surfaceContainerHighest = surfaceContainer,
+        )
+      else this
     }
+
+  val textStyle =
+    LocalTextStyle.current.copy(
+      lineBreak = LineBreak.Paragraph,
+      textDirection = TextDirection.Content,
+    )
+
+  val tonalPalettes = LocalTonalPalettes.current
 
   val view = LocalView.current
   if (!view.isInEditMode) {
@@ -83,7 +121,14 @@ fun RobokTheme(
     }
   }
 
-  MaterialTheme(colorScheme = colorScheme, typography = Typography, content = content)
+  CompositionLocalProvider(LocalTextStyle provides textStyle) {
+    MaterialTheme(
+      colorScheme = colorScheme,
+      typography = Typography,
+      shapes = Shapes,
+      content = content,
+    )
+  }
 }
 
 @ChecksSdkIntAtLeast(api = Build.VERSION_CODES.S)

@@ -19,24 +19,18 @@ package org.robok.engine.navigation.routes
 import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
-@Keep
-@Serializable
-object SettingsRoute : Route
+@Keep @Serializable object SettingsRoute : Route
 
-@Serializable
-object SettingsAppRoute : Route
+@Keep @Serializable object SettingsAppRoute : Route
 
-@Serializable
-object SettingsCodeEditorRoute : Route
+@Keep @Serializable object SettingsCodeEditorRoute : Route
 
-@Serializable
-object AboutRoute : Route
+@Keep @Serializable object AboutRoute : Route
 
-@Serializable
-object AboutLibrariesRoute : Route
+@Keep @Serializable object AboutLibrariesRoute : Route
 
-@Serializable
-object SettingsDebugRoute : Route
+@Keep @Serializable object SettingsDebugRoute : Route
 
-@Serializable
-object SettingsDebugLoggingRoute : Route
+@Keep @Serializable object SettingsDebugLoggingRoute : Route
+
+@Keep @Serializable object SettingsAppThemeColorsRoute : Route

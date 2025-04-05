@@ -82,10 +82,7 @@ fun CreateProjectScreen(template: ProjectTemplate) {
             },
             onError = { error ->
               coroutineScope.launch {
-                toastHostState.showToast(
-                  message = error,
-                  icon = Icons.Rounded.Error,
-                )
+                toastHostState.showToast(message = error, icon = Icons.Rounded.Error)
               }
             },
           )

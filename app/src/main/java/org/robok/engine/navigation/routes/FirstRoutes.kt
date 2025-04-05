@@ -19,10 +19,6 @@ package org.robok.engine.navigation.routes
 import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
-@Keep
-@Serializable
-object MainRoute
+@Keep @Serializable object MainRoute
 
-@Keep
-@Serializable
-object SetupRoute
+@Keep @Serializable object SetupRoute

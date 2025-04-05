@@ -1,4 +1,4 @@
-package org.robok.engine.feature.compiler.android;
+package org.robok.engine.feature.compiler.android
 
 /*
  *  This file is part of Robok © 2024.
@@ -20,6 +20,7 @@ package org.robok.engine.feature.compiler.android;
 import java.io.File
 
 interface OnCompileResult {
-  fun onCompileSuccess(file: File?);
-  fun onCompileError(message: String);
+  fun onCompileSuccess(file: File?)
+
+  fun onCompileError(message: String)
 }

@@ -21,49 +21,50 @@ class LoggerViewModel : ViewModel() {
   }
 
   fun e(tag: String, message: String) {
-    val tagSpan = SpannableString("[$tag]").apply {
-      setSpan(
-        ForegroundColorSpan(Color.RED),
-        0, tag.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-      )
-    }
+    val tagSpan =
+      SpannableString("[$tag]").apply {
+        setSpan(ForegroundColorSpan(Color.RED), 0, tag.length, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE)
+      }
 
-    val messageSpan = SpannableString(message).apply {
-      setSpan(
-        ForegroundColorSpan(Color.RED),  // Red color for error
-        0, message.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-      )
-    }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(Color.RED), // Red color for error
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
     addLog(Log(tagSpan, messageSpan))
   }
 
   fun w(tag: String, message: String) {
-    val tagSpan = SpannableString("[$tag]").apply {
-      setSpan(
-        ForegroundColorSpan(0xffff7043.toInt()), // orange
-        0, tag.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-      )
-    }
+    val tagSpan =
+      SpannableString("[$tag]").apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()), // orange
+          0,
+          tag.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
-    val messageSpan = SpannableString(message).apply {
-      setSpan(
-        ForegroundColorSpan(0xffff7043.toInt()),  // Orange color for warning
-        0, message.length,
-        Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-      )
-    }
+    val messageSpan =
+      SpannableString(message).apply {
+        setSpan(
+          ForegroundColorSpan(0xffff7043.toInt()), // Orange color for warning
+          0,
+          message.length,
+          Spannable.SPAN_EXCLUSIVE_EXCLUSIVE,
+        )
+      }
 
     addLog(Log(tagSpan, messageSpan))
   }
 
   private fun addLog(log: Log) {
-    val updatedLogs = _logs.toMutableList().apply {
-      add(log)
-    }
+    val updatedLogs = _logs.toMutableList().apply { add(log) }
     _logs = updatedLogs.toList()
   }
 }

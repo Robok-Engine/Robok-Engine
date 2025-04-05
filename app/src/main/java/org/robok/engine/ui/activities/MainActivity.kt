@@ -17,6 +17,7 @@ package org.robok.engine.ui.activities
  *   along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import android.os.Build
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -28,6 +29,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
+import org.robok.engine.core.settings.viewmodels.PreferencesViewModel
 import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.FirstNavHost
 import org.robok.engine.navigation.routes.MainRoute

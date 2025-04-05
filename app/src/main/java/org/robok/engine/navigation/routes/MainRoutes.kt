@@ -19,14 +19,8 @@ package org.robok.engine.navigation.routes
 import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
-@Keep
-@Serializable
-object HomeRoute : Route
+@Keep @Serializable object HomeRoute : Route
 
-@Keep
-@Serializable
-object TerminalRoute : Route
+@Keep @Serializable object TerminalRoute : Route
 
-@Keep
-@Serializable
-data class EditorRoute(val projectPath: String) : Route
+@Keep @Serializable data class EditorRoute(val projectPath: String) : Route

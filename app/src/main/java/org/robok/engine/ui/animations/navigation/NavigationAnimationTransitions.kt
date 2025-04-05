@@ -64,11 +64,14 @@ object NavigationAnimationTransitions {
 
   object SlideFade {
     private val easing = Easing { f ->
-      PathInterpolator(Path().apply {
-          moveTo(0f, 0f)
-          cubicTo(0.04F, 0F, 0.1F, 0.05F, 0.2F, 0.5F)
-          cubicTo(0.20F, 0.8F, 0.2F, 1F, 1F, 1F)
-      }).getInterpolation(f)
+      PathInterpolator(
+          Path().apply {
+            moveTo(0f, 0f)
+            cubicTo(0.04F, 0F, 0.1F, 0.05F, 0.2F, 0.5F)
+            cubicTo(0.20F, 0.8F, 0.2F, 1F, 1F, 1F)
+          }
+        )
+        .getInterpolation(f)
     }
 
     private const val tweenDuration = 350
@@ -80,12 +83,16 @@ object NavigationAnimationTransitions {
     private val slidePositiveOffset: (fullWidth: Int) -> Int = { (it * initialOffset).toInt() }
     private val slideNegativeOffset: (fullWidth: Int) -> Int = { -(it * initialOffset).toInt() }
 
-    public val enterTransition = slideInHorizontally(enterTween, slidePositiveOffset) + fadeIn(fadeTween)
+    public val enterTransition =
+      slideInHorizontally(enterTween, slidePositiveOffset) + fadeIn(fadeTween)
 
-    public val exitTransition = slideOutHorizontally(exitTween, slideNegativeOffset) + fadeOut(fadeTween)
+    public val exitTransition =
+      slideOutHorizontally(exitTween, slideNegativeOffset) + fadeOut(fadeTween)
 
-    public val popEnterTransition = slideInHorizontally(enterTween, slideNegativeOffset) + fadeIn(fadeTween)
+    public val popEnterTransition =
+      slideInHorizontally(enterTween, slideNegativeOffset) + fadeIn(fadeTween)
 
-    public val popExitTransition = slideOutHorizontally(exitTween, slidePositiveOffset) + fadeOut(fadeTween)
+    public val popExitTransition =
+      slideOutHorizontally(exitTween, slidePositiveOffset) + fadeOut(fadeTween)
   }
 }

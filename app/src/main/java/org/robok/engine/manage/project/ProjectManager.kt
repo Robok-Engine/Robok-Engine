@@ -26,12 +26,6 @@ import java.io.FileOutputStream
 import java.io.IOException
 import java.util.zip.ZipEntry
 import java.util.zip.ZipInputStream
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
@@ -93,7 +87,10 @@ class ProjectManager(private var context: Context) {
               val outputFileName =
                 entryName
                   .replace(template.name, projectName)
-                  .replace("game/src/logic/\$pkgName", "game/src/logic/${packageName.replace('.', '/')}")
+                  .replace(
+                    "game/src/logic/\$pkgName",
+                    "game/src/logic/${packageName.replace('.', '/')}",
+                  )
               val outputFile = File(projectPath, outputFileName)
 
               if (outputFile?.parentFile?.exists()!!.not()) {
@@ -137,12 +134,14 @@ class ProjectManager(private var context: Context) {
           regenerate()
         }
 
-      val fileExt = when (language) {
-        Language.Java -> "java"
-        else -> "kt"
-      }
+      val fileExt =
+        when (language) {
+          Language.Java -> "java"
+          else -> "kt"
+        }
 
-      val classFilePath = "game/src/logic/${packageName.replace('.', '/')}/${template.name}.${fileExt}"
+      val classFilePath =
+        "game/src/logic/${packageName.replace('.', '/')}/${template.name}.${fileExt}"
       val javaFile = File(projectPath, classFilePath)
 
       if (javaFile?.parentFile?.exists()!!.not()) {

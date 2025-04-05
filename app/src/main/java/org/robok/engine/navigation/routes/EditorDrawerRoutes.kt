@@ -19,6 +19,4 @@ package org.robok.engine.navigation.routes
 import androidx.annotation.Keep
 import kotlinx.serialization.Serializable
 
-@Keep
-@Serializable
-object EditorDrawerFilesRoute : Route
+@Keep @Serializable object EditorDrawerFilesRoute : Route

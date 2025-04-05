@@ -132,6 +132,7 @@ dependencies {
   implementation(projects.core.settings)
   implementation(projects.core.database)
   implementation(projects.core.ui.components)
+  implementation(projects.core.ui.color)
   implementation(projects.core.utils)
 }
 

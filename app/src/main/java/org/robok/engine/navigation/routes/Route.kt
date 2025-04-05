@@ -18,5 +18,4 @@ package org.robok.engine.navigation.routes
 
 import androidx.annotation.Keep
 
-@Keep
-interface Route
+@Keep interface Route

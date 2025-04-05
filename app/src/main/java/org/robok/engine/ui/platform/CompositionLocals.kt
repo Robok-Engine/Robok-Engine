@@ -17,8 +17,12 @@ package org.robok.engine.ui.platform
  * along with Robok.  If not, see <https://www.gnu.org/licenses/>.
  */
 
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.compositionLocalOf
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.navigation.NavHostController
+import org.robok.engine.core.settings.DefaultValues.APP_THEME_SEED_COLOR
 import org.robok.engine.noLocalProvidedFor
 
 val LocalFirstNavController =
@@ -29,3 +33,9 @@ val LocalMainNavController =
 
 val LocalSetupNavController =
   compositionLocalOf<NavHostController> { noLocalProvidedFor("LocalSetupNavController") }
+
+val LocalThemeSeedColor = compositionLocalOf { APP_THEME_SEED_COLOR }
+
+val LocalThemeDynamicColor = compositionLocalOf { false }
+
+val LocalThemePaletteStyleIndex = compositionLocalOf { 0 }
