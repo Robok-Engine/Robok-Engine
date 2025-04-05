@@ -22,6 +22,7 @@ import android.content.res.Configuration
 import android.os.Build
 import android.os.Bundle
 import android.os.Environment
+import androidx.activity.ComponentActivity
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -38,7 +39,7 @@ import org.robok.engine.core.utils.requestReadWritePermissions
 import org.robok.engine.defaults.DoNothing
 
 /** Base Class for All Activities. */
-abstract class BaseActivity : AppCompatActivity(), PermissionListener {
+abstract class BaseActivity : ComponentActivity(), PermissionListener {
 
   /** database to get database, like isFirstTime */
   public val database: DatabaseViewModel by lazy { getKoin().get() }
@@ -71,13 +72,6 @@ abstract class BaseActivity : AppCompatActivity(), PermissionListener {
     } else {
       requestReadWritePermissions(this, readWritePermissionLauncher)
     }
-  }
-
-  /** verify if app is in darkMode */
-  @Deprecated("Use Jetpack Compose instead.")
-  public fun isDarkMode(): Boolean {
-    val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
-    return currentNightMode == Configuration.UI_MODE_NIGHT_YES
   }
 
   /**
