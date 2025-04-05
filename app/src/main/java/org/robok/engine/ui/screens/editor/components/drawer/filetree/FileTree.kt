@@ -47,7 +47,7 @@ fun FileTree(
   val context = LocalContext.current
   val fileTreeColors = FileTreeColors(
     icons = MaterialTheme.colorScheme.onSurface.toArgb()
-  ),
+  )
   val fileTreeFactory = remember {
     setFileTreeFactory(
       context = context,
