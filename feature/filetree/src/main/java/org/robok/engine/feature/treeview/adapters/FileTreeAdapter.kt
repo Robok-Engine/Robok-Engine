@@ -1,20 +1,19 @@
 package org.robok.engine.feature.treeview.adapters
 
 /*
- *  This file is part of Xed-Editor (Karbon) © 2024.
+ * Copyright 2025 Robok.
  *
- *  Xed-Editor (Karbon) is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU General Public License as published by
- *  the Free Software Foundation, either version 3 of the License, or
- *  (at your option) any later version.
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
  *
- *  Xed-Editor (Karbon) is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU General Public License for more details.
+ *      http://www.apache.org/licenses/LICENSE-2.0
  *
- *  You should have received a copy of the GNU General Public License
- *   along with Xed-Editor (Karbon).  If not, see <https://www.gnu.org/licenses/>.
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
  */
 
 import android.annotation.SuppressLint
@@ -24,17 +23,19 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import android.graphics.PorterDuff
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import org.robok.engine.feature.treeview.R
+import org.robok.engine.feature.treeview.FileTreeColors
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
 import org.robok.engine.feature.treeview.interfaces.FileIconProvider
 import org.robok.engine.feature.treeview.interfaces.FileLongClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.feature.treeview.model.TreeViewModel
-import org.robok.engine.feature.treeview.util.Sorter
+import org.robok.engine.feature.treeview.util.sort
 import org.robok.engine.feature.treeview.widget.FileTree
 
 class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
@@ -53,7 +54,11 @@ class NodeDiffCallback : DiffUtil.ItemCallback<Node<FileObject>>() {
   }
 }
 
-class FileTreeAdapter(private val context: Context, val fileTree: FileTree) :
+class FileTreeAdapter(
+  private val context: Context,
+  val fileTree: FileTree,
+  private val colors: FileTreeColors
+) :
   ListAdapter<Node<FileObject>, ViewHolder>(NodeDiffCallback()) {
 
   var onClickListener: FileClickListener? = null
@@ -100,6 +105,8 @@ class FileTreeAdapter(private val context: Context, val fileTree: FileTree) :
 
     holder.expandView.setOnClickListener(clickListener)
     holder.fileView.setPadding(0, 0, 0, 0)
+    holder.fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+    holder.expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
     return holder
   }
 
@@ -146,7 +153,7 @@ class FileTreeAdapter(private val context: Context, val fileTree: FileTree) :
   fun expandNode(clickedNode: Node<FileObject>) {
     val tempData = currentList.toMutableList()
     val index = tempData.indexOf(clickedNode)
-    val children = Sorter.sort(clickedNode.value)
+    val children = sort(clickedNode.value)
     tempData.addAll(index + 1, children)
     TreeViewModel.add(clickedNode, children)
     clickedNode.isExpand = true

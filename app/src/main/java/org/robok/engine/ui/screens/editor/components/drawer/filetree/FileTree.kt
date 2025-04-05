@@ -26,8 +26,10 @@ import androidx.compose.ui.*
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.*
 import androidx.compose.ui.unit.*
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.viewinterop.AndroidView
 import java.io.File
+import org.robok.engine.feature.treeview.FileTreeColors
 import org.robok.engine.feature.treeview.interfaces.FileClickListener
 import org.robok.engine.feature.treeview.interfaces.FileObject
 import org.robok.engine.feature.treeview.model.Node
@@ -44,7 +46,15 @@ fun FileTree(
 ) {
   val context = LocalContext.current
   val fileTreeFactory = remember {
-    setFileTreeFactory(context = context, path = path, onClick = onClick, state = state)
+    setFileTreeFactory(
+      context = context,
+      path = path,
+      colors = FileTreeColors(
+        icons = MaterialTheme.colorScheme.onSurface.toArgb()
+      ),
+      onClick = onClick,
+      state = state
+    )
   }
   AndroidView(factory = { fileTreeFactory }, modifier = modifier)
 }
@@ -52,12 +62,13 @@ fun FileTree(
 private fun setFileTreeFactory(
   context: Context,
   path: String,
+  colors: FileTreeColors,
   onClick: (Node<FileObject>) -> Unit,
   state: FileTreeState,
 ): FileTreeView {
   val fileObject = FileWrapper(File(path))
   val fileTree =
-    FileTreeView(context).apply {
+    FileTreeView(context = context, colors = colors).apply {
       loadFiles(fileObject)
       setOnFileClickListener(
         object : FileClickListener {

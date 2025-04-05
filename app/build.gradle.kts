@@ -125,7 +125,7 @@ dependencies {
   // projects
   implementation(projects.appStrings)
 
-  implementation(projects.feature.treeview)
+  implementation(projects.feature.filetree)
   implementation(projects.feature.editor)
   implementation(projects.feature.compiler)
 
