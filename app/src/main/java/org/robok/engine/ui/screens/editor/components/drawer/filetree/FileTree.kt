@@ -45,13 +45,14 @@ fun FileTree(
   state: FileTreeState,
 ) {
   val context = LocalContext.current
+  val fileTreeColors = FileTreeColors(
+    icons = MaterialTheme.colorScheme.onSurface.toArgb()
+  ),
   val fileTreeFactory = remember {
     setFileTreeFactory(
       context = context,
       path = path,
-      colors = FileTreeColors(
-        icons = MaterialTheme.colorScheme.onSurface.toArgb()
-      ),
+      colors = fileTreeColors,
       onClick = onClick,
       state = state
     )
