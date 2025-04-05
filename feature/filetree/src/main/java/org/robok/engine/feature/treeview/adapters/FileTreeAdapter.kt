@@ -90,6 +90,8 @@ class FileTreeAdapter(
           }
           onClickListener?.onClick(clickedNode)
         }
+        holder.fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+        holder.expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
       }
 
     holder.itemView.setOnClickListener(clickListener)
@@ -100,6 +102,8 @@ class FileTreeAdapter(
         val clickedNode = getItem(adapterPosition)
         onLongClickListener?.onLongClick(clickedNode)
       }
+      holder.fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+      holder.expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
       true
     }
 
@@ -136,8 +140,12 @@ class FileTreeAdapter(
       expandView.visibility = View.VISIBLE
       if (!node.isExpand) {
         expandView.setImageDrawable(icChevronRight)
+        fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+        expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
       } else {
         expandView.setImageDrawable(iconProvider?.getExpandMore())
+        fileView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
+        expandView.setColorFilter(colors.icons, PorterDuff.Mode.SRC_IN)
       }
     } else {
       layoutParams.setMargins(icChevronRight!!.intrinsicWidth + dpToPx(10f), 0, 0, 0)
