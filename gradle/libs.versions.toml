@@ -1,15 +1,17 @@
 [versions]
 agp = "8.8.1"
 
+# SDK
 android-jvm = "21"
 android-compileSdk = "35"
 android-targetSdk = "35"
 android-minSdk = "26"
+android-ndk = "35.0.0"
+sdk-versions = "1.0.0"
 
 kotlin = "2.1.10"
 
 about-libraries = "11.6.3"
-
 google-material = "1.12.0"
 google-gson = "2.12.1"
 
