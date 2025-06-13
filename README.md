@@ -23,8 +23,7 @@
 - **Jetpack Compose**: Robok uses the Jetpack Compose ToolKit for the UI, so this means that the app follows all the Android guidelines.
 - **Open Source**: Robok is completely open source. Explore the code, contribute, and see how the engine works from the inside.
 - **APK Build**: Easily generate APKs for your game projects to share or publish directly on the Google Play Store.
-- **Robok SDK**: Includes a suite of tools to streamline your game development.
-- **RBK Layouts**: A custom language for creating GUI (Game UI).
+- **Robok SDK**: Includes a suite of tools to streamline your game development
 
 ---
 
@@ -47,7 +46,7 @@
 1. Open Robok.
 2. Go to **Create Project**.
 3. Select Template
-4. Enter the project name, package name, and version.
+4. Enter the project name, package name, project programminh language, and version.
 5. Wait for the project to be created.
 6. Open the files and start programming your game!
 
@@ -77,21 +76,15 @@ Help translate Robok-Engine! Visit [Weblate](https://hosted.weblate.org/engage/r
 
 ## 📝 TO-DO
 
-- [X] AAPT2 Compiler
+- [ ] Fully Java & Kotlin Compiler
 - [ ] Code Diagnostics
 - [X] Code Editor
 - [X] Project Creation
-- [X] File Tree
 - [ ] Full 3D Modeling
-- [ ] Classes to simplify development
-- [ ] AI System
-- [ ] Full Robok Amix Implemention
-- [ ] Robok Amix Auto Completion
+- [ ] Robok SDK Stable integration
 - [ ] Robok SDK Auto Completion
-- [ ] Get templates from [Robok-Templates Repo](https://github.com/Robok-Engine/Robok-Templates)
 - [ ] Improve Libs system (For now, each project has its libs folder in the app's private directory, however, this is not good, because if the user deletes the project outside of Robok, the libs remain there. or if he doesn't create the project through Robok, the libs won't be there.)
-- [ ] Conversion of assets/ to res/
-- [ ] basic project configuration file, like gradle
+- [ ] Stable Conversion of assets/ to res/
 
 ---
 
