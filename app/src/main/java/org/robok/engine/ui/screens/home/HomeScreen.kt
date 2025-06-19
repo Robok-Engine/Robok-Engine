@@ -57,7 +57,6 @@ import org.robok.engine.ext.navigateSingleTop
 import org.robok.engine.navigation.routes.ManageProjectsRoute
 import org.robok.engine.navigation.routes.SettingsRoute
 import org.robok.engine.navigation.routes.TemplatesRoute
-import org.robok.engine.navigation.routes.TerminalRoute
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.theme.Typography
 
@@ -82,11 +81,6 @@ fun HomeScreen() {
         icon = Icons.Rounded.Settings,
         title = stringResource(id = Strings.common_word_settings),
         onClick = { navController.navigateSingleTop(route = SettingsRoute) },
-      ),
-      HomeCardItemData(
-        icon = Icons.Rounded.Info,
-        title = stringResource(id = Strings.title_terminal),
-        onClick = { navController.navigateSingleTop(route = TerminalRoute) },
       ),
     )
 

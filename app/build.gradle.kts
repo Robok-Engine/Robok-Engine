@@ -106,9 +106,6 @@ dependencies {
   implementation(libs.sora.editor)
   implementation(libs.sora.editor.language.textmate)
 
-  implementation(libs.termux.terminal.view)
-  implementation(libs.termux.terminal.emulator)
-
   implementation(libs.coil.compose)
 
   implementation(libs.google.gson)

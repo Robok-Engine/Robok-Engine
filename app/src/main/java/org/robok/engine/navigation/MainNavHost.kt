@@ -31,7 +31,6 @@ import org.robok.engine.navigation.graph.SettingsNavGraphBuilder
 import org.robok.engine.navigation.routes.EditorRoute
 import org.robok.engine.navigation.routes.HomeRoute
 import org.robok.engine.navigation.routes.ProjectSettingsRoute
-import org.robok.engine.navigation.routes.TerminalRoute
 import org.robok.engine.ui.platform.LocalMainNavController
 import org.robok.engine.ui.screens.editor.EditorNavigateActions
 import org.robok.engine.ui.screens.editor.EditorScreen
@@ -40,7 +39,6 @@ import org.robok.engine.ui.screens.editor.LocalEditorFilesDrawerState
 import org.robok.engine.ui.screens.editor.LocalEditorModalState
 import org.robok.engine.ui.screens.editor.components.modal.rememberEditorModalState
 import org.robok.engine.ui.screens.home.HomeScreen
-import org.robok.engine.ui.screens.terminal.TerminalScreen
 
 @Composable
 fun MainNavHost() {
@@ -48,8 +46,6 @@ fun MainNavHost() {
 
   BaseNavHost(navController = navController, startDestination = HomeRoute) {
     composable<HomeRoute> { HomeScreen() }
-
-    composable<TerminalRoute> { TerminalScreen() }
 
     composable<EditorRoute>(typeMap = mapOf(typeOf<String>() to NavType.StringType)) {
       CompositionLocalProvider(

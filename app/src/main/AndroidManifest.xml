@@ -39,10 +39,6 @@
       android:name="org.robok.engine.ui.activities.debug.AppFailureActivity"
       android:exported="true" />
 
-    <activity
-      android:name="org.robok.engine.ui.activities.terminal.TerminalActivity"
-      android:exported="true" />
-
     <provider
       android:name="androidx.core.content.FileProvider"
       android:authorities="${applicationId}.provider"
