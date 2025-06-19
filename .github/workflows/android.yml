@@ -88,13 +88,12 @@ jobs:
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
           APK_TO_SEND: robok-debug-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
-          TOPIC_ID: 6998
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
             Branch: **${{ env.BRANCH_NAME }}**
             Commit message: `${{ env.COMMIT_MESSAGE }}`
-        run: python .github/telegram/send_apk.py
+        run: python .scripts/send_apk.py
         continue-on-error: true
 
   robok-release-apk:
@@ -199,11 +198,10 @@ jobs:
           BOT_TOKEN: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           CHAT_ID: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
           APK_TO_SEND: robok-release-${{ env.APP_VERSION }}-${{ env.BRANCH_NAME }}-${{ env.COMMIT_HASH }}.apk
-          TOPIC_ID: 1029
           DESCRIPTION: |
             **${{ github.actor }}** committed to [${{ github.repository }}](https://github.com/${{ github.repository }})
 
             Branch: **${{ env.BRANCH_NAME }}**
             Commit message: `${{ env.COMMIT_MESSAGE }}`
-        run: python .github/telegram/send_apk.py
+        run: python .scripts/send_apk.py
         continue-on-error: true

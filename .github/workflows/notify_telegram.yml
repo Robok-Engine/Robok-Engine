@@ -26,4 +26,3 @@ jobs:
         with:
           bot_token: ${{ secrets.TELEGRAM_RBKINC_BOT_TOKEN }}
           chat_id: ${{ secrets.TELEGRAM_RBKINC_CHAT_ID }}
-          topic_id: 1100

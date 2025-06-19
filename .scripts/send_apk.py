@@ -42,20 +42,24 @@ async def send_file(file_path):
     print(f"Sending file: {file_path} to the Telegram group")
 
     message = os.getenv("DESCRIPTION")
+    topic_id = os.getenv("TOPIC_ID")
 
     try:
-        await client.send_file(
-            entity=group_id,
-            file=file_path,
-            parse_mode='markdown',
-            caption=message,
-            progress_callback=progress,
-            reply_to=int(os.getenv("TOPIC_ID"))
-        )
+        kwargs = {
+            "entity": group_id,
+            "file": file_path,
+            "parse_mode": 'markdown',
+            "caption": message,
+            "progress_callback": progress,
+        }
+
+        if topic_id:
+            kwargs["reply_to"] = int(topic_id)
+
+        await client.send_file(**kwargs)
         print("\nFile sent successfully")
     except Exception as e:
         print(f"Failed to send file: {e}")
-
 
 try:
     with client:
