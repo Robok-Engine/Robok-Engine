@@ -119,28 +119,30 @@ fun HomeScreen() {
 
 @Composable
 fun HomeCardItem(item: HomeCardItemData) {
-  Card(
-    modifier = Modifier.padding(8.dp).height(100.dp),
-    shape = MaterialTheme.shapes.medium,
-    elevation = CardDefaults.cardElevation(0.dp),
-    onClick = item.onClick,
-  ) {
-    Column(
-      modifier = Modifier.padding(11.dp).fillMaxSize(),
-      horizontalAlignment = Alignment.Start,
-      verticalArrangement = Arrangement.Top,
+  Column(modifier = Modifier.weight(1f)) {
+    Card(
+      modifier = Modifier.padding(8.dp).height(100.dp),
+      shape = MaterialTheme.shapes.medium,
+      elevation = CardDefaults.cardElevation(0.dp),
+      onClick = item.onClick,
     ) {
-      Image(
-        imageVector = item.icon,
-        contentDescription = item.title,
-        modifier = Modifier.size(25.dp),
-        colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
-      )
-      Text(
-        text = item.title,
-        modifier = Modifier.padding(top = 8.dp),
-        style = Typography.bodyMedium,
-      )
+      Column(
+        modifier = Modifier.padding(11.dp).fillMaxSize(),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Top,
+      ) {
+        Image(
+          imageVector = item.icon,
+          contentDescription = item.title,
+          modifier = Modifier.size(25.dp),
+          colorFilter = ColorFilter.tint(MaterialTheme.colorScheme.onSurface),
+        )
+        Text(
+          text = item.title,
+          modifier = Modifier.padding(top = 8.dp),
+          style = Typography.bodyMedium,
+        )
+      }
     }
   }
 }
