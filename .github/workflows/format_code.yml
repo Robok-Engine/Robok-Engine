@@ -17,23 +17,21 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '22'
-          
-      - name: Download ktfmt
-        run: |
-          wget https://github.com/facebook/ktfmt/releases/download/v0.53/ktfmt-0.53-jar-with-dependencies.jar -O ktfmt.jar
 
+      - name: Install Ruby
+        run: sudo apt-get install ruby-full
+          
       - name: Run ktfmt on Kotlin files
         run: |
-          find . -name "*.kt" -exec java -jar ktfmt.jar --google-style {} +
+          ruby .scripts/format_code.rb . -k
 
       - name: Commit and Push changes
         run: |
-          rm ktfmt.jar
           git config --global user.name "trindadedev13"
           git config --global user.email "trindadedev13@gmail.com"
           git fetch origin ${GITHUB_REF_NAME}:temp
           git add .
-          git commit -m "chore: Format Kotlin Code" -m "format code with ktfmt in github actions"
+          git commit -m "chore(Format): Format Kotlin Code" -m "format code with ktfmt in github actions"
           git rebase temp
           git push origin HEAD:${GITHUB_REF_NAME}
         env:
@@ -53,14 +51,13 @@ jobs:
         with:
           distribution: 'oracle'
           java-version: '22'
-          
-      - name: Download Google Java Format
-        run: |
-          wget https://github.com/google/google-java-format/releases/download/v1.24.0/google-java-format-1.24.0-all-deps.jar -O google-java-format.jar
 
+      - name: Install Ruby
+        run: sudo apt-get install ruby-full
+          
       - name: Run Google Java Format in Java files
         run: |
-          find . -name "*.java" -exec java -jar google-java-format.jar --replace {} +
+          ruby .scripts/format_code.rb . -j
 
       - name: Commit and Push changes
         run: |
@@ -69,7 +66,7 @@ jobs:
           git config --global user.email "trindadedev13@gmail.com"
           git fetch origin ${GITHUB_REF_NAME}:temp
           git add .
-          git commit -m "chore: Format Java Code" -m "format code with google java format in github actions"
+          git commit -m "chore(Format): Format Java Code" -m "format code with google java format in github actions"
           git rebase temp
           git push origin HEAD:${GITHUB_REF_NAME}
         env:

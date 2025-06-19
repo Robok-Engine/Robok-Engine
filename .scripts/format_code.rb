@@ -4,17 +4,33 @@
 require 'fileutils'
 require 'open-uri'
 
-if ARGV.length != 1
-  puts "Usage: ruby file.rb <base_dir>"
-  exit 1
+# Help function
+def print_help_and_exit
+  puts <<~HELP
+    Usage: ruby file.rb <base_dir> [options]
+    
+    Options:
+      -j        Format Java files only
+      -k        Format only Kotlin files
+      -h        Show help
+  HELP
+  exit
 end
 
-# Variables
+# Argument parsing
+if ARGV.empty? || ARGV.include?("-h") || ARGV.length < 2
+  print_help_and_exit
+end
+
 TO_FORMAT_DIR = ARGV[0]
+options = ARGV[1..] || []
+
+FORMAT_JAVA = options.empty? || options.include?("-j")
+FORMAT_KOTLIN = options.empty? || options.include?("-k")
+
 CACHE_DIR = "#{ENV['HOME']}/.cache/trindadedev/formatters"
 FileUtils.mkdir_p(CACHE_DIR)
 
-# Formatter Configurations
 FORMATTERS = {
   java: {
     name: "Google Java Formatter",
@@ -34,7 +50,6 @@ FORMATTERS = {
   }
 }
 
-# Download formatter if it doesn't exist
 def download_formatter(formatter)
   path = File.join(CACHE_DIR, formatter[:file])
   return path if File.exist?(path)
@@ -49,21 +64,19 @@ def download_formatter(formatter)
   path
 end
 
-# Format files of a given type
 def format_files(key, formatter)
-  print "Do you want to format all #{key.to_s.capitalize} files in this directory and subdirectories? (Y/N): "
-  answer = STDIN.gets.strip.downcase
-  return unless answer.start_with?("y")
-
   jar_path = download_formatter(formatter)
-  puts "Formatting #{key.to_s.capitalize} files..."
+  puts "Formatting files #{key.to_s.capitalize}..."
 
   Dir.glob("#{TO_FORMAT_DIR}/**/#{formatter[:file_ext]}").each do |file|
     system("java", "-jar", jar_path, *formatter[:args], file)
   end
 end
 
-# Run formatters
-FORMATTERS.each do |key, formatter|
-  format_files(key, formatter)
+if FORMAT_JAVA
+  format_files(:java, FORMATTERS[:java])
+end
+
+if FORMAT_KOTLIN
+  format_files(:kotlin, FORMATTERS[:kotlin])
 end
