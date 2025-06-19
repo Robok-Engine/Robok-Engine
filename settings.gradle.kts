@@ -33,6 +33,3 @@ include(":core:ui:color")
 include(":core:utils")
 include(":core:settings")
 include(":core:database")
-
-// submodule
-include(":sdk")
