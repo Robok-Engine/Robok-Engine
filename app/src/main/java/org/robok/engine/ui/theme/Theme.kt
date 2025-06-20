@@ -22,7 +22,8 @@ import androidx.annotation.ChecksSdkIntAtLeast
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.LocalTextStyle
-import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.MaterialExpressiveTheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
@@ -59,7 +60,7 @@ fun Color.harmonizeWith(other: Color) =
 @Composable
 @ReadOnlyComposable
 fun Color.harmonizeWithPrimary(): Color =
-  this.harmonizeWith(other = MaterialTheme.colorScheme.primary)
+  this.harmonizeWith(other = MaterialExpressiveTheme.colorScheme.primary)
 
 @Composable
 fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()): ColorScheme {
@@ -69,6 +70,7 @@ fun rememberDynamicScheme(darkTheme: Boolean = isSystemInDarkTheme()): ColorSche
   }
 }
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 @Composable
 fun RobokTheme(
   darkTheme: Boolean = isSystemInDarkTheme(),
@@ -121,7 +123,7 @@ fun RobokTheme(
   }
 
   CompositionLocalProvider(LocalTextStyle provides textStyle) {
-    MaterialTheme(
+    MaterialExpressiveTheme(
       colorScheme = colorScheme,
       typography = Typography,
       shapes = Shapes,

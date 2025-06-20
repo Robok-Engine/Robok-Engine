@@ -35,11 +35,10 @@ fun BottomButtons(
   onNext: () -> Unit,
 ) {
   Row(modifier = modifier) {
-    TextButton(onClick = onBack) {
-      Text(
-        text =
-          stringResource(id = if (isWelcome) Strings.common_word_exit else Strings.common_word_back)
-      )
+    if (!isWelcome) {
+      TextButton(onClick = onBack) {
+        Text(text = stringResource(id = Strings.common_word_back))
+      }
     }
     Spacer(modifier = Modifier.weight(1f))
     Button(onClick = onNext) { Text(text = stringResource(id = Strings.common_word_next)) }
