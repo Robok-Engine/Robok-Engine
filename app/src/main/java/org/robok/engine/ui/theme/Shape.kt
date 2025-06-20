@@ -20,5 +20,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
 import androidx.compose.ui.unit.dp
 
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
 val Shapes =
   Shapes(largeIncreased = RoundedCornerShape(36.0.dp))
