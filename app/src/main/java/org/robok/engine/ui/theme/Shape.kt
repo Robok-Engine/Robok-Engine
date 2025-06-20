@@ -18,8 +18,9 @@ package org.robok.engine.ui.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Shapes
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
 import androidx.compose.ui.unit.dp
 
 @OptIn(ExperimentalMaterial3ExpressiveApi::class)
-val Shapes =
-  Shapes(largeIncreased = RoundedCornerShape(36.0.dp))
+fun provideShapes() =
+  Shapes(largeIncreased = RoundedCornerShape(36.dp))

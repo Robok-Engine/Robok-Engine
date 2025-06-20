@@ -127,7 +127,7 @@ fun RobokTheme(
     MaterialExpressiveTheme(
       colorScheme = colorScheme,
       typography = Typography,
-      shapes = Shapes,
+      shapes = provideShapes(),
       content = content,
     )
   }
