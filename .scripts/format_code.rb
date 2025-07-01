@@ -68,8 +68,9 @@ def format_files(key, formatter)
   jar_path = download_formatter(formatter)
   puts "Formatting files #{key.to_s.capitalize}..."
 
-  Dir.glob("#{TO_FORMAT_DIR}/**/#{formatter[:file_ext]}").each do |file|
-    system("java", "-jar", jar_path, *formatter[:args], file)
+  files = Dir.glob("#{TO_FORMAT_DIR}/**/#{formatter[:file_ext]}")
+  unless files.empty?
+    system("java", "-jar", jar_path, *formatter[:args], *files)
   end
 end
 
