@@ -16,19 +16,13 @@ package org.robok.engine.ui.screens.settings.about.components
  * limitations under the License.
  */
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.*
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.shape.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.draw.*
-import androidx.compose.ui.platform.*
-import androidx.compose.ui.res.*
-import androidx.compose.ui.text.font.*
-import androidx.compose.ui.unit.*
+import androidx.compose.material3.Button
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.platform.LocalUriHandler
 import org.robok.engine.Strings
 import org.robok.engine.ui.core.components.dialog.EnhancedAlertDialog
 import org.robok.engine.ui.screens.settings.about.models.Contributor
