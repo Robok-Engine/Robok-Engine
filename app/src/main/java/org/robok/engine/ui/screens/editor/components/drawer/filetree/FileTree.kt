@@ -16,6 +16,7 @@ package org.robok.engine.ui.screens.editor.components.drawer.filetree
  * limitations under the License.
  */
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -33,8 +34,8 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.animateFloatAsState
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -111,7 +112,7 @@ fun FileTree(
       ) {
         if (node.isDirectory) {
           val rotation by animateFloatAsState(
-            target = if (node.isExpanded.value) 0f else -180f,
+            targetValue = if (node.isExpanded.value) 0f else -180f,
             animationSpec = tween(500)
           )
           Icon(
