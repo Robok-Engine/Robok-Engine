@@ -24,8 +24,8 @@ import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 @Composable
 fun EditorFilesDrawer(editorViewModel: EditorViewModel) {
   FileTreeDrawer(
-    path = editorViewModel.projectManager.projectPath.absolutePath,
-    onClick = { node ->
+    path = editorViewModel.projectManager.projectPath,
+    onNodeClick = { node ->
       if (node.abs.isDirectory()) {} else {
         editorViewModel.openFile(node.abs)
       }
