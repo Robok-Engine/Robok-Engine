@@ -16,14 +16,7 @@ package org.robok.engine.ui.screens.editor.components.drawer.filetree
  * limitations under the License.
  */
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.AnimatedVisibilityScope
-import androidx.compose.animation.expandHorizontally
-import androidx.compose.animation.expandVertically
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkHorizontally
-import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -40,10 +33,12 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.animateFloatAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.rotate
 import androidx.compose.ui.unit.dp
 import java.io.File
 import org.robok.engine.ui.core.components.animation.ExpandAndShrink
@@ -71,7 +66,7 @@ fun buildFileTree(file: File): FileNode {
   } else {
     FileNode(
       name = file.name,
-      isDirectory = true,
+      isDirectory = false,
       abs = file
     )
   }
@@ -115,9 +110,14 @@ fun FileTree(
           verticalAlignment = Alignment.CenterVertically
       ) {
         if (node.isDirectory) {
+          val rotation by animateFloatAsState(
+            target = if (node.isExpanded.value) 0f else -180f,
+            animationSpec = tween(500)
+          )
           Icon(
             imageVector = if (node.isExpanded.value) Icons.Filled.ExpandMore else Icons.Filled.ChevronRight,
-            contentDescription = null
+            contentDescription = null,
+            modifier = Modifier.rotate(rotation)
           )
         } else {
           Spacer(modifier = Modifier.width(24.dp))
