@@ -17,7 +17,7 @@ package org.robok.engine.ui.screens.editor.components.drawer
  */
 
 import androidx.compose.runtime.Composable
-import org.robok.engine.io.File
+import java.io.File
 import org.robok.engine.ui.screens.editor.components.drawer.filetree.FileTreeDrawer
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
@@ -26,9 +26,8 @@ fun EditorFilesDrawer(editorViewModel: EditorViewModel) {
   FileTreeDrawer(
     path = editorViewModel.projectManager.projectPath.absolutePath,
     onClick = { node ->
-      val file = File(node.value.getAbsolutePath())
-      if (file.isDirectory()) {} else {
-        editorViewModel.openFile(file)
+      if (node.abs.isDirectory()) {} else {
+        editorViewModel.openFile(node.abs)
       }
     },
   )

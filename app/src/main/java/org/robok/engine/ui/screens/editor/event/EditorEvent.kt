@@ -16,7 +16,7 @@ package org.robok.engine.ui.screens.editor.event
  * limitations under the License.
  */
 
-import org.robok.engine.io.File
+import java.io.File
 
 sealed interface EditorEvent {
   data class SelectFile(val index: Int) : EditorEvent

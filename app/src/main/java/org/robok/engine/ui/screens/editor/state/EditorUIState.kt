@@ -16,9 +16,9 @@ package org.robok.engine.ui.screens.editor.state
  * limitations under the License.
  */
 
+import java.io.File
 import org.robok.engine.feature.compiler.android.logger.Log
 import org.robok.engine.feature.editor.RobokCodeEditor
-import org.robok.engine.io.File
 import org.robok.engine.ui.screens.editor.EditorNavigateActions
 
 data class EditorUIState(

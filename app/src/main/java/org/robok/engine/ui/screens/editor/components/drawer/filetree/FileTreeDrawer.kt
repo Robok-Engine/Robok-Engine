@@ -16,21 +16,24 @@ package org.robok.engine.ui.screens.editor.components.drawer.filetree
  * limitations under the License.
  */
 
-import androidx.compose.foundation.*
-import androidx.compose.foundation.layout.*
-import androidx.compose.material3.*
-import androidx.compose.runtime.*
-import androidx.compose.ui.*
-import androidx.compose.ui.res.*
-import androidx.compose.ui.unit.*
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.res.stringResource
+import java.io.File
 import org.robok.engine.Strings
-import org.robok.engine.feature.treeview.interfaces.FileObject
-import org.robok.engine.feature.treeview.model.Node
 import org.robok.engine.ui.theme.Typography
 
 @Composable
-fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
-  val fileTreeState = rememberFileTreeState()
+fun FileTreeDrawer(
+  path: File,
+  onNodeClick: (FileNode) -> Unit
+) {
   Column {
     Text(
       text = stringResource(id = Strings.common_word_files),
@@ -39,6 +42,9 @@ fun FileTreeDrawer(path: String, onClick: (Node<FileObject>) -> Unit) {
       color = MaterialTheme.colorScheme.onSurface,
       modifier = Modifier.padding(start = 16.dp, top = 8.dp, bottom = 8.dp),
     )
-    FileTree(path = path, onClick = onClick, state = fileTreeState)
+    FileTree(
+      path = path,
+      onNodeClick = onNodeClick,
+    )
   }
 }
