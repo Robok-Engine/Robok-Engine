@@ -84,7 +84,7 @@ fun FileTree(
 ) {
   val rootNode = remember(path) { buildFileTree(path) }
 
-  FileTreeView(
+  FileTree(
     nodes = listOf(rootNode),
     onNodeClick = onNodeClick
   )
