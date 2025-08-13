@@ -24,7 +24,6 @@ include(":app")
 
 include(":app-strings")
 
-include(":feature:treeview")
 include(":feature:editor")
 include(":feature:compiler")
 
