@@ -1,4 +1,4 @@
-package org.robok.engine.ui.screens.editor
+package org.robok.engine.ui.screens.editor.scheme
 
 /*
  *  This file is part of Robok © 2024.

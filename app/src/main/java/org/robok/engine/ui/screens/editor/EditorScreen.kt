@@ -50,6 +50,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.res.stringResource
@@ -318,11 +319,11 @@ private fun configureEditorTheme(view: RobokCodeEditor) {
         surface = MaterialTheme.colorScheme.surface.toArgb(),
         onSurface = MaterialTheme.colorScheme.onSurface.toArgb(),
     )
-    1 -> SchemeGithub()
+    1 -> SchemeGitHub()
     2 -> SchemeEclipse()
     3 -> SchemeDarcula()
     4 -> SchemeVS2019()
-    5 -> SchemeNotepadXX()
+    else -> SchemeNotepadXX()
   }
   view.soraCodeEditor.colorScheme = scheme
 }
