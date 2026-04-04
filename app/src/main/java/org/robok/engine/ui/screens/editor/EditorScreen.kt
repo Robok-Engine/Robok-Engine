@@ -56,6 +56,11 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import dev.trindadedev.scrolleffect.cupertino.CupertinoColumnScroll
+import io.github.rosemoe.sora.widget.schemes.SchemeDarcula;
+import io.github.rosemoe.sora.widget.schemes.SchemeEclipse;
+import io.github.rosemoe.sora.widget.schemes.SchemeGitHub;
+import io.github.rosemoe.sora.widget.schemes.SchemeNotepadXX;
+import io.github.rosemoe.sora.widget.schemes.SchemeVS2019;
 import java.io.File
 import kotlinx.coroutines.launch
 import org.koin.androidx.compose.koinViewModel
@@ -76,6 +81,7 @@ import org.robok.engine.ui.screens.editor.components.drawer.EditorDrawer
 import org.robok.engine.ui.screens.editor.components.modal.EditorModal
 import org.robok.engine.ui.screens.editor.components.tab.EditorFileTabLayout
 import org.robok.engine.ui.screens.editor.event.EditorEvent
+import org.robok.engine.ui.screens.editor.scheme.SchemeDynamic
 import org.robok.engine.ui.screens.editor.viewmodel.EditorViewModel
 
 @Composable
@@ -292,10 +298,33 @@ private fun Editor(modifier: Modifier = Modifier, editorViewModel: EditorViewMod
       }
       LaunchedEffect(editorView) { editorViewModel.updateUndoRedo(editorView) }
       key(file.path) {
-        ExpandAndShrink(file.path == editorView.file.path) { EditorView(modifier, editorView) }
+        ExpandAndShrink(file.path == editorView.file.path) {
+          configureEditorTheme(editorView)
+          EditorView(modifier, editorView)
+        }
       }
     }
   }
+}
+
+@Composable
+private fun configureEditorTheme(view: RobokCodeEditor) {
+  val ctx = LocalContext.current
+  val configMan = view.configManager
+  val scheme = when (configMan.getEditorTheme()) {
+    0 -> SchemeDynamic(
+        context = ctx,
+        primary = MaterialTheme.colorScheme.primary.toArgb(),
+        surface = MaterialTheme.colorScheme.surface.toArgb(),
+        onSurface = MaterialTheme.colorScheme.onSurface.toArgb(),
+    )
+    1 -> SchemeGithub()
+    2 -> SchemeEclipse()
+    3 -> SchemeDarcula()
+    4 -> SchemeVS2019()
+    5 -> SchemeNotepadXX()
+  }
+  view.soraCodeEditor.colorScheme = scheme
 }
 
 @Composable

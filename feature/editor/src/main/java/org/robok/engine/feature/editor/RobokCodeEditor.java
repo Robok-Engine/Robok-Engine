@@ -39,30 +39,24 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import kotlin.io.FilesKt;
 import org.robok.engine.feature.editor.databinding.LayoutCodeEditorBinding;
-import org.robok.engine.feature.editor.scheme.SchemeDynamic;
 
 public class RobokCodeEditor extends LinearLayout implements EditorListener {
 
   public static final String TAG = "RobokCodeEditor";
 
   private DiagnosticsContainer diagnostics; // popup/box of Diagnostic
-
   private EditorListener editorListener; // EditorListener used.
-
-  private final LayoutCodeEditorBinding binding;
-
+  private LayoutCodeEditorBinding binding;
   private EditorConfigManager editorConfigManager;
-
-  private File file; // Editor file
-
+  private File editorFile;
   private boolean isModified;
 
   /*
    * Default constructor.
    */
-  public RobokCodeEditor(Context context, File file) {
+  public RobokCodeEditor(Context context, File editorFile) {
     super(context);
-    this.file = file;
+    this.editorFile = editorFile;
     this.editorListener = this;
 
     binding = LayoutCodeEditorBinding.inflate(LayoutInflater.from(context), this, true);
@@ -75,8 +69,6 @@ public class RobokCodeEditor extends LinearLayout implements EditorListener {
    * This method sets the editor's initial text, font, language...
    */
   private void configureEditor() {
-    // Diagnostics
-
     diagnostics = new DiagnosticsContainer();
 
     readFile();
@@ -89,9 +81,6 @@ public class RobokCodeEditor extends LinearLayout implements EditorListener {
                 editorConfigManager.getEditorTypeface()));
     getSoraCodeEditor().setTextSize(16);
     getSoraCodeEditor().setWordwrap(editorConfigManager.getEditorIsUseWordWrap());
-
-    getSoraCodeEditor()
-        .setColorScheme(AppearanceManager.getTheme(this, editorConfigManager.getEditorTheme()));
   }
 
   /*
@@ -191,6 +180,19 @@ public class RobokCodeEditor extends LinearLayout implements EditorListener {
     return getSoraCodeEditor().getText();
   }
 
+  /**
+   * Get current file from editor.
+   *
+   * @return The file.
+   */
+  public File getFile() {
+    return this.editorFile;
+  }
+
+  public EditorConfigManager getConfigManager() {
+    return editorConfigManager;
+  }
+
   /*
    * Method to redo the text editor.
    */
@@ -233,15 +235,6 @@ public class RobokCodeEditor extends LinearLayout implements EditorListener {
    */
   public boolean isModified() {
     return this.isModified;
-  }
-
-  /**
-   * Get current file from editor.
-   *
-   * @return The file.
-   */
-  public File getFile() {
-    return this.file;
   }
 
   /** Hides the Symbol Input View. */
@@ -299,31 +292,6 @@ public class RobokCodeEditor extends LinearLayout implements EditorListener {
         case 4 -> Typeface.create(baseTypeface, Typeface.SERIF.getStyle());
         default -> baseTypeface;
       };
-    }
-
-    /**
-     * Method to choose editor theme.
-     *
-     * @param rcd An Instance of RobokCodeEditor
-     * @param themeIndex Number of theme 0...6
-     * @return Return an EditorColorScheme instance
-     */
-    public static EditorColorScheme getTheme(RobokCodeEditor rcd, int themeIndex) {
-      var ctx = rcd.getSoraCodeEditor().getContext();
-      switch (themeIndex) {
-        case 1:
-          return new SchemeGitHub();
-        case 2:
-          return new SchemeEclipse();
-        case 3:
-          return new SchemeDarcula();
-        case 4:
-          return new SchemeVS2019();
-        case 5:
-          return new SchemeNotepadXX();
-        default:
-          return new SchemeDynamic(ctx);
-      }
     }
   }
 }

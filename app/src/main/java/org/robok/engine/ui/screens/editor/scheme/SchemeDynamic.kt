@@ -1,4 +1,4 @@
-package org.robok.engine.feature.editor.scheme
+package org.robok.engine.ui.screens.editor
 
 /*
  *  This file is part of Robok © 2024.
@@ -22,25 +22,19 @@ package org.robok.engine.feature.editor.scheme
  */
 
 import android.content.Context
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.ui.graphics.toArgb
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import org.robok.engine.feature.editor.R
 import org.robok.engine.res.ResUtils
 
-class SchemeDynamic(context: Context) : SchemeDarcula() {
-
-  val context: Context
-  val resUtils: ResUtils
-
+class SchemeDynamic(
+  private val context: Context,
+  private val primary: Int,
+  private val surface: Int,
+  private val onSurface: Int,
+) : SchemeDarcula() {
   init {
-    this.context = context
-    resUtils = ResUtils(context)
-
-    val primary = MaterialTheme.colorScheme.primary.toArgb()
-    val surface = MaterialTheme.colorScheme.surface.toArgb()
-    val onSurface = MaterialTheme.colorScheme.onSurface.toArgb()
+    val resUtils = ResUtils(context)
 
     setColor(EditorColorScheme.WHOLE_BACKGROUND, surface)
     setColor(

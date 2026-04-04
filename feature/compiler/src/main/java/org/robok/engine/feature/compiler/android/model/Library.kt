@@ -71,7 +71,7 @@ data class Library(private val path: File) {
     val matcher = packagePattern.matcher(manifest)
 
     return if (matcher.find()) {
-      matcher.group(1)?.substring(9, matcher.group(1).length - 1)
+      matcher.group(1)?.substring(9, matcher.group(1)?.length - 1)
     } else {
       null
     }

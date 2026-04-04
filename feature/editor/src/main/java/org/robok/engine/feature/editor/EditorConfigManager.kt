@@ -48,7 +48,7 @@ class EditorConfigManager : KoinComponent {
 
   /*
    * Method to get Editor theme index
-   * @return Return a Int (0..6) with theme index
+   * @return Return a Int (0..5) with theme index
    */
   fun getEditorTypeface(): Int = runBlocking { editorTypeface.first() }
 
