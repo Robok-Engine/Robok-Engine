@@ -26,6 +26,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.ProvideTextStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.ripple
 import androidx.compose.runtime.Composable
@@ -33,6 +34,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
 import androidx.compose.material3.Switch
 
@@ -45,9 +47,9 @@ import androidx.compose.material3.Switch
 fun PreferenceSwitch(
   checked: Boolean,
   onCheckedChange: (Boolean) -> Unit,
-  title: String,
+  title: @Composable () -> Unit,
+  description: @Composable (() -> Unit) = {},
   modifier: Modifier = Modifier,
-  description: String? = null,
   enabled: Boolean = true,
   onClick: (() -> Unit)? = null,
 ) {
@@ -67,8 +69,8 @@ fun PreferenceSwitch(
         }
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-    title = { Text(fontWeight = FontWeight.Bold, text = title) },
-    description = { description?.let { Text(text = it) } },
+    title = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
+    description = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
     endWidget = {
       if (onClick != null) {
         Spacer(

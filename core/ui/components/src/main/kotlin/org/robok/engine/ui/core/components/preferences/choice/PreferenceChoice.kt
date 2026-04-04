@@ -40,8 +40,8 @@ import org.robok.engine.ui.core.components.preferences.base.PreferenceTemplate
  */
 @Composable
 fun PreferenceChoice(
-  title: String,
-  description: String = title,
+  title: @Composable () -> Unit,
+  description: @Composable (() -> Unit) = {},
   disabled: Boolean = false,
   pref: Int,
   options: List<Int>,
@@ -66,7 +66,7 @@ fun PreferenceChoice(
         setOpened(true)
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
-    title = { Text(fontWeight = FontWeight.Bold, text = title) },
+    title = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
     endWidget = {
       if (!disabled) {
         FilledTonalButton(
@@ -88,7 +88,7 @@ fun PreferenceChoice(
   if (opened) {
     ChoiceBottomSheet(
       visible = opened,
-      title = { Text(fontWeight = FontWeight.Bold, text = title) },
+      title = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
       default = pref,
       options = options,
       titleFactory = titleFactory,

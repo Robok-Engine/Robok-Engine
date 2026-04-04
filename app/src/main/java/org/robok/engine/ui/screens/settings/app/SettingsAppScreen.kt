@@ -68,8 +68,8 @@ private fun AppearancePreference(
     onCheckedChange = { newValue ->
       preferencesViewModel.setMonetEnable(newValue)
     },
-    title = stringResource(id = Strings.settings_app_use_monet_title),
-    description = stringResource(id = Strings.settings_app_use_monet_description),
+    title = { Text(stringResource(id = Strings.settings_app_use_monet_title)) },
+    description = { Text(stringResource(id = Strings.settings_app_use_monet_description))},
     enabled = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S,
   )
   PreferenceSwitch(
@@ -77,7 +77,7 @@ private fun AppearancePreference(
     onCheckedChange = { newValue ->
       preferencesViewModel.setAmoledEnable(newValue)
     },
-    title = stringResource(id = Strings.settings_app_use_amoled_title),
-    description = stringResource(id = Strings.settings_app_use_amoled_description),
+    title = { Text(stringResource(id = Strings.settings_app_use_amoled_title)) },
+    description = { Text(stringResource(id = Strings.settings_app_use_amoled_description)) },
   )
 }

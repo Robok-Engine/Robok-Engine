@@ -18,6 +18,7 @@ package org.robok.engine.ui.screens.settings.editor
  */
 
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -53,11 +54,10 @@ fun SettingsCodeEditorScreen() {
 @Composable
 private fun EditorThemePreference(preferencesViewModel: PreferencesViewModel) {
   val context = LocalContext.current
-  val editorThemes = listOf(0, 1, 2, 3, 4, 5, 6) // ints/positions
+  val editorThemes = listOf(0, 1, 2, 3, 4, 5) // ints/positions
   val editorThemeLabels =
     listOf(
-      "Robok",
-      "Robok TH",
+      "Material You",
       "GitHub",
       "Eclipse",
       "Darcula",
@@ -69,8 +69,8 @@ private fun EditorThemePreference(preferencesViewModel: PreferencesViewModel) {
     preferencesViewModel.editorTheme.collectAsState(initial = DefaultValues.EDITOR_THEME)
 
   PreferenceChoice(
-    title = stringResource(id = Strings.settings_code_editor_theme_title),
-    description = stringResource(id = Strings.settings_code_editor_theme_description),
+    title = { Text(stringResource(id = Strings.settings_code_editor_theme_title)) },
+    description = { Text(stringResource(id = Strings.settings_code_editor_theme_description)) },
     pref = editorTheme,
     options = editorThemes,
     titleFactory = { index -> editorThemeLabels.getOrElse(index) { "Unknown" } },
@@ -96,8 +96,8 @@ private fun EditorTypefacePreference(preferencesViewModel: PreferencesViewModel)
     preferencesViewModel.editorTypeface.collectAsState(initial = DefaultValues.EDITOR_TYPEFACE)
 
   PreferenceChoice(
-    title = stringResource(id = Strings.settings_code_editor_typeface_title),
-    description = stringResource(id = Strings.settings_code_editor_typeface_description),
+    title = { Text(stringResource(id = Strings.settings_code_editor_typeface_title)) },
+    description = { Text(stringResource(id = Strings.settings_code_editor_typeface_description)) },
     pref = editorTypeface,
     options = editorTypefaces,
     titleFactory = { index -> editorTypefacesLabels.getOrElse(index) { "Unknown" } },
@@ -115,7 +115,7 @@ private fun EditorWordWrapPreference(preferencesViewModel: PreferencesViewModel)
   PreferenceSwitch(
     checked = editorIsUseWordWrap,
     onCheckedChange = { newValue -> preferencesViewModel.setEditorWordWrapEnable(newValue) },
-    title = stringResource(id = Strings.settings_code_editor_word_wrap_title),
-    description = stringResource(id = Strings.settings_code_editor_word_wrap_description),
+    title = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_title)) },
+    description = { Text(stringResource(id = Strings.settings_code_editor_word_wrap_description)) },
   )
 }
