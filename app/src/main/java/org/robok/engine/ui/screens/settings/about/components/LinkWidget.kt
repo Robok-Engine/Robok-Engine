@@ -40,8 +40,19 @@ fun LinkWidget(model: Link) {
 
   PreferenceTemplate(
     modifier = Modifier.clickable { uriHandler.openUri(model.url) },
-    title = { Text(fontWeight = FontWeight.Bold, text = model.name) },
-    description = { Text(text = model.description) },
+    title = {
+      Text(
+        text = model.name,
+        style = MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp),
+      )
+    },
+    description = {
+      Text(
+        text = model.description,
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+      )
+    },
     startWidget = {
       Image(
         painter = painterResource(id = model.imageResId),

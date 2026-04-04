@@ -70,7 +70,15 @@ fun PreferenceSwitch(
       },
     contentModifier = Modifier.fillMaxHeight().padding(vertical = 16.dp).padding(start = 16.dp),
     title = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
-    description = { ProvideTextStyle(MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp)) { title() } },
+    description = {
+      ProvideTextStyle(
+        MaterialTheme.typography.bodyMedium.copy(
+          color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f)
+        )
+      ) {
+        description()
+      }
+    },
     endWidget = {
       if (onClick != null) {
         Spacer(

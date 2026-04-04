@@ -39,8 +39,19 @@ import org.robok.engine.ui.screens.settings.about.models.Contributor
 @Composable
 fun ContributorWidget(model: Contributor, onClick: (Contributor) -> Unit = {}) {
   PreferenceTemplate(
-    title = { Text(fontWeight = FontWeight.Bold, text = model.login) },
-    description = { Text(text = handleRole(model.role)) },
+    title = {
+      Text(
+        text = model.login,
+        style = MaterialTheme.typography.titleLarge.copy(fontSize = 19.sp),
+      )
+    },
+    description = {
+      Text(
+        text = handleRole(model.role),
+        style = MaterialTheme.typography.bodyMedium,
+        color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.6f),
+      )
+    },
     modifier = Modifier.clickable { onClick(model) },
     startWidget = {
       val avatarUrl = if (model.avatar_url.isNullOrEmpty()) Drawables.ic_nerd else model.avatar_url
