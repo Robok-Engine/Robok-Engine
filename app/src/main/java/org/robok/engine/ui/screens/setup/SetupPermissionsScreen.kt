@@ -25,6 +25,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.rounded.Error
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
@@ -79,8 +80,8 @@ fun SetupPermissionsScreen(onBack: () -> Unit, onNext: () -> Unit) {
         PreferenceSwitch(
           checked = permissionsState.isStoragePermissionAllow,
           onCheckedChange = { activity?.requestStoragePermission() },
-          title = stringResource(id = Strings.setup_permission_storage_title),
-          description = stringResource(id = Strings.warning_storage_perm_message),
+          title = { Text(stringResource(id = Strings.setup_permission_storage_title)) },
+          description = { Text(stringResource(id = Strings.warning_storage_perm_message)) },
         )
       }
     }
