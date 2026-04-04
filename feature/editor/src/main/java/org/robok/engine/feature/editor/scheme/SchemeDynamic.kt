@@ -22,7 +22,8 @@ package org.robok.engine.feature.editor.scheme
  */
 
 import android.content.Context
-import com.google.android.material.R as MaterialR
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.toArgb
 import io.github.rosemoe.sora.widget.schemes.EditorColorScheme
 import io.github.rosemoe.sora.widget.schemes.SchemeDarcula
 import org.robok.engine.feature.editor.R
@@ -37,15 +38,16 @@ class SchemeDynamic(context: Context) : SchemeDarcula() {
     this.context = context
     resUtils = ResUtils(context)
 
-    val primary = resUtils.getAttrColor(MaterialR.attr.colorPrimary)
-    val surface = resUtils.getAttrColor(MaterialR.attr.colorSurface)
-    val onSurface = resUtils.getAttrColor(MaterialR.attr.colorOnSurface)
+    val primary = MaterialTheme.colorScheme.primary.toArgb()
+    val surface = MaterialTheme.colorScheme.surface.toArgb()
+    val onSurface = MaterialTheme.colorScheme.onSurface.toArgb()
 
     setColor(EditorColorScheme.WHOLE_BACKGROUND, surface)
     setColor(
       EditorColorScheme.CURRENT_LINE,
       resUtils.getColor(org.robok.engine.feature.editor.R.color.scheme_robok_current_line),
     )
+
     setColor(EditorColorScheme.LINE_NUMBER_PANEL, surface)
     setColor(EditorColorScheme.LINE_NUMBER_BACKGROUND, surface)
     setColor(EditorColorScheme.KEYWORD, primary)
