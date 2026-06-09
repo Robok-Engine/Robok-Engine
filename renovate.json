@@ -4,5 +4,11 @@
     "config:recommended"
   ],
   "automerge": true,
-  "forkProcessing": "enabled"
+  "forkProcessing": "enabled",
+  "packageRules": [
+    {
+      "matchPackageNames": ["APP_VERSION"],
+      "enabled": false
+    }
+  ]
 }
