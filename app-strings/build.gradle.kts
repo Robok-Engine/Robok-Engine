@@ -13,7 +13,7 @@ android {
     minSdk = libs.versions.android.minSdk.get().toInt()
     testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     
-    resValue("string", "app_version", "1.0.0")
+    resValue("string", "APP_VERSION", "1.0.0")
     resValue("string", "GIT_COMMIT_HASH", getGitHash())
     resValue("string", "GIT_COMMIT_SHORT_HASH", getShortGitHash())
     resValue("string", "GIT_COMMIT_AUTHOR", getGitCommitAuthor())
